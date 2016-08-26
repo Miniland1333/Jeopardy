@@ -1,9 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Mongo } from 'meteor/mongo';
-
-
-
-export const Tasks = new Mongo.Collection('tasks');
 
 // Task component - represents a single todo item
 export default class Task extends Component {

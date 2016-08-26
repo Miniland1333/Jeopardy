@@ -2599,6 +2599,7 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/server.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/mongos.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/shared.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/tmeasday_check-npm-versions/0.2.0/npm/node_modules/semver/semver.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/replset.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/read_preference.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/replset_state.js" />
@@ -7514,6 +7515,7 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/server.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/mongos.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/shared.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/tmeasday_check-npm-versions/0.2.0/npm/node_modules/semver/semver.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/replset.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/read_preference.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/npm-mongo/1.5.48/npm/node_modules/mongodb-core/lib/topologies/replset_state.js" />

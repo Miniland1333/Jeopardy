@@ -79,6 +79,10 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/caching-html-compiler/1.0.6/web.browser/caching-html-compiler.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.7.6/web.browser/.npm/package/node_modules/install/install.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.7.6/web.browser/modules-runtime.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/react-meteor-data/0.2.9/web.browser/react-meteor-data.jsx" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/react-meteor-data/0.2.9/web.browser/ReactMeteorData.jsx" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/react-meteor-data/0.2.9/web.browser/createContainer.jsx" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/tmeasday_check-npm-versions/0.2.0/web.browser/check-npm-versions.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/blaze-tools/1.0.9/web.browser/preamble.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/blaze-tools/1.0.9/web.browser/tokens.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/blaze-tools/1.0.9/web.browser/tojs.js" />
@@ -212,6 +216,10 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/caching-html-compiler/1.0.6/web.browser/caching-html-compiler.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.7.6/web.browser/.npm/package/node_modules/install/install.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.7.6/web.browser/modules-runtime.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/react-meteor-data/0.2.9/web.browser/react-meteor-data.jsx" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/react-meteor-data/0.2.9/web.browser/ReactMeteorData.jsx" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/react-meteor-data/0.2.9/web.browser/createContainer.jsx" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/tmeasday_check-npm-versions/0.2.0/web.browser/check-npm-versions.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/blaze-tools/1.0.9/web.browser/preamble.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/blaze-tools/1.0.9/web.browser/tokens.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/blaze-tools/1.0.9/web.browser/tojs.js" />
