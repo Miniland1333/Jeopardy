@@ -8,16 +8,19 @@ import {gameDatabase} from "../../api/gameDatabase";
 import {editorDatabase}from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
 
+
+
 var Editor = React.createClass({
     getInitialState: function () {
         return {
-            round:"Single"
+            round:"Single",
         };
     },
     handleRoundChange:function (round) {
         this.setState({round:round});
     },
     render:function (){
+        console.log(this.props.isReady);
         return (
         <DocumentTitle title='Jeopardy Editor'>
             <div>
@@ -25,7 +28,8 @@ var Editor = React.createClass({
                     onRoundChange={this.handleRoundChange}
                     gameList={gameDatabase}
                     editorDatabase={editorDatabase}
-                    databaseName={editorDatabase.find().fetch()[0]}/>
+                    databaseName={editorDatabase.find().fetch()}
+                    dbReady={this.props.isReady}/>
                 <h1>I am the Editor!</h1>
             </div>
         </DocumentTitle>
@@ -34,9 +38,7 @@ var Editor = React.createClass({
 
 
 export default createContainer(() => {
-    Meteor.subscribe('gameDatabase');
-    Meteor.subscribe('editorDatabase');
-
-    return {
-    };
+    var handle1 = Meteor.subscribe('gameDatabase');
+    var handle2 = Meteor.subscribe('editorDatabase');
+    return {isReady:handle1.ready()&&handle2.ready()};
 }, Editor);

@@ -43,19 +43,12 @@ var inputStyle={
 };
 
 var EditorHeader = React.createClass({
-    getInitialState: function () {
-        return {
-            nameInput: "",
-            round:"Single"
-        };
-    },
     handleName:function (e){
         // Find the text field via the React ref
         const name = ReactDOM.findDOMNode(this.refs.nameInput).value.trim();
-        this.setState({nameInput:e.target.value});
 
         Meteor.call('editorDatabase.updateName',name);
-        ReactDOM.findDOMNode(this.refs.textInput).value = name;
+        //ReactDOM.findDOMNode(this.refs.textInput).value = name;
         //ReactDOM.findDOMNode(this.refs.nameInput).value = name;
         //console.log(ReactDOM.findDOMNode(this.refs.nameInput).value);
     },
@@ -86,28 +79,21 @@ var EditorHeader = React.createClass({
         var round = e.target.value;
         this.props.onRoundChange(round);
     },
-    renderInput(){
-        if(this.props.databaseName!=undefined) {
-            return (
-                <input
-                    type="text"
-                    ref="nameInput"
-                    placeholder="Type the Game name here"
-                    style={inputStyle}
-                    onChange={this.handleName}
-                    value={this.props.databaseName.name}
-                />);
-        }
-    },
     render: function (){
-
         return (
             <div>
                 <div className="flex-container" style={barStyle}>
                     <button style={buttonStyle} id="New" onClick={this.handleNew}>New</button>
                     <button style={buttonStyle} id="Load" onClick={this.handleLoad}>Load</button>
                     <button style={buttonStyle} id="Save"onClick={this.handleSave}>Save</button>
-                    {this.renderInput()}
+                    <input
+                        type="text"
+                        ref="nameInput"
+                        placeholder="Type the Game name here"
+                        style={inputStyle}
+                        onChange={this.handleName}
+                        value={this.props.dbReady?this.props.databaseName[0].name:""}
+                    />
                     <select
                         style={dropdownStyle}
                         id="selector"
@@ -120,7 +106,7 @@ var EditorHeader = React.createClass({
                     <button style={buttonStyle} id="Export"onClick={this.handleExport}>Export</button>
 
                 </div>
-                <p ref="textInput">{this.state.nameInput}</p>
+                <p ref="textInput">{this.props.dbReady?this.props.databaseName[0].name:""}</p>
             </div>
         )
     }
@@ -129,7 +115,9 @@ var EditorHeader = React.createClass({
 
 EditorHeader.propTypes = {
     gameList: PropTypes.object.isRequired,
-    editorDatabase: PropTypes.object.isRequired
+    editorDatabase: PropTypes.object.isRequired,
+    databaseName: PropTypes.array,
+    dbReady: PropTypes.bool.isRequired,
 };
 
 module.exports = EditorHeader;
