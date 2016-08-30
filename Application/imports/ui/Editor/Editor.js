@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import {gameDatabase} from "../../api/gameDatabase";
 import {editorDatabase}from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
-
+import EditorTable from "./EditorTable"
 
 
 var Editor = React.createClass({
@@ -35,6 +35,10 @@ var Editor = React.createClass({
                                 editorDatabase={this.props.editorDatabase}
                                 dbReady={this.props.isReady}/>
                             <h1>I am the Editor!</h1>
+                            <EditorTable
+                                round={this.state.round}
+                                editorDatabase={this.props.editorDatabase}
+                            />
                         </div>:<div></div>
                     }
                 </div>

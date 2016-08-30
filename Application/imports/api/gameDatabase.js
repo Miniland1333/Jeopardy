@@ -20,9 +20,20 @@ if (Meteor.isServer) {
 Meteor.methods({
     'gameDatabase.save'(game){
         //saves game from editorDatabase
+        gameDatabase.remove({name:game.name});
+        gameDatabase.insert({
+            name:game.name,
+            Jeopardy:game.Jeopardy,
+            DoubleJeopardy:game.DoubleJeopardy,
+            FinalJeopardy:game.FinalJeopardy
+        });
+        //console.log(gameDatabase.find().fetch())
     },
     'gameDatabase.remove'(gameName){
         //saves game from editorDatabase
+        check(taskId, String);
+    
+        gameDatabase.remove(taskId);
     }
 
 });

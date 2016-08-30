@@ -44,14 +44,15 @@ var inputStyle={
 };
 
 var EditorHeader = React.createClass({
+    propTypes:{
+        gameList: PropTypes.array.isRequired,
+        editorDatabase: PropTypes.array.isRequired,
+        dbReady: PropTypes.bool.isRequired,
+        onRoundChange: PropTypes.func.isRequired,
+    },
     onUserInput:function (name){
-        // Find the text field via the React ref
-        //const name = ReactDOM.findDOMNode(this.refs.nameInput).value.trim();
 
         Meteor.call('editorDatabase.updateName',name.target.value);
-        //ReactDOM.findDOMNode(this.refs.textInput).value = name;
-        //ReactDOM.findDOMNode(this.refs.nameInput).value = name;
-        //console.log(ReactDOM.findDOMNode(this.refs.nameInput).value);
     },
     handleNew:function (e) {
         if(confirm("This will delete all unsaved work. Continue?")) {
@@ -65,7 +66,7 @@ var EditorHeader = React.createClass({
     },
     handleSave:function (e) {
         if(confirm("This will delete all unsaved work. Continue?")) {
-
+            Meteor.call('gameDatabase.save',this.props.editorDatabase[0]);
         }
     },
     handleImport:function (e) {
@@ -121,13 +122,5 @@ var EditorHeader = React.createClass({
         )
     }
 });
-
-
-EditorHeader.propTypes = {
-    gameList: PropTypes.array.isRequired,
-    editorDatabase: PropTypes.array.isRequired,
-    dbReady: PropTypes.bool.isRequired,
-    onRoundChange: PropTypes.func.isRequired,
-};
 
 module.exports = EditorHeader;

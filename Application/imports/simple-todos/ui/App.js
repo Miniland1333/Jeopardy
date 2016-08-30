@@ -48,7 +48,7 @@ class App extends Component {
             <Task key={task._id} task={task} />
         ));
     }
-    componentWillReceiveProps(newProps){
+    static componentWillReceiveProps(newProps){
     console.log("App is receiving "+newProps);
     }
     render() {
