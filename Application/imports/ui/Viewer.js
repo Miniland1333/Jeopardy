@@ -13,17 +13,22 @@ var Viewer = React.createClass({
     render:function(){ return (
         <DocumentTitle title='Jeopardy Viewer'>
             <div>
-                <h1>I am the Viewer!</h1>
-            </div>
+                {this.props.isReady ?
+                    <div>
+                        <h1>I am the Viewer!</h1>
+                    </div>:<div></div>
+                }
+                </div>
         </DocumentTitle>
     )}
 });
 
 
 export default createContainer(() => {
-    Meteor.subscribe('gameLogic');
-    Meteor.subscribe('gameQuestions');
+    var handle1 = Meteor.subscribe('gameLogic');
+    var handle2 = Meteor.subscribe('gameQuestions');
 
     return {
+        isReady:handle1.ready()&&handle2.ready(),
     };
 }, Viewer);

@@ -13,18 +13,23 @@ var Teacher = React.createClass({
     render:function(){ return (
         <DocumentTitle title='Jeopardy'>
             <div>
-                <h1>I am the Teacher!</h1>
-            </div>
+                {this.props.isReady ?
+                    <div>
+                        <h1>I am the Teacher!</h1>
+                    </div>:<div></div>
+                }
+                </div>
         </DocumentTitle>
     )}
 });
 
 
 export default createContainer(() => {
-    Meteor.subscribe('gameDatabase');
-    Meteor.subscribe('gameLogic');
-    Meteor.subscribe('gameQuestions');
+    var handle1 = Meteor.subscribe('gameDatabase');
+    var handle2 = Meteor.subscribe('gameLogic');
+    var handle3 = Meteor.subscribe('gameQuestions');
 
     return {
+        isReady:handle1.ready()&&handle2.ready()&&handle3.ready(),
     };
 }, Teacher);

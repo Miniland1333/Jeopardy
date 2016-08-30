@@ -13,7 +13,11 @@ var Student = React.createClass({
     render:function(){ return (
         <DocumentTitle title='Jeopardy'>
             <div>
-                <h1>I am a Student!</h1>
+                {this.props.isReady ?
+                    <div>
+                        <h1>I am a Student!</h1>
+                    </div>:<div></div>
+                }
             </div>
         </DocumentTitle>
     )}
@@ -21,8 +25,9 @@ var Student = React.createClass({
 
 
 export default createContainer(() => {
-    Meteor.subscribe('gameLogic');
-
+    var handle1 = Meteor.subscribe('gameLogic');
+    
     return {
+        isReady:handle1.ready(),
     };
 }, Student);
