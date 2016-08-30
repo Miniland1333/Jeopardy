@@ -28,13 +28,12 @@ var Editor = React.createClass({
             <DocumentTitle title='Jeopardy Editor'>
                 <div>
                     {this.props.isReady?
-                        <div>
+                        <div className="Main">
                             <EditorHeader
                                 onRoundChange={this.handleRoundChange}
                                 gameList={this.props.gameDatabase}
                                 editorDatabase={this.props.editorDatabase}
                                 dbReady={this.props.isReady}/>
-                            <h1>I am the Editor!</h1>
                             <EditorTable
                                 round={this.state.round}
                                 editorDatabase={this.props.editorDatabase}

@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/gyparody.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/EditorTableCSS.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/editorDatabase.js" afterPath="$PROJECT_DIR$/imports/api/editorDatabase.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/Editor.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
     </list>
@@ -26,14 +28,14 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5184233">
+    <splitter split-orientation="horizontal" split-proportion="0.58269066">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="Editor.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="67">
-                  <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+                <state relative-caret-position="230">
+                  <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
                   <folding>
                     <element signature="e#0#52#0" expanded="true" />
                   </folding>
@@ -41,42 +43,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EditorHeader.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="239">
-                  <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#0#50#0" expanded="true" />
-                    <element signature="e#142#215#0" expanded="false" />
-                    <element signature="e#235#503#0" expanded="false" />
-                    <element signature="e#525#792#0" expanded="false" />
-                    <element signature="e#809#993#0" expanded="false" />
-                    <element signature="e#2020#2104#0" expanded="false" />
-                    <element signature="e#2231#2289#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+                <state relative-caret-position="268">
+                  <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tasks.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/imports/simple-todos/api/tasks.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="145">
-                  <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -85,46 +59,30 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/App.js">
+          <file leaf-file-name="EditorTableCSS.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/EditorTableCSS.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="268">
-                  <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-                  <folding>
-                    <element signature="e#0#52#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="editorDatabase.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="424">
-                  <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-                  <folding>
-                    <element signature="e#1497#1641#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="gameDatabase.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+                <state relative-caret-position="510">
+                  <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Task.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/Task.js">
+          <file leaf-file-name="EditorHeader.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-                  <folding />
+                <state relative-caret-position="386">
+                  <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#0#50#0" expanded="true" />
+                    <element signature="e#142#215#0" expanded="false" />
+                    <element signature="e#235#503#0" expanded="false" />
+                    <element signature="e#525#792#0" expanded="false" />
+                    <element signature="e#809#993#0" expanded="false" />
+                    <element signature="e#2034#2118#0" expanded="false" />
+                    <element signature="e#2245#2303#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -137,6 +95,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -192,12 +151,14 @@
         <option value="$PROJECT_DIR$/imports/ui/Viewer.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/App.js" />
         <option value="$PROJECT_DIR$/imports/api/gameDatabase.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/imports/api/editorDatabase.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTableCSS.css" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
+        <option value="$PROJECT_DIR$/client/EditorTableCSS.css" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
       </list>
     </option>
   </component>
@@ -262,126 +223,7 @@
       <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Editor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simple-todos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="simple-todos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
     </panes>
   </component>
@@ -402,19 +244,20 @@
     <property name="javascript.nodejs.core.library.configured.version" value="6.4.0" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Editor" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\simple-todos" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\public" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\api" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Editor" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\simple-todos" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\public" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application" />
     </key>
   </component>
@@ -969,7 +812,7 @@
       <workItem from="1472187013382" duration="4241000" />
       <workItem from="1472193839746" duration="2179000" />
       <workItem from="1472270981360" duration="63183000" />
-      <workItem from="1472516488130" duration="19115000" />
+      <workItem from="1472516488130" duration="27884000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -1027,11 +870,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472535774834</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated editorDatabase.init to prepare all fields">
+      <created>1472577052918</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1472577052918</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94756000" />
+    <option name="totallyTimeSpent" value="103525000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1052,19 +902,19 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45606694" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31877023" sideWeight="0.51666665" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31877023" sideWeight="0.51666665" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45606694" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32635984" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39748955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1124,14 +974,23 @@
     <MESSAGE value="Added in Subscription Readiness to Editor" />
     <MESSAGE value="Added in Subscription Readiness to Student,Teacher, and Viewer" />
     <MESSAGE value="Added Game Saving function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Game Saving function" />
+    <MESSAGE value="Updated editorDatabase.init to prepare all fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated editorDatabase.init to prepare all fields" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="61" />
+      <option name="time" value="75" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1140,9 +999,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Application/client/main.html" />
-    <entry file="file://$PROJECT_DIR$/Application/imports/ui/App.js" />
-    <entry file="file://$PROJECT_DIR$/Application/imports/ui/Task.js" />
     <entry file="file://$PROJECT_DIR$/Application/client/main.js" />
     <entry file="file://$PROJECT_DIR$/Application/package.json" />
     <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
@@ -1277,14 +1133,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="132" column="1" selection-start-line="132" selection-start-column="1" selection-end-line="132" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/normalize.css" />
     <entry file="file://$PROJECT_DIR$/client/demo.css" />
     <entry file="file://$PROJECT_DIR$/client/classie.js" />
@@ -1312,26 +1160,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Input.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1341,7 +1173,7 @@
         <state relative-caret-position="306">
           <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
           <folding>
-            <element signature="e#0#52#0" expanded="true" />
+            <element signature="e#0#52#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1351,7 +1183,7 @@
         <state relative-caret-position="306">
           <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
           <folding>
-            <element signature="e#0#52#0" expanded="true" />
+            <element signature="e#0#52#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1374,19 +1206,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/Task.js">
+    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/simple-todos/api/tasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="268">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#52#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1398,39 +1224,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/App.js">
+    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/Task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
+        <state relative-caret-position="629">
           <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
           <folding>
             <element signature="e#1497#1641#0" expanded="false" />
@@ -1438,18 +1242,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="132" column="1" selection-start-line="132" selection-start-column="1" selection-end-line="132" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/simple-todos/api/tasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/J.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/EditorTableCSS.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
+        <state relative-caret-position="386">
+          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
             <element signature="e#142#215#0" expanded="false" />
             <element signature="e#235#503#0" expanded="false" />
             <element signature="e#525#792#0" expanded="false" />
             <element signature="e#809#993#0" expanded="false" />
-            <element signature="e#2020#2104#0" expanded="false" />
-            <element signature="e#2231#2289#0" expanded="false" />
+            <element signature="e#2034#2118#0" expanded="false" />
+            <element signature="e#2245#2303#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/.meteor/packages/jquery/1.11.9/web.browser/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10337" column="20" selection-start-line="10337" selection-start-column="20" selection-end-line="10337" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>

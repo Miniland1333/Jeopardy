@@ -65,7 +65,7 @@ var EditorHeader = React.createClass({
         }
     },
     handleSave:function (e) {
-        if(confirm("This will delete all unsaved work. Continue?")) {
+        if(confirm("This will overwrite any game with the same name. Continue?")) {
             Meteor.call('gameDatabase.save',this.props.editorDatabase[0]);
         }
     },
@@ -122,7 +122,6 @@ var EditorHeader = React.createClass({
                     <button style={buttonStyle} id="Export"onClick={this.handleExport}>Export</button>
 
                 </div>
-                <p ref="textInput">{this.props.editorDatabase[0].name}</p>
             </div>
         )
     }

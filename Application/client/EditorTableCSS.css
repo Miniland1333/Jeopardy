@@ -1,0 +1,37 @@
+.Rtable-cell  {
+    display: flex;
+    flex:1;
+    text-align: center;
+    border:2px solid black;
+    flex-direction: column;
+}
+.Header{
+    border:2px solid black;
+}
+.Column{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+}
+.Table{
+    display: flex;
+    width: 100%;
+    flex:1;
+}
+.Main{
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height:100vh;
+}
+.question  {
+    flex:1;
+    vertical-align:middle;
+    align-self: center;
+    text-transform: uppercase;
+    /*font-family: gyparody,serif;*/
+}
+@font-face{
+    font-family: gyparody, serif;
+    src: url("/gyparody.ttf");
+}
