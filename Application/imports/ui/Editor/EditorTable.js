@@ -24,4 +24,4 @@ var EditorTable = React.createClass({
 });
 
 
-module.exports = EditorTable
+module.exports = EditorTable;

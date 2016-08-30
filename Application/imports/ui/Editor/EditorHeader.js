@@ -83,6 +83,11 @@ var EditorHeader = React.createClass({
     },
     renderInput:function () {
         console.log(this.props.editorDatabase);
+        if(this.props.editorDatabase.length==0){
+            Meteor.call('editorDatabase.init')
+        }
+        
+        
         return this.props.editorDatabase.map(thing=>
                 <input
                     key="input"

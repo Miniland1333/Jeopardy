@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameDatabase.js" afterPath="$PROJECT_DIR$/imports/api/gameDatabase.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/simple-todos/ui/App.js" afterPath="$PROJECT_DIR$/imports/simple-todos/ui/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/Editor.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/editorDatabase.js" afterPath="$PROJECT_DIR$/imports/api/editorDatabase.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,11 +32,10 @@
           <file leaf-file-name="Editor.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="417">
+                <state relative-caret-position="67">
                   <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
                   <folding>
                     <element signature="e#0#52#0" expanded="true" />
-                    <element signature="e#1734#2017#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -47,8 +44,8 @@
           <file leaf-file-name="EditorHeader.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
+                <state relative-caret-position="239">
+                  <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
                     <element signature="e#142#215#0" expanded="false" />
@@ -56,6 +53,19 @@
                     <element signature="e#525#792#0" expanded="false" />
                     <element signature="e#809#993#0" expanded="false" />
                     <element signature="e#2020#2104#0" expanded="false" />
+                    <element signature="e#2231#2289#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="442">
+                  <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#0#50#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -87,17 +97,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="editorDatabase.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="editorDatabase.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="268">
-                  <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-                  <folding />
+                <state relative-caret-position="424">
+                  <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+                  <folding>
+                    <element signature="e#1497#1641#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="gameDatabase.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="gameDatabase.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="408">
@@ -167,7 +179,6 @@
         <option value="$PROJECT_DIR$/client/main.css" />
         <option value="chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/include.postload.js" />
         <option value="chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/adblock-uiscripts-rightclick_hook.js" />
-        <option value="$PROJECT_DIR$/imports/api/editorDatabase.js" />
         <option value="$PROJECT_DIR$/client/component.css" />
         <option value="192.168.1.96/app/app.js?hash=7c307fd79e67e0e71f974fe4a0969e80acad284d" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/InputField.js" />
@@ -182,10 +193,11 @@
         <option value="$PROJECT_DIR$/imports/ui/Teacher.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/App.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/imports/api/gameDatabase.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
+        <option value="$PROJECT_DIR$/imports/api/editorDatabase.js" />
       </list>
     </option>
   </component>
@@ -957,7 +969,7 @@
       <workItem from="1472187013382" duration="4241000" />
       <workItem from="1472193839746" duration="2179000" />
       <workItem from="1472270981360" duration="63183000" />
-      <workItem from="1472516488130" duration="16051000" />
+      <workItem from="1472516488130" duration="19115000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -1008,11 +1020,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472531693964</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added Game Saving function">
+      <created>1472535774834</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1472535774834</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91692000" />
+    <option name="totallyTimeSpent" value="94756000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1104,14 +1123,15 @@
     <MESSAGE value="Removed Input Element" />
     <MESSAGE value="Added in Subscription Readiness to Editor" />
     <MESSAGE value="Added in Subscription Readiness to Student,Teacher, and Viewer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added in Subscription Readiness to Student,Teacher, and Viewer" />
+    <MESSAGE value="Added Game Saving function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Game Saving function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="57" />
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1346,50 +1366,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-            <element signature="e#1734#2017#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1409,10 +1390,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+          <folding>
+            <element signature="e#1497#1641#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
+        <state relative-caret-position="239">
+          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
             <element signature="e#142#215#0" expanded="false" />
@@ -1420,15 +1449,8 @@
             <element signature="e#525#792#0" expanded="false" />
             <element signature="e#809#993#0" expanded="false" />
             <element signature="e#2020#2104#0" expanded="false" />
+            <element signature="e#2231#2289#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
