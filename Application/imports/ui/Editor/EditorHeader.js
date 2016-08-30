@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
-import InputField from "./Input";
 
 var barStyle = {
     fontSize: 16,
@@ -49,7 +48,7 @@ var EditorHeader = React.createClass({
         // Find the text field via the React ref
         //const name = ReactDOM.findDOMNode(this.refs.nameInput).value.trim();
 
-        Meteor.call('editorDatabase.updateName',name);
+        Meteor.call('editorDatabase.updateName',name.target.value);
         //ReactDOM.findDOMNode(this.refs.textInput).value = name;
         //ReactDOM.findDOMNode(this.refs.nameInput).value = name;
         //console.log(ReactDOM.findDOMNode(this.refs.nameInput).value);
@@ -84,17 +83,18 @@ var EditorHeader = React.createClass({
     renderInput:function () {
         console.log(this.props.editorDatabase);
         return this.props.editorDatabase.map(thing=>
-                <InputField
-                    key=""
-                    Style={inputStyle}
-                    onUserInput={this.onUserInput}
-                    Value={thing}
+                <input
+                    type="text"
+                    placeholder="Type the Game name here"
+                    style={inputStyle}
+                    onChange={this.onUserInput}
+                    value={thing.name}
                 />
         );
     },
-    componentWillReceiveProps:function(newProps){
+/*    componentWillReceiveProps:function(newProps){
         console.log("EditorHeader is receiving "+newProps);
-    },
+    },*/
     render: function (){
         return (
             <div>

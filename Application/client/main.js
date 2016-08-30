@@ -27,6 +27,7 @@ var renderRoutes = () => (
         <Route path="/student" component={Student}/>
 
         <Route path="/App" component={App}/>
+        <Route path="/app" component={App}/>
         <Route path="/*" component={PageNotFound}/>
     </Router>
 );

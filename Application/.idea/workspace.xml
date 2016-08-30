@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/Editor/Input.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/imports/ui/Editor/Input.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/simple-todos/ui/App.js" afterPath="$PROJECT_DIR$/imports/simple-todos/ui/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/simple-todos/ui/Task.js" afterPath="$PROJECT_DIR$/imports/simple-todos/ui/Task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/Editor.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/main.js" afterPath="$PROJECT_DIR$/client/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
     </list>
     <ignored path="simple-todos.iws" />
@@ -41,31 +40,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditorHeader.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EditorHeader.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+            <state relative-caret-position="0">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
-                <element signature="e#176#249#0" expanded="false" />
-                <element signature="e#269#537#0" expanded="false" />
-                <element signature="e#559#826#0" expanded="false" />
-                <element signature="e#843#1027#0" expanded="false" />
-                <element signature="e#1524#1659#0" expanded="false" />
-                <element signature="e#1689#1777#0" expanded="false" />
-                <element signature="e#1927#2015#0" expanded="false" />
-                <element signature="e#2047#2055#0" expanded="false" />
+                <element signature="e#142#215#0" expanded="false" />
+                <element signature="e#235#503#0" expanded="false" />
+                <element signature="e#525#792#0" expanded="false" />
+                <element signature="e#809#993#0" expanded="false" />
+                <element signature="e#1503#1638#0" expanded="false" />
+                <element signature="e#1668#1756#0" expanded="false" />
+                <element signature="e#1906#1994#0" expanded="false" />
+                <element signature="e#2026#2034#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Input.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Input.js">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+            <state relative-caret-position="51">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -110,7 +109,6 @@
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/PageNotFound.js" />
         <option value="$PROJECT_DIR$/imports/api/GameDatabase.js" />
         <option value="$PROJECT_DIR$/imports/api/tempGame.js" />
-        <option value="$PROJECT_DIR$/client/main.js" />
         <option value="$PROJECT_DIR$/imports/api/gameQuestions.js" />
         <option value="$PROJECT_DIR$/client/main.html" />
         <option value="$PROJECT_DIR$/imports/api/gameDatabase.js" />
@@ -135,8 +133,9 @@
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/App.js" />
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/Task.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Input.js" />
+        <option value="$PROJECT_DIR$/client/main.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
       </list>
     </option>
   </component>
@@ -290,12 +289,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -878,7 +891,7 @@
       <workItem from="1472187013382" duration="4241000" />
       <workItem from="1472193839746" duration="2179000" />
       <workItem from="1472270981360" duration="63183000" />
-      <workItem from="1472516488130" duration="8933000" />
+      <workItem from="1472516488130" duration="10875000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -901,11 +914,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472498341774</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Editor Database is now reactive">
+      <created>1472527797932</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1472527797932</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84574000" />
+    <option name="totallyTimeSpent" value="86516000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -993,7 +1013,8 @@
     <MESSAGE value="Added in Application Icon" />
     <MESSAGE value="Partially finished the EditorHeader&#10;&#10;&#10;Trying to get the input to reactively update" />
     <MESSAGE value="Fixed initial EditorHeader render&#10;&#10;&#10;Trying to get the input to reactively update&#10;Need to rerender on database update, even if update is from remote client" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed initial EditorHeader render&#10;&#10;&#10;Trying to get the input to reactively update&#10;Need to rerender on database update, even if update is from remote client" />
+    <MESSAGE value="Editor Database is now reactive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Editor Database is now reactive" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1124,13 +1145,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/gameQuestions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1215,13 +1229,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/InputField.js" />
-    <entry file="file://$PROJECT_DIR$/client/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="http://192.168.1.96/app/app.js?hash=f6e8d5e139f72f7229f3e3a1df0626a0623ad580">
       <provider selected="true" editor-type-id="httpFileEditor">
         <state />
@@ -1262,6 +1269,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/Task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -1272,37 +1303,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/Task.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Input.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        <state relative-caret-position="170">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
-            <element signature="e#176#249#0" expanded="false" />
-            <element signature="e#269#537#0" expanded="false" />
-            <element signature="e#559#826#0" expanded="false" />
-            <element signature="e#843#1027#0" expanded="false" />
-            <element signature="e#1524#1659#0" expanded="false" />
-            <element signature="e#1689#1777#0" expanded="false" />
-            <element signature="e#1927#2015#0" expanded="false" />
-            <element signature="e#2047#2055#0" expanded="false" />
+            <element signature="e#142#215#0" expanded="false" />
+            <element signature="e#235#503#0" expanded="false" />
+            <element signature="e#525#792#0" expanded="false" />
+            <element signature="e#809#993#0" expanded="false" />
+            <element signature="e#1503#1638#0" expanded="false" />
+            <element signature="e#1668#1756#0" expanded="false" />
+            <element signature="e#1906#1994#0" expanded="false" />
+            <element signature="e#2026#2034#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Input.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
