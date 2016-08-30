@@ -25,17 +25,21 @@ var Editor = React.createClass({
     render:function (){
         console.log(this.props.isReady);
         return (
-        <DocumentTitle title='Jeopardy Editor'>
-            <div>
-                <EditorHeader
-                    onRoundChange={this.handleRoundChange}
-                    gameList={this.props.gameDatabase}
-                    editorDatabase={this.props.editorDatabase}
-                    dbReady={this.props.isReady}/>
-                <h1>I am the Editor!</h1>
-            </div>
-        </DocumentTitle>
-    )}
+            <DocumentTitle title='Jeopardy Editor'>
+                <div>
+                    {this.props.isReady?
+                        <div>
+                            <EditorHeader
+                                onRoundChange={this.handleRoundChange}
+                                gameList={this.props.gameDatabase}
+                                editorDatabase={this.props.editorDatabase}
+                                dbReady={this.props.isReady}/>
+                            <h1>I am the Editor!</h1>
+                        </div>:<div></div>
+                    }
+                </div>
+            </DocumentTitle>
+        )}
 });
 
 

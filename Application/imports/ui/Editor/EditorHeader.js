@@ -84,6 +84,7 @@ var EditorHeader = React.createClass({
         console.log(this.props.editorDatabase);
         return this.props.editorDatabase.map(thing=>
                 <input
+                    key="input"
                     type="text"
                     placeholder="Type the Game name here"
                     style={inputStyle}
@@ -115,7 +116,7 @@ var EditorHeader = React.createClass({
                     <button style={buttonStyle} id="Export"onClick={this.handleExport}>Export</button>
 
                 </div>
-                <p ref="textInput">{this.props.dbReady?this.props.editorDatabase[0].name:""}</p>
+                <p ref="textInput">{this.props.editorDatabase[0].name}</p>
             </div>
         )
     }
