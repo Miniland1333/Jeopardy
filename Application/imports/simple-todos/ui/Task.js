@@ -14,6 +14,9 @@ export default class Task extends Component {
     deleteThisTask() {
         Meteor.call('tasks.remove', this.props.task._id);
     }
+    componentWillReceiveProps(newProps){
+        console.log("Task is receiving "+newProps);
+    }
     render() {
         // Give tasks a different className when they are checked off,
         // so that we can style them nicely in CSS

@@ -19,6 +19,9 @@ var Editor = React.createClass({
     handleRoundChange:function (round) {
         this.setState({round:round});
     },
+    componentWillReceiveProps:function(newProps){
+        console.log("Editor is receiving "+newProps);
+    },
     render:function (){
         console.log(this.props.isReady);
         return (
@@ -26,9 +29,8 @@ var Editor = React.createClass({
             <div>
                 <EditorHeader
                     onRoundChange={this.handleRoundChange}
-                    gameList={gameDatabase}
-                    editorDatabase={editorDatabase}
-                    databaseName={editorDatabase.find().fetch()}
+                    gameList={this.props.gameDatabase}
+                    editorDatabase={this.props.editorDatabase}
                     dbReady={this.props.isReady}/>
                 <h1>I am the Editor!</h1>
             </div>
@@ -40,5 +42,9 @@ var Editor = React.createClass({
 export default createContainer(() => {
     var handle1 = Meteor.subscribe('gameDatabase');
     var handle2 = Meteor.subscribe('editorDatabase');
-    return {isReady:handle1.ready()&&handle2.ready()};
+    return {
+        isReady:handle1.ready()&&handle2.ready(),
+        editorDatabase:editorDatabase.find().fetch(),
+        gameDatabase:gameDatabase.find().fetch(),
+    };
 }, Editor);

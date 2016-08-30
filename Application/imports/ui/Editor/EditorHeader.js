@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
+import InputField from "./Input";
+
 var barStyle = {
     fontSize: 16,
     backgroundColor: "#f5f6f7",
@@ -43,9 +45,9 @@ var inputStyle={
 };
 
 var EditorHeader = React.createClass({
-    handleName:function (e){
+    onUserInput:function (name){
         // Find the text field via the React ref
-        const name = ReactDOM.findDOMNode(this.refs.nameInput).value.trim();
+        //const name = ReactDOM.findDOMNode(this.refs.nameInput).value.trim();
 
         Meteor.call('editorDatabase.updateName',name);
         //ReactDOM.findDOMNode(this.refs.textInput).value = name;
@@ -79,6 +81,20 @@ var EditorHeader = React.createClass({
         var round = e.target.value;
         this.props.onRoundChange(round);
     },
+    renderInput:function () {
+        console.log(this.props.editorDatabase);
+        return this.props.editorDatabase.map(thing=>
+                <InputField
+                    key=""
+                    Style={inputStyle}
+                    onUserInput={this.onUserInput}
+                    Value={thing}
+                />
+        );
+    },
+    componentWillReceiveProps:function(newProps){
+        console.log("EditorHeader is receiving "+newProps);
+    },
     render: function (){
         return (
             <div>
@@ -86,14 +102,7 @@ var EditorHeader = React.createClass({
                     <button style={buttonStyle} id="New" onClick={this.handleNew}>New</button>
                     <button style={buttonStyle} id="Load" onClick={this.handleLoad}>Load</button>
                     <button style={buttonStyle} id="Save"onClick={this.handleSave}>Save</button>
-                    <input
-                        type="text"
-                        ref="nameInput"
-                        placeholder="Type the Game name here"
-                        style={inputStyle}
-                        onChange={this.handleName}
-                        value={this.props.dbReady?this.props.databaseName[0].name:""}
-                    />
+                    {this.renderInput()}
                     <select
                         style={dropdownStyle}
                         id="selector"
@@ -106,7 +115,7 @@ var EditorHeader = React.createClass({
                     <button style={buttonStyle} id="Export"onClick={this.handleExport}>Export</button>
 
                 </div>
-                <p ref="textInput">{this.props.dbReady?this.props.databaseName[0].name:""}</p>
+                <p ref="textInput">{this.props.dbReady?this.props.editorDatabase[0].name:""}</p>
             </div>
         )
     }
@@ -114,10 +123,10 @@ var EditorHeader = React.createClass({
 
 
 EditorHeader.propTypes = {
-    gameList: PropTypes.object.isRequired,
-    editorDatabase: PropTypes.object.isRequired,
-    databaseName: PropTypes.array,
+    gameList: PropTypes.array.isRequired,
+    editorDatabase: PropTypes.array.isRequired,
     dbReady: PropTypes.bool.isRequired,
+    onRoundChange: PropTypes.func.isRequired,
 };
 
 module.exports = EditorHeader;
