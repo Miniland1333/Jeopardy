@@ -21,13 +21,20 @@ Meteor.methods({
     'editorDatabase.init'(){
         editorDatabase.remove({});
         //initializes editorDatabase
-        var categoryTemplate = {};
-        for(var i=1;i<=6;i++){
+        var categoryTemplate = {
+            categoryName:"categoryName",
+        };
+        for(var i=1;i<=5;i++){
             categoryTemplate["question"+i] = {
                 isSinglePlay:false,
-                    question:null,
-                    answer:null,
-            }
+                    question:"question"+i,
+                    answer:"answer"+i,
+            };
+/*            categoryTemplate["question"+i] = {
+                isSinglePlay:false,
+                question:"",
+                answer:"",
+            };*/
         }
         
         var gameTemplate = {};
@@ -40,9 +47,9 @@ Meteor.methods({
             Jeopardy:gameTemplate,
             DoubleJeopardy:gameTemplate,
             FinalJeopardy:{
-                category:null,
-                question:null,
-                answer:null,
+                category:"",
+                question:"",
+                answer:"",
             },
         });
         console.log(editorDatabase.find().fetch());

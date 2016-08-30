@@ -44,6 +44,9 @@ class App extends Component {
         if (this.state.hideCompleted) {
             filteredTasks = filteredTasks.filter(task => !task.checked);
         }
+        console.log(filteredTasks.map((task) => (
+            <Task key={task._id} task={task} />
+        )));
         return filteredTasks.map((task) => (
             <Task key={task._id} task={task} />
         ));

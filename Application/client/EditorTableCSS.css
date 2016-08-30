@@ -7,6 +7,7 @@
 }
 .Header{
     border:2px solid black;
+    min-height: 40px;
 }
 .Column{
     display: flex;
