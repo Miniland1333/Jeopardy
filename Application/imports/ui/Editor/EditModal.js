@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 
 var modalStyle = {
-    display: 'none', /* hidden by default */
+    display: 'block', /* hidden by default */
     position: 'fixed', /* stay in place */
     zIndex: 1, /* sit on top */
     left: 0, top: 0, width: '100%', /* full width */
@@ -31,6 +31,17 @@ var headerStyle = {
     textAlign:"center",
     flexGrow:1,
     textTransform:"uppercase",
+    color:"white",
+};
+var answerStyle = {
+    maxWidth:"100%",
+    boxSizing: "border-box",
+    padding: "10px 0",
+    background: "#060CE9",
+    border: "none",
+    fontSize: 16,
+    textAlign:"center",
+    flexGrow:1,
     color:"white",
 };
 var playStyle = {
@@ -73,50 +84,81 @@ var saveStyle = {
 var buttonHolderStyle = {
     justifyContent : "flex-end",
 };
-
+var verticalFlexStyle = {
+    flexDirection:"column",
+};
 
 var EditModal = React.createClass({
     getInitialState: function () {
         return {
-            isSinglePlay:this.props.isSinglePlay,
+            roundName:"",
+            game:"",
+            categoryName:"",
+            question:"",
+            answer:"",
+            isSinglePlay:false,
+            isHeader:false,
         };
     },
-    propTypes:{
-        roundName:React.PropTypes.string,
-        game:React.PropTypes.object,
-        categoryName:React.PropTypes.string,
-        question:React.PropTypes.string,
-        answer:React.PropTypes.string,
-        isSinglePlay:React.PropTypes.bool,
-    },
     handleHeaderClick:function () {
-        {/*<div id="modal">Hank</div>*/}
+        this.setState({});
+        
+        $("#myModal").fadeIn();
     },
     handleQuestionClick:function () {
-        {/*<div id="modal">Hank</div>*/}
+        this.setState({});
+    
+    
+        $("#myModal").fadeIn();
     },
     handlePlay:function () {
         this.setState({isSinglePlay:!this.state.isSinglePlay})
-        
     },
     handleCancel:function(){
-        
+        $("#category").value = "";
+        $("#question").value = "";
+        $("#answer").value = "";
+        this.setState({
+            roundName:"",
+            game:"",
+            categoryName:"",
+            question:"",
+            answer:"",
+            isSinglePlay:false,
+            isHeader:false,
+        });
+        $("#myModal").fadeOut();
     },
     handleComplete:function () {
-        
+        if(this.state.isHeader){
+            Meteor.call('editorDatabase.updateCategory',
+                this.state.roundName,
+                this.state.key1,
+                $("#category").val());
+        }else{
+            Meteor.call('editorDatabase.updateQuestion',
+                this.state.roundName,
+                this.state.key1,
+                this.state.key2,
+                $("#question").val(),
+                $("#answer").val(),
+                this.state.isSinglePlay);
+        }
+        this.handleCancel();
     },
     render:function () {
         return(
             <div id="myModal" style={modalStyle}>
                 <div className="modal-content flex-container" style={modalContentStyle}>
-                    <p>Category Name</p>
-                    <input  defaultValue={this.props.categoryName} placeholder="Category Name" style={headerStyle}/>
-                    <p>Question</p>
-                    <textarea  defaultValue={this.props.question} placeholder="Question" style={headerStyle}/>
-                    <p>Answer</p>
-                    <input  defaultValue={this.props.answer} placeholder="Answer" style={headerStyle}/>
+                    {
+                            this.state.isHeader?<div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
+                            <input id="category" defaultValue={this.state.categoryName} placeholder="Category Name" style={headerStyle}/></div>:<div className="flex-container" style={verticalFlexStyle}>                    <h1>Question</h1>
+                        <textarea id="question" defaultValue={this.state.question} placeholder="Question" style={headerStyle}/>
+                        <h2>Answer</h2><input id="answer" defaultValue={this.props.answer} placeholder="Answer" style={answerStyle}/></div>
+    
+                    }
                     <div className="flex-container" style={buttonHolderStyle}>
-                        <button style={playStyle} onClick={this.handlePlay}>Single Play {this.state.isSinglePlay?"ON  ":"OFF"}</button>
+                        {!this.state.isHeader?<button style={playStyle} onClick={this.handlePlay}>Single Play {this.state.isSinglePlay?"ON  ":"OFF"}</button>:""}
                         <button style={cancelStyle} onClick={this.handleCancel}>Close</button>
                         <button style={saveStyle} onClick={this.handleComplete}>Save</button>
                     </div>

@@ -9,6 +9,7 @@
 .Header{
     border:2px solid black;
     min-height: 40px;
+    text-transform: uppercase;
 }
 .Column{
     display: flex;

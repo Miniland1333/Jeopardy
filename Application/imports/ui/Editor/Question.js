@@ -10,7 +10,7 @@ var Question = React.createClass({
         cell:React.PropTypes.object,
     },
     handleQuestionClick:function () {
-        alert("You clicked "+this.props.roundName+","+this.props.key1+","+this.props.key2)
+        alert("You clicked "+this.props.roundName+","+this.props.key1+","+this.props.key2);
     },
     
     

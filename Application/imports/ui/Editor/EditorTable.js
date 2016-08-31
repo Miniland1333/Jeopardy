@@ -97,7 +97,7 @@ var EditorTable = React.createClass({
         return (
             <div className="Table">
                 {this.renderInput()}
-                <EditModal/>
+                <EditModal ref="EditModal"/>
             </div>
         )
     }

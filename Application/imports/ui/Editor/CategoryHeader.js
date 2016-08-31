@@ -8,7 +8,8 @@ var CategoryHeader = React.createClass({
         categoryName:React.PropTypes.string,
     },
     handleQuestionHeaderClick:function () {
-        alert("You clicked "+this.props.roundName+","+this.props.key1)
+        alert("You clicked "+this.props.roundName+","+this.props.key1);
+        
     },
     
     

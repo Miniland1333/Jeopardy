@@ -26,7 +26,7 @@ Meteor.methods({
         };
         for(var i=1;i<=5;i++){
             categoryTemplate["question"+i] = {
-                isSinglePlay:false,
+                isSinglePlay:true,
                 question:"question"+i,
                 answer:"answer"+i,
             };
@@ -47,9 +47,9 @@ Meteor.methods({
             Jeopardy:gameTemplate,
             DoubleJeopardy:gameTemplate,
             FinalJeopardy:{
-                category:"Category",
-                question:"Question",
-                answer:"Answer",
+                category:"",
+                question:"",
+                answer:"",
             },
         });
     },
@@ -70,7 +70,7 @@ Meteor.methods({
     'editorDatabase.updateCategory'(round,identifier,name){
         
     },
-    'editorDatabse.updateQuestion'(round,identifier,question,answer,isSinglePlay){
+    'editorDatabse.updateQuestion'(round,identifier1,identifier2,question,answer,isSinglePlay){
         
     },
 });
