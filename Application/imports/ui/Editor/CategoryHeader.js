@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 
-var QuestionHeader = React.createClass({
+var CategoryHeader = React.createClass({
     propTypes:{
         roundName:React.PropTypes.string,
         key1:React.PropTypes.string,
@@ -18,4 +18,4 @@ var QuestionHeader = React.createClass({
     
 });
 
-module.exports = QuestionHeader;
+module.exports = CategoryHeader;

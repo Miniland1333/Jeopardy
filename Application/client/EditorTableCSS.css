@@ -4,6 +4,7 @@
     text-align: center;
     border:2px solid black;
     flex-direction: column;
+    margin:0;
 }
 .Header{
     border:2px solid black;

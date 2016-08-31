@@ -25,16 +25,16 @@ Meteor.methods({
             categoryName:"categoryName",
         };
         for(var i=1;i<=5;i++){
-/*            categoryTemplate["question"+i] = {
+            categoryTemplate["question"+i] = {
                 isSinglePlay:false,
                 question:"question"+i,
                 answer:"answer"+i,
-            };*/
-            categoryTemplate["question"+i] = {
+            };
+/*            categoryTemplate["question"+i] = {
                 isSinglePlay:false,
                 question:"",
                 answer:"",
-            };
+            };*/
         }
         
         var gameTemplate = {};

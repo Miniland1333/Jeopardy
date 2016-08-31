@@ -16,17 +16,17 @@ import Student from '../imports/ui/Student';
 var renderRoutes = () => (
     <Router history={browserHistory}>
         <Route path="/" component={App}/>
-
+        
         <Route path="/Viewer" component={Viewer}/>
         <Route path="/Editor" component={Editor}/>
         <Route path="/Teacher" component={Teacher}/>
         <Route path="/Student" component={Student}/>
-
+        
         <Route path="/viewer" component={Viewer}/>
         <Route path="/editor" component={Editor}/>
         <Route path="/teacher" component={Teacher}/>
         <Route path="/student" component={Student}/>
-
+        
         <Route path="/App" component={App}/>
         <Route path="/app" component={App}/>
         <Route path="/*" component={PageNotFound}/>
@@ -34,12 +34,12 @@ var renderRoutes = () => (
 );
 
 Meteor.startup(() => {
-  render(renderRoutes(), document.getElementById('render-target'));
+    render(renderRoutes(), document.getElementById('render-target'));
 });
 if (window.navigator.standalone) {
-        window.addEventListener('load', function() {
-                new FastClick(document.body);
-        }, false);
+    window.addEventListener('load', function() {
+        new FastClick(document.body);
+    }, false);
 }
 
 

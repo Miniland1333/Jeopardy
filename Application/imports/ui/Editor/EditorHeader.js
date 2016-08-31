@@ -159,6 +159,10 @@ var EditorHeader = React.createClass({
             "height": window.innerHeight,
             "width":window.innerWidth,
         });
+        $("#myModal").css({
+            "height": window.innerHeight,
+            "width":window.innerWidth,
+        });
     },
     renderInput:function () {
         console.log(this.props.editorDatabase);

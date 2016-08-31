@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
 
 import Question from "./Question";
-import QuestionHeader from "./QuestionHeader"
+import CategoryHeader from "./CategoryHeader"
 import EditModal from "./EditModal"
 
 var EditorTable = React.createClass({
@@ -40,7 +40,7 @@ var EditorTable = React.createClass({
         return (roundName == "FinalJeopardy" ?
                 <div key="" className="Table">
                     <div className="Column" key="C1">
-                        <QuestionHeader categoryName={round.category} roundName={roundName} key1={"category"}/>
+                        <CategoryHeader categoryName={round.category} roundName={roundName} key1={"category"}/>
                         <Question cell={round} roundName={roundName} key1={"question"}/>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ var EditorTable = React.createClass({
                                 {$.map(column, function (cell, key2) {
                                     return key2 == "categoryName" ?
                                         //<div className="Header" key={key1 + "H"}>{cell}</div>
-                                        <QuestionHeader key={key1 + "H"} categoryName={cell} roundName={roundName} key1={key1}/>
+                                        <CategoryHeader key={key1 + "H"} categoryName={cell} roundName={roundName} key1={key1}/>
                                         :
                                         <Question key={key1 + key2} cell={cell} roundName={roundName} key1={key1} key2={key2}/>;
                                     /*                       <div className="Rtable-cell" key={key1 + key2}><p
