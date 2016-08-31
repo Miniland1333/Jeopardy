@@ -130,7 +130,7 @@ var EditModal = React.createClass({
         this.setState({isSinglePlay:!this.state.isSinglePlay})
     },
     handleCancel:function(){
-        $("#myModal").fadeOut(this.props.handleClose(false));
+        $("#myModal").fadeOut(this.props.handleClose());
     },
     handleComplete:function () {
         if(this.props.isHeader){
@@ -151,7 +151,7 @@ var EditModal = React.createClass({
     },
     render:function () {
         return(
-            <div id="myModal" style={modalStyle}>
+            <div id="myModal" className="needsclick" style={modalStyle}>
                 <div className="modal-content flex-container" style={modalContentStyle}>
                     {
                             this.props.isHeader?<div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>

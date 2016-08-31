@@ -15,20 +15,21 @@ var CategoryHeader = React.createClass({
         categoryName:React.PropTypes.string,
     },
     handleQuestionHeaderClick:function () {
-        //alert("You clicked "+this.props.roundName+","+this.props.key1);
-        this.setState({EditModal:true})
+        if(this.state.EditModal){
+            this.setState({EditModal:false});
+        }else{
+            alert("You clicked "+this.props.roundName+","+this.props.key1);
+            this.setState({EditModal:true});
+        }
     },
     handleClose:function(){
-        this.setState({EditModal:false});
-        this.forceUpdate(
-            alert("rerendered!",this.state.EditModal)
-        );
+        this.setState({EditModal:"pending"});
     },
     handleEditModule:function () {
         return this.state.EditModal?
             <EditModal
                 roundName={this.props.roundName}
-                categoryName={this.state.EditModal}
+                categoryName={this.state.categoryName}
                 key1={this.props.key1}
                 isHeader={true}
                 handleClose={this.handleClose}
@@ -36,7 +37,14 @@ var CategoryHeader = React.createClass({
     },
     render:function () {
         return(<div className="Header" onClick={this.handleQuestionHeaderClick}>{this.props.categoryName}
-            {this.handleEditModule()}
+            {this.state.EditModal?
+                <EditModal
+                    roundName={this.props.roundName}
+                    categoryName={this.props.categoryName}
+                    key1={this.props.key1}
+                    isHeader={true}
+                    handleClose={this.handleClose}
+                /> :[]}
         </div>)
     }
     
