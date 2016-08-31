@@ -17,11 +17,15 @@ var Question = React.createClass({
         cell:React.PropTypes.object,
     },
     handleQuestionClick:function () {
-        //alert("You clicked "+this.props.roundName+","+this.props.key1+","+this.props.key2);
-        this.setState({EditModal:true})
+        if(this.state.EditModal){
+            this.setState({EditModal:false});
+        }else {
+            alert("You clicked " + this.props.roundName + "," + this.props.key1 + "," + this.props.key2);
+            this.setState({EditModal: true})
+        }
     },
     handleClose:function(){
-        this.setState({EditModal:false});
+        this.setState({EditModal:"pending"});
     },
     handleEditModule:function () {
         if(this.state.EditModal){
