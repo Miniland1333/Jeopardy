@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 
+import FastClick from "./fastclick"
 
 import App from '../imports/simple-todos/ui/App.js';
 import PageNotFound from '../imports/ui/PageNotFound';
@@ -35,11 +36,10 @@ var renderRoutes = () => (
 Meteor.startup(() => {
   render(renderRoutes(), document.getElementById('render-target'));
 });
-
-$(window).resize(resize);
-function resize() {
-        $(".Main").css({
-                "height": window.innerHeight
-        });
+if (window.navigator.standalone) {
+        window.addEventListener('load', function() {
+                new FastClick(document.body);
+        }, false);
 }
+
 

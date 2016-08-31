@@ -23,7 +23,7 @@ var EditorTable = React.createClass({
     },
     renderInput: function () {
         $(window).resize(this.resize);
-
+        this.resize();
         var roundName;
         switch (this.props.round) {
             case "Single":
