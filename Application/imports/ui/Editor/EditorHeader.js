@@ -38,7 +38,7 @@ var pickerStyle = {
     backgroundColor: '#FFD700', /* green */
     border: 'white solid 1px',
     color: 'white',
-    padding: '15px 6px',
+    padding: '15px 0px',
     textAlign: 'center',
     textDecoration: 'none',
     display: 'inline-block',
@@ -150,6 +150,16 @@ var EditorHeader = React.createClass({
             return (<GameLi key={game.name} game={game}/>)
         }))
     },
+    refresh:function () {
+        $(".Main").css({
+            "height": window.innerHeight,
+            "width":window.innerWidth,
+        });
+        $("body").css({
+            "height": window.innerHeight,
+            "width":window.innerWidth,
+        });
+    },
     renderInput:function () {
         console.log(this.props.editorDatabase);
         if(this.props.editorDatabase.length==0){
@@ -163,6 +173,7 @@ var EditorHeader = React.createClass({
                 style={inputStyle}
                 onChange={this.onUserInput}
                 value={thing.name}
+                onBlur={this.refresh}
             />
         );
     },

@@ -11,10 +11,19 @@ var EditorTable = React.createClass({
         round: PropTypes.string.isRequired,
         editorDatabase: PropTypes.array.isRequired,
     },
-    renderInput: function () {
+    resize:function () {
         $(".Main").css({
-            "height": window.innerHeight
+            "height": window.innerHeight,
+            "width":window.innerWidth,
         });
+        $("body").css({
+            "height": window.innerHeight,
+            "width":window.innerWidth,
+        });
+    },
+    renderInput: function () {
+        $(window).resize(this.resize);
+
         var roundName;
         switch (this.props.round) {
             case "Single":
@@ -31,8 +40,8 @@ var EditorTable = React.createClass({
         return (roundName == "FinalJeopardy" ?
                 <div key="" className="Table">
                     <div className="Column" key="C1">
-                        <QuestionHeader categoryName={round.category}/>
-                        <Question cell={round}/>
+                        <QuestionHeader categoryName={round.category} roundName={roundName} key1={"category"}/>
+                        <Question cell={round} roundName={roundName} key1={"question"}/>
                     </div>
                 </div>
                 :
@@ -43,9 +52,9 @@ var EditorTable = React.createClass({
                                 {$.map(column, function (cell, key2) {
                                     return key2 == "categoryName" ?
                                         //<div className="Header" key={key1 + "H"}>{cell}</div>
-                                        <QuestionHeader key={key1 + "H"} categoryName={cell}/>
+                                        <QuestionHeader key={key1 + "H"} categoryName={cell} roundName={roundName} key1={key1}/>
                                         :
-                                        <Question key={key1 + key2} cell={cell}/>;
+                                        <Question key={key1 + key2} cell={cell} roundName={roundName} key1={key1} key2={key2}/>;
                                     /*                       <div className="Rtable-cell" key={key1 + key2}><p
                                             className="question">{cell.question}</p><p>{cell.answer}</p></div>*/
                                             
@@ -83,6 +92,8 @@ var EditorTable = React.createClass({
     },
     
     render: function () {
+        
+        
         return (
             <div className="Table">
                 {this.renderInput()}
