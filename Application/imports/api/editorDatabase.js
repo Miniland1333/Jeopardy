@@ -47,9 +47,9 @@ Meteor.methods({
             Jeopardy:gameTemplate,
             DoubleJeopardy:gameTemplate,
             FinalJeopardy:{
-                category:"",
-                question:"",
-                answer:"",
+                category:"Category",
+                question:"Question",
+                answer:"Answer",
             },
         });
         console.log(editorDatabase.find().fetch());
@@ -58,7 +58,19 @@ Meteor.methods({
     'editorDatabase.loadJSON'(json){
         editorDatabase.remove({});
         editorDatabase.insert({
-
+            name:json.name,
+            Jeopardy:json.Jeopardy,
+            DoubleJeopardy:json.DoubleJeopardy,
+            FinalJeopardy:json.FinalJeopardy
+        });
+    },
+    'editorDatabase.load'(game){
+        editorDatabase.remove({});
+        editorDatabase.insert({
+            name:game.name,
+            Jeopardy:game.Jeopardy,
+            DoubleJeopardy:game.DoubleJeopardy,
+            FinalJeopardy:game.FinalJeopardy
         });
     },
     'editorDatabase.updateName'(name){

@@ -35,3 +35,11 @@ var renderRoutes = () => (
 Meteor.startup(() => {
   render(renderRoutes(), document.getElementById('render-target'));
 });
+
+$(window).resize(resize);
+function resize() {
+        $(".Main").css({
+                "height": window.innerHeight
+        });
+}
+

@@ -20,7 +20,19 @@ var buttonStyle = {
     //borderRadius:8,
     cursor:"pointer",
 };
-var dropdownStyle = {
+var loadButtonStyle = {
+    backgroundColor: '#FFD700', /* green */
+    color: 'white',
+    padding: '16px 21px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: 20,
+    border:"white solid 1px",
+    //borderRadius:8,
+    cursor:"pointer",
+};
+var pickerStyle = {
     backgroundColor: '#FFD700', /* green */
     border: 'white solid 1px',
     color: 'white',
@@ -42,6 +54,16 @@ var inputStyle={
     textAlign:"center",
     flexGrow:1
 };
+var dropdownStyle = {
+    display: 'none',
+    position: 'absolute',
+    backgroundColor: '#f9f9f9',
+    minWidth: 160,
+    maxHeight:500,
+    boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+    overflow:"auto",
+    color:"black",
+};
 
 var EditorHeader = React.createClass({
     propTypes:{
@@ -60,12 +82,13 @@ var EditorHeader = React.createClass({
         }
     },
     handleLoad:function (e) {
-        if(confirm("This will delete all unsaved work. Continue?")) {
-
-        }
+        // if(confirm("This will delete all unsaved work. Continue?")) {}
+        $("#myDropdown").slideToggle();
     },
     handleSave:function (e) {
-        if(confirm("This will overwrite any game with the same name. Continue?")) {
+        if(this.props.editorDatabase[0].name.trim()==""){
+            alert("Name field cannot be empty!");
+        }else if(confirm("This will overwrite any game with the same name. Continue?")) {
             Meteor.call('gameDatabase.save',this.props.editorDatabase[0]);
         }
     },
@@ -81,13 +104,21 @@ var EditorHeader = React.createClass({
         var round = e.target.value;
         this.props.onRoundChange(round);
     },
+    renderDropdown:function () {
+    
+        console.log(this.props.gameList);
+      return ($.map(this.props.gameList,function(game,attr){
+            return <li key={game.name}>
+                <span className="text">{game.name}</span>
+                <button className="delete">&times;</button>
+            </li>
+        }))
+    },
     renderInput:function () {
         console.log(this.props.editorDatabase);
         if(this.props.editorDatabase.length==0){
             Meteor.call('editorDatabase.init')
         }
-        
-        
         return this.props.editorDatabase.map(thing=>
                 <input
                     key="input"
@@ -107,11 +138,17 @@ var EditorHeader = React.createClass({
             <div>
                 <div className="flex-container" style={barStyle}>
                     <button style={buttonStyle} id="New" onClick={this.handleNew}>New</button>
-                    <button style={buttonStyle} id="Load" onClick={this.handleLoad}>Load</button>
+                    <div className="dropdown" style={{border:"none"}}>
+                        <button style={loadButtonStyle} id="Load" onClick={this.handleLoad}>Load</button>
+                        <ul className="dropdown-content" id="myDropdown" style={dropdownStyle}>
+                            {this.renderDropdown()}
+                        </ul>
+                    </div>
                     <button style={buttonStyle} id="Save"onClick={this.handleSave}>Save</button>
+
                     {this.renderInput()}
                     <select
-                        style={dropdownStyle}
+                        style={pickerStyle}
                         id="selector"
                         onChange={this.handleRound}>
                         <option value="Single">Single</option>

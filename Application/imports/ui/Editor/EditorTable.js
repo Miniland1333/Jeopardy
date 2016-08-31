@@ -1,44 +1,55 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor';
+import {Meteor} from 'meteor/meteor';
 
 
 var EditorTable = React.createClass({
-    propTypes:{
+    propTypes: {
         round: PropTypes.string.isRequired,
         editorDatabase: PropTypes.array.isRequired,
     },
-    renderInput:function () {
+    renderInput: function () {
         $(".Main").css({
-            "height":window.innerHeight
+            "height": window.innerHeight
         });
-        var round;
-        switch (this.props.round){
+        var roundName;
+        switch (this.props.round) {
             case "Single":
-                round = "Jeopardy";
+                roundName = "Jeopardy";
                 break;
             case "Double":
-                round = "DoubleJeopardy";
+                roundName = "DoubleJeopardy";
                 break;
             case "Final":
-                round = "FinalJeopardy"
+                roundName = "FinalJeopardy"
         }
-        round = this.props.editorDatabase[0][round];
-        console.log(round);
-        return (round=="FinalJeopardy"?
-            <div key="" className="Table">Final?</div>
-                
-                :
-            <div key="" className="Table">
-                {$.map(round,function(column,key1){return(
-                    <div className="Column">
-                        {$.map(column, function(cell,key2){
-                            console.log(cell,key1,key2);
-                            return key2=="categoryName"?<div className="Header">{cell}</div>:<div className="Rtable-cell"><p className="question">{cell.question}</p><p>{cell.answer}</p></div>
-                        })}
+        var round = this.props.editorDatabase[0][roundName];
+        console.log(roundName);
+        return (roundName == "FinalJeopardy" ?
+                <div key="" className="Table">
+                    <div className="Column" key="C1">
+                        <div className="Header">{round.category}</div>
+                        <div className="Rtable-cell">
+                            <p className="question">{round.question}</p>
+                            <p>{round.answer}</p>
+                        </div>
                     </div>
-                )})}
-            </div>
+                </div>
+                :
+                <div key="" className="Table">
+                    {$.map(round, function (column, key1) {
+                        return (
+                            <div className="Column" key={key1}>
+                                {$.map(column, function (cell, key2) {
+                                    return key2 == "categoryName" ?
+                                        <div className="Header" key={key1 + "H"}>{cell}</div> :
+                                        <div className="Rtable-cell" key={key1 + key2}><p
+                                            className="question">{cell.question}</p><p>{cell.answer}</p></div>
+                                })}
+                            </div>
+                        )
+                    })}
+                </div>
         );
         /*        return(
          <div className="Table">
@@ -63,9 +74,12 @@ var EditorTable = React.createClass({
          </div>
          )*/
     },
+    modal: function (reference) {
+        
+    },
     
-    render:function () {
-        return(
+    render: function () {
+        return (
             <div className="Table">
                 {this.renderInput()}
             </div>
