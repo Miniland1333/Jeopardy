@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
+import GameLi from "./GameLi";
+
 
 var barStyle = {
     fontSize: 16,
@@ -73,16 +75,16 @@ var EditorHeader = React.createClass({
         onRoundChange: PropTypes.func.isRequired,
     },
     onUserInput:function (name){
-
+        
         Meteor.call('editorDatabase.updateName',name.target.value);
     },
     handleNew:function (e) {
         if(confirm("This will delete all unsaved work. Continue?")) {
             Meteor.call('editorDatabase.init');
+            $("#myDropdown").slideUp();
         }
     },
     handleLoad:function (e) {
-        // if(confirm("This will delete all unsaved work. Continue?")) {}
         $("#myDropdown").slideToggle();
     },
     handleSave:function (e) {
@@ -94,24 +96,20 @@ var EditorHeader = React.createClass({
     },
     handleImport:function (e) {
         if(confirm("This will delete all unsaved work. Continue?")) {
-
+            $("#myDropdown").slideUp();
         }
     },
     handleExport:function (e) {
-
+        
     },
     handleRound:function(e){
         var round = e.target.value;
         this.props.onRoundChange(round);
     },
     renderDropdown:function () {
-    
         console.log(this.props.gameList);
-      return ($.map(this.props.gameList,function(game,attr){
-            return <li key={game.name}>
-                <span className="text">{game.name}</span>
-                <button className="delete">&times;</button>
-            </li>
+        return ($.map(this.props.gameList,function(game){
+            return (<GameLi key={game.name} game={game}/>)
         }))
     },
     renderInput:function () {
@@ -120,19 +118,19 @@ var EditorHeader = React.createClass({
             Meteor.call('editorDatabase.init')
         }
         return this.props.editorDatabase.map(thing=>
-                <input
-                    key="input"
-                    type="text"
-                    placeholder="Type the Game name here"
-                    style={inputStyle}
-                    onChange={this.onUserInput}
-                    value={thing.name}
-                />
+            <input
+                key="input"
+                type="text"
+                placeholder="Type the Game name here"
+                style={inputStyle}
+                onChange={this.onUserInput}
+                value={thing.name}
+            />
         );
     },
-/*    componentWillReceiveProps:function(newProps){
-        console.log("EditorHeader is receiving "+newProps);
-    },*/
+    /*    componentWillReceiveProps:function(newProps){
+     console.log("EditorHeader is receiving "+newProps);
+     },*/
     render: function (){
         return (
             <div>
@@ -145,7 +143,7 @@ var EditorHeader = React.createClass({
                         </ul>
                     </div>
                     <button style={buttonStyle} id="Save"onClick={this.handleSave}>Save</button>
-
+                    
                     {this.renderInput()}
                     <select
                         style={pickerStyle}
@@ -157,7 +155,7 @@ var EditorHeader = React.createClass({
                     </select>
                     <button style={buttonStyle} id="Import"onClick={this.handleImport}>Import</button>
                     <button style={buttonStyle} id="Export"onClick={this.handleExport}>Export</button>
-
+                
                 </div>
             </div>
         )

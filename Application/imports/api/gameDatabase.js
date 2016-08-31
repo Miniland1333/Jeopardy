@@ -31,7 +31,6 @@ Meteor.methods({
     },
     'gameDatabase.remove'(gameName){
         //saves game from editorDatabase
-        check(taskId, String);
         gameDatabase.remove({name:gameName});
     }
 

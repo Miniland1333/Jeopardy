@@ -42,7 +42,8 @@ var EditorTable = React.createClass({
                             <div className="Column" key={key1}>
                                 {$.map(column, function (cell, key2) {
                                     return key2 == "categoryName" ?
-                                        <div className="Header" key={key1 + "H"}>{cell}</div> :
+                                        <div className="Header" key={key1 + "H"}>{cell}</div>
+                                        :
                                         <div className="Rtable-cell" key={key1 + key2}><p
                                             className="question">{cell.question}</p><p>{cell.answer}</p></div>
                                 })}
