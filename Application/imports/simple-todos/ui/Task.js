@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 
 
-// Task component - represents a single todo item
+// Task component - represents a single to-do item
 export default class Task extends Component {
     toggleChecked() {
         // Set the checked property to the opposite of its current value
@@ -14,7 +14,7 @@ export default class Task extends Component {
     deleteThisTask() {
         Meteor.call('tasks.remove', this.props.task._id);
     }
-    componentWillReceiveProps(newProps){
+    static componentWillReceiveProps(newProps){
         console.log("Task is receiving "+newProps);
     }
     render() {

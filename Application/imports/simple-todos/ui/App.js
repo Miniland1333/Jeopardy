@@ -59,7 +59,7 @@ class App extends Component {
             <DocumentTitle title='Jeopardy'>
                 <div className="container">
                     <header>
-                        <h1>Todo List ({this.props.incompleteCount})</h1>
+                        <h1>To-do List ({this.props.incompleteCount})</h1>
                         <label className="hide-completed">
                             <input
                                 type="checkbox"

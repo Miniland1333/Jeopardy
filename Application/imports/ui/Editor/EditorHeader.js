@@ -88,8 +88,12 @@ var EditorHeader = React.createClass({
         $("#myDropdown").slideToggle();
     },
     handleSave:function (e) {
-        if(this.props.editorDatabase[0].name.trim()==""){
+        if(this.props.editorDatabase[0].name.trim()=="") {
             alert("Name field cannot be empty!");
+        }else if(true){
+            //!this.isValid()
+            //todo check columns if they are valid
+            //alert("All questions must have a category name!");
         }else if(confirm("This will overwrite any game with the same name. Continue?")) {
             Meteor.call('gameDatabase.save',this.props.editorDatabase[0]);
         }
@@ -97,9 +101,44 @@ var EditorHeader = React.createClass({
     handleImport:function (e) {
         if(confirm("This will delete all unsaved work. Continue?")) {
             $("#myDropdown").slideUp();
+            
+            $("#fileToLoad").click();
         }
     },
+    hangleFile:function () {
+        var fileToLoad = document.getElementById("fileToLoad").files[0];
+        if(fileToLoad!="") {
+            var fileReader = new FileReader();
+            fileReader.onload = function (fileLoadedEvent) {
+                var textFromFileLoaded = fileLoadedEvent.target.result;
+                try{
+                    textFromFileLoaded = JSON.parse(textFromFileLoaded);
+                    Meteor.call('editorDatabase.load', textFromFileLoaded);
+                }catch(err){
+                    alert("Invalid File!");
+                }
+            };
+            fileReader.readAsText(fileToLoad, "UTF-8");
+        }
+    },
+    destroyClickedElement:function(event) {
+        document.body.removeChild(event.target);
+    },
     handleExport:function (e) {
+        var textToSave = JSON.stringify(this.props.editorDatabase[0]);
+        var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+        var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+        var fileNameToSaveAs = this.props.editorDatabase[0].name.trim();
+        
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "Download File";
+        downloadLink.href = textToSaveAsURL;
+        downloadLink.onclick = this.destroyClickedElement;
+        downloadLink.style.display = "none";
+        document.body.appendChild(downloadLink);
+        
+        downloadLink.click();
         
     },
     handleRound:function(e){
@@ -142,7 +181,7 @@ var EditorHeader = React.createClass({
                             {this.renderDropdown()}
                         </ul>
                     </div>
-                    <button style={buttonStyle} id="Save"onClick={this.handleSave}>Save</button>
+                    <button style={buttonStyle} id="Save" onClick={this.handleSave}>Save</button>
                     
                     {this.renderInput()}
                     <select
@@ -153,9 +192,9 @@ var EditorHeader = React.createClass({
                         <option value="Double">Double</option>
                         <option value="Final" >Final</option>
                     </select>
-                    <button style={buttonStyle} id="Import"onClick={this.handleImport}>Import</button>
-                    <button style={buttonStyle} id="Export"onClick={this.handleExport}>Export</button>
-                
+                    <button style={buttonStyle} id="Import" onClick={this.handleImport}>Import</button>
+                    <button style={buttonStyle} id="Export" onClick={this.handleExport}>Export</button>
+                    <input type="file" id="fileToLoad" accept=".txt" onChange={this.hangleFile} style={{position:"absolute", width:0,height:0}}/>
                 </div>
             </div>
         )

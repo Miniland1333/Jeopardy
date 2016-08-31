@@ -52,17 +52,6 @@ Meteor.methods({
                 answer:"Answer",
             },
         });
-        console.log(editorDatabase.find().fetch());
-
-    },
-    'editorDatabase.loadJSON'(json){
-        editorDatabase.remove({});
-        editorDatabase.insert({
-            name:json.name,
-            Jeopardy:json.Jeopardy,
-            DoubleJeopardy:json.DoubleJeopardy,
-            FinalJeopardy:json.FinalJeopardy
-        });
     },
     'editorDatabase.load'(game){
         editorDatabase.remove({});
