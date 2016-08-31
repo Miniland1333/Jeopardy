@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/imports/ui/Editor/QuestionHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/EditorTableCSS.css" afterPath="$PROJECT_DIR$/client/EditorTableCSS.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/main.js" afterPath="$PROJECT_DIR$/client/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/editorDatabase.js" afterPath="$PROJECT_DIR$/imports/api/editorDatabase.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/Question.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +29,8 @@
           <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-617">
-                  <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+                <state relative-caret-position="522">
+                  <caret line="126" column="4" selection-start-line="126" selection-start-column="4" selection-end-line="126" selection-end-column="4" />
                   <folding>
                     <element signature="e#442#689#0" expanded="false" />
                     <element signature="e#709#940#0" expanded="false" />
@@ -940,7 +932,7 @@
       <workItem from="1472270981360" duration="63183000" />
       <workItem from="1472516488130" duration="62327000" />
       <workItem from="1472664070442" duration="176000" />
-      <workItem from="1472664372520" duration="6432000" />
+      <workItem from="1472664372520" duration="6488000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -1061,11 +1053,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472665151776</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Implemented isSinglePlay notification&#10;&#10;Partial EditModal implementation">
+      <created>1472672729948</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1472672729948</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="144576000" />
+    <option name="totallyTimeSpent" value="144632000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1167,7 +1166,8 @@
     <MESSAGE value="Turned Questions and Headers into React Components" />
     <MESSAGE value="Fixed Window Sizing Issue for iOS fullscreen" />
     <MESSAGE value="Implemented Fast Click&#10;&#10;&#10;This disables Double Click on Fullscreen mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Fast Click&#10;&#10;&#10;This disables Double Click on Fullscreen mode" />
+    <MESSAGE value="Implemented isSinglePlay notification&#10;&#10;Partial EditModal implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented isSinglePlay notification&#10;&#10;Partial EditModal implementation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1462,20 +1462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-617">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding>
-            <element signature="e#442#689#0" expanded="false" />
-            <element signature="e#709#940#0" expanded="false" />
-            <element signature="e#958#1240#0" expanded="false" />
-            <element signature="e#1260#1528#0" expanded="false" />
-            <element signature="e#1546#1814#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/EditorTableCSS.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1509,6 +1495,20 @@
           <folding>
             <element signature="e#1545#1788#0" expanded="false" />
             <element signature="e#1827#1971#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="126" column="4" selection-start-line="126" selection-start-column="4" selection-end-line="126" selection-end-column="4" />
+          <folding>
+            <element signature="e#442#689#0" expanded="false" />
+            <element signature="e#709#940#0" expanded="false" />
+            <element signature="e#958#1240#0" expanded="false" />
+            <element signature="e#1260#1528#0" expanded="false" />
+            <element signature="e#1546#1814#0" expanded="false" />
           </folding>
         </state>
       </provider>
