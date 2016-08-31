@@ -8,7 +8,7 @@ var cursorStyle = {
 
 var gameLi = React.createClass({
     propTypes:{
-        game:React.PropTypes.object
+        game:React.PropTypes.object.isRequired,
     },
     handleDelete:function(){
         if(confirm("This will delete "+this.props.game.name+". Are you sure?")) {

@@ -27,14 +27,14 @@ Meteor.methods({
         for(var i=1;i<=5;i++){
             categoryTemplate["question"+i] = {
                 isSinglePlay:false,
-                    question:"question"+i,
-                    answer:"answer"+i,
+                question:"question"+i,
+                answer:"answer"+i,
             };
-/*            categoryTemplate["question"+i] = {
-                isSinglePlay:false,
-                question:"",
-                answer:"",
-            };*/
+            /*            categoryTemplate["question"+i] = {
+             isSinglePlay:false,
+             question:"",
+             answer:"",
+             };*/
         }
         
         var gameTemplate = {};
@@ -67,4 +67,7 @@ Meteor.methods({
         editorDatabase.update({},{$set:{name : name}});
         console.log(editorDatabase.find().fetch());
     },
+    'editorDatabase.updateCategory'(name){
+        
+    }
 });

@@ -2,7 +2,9 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
 import {Meteor} from 'meteor/meteor';
 
-
+import Question from "./Question";
+import QuestionHeader from "./QuestionHeader"
+import EditModal from "./EditModal"
 
 var EditorTable = React.createClass({
     propTypes: {
@@ -29,11 +31,8 @@ var EditorTable = React.createClass({
         return (roundName == "FinalJeopardy" ?
                 <div key="" className="Table">
                     <div className="Column" key="C1">
-                        <div className="Header">{round.category}</div>
-                        <div className="Rtable-cell">
-                            <p className="question">{round.question}</p>
-                            <p>{round.answer}</p>
-                        </div>
+                        <QuestionHeader categoryName={round.category}/>
+                        <Question cell={round}/>
                     </div>
                 </div>
                 :
@@ -43,10 +42,13 @@ var EditorTable = React.createClass({
                             <div className="Column" key={key1}>
                                 {$.map(column, function (cell, key2) {
                                     return key2 == "categoryName" ?
-                                        <div className="Header" key={key1 + "H"}>{cell}</div>
+                                        //<div className="Header" key={key1 + "H"}>{cell}</div>
+                                        <QuestionHeader key={key1 + "H"} categoryName={cell}/>
                                         :
-                                        <div className="Rtable-cell" key={key1 + key2}><p
-                                            className="question">{cell.question}</p><p>{cell.answer}</p></div>
+                                        <Question key={key1 + key2} cell={cell}/>;
+                                    /*                       <div className="Rtable-cell" key={key1 + key2}><p
+                                            className="question">{cell.question}</p><p>{cell.answer}</p></div>*/
+                                            
                                 })}
                             </div>
                         )
@@ -84,6 +86,7 @@ var EditorTable = React.createClass({
         return (
             <div className="Table">
                 {this.renderInput()}
+                <EditModal/>
             </div>
         )
     }

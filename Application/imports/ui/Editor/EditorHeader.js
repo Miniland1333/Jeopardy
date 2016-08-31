@@ -90,7 +90,7 @@ var EditorHeader = React.createClass({
     handleSave:function (e) {
         if(this.props.editorDatabase[0].name.trim()=="") {
             alert("Name field cannot be empty!");
-        }else if(true){
+        }else if(false){
             //!this.isValid()
             //todo check columns if they are valid
             //alert("All questions must have a category name!");
@@ -146,7 +146,6 @@ var EditorHeader = React.createClass({
         this.props.onRoundChange(round);
     },
     renderDropdown:function () {
-        console.log(this.props.gameList);
         return ($.map(this.props.gameList,function(game){
             return (<GameLi key={game.name} game={game}/>)
         }))
