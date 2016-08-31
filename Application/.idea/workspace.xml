@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/EditorTableCSS.css" afterPath="$PROJECT_DIR$/client/EditorTableCSS.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/editorDatabase.js" afterPath="$PROJECT_DIR$/imports/api/editorDatabase.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
@@ -29,37 +28,35 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52313626">
+    <splitter split-orientation="horizontal" split-proportion="0.5366324">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
+          <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="109" column="4" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
+                <state relative-caret-position="-918">
+                  <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
                   <folding>
-                    <element signature="e#443#690#0" expanded="false" />
-                    <element signature="e#710#941#0" expanded="false" />
-                    <element signature="e#961#1161#0" expanded="false" />
-                    <element signature="e#1179#1461#0" expanded="false" />
-                    <element signature="e#1481#1749#0" expanded="false" />
-                    <element signature="e#1767#2035#0" expanded="false" />
-                    <element signature="e#2061#2097#0" expanded="false" />
-                    <element signature="e#2798#3161#0" expanded="false" />
-                    <element signature="e#3757#5114#0" expanded="false" />
+                    <element signature="e#2506#4122#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
+          <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1190">
-                  <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
+                <state relative-caret-position="242">
+                  <caret line="132" column="61" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
                   <folding>
-                    <element signature="e#0#50#0" expanded="true" />
-                    <element signature="e#2766#4382#0" expanded="false" />
+                    <element signature="e#442#689#0" expanded="false" />
+                    <element signature="e#709#940#0" expanded="false" />
+                    <element signature="e#960#1160#0" expanded="false" />
+                    <element signature="e#1178#1460#0" expanded="false" />
+                    <element signature="e#1480#1748#0" expanded="false" />
+                    <element signature="e#1766#2034#0" expanded="false" />
+                    <element signature="e#2060#2096#0" expanded="false" />
+                    <element signature="e#3438#3976#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -72,8 +69,8 @@
           <file leaf-file-name="Question.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="91" selection-start-line="12" selection-start-column="91" selection-end-line="12" selection-end-column="91" />
+                <state relative-caret-position="136">
+                  <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
                   </folding>
@@ -84,8 +81,8 @@
           <file leaf-file-name="CategoryHeader.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+                <state relative-caret-position="218">
+                  <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
                   </folding>
@@ -96,8 +93,8 @@
           <file leaf-file-name="editorDatabase.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="488">
-                  <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+                <state relative-caret-position="918">
+                  <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
                   <folding>
                     <element signature="e#1522#1765#0" expanded="false" />
                     <element signature="e#1804#1948#0" expanded="false" />
@@ -181,10 +178,10 @@
         <option value="$PROJECT_DIR$/imports/ui/Editor/QuestionHeader.js" />
         <option value="$PROJECT_DIR$/client/EditorTableCSS.css" />
         <option value="$PROJECT_DIR$/imports/api/editorDatabase.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
       </list>
     </option>
   </component>
@@ -246,7 +243,24 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="Scope" />
       <pane id="PackagesPane" />
@@ -274,12 +288,6 @@
     <property name="TODO_SCOPE" value="Project Files" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\api" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Editor" />
@@ -287,8 +295,14 @@
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\public" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\api" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application" />
+    </key>
   </component>
-  <component name="RunManager" selected="Meteor.Run Meteor">
+  <component name="RunManager" selected="JavaScript Debug.Run Meteor JavaScript">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -841,7 +855,7 @@
       <workItem from="1472270981360" duration="63183000" />
       <workItem from="1472516488130" duration="62327000" />
       <workItem from="1472664070442" duration="176000" />
-      <workItem from="1472664372520" duration="9878000" />
+      <workItem from="1472664372520" duration="17880000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -976,11 +990,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472672759890</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Save before attempting to use statics">
+      <created>1472676142817</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1472676142817</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148022000" />
+    <option name="totallyTimeSpent" value="156024000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1002,17 +1023,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45606694" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31877023" sideWeight="0.51666665" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45606694" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30822873" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29707113" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20758355" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758355" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4957265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41422594" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1084,16 +1105,21 @@
     <MESSAGE value="Implemented Fast Click&#10;&#10;&#10;This disables Double Click on Fullscreen mode" />
     <MESSAGE value="Implemented isSinglePlay notification&#10;&#10;Partial EditModal implementation" />
     <MESSAGE value="Added fastclick.js to Git" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added fastclick.js to Git" />
+    <MESSAGE value="Save before attempting to use statics" />
+    <option name="LAST_COMMIT_MESSAGE" value="Save before attempting to use statics" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="92" />
+      <option name="time" value="100" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="JavascriptDebugType">
+        <watch expression="this.state.EditModal" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1377,8 +1403,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+        <state relative-caret-position="918">
+          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
           <folding>
             <element signature="e#1522#1765#0" expanded="false" />
             <element signature="e#1804#1948#0" expanded="false" />
@@ -1386,51 +1412,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="91" selection-start-line="12" selection-start-column="91" selection-end-line="12" selection-end-column="91" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
+        <state relative-caret-position="-918">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding>
+            <element signature="e#2506#4122#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
-            <element signature="e#2766#4382#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="109" column="4" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
+        <state relative-caret-position="242">
+          <caret line="132" column="61" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
           <folding>
-            <element signature="e#443#690#0" expanded="false" />
-            <element signature="e#710#941#0" expanded="false" />
-            <element signature="e#961#1161#0" expanded="false" />
-            <element signature="e#1179#1461#0" expanded="false" />
-            <element signature="e#1481#1749#0" expanded="false" />
-            <element signature="e#1767#2035#0" expanded="false" />
-            <element signature="e#2061#2097#0" expanded="false" />
-            <element signature="e#2798#3161#0" expanded="false" />
-            <element signature="e#3757#5114#0" expanded="false" />
+            <element signature="e#442#689#0" expanded="false" />
+            <element signature="e#709#940#0" expanded="false" />
+            <element signature="e#960#1160#0" expanded="false" />
+            <element signature="e#1178#1460#0" expanded="false" />
+            <element signature="e#1480#1748#0" expanded="false" />
+            <element signature="e#1766#2034#0" expanded="false" />
+            <element signature="e#2060#2096#0" expanded="false" />
+            <element signature="e#3438#3976#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>

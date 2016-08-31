@@ -68,9 +68,11 @@ Meteor.methods({
         console.log(editorDatabase.find().fetch());
     },
     'editorDatabase.updateCategory'(round,identifier,name){
+        //check if finalJ
         
     },
     'editorDatabse.updateQuestion'(round,identifier1,identifier2,question,answer,isSinglePlay){
+        //check if finalJ
         
     },
 });

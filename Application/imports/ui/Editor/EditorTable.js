@@ -4,7 +4,6 @@ import {Meteor} from 'meteor/meteor';
 
 import Question from "./Question";
 import CategoryHeader from "./CategoryHeader"
-import EditModal from "./EditModal"
 
 var EditorTable = React.createClass({
     propTypes: {
@@ -55,8 +54,6 @@ var EditorTable = React.createClass({
                                         <CategoryHeader key={key1 + "H"} categoryName={cell} roundName={roundName} key1={key1}/>
                                         :
                                         <Question key={key1 + key2} cell={cell} roundName={roundName} key1={key1} key2={key2}/>;
-                                    /*                       <div className="Rtable-cell" key={key1 + key2}><p
-                                            className="question">{cell.question}</p><p>{cell.answer}</p></div>*/
                                             
                                 })}
                             </div>
@@ -87,9 +84,6 @@ var EditorTable = React.createClass({
          </div>
          )*/
     },
-    modal: function (reference) {
-        
-    },
     
     render: function () {
         
@@ -97,7 +91,6 @@ var EditorTable = React.createClass({
         return (
             <div className="Table">
                 {this.renderInput()}
-                <EditModal ref="EditModal"/>
             </div>
         )
     }
