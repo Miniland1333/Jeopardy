@@ -3,6 +3,14 @@ import { Meteor } from 'meteor/meteor';
 
 import EditModal from "./EditModal"
 
+
+var divStyle = {
+    display: 'flex',
+    flex: 1,
+    textAlign: 'center',
+    flexDirection: 'column',
+    margin: 0
+};
 var Question = React.createClass({
     getInitialState:function () {
         return  {
@@ -17,15 +25,13 @@ var Question = React.createClass({
         cell:React.PropTypes.object,
     },
     handleQuestionClick:function () {
-        if(this.state.EditModal){
-            this.setState({EditModal:false});
-        }else {
-            alert("You clicked " + this.props.roundName + "," + this.props.key1 + "," + this.props.key2);
+        if(!this.state.EditModal){
+            //alert("You clicked " + this.props.roundName + "," + this.props.key1 + "," + this.props.key2);
             this.setState({EditModal: true})
         }
     },
     handleClose:function(){
-        this.setState({EditModal:"pending"});
+        this.setState({EditModal:false});
     },
     handleEditModule:function () {
         if(this.state.EditModal){
@@ -45,10 +51,13 @@ var Question = React.createClass({
     },
     render:function () {
         return(
-            <div className="Rtable-cell" onClick={this.handleQuestionClick}>
-                <p style={{margin:0}} className="question">{this.props.cell.question}</p>
-                <h6 style={{margin:0}}>{this.props.cell.isSinglePlay?"SINGLE PLAY":""}</h6>
-                <p style={{margin:0}}>{this.props.cell.answer}</p>
+            <div style={divStyle}>
+                <div className="Rtable-cell" onClick={this.handleQuestionClick}>
+                    <p style={{margin:0}} className="question">{this.props.cell.question}</p>
+                    <h6 style={{margin:0}}>{this.props.cell.isSinglePlay?"SINGLE PLAY":""}</h6>
+                    <p style={{margin:0}}>{this.props.cell.answer}</p>
+                
+                </div>
                 {this.handleEditModule()}
             </div>)
     }

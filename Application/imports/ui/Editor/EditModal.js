@@ -130,7 +130,7 @@ var EditModal = React.createClass({
         this.setState({isSinglePlay:!this.state.isSinglePlay})
     },
     handleCancel:function(){
-        this.props.handleClose()
+        $("#myModal").fadeOut(this.props.handleClose);
     },
     handleComplete:function () {
         if(this.props.isHeader){
@@ -151,19 +151,19 @@ var EditModal = React.createClass({
     },
     render:function () {
         return(
-            <div id="myModal" className="needsclick" style={modalStyle}>
-                <div className="modal-content flex-container needsclick" style={modalContentStyle}>
+            <div id="myModal" style={modalStyle}>
+                <div className="modal-content flex-container" style={modalContentStyle}>
                     {
-                            this.props.isHeader?<div className="flex-container needsclick" style={verticalFlexStyle}><h1>Category Name</h1>
-                            <input id="category" className="needsclick" defaultValue={this.props.categoryName} placeholder="Category Name" style={headerStyle}/></div>:<div className="flex-container" style={verticalFlexStyle}>                    <h1>Question</h1>
-                        <textarea id="question" className="needsclick" defaultValue={this.props.question} placeholder="Question" style={headerStyle}/>
-                        <h2>Answer</h2><input id="answer" className="needsclick" defaultValue={this.props.answer} placeholder="Answer" style={answerStyle}/></div>
+                            this.props.isHeader?<div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
+                            <input id="category" defaultValue={this.props.categoryName} placeholder="Category Name" style={headerStyle}/></div>:<div className="flex-container" style={verticalFlexStyle}>                    <h1>Question</h1>
+                        <textarea id="question"  defaultValue={this.props.question} placeholder="Question" style={headerStyle}/>
+                        <h2>Answer</h2><input id="answer" defaultValue={this.props.answer} placeholder="Answer" style={answerStyle}/></div>
     
                     }
-                    <div  className="flex-container needsclick" style={buttonHolderStyle}>
+                    <div  className="flex-container " style={buttonHolderStyle}>
                         {!this.props.isHeader?<button style={playStyle} onClick={this.handlePlay}>Single Play {this.state.isSinglePlay?"ON  ":"OFF"}</button>:""}
-                        <button className="needsclick" style={cancelStyle} onClick={this.handleCancel}>Close</button>
-                        <button className="needsclick" style={saveStyle} onClick={this.handleComplete}>Save</button>
+                        <button  style={cancelStyle} onClick={this.handleCancel}>Close</button>
+                        <button  style={saveStyle} onClick={this.handleComplete}>Save</button>
                     </div>
                 </div>
             </div>

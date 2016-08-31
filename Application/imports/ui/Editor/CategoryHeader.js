@@ -15,9 +15,8 @@ var CategoryHeader = React.createClass({
         categoryName:React.PropTypes.string,
     },
     handleQuestionHeaderClick:function () {
-        console.log(this.state.EditModal);
         if(!this.state.EditModal){
-            alert("You clicked "+this.props.roundName+","+this.props.key1);
+            //alert("You clicked "+this.props.roundName+","+this.props.key1);
             this.setState({EditModal:true});
         }
     },
