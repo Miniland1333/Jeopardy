@@ -161,7 +161,7 @@ var EditModal = React.createClass({
     
                     }
                     <div  className="flex-container " style={buttonHolderStyle}>
-                        {!this.props.isHeader?<button style={playStyle} onClick={this.handlePlay}>Single Play {this.state.isSinglePlay?"ON  ":"OFF"}</button>:""}
+                        {!this.props.isHeader&&this.props.roundName!="FinalJeopardy"?<button style={playStyle} onClick={this.handlePlay}>Single Play {this.state.isSinglePlay?"ON  ":"OFF"}</button>:""}
                         <button  style={cancelStyle} onClick={this.handleCancel}>Close</button>
                         <button  style={saveStyle} onClick={this.handleComplete}>Save</button>
                     </div>

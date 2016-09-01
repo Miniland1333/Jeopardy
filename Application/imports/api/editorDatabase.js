@@ -22,19 +22,19 @@ Meteor.methods({
         editorDatabase.remove({});
         //initializes editorDatabase
         var categoryTemplate = {
-            categoryName:"categoryName",
+            categoryName:"",
         };
         for(var i=1;i<=5;i++){
-            categoryTemplate["question"+i] = {
+/*            categoryTemplate["question"+i] = {
                 isSinglePlay:true,
                 question:"question"+i,
                 answer:"answer"+i,
-            };
-/*            categoryTemplate["question"+i] = {
+            };*/
+            categoryTemplate["question"+i] = {
                 isSinglePlay:false,
                 question:"",
                 answer:"",
-            };*/
+            };
         }
         
         var gameTemplate = {};
@@ -65,14 +65,31 @@ Meteor.methods({
     'editorDatabase.updateName'(name){
         check(name, String);
         editorDatabase.update({},{$set:{name : name}});
-        console.log(editorDatabase.find().fetch());
     },
     'editorDatabase.updateCategory'(round,identifier,name){
         //check if finalJ
+        if(round=="FinalJeopardy"){
+            editorDatabase.update({},{$set:{"FinalJeopardy.category":name}});
+        }
+        var bundle={};
+        bundle[round+"."+identifier+".categoryName"] = name;
+        editorDatabase.update({},{$set:bundle});
         
+        console.log(editorDatabase.find().fetch());
     },
-    'editorDatabse.updateQuestion'(round,identifier1,identifier2,question,answer,isSinglePlay){
+    'editorDatabase.updateQuestion'(round,identifier1,identifier2,question,answer,isSinglePlay){
         //check if finalJ
+        if(round=="FinalJeopardy"){
+            editorDatabase.update({},{$set:{"FinalJeopardy.question":question,"FinalJeopardy.answer":answer}});
+        }
+        var minibundle = {
+            question:question,
+            answer:answer,
+            isSinglePlay:isSinglePlay,
+        };
+        var bundle={};
+        bundle[round+"."+identifier1+"."+identifier2] = minibundle;
         
+        editorDatabase.update({},{$set:bundle});
     },
 });
