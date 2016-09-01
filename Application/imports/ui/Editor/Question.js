@@ -9,7 +9,8 @@ var divStyle = {
     flex: 1,
     textAlign: 'center',
     flexDirection: 'column',
-    margin: 0
+    margin: 0,
+    whiteSpace: "pre-wrap",
 };
 var Question = React.createClass({
     getInitialState:function () {

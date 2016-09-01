@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/editorDatabase.js" afterPath="$PROJECT_DIR$/imports/api/editorDatabase.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/Question.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,7 +26,89 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Question.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editorDatabase.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+              <folding>
+                <element signature="e#537#1477#0" expanded="false" />
+                <element signature="e#1233#1469#0" expanded="false" />
+                <element signature="e#1944#2295#0" expanded="false" />
+                <element signature="e#2392#2867#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditorHeader.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="117" column="37" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#174#247#0" expanded="false" />
+                <element signature="e#559#826#0" expanded="false" />
+                <element signature="e#1948#2123#0" expanded="false" />
+                <element signature="e#2153#2200#0" expanded="false" />
+                <element signature="e#3506#3562#0" expanded="false" />
+                <element signature="e#3594#4308#0" expanded="false" />
+                <element signature="e#4337#4421#0" expanded="false" />
+                <element signature="e#4454#4590#0" expanded="false" />
+                <element signature="e#4616#4979#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+              <folding>
+                <element signature="e#442#689#0" expanded="false" />
+                <element signature="e#709#940#0" expanded="false" />
+                <element signature="e#962#1212#0" expanded="false" />
+                <element signature="e#1232#1432#0" expanded="false" />
+                <element signature="e#1450#1732#0" expanded="false" />
+                <element signature="e#1752#2020#0" expanded="false" />
+                <element signature="e#2038#2306#0" expanded="false" />
+                <element signature="e#2332#2368#0" expanded="false" />
+                <marker date="1472691375238" expanded="true" signature="5291:5302" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#2506#4122#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -95,14 +178,14 @@
         <option value="$PROJECT_DIR$/client/main.css" />
         <option value="$PROJECT_DIR$/client/main.html" />
         <option value="$PROJECT_DIR$/client/main.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/QuestionHeader.js" />
         <option value="$PROJECT_DIR$/client/EditorTableCSS.css" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
         <option value="$PROJECT_DIR$/imports/api/editorDatabase.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTable.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
       </list>
     </option>
   </component>
@@ -178,6 +261,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="imports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="imports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Editor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -808,7 +931,7 @@
       <workItem from="1472270981360" duration="63183000" />
       <workItem from="1472516488130" duration="62327000" />
       <workItem from="1472664070442" duration="176000" />
-      <workItem from="1472664372520" duration="23621000" />
+      <workItem from="1472664372520" duration="27186000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -978,11 +1101,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472687620068</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Implemented editorDatabse connection">
+      <created>1472689908898</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1472689908898</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161765000" />
+    <option name="totallyTimeSpent" value="165330000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -995,7 +1125,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1006,11 +1136,12 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31877023" sideWeight="0.51666665" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30822873" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35425383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35425383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758355" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1022,7 +1153,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1091,7 +1221,8 @@
     <MESSAGE value="Finished EditModal&#10;&#10;Problem was with all EditModals having the same ID and fastclick was firing extra events.&#10;&#10;Will Finish back end next" />
     <MESSAGE value="Fixed EditModal &#10;&#10;Since EditModal was inside the div with the onclick, it was activating the onclick event twice&#10;&#10;Will Finish back end next" />
     <MESSAGE value="Reenabled FastClick and fadeOut for EditModal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reenabled FastClick and fadeOut for EditModal" />
+    <MESSAGE value="Implemented editorDatabse connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented editorDatabse connection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1342,26 +1473,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-122">
-          <caret line="177" column="21" selection-start-line="177" selection-start-column="21" selection-end-line="177" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-            <element signature="e#174#247#0" expanded="false" />
-            <element signature="e#559#826#0" expanded="false" />
-            <element signature="e#1948#2123#0" expanded="false" />
-            <element signature="e#2153#2200#0" expanded="false" />
-            <element signature="e#2724#2902#0" expanded="false" />
-            <element signature="e#2931#3562#0" expanded="false" />
-            <element signature="e#3694#4408#0" expanded="false" />
-            <element signature="e#4437#4521#0" expanded="false" />
-            <element signature="e#4554#4690#0" expanded="false" />
-            <element signature="e#4716#5079#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-144">
@@ -1396,10 +1507,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
+          <folding>
+            <element signature="e#442#689#0" expanded="false" />
+            <element signature="e#709#940#0" expanded="false" />
+            <element signature="e#962#1212#0" expanded="false" />
+            <element signature="e#1232#1432#0" expanded="false" />
+            <element signature="e#1450#1732#0" expanded="false" />
+            <element signature="e#1752#2020#0" expanded="false" />
+            <element signature="e#2038#2306#0" expanded="false" />
+            <element signature="e#2332#2368#0" expanded="false" />
+            <marker date="1472691375238" expanded="true" signature="5291:5302" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="42" />
+        <state relative-caret-position="164">
+          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
             <element signature="e#2506#4122#0" expanded="false" />
@@ -1407,27 +1536,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
-          <folding>
-            <element signature="e#442#689#0" expanded="false" />
-            <element signature="e#709#940#0" expanded="false" />
-            <element signature="e#960#1160#0" expanded="false" />
-            <element signature="e#1178#1460#0" expanded="false" />
-            <element signature="e#1480#1748#0" expanded="false" />
-            <element signature="e#1766#2034#0" expanded="false" />
-            <element signature="e#2060#2096#0" expanded="false" />
-            <marker date="1472688409080" expanded="true" signature="5018:5029" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+        <state relative-caret-position="204">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
@@ -1436,15 +1548,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
+        <state relative-caret-position="217">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
           <folding>
-            <element signature="e#508#2870#0" expanded="false" />
+            <element signature="e#537#1477#0" expanded="false" />
             <element signature="e#1233#1469#0" expanded="false" />
-            <element signature="e#1510#1753#0" expanded="false" />
-            <element signature="e#1577#1745#0" expanded="false" />
             <element signature="e#1944#2295#0" expanded="false" />
             <element signature="e#2392#2867#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="117" column="37" selection-start-line="117" selection-start-column="37" selection-end-line="117" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#174#247#0" expanded="false" />
+            <element signature="e#559#826#0" expanded="false" />
+            <element signature="e#1948#2123#0" expanded="false" />
+            <element signature="e#2153#2200#0" expanded="false" />
+            <element signature="e#3506#3562#0" expanded="false" />
+            <element signature="e#3594#4308#0" expanded="false" />
+            <element signature="e#4337#4421#0" expanded="false" />
+            <element signature="e#4454#4590#0" expanded="false" />
+            <element signature="e#4616#4979#0" expanded="false" />
           </folding>
         </state>
       </provider>

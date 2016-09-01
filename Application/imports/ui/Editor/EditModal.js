@@ -33,6 +33,19 @@ var headerStyle = {
     textTransform:"uppercase",
     color:"white",
 };
+var textAreaStyle = {
+    maxWidth:"100%",
+    boxSizing: "border-box",
+    padding: "10px 0",
+    background: "#060CE9",
+    border: "none",
+    fontSize: 16,
+    textAlign:"center",
+    flexGrow:1,
+    textTransform:"uppercase",
+    color:"white",
+    minHeight:120,
+};
 var answerStyle = {
     maxWidth:"100%",
     boxSizing: "border-box",
@@ -156,7 +169,7 @@ var EditModal = React.createClass({
                     {
                             this.props.isHeader?<div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
                             <input id="category" defaultValue={this.props.categoryName} placeholder="Category Name" style={headerStyle}/></div>:<div className="flex-container" style={verticalFlexStyle}>                    <h1>Question</h1>
-                        <textarea id="question"  defaultValue={this.props.question} placeholder="Question" style={headerStyle}/>
+                        <textarea id="question" defaultValue={this.props.question} placeholder="Question" style={textAreaStyle}/>
                         <h2>Answer</h2><input id="answer" defaultValue={this.props.answer} placeholder="Answer" style={answerStyle}/></div>
     
                     }

@@ -90,11 +90,7 @@ var EditorHeader = React.createClass({
     handleSave:function (e) {
         if(this.props.editorDatabase[0].name.trim()=="") {
             alert("Name field cannot be empty!");
-        }else if(false){
-            //!this.isValid()
-            //todo check columns if they are valid
-            //alert("All questions must have a category name!");
-        }else if(confirm("This will overwrite any game with the same name. Continue?")) {
+        }else if(confirm("This will overwrite any game with the same name.\nEmpty Columns will be ignored\nContinue?")) {
             Meteor.call('gameDatabase.save',this.props.editorDatabase[0]);
         }
     },
@@ -119,6 +115,7 @@ var EditorHeader = React.createClass({
                 }
             };
             fileReader.readAsText(fileToLoad, "UTF-8");
+            $("#fileToLoad").value="";
         }
     },
     destroyClickedElement:function(event) {
