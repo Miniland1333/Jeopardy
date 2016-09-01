@@ -163,11 +163,9 @@ var EditorHeader = React.createClass({
     },
     renderInput:function () {
         console.log(this.props.editorDatabase);
-        if(this.props.editorDatabase.length==0){
-            Meteor.call('editorDatabase.init')
-        }
         return this.props.editorDatabase.map(thing=>
             <input
+                spellCheck="true"
                 key="input"
                 type="text"
                 placeholder="Type the Game name here"

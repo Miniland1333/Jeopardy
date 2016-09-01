@@ -168,9 +168,9 @@ var EditModal = React.createClass({
                 <div className="modal-content flex-container" style={modalContentStyle}>
                     {
                             this.props.isHeader?<div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
-                            <input id="category" defaultValue={this.props.categoryName} placeholder="Category Name" style={headerStyle}/></div>:<div className="flex-container" style={verticalFlexStyle}>                    <h1>Question</h1>
-                        <textarea id="question" defaultValue={this.props.question} placeholder="Question" style={textAreaStyle}/>
-                        <h2>Answer</h2><input id="answer" defaultValue={this.props.answer} placeholder="Answer" style={answerStyle}/></div>
+                            <input id="category" defaultValue={this.props.categoryName} placeholder="Category Name" spellCheck="true" style={headerStyle}/></div>:<div className="flex-container" style={verticalFlexStyle}><h1>Question</h1>
+                        <textarea spellCheck="true" id="question" defaultValue={this.props.question} placeholder="Question" style={textAreaStyle}/>
+                        <h2>Answer</h2><input id="answer" spellCheck="true" defaultValue={this.props.answer} placeholder="Answer" style={answerStyle}/></div>
     
                     }
                     <div  className="flex-container " style={buttonHolderStyle}>
