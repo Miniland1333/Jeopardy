@@ -15,7 +15,7 @@ var Teacher = React.createClass({
             <div>
                 {this.props.isReady ?
                     <div>
-                        <h1>I am the Teacher!</h1>
+                        <h1 style={{fontFamily:"D7MBI"}}>I am the Teacher!</h1>
                     </div>:<div></div>
                 }
                 </div>

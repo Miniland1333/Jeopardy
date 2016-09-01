@@ -35,6 +35,10 @@
     /*font-family: gyparody,serif;*/
 }
 @font-face{
-    font-family: gyparody, serif;
+    font-family: gyparody;
     src: url("/gyparody.ttf");
+}
+@font-face{
+    font-family: D7MBI;
+    src: url("/DSEG7ClassicMini-Regular.woff") format('woff');
 }
