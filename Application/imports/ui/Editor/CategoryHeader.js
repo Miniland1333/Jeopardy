@@ -23,17 +23,6 @@ var CategoryHeader = React.createClass({
     handleClose:function(){
         this.setState({EditModal:false});
     },
-    handleEditModule:function () {
-        return this.state.EditModal?
-            <EditModal
-                roundName={this.props.roundName}
-                categoryName={this.state.categoryName}
-                key1={this.props.key1}
-                isHeader={true}
-                className="needclick"
-                handleClose={this.handleClose}
-            /> :[]
-    },
     render:function () {
         return(<div>
             <div className="Header"  onClick={this.handleQuestionHeaderClick}>{this.props.categoryName}</div>

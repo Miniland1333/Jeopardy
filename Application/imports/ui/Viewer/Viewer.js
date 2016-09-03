@@ -4,18 +4,19 @@ import DocumentTitle from 'react-document-title';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
-import {gameLogic} from "../api/gameLogic"
-import {gameQuestions} from "../api/gameQuestions"
+import {gameLogic} from "../../api/gameLogic"
+import {gameQuestions} from "../../api/gameQuestions"
 
-
+import ViewerFooter from "./ViewerFooter";
 
 var Viewer = React.createClass({
     render:function(){ return (
         <DocumentTitle title='Jeopardy Viewer'>
             <div>
                 {this.props.isReady ?
-                    <div>
-                        <h1>I am the Viewer!</h1>
+                    <div className="flex-container Main" style={{flexDirection:"column"}}>
+	                    <div style={{flex:1}}/>
+	                    <ViewerFooter gameLogic={this.props.gameLogic}/>
                     </div>:<div></div>
                 }
                 </div>
@@ -30,5 +31,8 @@ export default createContainer(() => {
 
     return {
         isReady:handle1.ready()&&handle2.ready(),
+	    
+	    gameLogic:gameLogic.find().fetch(),
+	    gameQuestions:gameQuestions.find().fetch(),
     };
 }, Viewer);

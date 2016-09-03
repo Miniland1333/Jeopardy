@@ -7,10 +7,10 @@ import FastClick from "./fastclick"
 
 import App from '../imports/simple-todos/ui/App.js';
 import PageNotFound from '../imports/ui/PageNotFound';
-import Viewer from '../imports/ui/Viewer';
+import Viewer from '../imports/ui/Viewer/Viewer';
 import Editor from '../imports/ui/Editor/Editor';
-import Teacher from '../imports/ui/Teacher';
-import Student from '../imports/ui/Student';
+import Teacher from '../imports/ui/Teacher/Teacher';
+import Student from '../imports/ui/Student/Student';
 
 
 var renderRoutes = () => (

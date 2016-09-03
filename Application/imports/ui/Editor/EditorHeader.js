@@ -162,7 +162,6 @@ var EditorHeader = React.createClass({
         });
     },
     renderInput:function () {
-        console.log(this.props.editorDatabase);
         return this.props.editorDatabase.map(thing=>
             <input
                 spellCheck="true"

@@ -39,6 +39,14 @@
     src: url("/gyparody.ttf");
 }
 @font-face{
-    font-family: D7MBI;
+    font-family: DSEG7;
     src: url("/DSEG7ClassicMini-Regular.woff") format('woff');
+}
+@font-face{
+    font-family: D7;
+    src: url("/digital-7 (mono).ttf");
+}
+@font-face{
+    font-family: D7Italic;
+    src: url("/digital-7 (mono italic).ttf");
 }

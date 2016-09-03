@@ -36,7 +36,8 @@ var Question = React.createClass({
     },
     handleEditModule:function () {
         if(this.state.EditModal){
-            return <EditModal
+            return(
+                <EditModal
                 roundName={this.props.roundName}
                 key1={this.props.key1}
                 key2={this.props.key2}
@@ -45,7 +46,7 @@ var Question = React.createClass({
                 isSinglePlay={this.props.cell.isSinglePlay}
                 isHeader={false}
                 handleClose={this.handleClose}
-            />
+            />)
         }else{
             return [];
         }
