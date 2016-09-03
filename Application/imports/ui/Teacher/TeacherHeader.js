@@ -16,12 +16,19 @@ var TeacherHeader = React.createClass({
 		
 		if(isSetup) {
 			return $.map(this.props.gameLogic[0]["setupPlayers"], function (contents, field) {
-				return <ScoreBoard key={field} playerLogic={contents} gameLogic={gameLogic.find().fetch()[0]} round={gameLogic.find().fetch()[0]["round"]}/>
+				return (
+					<ScoreBoard key={field}
+					            playerLogic={contents}
+					            gameLogic={gameLogic.find().fetch()[0]}
+					            round={gameLogic.find().fetch()[0]["round"]}/>)
 			});
 		}else{
 			return $.map(this.props.gameLogic[0]["setupPlayers"], function (contents, field) {
 				if (field.includes("player")) {
-					return <ScoreBoard key={field} playerLogic={contents} gameLogic={gameLogic.find().fetch()[0]} round={gameLogic.find().fetch()[0]["round"]}/>
+					return <ScoreBoard key={field}
+					                   playerLogic={contents}
+					                   gameLogic={gameLogic.find().fetch()[0]}
+					                   round={gameLogic.find().fetch()[0]["round"]}/>
 				}
 			});
 		}

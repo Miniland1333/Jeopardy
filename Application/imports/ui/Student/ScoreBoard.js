@@ -2,13 +2,21 @@ import React, {Component, PropTypes} from 'react';
 import {Meteor} from 'meteor/meteor';
 
 
-
+var inputStyle = {
+	textAlign:"center",
+	background:"transparent",
+	border:"none",
+	color:"white",
+	fontSize:"14px",
+	flex:1,
+};
 
 var ScoreBoard = React.createClass({
 	propTypes: {
 		playerLogic: React.PropTypes.object,
 		gameLogic:React.PropTypes.object,
 		round:React.PropTypes.number,
+		connectionId:React.PropTypes.string,
 	},
 	numDisplay:function () {
 		if (this.props.round == 0) {
@@ -35,18 +43,39 @@ var ScoreBoard = React.createClass({
 			}
 		}
 	},
+	handleName:function (name) {
+		Meteor.call('gameLogic.setTeamName',this.props.playerLogic["teamNumber"],name.target.value);
+	},
 	handleClick: function () {
 		if (this.props.round == 0) {
-			if(confirm("This will kick player"+this.props.playerLogic["teamNumber"]+". Are you sure?")){
-				Meteor.call('gameLogic.kick',this.props.playerLogic["teamNumber"],this.props.playerLogic["connectionId"]);
+			
+			//Need check to prevent duplication
+			
+			var status = this.props.playerLogic["status"];
+			var input = $("#input"+this.props.playerLogic["teamNumber"]);
+			if(status==""){
+				Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.connectionId);
+				input.prop( "disabled", false );
+				input.focus();
+			}else if(status=="ready"&&this.props.connectionId==this.props.playerLogic["connectionId"]){
+				input.prop( "disabled", false );
+				input.focus();
 			}
 		}
-		else if(this.props.gameLogic["status"]=="pickQuestion") {
-			if (this.props.round == 1) {
-				//show  J options
-			} else if (this.props.round == 2) {
-				//show DJ options
-			}
+	},
+	handleSubmit:function (e) {
+		e.preventDefault();
+		$("#input"+this.props.playerLogic["teamNumber"]).blur();
+	},
+	handleFocus:function () {
+		Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"pending",0)
+	},
+	handleBlur:function (name) {
+		$("#input"+this.props.playerLogic["teamNumber"]).prop( "disabled", true );
+		if(name.target.value==""){
+			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"",0)
+		}else{
+			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"ready",0)
 		}
 		
 	},
@@ -115,7 +144,6 @@ var ScoreBoard = React.createClass({
 		}
 	},
 	render: function () {
-		
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{
@@ -125,7 +153,17 @@ var ScoreBoard = React.createClass({
 				     flex: 1,
 			     }}>
 				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
-				<div >{this.props.playerLogic.teamName}</div>
+				<form onSubmit={this.handleSubmit} className="flex-container">
+					<input id={"input"+this.props.playerLogic["teamNumber"]}
+					       spellCheck="true"
+					       type="text"
+					       value={this.props.playerLogic["teamName"]}
+					       onChange={this.handleName}
+					       style={inputStyle}
+					       onFocus={this.handleFocus}
+					       onBlur={this.handleBlur}
+					       disabled/>
+				</form>
 			</div>
 		)
 	}

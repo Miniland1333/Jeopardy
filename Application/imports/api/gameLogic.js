@@ -38,7 +38,7 @@ Meteor.methods({
 			state:"",
 			setupPlayers:setupBundle,
 		};
-		for(var j=1;j<=6;j++){
+		/*for(var j=1;j<=6;j++){
 			bundle["player"+j] = {
 				teamName:"",
 				points:0,
@@ -48,24 +48,35 @@ Meteor.methods({
 				wager:0,
 				teamNumber:j,
 			}
-		}
+		}*/
+		//Finalized at start
 		gameLogic.insert(bundle);
 	},
 	'gameLogic.setupPlayers'(){
 		//Turns setupPlayer into players
+		
+		gameLogic.update({},{$unset:{setupPlayers:""}});
 	},
 	'gameLogic.setTeamName'(teamNumber,teamName){
 		
+		var bundle={};
+		bundle["setupPlayers.player"+teamNumber+".teamName"]=teamName;
+		gameLogic.update({},{$set:bundle});
 	},
 	'gameLogic.kick'(teamNumber,connectionId){
 		//resets a setupPlayer{player} or sets player to reconnect
+		var round = gameLogic.find().fetch()[0]["round"];
 		if(teamNumber==0){
 			//Use connectionId to find team number
+			if(round==0){
+				
+			}else{
+				
+			}
 		}
 		
 		//Will skip if not connected to a team
 		if(teamNumber!=0) {
-			var round = gameLogic.find().fetch()[0]["round"];
 			var bundle = {};
 			if (round == 0) {
 				console.log("Kicked player" + teamNumber + " (" + connectionId + ")");
@@ -91,10 +102,24 @@ Meteor.methods({
 			}
 		}
 	},
-	'gameLogic.setStatus'(teamNumber,teamStatus){
-		
+	'gameLogic.setStatus'(teamNumber,teamStatus,round){
+		var bundle = {};
+		if (round == 0) {
+			bundle["setupPlayers.player"+teamNumber+".status"]=teamStatus;
+			gameLogic.update({}, {$set: bundle});
+			
+		}else{
+			bundle["player" + teamNumber+".status"]=teamStatus;
+			gameLogic.update({}, {$set: bundle});
+			
+		}
 	},
 	'gameLogic.changePoints'(teamNumber,pointDiff){
 		
+	},
+	"gameLogic.setConnectionId"(teamNumber,connectionId){
+		var bundle = {};
+		bundle["setupPlayers.player"+teamNumber+".connectionId"]=connectionId;
+		gameLogic.update({}, {$set: bundle});
 	},
 });

@@ -6,8 +6,7 @@ import { Meteor } from 'meteor/meteor';
 
 import {gameLogic} from "../../api/gameLogic"
 
-
-
+import StudentHeader from "./StudentHeader";
 
 var Student = React.createClass({
     getInitialState:function() {
@@ -21,7 +20,8 @@ var Student = React.createClass({
                 <div>
                     {this.props.isReady ?
                         <div>
-                            <h1>I am a Student!</h1>
+	                        <StudentHeader gameLogic={this.props.gameLogic}/>
+                            <h1>Tap a box to register!</h1>
                             <p>{this.props.connectionId}</p>
                         </div>:<div></div>
                     }
@@ -36,6 +36,7 @@ export default createContainer(() => {
     
     return {
         isReady:handle1.ready(),
-        connectionId:Meteor.connection._lastSessionId
+        connectionId:Meteor.connection._lastSessionId,
+	    gameLogic:gameLogic.find().fetch(),
     };
 }, Student);

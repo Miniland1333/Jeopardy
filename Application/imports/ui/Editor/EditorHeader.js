@@ -75,7 +75,6 @@ var EditorHeader = React.createClass({
         onRoundChange: PropTypes.func.isRequired,
     },
     onUserInput:function (name){
-        
         Meteor.call('editorDatabase.updateName',name.target.value);
     },
     handleNew:function (e) {

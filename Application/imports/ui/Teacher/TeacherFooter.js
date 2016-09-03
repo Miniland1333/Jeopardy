@@ -14,9 +14,9 @@ var TeacherFooter = React.createClass({
     renderContent:function () {
         return <div className="flex-container" style={{flex:1}}>
             <div   style={{padding:0,border:"none",backgroundColor:"#eaeaea", color:"#a5a5a5", flex:1,verticalAlign:"middle"}}>Waiting for Players</div>
-            <div onClick={this.handleCorrect}   style={{padding:0,border:"none",backgroundColor:"red",   color:"white", flex:1,verticalAlign:"middle"}}>Incorrect</div>
-            <div onClick={this.handleIncorrect} style={{padding:0,border:"none",backgroundColor:"green", color:"white", flex:1,verticalAlign:"middle"}}>Correct</div>
-            <div   style={{padding:0,border:"none",backgroundColor:"#eaeaea", color:"black", flex:1,verticalAlign:"middle"}}>Start Game</div>
+            {/*<div onClick={this.handleCorrect}   style={{padding:0,border:"none",backgroundColor:"red",   color:"white", flex:1,verticalAlign:"middle"}}>Incorrect</div>*/}
+            {/*<div onClick={this.handleIncorrect} style={{padding:0,border:"none",backgroundColor:"green", color:"white", flex:1,verticalAlign:"middle"}}>Correct</div>*/}
+            <div   style={{padding:0,border:"none",backgroundColor:"#eaeaea", color:"green", flex:1,verticalAlign:"middle"}}>Start 6 player Game</div>
         </div>;
     },
     render:function () {
