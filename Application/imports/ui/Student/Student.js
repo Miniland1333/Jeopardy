@@ -20,7 +20,7 @@ var Student = React.createClass({
                 <div>
                     {this.props.isReady ?
                         <div>
-	                        <StudentHeader gameLogic={this.props.gameLogic}/>
+	                        <StudentHeader gameLogic={this.props.gameLogic[0]}/>
                             <h1>Tap a box to register!</h1>
                             <p>{this.props.connectionId}</p>
                         </div>:<div></div>

@@ -22,16 +22,14 @@ var Teacher = React.createClass({
 		if(this.props.isReady&&this.props.gameLogic.length==0){
 			Meteor.call('gameLogic.init');
 		}
-		if(this.props.isReady&&this.props.gameQuestions.length==0){
-			Meteor.call('gameQuestions.init');}
 		return (
 			<DocumentTitle title='Jeopardy'>
 				<div>
 					{this.props.isReady ?
 						<div className="flex-container Main" style={{overflow:"auto",flexDirection:"column"}}>
-							<TeacherHeader gameLogic={this.props.gameLogic}/>
-							<TeacherContent gameLogic={this.props.gameLogic} gameQuestions={this.props.gameQuestions} gameList={this.gameDatabase}/>
-							<TeacherFooter gameLogic={this.props.gameLogic}/>
+							<TeacherHeader  gameLogic={this.props.gameLogic[0]}/>
+							<TeacherContent gameLogic={this.props.gameLogic[0]} gameQuestions={this.props.gameQuestions} gameDatabase={this.props.gameDatabase}/>
+							<TeacherFooter  gameLogic={this.props.gameLogic[0]}/>
 						</div>:<div></div>
 					}
 				</div>

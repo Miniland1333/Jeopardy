@@ -5,7 +5,6 @@
 //Available to Everyone
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { check } from 'meteor/check';
 
 
 export const gameLogic = new Mongo.Collection('gameLogic');
@@ -38,6 +37,8 @@ Meteor.methods({
 			state:"",
 			setupPlayers:setupBundle,
 			connections:{},
+			gameName:"Please select a game",
+			first:"",
 		};
 		/*for(var j=1;j<=6;j++){
 		 bundle["player"+j] = {
@@ -55,7 +56,25 @@ Meteor.methods({
 	},
 	'gameLogic.setupPlayers'(){
 		//Turns setupPlayer into players
-		
+		var setupPlayers = gameLogic.find().fetch()[0]["setupPlayers"];
+		var numPlayers=0;
+		for(var i=1;i<=6;i++){
+			var player = setupPlayers["player"+i];
+			if(player["status"]=="ready"){
+				var bundle={};
+				numPlayers++;
+				bundle["player"+numPlayers]={
+					teamName:player["teamName"],
+					points:0,
+					connectionId:player["connectionId"],
+					finalPhoto:"",
+					status:"active",
+					wager:0,
+					teamNumber:numPlayers,
+				};
+				gameLogic.update({},{$set:bundle});
+			}
+		}
 		gameLogic.update({},{$unset:{setupPlayers:""}});
 	},
 	'gameLogic.setTeamName'(teamNumber,teamName){
@@ -118,7 +137,13 @@ Meteor.methods({
 	'gameLogic.changePoints'(teamNumber,pointDiff){
 		
 	},
-	"gameLogic.setConnectionId"(teamNumber,connectionId,formerId){
+	'gameLogic.setGame'(name){
+		gameLogic.update({},{$set:{gameName:name}});
+	},
+	'gameLogic.setRound'(roundNumber){
+		gameLogic.update({},{$set:{round:roundNumber}});
+	},
+	'gameLogic.setConnectionId'(teamNumber,connectionId,formerId){
 		var bundle = {};
 		bundle["setupPlayers.player"+teamNumber+".connectionId"]=connectionId;
 		gameLogic.update({}, {$set: bundle});

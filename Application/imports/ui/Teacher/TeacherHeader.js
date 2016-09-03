@@ -7,15 +7,14 @@ import {gameLogic} from "../../api/gameLogic";
 
 var TeacherHeader = React.createClass({
 	propTypes:{
-		gameLogic:React.PropTypes.array,
+		gameLogic:React.PropTypes.object,
 	},
 	renderInput:function() {
-		var isSetup = !this.props.gameLogic[0]["round"];
-		// console.log(this.props.gameLogic[0]["setupPlayers"]);
-		console.log(this.props.gameLogic[0]);
+		var isSetup = !this.props.gameLogic["round"];
+		console.log(this.props.gameLogic);
 		
 		if(isSetup) {
-			return $.map(this.props.gameLogic[0]["setupPlayers"], function (contents, field) {
+			return $.map(this.props.gameLogic["setupPlayers"], function (contents, field) {
 				return (
 					<ScoreBoard key={field}
 					            playerLogic={contents}
@@ -23,7 +22,7 @@ var TeacherHeader = React.createClass({
 					            round={gameLogic.find().fetch()[0]["round"]}/>)
 			});
 		}else{
-			return $.map(this.props.gameLogic[0]["setupPlayers"], function (contents, field) {
+			return $.map(this.props.gameLogic, function (contents, field) {
 				if (field.includes("player")) {
 					return <ScoreBoard key={field}
 					                   playerLogic={contents}

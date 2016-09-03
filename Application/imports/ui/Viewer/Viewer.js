@@ -16,7 +16,7 @@ var Viewer = React.createClass({
                 {this.props.isReady ?
                     <div className="flex-container Main" style={{flexDirection:"column"}}>
 	                    <div style={{flex:1}}/>
-	                    <ViewerFooter gameLogic={this.props.gameLogic}/>
+	                    <ViewerFooter gameLogic={this.props.gameLogic[0]}/>
                     </div>:<div></div>
                 }
                 </div>

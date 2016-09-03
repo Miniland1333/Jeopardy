@@ -1,18 +1,20 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 
+import GameDropdown from "./GameDropdown";
+
 var TeacherContent = React.createClass({
     propTypes:{
-        gameLogic:React.PropTypes.array,
-    },
-    handleCorrect:function () {
-        
-    },
-    handleIncorrect:function () {
-        
+        gameDatabase:React.PropTypes.array,
+        gameLogic:React.PropTypes.object,
+	    gameQuestions:React.PropTypes.array,
     },
     renderContent:function () {
-        return <div className="flex-container" style={{flex:1}}></div>;
+    	if(this.props.gameLogic["round"]==0) {
+		    return <div className="flex-container" style={{flex: 1}}>
+			    <GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic}/>
+		    </div>;
+	    }
     },
     render:function () {
         

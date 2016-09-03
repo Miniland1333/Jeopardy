@@ -6,7 +6,7 @@ var cursorStyle = {
     cursor:"pointer"
 };
 
-var gameLi = React.createClass({
+var GameLi = React.createClass({
     propTypes:{
         game:React.PropTypes.object.isRequired,
     },
@@ -32,4 +32,4 @@ var gameLi = React.createClass({
 });
 
 
-module.exports = gameLi;
+module.exports = GameLi;
