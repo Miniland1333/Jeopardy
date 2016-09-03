@@ -53,7 +53,7 @@ var ScoreBoard = React.createClass({
 			
 			var status = this.props.playerLogic["status"];
 			var input = $("#input"+this.props.playerLogic["teamNumber"]);
-			if(status==""){
+			if(status==""&&this.props.gameLogic["connections"][this.props.connectionId]==undefined){
 				Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.connectionId);
 				input.prop( "disabled", false );
 				input.focus();
@@ -73,7 +73,8 @@ var ScoreBoard = React.createClass({
 	handleBlur:function (name) {
 		$("#input"+this.props.playerLogic["teamNumber"]).prop( "disabled", true );
 		if(name.target.value==""){
-			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"",0)
+			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"",0);
+			Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],"",this.props.connectionId);
 		}else{
 			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"ready",0)
 		}
