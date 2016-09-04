@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import {gameLogic} from "../../api/gameLogic"
 import {gameQuestions} from "../../api/gameQuestions"
 
+import ViewerContent from "./ViewerContent";
 import ViewerFooter from "./ViewerFooter";
 
 var Viewer = React.createClass({
@@ -15,7 +16,7 @@ var Viewer = React.createClass({
             <div>
                 {this.props.isReady ?
                     <div className="flex-container Main" style={{flexDirection:"column"}}>
-	                    <div style={{flex:1}}/>
+	                    <ViewerContent gameLogic={this.props.gameLogic[0]} gameQuestions={this.props.gameQuestions[0]}/>
 	                    <ViewerFooter gameLogic={this.props.gameLogic[0]}/>
                     </div>:<div></div>
                 }

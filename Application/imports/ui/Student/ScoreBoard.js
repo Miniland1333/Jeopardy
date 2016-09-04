@@ -61,7 +61,7 @@ var ScoreBoard = React.createClass({
 				input.prop( "disabled", false );
 				input.focus();
 			}
-		}else if(status=="reconnect"){
+		}else if(status=="reconnect"&&this.props.gameLogic["connections"][this.props.connectionId]==undefined){
 			Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,this.props.connectionId);
 			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"active",this.props.round);
 		}

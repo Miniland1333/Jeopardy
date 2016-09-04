@@ -78,7 +78,6 @@ var TeacherFooter = React.createClass({
 					<div onClick={this.handleCorrect} style={{padding:0,border:"none",backgroundColor:"green", color:"white", flex:1,verticalAlign:"middle"}}>Correct</div>
 				</div>
 			)
-			
 		}
 		
 		
