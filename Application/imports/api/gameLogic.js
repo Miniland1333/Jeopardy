@@ -85,6 +85,13 @@ Meteor.methods({
 		bundle["setupPlayers.player"+teamNumber+".teamName"]=teamName;
 		gameLogic.update({},{$set:bundle});
 	},
+	'gameLogic.setGame'(name){
+		gameLogic.update({},{$set:{gameName:name}});
+	},
+	'gameLogic.resetConnections'(){
+		gameLogic.update({},{$set:{connections:{}}});
+	},
+	
 	'gameLogic.kick'(teamNumber,connectionId){
 		//resets a setupPlayer{player} or sets player to reconnect
 		var round = gameLogic.find().fetch()[0]["round"];
@@ -132,12 +139,6 @@ Meteor.methods({
 	'gameLogic.changePoints'(teamNumber,pointDiff){
 		
 	},
-	'gameLogic.setGame'(name){
-		gameLogic.update({},{$set:{gameName:name}});
-	},
-	'gameLogic.setRound'(roundNumber){
-		gameLogic.update({},{$set:{round:roundNumber}});
-	},
 	'gameLogic.setConnectionId'(teamNumber,round,connectionId,formerId){
 		var bundle = {};
 		if(round==0) {
@@ -156,7 +157,18 @@ Meteor.methods({
 			gameLogic.update({}, {$set: bundle2}, {upsert: true});
 		}
 	},
-	'gameLogic.resetConnections'(){
-		gameLogic.update({},{$set:{connections:{}}});
+	
+	'gameLogic.advance'(){
+		var round = gameLogic.find().fetch()[0]['round']+1;
+		Meteor.call('gameLogic.setRound',round);
+		Meteor.call('gameLogic.setState','intro');
+		Meteor.call('gameQuestions.loadRound',round);
+	},
+	'gameLogic.setState'(state){
+		gameLogic.update({},{$set:{state:state}});
+	},
+	'gameLogic.setRound'(roundNumber){
+		gameLogic.update({},{$set:{round:roundNumber}});
+		Meteor.call('gameLogic.setState','intro');
 	},
 });

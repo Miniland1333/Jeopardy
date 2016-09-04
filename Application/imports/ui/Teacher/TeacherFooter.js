@@ -18,8 +18,7 @@ var TeacherFooter = React.createClass({
 			var game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch();
 			Meteor.call('gameQuestions.load',game);
 			Meteor.call('gameLogic.setupPlayers');
-			Meteor.call('gameLogic.setRound',1);
-			Meteor.call('gameQuestions.loadRound',1);
+			Meteor.call('gameLogic.advance');
 		}
 	},
 	readyToStart:function () {
@@ -76,6 +75,23 @@ var TeacherFooter = React.createClass({
 				<div className="flex-container" style={{flex: 1}}>
 					<div onClick={this.handleIncorrect}   style={{padding:0,border:"none",backgroundColor:"red",   color:"white", flex:1,verticalAlign:"middle"}}>Incorrect</div>
 					<div onClick={this.handleCorrect} style={{padding:0,border:"none",backgroundColor:"green", color:"white", flex:1,verticalAlign:"middle"}}>Correct</div>
+				</div>
+			)
+		}else if(this.props.gameLogic["state"]=="intro"){
+			
+			return(
+				<div className="flex-container" style={{flex: 1}}>
+					<div style={{
+						padding: 0,
+						border: "none",
+						backgroundColor: "#eaeaea",
+						color: "black",
+						flex: 1,
+						verticalAlign: "middle",
+					}} onClick={function () {
+						Meteor.call('gameLogic.setState','categories');
+					}}
+					>Skip</div>
 				</div>
 			)
 		}
