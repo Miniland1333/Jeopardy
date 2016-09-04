@@ -137,6 +137,7 @@ Meteor.methods({
 	},
 	'gameLogic.setRound'(roundNumber){
 		gameLogic.update({},{$set:{round:roundNumber}});
+		Meteor.call('gameLogic.setState','intro');
 	},
 	'gameLogic.setConnectionId'(teamNumber,round,connectionId,formerId){
 		var bundle = {};
@@ -159,4 +160,7 @@ Meteor.methods({
 	'gameLogic.resetConnections'(){
 		gameLogic.update({},{$set:{connections:{}}});
 	},
+	'gameLogic.setState'(state){
+		gameLogic.update({},{$set:{state:state}});
+	}
 });
