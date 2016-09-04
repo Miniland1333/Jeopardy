@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Data.xlsx" afterPath="$PROJECT_DIR$/../Data.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameLogic.js" afterPath="$PROJECT_DIR$/imports/api/gameLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameQuestions.js" afterPath="$PROJECT_DIR$/imports/api/gameQuestions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/GameLi.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/GameLi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/Student.js" afterPath="$PROJECT_DIR$/imports/ui/Student/Student.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/Viewer.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/Viewer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/ViewerFooter.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/ViewerFooter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,14 +25,24 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.58868897">
       <split-first>
         <leaf>
           <file leaf-file-name="ScoreBoard.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+                <state relative-caret-position="300">
+                  <caret line="65" column="110" selection-start-line="65" selection-start-column="110" selection-end-line="65" selection-end-column="110" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TeacherHeader.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -57,17 +55,15 @@
           <file leaf-file-name="gameLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="628">
-                  <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+                <state relative-caret-position="216">
+                  <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
                   <folding>
                     <element signature="e#105#144#0" expanded="true" />
                     <element signature="e#891#1063#0" expanded="false" />
-                    <element signature="e#1943#3019#0" expanded="false" />
-                    <element signature="e#3072#3339#0" expanded="false" />
-                    <element signature="e#3423#3474#0" expanded="false" />
-                    <element signature="e#3510#3565#0" expanded="false" />
-                    <element signature="e#3629#4027#0" expanded="false" />
-                    <element signature="e#4060#4105#0" expanded="false" />
+                    <element signature="e#3558#3609#0" expanded="false" />
+                    <element signature="e#3645#3700#0" expanded="false" />
+                    <element signature="e#3770#4266#0" expanded="false" />
+                    <element signature="e#4299#4351#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -138,13 +134,11 @@
         <option value="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/Options.js" />
         <option value="$PROJECT_DIR$/server/main.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/GameLi.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
-        <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
         <option value="$PROJECT_DIR$/imports/api/gameQuestions.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/Viewer.js" />
@@ -154,6 +148,8 @@
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
+        <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
       </list>
     </option>
   </component>
@@ -259,110 +255,7 @@
     <panes>
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Teacher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scope" />
       <pane id="PackagesPane" />
@@ -389,13 +282,6 @@
     <property name="TODO_SCOPE" value="Project Files" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Viewer" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Teacher" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Student" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
-      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Editor" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Student" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Viewer" />
@@ -403,8 +289,15 @@
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\api" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Viewer" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Teacher" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\imports\ui\Student" />
+      <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\client" />
+    </key>
   </component>
-  <component name="RunManager" selected="Meteor.Run Meteor">
+  <component name="RunManager" selected="JavaScript Debug.Run Meteor JavaScript">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -963,7 +856,7 @@
       <workItem from="1472746270988" duration="29441000" />
       <workItem from="1472847865879" duration="23518000" />
       <workItem from="1472879907403" duration="1303000" />
-      <workItem from="1472923576970" duration="15988000" />
+      <workItem from="1472923576970" duration="19606000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -1189,11 +1082,18 @@
       <option name="project" value="LOCAL" />
       <updated>1472929552276</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Completed game setup/transition to round 1&#10;&#10;setupPlayers convert to players&#10;&#10;only allow start if game selected and 2 or more players">
+      <created>1472947147042</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1472947147042</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244422000" />
+    <option name="totallyTimeSpent" value="248040000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1220,7 +1120,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7935844" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14974293" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14974293" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1278,7 +1178,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added Game Saving function" />
     <MESSAGE value="Updated editorDatabase.init to prepare all fields" />
     <MESSAGE value="Created iterator for Questions and Answers" />
     <MESSAGE value="Jeopardy and DoubleJeopardy populates the EditorTable&#10;&#10;&#10;Will add FinalJeopardy Next" />
@@ -1303,20 +1202,17 @@
     <MESSAGE value="Implemented ScoreBoard element Dynamically as well as player kicking&#10;&#10;&#10;Will move on to Player setup in order to test ScoreBoard" />
     <MESSAGE value="Working on Player scoreboard exclusivity" />
     <MESSAGE value="Completed Scoreboard Exclusivity, as well as Kicking based on logout and teacher action" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed Scoreboard Exclusivity, as well as Kicking based on logout and teacher action" />
+    <MESSAGE value="Completed game setup/transition to round 1&#10;&#10;setupPlayers convert to players&#10;&#10;only allow start if game selected and 2 or more players" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed game setup/transition to round 1&#10;&#10;setupPlayers convert to players&#10;&#10;only allow start if game selected and 2 or more players" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="108" />
+      <option name="time" value="111" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="JavascriptDebugType">
-        <watch expression="this.state.EditModal" />
-      </configuration>
-    </watches-manager>
+    <watches-manager />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <PATH>
@@ -1500,16 +1396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="76" column="12" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="117" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/GameLi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1544,7 +1430,7 @@
         <state relative-caret-position="170">
           <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#0#50#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1580,26 +1466,8 @@
         <state relative-caret-position="221">
           <caret line="19" column="50" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#0#50#0" expanded="false" />
             <element signature="e#655#751#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameQuestions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding>
-            <element signature="e#139#178#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1681,27 +1549,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        <state relative-caret-position="238">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameQuestions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
           <folding>
-            <element signature="e#105#144#0" expanded="true" />
-            <element signature="e#891#1063#0" expanded="false" />
-            <element signature="e#1943#3019#0" expanded="false" />
-            <element signature="e#3072#3339#0" expanded="false" />
-            <element signature="e#3423#3474#0" expanded="false" />
-            <element signature="e#3510#3565#0" expanded="false" />
-            <element signature="e#3629#4027#0" expanded="false" />
-            <element signature="e#4060#4105#0" expanded="false" />
+            <element signature="e#139#178#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
+    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+        <state relative-caret-position="216">
+          <caret line="114" column="46" selection-start-line="114" selection-start-column="46" selection-end-line="114" selection-end-column="46" />
+          <folding>
+            <element signature="e#105#144#0" expanded="true" />
+            <element signature="e#891#1063#0" expanded="false" />
+            <element signature="e#3558#3609#0" expanded="false" />
+            <element signature="e#3645#3700#0" expanded="false" />
+            <element signature="e#3770#4266#0" expanded="false" />
+            <element signature="e#4299#4351#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="65" column="110" selection-start-line="65" selection-start-column="110" selection-end-line="65" selection-end-column="110" />
           <folding />
         </state>
       </provider>

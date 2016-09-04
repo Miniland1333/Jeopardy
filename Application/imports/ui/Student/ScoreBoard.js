@@ -47,20 +47,23 @@ var ScoreBoard = React.createClass({
 		Meteor.call('gameLogic.setTeamName',this.props.playerLogic["teamNumber"],name.target.value);
 	},
 	handleClick: function () {
+		var status = this.props.playerLogic["status"];
 		if (this.props.round == 0) {
 			
 			//Need check to prevent duplication
 			
-			var status = this.props.playerLogic["status"];
 			var input = $("#input"+this.props.playerLogic["teamNumber"]);
 			if(status==""&&this.props.gameLogic["connections"][this.props.connectionId]==undefined){
-				Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.connectionId);
+				Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,this.props.connectionId);
 				input.prop( "disabled", false );
 				input.focus();
 			}else if(status=="ready"&&this.props.connectionId==this.props.playerLogic["connectionId"]){
 				input.prop( "disabled", false );
 				input.focus();
 			}
+		}else if(status=="reconnect"){
+			Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,this.props.connectionId);
+			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"active",this.props.round);
 		}
 	},
 	handleSubmit:function (e) {
@@ -74,7 +77,7 @@ var ScoreBoard = React.createClass({
 		$("#input"+this.props.playerLogic["teamNumber"]).prop( "disabled", true );
 		if(name.target.value==""){
 			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"",0);
-			Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],"",this.props.connectionId);
+			Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,"",this.props.connectionId);
 		}else{
 			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"ready",0)
 		}
