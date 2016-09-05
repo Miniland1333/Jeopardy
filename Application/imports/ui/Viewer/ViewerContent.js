@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 import "./../howler";
 
-import Question from "./Question";
+import Question from "./../Teacher/Question";
 
 var ViewerContent = React.createClass({
 	propTypes:{

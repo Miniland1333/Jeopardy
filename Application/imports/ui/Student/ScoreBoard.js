@@ -135,8 +135,9 @@ var ScoreBoard = React.createClass({
 			return orange;
 		}else if (this.props.gameLogic["round"]!=3){
 			switch (this.props.gameLogic["state"]){
-				case "categories":
+				case "intro":
 				case "categoryIntro":
+				case "categories":
 				case "pickQuestion":
 					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
 						return orange;

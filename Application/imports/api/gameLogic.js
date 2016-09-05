@@ -165,7 +165,6 @@ Meteor.methods({
 		Meteor.call('gameLogic.setState','intro');
 		Meteor.call('gameQuestions.loadRound',round);
 		
-		//add code for lastWinner
 		switch (round) {
 			case 1:
 				Meteor.call('gameLogic.lastWinner',Math.floor((Math.random() * gameLogic.find().fetch()[0]['numPlayers']) + 1));
