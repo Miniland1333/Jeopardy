@@ -49,9 +49,7 @@ var ScoreBoard = React.createClass({
 	handleClick: function () {
 		var status = this.props.playerLogic["status"];
 		if (this.props.round == 0) {
-			
-			//Need check to prevent duplication
-			
+					
 			var input = $("#input"+this.props.playerLogic["teamNumber"]);
 			if(status==""&&this.props.gameLogic["connections"][this.props.connectionId]==undefined){
 				Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,this.props.connectionId);

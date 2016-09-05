@@ -20,28 +20,35 @@ var Question = React.createClass({
         cell:React.PropTypes.object,
     },
     handleQuestionClick:function () {
-            alert("You clicked "+ this.props.key1 + "," + this.props.key2);
+	    if(this.props.cell.question!="") {
+		    alert("You clicked " + this.props.key1 + "," + this.props.key2);
+		    //Pops Question and then runs Meteor.call('gameQuestions.checkRemainingColumns');
+	    }
     },
 	renderContent:function () {
     	var thing;
-		switch (this.props.key2){
-			case "question1":
-				thing =  200;
-				break;
-			case "question2":
-				thing =  400;
-				break;
-			case "question3":
-				thing =  600;
-				break;
-			case "question4":
-				thing =  800;
-				break;
-			case "question5":
-				thing =  1000;
-				break;
+		if(this.props.cell.question!="") {
+			switch (this.props.key2) {
+				case "question1":
+					thing = 200;
+					break;
+				case "question2":
+					thing = 400;
+					break;
+				case "question3":
+					thing = 600;
+					break;
+				case "question4":
+					thing = 800;
+					break;
+				case "question5":
+					thing = 1000;
+					break;
+			}
+			return "$" + this.props.round * thing;
+		}else{
+			return "";
 		}
-    	return "$"+ this.props.round*thing;
 	},
     render:function () {
         return(

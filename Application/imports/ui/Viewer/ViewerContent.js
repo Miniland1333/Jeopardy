@@ -10,6 +10,9 @@ var ViewerContent = React.createClass({
 		gameQuestions:React.PropTypes.object,
 	},
 	handleSound:function () {
+		var scrap = new Howl({
+			src:['./../Jp/jtime.mp3'],
+		});
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
@@ -72,9 +75,6 @@ var ViewerContent = React.createClass({
 				break;
 			case "":
 			case "pickQuestion":
-				var scrap = new Howl({
-					src:['./../Jp/jtime.mp3'],
-				});
 				Howler.unload();
 				break;
 		}
@@ -88,8 +88,18 @@ var ViewerContent = React.createClass({
 			case "":
 			case "intro":
 			case "categoryIntro":
-				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",}}>Jeopardy!</div>;
+				var title;
+				switch (this.props.gameLogic["round"]){
+					case 1:
+						return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+							whiteSpace: "pre-wrap",}}>Jeopardy!</div>;
+					case 2:
+						return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+							whiteSpace: "pre-wrap",}}>Double<br/>Jeopardy!</div>;
+					case 3:
+						return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+							whiteSpace: "pre-wrap",}}>Final<br/>Jeopardy!</div>;
+				}
 				break;
 			case "categories":
 				return <div key="" className="Table">

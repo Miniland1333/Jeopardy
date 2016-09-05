@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import {gameLogic} from "../../api/gameLogic"
 
 import StudentHeader from "./StudentHeader";
+import StudentContent from "./StudentContent";
 
 var Student = React.createClass({
     getInitialState:function() {
@@ -21,8 +22,7 @@ var Student = React.createClass({
                     {this.props.isReady ?
                         <div>
 	                        <StudentHeader gameLogic={this.props.gameLogic[0]}/>
-                            <h1>Tap a box to register!</h1>
-                            <p>{this.props.connectionId}</p>
+	                        <StudentContent gameLogic={this.props.gameLogic[0]}/>
                         </div>:<div></div>
                     }
                 </div>
