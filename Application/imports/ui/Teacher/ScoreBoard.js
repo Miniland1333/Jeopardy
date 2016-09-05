@@ -41,7 +41,8 @@ var ScoreBoard = React.createClass({
 				Meteor.call('gameLogic.kick',this.props.playerLogic["teamNumber"],this.props.playerLogic["connectionId"]);
 			}
 		}
-		else if(this.props.gameLogic["state"]=="pickQuestion") {
+		else  {
+			//if(this.props.gameLogic["state"]=="pickQuestion")
 			if (this.props.round == 1) {
 				//show  J options
 				if(confirm("Reset?")){

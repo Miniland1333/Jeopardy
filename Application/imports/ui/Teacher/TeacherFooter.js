@@ -15,7 +15,7 @@ var TeacherFooter = React.createClass({
 	},
 	handleStart:function () {
 		if(this.readyToStart()) {
-			var game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch();
+			var game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
 			Meteor.call('gameQuestions.load',game);
 			Meteor.call('gameLogic.setupPlayers');
 			Meteor.call('gameLogic.advance');

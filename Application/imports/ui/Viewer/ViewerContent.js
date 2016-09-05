@@ -12,13 +12,12 @@ var TeacherContent = React.createClass({
 	handleSound:function () {
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
+				Howler.unload();
 				switch (this.props.gameLogic["round"]) {
 					case 1:
 						var intro = new Howl({
 							src: ['./../Jp/jintrofade.mp3'],
-						});
-						intro.once('load', function () {
-							intro.play();
+							autoplay:true,
 						});
 						intro.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categories');
@@ -27,9 +26,7 @@ var TeacherContent = React.createClass({
 					case 2:
 						var DJintro = new Howl({
 							src: ['./../Jp/DJ.mp3'],
-						});
-						DJintro.once('load', function () {
-							DJintro.play();
+							autoplay:true,
 						});
 						DJintro.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categories');
@@ -38,24 +35,49 @@ var TeacherContent = React.createClass({
 					case 3:
 						var FJintro = new Howl({
 							src: ['./../Jp/FJ.mp3'],
-						});
-						FJintro.once('load', function () {
-							FJintro.play();
+							autoplay:true,
 						});
 						FJintro.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categories');
 						});
 						break;
 				}
-				
 				break;
 			
 			case "categories":
-				
-				break;
+				Howler.unload();
+				switch (this.props.gameLogic["round"]) {
+					case 1:
+						var Jcat = new Howl({
+							src:['./../Jp/Jcat.mp3'],
+							autoplay:true,
+						});
+						break;
+					case 2:
+						var DJcat = new Howl({
+							src:['./../Jp/DJcat.mp3'],
+							autoplay:true,
+						});
+						DJcat.once('load', function () {
+							DJcat.play();
+						});
+						break;
+					
+					case 3:
+						break;
+				}
+					break;
+			case "":
+				var scrap = new Howl({
+					src:['./../Jp/jtime.mp3'],
+				});
+				Howler.unload();
 		}
 	},
 	renderContent:function () {
+		if(this.props.gameLogic["round"]==0&&this.props.gameLogic["state"]!=""){
+			Meteor.call('gameLogic.setState',"");
+		}
 		this.handleSound();
 		return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
 			whiteSpace: "pre-wrap",}}>Jeopardy!</div>

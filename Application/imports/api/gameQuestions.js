@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 
 
+
 export const gameQuestions = new Mongo.Collection('gameQuestions');
 
 if (Meteor.isServer) {
@@ -43,8 +44,75 @@ Meteor.methods({
 				roundName = "FinalJeopardy";
 				break;
 		}
-		console.log(gameQuestions.find().fetch()[0][roundName]);
 		gameQuestions.update({},{$set:{currentRound:gameQuestions.find().fetch()[0][roundName]}});
+		
+		//Remove empty categories and update remaining Columns
+		if(roundNumber!=3) {
+			var catCount = 0;
+			for (var i = 1; i <= 6; i++) {
+				var catName = gameQuestions.find().fetch()[0]["currentRound"]["category" + i]["categoryName"];
+				
+				if (catName.trim() == "") {
+					var temp = {};
+					temp["currentRound.category" + i] = "";
+					gameQuestions.update({}, {$unset: temp});
+				} else {
+					catCount++;
+				}
+			}
+			Meteor.call('gameQuestions.setRemainingColumns', catCount);
+			var currentRound = gameQuestions.find().fetch()[0]["currentRound"];
+			//Daily Double handling
+			if(roundNumber==1){
+				//set single
+				pickDailyDouble("single");
+			}else if(roundNumber==2){
+				//set double
+				pickDailyDouble("double1");
+				pickDailyDouble("double2");
+			}
+			function pickRandomProperty(obj) {
+				var result;
+				var count = 0;
+				for (var prop in obj) {
+					if (obj.hasOwnProperty(prop) && prop != "categoryName" && Math.random() < 1 / ++count) {
+						result = prop;
+					}
+				}
+				return result;
+			}
+			
+			function pickDailyDouble(name){
+				var dailyDouble = gameQuestions.find().fetch()[0]["dailyDouble"];
+				var done = false;
+				while(!done){
+					var category=pickRandomProperty(currentRound);
+					var question = pickRandomProperty(currentRound[category]);
+					var bundle = {};
+					bundle['dailyDouble.'+name]={
+						category:category,
+						question:question,
+					};
+					var duplicate = false;
+					for (var prop in dailyDouble) {
+						if (dailyDouble.hasOwnProperty(prop)) {
+							if (dailyDouble[prop] == {
+									category: category,
+									question: question,
+								}) {
+								duplicate = true;
+							}
+						}
+					}
+					if(!duplicate){
+						gameQuestions.update({},{$set:bundle});
+						done=true;
+					}
+				}
+			}
+		}
 	},
-	
+	'gameQuestions.setRemainingColumns'(number){
+		gameQuestions.update({},{$set:{remainingColumns:number}});
+	},
 });
