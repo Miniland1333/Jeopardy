@@ -10,14 +10,11 @@ var ViewerContent = React.createClass({
 		gameQuestions:React.PropTypes.object,
 	},
 	handleSound:function () {
-		var scrap = new Howl({
-			src:['./../Jp/jtime.mp3'],
-		});
-		Howler.unload();
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
+						Howler.unload();
 						var intro = new Howl({
 							src: ['./../Jp/jintrofade.mp3'],
 							autoplay:true,
@@ -27,6 +24,7 @@ var ViewerContent = React.createClass({
 						});
 						break;
 					case 2:
+						Howler.unload();
 						var DJintro = new Howl({
 							src: ['./../Jp/DJ.mp3'],
 							autoplay:true,
@@ -36,6 +34,7 @@ var ViewerContent = React.createClass({
 						});
 						break;
 					case 3:
+						Howler.unload();
 						var FJintro = new Howl({
 							src: ['./../Jp/FJ.mp3'],
 							autoplay:true,
@@ -47,9 +46,10 @@ var ViewerContent = React.createClass({
 				}
 				break;
 			
-			case "categoryInto":
+			case "categoryIntro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
+						Howler.unload();
 						var Jcat = new Howl({
 							src:['./../Jp/Jcat.mp3'],
 							autoplay:true,
@@ -59,6 +59,7 @@ var ViewerContent = React.createClass({
 						});
 						break;
 					case 2:
+						Howler.unload();
 						var DJcat = new Howl({
 							src:['./../Jp/DJcat.mp3'],
 							autoplay:true,
@@ -68,7 +69,14 @@ var ViewerContent = React.createClass({
 						});
 						break;
 				}
-					break;
+				break;
+			case "":
+			case "pickQuestion":
+				var scrap = new Howl({
+					src:['./../Jp/jtime.mp3'],
+				});
+				Howler.unload();
+				break;
 		}
 	},
 	renderContent:function () {
@@ -118,7 +126,7 @@ var ViewerContent = React.createClass({
 					})}
 				</div>;
 		}
-
+		
 	},
 	render:function () {
 		return(

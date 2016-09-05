@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/Viewer/Question.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameQuestions.js" afterPath="$PROJECT_DIR$/imports/api/gameQuestions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/Question.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/Question.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/Question.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
     </list>
     <ignored path="simple-todos.iws" />
@@ -34,8 +30,8 @@
       <file leaf-file-name="TeacherContent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+            <state relative-caret-position="624">
+              <caret line="53" column="91" selection-start-line="53" selection-start-column="91" selection-end-line="53" selection-end-column="91" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -43,21 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Question.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Question.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-195">
-              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ViewerContent.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+            <state relative-caret-position="357">
+              <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
                 <element signature="e#201#281#0" expanded="false" />
@@ -94,7 +80,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="192.168.1.96/app/app.js?hash=f6e8d5e139f72f7229f3e3a1df0626a0623ad580" />
         <option value="vm:292" />
         <option value="192.168.1.96/packages/modules.js?hash=417edaf9897e6ff5c52b1f065f21271ebc204eb1" />
         <option value="192.168.1.96/app/app.js?hash=cfaa44d7610cd3994e3df655df3ac2ec703b70c2" />
@@ -142,9 +127,10 @@
         <option value="$PROJECT_DIR$/imports/ui/Viewer/CategoryHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
       </list>
     </option>
   </component>
@@ -1045,7 +1031,7 @@
       <workItem from="1472847865879" duration="23518000" />
       <workItem from="1472879907403" duration="1303000" />
       <workItem from="1472923576970" duration="21584000" />
-      <workItem from="1473027564815" duration="20084000" />
+      <workItem from="1473027564815" duration="23643000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -1313,11 +1299,18 @@
       <option name="project" value="LOCAL" />
       <updated>1473046711097</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Question tables added for Teacher and Viewer&#10;&#10;Need to redo sound as well as move on to answering questions">
+      <created>1473053400016</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1473053400016</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="270102000" />
+    <option name="totallyTimeSpent" value="273661000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1402,7 +1395,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Modularized Load/Delete game" />
     <MESSAGE value="Finished Import/Export functions" />
     <MESSAGE value="Turned Questions and Headers into React Components" />
     <MESSAGE value="Fixed Window Sizing Issue for iOS fullscreen" />
@@ -1427,7 +1419,8 @@
     <MESSAGE value="Exclusivity Added in for Reconnect&#10;&#10;&#10;Beginning Game Content and Howler.js" />
     <MESSAGE value="Added in Howler.js round intros" />
     <MESSAGE value="Added in DailyDouble picking as well as destruction of sounds" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added in DailyDouble picking as well as destruction of sounds" />
+    <MESSAGE value="Question tables added for Teacher and Viewer&#10;&#10;Need to redo sound as well as move on to answering questions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Question tables added for Teacher and Viewer&#10;&#10;Need to redo sound as well as move on to answering questions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1670,14 +1663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -1724,28 +1709,6 @@
         <state relative-caret-position="255">
           <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="67" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
-          <folding>
-            <element signature="e#660#754#0" expanded="false" />
-            <element signature="e#782#878#0" expanded="false" />
-            <element signature="e#905#1097#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Viewer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="17" column="90" selection-start-line="17" selection-start-column="90" selection-end-line="17" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1802,6 +1765,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/EditorTableCSS.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Viewer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="17" column="90" selection-start-line="17" selection-start-column="90" selection-end-line="17" selection-end-column="90" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Teacher.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -1812,20 +1793,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Question.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="42" selection-start-line="45" selection-start-column="42" selection-end-line="45" selection-end-column="42" />
+        <state relative-caret-position="1049">
+          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
+          <folding>
+            <element signature="e#660#754#0" expanded="false" />
+            <element signature="e#782#878#0" expanded="false" />
+            <element signature="e#905#1097#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="53" column="91" selection-start-line="53" selection-start-column="91" selection-end-line="53" selection-end-column="91" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Question.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+        <state relative-caret-position="128">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
@@ -1834,24 +1835,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Question.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-195">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/EditorTableCSS.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
+        <state relative-caret-position="85">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        <state relative-caret-position="357">
+          <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
             <element signature="e#201#281#0" expanded="false" />

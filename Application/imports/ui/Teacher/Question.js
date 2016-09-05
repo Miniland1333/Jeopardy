@@ -13,7 +13,7 @@ var divStyle = {
 };
 var Question = React.createClass({
     propTypes:{
-        round:React.PropTypes.num,
+        round:React.PropTypes.number,
         key1:React.PropTypes.string,
         key2:React.PropTypes.string,
         game:React.PropTypes.object,
