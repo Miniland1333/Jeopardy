@@ -9,7 +9,7 @@ var divStyle = {
     margin: 0,
 	alignItems:"center",
 	justifyContent:"center",
-	fontSize:"7vmin",
+	fontSize:"5vw",
 };
 var Question = React.createClass({
     propTypes:{

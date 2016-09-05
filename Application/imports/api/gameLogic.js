@@ -78,6 +78,7 @@ Meteor.methods({
 			}
 		}
 		gameLogic.update({},{$unset:{setupPlayers:""}});
+		gameLogic.update({},{$set:{numPlayers:numPlayers}});
 	},
 	'gameLogic.setTeamName'(teamNumber,teamName){
 		
@@ -163,6 +164,26 @@ Meteor.methods({
 		Meteor.call('gameLogic.setRound',round);
 		Meteor.call('gameLogic.setState','intro');
 		Meteor.call('gameQuestions.loadRound',round);
+		
+		//add code for lastWinner
+		switch (round) {
+			case 1:
+				Meteor.call('gameLogic.lastWinner',Math.floor((Math.random() * gameLogic.find().fetch()[0]['numPlayers']) + 1));
+				break;
+			case 2:
+				//Least
+				var least=0;
+				var lowestAmount=999999999;
+				for(var h=1;h<=gameLogic.find().fetch()[0]['numPlayers'];h++){
+					var playerAmount = gameLogic.find().fetch()[0]['player'+h]['points'];
+					if(playerAmount<lowestAmount){
+						least = h;
+						lowestAmount = playerAmount;
+					}
+				}
+				Meteor.call('gameLogic.lastWinner',least);
+				break;
+		}
 	},
 	'gameLogic.setState'(state){
 		gameLogic.update({},{$set:{state:state}});
@@ -170,5 +191,8 @@ Meteor.methods({
 	'gameLogic.setRound'(roundNumber){
 		gameLogic.update({},{$set:{round:roundNumber}});
 		Meteor.call('gameLogic.setState','intro');
+	},
+	'gameLogic.lastWinner'(number){
+		gameLogic.update({},{$set:{lastWinner:number}});
 	},
 });

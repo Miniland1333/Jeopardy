@@ -45,8 +45,9 @@ var ScoreBoard = React.createClass({
 			//if(this.props.gameLogic["state"]=="pickQuestion")
 			if (this.props.round == 1) {
 				//show  J options
-				if(confirm("Reset?")){
-					Meteor.call("gameLogic.init");
+				if (confirm("Advance?")){
+					Meteor.call('gameLogic.advance');
+					Meteor.call('gameQuestions.checkRemainingColumns');
 				}
 			} else if (this.props.round == 2) {
 				//show DJ options
@@ -58,67 +59,74 @@ var ScoreBoard = React.createClass({
 		
 	},
 	scoreStyle:function () {
+		var green={
+			fontFamily: "D7",
+			fontSize: "4vw",
+			minWidth: "10vw",
+			border: "4px solid #00e800",
+			padding: "10px",
+			borderRadius: 8,
+		};
+		
+		var orange={
+			fontFamily: "D7",
+				fontSize: "4vw",
+				minWidth: "10vw",
+				border: "4px solid orange",
+				padding: "10px",
+				borderRadius: 8,
+		};
+		
+		var red={
+			fontFamily: "D7",
+			fontSize: "4vw",
+			minWidth: "10vw",
+			border: "4px solid #ff3f3f",
+			padding: "10px",
+			borderRadius: 8,
+		};
+		
+		var normal={
+			fontFamily: "D7",
+			fontSize: "4vw",
+			minWidth: "10vw",
+			border: "4px solid #060CE9",
+			padding: "10px",
+			borderRadius: 8,
+		};
+		
 		if (this.props.round == 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
-					return {
-						fontFamily: "D7",
-						fontSize: "4vw",
-						minWidth: "10vw",
-						border: "4px solid orange",
-						padding: "10px",
-						borderRadius: 8,
-					};
+					return orange;
 					break;
 				case "ready":
-					return {
-						fontFamily: "D7",
-						fontSize: "4vw",
-						minWidth: "10vw",
-						border: "4px solid #00e800",
-						padding: "10px",
-						borderRadius: 8,
-					};
+					return green;
 					break;
 				default:
-					return {
-						fontFamily: "D7",
-						fontSize: "4vw",
-						minWidth: "10vw",
-						border: "4px solid #060CE9",
-						padding: "10px",
-						borderRadius: 8,
-					};
+					return normal;
 			}
+		} else if (this.props.playerLogic["status"] == "reconnect") {
+			return orange;
+		}else if (this.props.gameLogic["round"]!=3){
+			switch (this.props.gameLogic["state"]){
+				case "categories":
+				case "categoryIntro":
+				case "pickQuestion":
+					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
+						return orange;
+					} else {
+						return normal;
+					}
+					break;
+				default:
+					return normal;
+				break;
+			}
+		}else if (this.props.gameLogic["round"]==3){
+			//Code for wager
 		} else {
-			if (this.props.playerLogic["status"] == "reconnect") {
-				return {
-					fontFamily: "D7",
-					fontSize: "4vw",
-					minWidth: "10vw",
-					border: "4px solid orange",
-					padding: "10px",
-					borderRadius: 8,
-				};
-			} else if (this.props.playerLogic["status"] == "out") {
-				return {
-					fontFamily: "D7",
-					fontSize: "4vw",
-					minWidth: "10vw",
-					border: "4px solid #060CE9",
-					padding: "10px",
-					borderRadius: 8,
-				};
-			} else {
-				return {
-					fontFamily: "D7",
-					fontSize: "4vw",
-					minWidth: "10vw",
-					border: "4px solid #00e800",
-					padding: "10px",
-					borderRadius: 8,
-				};
-			}
+			return normal;
 		}
 	},
 	render: function () {

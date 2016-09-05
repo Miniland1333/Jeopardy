@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameLogic.js" afterPath="$PROJECT_DIR$/imports/api/gameLogic.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameQuestions.js" afterPath="$PROJECT_DIR$/imports/api/gameQuestions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/Question.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/Question.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/Question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,26 +30,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TeacherContent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+      <file leaf-file-name="gameLogic.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="53" column="91" selection-start-line="53" selection-start-column="91" selection-end-line="53" selection-end-column="91" />
+            <state relative-caret-position="434">
+              <caret line="168" column="23" selection-start-line="168" selection-start-column="23" selection-end-line="168" selection-end-column="23" />
               <folding>
-                <element signature="e#0#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewerContent.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
-                <element signature="e#201#281#0" expanded="false" />
+                <element signature="e#105#144#0" expanded="true" />
+                <element signature="e#891#1063#0" expanded="false" />
+                <element signature="e#1146#1907#0" expanded="false" />
+                <element signature="e#1954#2081#0" expanded="false" />
+                <element signature="e#2109#2160#0" expanded="false" />
+                <element signature="e#2193#2245#0" expanded="false" />
+                <element signature="e#2291#3375#0" expanded="false" />
+                <element signature="e#3428#3695#0" expanded="false" />
+                <element signature="e#3821#4317#0" expanded="false" />
+                <element signature="e#4568#5100#0" expanded="false" />
+                <element signature="e#5218#5318#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -119,18 +119,18 @@
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/Viewer.js" />
-        <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
-        <option value="$PROJECT_DIR$/imports/api/gameQuestions.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/CategoryHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Viewer/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
+        <option value="$PROJECT_DIR$/imports/api/gameQuestions.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Viewer/Question.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
+        <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
       </list>
     </option>
   </component>
@@ -359,6 +359,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Teacher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="imports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Student" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1031,7 +1053,7 @@
       <workItem from="1472847865879" duration="23518000" />
       <workItem from="1472879907403" duration="1303000" />
       <workItem from="1472923576970" duration="21584000" />
-      <workItem from="1473027564815" duration="23643000" />
+      <workItem from="1473027564815" duration="28385000" />
     </task>
     <task id="LOCAL-00001" summary="Added in Application Icon">
       <created>1472195908696</created>
@@ -1306,11 +1328,18 @@
       <option name="project" value="LOCAL" />
       <updated>1473053400016</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Attempt to make only one sound play at a time">
+      <created>1473105061274</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1473105061274</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273661000" />
+    <option name="totallyTimeSpent" value="278403000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1328,17 +1357,17 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45606694" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31877023" sideWeight="0.51666665" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36541143" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7935844" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14974293" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1352,34 +1381,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45606694" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4957265" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31877023" sideWeight="0.51666665" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45606694" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66945606" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20758355" sideWeight="0.48333332" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1395,7 +1396,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Finished Import/Export functions" />
     <MESSAGE value="Turned Questions and Headers into React Components" />
     <MESSAGE value="Fixed Window Sizing Issue for iOS fullscreen" />
     <MESSAGE value="Implemented Fast Click&#10;&#10;&#10;This disables Double Click on Fullscreen mode" />
@@ -1420,14 +1420,15 @@
     <MESSAGE value="Added in Howler.js round intros" />
     <MESSAGE value="Added in DailyDouble picking as well as destruction of sounds" />
     <MESSAGE value="Question tables added for Teacher and Viewer&#10;&#10;Need to redo sound as well as move on to answering questions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Question tables added for Teacher and Viewer&#10;&#10;Need to redo sound as well as move on to answering questions" />
+    <MESSAGE value="Attempt to make only one sound play at a time" />
+    <option name="LAST_COMMIT_MESSAGE" value="Attempt to make only one sound play at a time" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="111" />
+      <option name="time" value="112" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1576,14 +1577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1615,14 +1608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="63" column="109" selection-start-line="63" selection-start-column="109" selection-end-line="63" selection-end-column="109" />
           <folding />
         </state>
       </provider>
@@ -1663,44 +1648,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="169" column="37" selection-start-line="169" selection-start-column="37" selection-end-line="169" selection-end-column="37" />
-          <folding>
-            <element signature="e#105#144#0" expanded="true" />
-            <element signature="e#2054#2105#0" expanded="false" />
-            <element signature="e#2138#2190#0" expanded="false" />
-            <element signature="e#2236#3320#0" expanded="false" />
-            <element signature="e#3373#3640#0" expanded="false" />
-            <element signature="e#3766#4262#0" expanded="false" />
-            <element signature="e#4512#4561#0" expanded="false" />
-            <element signature="e#4597#4697#0" expanded="false" />
-            <marker date="1473032193528" expanded="false" signature="891:1063" ph="/*...*/" />
-            <marker date="1473032193528" expanded="false" signature="1146:1852" ph="{...}" />
-            <marker date="1473032193528" expanded="false" signature="1899:2026" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="553">
           <caret line="92" column="44" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameQuestions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="106" column="106" selection-start-line="106" selection-start-column="106" selection-end-line="106" selection-end-column="106" />
-          <folding>
-            <element signature="e#139#178#0" expanded="true" />
-            <element signature="e#1222#2568#0" expanded="false" />
-            <element signature="e#1600#1816#0" expanded="false" />
-            <element signature="e#1854#2564#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1739,14 +1691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1773,16 +1717,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Viewer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="17" column="90" selection-start-line="17" selection-start-column="90" selection-end-line="17" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Teacher.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -1793,30 +1727,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#201#281#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1049">
-          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
+        <state relative-caret-position="374">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="59" />
           <folding>
-            <element signature="e#660#754#0" expanded="false" />
             <element signature="e#782#878#0" expanded="false" />
             <element signature="e#905#1097#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
+    <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
+        <state relative-caret-position="323">
+          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Viewer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="17" column="90" selection-start-line="17" selection-start-column="90" selection-end-line="17" selection-end-column="90" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="53" column="91" selection-start-line="53" selection-start-column="91" selection-end-line="53" selection-end-column="91" />
+        <state relative-caret-position="213">
+          <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
@@ -1825,8 +1787,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Question.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+        <state relative-caret-position="77">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
@@ -1835,19 +1797,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Question.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        <state relative-caret-position="170">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="78" column="22" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+        <state relative-caret-position="374">
+          <caret line="113" column="37" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="37" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
-            <element signature="e#201#281#0" expanded="false" />
+            <element signature="e#1476#1615#0" expanded="false" />
+            <element signature="e#1633#1776#0" expanded="false" />
+            <element signature="e#1791#1930#0" expanded="false" />
+            <element signature="e#1948#2087#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="139" column="36" selection-start-line="139" selection-start-column="36" selection-end-line="139" selection-end-column="36" />
+          <folding>
+            <element signature="e#2766#2905#0" expanded="false" />
+            <element signature="e#2923#3061#0" expanded="false" />
+            <element signature="e#3076#3215#0" expanded="false" />
+            <element signature="e#3233#3372#0" expanded="false" />
+            <element signature="e#3406#3597#0" expanded="false" />
+            <element signature="e#3656#3679#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameQuestions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="66" column="34" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="34" />
+          <folding>
+            <element signature="e#139#178#0" expanded="true" />
+            <element signature="e#1854#2564#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="168" column="23" selection-start-line="168" selection-start-column="23" selection-end-line="168" selection-end-column="23" />
+          <folding>
+            <element signature="e#105#144#0" expanded="true" />
+            <element signature="e#891#1063#0" expanded="false" />
+            <element signature="e#1146#1907#0" expanded="false" />
+            <element signature="e#1954#2081#0" expanded="false" />
+            <element signature="e#2109#2160#0" expanded="false" />
+            <element signature="e#2193#2245#0" expanded="false" />
+            <element signature="e#2291#3375#0" expanded="false" />
+            <element signature="e#3428#3695#0" expanded="false" />
+            <element signature="e#3821#4317#0" expanded="false" />
+            <element signature="e#4568#5100#0" expanded="false" />
+            <element signature="e#5218#5318#0" expanded="false" />
           </folding>
         </state>
       </provider>

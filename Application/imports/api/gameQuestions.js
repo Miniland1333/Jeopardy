@@ -103,10 +103,16 @@ Meteor.methods({
 	},
 	'gameQuestions.checkRemainingColumns'(){
 		var catCount = 0;
+		
+		//add code to remove category name if questions are empty
+		
 		for (var i = 1; i <= 6; i++) {
 			var catName = gameQuestions.find().fetch()[0]["currentRound"]["category" + i]["categoryName"];
 			if (catName.trim() != "") catCount++;
 		}
+		
+		//add code to remove questions from empty category
+		
 		gameQuestions.update({},{$set:{remainingColumns:catCount}});
 	},
 });
