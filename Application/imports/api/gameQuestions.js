@@ -48,19 +48,8 @@ Meteor.methods({
 		
 		//Remove empty categories and update remaining Columns
 		if(roundNumber!=3) {
-			var catCount = 0;
-			for (var i = 1; i <= 6; i++) {
-				var catName = gameQuestions.find().fetch()[0]["currentRound"]["category" + i]["categoryName"];
-				
-				if (catName.trim() == "") {
-					var temp = {};
-					temp["currentRound.category" + i] = "";
-					gameQuestions.update({}, {$unset: temp});
-				} else {
-					catCount++;
-				}
-			}
-			Meteor.call('gameQuestions.setRemainingColumns', catCount);
+
+			Meteor.call('gameQuestions.checkRemainingColumns');
 			var currentRound = gameQuestions.find().fetch()[0]["currentRound"];
 			//Daily Double handling
 			if(roundNumber==1){
@@ -112,7 +101,12 @@ Meteor.methods({
 			}
 		}
 	},
-	'gameQuestions.setRemainingColumns'(number){
-		gameQuestions.update({},{$set:{remainingColumns:number}});
+	'gameQuestions.checkRemainingColumns'(){
+		var catCount = 0;
+		for (var i = 1; i <= 6; i++) {
+			var catName = gameQuestions.find().fetch()[0]["currentRound"]["category" + i]["categoryName"];
+			if (catName.trim() != "") catCount++;
+		}
+		gameQuestions.update({},{$set:{remainingColumns:catCount}});
 	},
 });

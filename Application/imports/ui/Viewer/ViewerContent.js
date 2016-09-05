@@ -2,17 +2,20 @@ import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 import "./../howler";
 
+import Question from "./Question";
 
-
-var TeacherContent = React.createClass({
+var ViewerContent = React.createClass({
 	propTypes:{
 		gameLogic:React.PropTypes.object,
 		gameQuestions:React.PropTypes.object,
 	},
 	handleSound:function () {
+		var scrap = new Howl({
+			src:['./../Jp/jtime.mp3'],
+		});
+		Howler.unload();
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
-				Howler.unload();
 				switch (this.props.gameLogic["round"]) {
 					case 1:
 						var intro = new Howl({
@@ -20,7 +23,7 @@ var TeacherContent = React.createClass({
 							autoplay:true,
 						});
 						intro.on('end', function () {
-							Meteor.call('gameLogic.setState', 'categories');
+							Meteor.call('gameLogic.setState', 'categoryIntro');
 						});
 						break;
 					case 2:
@@ -29,7 +32,7 @@ var TeacherContent = React.createClass({
 							autoplay:true,
 						});
 						DJintro.on('end', function () {
-							Meteor.call('gameLogic.setState', 'categories');
+							Meteor.call('gameLogic.setState', 'categoryIntro');
 						});
 						break;
 					case 3:
@@ -38,19 +41,21 @@ var TeacherContent = React.createClass({
 							autoplay:true,
 						});
 						FJintro.on('end', function () {
-							Meteor.call('gameLogic.setState', 'categories');
+							Meteor.call('gameLogic.setState', 'categoryIntro');
 						});
 						break;
 				}
 				break;
 			
-			case "categories":
-				Howler.unload();
+			case "categoryInto":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
 						var Jcat = new Howl({
 							src:['./../Jp/Jcat.mp3'],
 							autoplay:true,
+						});
+						Jcat.on('end', function () {
+							Meteor.call('gameLogic.setState', 'categories');
 						});
 						break;
 					case 2:
@@ -58,20 +63,12 @@ var TeacherContent = React.createClass({
 							src:['./../Jp/DJcat.mp3'],
 							autoplay:true,
 						});
-						DJcat.once('load', function () {
-							DJcat.play();
+						DJcat.on('end', function () {
+							Meteor.call('gameLogic.setState', 'categories');
 						});
-						break;
-					
-					case 3:
 						break;
 				}
 					break;
-			case "":
-				var scrap = new Howl({
-					src:['./../Jp/jtime.mp3'],
-				});
-				Howler.unload();
 		}
 	},
 	renderContent:function () {
@@ -79,8 +76,49 @@ var TeacherContent = React.createClass({
 			Meteor.call('gameLogic.setState',"");
 		}
 		this.handleSound();
-		return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-			whiteSpace: "pre-wrap",}}>Jeopardy!</div>
+		switch (this.props.gameLogic["state"]) {
+			case "":
+			case "intro":
+			case "categoryIntro":
+				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+					whiteSpace: "pre-wrap",}}>Jeopardy!</div>;
+				break;
+			case "categories":
+				return <div key="" className="Table">
+					{$.map(this.props.gameQuestions["currentRound"], function (column, key1) {
+						return (
+							<div className="Column" key={key1}>
+								{$.map(column, function (cell, key2) {
+									return key2 == "categoryName" ?
+										<div className="Header" key={key1 + "H"} style={{alignItems:"center", justifyContent:"center",fontSize:"2vmin",}}>{cell}</div>
+										:
+										[];
+									
+								})}
+							</div>
+						)
+					})}
+				</div>;
+				break;
+			case "pickQuestion":
+				var round = this.props.gameLogic["round"];
+				return <div key="" className="Table">
+					{$.map(this.props.gameQuestions["currentRound"], function (column, key1) {
+						return (
+							<div className="Column" key={key1}>
+								{$.map(column, function (cell, key2) {
+									return key2 == "categoryName" ?
+										<div className="Header" key={key1 + "H"} style={{alignItems:"center", justifyContent:"center",fontSize:"2vmin",}}>{cell}</div>
+										:
+										<Question key={key1 + key2} cell={cell} round={round} key1={key1} key2={key2}/>;
+									
+								})}
+							</div>
+						)
+					})}
+				</div>;
+		}
+
 	},
 	render:function () {
 		return(
@@ -91,4 +129,4 @@ var TeacherContent = React.createClass({
 	}
 });
 
-module.exports = TeacherContent;
+module.exports = ViewerContent;

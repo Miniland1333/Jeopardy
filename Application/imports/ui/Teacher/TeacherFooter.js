@@ -19,7 +19,12 @@ var TeacherFooter = React.createClass({
 			Meteor.call('gameQuestions.load',game);
 			Meteor.call('gameLogic.setupPlayers');
 			Meteor.call('gameLogic.advance');
+			Meteor.call('gameQuestions.checkRemainingColumns');
 		}
+	},
+	advance:function () {
+		Meteor.call('gameLogic.advance');
+		Meteor.call('gameQuestions.checkRemainingColumns');
 	},
 	readyToStart:function () {
 		return this.props.gameLogic["gameName"]!="Please select a game"&&this.playerCount() >= 2;
@@ -89,11 +94,43 @@ var TeacherFooter = React.createClass({
 						flex: 1,
 						verticalAlign: "middle",
 					}} onClick={function () {
-						Meteor.call('gameLogic.setState','categories');
+						Meteor.call('gameLogic.setState','categoryIntro');
 					}}
 					>Skip</div>
 				</div>
 			)
+		}else if (this.props.gameLogic["state"] == "categories") {
+			if (this.props.gameLogic["remainingColumns"] == 0) {
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "black",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={this.advance}
+						>Advance to next Round
+						</div>
+					</div>
+				)
+			}else{
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "black",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={function () {Meteor.call('gameLogic.setState','pickQuestion')}}>
+							Next
+						</div>
+					</div>
+				)
+			}
 		}
 		
 		
