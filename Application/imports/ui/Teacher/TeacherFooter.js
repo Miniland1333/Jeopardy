@@ -24,7 +24,6 @@ var TeacherFooter = React.createClass({
 	},
 	advance:function () {
 		Meteor.call('gameLogic.advance');
-		Meteor.call('gameQuestions.checkRemainingColumns');
 	},
 	readyToStart:function () {
 		return this.props.gameLogic["gameName"]!="Please select a game"&&this.playerCount() >= 2;

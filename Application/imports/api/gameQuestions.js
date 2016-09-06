@@ -48,7 +48,7 @@ Meteor.methods({
 		
 		//Remove empty categories and update remaining Columns
 		if(roundNumber!=3) {
-
+			
 			Meteor.call('gameQuestions.checkRemainingColumns');
 			var currentRound = gameQuestions.find().fetch()[0]["currentRound"];
 			//Daily Double handling
@@ -83,14 +83,14 @@ Meteor.methods({
 						question:question,
 					};
 					var duplicate = false;
+					function isEqual(name,category,question){
+						if(dailyDouble[name]['category']==category&&dailyDouble[name]['question']==question){
+							duplicate=true;
+						}
+					}
 					for (var prop in dailyDouble) {
 						if (dailyDouble.hasOwnProperty(prop)) {
-							if (dailyDouble[prop] == {
-									category: category,
-									question: question,
-								}) {
-								duplicate = true;
-							}
+							isEqual(prop,category,question);
 						}
 					}
 					if(!duplicate){
@@ -104,15 +104,73 @@ Meteor.methods({
 	'gameQuestions.checkRemainingColumns'(){
 		var catCount = 0;
 		
-		//add code to remove category name if questions are empty
-		
 		for (var i = 1; i <= 6; i++) {
-			var catName = gameQuestions.find().fetch()[0]["currentRound"]["category" + i]["categoryName"];
-			if (catName.trim() != "") catCount++;
+			//code to remove category name if questions are empty
+			var bundle ={};
+			var currentCategory = gameQuestions.find().fetch()[0]["currentRound"]["category" + i];
+			var empty = true;
+			for(var q=1;q<=5;q++){
+				if(currentCategory["question"+q]["question"].trim()!=""){
+					empty = false;
+				}
+			}
+			if(empty){
+				bundle["currentRound.category" + i+".categoryName"]="";
+				
+				gameQuestions.update({},{$set:bundle});
+			}
+			
+			//only categories with a name are counted
+			var catName = currentCategory["categoryName"];
+			if (catName.trim() != "") {
+				catCount++;
+			}else {
+				//code to remove questions from empty category
+				bundle ={};
+				var categoryTemplate = {
+					categoryName:"",
+				};
+				for(var c=1;c<=5;c++){
+					categoryTemplate["question"+c] = {
+						isSinglePlay:false,
+						question:"",
+						answer:"",
+					};
+				}
+				bundle["currentRound.category" + i] = categoryTemplate;
+				gameQuestions.update({},{$set:bundle});
+			}
 		}
 		
-		//add code to remove questions from empty category
 		
 		gameQuestions.update({},{$set:{remainingColumns:catCount}});
 	},
+	'gameQuestions.pickQuestion'(key1,key2,question,answer,isSinglePlay,round){
+		var dailyDouble = gameQuestions.find().fetch()[0]['dailyDouble'];
+		var isDailyDouble = false;
+		
+		function isEqual(name){
+			if(dailyDouble[name]['category']==key1&&dailyDouble[name]['question']==key2){
+				isDailyDouble=true;
+			}
+		}
+		if(round==1){
+			isEqual('single');
+		}else{
+			isEqual('double1');
+			isEqual('double2');
+
+		}
+		var bundle={};
+		bundle['currentQuestion'] = {
+			question: question,
+			answer: answer,
+			isSinglePlay: isSinglePlay,
+			isDailyDouble: isDailyDouble,
+		};
+		gameQuestions.update({},{$set:bundle});
+		
+		
+		alert(gameQuestions.find().fetch()[0]['currentQuestion']);
+	}
 });
