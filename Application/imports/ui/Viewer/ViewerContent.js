@@ -84,7 +84,7 @@ var ViewerContent = React.createClass({
 					Meteor.call('gameLogic.setState', 'wager');
 				});
 				break;
-			case "":
+			//case "":
 			case "pickQuestion":
 				Howler.unload();
 				break;

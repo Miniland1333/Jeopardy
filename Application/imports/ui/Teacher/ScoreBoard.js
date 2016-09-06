@@ -70,11 +70,11 @@ var ScoreBoard = React.createClass({
 		
 		var orange={
 			fontFamily: "D7",
-				fontSize: "4vw",
-				minWidth: "10vw",
-				border: "4px solid orange",
-				padding: "10px",
-				borderRadius: 8,
+			fontSize: "4vw",
+			minWidth: "10vw",
+			border: "4px solid orange",
+			padding: "10px",
+			borderRadius: 8,
 		};
 		
 		var red={
@@ -129,7 +129,7 @@ var ScoreBoard = React.createClass({
 					}
 				default:
 					return normal;
-				break;
+					break;
 			}
 		}else if (this.props.gameLogic["round"]==3){
 			//Code for wager

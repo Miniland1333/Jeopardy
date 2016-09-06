@@ -8,9 +8,11 @@ var TeacherFooter = React.createClass({
 		gameLogic:React.PropTypes.object,
 	},
 	handleCorrect:function () {
+		//If DD, reset player wager
 		
 	},
 	handleIncorrect:function () {
+		//If DD, reset player wager
 		
 	},
 	handleStart:function () {

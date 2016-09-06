@@ -20,7 +20,7 @@ var Student = React.createClass({
             <DocumentTitle title='Jeopardy'>
                 <div>
                     {this.props.isReady ?
-                        <div>
+                        <div className="flex-container Main" style={{flexDirection:"column"}}>
 	                        <StudentHeader gameLogic={this.props.gameLogic[0]}/>
 	                        <StudentContent gameLogic={this.props.gameLogic[0]}/>
                         </div>:<div></div>

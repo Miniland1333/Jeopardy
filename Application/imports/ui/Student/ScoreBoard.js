@@ -49,7 +49,7 @@ var ScoreBoard = React.createClass({
 	handleClick: function () {
 		var status = this.props.playerLogic["status"];
 		if (this.props.round == 0) {
-					
+			
 			var input = $("#input"+this.props.playerLogic["teamNumber"]);
 			if(status==""&&this.props.gameLogic["connections"][this.props.connectionId]==undefined){
 				Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,this.props.connectionId);
@@ -149,6 +149,9 @@ var ScoreBoard = React.createClass({
 					} else {
 						return normal;
 					}
+				default:
+					return normal;
+					break;
 			}
 		}else if (this.props.gameLogic["round"]==3){
 			//Code for FJ wager

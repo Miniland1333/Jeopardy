@@ -198,4 +198,9 @@ Meteor.methods({
 		bundle["currentQuestion"]={open:false,first:0,RungInLate:[],Incorrect:[]};
 		gameLogic.update({},{$set:bundle});
 	},
+	'gameLogic.setWager'(teamNumber,wager){
+		var bundle = {};
+		bundle["player"+teamNumber+".wager"]=wager;
+		gameLogic.update({},{$set:bundle});
+	},
 });
