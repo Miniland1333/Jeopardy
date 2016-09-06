@@ -120,6 +120,13 @@ var ScoreBoard = React.createClass({
 						return normal;
 					}
 					break;
+				case "DailyDouble":
+				case "wager":
+					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
+						return green;
+					} else {
+						return normal;
+					}
 				default:
 					return normal;
 				break;

@@ -32,7 +32,7 @@ Meteor.methods({
 		var bundle={
 			numPlayers:0,
 			round:0,
-			CurrentQuestionLogic:{open:false,RungInLate:[],Incorrect:[]},
+			CurrentQuestionLogic:{open:false,first:0,RungInLate:[],Incorrect:[]},
 			lastWinner:"",
 			state:"",
 			setupPlayers:setupBundle,
@@ -92,7 +92,6 @@ Meteor.methods({
 	'gameLogic.resetConnections'(){
 		gameLogic.update({},{$set:{connections:{}}});
 	},
-	
 	'gameLogic.kick'(teamNumber,connectionId){
 		//resets a setupPlayer{player} or sets player to reconnect
 		var round = gameLogic.find().fetch()[0]["round"];
@@ -125,6 +124,7 @@ Meteor.methods({
 			}
 		}
 	},
+	
 	'gameLogic.setStatus'(teamNumber,teamStatus,round){
 		var bundle = {};
 		if (round == 0) {
@@ -158,7 +158,6 @@ Meteor.methods({
 			gameLogic.update({}, {$set: bundle2}, {upsert: true});
 		}
 	},
-	
 	'gameLogic.advance'(){
 		var round = gameLogic.find().fetch()[0]['round']+1;
 		Meteor.call('gameLogic.setRound',round);
@@ -193,5 +192,10 @@ Meteor.methods({
 	},
 	'gameLogic.lastWinner'(number){
 		gameLogic.update({},{$set:{lastWinner:number}});
+	},
+	'gameLogic.resetCurrentQuestionLogic'(){
+		var bundle = {};
+		bundle["currentQuestion"]={open:false,first:0,RungInLate:[],Incorrect:[]};
+		gameLogic.update({},{$set:bundle});
 	},
 });

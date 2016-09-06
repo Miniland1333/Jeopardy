@@ -159,7 +159,6 @@ Meteor.methods({
 		}else{
 			isEqual('double1');
 			isEqual('double2');
-
 		}
 		var bundle={};
 		bundle['currentQuestion'] = {
@@ -169,8 +168,15 @@ Meteor.methods({
 			isDailyDouble: isDailyDouble,
 		};
 		gameQuestions.update({},{$set:bundle});
-		
-		
-		alert(gameQuestions.find().fetch()[0]['currentQuestion']);
+		//Pops Question and then checks Columns.
+		bundle={};
+		console.log(key1+"."+key2);
+		bundle["currentRound."+key1+"."+key2]={
+			isSinglePlay:false,
+			question:"",
+			answer:"",
+		};
+		gameQuestions.update({},{$set:bundle});
+		Meteor.call('gameQuestions.checkRemainingColumns');
 	}
 });

@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import "./../howler";
 
 import Question from "./../Teacher/Question";
+import CountDown from "./Countdown";
 
 var ViewerContent = React.createClass({
 	propTypes:{
@@ -73,6 +74,16 @@ var ViewerContent = React.createClass({
 						break;
 				}
 				break;
+			case "DailyDouble":
+				Howler.unload();
+				var DD = new Howl({
+					src:['./../Jp/jdaily2x.mp3'],
+					autoplay:true,
+				});
+				DD.on('end', function () {
+					Meteor.call('gameLogic.setState', 'wager');
+				});
+				break;
 			case "":
 			case "pickQuestion":
 				Howler.unload();
@@ -135,6 +146,10 @@ var ViewerContent = React.createClass({
 						)
 					})}
 				</div>;
+			case "DailyDouble":
+			case "wager":
+				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
 		}
 		
 	},
@@ -142,6 +157,7 @@ var ViewerContent = React.createClass({
 		return(
 			<div className="flex-container" style={{flex:1,flexDirection:"column"}}>
 				{this.renderContent()}
+				{/*<CountDown visible={true}/>*/}
 			</div>
 		);
 	}

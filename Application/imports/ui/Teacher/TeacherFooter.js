@@ -74,32 +74,11 @@ var TeacherFooter = React.createClass({
 							}}>Waiting for Players</div>
 				}</div>
 			);
-		}else if(this.props.gameLogic["state"]=="answer"){
-			return(
-				<div className="flex-container" style={{flex: 1}}>
-					<div onClick={this.handleIncorrect}   style={{padding:0,border:"none",backgroundColor:"red",   color:"white", flex:1,verticalAlign:"middle"}}>Incorrect</div>
-					<div onClick={this.handleCorrect} style={{padding:0,border:"none",backgroundColor:"green", color:"white", flex:1,verticalAlign:"middle"}}>Correct</div>
-				</div>
-			)
-		}else if(this.props.gameLogic["state"]=="intro"){
+		}else if(round==3){
 			
-			return(
-				<div className="flex-container" style={{flex: 1}}>
-					<div style={{
-						padding: 0,
-						border: "none",
-						backgroundColor: "#eaeaea",
-						color: "black",
-						flex: 1,
-						verticalAlign: "middle",
-					}} onClick={function () {
-						Meteor.call('gameLogic.setState','categoryIntro');
-					}}
-					>Skip</div>
-				</div>
-			)
-		}else if (this.props.gameLogic["state"] == "categories") {
-			if (this.props.gameLogic["remainingColumns"] == 0) {
+		}
+		switch (this.props.gameLogic["state"]) {
+			case "intro":
 				return (
 					<div className="flex-container" style={{flex: 1}}>
 						<div style={{
@@ -109,27 +88,70 @@ var TeacherFooter = React.createClass({
 							color: "black",
 							flex: 1,
 							verticalAlign: "middle",
-						}} onClick={this.advance}
-						>Advance to next Round
+						}} onClick={function () {
+							Meteor.call('gameLogic.setState', 'categoryIntro');
+						}}
+						>Skip
 						</div>
 					</div>
-				)
-			}else{
+				);
+			case "categories":
+				if (this.props.gameLogic["remainingColumns"] == 0) {
+					return (
+						<div className="flex-container" style={{flex: 1}}>
+							<div style={{
+								padding: 0,
+								border: "none",
+								backgroundColor: "#eaeaea",
+								color: "black",
+								flex: 1,
+								verticalAlign: "middle",
+							}} onClick={this.advance}
+							>Advance to next Round
+							</div>
+						</div>
+					)
+				} else {
+					return (
+						<div className="flex-container" style={{flex: 1}}>
+							<div style={{
+								padding: 0,
+								border: "none",
+								backgroundColor: "#eaeaea",
+								color: "black",
+								flex: 1,
+								verticalAlign: "middle",
+							}} onClick={function () {
+								Meteor.call('gameLogic.setState', 'pickQuestion')
+							}}>
+								Next
+							</div>
+						</div>
+					)
+				}
+			case "answer":
 				return (
 					<div className="flex-container" style={{flex: 1}}>
-						<div style={{
+						<div onClick={this.handleIncorrect} style={{
 							padding: 0,
 							border: "none",
-							backgroundColor: "#eaeaea",
-							color: "black",
+							backgroundColor: "red",
+							color: "white",
 							flex: 1,
-							verticalAlign: "middle",
-						}} onClick={function () {Meteor.call('gameLogic.setState','pickQuestion')}}>
-							Next
+							verticalAlign: "middle"
+						}}>Incorrect
+						</div>
+						<div onClick={this.handleCorrect} style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "green",
+							color: "white",
+							flex: 1,
+							verticalAlign: "middle"
+						}}>Correct
 						</div>
 					</div>
-				)
-			}
+				);
 		}
 		
 		

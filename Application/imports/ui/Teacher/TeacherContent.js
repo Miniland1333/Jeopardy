@@ -69,6 +69,13 @@ var TeacherContent = React.createClass({
 					    )
 				    })}
 			    </div>;
+		    case "questionDecide":
+		    	Meteor.call('gameLogic.resetCurrentQuestionLogic');
+			    if(this.props.gameQuestions["currentQuestion"]["isDailyDouble"]){
+				    Meteor.call('gameLogic.setState',"DailyDouble");
+			    }else{
+				    Meteor.call('gameLogic.setState',"read");
+			    }
 	    }
     },
     render:function () {

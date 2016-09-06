@@ -23,10 +23,8 @@ var Question = React.createClass({
 	    if(this.props.cell.question!="") {
 		    //alert("You clicked " + this.props.key1 + "," + this.props.key2);
 		    Meteor.call('gameQuestions.pickQuestion',this.props.key1,this.props.key2,this.props.cell.question, this.props.cell.answer,this.props.cell.isSinglePlay,this.props.round);
-		    //Pops Question and then runs Meteor.call('gameQuestions.checkRemainingColumns');
-	    
-	    
-	    
+
+		    Meteor.call('gameLogic.setState',"questionDecide");
 	    }
     },
 	renderContent:function () {

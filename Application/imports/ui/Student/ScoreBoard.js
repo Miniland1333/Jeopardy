@@ -142,9 +142,16 @@ var ScoreBoard = React.createClass({
 					} else {
 						return normal;
 					}
+				case "DailyDouble":
+				case "wager":
+					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
+						return green;
+					} else {
+						return normal;
+					}
 			}
 		}else if (this.props.gameLogic["round"]==3){
-			//Code for wager
+			//Code for FJ wager
 		} else {
 			return normal;
 		}
