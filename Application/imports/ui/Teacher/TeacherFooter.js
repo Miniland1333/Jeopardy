@@ -131,7 +131,74 @@ var TeacherFooter = React.createClass({
 						</div>
 					)
 				}
+			case "read":
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "black",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={function () {
+							Meteor.call('gameLogic.setState', 'open');
+						}}
+						>Open Question
+						</div>
+					</div>
+				);
+			case "DDread":
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "black",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={function () {
+							Meteor.call('gameLogic.setState', 'DDanswer');
+						}}
+						>Open Question
+						</div>
+					</div>
+				);
+			case "open":
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "#a5a5a5",
+							flex: 1,
+							verticalAlign: "middle",
+						}}
+						>Waiting for Student Response
+						</div>
+					</div>
+				);
+			case "next":
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "black",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={function () {
+							Meteor.call('gameLogic.setState', 'pickQuestion');
+						}}
+						>Next Question
+						</div>
+					</div>
+				);
 			case "answer":
+			case "DDanswer":
 				return (
 					<div className="flex-container" style={{flex: 1}}>
 						<div onClick={this.handleIncorrect} style={{

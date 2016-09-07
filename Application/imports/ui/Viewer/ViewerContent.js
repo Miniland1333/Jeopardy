@@ -14,11 +14,14 @@ var questionStyle={
 	whiteSpace: "pre-wrap",
 };
 
+var timer;
+
 var ViewerContent = React.createClass({
 	propTypes:{
 		gameLogic:React.PropTypes.object,
 		gameQuestions:React.PropTypes.object,
 	},
+	time:5,
 	handleSound:function () {
 		var scrap = new Howl({
 			src:['./../Jp/jtime.mp3'],
@@ -159,16 +162,56 @@ var ViewerContent = React.createClass({
 			case "wager":
 				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
 					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
-			case "read":
+			
 			case "open":
-			case "answer":
-			case "DDread":
-			case "DDanswer":
+				clearInterval(timer);
+				this.time=5;
+				var time = new Howl({
+					src:['./../Jp/jtime.mp3'],
+				});
+				timer = setInterval(()=> {
+					if(this.time>0){
+						this.time-=1;
+					}
+					if(this.time==0){
+						clearInterval(timer);
+						time.play();
+						Meteor.call('gameLogic.setState',"next");
+					}
+				},1000);
+				break;
 				return(
 					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
-					</div>)
-		
+					</div>);
+			case "answer":
+			case "DDanswer":
+				clearInterval(timer);
+				this.time=5;
+				var time = new Howl({
+					src:['./../Jp/jtime.mp3'],
+				});
+				timer = setInterval(()=> {
+					if(this.time>0){
+						this.time-=1;
+					}
+					if(this.time==0){
+						clearInterval(timer);
+						time.play();
+						Meteor.call('gameLogic.setState',"open");
+					}
+				},1000);
+				return(
+					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+					</div>);
+			case "read":
+			case "next":
+			case "DDread":
+				return(
+					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+					</div>);
 		}
 		
 	},
@@ -176,7 +219,7 @@ var ViewerContent = React.createClass({
 		return(
 			<div className="flex-container" style={{flex:1,flexDirection:"column"}}>
 				{this.renderContent()}
-				{/*<CountDown gameLogic={this.props.gameLogic}/>*/}
+				<CountDown gameLogic={this.props.gameLogic} time={this.time}/>
 			</div>
 		);
 	}
