@@ -38,7 +38,6 @@ Meteor.methods({
 			setupPlayers:setupBundle,
 			connections:{},
 			gameName:"Please select a game",
-			first:"",
 		};
 		/*for(var j=1;j<=6;j++){
 		 bundle["player"+j] = {
@@ -195,7 +194,7 @@ Meteor.methods({
 	},
 	'gameLogic.resetCurrentQuestionLogic'(){
 		var bundle = {};
-		bundle["currentQuestion"]={open:false,first:0,RungInLate:[],Incorrect:[]};
+		bundle["currentQuestionLogic"]={open:false,first:0,RungInLate:[],Incorrect:[]};
 		gameLogic.update({},{$set:bundle});
 	},
 	'gameLogic.setWager'(teamNumber,wager){
@@ -203,4 +202,18 @@ Meteor.methods({
 		bundle["player"+teamNumber+".wager"]=wager;
 		gameLogic.update({},{$set:bundle});
 	},
+	'gameLogic.setFirst'(teamNumber){
+		gameLogic.update({},{$set:{"currentQuestionLogic.first":teamNumber}});
+	},
+	'gameLogic.addLate'(teamNumber){
+		gameLogic.update({},{$push:{"currentQuestionLogic.RungInLate":teamNumber}});
+	},
+	'gameLogic.addIncorrect'(teamNumber){
+		gameLogic.update({},{$push:{"currentQuestionLogic.Incorrect":teamNumber}});
+		Meteor.call('gameLogic.reopen');
+	},
+	'gameLogic.reopen'(){
+		gameLogic.update({},{$set:{"currentQuestionLogic.RungInLate":[]}});
+		gameLogic.update({},{$set:{"currentQuestionLogic.Incorrect":[]}});
+	}
 });

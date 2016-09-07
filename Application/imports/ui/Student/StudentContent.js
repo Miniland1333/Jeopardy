@@ -19,16 +19,22 @@ var confirmStyle={
 	display:"block",
 	borderRadius: 8,
 };
+var teamNumber;
 
 var StudentContent = React.createClass({
 	propTypes:{
 		gameLogic:React.PropTypes.object,
 	},
-	handleChange:function () {
-		
+	handleFirst:function () {
+		Meteor.call("gameLogic.setFirst",teamNumber);
+		Meteor.call("gameLogic.setState","answer");
+	},
+	handleLate:function () {
+		Meteor.call('gameLogic.addLate',teamNumber);
 	},
 	render:function () {
-		var teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
+		
+		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
 		if(teamNumber==undefined) {
 			
 			return (<div className="flex-container" style={{flexDirection: "column"}}>
@@ -77,13 +83,34 @@ var StudentContent = React.createClass({
 				<div  style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
 			</div>;
 		}else if(this.props.gameLogic["state"]=="open"){
-			return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-				<div  style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
-			</div>;
+			var incorrect = this.props.gameLogic["currentQuestionLogic"]["Incorrect"];
+			if(!incorrect.includes(teamNumber)){
+				//If not on incorrect list
+				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+					<div onClick={this.handleFirst} style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
+				</div>;
+			}else{
+				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+					<div  style={{background:"#ff3f3f",borderRadius:"8px",margin:"30px",flex:1}}/>
+				</div>;
+			}
+
+			
 		}else if(this.props.gameLogic["state"]=="answer"){
-			return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-				<div  style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
-			</div>;
+			if(this.props.gameLogic["currentQuestionLogic"]["first"]==teamNumber){
+				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+					<div  style={{background:"#00b500",borderRadius:"8px",margin:"30px",flex:1}}/>
+				</div>;
+			}else if(this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)){
+				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+					<div  style={{background:"#ff3f3f",borderRadius:"8px",margin:"30px",flex:1}}/>
+				</div>;
+			}else{
+				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+					<div onClick={this.handleLate} style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
+				</div>;
+			}
+
 
 		}else{
 			return null;

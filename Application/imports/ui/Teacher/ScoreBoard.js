@@ -95,6 +95,7 @@ var ScoreBoard = React.createClass({
 			borderRadius: 8,
 		};
 		
+		var teamNumber = this.props.playerLogic["teamNumber"];
 		if (this.props.round == 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
@@ -129,6 +130,22 @@ var ScoreBoard = React.createClass({
 					} else {
 						return normal;
 					}
+				case "open":
+					if(this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)){
+						return red;
+					}else{
+						return normal;
+					}
+				case "answer":
+					if(this.props.gameLogic["currentQuestionLogic"]["first"]==teamNumber){
+						return green;
+					}else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)){
+						return red
+					}else{
+						return normal;
+					}
+				
+				
 				default:
 					return normal;
 					break;
