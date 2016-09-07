@@ -29,7 +29,7 @@ var Teacher = React.createClass({
 						<div className="flex-container Main" style={{overflow:"auto",flexDirection:"column"}}>
 							<TeacherHeader  gameLogic={this.props.gameLogic[0]}/>
 							<TeacherContent gameLogic={this.props.gameLogic[0]} gameQuestions={this.props.gameQuestions[0]} gameDatabase={this.props.gameDatabase}/>
-							<TeacherFooter  gameLogic={this.props.gameLogic[0]}/>
+							<TeacherFooter  gameLogic={this.props.gameLogic[0]} gameQuestions={this.props.gameQuestions[0]}/>
 						</div>:<div></div>
 					}
 				</div>

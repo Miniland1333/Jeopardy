@@ -6,13 +6,44 @@ import {gameDatabase} from "../../api/gameDatabase";
 var TeacherFooter = React.createClass({
 	propTypes:{
 		gameLogic:React.PropTypes.object,
+		gameQuestions:React.PropTypes.object
 	},
 	handleCorrect:function () {
-		//If DD, reset player wager
+		var first = this.props.gameLogic["currentQuestionLogic"]["first"];
+		var value =this.props.gameQuestions["currentQuestion"]["value"];
+		
+		if(this.props.gameLogic["state"]=="DDanswer"){
+			//If DD, reset player wager
+			first = this.props.gameLogic["lastWinner"];
+			value = this.props.gameLogic["player"+first]["wager"];
+			Meteor.call('gameLogic.setWager',first,0);
+		}
+		
+		Meteor.call('gameLogic.lastWinner',first);
+		Meteor.call('gameLogic.changePoints',first,value);
+		Meteor.call('gameLogic.setState',"pickQuestion");
 		
 	},
 	handleIncorrect:function () {
-		//If DD, reset player wager
+		var first = this.props.gameLogic["currentQuestionLogic"]["first"];
+		var value =this.props.gameQuestions["currentQuestion"]["value"];
+		
+		if(this.props.gameLogic["state"]=="DDanswer"){
+			//If DD, reset player wager
+			first = this.props.gameLogic["lastWinner"];
+			value = this.props.gameLogic["player"+first]["wager"];
+			Meteor.call('gameLogic.setWager',first,0);
+		}
+		
+		Meteor.call('gameLogic.changePoints',first,-value);
+		Meteor.call('gameLogic.addIncorrect', first);
+		
+		//Adjust for single play or out of players
+		if(this.props.gameLogic["state"]=="DDanswer"||this.props.gameQuestions["currentQuestion"]["isSinglePlay"]||this.props.gameLogic["currentQuestionLogic"]["Incorrect"].length==this.props.gameLogic["numPlayers"]) {
+			Meteor.call('gameLogic.setState', "pickQuestion");
+		}else{
+			Meteor.call('gameLogic.setState', "open");
+		}
 		
 	},
 	handleStart:function () {

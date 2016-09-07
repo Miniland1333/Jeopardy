@@ -137,7 +137,12 @@ Meteor.methods({
 		}
 	},
 	'gameLogic.changePoints'(teamNumber,pointDiff){
+		var originalPoints = gameLogic.find().fetch()[0]["player"+teamNumber]["points"];
+		var newPoints = originalPoints+pointDiff;
 		
+		var bundle = {};
+		bundle["player"+teamNumber+".points"]=newPoints;
+		gameLogic.update({},{$set:bundle});
 	},
 	'gameLogic.setConnectionId'(teamNumber,round,connectionId,formerId){
 		var bundle = {};
@@ -214,6 +219,5 @@ Meteor.methods({
 	},
 	'gameLogic.reopen'(){
 		gameLogic.update({},{$set:{"currentQuestionLogic.RungInLate":[]}});
-		gameLogic.update({},{$set:{"currentQuestionLogic.Incorrect":[]}});
 	}
 });

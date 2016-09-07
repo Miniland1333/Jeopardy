@@ -164,12 +164,32 @@ Meteor.methods({
 			isEqual('double1');
 			isEqual('double2');
 		}
+		var value;
+			switch (key2) {
+				case "question1":
+					value = 200;
+					break;
+				case "question2":
+					value = 400;
+					break;
+				case "question3":
+					value = 600;
+					break;
+				case "question4":
+					value = 800;
+					break;
+				case "question5":
+					value = 1000;
+					break;
+			}
+			value = value*round;
 		var bundle={};
 		bundle['currentQuestion'] = {
 			question: question,
 			answer: answer,
 			isSinglePlay: isSinglePlay,
 			isDailyDouble: isDailyDouble,
+			value:value,
 		};
 		gameQuestions.update({},{$set:bundle});
 		//Pops Question and then checks Columns.
