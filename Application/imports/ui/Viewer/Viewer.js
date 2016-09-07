@@ -11,6 +11,12 @@ import ViewerContent from "./ViewerContent";
 import ViewerFooter from "./ViewerFooter";
 
 var Viewer = React.createClass({
+	
+	
+	
+	
+	
+	
     render:function(){ return (
         <DocumentTitle title='Jeopardy Viewer'>
             <div>

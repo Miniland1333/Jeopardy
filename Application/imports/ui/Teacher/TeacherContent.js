@@ -98,6 +98,7 @@ var TeacherContent = React.createClass({
 		    case "answer":
 		    case "DDread":
 		    case "DDanswer":
+	        case "next":
 		    	return(
 			    <div className="flex-container" style={{flexDirection:"column",flex:1}}>
 				    <div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>

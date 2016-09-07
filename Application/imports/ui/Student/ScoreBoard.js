@@ -144,6 +144,8 @@ var ScoreBoard = React.createClass({
 					}
 				case "DailyDouble":
 				case "wager":
+				case "DDread":
+				case "DDanswer":
 					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
 						return green;
 					} else {

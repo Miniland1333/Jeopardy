@@ -86,7 +86,7 @@ var StudentContent = React.createClass({
 			</div>;
 
 		}else{
-			return [];
+			return null;
 		}
 	}
 });

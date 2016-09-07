@@ -76,26 +76,30 @@ Meteor.methods({
 				var done = false;
 				while(!done){
 					var category=pickRandomProperty(currentRound);
-					var question = pickRandomProperty(currentRound[category]);
-					var bundle = {};
-					bundle['dailyDouble.'+name]={
-						category:category,
-						question:question,
-					};
-					var duplicate = false;
-					function isEqual(name,category,question){
-						if(dailyDouble[name]['category']==category&&dailyDouble[name]['question']==question){
-							duplicate=true;
+					if(currentRound[category]["categoryName"]!="") {
+						var question = pickRandomProperty(currentRound[category]);
+						var bundle = {};
+						bundle['dailyDouble.' + name] = {
+							category: category,
+							question: question,
+						};
+						var duplicate = false;
+						
+						function isEqual(name, category, question) {
+							if (dailyDouble[name]['category'] == category && dailyDouble[name]['question'] == question) {
+								duplicate = true;
+							}
 						}
-					}
-					for (var prop in dailyDouble) {
-						if (dailyDouble.hasOwnProperty(prop)) {
-							isEqual(prop,category,question);
+						
+						for (var prop in dailyDouble) {
+							if (dailyDouble.hasOwnProperty(prop)) {
+								isEqual(prop, category, question);
+							}
 						}
-					}
-					if(!duplicate){
-						gameQuestions.update({},{$set:bundle});
-						done=true;
+						if (!duplicate) {
+							gameQuestions.update({}, {$set: bundle});
+							done = true;
+						}
 					}
 				}
 			}

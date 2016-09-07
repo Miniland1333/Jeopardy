@@ -30,7 +30,7 @@ var redItemStyle = {
 	margin:"1vw",
 	padding:0,
 	justifyContent:"space-around",
-	background:"#00ff37",
+	background:"#ff1616",
 	border:"none",
 };
 var CountDown = React.createClass({
@@ -38,7 +38,9 @@ var CountDown = React.createClass({
 		gameLogic:React.PropTypes.object,
 		time:React.PropTypes.number,
 	},
-
+	animate:function () {
+		this.forceUpdate();
+	},
 	render:function () {
 		switch (this.props.gameLogic["state"]) {
 			case "open":

@@ -22,6 +22,7 @@ var ViewerContent = React.createClass({
 		gameQuestions:React.PropTypes.object,
 	},
 	time:5,
+	lastState:"",
 	handleSound:function () {
 		var scrap = new Howl({
 			src:['./../Jp/jtime.mp3'],
@@ -143,6 +144,7 @@ var ViewerContent = React.createClass({
 				break;
 			case "pickQuestion":
 				var round = this.props.gameLogic["round"];
+				this.lastState="pickQuestion";
 				return <div key="" className="Table">
 					{$.map(this.props.gameQuestions["currentRound"], function (column, key1) {
 						return (
@@ -164,43 +166,51 @@ var ViewerContent = React.createClass({
 					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
 			
 			case "open":
-				clearInterval(timer);
-				this.time=5;
-				var time = new Howl({
-					src:['./../Jp/jtime.mp3'],
-				});
-				timer = setInterval(()=> {
-					if(this.time>0){
-						this.time-=1;
-					}
-					if(this.time==0){
-						clearInterval(timer);
-						time.play();
-						Meteor.call('gameLogic.setState',"next");
-					}
-				},1000);
-				break;
+				if(this.lastState!="open") {
+					this.lastState="open";
+					clearInterval(timer);
+					this.time = 5;
+					var time = new Howl({
+						src: ['./../Jp/jtime.mp3'],
+					});
+					timer = setInterval(()=> {
+						if (this.time > 0) {
+							this.time -= 1;
+							this.forceUpdate();
+						}
+						if (this.time == 0) {
+							clearInterval(timer);
+							this.forceUpdate();
+							time.play(undefined, false);
+							Meteor.call('gameLogic.setState', "next");
+						}
+					}, 1000);
+				}
 				return(
 					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 					</div>);
 			case "answer":
 			case "DDanswer":
-				clearInterval(timer);
-				this.time=5;
-				var time = new Howl({
-					src:['./../Jp/jtime.mp3'],
-				});
-				timer = setInterval(()=> {
-					if(this.time>0){
-						this.time-=1;
-					}
-					if(this.time==0){
-						clearInterval(timer);
-						time.play();
-						Meteor.call('gameLogic.setState',"open");
-					}
-				},1000);
+				if(this.lastState!="answer"&&this.lastState!="DDanswer") {
+					this.lastState=this.props.gameLogic["state"];
+					clearInterval(timer);
+					this.time = 5;
+					var time1 = new Howl({
+						src: ['./../Jp/jtime.mp3'],
+					});
+					timer = setInterval(()=> {
+						if (this.time > 0) {
+							this.time -= 1;
+							this.forceUpdate();
+						}
+						if (this.time == 0) {
+							clearInterval(timer);
+							this.forceUpdate();
+							time1.play(undefined, false);
+						}
+					}, 1000);
+				}
 				return(
 					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
@@ -208,6 +218,7 @@ var ViewerContent = React.createClass({
 			case "read":
 			case "next":
 			case "DDread":
+				this.lastState=this.props.gameLogic["state"];
 				return(
 					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
