@@ -47,9 +47,13 @@ var ScoreBoard = React.createClass({
 				//show  J options
 				if (confirm("Advance?")){
 					Meteor.call('gameLogic.advance');
-					Meteor.call('gameQuestions.checkRemainingColumns');
 				}
 			} else if (this.props.round == 2) {
+				//show DJ options
+				if(confirm("Reset?")){
+					Meteor.call("gameLogic.init");
+				}
+			}else if (this.props.round == 3) {
 				//show DJ options
 				if(confirm("Reset?")){
 					Meteor.call("gameLogic.init");
@@ -152,6 +156,7 @@ var ScoreBoard = React.createClass({
 			}
 		}else if (this.props.gameLogic["round"]==3){
 			//Code for wager
+			return normal;
 		} else {
 			return normal;
 		}

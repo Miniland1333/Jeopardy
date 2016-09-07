@@ -10,7 +10,6 @@ var ViewerFooter = React.createClass({
 		gameLogic:React.PropTypes.object,
 	},
 	renderInput:function() {
-		console.log(this.props.gameLogic);
 		var isSetup = !this.props.gameLogic["round"];
 		
 		if(isSetup) {

@@ -66,7 +66,7 @@ var TeacherContent = React.createClass({
 			    break;
 		    case "pickQuestion":
 			    var round = this.props.gameLogic["round"];
-			    return <div key="" className="Table">
+				    return <div key="" className="Table">
 				    {$.map(this.props.gameQuestions["currentRound"], function (column, key1) {
 					    return (
 						    <div className="Column" key={key1}>

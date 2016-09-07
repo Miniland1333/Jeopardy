@@ -120,14 +120,15 @@ Meteor.methods({
 			}
 			if(empty){
 				bundle["currentRound.category" + i+".categoryName"]="";
-				
 				gameQuestions.update({},{$set:bundle});
 			}
 			
 			//only categories with a name are counted
+			currentCategory = gameQuestions.find().fetch()[0]["currentRound"]["category" + i];
 			var catName = currentCategory["categoryName"];
 			if (catName.trim() != "") {
 				catCount++;
+				
 			}else {
 				//code to remove questions from empty category
 				bundle ={};
@@ -145,8 +146,6 @@ Meteor.methods({
 				gameQuestions.update({},{$set:bundle});
 			}
 		}
-		
-		
 		gameQuestions.update({},{$set:{remainingColumns:catCount}});
 	},
 	'gameQuestions.pickQuestion'(key1,key2,question,answer,isSinglePlay,round){
@@ -194,13 +193,13 @@ Meteor.methods({
 		gameQuestions.update({},{$set:bundle});
 		//Pops Question and then checks Columns.
 		bundle={};
-		console.log(key1+"."+key2);
 		bundle["currentRound."+key1+"."+key2]={
 			isSinglePlay:false,
 			question:"",
 			answer:"",
 		};
 		gameQuestions.update({},{$set:bundle});
+		console.log(gameQuestions.find().fetch()[0]["currentRound"]);
 		Meteor.call('gameQuestions.checkRemainingColumns');
 	}
 });

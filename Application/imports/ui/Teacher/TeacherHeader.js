@@ -11,7 +11,6 @@ var TeacherHeader = React.createClass({
 	},
 	renderInput:function() {
 		var isSetup = !this.props.gameLogic["round"];
-		console.log(this.props.gameLogic);
 		
 		if(isSetup) {
 			return $.map(this.props.gameLogic["setupPlayers"], function (contents, field) {

@@ -38,9 +38,6 @@ var CountDown = React.createClass({
 		gameLogic:React.PropTypes.object,
 		time:React.PropTypes.number,
 	},
-	animate:function () {
-		this.forceUpdate();
-	},
 	render:function () {
 		switch (this.props.gameLogic["state"]) {
 			case "open":

@@ -174,6 +174,7 @@ var ScoreBoard = React.createClass({
 			}
 		}else if (this.props.gameLogic["round"]==3){
 			//Code for FJ wager
+			return normal;
 		} else {
 			return normal;
 		}

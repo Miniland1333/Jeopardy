@@ -9,6 +9,7 @@ import '../imports/api/gameQuestions';
 
 Meteor.startup(() => {
   // code to run on server at startup
+	Meteor.call("gameLogic.init");
     Meteor.onConnection(function (connection) {
         connection.onClose(function () {
             console.log("closed "+connection.id);

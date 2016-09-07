@@ -97,13 +97,13 @@ var ViewerContent = React.createClass({
 					Meteor.call('gameLogic.setState', 'wager');
 				});
 				break;
-			//case "":
 			case "pickQuestion":
 				Howler.unload();
 				break;
 		}
 	},
 	renderContent:function () {
+		console.log("ViewerRender",this.props.gameLogic["round"],this.props.gameLogic["state"]);
 		if(this.props.gameLogic["round"]==0&&this.props.gameLogic["state"]!=""){
 			Meteor.call('gameLogic.setState',"");
 		}
@@ -112,6 +112,7 @@ var ViewerContent = React.createClass({
 			case "":
 			case "intro":
 			case "categoryIntro":
+				clearInterval(timer);
 				var title;
 				switch (this.props.gameLogic["round"]){
 					case 1:

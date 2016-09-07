@@ -185,6 +185,9 @@ Meteor.methods({
 				}
 				Meteor.call('gameLogic.lastWinner',least);
 				break;
+			case 3:
+				Meteor.call('gameLogic.eliminate');
+				break;
 		}
 	},
 	'gameLogic.setState'(state){
@@ -219,5 +222,21 @@ Meteor.methods({
 	},
 	'gameLogic.reopen'(){
 		gameLogic.update({},{$set:{"currentQuestionLogic.RungInLate":[]}});
-	}
+	},
+	'gameLogic.eliminate'(){
+		var obj = gameLogic.find().fetch()[0];
+		for (var prop in obj) {
+			if (obj.hasOwnProperty(prop)
+				&& prop.includes("player")
+				&& obj[prop]["points"] <= 0) {
+				
+				var bundle = {};
+				
+				bundle[prop + ".status"] = "out";
+				gameLogic.update({}, {$set: bundle});
+			}
+		}
+		
+		
+	},
 });
