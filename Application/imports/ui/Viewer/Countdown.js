@@ -18,24 +18,30 @@ var itemStyle = {
 
 var CountDown = React.createClass({
 	propTypes:{
-		isGreen:React.PropTypes.bool,
-		visible:React.PropTypes.bool,
+		gameLogic:React.PropTypes.object,
 	},
 	render:function () {
-		if (this.props.visible){
-			return <div className="flex-container" style={{background:"transparent"}}>
-				<div className="five"  style={itemStyle}/>
-				<div className="four"  style={itemStyle}/>
-				<div className="three" style={itemStyle}/>
-				<div className="two"   style={itemStyle}/>
-				<div className="one"   style={itemStyle}/>
-				<div className="two"   style={itemStyle}/>
-				<div className="three" style={itemStyle}/>
-				<div className="four"  style={itemStyle}/>
-				<div className="five"  style={itemStyle}/>
-			</div>
-		}else {
-			return <div/>
+		switch (this.props.gameLogic["state"]) {
+			case "open":
+				return <div className="flex-container" style={{background: "transparent"}}>
+					<div className="five" style={itemStyle}/>
+					<div className="four" style={itemStyle}/>
+					<div className="three" style={itemStyle}/>
+					<div className="two" style={itemStyle}/>
+					<div className="one" style={itemStyle}/>
+					<div className="two" style={itemStyle}/>
+					<div className="three" style={itemStyle}/>
+					<div className="four" style={itemStyle}/>
+					<div className="five" style={itemStyle}/>
+				</div>;
+			
+			case "answer":
+			case "DDanswer":
+				
+				break;
+			default:
+				return <div style={{height: 15,}}/>
+			
 		}
 	}
 });

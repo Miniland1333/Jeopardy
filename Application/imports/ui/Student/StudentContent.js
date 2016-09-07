@@ -36,7 +36,7 @@ var StudentContent = React.createClass({
 					<p>{Meteor.connection._lastSessionId}</p>
 				</div>
 			);
-		}else if(this.props.gameLogic["state"]=="pickQuestion"&&this.props.gameLogic["lastWinner"]==teamNumber){
+		}else if(this.props.gameLogic["state"]=="wager"&&this.props.gameLogic["lastWinner"]==teamNumber){
 			var points = this.props.gameLogic["player"+teamNumber]["points"];
 			var max = Math.max(this.props.gameLogic["round"]==1?1000:2000,points);
 			
@@ -69,14 +69,24 @@ var StudentContent = React.createClass({
 				</div>
 				<div style={{fontSize:15}}>You can wager between $5 and ${max}</div>
 				<div style={{flex:1}}></div>
-				<div style={confirmStyle} onClick={()=>Meteor.call('gameLogic.setState','read')}>Confirm Wager</div>
+				<div style={confirmStyle} onClick={()=>Meteor.call('gameLogic.setState','DDread')}>Confirm Wager</div>
 			</div>;
 			
-		}else{
+		}else if(this.props.gameLogic["state"]=="read"){
+			return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+				<div  style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
+			</div>;
+		}else if(this.props.gameLogic["state"]=="open"){
+			return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+				<div  style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
+			</div>;
+		}else if(this.props.gameLogic["state"]=="answer"){
 			return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
 				<div  style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
 			</div>;
 
+		}else{
+			return [];
 		}
 	}
 });

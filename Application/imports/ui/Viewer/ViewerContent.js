@@ -5,6 +5,15 @@ import "./../howler";
 import Question from "./../Teacher/Question";
 import CountDown from "./Countdown";
 
+
+var questionStyle={
+	fontSize:"10vmin",
+	flex:1,
+	alignItems:"center",
+	justifyContent:"center",
+	whiteSpace: "pre-wrap",
+};
+
 var ViewerContent = React.createClass({
 	propTypes:{
 		gameLogic:React.PropTypes.object,
@@ -150,6 +159,16 @@ var ViewerContent = React.createClass({
 			case "wager":
 				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
 					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
+			case "read":
+			case "open":
+			case "answer":
+			case "DDread":
+			case "DDanswer":
+				return(
+					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+					</div>)
+		
 		}
 		
 	},
@@ -157,7 +176,7 @@ var ViewerContent = React.createClass({
 		return(
 			<div className="flex-container" style={{flex:1,flexDirection:"column"}}>
 				{this.renderContent()}
-				{/*<CountDown visible={true}/>*/}
+				{/*<CountDown gameLogic={this.props.gameLogic}/>*/}
 			</div>
 		);
 	}

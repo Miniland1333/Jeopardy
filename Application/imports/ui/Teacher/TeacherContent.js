@@ -5,6 +5,18 @@ import GameDropdown from "./GameDropdown";
 
 import Question from "./Question";
 
+
+var questionStyle={
+	fontSize:"10vmin",
+	flex:1,
+	alignItems:"center",
+	whiteSpace: "pre-wrap",
+	justifyContent:"center",
+};
+var answerStyle={
+	fontSize:"8vmin",
+};
+
 var TeacherContent = React.createClass({
     propTypes:{
         gameDatabase:React.PropTypes.array,
@@ -69,6 +81,10 @@ var TeacherContent = React.createClass({
 					    )
 				    })}
 			    </div>;
+		    case "DailyDouble":
+		    case "wager":
+			    return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+				    whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
 		    case "questionDecide":
 		    	Meteor.call('gameLogic.resetCurrentQuestionLogic');
 			    if(this.props.gameQuestions["currentQuestion"]["isDailyDouble"]){
@@ -76,6 +92,19 @@ var TeacherContent = React.createClass({
 			    }else{
 				    Meteor.call('gameLogic.setState',"read");
 			    }
+			    break;
+		    case "read":
+		    case "open":
+		    case "answer":
+		    case "DDread":
+		    case "DDanswer":
+		    	return(
+			    <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+				    <div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+				    <div style={answerStyle}  >{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
+				    
+			    </div>)
+		    	
 	    }
     },
     render:function () {
