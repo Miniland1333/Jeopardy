@@ -132,6 +132,7 @@ var TeacherFooter = React.createClass({
 						</div>
 					);
 				}else{
+					Meteor.call('gameLogic.resetCurrentQuestionLogic');
 					return null;
 				}
 			case "categories":
@@ -289,6 +290,41 @@ var TeacherFooter = React.createClass({
 							flex: 1,
 							verticalAlign: "middle"
 						}}>Correct
+						</div>
+					</div>
+				);
+			
+			case "FJwager":
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "black",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={function () {
+							Meteor.call('gameLogic.setState', 'FJread');
+						}}
+						>Reveal Question
+						</div>
+					</div>
+				);
+			case "FJread":
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "black",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={function () {
+							Meteor.call('gameLogic.setState', 'FJopen');
+						}}
+						>Open Question
 						</div>
 					</div>
 				);

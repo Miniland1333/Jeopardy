@@ -104,8 +104,19 @@ var TeacherContent = React.createClass({
 				    <div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 				    <div style={answerStyle}  >{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
 				    
-			    </div>)
-		    	
+			    </div>);
+		    case "FJwager":
+			    return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+				    whiteSpace: "pre-wrap",}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
+			    break;
+		    case "FJread":
+		    case "FJopen":
+			    return(
+				    <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+					    <div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
+					    <div style={answerStyle}  >{this.props.gameQuestions["currentRound"]["answer"]}</div>
+				
+				    </div>);
 	    }
     },
     render:function () {

@@ -174,7 +174,11 @@ var ScoreBoard = React.createClass({
 			}
 		}else if (this.props.gameLogic["round"]==3){
 			//Code for FJ wager
-			return normal;
+			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)&&this.props.gameLogic["state"]=="FJwager"){
+				return green
+			}else{
+				return normal;
+			}
 		} else {
 			return normal;
 		}

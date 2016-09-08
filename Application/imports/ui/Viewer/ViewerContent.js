@@ -85,6 +85,16 @@ var ViewerContent = React.createClass({
 							Meteor.call('gameLogic.setState', 'categories');
 						});
 						break;
+					case 3:
+						Howler.unload();
+						var FJcat = new Howl({
+							src:['./../Jp/jfinalj.mp3'],
+							autoplay:true,
+						});
+						FJcat.on('end', function () {
+							Meteor.call('gameLogic.setState', 'FJwager');
+						});
+						break;
 				}
 				break;
 			case "DailyDouble":
@@ -95,6 +105,15 @@ var ViewerContent = React.createClass({
 				});
 				DD.on('end', function () {
 					Meteor.call('gameLogic.setState', 'wager');
+				});
+				break;
+			case "FJopen":
+				var FJ = new Howl({
+					src:['./../Jp/jthink.mp3'],
+					autoplay:true,
+				});
+				FJ.on('end', function () {
+					Meteor.call('gameLogic.setState', 'FJanswer');
 				});
 				break;
 			case "pickQuestion":
@@ -224,6 +243,16 @@ var ViewerContent = React.createClass({
 					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 					</div>);
+			
+			case "FJwager":
+				return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+					whiteSpace: "pre-wrap",}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
+				break;
+			case "FJread":
+			case "FJopen":
+				return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+					whiteSpace: "pre-wrap",}}>{this.props.gameQuestions["currentRound"]['question']}</div>;
+				break;
 		}
 		
 	},
