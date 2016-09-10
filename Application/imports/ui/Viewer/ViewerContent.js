@@ -200,8 +200,8 @@ var ViewerContent = React.createClass({
 						}
 						if (this.time == 0) {
 							clearInterval(timer);
-							this.forceUpdate();
 							time.play(undefined, false);
+							this.forceUpdate();
 							Meteor.call('gameLogic.setState', "next");
 						}
 					}, 1000);
@@ -225,9 +225,9 @@ var ViewerContent = React.createClass({
 							this.forceUpdate();
 						}
 						if (this.time == 0) {
-							clearInterval(timer);
 							this.forceUpdate();
 							time1.play(undefined, false);
+							clearInterval(timer);
 						}
 					}, 1000);
 				}

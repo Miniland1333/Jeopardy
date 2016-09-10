@@ -199,7 +199,6 @@ Meteor.methods({
 			answer:"",
 		};
 		gameQuestions.update({},{$set:bundle});
-		console.log(gameQuestions.find().fetch()[0]["currentRound"]);
 		Meteor.call('gameQuestions.checkRemainingColumns');
 	}
 });

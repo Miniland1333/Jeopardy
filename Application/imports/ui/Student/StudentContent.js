@@ -20,6 +20,7 @@ var confirmStyle={
 	borderRadius: 8,
 };
 var teamNumber;
+var finalAnswer;
 
 var StudentContent = React.createClass({
 	propTypes:{
@@ -98,7 +99,7 @@ var StudentContent = React.createClass({
 					<div  style={{background:"#ff3f3f",borderRadius:"8px",margin:"30px",flex:1}}/>
 				</div>;
 			}
-
+			
 			
 		}else if(this.props.gameLogic["state"]=="answer"){
 			if(this.props.gameLogic["currentQuestionLogic"]["first"]==teamNumber){
@@ -115,7 +116,7 @@ var StudentContent = React.createClass({
 				</div>;
 			}
 			
-		}else if (this.props.gameLogic["player" + teamNumber]["status"] == "active") {
+		}else if (this.props.gameLogic["round"]==3&&this.props.gameLogic["player" + teamNumber]["status"] == "active") {
 			switch (this.props.gameLogic["state"]) {
 				case "FJwager":
 					if (!this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
@@ -157,41 +158,48 @@ var StudentContent = React.createClass({
 					} else {
 						return null;
 					}
+				
+				case "FJread":
 				case "FJopen":
-				case "FJanswer":
-					paper.setup("writingPad");
+					paper.install(window);
+					var canvas = document.getElementById('writingPad');
+					paper.setup(canvas);
 					
 					var path;
 					var tool = new Tool();
 					var textItem = new PointText({
-						content: 'Write your answer',
+						content: 'Write your answer here',
 						point: new Point(20, 30),
-						fillColor: 'black',
+						fillColor: 'white',
 					});
-				
-				tool.onMouseDown = function (event) {
-					
-					// Create a new path and set its stroke color to black:
-					path = new Path({
-						segments: [event.point],
-						strokeColor: 'white',
-						// Select the path, so we can see its segment points:
-						fullySelected: true
-					});
-				};
-
-				tool.onMouseDrag=function(event) {
-					path.add(event.point);
-				};
-
-				tool.onMouseUp=function(event) {
-					var segmentCount = path.segments.length;
-					
-					// When the mouse is released, simplify it:
-					path.simplify(10);
-				};
-					return <canvas style={{border:"2px solid white",height:"50vmin",width:"50vmin"}} id="writingPad">
+					tool.onMouseDown = function down (event) {
 						
+						// Create a new path and set its stroke color to black:
+						path = new Path({
+							segments: [event.point],
+							strokeColor: 'white',
+							strokeWidth:15,
+						});
+					};
+					
+					tool.onMouseDrag=function drag(event) {
+						path.add(event.point);
+					};
+					
+					tool.onMouseUp=function up(event) {
+						var segmentCount = path.segments.length;
+						// When the mouse is released, simplify it:
+						path.simplify(10);
+						finalAnswer = paper.project.exportJSON();
+					};
+					return <canvas className="needsclick" style={{border:"2px solid white",flex:1}} id="writingPad">
+					
+					</canvas>;
+				
+				case "FJanswer":
+					Meteor.call('gameLogic.finalAnswer',teamNumber,finalAnswer);
+					return <canvas className="needsclick" style={{border:"2px solid white",flex:1}} id="writingPad">
+					
 					</canvas>;
 				default:
 					return null;

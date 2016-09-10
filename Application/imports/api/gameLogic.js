@@ -236,7 +236,10 @@ Meteor.methods({
 				gameLogic.update({}, {$set: bundle});
 			}
 		}
-		
-		
+	},
+	'gameLogic.finalAnswer'(teamNumber,JSON){
+		var bundle = {};
+		bundle["player"+teamNumber+".wager"]=JSON;
+		gameLogic.update({},{$set:bundle});
 	},
 });
