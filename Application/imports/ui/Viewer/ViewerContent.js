@@ -108,6 +108,7 @@ var ViewerContent = React.createClass({
 				});
 				break;
 			case "FJopen":
+				Howler.unload();
 				var FJ = new Howl({
 					src:['./../Jp/jthink.mp3'],
 					autoplay:true,

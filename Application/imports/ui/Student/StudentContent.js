@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
-import './../paper-full';
 
 var buttonStyle={
 	backgroundColor:"#555555",
@@ -198,9 +197,7 @@ var StudentContent = React.createClass({
 				
 				case "FJanswer":
 					Meteor.call('gameLogic.finalAnswer',teamNumber,finalAnswer);
-					return <canvas className="needsclick" style={{border:"2px solid white",flex:1}} id="writingPad">
-					
-					</canvas>;
+					return null;
 				default:
 					return null;
 				
