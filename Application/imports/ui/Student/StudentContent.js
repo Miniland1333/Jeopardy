@@ -20,6 +20,7 @@ var confirmStyle={
 };
 var teamNumber;
 var finalAnswer;
+var setup = true;
 
 var StudentContent = React.createClass({
 	propTypes:{
@@ -160,41 +161,47 @@ var StudentContent = React.createClass({
 				
 				case "FJread":
 				case "FJopen":
-					paper.install(window);
-					var canvas = document.getElementById('writingPad');
-					paper.setup(canvas);
-					
-					var path;
-					var tool = new Tool();
-					var textItem = new PointText({
-						content: 'Write your answer here',
-						point: new Point(20, 30),
-						fillColor: 'white',
-					});
-					tool.onMouseDown = function down (event) {
+					if(setup){
+						setup = false;
+						return <canvas style={{border:"2px solid white",flex:1}} id="writingPad"/>;
+					}else{
+						paper.install(window);
+						var canvas = document.getElementById('writingPad');
+						paper.setup(canvas);
 						
-						// Create a new path and set its stroke color to black:
-						path = new Path({
-							segments: [event.point],
-							strokeColor: 'white',
-							strokeWidth:15,
+						var path;
+						var tool = new Tool();
+						var textItem = new PointText({
+							content: 'Write your answer here',
+							point: new Point(20, 30),
+							fillColor: 'white',
 						});
-					};
-					
-					tool.onMouseDrag=function drag(event) {
-						path.add(event.point);
-					};
-					
-					tool.onMouseUp=function up(event) {
-						var segmentCount = path.segments.length;
-						// When the mouse is released, simplify it:
-						path.simplify(10);
 						finalAnswer = paper.project.exportJSON();
-					};
-					return <canvas className="needsclick" style={{border:"2px solid white",flex:1}} id="writingPad">
-					
-					</canvas>;
-				
+						tool.onMouseDown = function down(event) {
+							
+							// Create a new path and set its stroke color to black:
+							path = new Path({
+								segments: [event.point],
+								strokeColor: 'white',
+								strokeWidth: 10,
+							});
+						};
+						
+						tool.onMouseDrag = function drag(event) {
+							path.add(event.point);
+						};
+						
+						tool.onMouseUp = function up(event) {
+							var segmentCount = path.segments.length;
+							// When the mouse is released, simplify it:
+							path.simplify(10);
+							finalAnswer = paper.project.exportJSON();
+						};
+						return <canvas className="needsclick" style={{border: "2px solid white", flex: 1}}
+						               id="writingPad">
+						
+						</canvas>;
+					}
 				case "FJanswer":
 					Meteor.call('gameLogic.finalAnswer',teamNumber,finalAnswer);
 					return null;

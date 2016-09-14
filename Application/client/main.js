@@ -15,7 +15,7 @@ import Student from '../imports/ui/Student/Student';
 
 var renderRoutes = () => (
     <Router history={browserHistory}>
-        <Route path="/" component={App}/>
+        <Route path="/" component={Student}/>
         
         <Route path="/Viewer" component={Viewer}/>
         <Route path="/Editor" component={Editor}/>

@@ -264,11 +264,12 @@ Meteor.methods({
 				lowestAmount = playerAmount;
 			}
 		});
-		
-		var bundle ={};
-		bundle["FJ.currentPlayer"]=least;
-		bundle["FJ.currentAnswer"]=logic['player'+least]['finalPhoto'];
-		gameLogic.update({},{$set:bundle});
+		if(logic['player'+least]['finalPhoto']!="") {
+			var bundle = {};
+			bundle["FJ.currentPlayer"] = least;
+			bundle["FJ.currentAnswer"] = logic['player' + least]['finalPhoto'];
+			gameLogic.update({}, {$set: bundle});
+		}
 	},
 	'gameLogic.removeFJ'(teamNumber){
 		var bundle ={
