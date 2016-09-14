@@ -52,6 +52,32 @@ var TeacherFooter = React.createClass({
 		}
 		
 	},
+	handleFJCorrect:function () {
+		var player =  this.props.gameLogic["FJ"]["currentPlayer"];
+		var wager = this.props.gameLogic["player"+player]["wager"];
+		Meteor.call('gameLogic.changePoints',player,wager);
+		
+		Meteor.call('gameLogic.removeFJ',player);
+		
+		//check if no more players
+		if(this.props.gameLogic["FJ"]["remaining"].length<=1) {
+			Meteor.call('gameLogic.setState', "complete");
+		}else{
+			Meteor.call('gameLogic.removeFJ',player);
+		}
+	},
+	handleFJIncorrect:function () {
+		var player =  this.props.gameLogic["FJ"]["currentPlayer"];
+		var wager = this.props.gameLogic["player"+player]["wager"];
+		Meteor.call('gameLogic.changePoints',player,-wager);
+		
+		//check if no more players
+		if(this.props.gameLogic["FJ"]["remaining"].length<=1) {
+			Meteor.call('gameLogic.setState', "complete");
+		}else{
+			Meteor.call('gameLogic.removeFJ',player);
+		}
+	},
 	handleStart:function () {
 		if(this.readyToStart()) {
 			var game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
@@ -325,6 +351,50 @@ var TeacherFooter = React.createClass({
 							Meteor.call('gameLogic.setState', 'FJopen');
 						}}
 						>Open Question
+						</div>
+					</div>
+				);
+			case "FJopen":
+				return(
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "#a5a5a5",
+							flex: 1,
+							verticalAlign: "middle"
+						}}>Waiting for answers</div>
+					</div>
+				);
+			case "FJanswer":
+				if(this.props.gameLogic["FJ"]["remaining"]=="empty"){
+					//Initialization code
+					Meteor.call('gameLogic.setupFinalAnswer');
+				}
+				if(this.props.gameLogic["FJ"]["currentPlayer"]==0){
+					//Get next
+					Meteor.call('gameLogic.getFJNext');
+				}
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div onClick={this.handleFJIncorrect} style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "red",
+							color: "white",
+							flex: 1,
+							verticalAlign: "middle"
+						}}>Incorrect
+						</div>
+						<div onClick={this.handleFJCorrect} style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "green",
+							color: "white",
+							flex: 1,
+							verticalAlign: "middle"
+						}}>Correct
 						</div>
 					</div>
 				);

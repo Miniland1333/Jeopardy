@@ -32,25 +32,15 @@ Meteor.methods({
 		var bundle={
 			numPlayers:0,
 			round:0,
-			CurrentQuestionLogic:{open:false,first:0,RungInLate:[],Incorrect:[]},
+			currentQuestionLogic:{open:false,first:0,RungInLate:[],Incorrect:[]},
 			lastWinner:"",
 			state:"",
 			setupPlayers:setupBundle,
 			connections:{},
 			gameName:"Please select a game",
+			FJ:{currentPlayer:0,currentAnswer:"",remaining:"empty"},
+			
 		};
-		/*for(var j=1;j<=6;j++){
-		 bundle["player"+j] = {
-		 teamName:"",
-		 points:0,
-		 connectionId:"",
-		 finalPhoto:"",
-		 status:"",
-		 wager:0,
-		 teamNumber:j,
-		 }
-		 }*/
-		//Finalized at start
 		gameLogic.insert(bundle);
 	},
 	'gameLogic.setupPlayers'(){
@@ -225,10 +215,12 @@ Meteor.methods({
 	},
 	'gameLogic.eliminate'(){
 		var obj = gameLogic.find().fetch()[0];
+		var remainingNumber = obj["numPlayers"];
 		for (var prop in obj) {
 			if (obj.hasOwnProperty(prop)
 				&& prop.includes("player")
 				&& obj[prop]["points"] <= 0) {
+				remainingNumber--;
 				
 				var bundle = {};
 				
@@ -236,10 +228,54 @@ Meteor.methods({
 				gameLogic.update({}, {$set: bundle});
 			}
 		}
+		if(remainingNumber<=0){
+			Meteor.call('gameLogic.setState', "complete");
+		}
 	},
+	
 	'gameLogic.finalAnswer'(teamNumber,JSON){
 		var bundle = {};
-		bundle["player"+teamNumber+".wager"]=JSON;
+		bundle["player"+teamNumber+".finalPhoto"]=JSON;
 		gameLogic.update({},{$set:bundle});
 	},
+	'gameLogic.setupFinalAnswer'(){
+		var obj = gameLogic.find().fetch()[0];
+		var remaining =[];
+		for (var prop in obj) {
+			if (obj.hasOwnProperty(prop)
+				&& prop.includes("player")
+				&& obj[prop]["status"] == "active") {
+				remaining.push(obj[prop]["teamNumber"]);
+			}
+		}
+		var bundle = {};
+		bundle["FJ.remaining"]=remaining;
+		gameLogic.update({},{$set:bundle});
+	},
+	'gameLogic.getFJNext'(){
+		var logic = gameLogic.find().fetch()[0];
+		//Least
+		var least=0;
+		var lowestAmount=999999999;
+		logic["FJ"]["remaining"].forEach(function (h) {
+			var playerAmount = logic['player'+h]['points'];
+			if(playerAmount<lowestAmount){
+				least = h;
+				lowestAmount = playerAmount;
+			}
+		});
+		
+		var bundle ={};
+		bundle["FJ.currentPlayer"]=least;
+		bundle["FJ.currentAnswer"]=logic['player'+least]['finalPhoto'];
+		gameLogic.update({},{$set:bundle});
+	},
+	'gameLogic.removeFJ'(teamNumber){
+		var bundle ={
+			"FJ.currentPlayer":0
+		};
+		gameLogic.update({},{$set:bundle});
+		gameLogic.update({},{$pull:{"FJ.remaining":teamNumber}});
+	},
+	
 });

@@ -120,6 +120,16 @@ var ViewerContent = React.createClass({
 			case "pickQuestion":
 				Howler.unload();
 				break;
+			case "complete":
+				Howler.unload();
+				var loop = new Howl({
+					src:['./../Jp/jloop.mp3'],
+					autoplay:true,
+					loop: true,
+				});
+				loop.on('load',function () {
+					loop.fade(0,1,1000);
+				});
 		}
 	},
 	renderContent:function () {
@@ -252,9 +262,44 @@ var ViewerContent = React.createClass({
 			case "FJread":
 			case "FJopen":
 				return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",}}>{this.props.gameQuestions["currentRound"]['question']}</div>;
+					whiteSpace: "pre-wrap",}}>
+					{this.props.gameQuestions["currentRound"]['question']}
+					<canvas className="needsclick" style={{width:1,height:1}} id="writingPad"/></div>;
 				break;
+			case "FJanswer":
+				paper.install(window);
+				var canvas = document.getElementById('writingPad');
+				paper.setup(canvas);
+				paper.project.clear();
+				if(this.props.gameLogic["FJ"]["currentPlayer"]){
+					console.log(this.props.gameLogic["FJ"]["currentAnswer"]);
+					paper.project.importJSON(this.props.gameLogic["FJ"]["currentAnswer"]);
+				}
+				return <canvas style={{border:"2px solid white",flex:1}} id="writingPad"/>;
+			case "complete":
+				var logic = this.props.gameLogic;
+				//Greatest
+				var greatest=0;
+				var highestAmount=-999999999;
+				for(var h=1;h<=logic['numPlayers'];h++){
+					var playerAmount = logic['player'+h]['points'];
+					if(playerAmount>highestAmount){
+						greatest = h;
+						highestAmount = playerAmount;
+					}
+				}
+				if(greatest==0){
+					//All Players Eliminated
+					return <div className="flex-container" style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+						whiteSpace: "pre-wrap",}}>All Players have been eliminated</div>;
+				}else {
+					//Display complete
+					return <div className="flex-container" style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+						whiteSpace: "pre-wrap",}}>Player{greatest} is the winner with a score of ${highestAmount}!</div>;
+				}
+
 		}
+		
 		
 	},
 	render:function () {

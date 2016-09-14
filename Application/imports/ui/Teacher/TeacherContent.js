@@ -111,11 +111,11 @@ var TeacherContent = React.createClass({
 			    break;
 		    case "FJread":
 		    case "FJopen":
+		    case "FJanswer":
 			    return(
 				    <div className="flex-container" style={{flexDirection:"column",flex:1}}>
 					    <div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
 					    <div style={answerStyle}  >{this.props.gameQuestions["currentRound"]["answer"]}</div>
-				
 				    </div>);
 	    }
     },
