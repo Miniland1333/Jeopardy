@@ -57,7 +57,7 @@ var TeacherContent = React.createClass({
 									    <div className="Header" key={key1 + "H"} style={{alignItems:"center", justifyContent:"center",fontSize:"2vmin",}}>{cell}</div>
 									    :
 									    [];
-								
+
 							    })}
 						    </div>
 					    )
@@ -75,7 +75,7 @@ var TeacherContent = React.createClass({
 									    <div className="Header" key={key1 + "H"} style={{alignItems:"center", justifyContent:"center",fontSize:"2vmin",}}>{cell}</div>
 									    :
 									    <Question key={key1 + key2} cell={cell} round={round} key1={key1} key2={key2}/>;
-								
+
 							    })}
 						    </div>
 					    )
@@ -103,24 +103,35 @@ var TeacherContent = React.createClass({
 			    <div className="flex-container" style={{flexDirection:"column",flex:1}}>
 				    <div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 				    <div style={answerStyle}  >{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
-				    
+
 			    </div>);
 		    case "FJwager":
 			    return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-				    whiteSpace: "pre-wrap",}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
+				    whiteSpace: "pre-wrap",textTransform: "uppercase"}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
 			    break;
 		    case "FJread":
 		    case "FJopen":
 		    case "FJanswer":
+			    var player =  this.props.gameLogic["FJ"]["currentPlayer"];
+			    var wager;
+			    if(player!=0){
+				    wager = "Wager: "+this.props.gameLogic["player" + player]["wager"];
+			    }else{
+				    wager ="";
+			    }
 			    return(
 				    <div className="flex-container" style={{flexDirection:"column",flex:1}}>
 					    <div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
 					    <div style={answerStyle}  >{this.props.gameQuestions["currentRound"]["answer"]}</div>
+					    <div style={{position:"absolute",top:10,right:10,
+						    fontSize: "3vw",
+						    minWidth: "10vw",
+					    }}>{wager}</div>
 				    </div>);
 	    }
     },
     render:function () {
-        
+
         return(
             <div className="flex-container" style={{flex:1}}>
                 {this.renderContent()}

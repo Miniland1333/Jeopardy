@@ -139,6 +139,8 @@ var ViewerContent = React.createClass({
 		this.handleSound();
 		switch (this.props.gameLogic["state"]) {
 			case "":
+				return <div className="flex-container" style={{fontSize:"10vmin",flex:1,alignItems:"center",justifyContent:"center",
+					whiteSpace: "pre-wrap",}}>Press F11 for fullscreen</div>;
 			case "intro":
 			case "categoryIntro":
 				clearInterval(timer);
@@ -256,11 +258,11 @@ var ViewerContent = React.createClass({
 			
 			case "FJwager":
 				return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
+					whiteSpace: "pre-wrap",textTransform: "uppercase"}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
 				break;
 			case "FJread":
 			case "FJopen":
-				return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+				return <div style={{fontSize:"10vmin",flex:1,alignItems:"center",justifyContent:"center",
 					whiteSpace: "pre-wrap",}}>
 					{this.props.gameQuestions["currentRound"]['question']}
 					<canvas className="needsclick" style={{width:1,height:1}} id="writingPad"/></div>;
@@ -268,7 +270,9 @@ var ViewerContent = React.createClass({
 			case "FJanswer":
 				if(setup){
 					setup = false;
-					return <canvas style={{border:"2px solid white",flex:1}} id="writingPad"/>;
+					return <div className="flex-container" style={{flex:1,flexDirection:"column"}}>
+						<canvas style={{border:"2px solid white",flex:1}} id="writingPad"/>;
+					</div>
 					
 				}else {
 					paper.install(window);
@@ -278,9 +282,24 @@ var ViewerContent = React.createClass({
 					if (this.props.gameLogic["FJ"]["currentPlayer"] != 0) {
 						paper.project.importJSON(this.props.gameLogic["FJ"]["currentAnswer"]);
 					}
-					return <canvas style={{border: "2px solid white", flex: 1}} id="writingPad"/>;
+					var player =  this.props.gameLogic["FJ"]["currentPlayer"];
+					var wager;
+					if(player!=0){
+						wager = this.props.gameLogic["player" + player]["wager"];
+					}else{
+						wager ="";
+					}
+					return (
+						<div className="flex-container" style={{flex:1,flexDirection:"column"}}>
+							<canvas style={{border: "2px solid white", flex: 1}} id="writingPad"/>
+							<div style={{position:"absolute",top:10,right:10,
+								fontSize: "3vw",
+								minWidth: "10vw",
+							}}>Wager:{" "+wager}</div>
+						</div>
+					);
 				}
-				case "complete":
+			case "complete":
 				var logic = this.props.gameLogic;
 				//Greatest
 				var greatest=0;
@@ -301,7 +320,7 @@ var ViewerContent = React.createClass({
 					return <div className="flex-container" style={{fontSize:"18vmin",flex:1,alignItems:"center",justifyContent:"center",
 						whiteSpace: "pre-wrap",}}>Player{greatest} is the winner with a score of ${highestAmount}!</div>;
 				}
-
+			
 		}
 		
 		
