@@ -285,7 +285,7 @@ var ViewerContent = React.createClass({
 					var player =  this.props.gameLogic["FJ"]["currentPlayer"];
 					var wager;
 					if(player!=0){
-						wager = this.props.gameLogic["player" + player]["wager"];
+						wager = "Wager: "+this.props.gameLogic["player" + player]["wager"];
 					}else{
 						wager ="";
 					}
@@ -295,7 +295,7 @@ var ViewerContent = React.createClass({
 							<div style={{position:"absolute",top:10,right:10,
 								fontSize: "3vw",
 								minWidth: "10vw",
-							}}>Wager:{" "+wager}</div>
+							}}>{wager}</div>
 						</div>
 					);
 				}
