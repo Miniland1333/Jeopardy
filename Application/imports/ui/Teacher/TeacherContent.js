@@ -7,14 +7,14 @@ import Question from "./Question";
 
 
 var questionStyle={
-	fontSize:"10vmin",
+	fontSize:"6vmin",
 	flex:1,
 	alignItems:"center",
 	whiteSpace: "pre-wrap",
 	justifyContent:"center",
 };
 var answerStyle={
-	fontSize:"8vmin",
+	fontSize:"4vmin",
 };
 
 var TeacherContent = React.createClass({

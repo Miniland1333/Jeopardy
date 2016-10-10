@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +29,8 @@
           <file leaf-file-name="ViewerContent.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="297" column="44" selection-start-line="297" selection-start-column="44" selection-end-line="297" selection-end-column="44" />
+                <state relative-caret-position="204">
+                  <caret line="308" column="33" selection-start-line="308" selection-start-column="33" selection-end-line="308" selection-end-column="33" />
                   <folding>
                     <element signature="e#562#597#0" expanded="false" />
                     <element signature="e#664#1467#0" expanded="false" />
@@ -53,8 +52,8 @@
           <file leaf-file-name="TeacherContent.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="471">
-                  <caret line="128" column="33" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="33" />
+                <state relative-caret-position="375">
+                  <caret line="130" column="9" selection-start-line="130" selection-start-column="9" selection-end-line="130" selection-end-column="9" />
                   <folding />
                 </state>
               </provider>
@@ -246,7 +245,6 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -455,18 +453,19 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../testbed" />
     <property name="js.meteor.project" value="true" />
     <property name="js.meteor.library.was.enabled" value="true" />
     <property name="HbShouldOpenHtmlAsHb" value="enabled" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -1068,14 +1067,10 @@
       <workItem from="1475383913872" duration="166000" />
       <workItem from="1475566607720" duration="37000" />
       <workItem from="1475566661536" duration="1929000" />
-      <workItem from="1475732979500" duration="371000" />
-    </task>
-    <task id="LOCAL-00014" summary="Finished Import/Export functions">
-      <created>1472612165231</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1472612165231</updated>
+      <workItem from="1475732979500" duration="570000" />
+      <workItem from="1475815236384" duration="833000" />
+      <workItem from="1475818288881" duration="245000" />
+      <workItem from="1475818752035" duration="463000" />
     </task>
     <task id="LOCAL-00015" summary="Turned Questions and Headers into React Components">
       <created>1472619207717</created>
@@ -1413,11 +1408,18 @@
       <option name="project" value="LOCAL" />
       <updated>1475568572850</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Logic fix for ViewerContent Wager display">
+      <created>1475733374974</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1475733374975</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="368906000" />
+    <option name="totallyTimeSpent" value="370646000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -1430,7 +1432,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1474,7 +1476,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Exclusivity Added in for Reconnect&#10;&#10;&#10;Beginning Game Content and Howler.js" />
     <MESSAGE value="Added in Howler.js round intros" />
     <MESSAGE value="Added in DailyDouble picking as well as destruction of sounds" />
     <MESSAGE value="Question tables added for Teacher and Viewer&#10;&#10;Need to redo sound as well as move on to answering questions" />
@@ -1499,7 +1500,8 @@
     <MESSAGE value="Finished Final Jeopardy" />
     <MESSAGE value="Final Bug fixes" />
     <MESSAGE value="Added in Wager Display for FJ" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added in Wager Display for FJ" />
+    <MESSAGE value="Logic fix for ViewerContent Wager display" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logic fix for ViewerContent Wager display" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1824,16 +1826,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="128" column="33" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="33" />
+        <state relative-caret-position="375">
+          <caret line="130" column="9" selection-start-line="130" selection-start-column="9" selection-end-line="130" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="297" column="44" selection-start-line="297" selection-start-column="44" selection-end-line="297" selection-end-column="44" />
+        <state relative-caret-position="204">
+          <caret line="308" column="33" selection-start-line="308" selection-start-column="33" selection-end-line="308" selection-end-column="33" />
           <folding>
             <element signature="e#562#597#0" expanded="false" />
             <element signature="e#664#1467#0" expanded="false" />
