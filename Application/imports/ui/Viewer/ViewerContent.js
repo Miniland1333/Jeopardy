@@ -257,8 +257,15 @@ var ViewerContent = React.createClass({
 					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 					</div>);
-			case "read":
+			
 			case "next":
+				clearInterval(timer);
+				this.lastState=this.props.gameLogic["state"];
+				return(
+					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+					</div>);
+			case "read":
 			case "DDread":
 				this.lastState=this.props.gameLogic["state"];
 				return(

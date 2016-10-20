@@ -41,7 +41,6 @@ var CountDown = React.createClass({
 	render:function () {
 		switch (this.props.gameLogic["state"]) {
 			case "open":
-			case "next":
 				return <div className="flex-container" style={{background: "transparent"}}>
 					<div className="five"  style={this.props.time>=5?greenItemStyle:transparentItemStyle}/>
 					<div className="four"  style={this.props.time>=4?greenItemStyle:transparentItemStyle}/>
@@ -69,6 +68,7 @@ var CountDown = React.createClass({
 				</div>;
 			case "read":
 			case "DDread":
+			case "next":
 				return <div style={{height: 15,}}/>;
 			default:
 				return null;
