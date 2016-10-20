@@ -13,6 +13,17 @@ var questionStyle={
 	justifyContent:"center",
 	whiteSpace: "pre-wrap",
 };
+var inputStyle = {
+	fontSize: "10vmin",
+	flex: 1,
+	backgroundColor:"transparent",
+	color:"white",
+	alignItems: "center",
+	justifyContent: "center",
+	textAlign:"center",
+	whiteSpace: "pre-wrap",
+	border:0,
+};
 
 var timer;
 var setup = true;
@@ -139,8 +150,7 @@ var ViewerContent = React.createClass({
 		this.handleSound();
 		switch (this.props.gameLogic["state"]) {
 			case "":
-				return <div className="flex-container" style={{fontSize:"10vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",}}>Press F11 for fullscreen</div>;
+				return <div className="flex-container" style={inputStyle}><input style ={inputStyle} defaultValue="Press F11 for fullscreen"/></div>;
 			case "intro":
 			case "categoryIntro":
 				clearInterval(timer);

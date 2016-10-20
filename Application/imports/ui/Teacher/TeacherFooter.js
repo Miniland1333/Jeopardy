@@ -79,7 +79,7 @@ var TeacherFooter = React.createClass({
 		}
 	},
 	handleStart:function () {
-		if(this.readyToStart()) {
+		if(this.readyToStart()=="ready") {
 			var game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
 			Meteor.call('gameQuestions.load',game);
 			Meteor.call('gameLogic.setupPlayers');
@@ -87,7 +87,68 @@ var TeacherFooter = React.createClass({
 		}
 	},
 	readyToStart:function () {
-		return this.props.gameLogic["gameName"]!="Please select a game"&&this.playerCount() >= 2;
+		if(this.playerCount() < 2){
+			return "morePlayers";
+		}else if(this.props.gameLogic["gameName"]!="Please select a game"){
+			if(this.isValid(this.props.gameLogic["gameName"])){
+				return "ready";
+			}else{
+				return "invalidGame";
+			}
+		}else{
+			return "gameSelection";
+		}
+	},
+	isValid:function(gameName){
+		//Todo add in game checking functionality for entire game
+		var game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
+		if(game === undefined){
+			Meteor.call('gameLogic.setGame',"Please select a game");
+			return false;
+		}
+		var tempRound;
+		
+		//SJ & DJ
+		for (var h=1;h<=2;h++) {
+			if(h==1){
+				tempRound=game.Jeopardy;
+			}else{
+				tempRound=game.DoubleJeopardy;
+			}
+			var catCount = 0;
+			for (var i = 1; i <= 6; i++) {
+				//code to remove category name if questions are empty
+				var bundle = {};
+				var currentCategory = tempRound["category" + i];
+				var empty = true;
+				for (var q = 1; q <= 5; q++) {
+					if (currentCategory["question" + q]["question"].trim() != "") {
+						empty = false;
+					}
+				}
+				if (empty) {
+					tempRound["category" + i]["categoryName"] = "";
+				}
+				
+				//only categories with a name are counted
+				currentCategory = tempRound["category" + i];
+				var catName = currentCategory["categoryName"];
+				if (catName.trim() != "") {
+					catCount++;
+				}
+			}
+			if (catCount==0){
+				return false;
+			}
+		}
+		//FJ
+		tempRound=game.FinalJeopardy;
+		var hasCategory = game.FinalJeopardy.category;
+		var hasQuestion = game.FinalJeopardy.question;
+		
+		return hasCategory && hasQuestion;
+		
+		
 	},
 	playerCount:function () {
 		var count=0;
@@ -102,9 +163,9 @@ var TeacherFooter = React.createClass({
 	renderContent:function () {
 		var round = this.props.gameLogic["round"];
 		if(round==0) {
-			return (
-				<div className="flex-container" style={{flex: 1}}>{
-					this.readyToStart() ?
+			switch (this.readyToStart()){
+				case "ready":
+					return (
 						<div style={{
 							padding: 0,
 							border: "none",
@@ -113,31 +174,42 @@ var TeacherFooter = React.createClass({
 							flex: 1,
 							verticalAlign: "middle",
 						}} onClick={this.handleStart}
-						>Start {this.playerCount()} player Game</div>
-						:
-						this.playerCount() >= 2 ?
-							<div style={{
-								padding: 0,
-								border: "none",
-								backgroundColor: "#eaeaea",
-								color: "#a5a5a5",
-								flex: 1,
-								verticalAlign: "middle"
-							}}>Waiting for Game selection</div>
-							:
-							<div style={{
-								padding: 0,
-								border: "none",
-								backgroundColor: "#eaeaea",
-								color: "#a5a5a5",
-								flex: 1,
-								verticalAlign: "middle"
-							}}>Waiting for Players</div>
-				}</div>
-			);
-		}else if(round==3){
+						>Start {this.playerCount()} player Game</div>);
+				case "morePlayers":
+					return(
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "#a5a5a5",
+							flex: 1,
+							verticalAlign: "middle"
+						}}>Waiting for Players</div>);
+				
+				case "gameSelection":
+					return (
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "#a5a5a5",
+							flex: 1,
+							verticalAlign: "middle"
+						}}>Waiting for Game selection</div>);
+				case "invalidGame":
+					return (
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "red",
+							color: "white",
+							flex: 1,
+							verticalAlign: "middle"
+						}}>Pick a Valid Game</div>);
+			}
 			
 		}
+		
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				if(round==1){
