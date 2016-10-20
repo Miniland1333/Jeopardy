@@ -41,12 +41,9 @@ var TeacherFooter = React.createClass({
 		
 		Meteor.call('gameLogic.changePoints',first,-value);
 		Meteor.call('gameLogic.addIncorrect', first);
-		
 		//Adjust for single play or out of players
-		if(this.props.gameQuestions["remainingColumns"]==0) {
-			Meteor.call('gameLogic.advance');
-		}else if(this.props.gameLogic["state"]=="DDanswer"||this.props.gameQuestions["currentQuestion"]["isSinglePlay"]||this.props.gameLogic["currentQuestionLogic"]["Incorrect"].length==this.props.gameLogic["numPlayers"]) {
-			Meteor.call('gameLogic.setState',"pickQuestion");
+		if(this.props.gameLogic["state"]=="DDanswer"||this.props.gameQuestions["currentQuestion"]["isSinglePlay"]||this.props.gameLogic["currentQuestionLogic"]["Incorrect"].length+1==this.props.gameLogic["numPlayers"]) {
+			Meteor.call('gameLogic.setState', "next");
 		}else{
 			Meteor.call('gameLogic.setState', "open");
 		}
