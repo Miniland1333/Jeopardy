@@ -26,6 +26,8 @@ var inputStyle = {
 };
 
 var timer;
+var maxTimeResponse=5;
+var maxTimeAnswer=-5;
 var setup = true;
 
 var ViewerContent = React.createClass({
@@ -211,7 +213,7 @@ var ViewerContent = React.createClass({
 				if(this.lastState!="open") {
 					this.lastState="open";
 					clearInterval(timer);
-					this.time = 5;
+					this.time = maxTimeResponse;
 					var time = new Howl({
 						src: ['./../Jp/jtime.mp3'],
 					});
@@ -237,7 +239,7 @@ var ViewerContent = React.createClass({
 				if(this.lastState!="answer"&&this.lastState!="DDanswer") {
 					this.lastState=this.props.gameLogic["state"];
 					clearInterval(timer);
-					this.time = 5;
+					this.time = maxTimeAnswer;
 					var time1 = new Howl({
 						src: ['./../Jp/jtime.mp3'],
 					});
