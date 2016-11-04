@@ -12,6 +12,7 @@ var questionStyle={
 	alignItems:"center",
 	justifyContent:"center",
 	whiteSpace: "pre-wrap",
+	textTransform: "uppercase",
 };
 var inputStyle = {
 	fontSize: "10vmin",
@@ -27,7 +28,7 @@ var inputStyle = {
 
 var timer;
 var maxTimeResponse=5;
-var maxTimeAnswer=-5;
+var maxTimeAnswer=5;
 var setup = true;
 
 var ViewerContent = React.createClass({
@@ -205,10 +206,16 @@ var ViewerContent = React.createClass({
 					})}
 				</div>;
 			case "DailyDouble":
-			case "wager":
 				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
 					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
-			
+			case "wager":
+				var DDwager = this.props.gameLogic["player"+this.props.gameLogic["lastWinner"]]["wager"];
+				return [<div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>,
+					<div style={{
+						fontSize: "3vw",
+						minWidth: "10vw",
+					}}>{"Team Wager: "+DDwager}</div>];
 			case "open":
 				if(this.lastState!="open") {
 					this.lastState="open";
@@ -281,8 +288,7 @@ var ViewerContent = React.createClass({
 				break;
 			case "FJread":
 			case "FJopen":
-				return <div style={{fontSize:"10vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",}}>
+				return <div style={questionStyle}>
 					{this.props.gameQuestions["currentRound"]['question']}
 					<canvas className="needsclick" style={{width:1,height:1}} id="writingPad"/></div>;
 				break;
@@ -336,8 +342,8 @@ var ViewerContent = React.createClass({
 						whiteSpace: "pre-wrap",}}>All Players have been eliminated</div>;
 				}else {
 					//Display complete
-					return <div className="flex-container" style={{fontSize:"18vmin",flex:1,alignItems:"center",justifyContent:"center",
-						whiteSpace: "pre-wrap",}}>Player{greatest} is the winner with a score of ${highestAmount}!</div>;
+					return <div className="flex-container" style={{fontSize:"10vmin",flex:1,alignItems:"center",justifyContent:"center",
+						whiteSpace: "pre-wrap",}}>{logic['player'+greatest]['teamName']} is the winner with a score of ${highestAmount}!</div>;
 				}
 			
 		}

@@ -12,6 +12,7 @@ var questionStyle={
 	alignItems:"center",
 	whiteSpace: "pre-wrap",
 	justifyContent:"center",
+	textTransform: "uppercase",
 };
 var answerStyle={
 	fontSize:"4vmin",
@@ -82,9 +83,16 @@ var TeacherContent = React.createClass({
 				    })}
 			    </div>;
 		    case "DailyDouble":
-		    case "wager":
 			    return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
 				    whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
+		    case "wager":
+			    var DDwager = this.props.gameLogic["player"+this.props.gameLogic["lastWinner"]]["wager"];
+			    return [<div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+				    whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>,
+				    <div style={{
+					    fontSize: "3vw",
+					    minWidth: "10vw",
+				    }}>{"Team Wager: "+DDwager}</div>];
 		    case "questionDecide":
 		    	Meteor.call('gameLogic.resetCurrentQuestionLogic');
 			    if(this.props.gameQuestions["currentQuestion"]["isDailyDouble"]){
@@ -133,7 +141,7 @@ var TeacherContent = React.createClass({
     render:function () {
 
         return(
-            <div className="flex-container" style={{flex:1}}>
+            <div className="flex-container" style={{flexDirection:"column",flex:1}}>
                 {this.renderContent()}
             </div>
         );
