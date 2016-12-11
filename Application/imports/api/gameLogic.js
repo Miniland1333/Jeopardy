@@ -86,9 +86,11 @@ Meteor.methods({
 		var round = gameLogic.find().fetch()[0]["round"];
 		if(teamNumber==0){
 			//Use connectionId to find team number
-			teamNumber = gameLogic.find().fetch()[0]["connections"][connectionId];
-			if(teamNumber==undefined){
-				teamNumber=0;
+			if(connectionId!=undefined) {
+				teamNumber = gameLogic.find().fetch()[0]["connections"][connectionId];
+				if (teamNumber == undefined) {
+					teamNumber = 0;
+				}
 			}
 		}
 		
@@ -146,7 +148,7 @@ Meteor.methods({
 			var temp = {};
 			temp["connections."+formerId]="";
 			gameLogic.update({},{$unset:temp});
-		}else{
+		}else if (connectionId){
 			var bundle2 = {};
 			bundle2["connections."+connectionId] = teamNumber;
 			gameLogic.update({}, {$set: bundle2}, {upsert: true});
