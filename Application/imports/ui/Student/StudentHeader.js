@@ -36,7 +36,7 @@ var StudentHeader = React.createClass({
 	render:function () {
 		
 		return (
-			<div className="flex-container" id="border">
+			<div className="flex-container" id="border" >
 				{this.renderInput()}
 			</div>
 		);
