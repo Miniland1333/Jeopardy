@@ -114,9 +114,13 @@ var TeacherContent = React.createClass({
 
 			    </div>);
 		    case "FJwager":
-			    return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-				    whiteSpace: "pre-wrap",textTransform: "uppercase"}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
-			    break;
+			    return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+			        <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
+				    whiteSpace: "pre-wrap",textTransform: "uppercase"}}>{this.props.gameQuestions["currentRound"]['category']}</div>
+				    <div style={answerStyle}>Wait for Players to enter their Wagers</div>
+			
+			    </div>;
+		    
 		    case "FJread":
 		    case "FJopen":
 		    case "FJanswer":

@@ -100,16 +100,6 @@ var ViewerContent = React.createClass({
 							Meteor.call('gameLogic.setState', 'categories');
 						});
 						break;
-					case 3:
-						Howler.unload();
-						var FJcat = new Howl({
-							src:['./../Jp/jfinalj.mp3'],
-							autoplay:true,
-						});
-						FJcat.on('end', function () {
-							Meteor.call('gameLogic.setState', 'FJwager');
-						});
-						break;
 				}
 				break;
 			case "DailyDouble":
@@ -132,6 +122,13 @@ var ViewerContent = React.createClass({
 					Meteor.call('gameLogic.setState', 'FJanswer');
 				});
 				break;
+			case "FJread":
+                Howler.unload();
+                var FJcat = new Howl({
+                    src:['./../Jp/jfinalj.mp3'],
+                    autoplay:true,
+                });
+                break;
 			case "pickQuestion":
 			case "":
 				Howler.unload();

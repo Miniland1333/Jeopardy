@@ -389,23 +389,55 @@ var TeacherFooter = React.createClass({
 					</div>
 				);
 			
-			case "FJwager":
-				return (
-					<div className="flex-container" style={{flex: 1}}>
-						<div style={{
-							padding: 0,
-							border: "none",
-							backgroundColor: "#eaeaea",
-							color: "black",
-							flex: 1,
-							verticalAlign: "middle",
-						}} onClick={function () {
-							Meteor.call('gameLogic.setState', 'FJread');
-						}}
-						>Reveal Question
+			case "categoryIntro":
+				if(round==3) {
+					return (
+						<div className="flex-container" style={{flex: 1}}>
+							<div style={{
+								padding: 0,
+								border: "none",
+								backgroundColor: "#eaeaea",
+								color: "black",
+								flex: 1,
+								verticalAlign: "middle",
+							}} onClick={function () {
+								Meteor.call('gameLogic.setState', 'FJwager');
+							}}
+							>Reveal Category
+							</div>
 						</div>
-					</div>
-				);
+					);
+				}else{
+					return [];
+				}
+			case "FJwager":
+				if(this.props.gameLogic["currentQuestionLogic"]["RungInLate"].length>0) {
+					return (
+						<div className="flex-container" style={{flex: 1}}>
+							<div style={{
+								padding: 0,
+								border: "none",
+								backgroundColor: "#eaeaea",
+								color: "black",
+								flex: 1,
+								verticalAlign: "middle",
+							}} onClick={function () {
+								Meteor.call('gameLogic.setState', 'FJread');
+							}}
+							>Reveal Question
+							</div>
+						</div>
+					);
+				}else{
+					return <div style={{
+						padding: 0,
+						border: "none",
+						backgroundColor: "#eaeaea",
+						color: "#a5a5a5",
+						flex: 1,
+						verticalAlign: "middle"
+					}}>Waiting for Wagers</div>;
+				}
 			case "FJread":
 				return (
 					<div className="flex-container" style={{flex: 1}}>
