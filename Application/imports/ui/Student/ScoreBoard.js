@@ -7,8 +7,10 @@ var inputStyle = {
 	background:"transparent",
 	border:"none",
 	color:"white",
-	fontSize:"14px",
+	fontSize:"1vw",
 	flex:1,
+	overFlow:"hide",
+	minWidth: "10vw",
 };
 
 var ScoreBoard = React.createClass({
@@ -87,7 +89,7 @@ var ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid #00e800",
-			padding: "10px",
+			padding: "10px 1vw",
 			borderRadius: 8,
 		};
 		
@@ -96,7 +98,7 @@ var ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid orange",
-			padding: "10px",
+			padding: "10px 1vw",
 			borderRadius: 8,
 		};
 		
@@ -105,7 +107,7 @@ var ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid #ff3f3f",
-			padding: "10px",
+			padding: "10px 1vw",
 			borderRadius: 8,
 		};
 		
@@ -114,7 +116,7 @@ var ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid #060CE9",
-			padding: "10px",
+			padding: "10px 1vw",
 			borderRadius: 8,
 		};
 		
@@ -189,7 +191,7 @@ var ScoreBoard = React.createClass({
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{
-				     padding: "10px",
+				     padding: "10px 1vw",
 				     border: "4px solid white",
 				     flexDirection: "column",
 				     flex: 1,

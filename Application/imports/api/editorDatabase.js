@@ -75,7 +75,7 @@ Meteor.methods({
 			bundle[round + "." + identifier + ".categoryName"] = name;
 			editorDatabase.update({}, {$set: bundle});
 		}
-		console.log(editorDatabase.find().fetch());
+		//console.log(editorDatabase.find().fetch());
 		
 	},
 	'editorDatabase.updateQuestion'(round,identifier1,identifier2,question,answer,isSinglePlay){

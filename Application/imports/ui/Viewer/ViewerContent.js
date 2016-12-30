@@ -148,6 +148,8 @@ var ViewerContent = React.createClass({
 			Meteor.call('gameLogic.setState',"");
 		}
 		this.handleSound();
+		
+		//todo add logic for alternate question logic
 		switch (this.props.gameLogic["state"]) {
 			case "":
 				return <div className="flex-container" style={inputStyle}><input style ={inputStyle} defaultValue="Press F11 for fullscreen"/></div>;

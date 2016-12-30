@@ -27,7 +27,7 @@ Meteor.methods({
             DoubleJeopardy:game.DoubleJeopardy,
             FinalJeopardy:game.FinalJeopardy
         });
-        //console.log(gameDatabase.find().fetch())
+        console.log("Saved "+game.name+"!");
     },
     'gameDatabase.remove'(gameName){
         //saves game from editorDatabase

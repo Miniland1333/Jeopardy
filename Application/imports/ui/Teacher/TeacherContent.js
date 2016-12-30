@@ -30,6 +30,7 @@ var TeacherContent = React.createClass({
 			    <GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic}/>
 		    </div>;
 	    }
+	    //todo add logic for alternate question logic
 	    switch (this.props.gameLogic["state"]) {
 		    case "":
 		    case "intro":

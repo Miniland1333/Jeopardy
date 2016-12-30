@@ -55,6 +55,7 @@ var Question = React.createClass({
         return(
             <div style={divStyle}>
                 <div className="Rtable-cell" onClick={this.handleQuestionClick}>
+	                {/*todo add logic for alternate question logic*/}
                     <p style={{margin:0}} className="question">{this.props.cell.question}</p>
                     <h6 style={{margin:0}}>{this.props.cell.isSinglePlay?"SINGLE PLAY":""}</h6>
                     <p style={{margin:0}}>{this.props.cell.answer}</p>
