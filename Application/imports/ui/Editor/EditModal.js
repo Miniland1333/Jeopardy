@@ -126,9 +126,9 @@ const verticalFlexStyle = {
 export const EditModal = React.createClass({
 	getInitialState: function () {
 		return {
-			isSinglePlay: false,
+			isSinglePlay: this.props.isSinglePlay,
 			questionType:"text",
-			questionText: this.props.question,
+			questionText: typeof this.props.question==="string"?this.props.question:"",
 		}
 	},
 	getDefaultProps: function () {
@@ -158,6 +158,17 @@ export const EditModal = React.createClass({
 	},
 	componentDidMount: function () {
 		$("#myModal").fadeIn();
+		//todo allow question loading
+		if(typeof this.props.question==="string") {
+			
+		}else{
+			if (this.props.question.type=="image"){
+				this.setState({questionType: "image"});
+				this.setState({questionText: this.props.question.text});
+			}else{
+				this.setState({questionType: "video"});
+			}
+		}
 	},
 	handleAddImage:function () {
 		this.setState({questionText: $("#question").val()});
@@ -178,6 +189,57 @@ export const EditModal = React.createClass({
 			};
 			fileReader.readAsDataURL(fileToLoad);
 			$("#fileToLoad").value="";
+		}
+	},
+	parseVID:function (videoURL) {
+		let videoID = videoURL.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/);
+		if(videoID != null) {
+			console.log("video id = ",videoID[2]);
+			
+			return videoID[2];
+		} else {
+			console.log("Invalid URL");
+			return null;
+		}
+	},
+	handleTime:function () {
+		let VID = $("#VID").val();
+		let start = $("#Start").val();
+		let end = $("#End").val();
+		const extraTime = function () {
+			let extra = "";
+			let min=0;
+			if(start!=""){
+				if(start.includes(":")){
+					let tempArray = start.split(":");
+					start = parseInt(tempArray[0]*60,10)+parseInt(tempArray[1],10);
+				}
+				min = start;
+				extra+="&start="+start;
+			}
+			if (end != "" && end > min){
+				if(end.includes(":")) {
+					let tempArray = end.split(":");
+					end = tempArray[0] * 60 + tempArray[1];
+				}
+				extra+="&end="+end;
+			}
+			return extra;
+		};
+		if(VID!=null){
+			videoURL = "https://www.youtube.com/embed/"+VID+"?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0"+extraTime();
+			
+			$("#Embed").val(videoURL);
+			$("#videoView").attr("src",videoURL);}
+	},
+	handleSeconds:function (JQuery) {
+		let working = JQuery.val();
+		if(!working.includes(":")&&working!=""){
+			if(working%60<10){
+				JQuery.val(Math.floor(working / 60) + ":0" + working % 60);
+			}else {
+				JQuery.val(Math.floor(working / 60) + ":" + working % 60);
+			}
 		}
 	},
 	handleRemoveImage:function () {
@@ -202,6 +264,7 @@ export const EditModal = React.createClass({
 		} else {
 			const question = $("#question");
 			const answer = $("#answer");
+			let bundle;
 			switch (this.state.questionType){
 				case "text":
 					Meteor.call('editorDatabase.updateQuestion',
@@ -213,20 +276,33 @@ export const EditModal = React.createClass({
 						this.state.isSinglePlay);
 					break;
 				case "image":
+					bundle = {
+						type:"image",
+						image:$("#imageView").attr("src"),
+						text:question.val(),
+					};
 					Meteor.call('editorDatabase.updateQuestion',
 						this.props.roundName,
 						this.props.key1,
 						this.props.key2,
-						null, //Needs full package
+						bundle,
 						answer.val(),
 						this.state.isSinglePlay);
 					break;
 				case "video":
+					
+					bundle ={
+						type:"video",
+						URL:$("#Embed").val(),
+						VID:$("#VID").val(),
+						start:$("#Start").val(),
+						end:$("#End").val(),
+					};
 					Meteor.call('editorDatabase.updateQuestion',
 						this.props.roundName,
 						this.props.key1,
 						this.props.key2,
-						null, //Needs full package
+						bundle,
 						answer.val(),
 						this.state.isSinglePlay);
 					break;
@@ -249,20 +325,61 @@ export const EditModal = React.createClass({
 			case "image":
 				questionContent = <div className="flex-container">
 					<div className="flex-container" style={{maxWidth:200, maxHeight:120, background: "#f2f3ea", flexDirection:"column",}}>
-						<div className="flex-container" style={{maxHeight:100,maxWidth:200,justifyContent:"center"}}>
-							<img id="imageView" style={{maxHeight:100,maxWidth:200,}} />
+						<div className="flex-container" style={{maxHeight:100,maxWidth:200,justifyContent:"center",flex:1}}>
+							<img id="imageView" src={this.props.question.image} style={{maxHeight:100,maxWidth:200,}} />
 						</div>
-						<input id="imageURL" placeholder="http://" style={{maxHeight:20,}}
+						<input id="imageURL" placeholder="http://" defaultValue={this.props.question.image} style={{maxHeight:20,}}
 						       onChange={
-						       	()=>{$("#imageView").attr("src",$("#imageURL").val());
-						       	this.setState({questionText: $("#question").val()});}}/>
-						<input type="file" id="imageToLoad" accept="image/*" onChange={this.handleFile} style={{position:"absolute", width:0,height:0}}/>
+							       ()=>{$("#imageView").attr("src",$("#imageURL").val());
+								       this.setState({questionText: $("#question").val()});}}/>
+						<input type="file" id="imageToLoad" accept="image/*" onChange={this.handleFile} style={{position:"absolute", display:"none", width:0,height:0}}/>
 					</div>
 					<textarea spellCheck="true" id="question" defaultValue={this.state.questionText}
 					          placeholder="Question" style={textAreaStyle}/>
 				</div>;
 				break;
+			//https://www.youtube.com/embed/j-_F5xSjrdY?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0
 			case "video":
+				questionContent = <div className="flex-container" style={{maxWidth:"100%",maxHeight:120, background: "#f2f3ea",flexGrow:1}}>
+					<iframe id="videoView" width="213" height="120" src={this.props.question.URL} style={{flex:0, border:"none", background:"black"}}></iframe>
+					<div className="flex-container" style={{flex:1, flexDirection:"column"}}>
+						<div className="flex-container" style={{flex:1}}>
+							<div style={{width:80}}>Video URL</div>
+							<input id="videoURL" placeholder="http://www.youtube.com/" style={{flex:1}}
+							       onChange={
+								       ()=>{
+									       let videoURL = $("#videoURL").val();
+									       let VID = this.parseVID(videoURL);
+									       if(VID!=null){
+										       videoURL = "https://www.youtube.com/embed/"+VID+"?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0";
+										       $("#Start").val("");
+										       $("#End").val("");
+										       
+										       $("#VID").val(VID);
+										       $("#Embed").val(videoURL);
+										       $("#videoView").attr("src",videoURL);}
+								       }
+							       }/>
+						</div>
+						<div className="flex-container" style={{flex:1}}>
+							<div style={{width:80}}>Video ID</div>
+							<input disabled id="VID" defaultValue={this.props.question.VID} style={{flex:1,background:"#f2f3ea"}}/>
+						</div>
+						
+						<div className="flex-container" style={{flex:1}}>
+							<div style={{width:80}}>Start Time</div>
+							<input id="Start" defaultValue={this.props.question.start} placeholder="00:00" style={{flex:1}} onChange={this.handleTime} onBlur={()=>{this.handleSeconds($("#Start"));}}/>
+						</div>
+						<div className="flex-container" style={{flex:1}}>
+							<div style={{width:80}}>End Time</div>
+							<input id="End"   defaultValue={this.props.question.end}   placeholder="00:00" style={{flex:1}} onChange={this.handleTime} onBlur={()=>{this.handleSeconds($("#End"));}}/>
+						</div>
+						<div className="flex-container" style={{flex:1}}>
+							<div style={{width:80}}>Embed URL</div>
+							<input disabled="true" id="Embed" defaultValue={this.props.question.URL} style={{flex:1, background:"#f2f3ea"}}/>
+						</div>
+					</div>
+				</div>;
 				break;
 		}
 		return <div className="flex-container" style={verticalFlexStyle}>
@@ -284,7 +401,7 @@ export const EditModal = React.createClass({
 			case "image":
 				mediaButtons = <div className="flex-container " style={{justifyContent: "flex-start",flex:1}}>
 					<button style={imageStyle} onClick={this.handleRemoveImage}>Remove Image</button>
-					<button style={imageStyle} onClick={()=>{$("#imageToLoad").click()}}>Upload Image</button>
+					{/*<button style={imageStyle} onClick={()=>{$("#imageToLoad").click()}}>Upload Image</button>*/}
 				</div>;
 				break;
 			case "video":

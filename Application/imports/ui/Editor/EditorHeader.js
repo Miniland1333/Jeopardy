@@ -201,7 +201,7 @@ var EditorHeader = React.createClass({
                     </select>
                     <button style={buttonStyle} id="Import" onClick={this.handleImport}>Import</button>
                     <button style={buttonStyle} id="Export" onClick={this.handleExport}>Export</button>
-                    <input type="file" id="fileToLoad" accept=".txt" onChange={this.handleFile} style={{position:"absolute", width:0,height:0}}/>
+                    <input type="file" id="fileToLoad" accept=".txt" onChange={this.handleFile} style={{position:"absolute", display:"none", width:0,height:0}}/>
                 </div>
             </div>
         )
