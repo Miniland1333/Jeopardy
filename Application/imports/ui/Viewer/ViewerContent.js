@@ -6,50 +6,62 @@ import Question from "./../Teacher/Question";
 import CountDown from "./Countdown";
 
 
-var questionStyle={
-	fontSize:"10vmin",
-	flex:1,
-	alignItems:"center",
-	justifyContent:"center",
+const questionStyle = {
+	fontSize: "10vmin",
+	flex: 1,
+	alignItems: "center",
+	justifyContent: "center",
 	whiteSpace: "pre-wrap",
 	textTransform: "uppercase",
 };
-var inputStyle = {
+const inputStyle = {
 	fontSize: "10vmin",
 	flex: 1,
-	backgroundColor:"transparent",
-	color:"white",
+	backgroundColor: "transparent",
+	color: "white",
 	alignItems: "center",
 	justifyContent: "center",
-	textAlign:"center",
+	textAlign: "center",
 	whiteSpace: "pre-wrap",
-	border:0,
+	border: 0,
+};
+const imageStyle = {
+	height: "100%",
+	maxWidth:"100%",
+};
+const imageContainer = {
+	maxHeight: "100%",
+	maxWidth:"100%",
+	flex: 1,
+	justifyContent: "center",
+	alignItems:"center",
 };
 
-var timer;
-var maxTimeResponse=5;
-var maxTimeAnswer=5;
-var setup = true;
+let timer;
+const maxTimeResponse = 5;
+const maxTimeAnswer = 5;
+let setup = true;
 
-var ViewerContent = React.createClass({
-	propTypes:{
-		gameLogic:React.PropTypes.object,
-		gameQuestions:React.PropTypes.object,
+export const ViewerContent = React.createClass({
+	propTypes: {
+		gameLogic: React.PropTypes.object,
+		gameQuestions: React.PropTypes.object,
 	},
-	time:5,
-	lastState:"",
-	handleSound:function () {
-		var scrap = new Howl({
-			src:['./../Jp/jtime.mp3'],
+	time: 5,
+	lastState: "",
+	handleSound: function () {
+		//noinspection JSUnusedLocalSymbols
+		let scrap = new Howl({
+			src: ['./../Jp/jtime.mp3'],
 		});
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
 						Howler.unload();
-						var intro = new Howl({
+						const intro = new Howl({
 							src: ['./../Jp/jintrofade.mp3'],
-							autoplay:true,
+							autoplay: true,
 						});
 						intro.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categoryIntro');
@@ -57,9 +69,9 @@ var ViewerContent = React.createClass({
 						break;
 					case 2:
 						Howler.unload();
-						var DJintro = new Howl({
+						const DJintro = new Howl({
 							src: ['./../Jp/DJ.mp3'],
-							autoplay:true,
+							autoplay: true,
 						});
 						DJintro.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categoryIntro');
@@ -67,9 +79,9 @@ var ViewerContent = React.createClass({
 						break;
 					case 3:
 						Howler.unload();
-						var FJintro = new Howl({
+						const FJintro = new Howl({
 							src: ['./../Jp/FJ.mp3'],
-							autoplay:true,
+							autoplay: true,
 						});
 						FJintro.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categoryIntro');
@@ -82,31 +94,35 @@ var ViewerContent = React.createClass({
 				switch (this.props.gameLogic["round"]) {
 					case 1:
 						Howler.unload();
-						var Jcat = new Howl({
-							src:['./../Jp/Jcat.mp3'],
-							autoplay:true,
+						const Jcat = new Howl({
+							src: ['./../Jp/Jcat.mp3'],
+							autoplay: true,
 						});
 						Jcat.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categories');
+							Meteor.call('gameLogic.loadRound');
 						});
 						break;
 					case 2:
 						Howler.unload();
-						var DJcat = new Howl({
-							src:['./../Jp/DJcat.mp3'],
-							autoplay:true,
+						const DJcat = new Howl({
+							src: ['./../Jp/DJcat.mp3'],
+							autoplay: true,
 						});
 						DJcat.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categories');
+							Meteor.call('gameLogic.loadRound');
 						});
 						break;
+					case 3:
+						Meteor.call('gameLogic.loadRound');
 				}
 				break;
 			case "DailyDouble":
 				Howler.unload();
-				var DD = new Howl({
-					src:['./../Jp/jdaily2x.mp3'],
-					autoplay:true,
+				const DD = new Howl({
+					src: ['./../Jp/jdaily2x.mp3'],
+					autoplay: true,
 				});
 				DD.on('end', function () {
 					Meteor.call('gameLogic.setState', 'wager');
@@ -114,59 +130,80 @@ var ViewerContent = React.createClass({
 				break;
 			case "FJopen":
 				Howler.unload();
-				var FJ = new Howl({
-					src:['./../Jp/jthink.mp3'],
-					autoplay:true,
+				const FJ = new Howl({
+					src: ['./../Jp/jthink.mp3'],
+					autoplay: true,
 				});
 				FJ.on('end', function () {
 					Meteor.call('gameLogic.setState', 'FJanswer');
 				});
 				break;
 			case "FJread":
-                Howler.unload();
-                var FJcat = new Howl({
-                    src:['./../Jp/jfinalj.mp3'],
-                    autoplay:true,
-                });
-                break;
+				Howler.unload();
+				//noinspection JSUnusedLocalSymbols
+				let FJcat = new Howl({
+					src: ['./../Jp/jfinalj.mp3'],
+					autoplay: true,
+				});
+				break;
 			case "pickQuestion":
 			case "":
 				Howler.unload();
 				break;
 			case "complete":
 				Howler.unload();
-				var loop = new Howl({
-					src:['./../Jp/jloop.mp3'],
-					autoplay:true,
+				//noinspection JSUnusedLocalSymbols
+				let loop = new Howl({
+					src: ['./../Jp/jloop.mp3'],
+					autoplay: true,
 					loop: true,
 				});
 		}
 	},
-	renderContent:function () {
-		console.log("ViewerRender",this.props.gameLogic["round"],this.props.gameLogic["state"]);
-		if(this.props.gameLogic["round"]==0&&this.props.gameLogic["state"]!=""){
-			Meteor.call('gameLogic.setState',"");
+	renderContent: function () {
+		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
+		if (this.props.gameLogic["round"] == 0 && this.props.gameLogic["state"] != "") {
+			Meteor.call('gameLogic.setState', "");
 		}
 		this.handleSound();
 		
 		//todo add logic for alternate question logic
 		switch (this.props.gameLogic["state"]) {
 			case "":
-				return <div className="flex-container" style={inputStyle}><input style ={inputStyle} defaultValue="Press F11 for fullscreen"/></div>;
+				return <div className="flex-container" style={inputStyle}><input style={inputStyle}
+				                                                                 defaultValue="Press F11 for fullscreen"/>
+				</div>;
 			case "intro":
 			case "categoryIntro":
 				clearInterval(timer);
-				var title;
-				switch (this.props.gameLogic["round"]){
+				switch (this.props.gameLogic["round"]) {
 					case 1:
-						return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-							whiteSpace: "pre-wrap",}}>Jeopardy!</div>;
+						return <div className="flex-container" style={{
+							fontFamily: "gyparody",
+							fontSize: "20vmin",
+							flex: 1,
+							alignItems: "center",
+							justifyContent: "center",
+							whiteSpace: "pre-wrap",
+						}}>Jeopardy!</div>;
 					case 2:
-						return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-							whiteSpace: "pre-wrap",}}>Double<br/>Jeopardy!</div>;
+						return <div className="flex-container" style={{
+							fontFamily: "gyparody",
+							fontSize: "20vmin",
+							flex: 1,
+							alignItems: "center",
+							justifyContent: "center",
+							whiteSpace: "pre-wrap",
+						}}>Double<br/>Jeopardy!</div>;
 					case 3:
-						return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-							whiteSpace: "pre-wrap",}}>Final<br/>Jeopardy!</div>;
+						return <div className="flex-container" style={{
+							fontFamily: "gyparody",
+							fontSize: "20vmin",
+							flex: 1,
+							alignItems: "center",
+							justifyContent: "center",
+							whiteSpace: "pre-wrap",
+						}}>Final<br/>Jeopardy!</div>;
 				}
 				break;
 			case "categories":
@@ -176,7 +213,11 @@ var ViewerContent = React.createClass({
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
 									return key2 == "categoryName" ?
-										<div className="Header" key={key1 + "H"} style={{alignItems:"center", justifyContent:"center",fontSize:"2vmin",}}>{cell}</div>
+										<div className="Header" key={key1 + "H"} style={{
+											alignItems: "center",
+											justifyContent: "center",
+											fontSize: "2vmin",
+										}}>{cell}</div>
 										:
 										[];
 									
@@ -187,15 +228,19 @@ var ViewerContent = React.createClass({
 				</div>;
 				break;
 			case "pickQuestion":
-				var round = this.props.gameLogic["round"];
-				this.lastState="pickQuestion";
+				const round = this.props.gameLogic["round"];
+				this.lastState = "pickQuestion";
 				return <div key="" className="Table">
 					{$.map(this.props.gameQuestions["currentRound"], function (column, key1) {
 						return (
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
 									return key2 == "categoryName" ?
-										<div className="Header" key={key1 + "H"} style={{alignItems:"center", justifyContent:"center",fontSize:"2vmin",}}>{cell}</div>
+										<div className="Header" key={key1 + "H"} style={{
+											alignItems: "center",
+											justifyContent: "center",
+											fontSize: "2vmin",
+										}}>{cell}</div>
 										:
 										<Question key={key1 + key2} cell={cell} round={round} key1={key1} key2={key2}/>;
 									
@@ -205,46 +250,49 @@ var ViewerContent = React.createClass({
 					})}
 				</div>;
 			case "DailyDouble":
-				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
+				return <div className="flex-container" style={{
+					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
+					whiteSpace: "pre-wrap",
+				}}>Daily<br/>Double</div>;
 			case "read":
 			case "DDread":
-				//Alternate Logic Needed
-				this.lastState=this.props.gameLogic["state"];
+				this.lastState = this.props.gameLogic["state"];
 				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
-					return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-							<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
-						</div>;
+					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"].type == "image") {
-						return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-							<img src={this.props.gameQuestions["currentQuestion"]["question"].image}/>
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+						return <div key="imageContainer" style={imageContainer}>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
 						</div>
-						} else {
-						return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-							<iframe src={this.props.gameQuestions["currentQuestion"]["question"].URL} style={{flex:1}}></iframe>
+					} else {
+						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+							<iframe key="video" src={this.props.gameQuestions["currentQuestion"]["question"].URL}
+							        style={{flex: 1}}></iframe>
 						</div>
 					}
 				}
 			case "wager":
-				var DDwager = this.props.gameLogic["player"+this.props.gameLogic["lastWinner"]]["wager"];
-				return [<div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>,
-					<div style={{
+				const DDwager = this.props.gameLogic["player" + this.props.gameLogic["lastWinner"]]["wager"];
+				return [<div key="DDwager" className="flex-container" style={{
+					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
+					whiteSpace: "pre-wrap",
+				}}>Daily<br/>Double</div>,
+					<div key="wager" style={{
 						fontSize: "3vw",
 						minWidth: "10vw",
-					}}>{"Team Wager: "+DDwager}</div>];
+					}}>{"Team Wager: " + DDwager}</div>];
 			case "open":
-				//Alternate Logic Needed
-				if(this.lastState!="open") {
-					this.lastState="open";
+				if (this.lastState != "open") {
+					this.lastState = "open";
 					clearInterval(timer);
 					this.time = maxTimeResponse;
-					var time = new Howl({
+					const time = new Howl({
 						src: ['./../Jp/jtime.mp3'],
 					});
-					timer = setInterval(()=> {
+					timer = setInterval(() => {
 						if (this.time > 0) {
 							this.time -= 1;
 							this.forceUpdate();
@@ -257,21 +305,35 @@ var ViewerContent = React.createClass({
 						}
 					}, 1000);
 				}
-				return(
-					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
+					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
-					</div>);
+					</div>;
+				}
+				else {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+						return <div key="imageContainer" style={imageContainer}>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+						</div>
+					} else {
+						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+							<iframe key="video"
+							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
+							        style={{flex: 1}}></iframe>
+						</div>
+					}
+				}
 			case "answer":
 			case "DDanswer":
 				//Alternate Logic Needed
-				if(this.lastState!="answer"&&this.lastState!="DDanswer") {
-					this.lastState=this.props.gameLogic["state"];
+				if (this.lastState != "answer" && this.lastState != "DDanswer") {
+					this.lastState = this.props.gameLogic["state"];
 					clearInterval(timer);
 					this.time = maxTimeAnswer;
-					var time1 = new Howl({
+					const time1 = new Howl({
 						src: ['./../Jp/jtime.mp3'],
 					});
-					timer = setInterval(()=> {
+					timer = setInterval(() => {
 						if (this.time > 0) {
 							this.time -= 1;
 							this.forceUpdate();
@@ -283,57 +345,106 @@ var ViewerContent = React.createClass({
 						}
 					}, 1000);
 				}
-				return(
-					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
+					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
-					</div>);
+					</div>;
+				}
+				else {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+						return <div key="imageContainer" style={imageContainer}>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+						</div>
+					} else {
+						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+							<iframe key="video"
+							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
+							        style={{flex: 1}}></iframe>
+						</div>
+					}
+				}
 			
 			case "next":
 				clearInterval(timer);
-				this.lastState=this.props.gameLogic["state"];
-				return(
-					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
+				this.lastState = this.props.gameLogic["state"];
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
+					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
-					</div>);
-
+					</div>;
+				}
+				else {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+						return <div key="imageContainer" style={imageContainer}>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+						</div>
+					} else {
+						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+							<iframe key="video"
+							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
+							        style={{flex: 1}}></iframe>
+						</div>
+					}
+				}
+			
 			
 			case "FJwager":
-				return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
-					whiteSpace: "pre-wrap",textTransform: "uppercase"}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
+				return <div style={{
+					fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
+					whiteSpace: "pre-wrap", textTransform: "uppercase"
+				}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
 				break;
 			case "FJread":
 			case "FJopen":
-				//Alternate Logic Needed
-				return <div style={questionStyle}>
-					{this.props.gameQuestions["currentRound"]['question']}
-					<canvas className="needsclick" style={{width:1,height:1}} id="writingPad"/></div>;
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
+					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+					</div>;
+				}
+				else {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+						return <div key="imageContainer" style={imageContainer}>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+						</div>
+					} else {
+						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+							<iframe key="video"
+							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
+							        style={{flex: 1}}></iframe>
+							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+						</div>
+					}
+				}
 				break;
 			case "FJanswer":
-				if(setup){
+				if (setup) {
 					setup = false;
-					return <div className="flex-container" style={{flex:1,flexDirection:"column"}}>
-						<canvas style={{border:"2px solid white",flex:1}} id="writingPad"/>;
+					return <div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
+						<canvas style={{border: "2px solid white", flex: 1}} id="writingPad"/>
+						;
 					</div>
 					
-				}else {
+				} else {
 					paper.install(window);
-					var canvas = document.getElementById('writingPad');
+					const canvas = document.getElementById('writingPad');
 					paper.setup(canvas);
 					paper.project.clear();
 					if (this.props.gameLogic["FJ"]["currentPlayer"] != 0) {
 						paper.project.importJSON(this.props.gameLogic["FJ"]["currentAnswer"]);
 					}
-					var player =  this.props.gameLogic["FJ"]["currentPlayer"];
-					var wager;
-					if(player!=0){
-						wager = "Wager: "+this.props.gameLogic["player" + player]["wager"];
-					}else{
-						wager ="";
+					const player = this.props.gameLogic["FJ"]["currentPlayer"];
+					let wager;
+					if (player != 0) {
+						wager = "Wager: " + this.props.gameLogic["player" + player]["wager"];
+					} else {
+						wager = "";
 					}
 					return (
-						<div className="flex-container" style={{flex:1,flexDirection:"column"}}>
+						<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 							<canvas style={{border: "2px solid white", flex: 1}} id="writingPad"/>
-							<div style={{position:"absolute",top:10,right:10,
+							<div style={{
+								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
 								minWidth: "10vw",
 							}}>{wager}</div>
@@ -341,34 +452,38 @@ var ViewerContent = React.createClass({
 					);
 				}
 			case "complete":
-				var logic = this.props.gameLogic;
+				const logic = this.props.gameLogic;
 				//Greatest
-				var greatest=0;
-				var highestAmount=0;
-				for(var h=1;h<=logic['numPlayers'];h++){
-					var playerAmount = logic['player'+h]['points'];
-					if(playerAmount>highestAmount){
+				let greatest = 0;
+				let highestAmount = 0;
+				for (let h = 1; h <= logic['numPlayers']; h++) {
+					const playerAmount = logic['player' + h]['points'];
+					if (playerAmount > highestAmount) {
 						greatest = h;
 						highestAmount = playerAmount;
 					}
 				}
-				if(greatest==0){
+				if (greatest == 0) {
 					//All Players Eliminated
-					return <div className="flex-container" style={{fontSize:"18vmin",flex:1,alignItems:"center",justifyContent:"center",
-						whiteSpace: "pre-wrap",}}>All Players have been eliminated</div>;
-				}else {
+					return <div className="flex-container" style={{
+						fontSize: "18vmin", flex: 1, alignItems: "center", justifyContent: "center",
+						whiteSpace: "pre-wrap",
+					}}>All Players have been eliminated</div>;
+				} else {
 					//Display complete
-					return <div className="flex-container" style={{fontSize:"10vmin",flex:1,alignItems:"center",justifyContent:"center",
-						whiteSpace: "pre-wrap",}}>{logic['player'+greatest]['teamName']} is the winner with a score of ${highestAmount}!</div>;
+					return <div className="flex-container" style={{
+						fontSize: "10vmin", flex: 1, alignItems: "center", justifyContent: "center",
+						whiteSpace: "pre-wrap",
+					}}>{logic['player' + greatest]['teamName']} is the winner with a score of ${highestAmount}!</div>;
 				}
 			
 		}
 		
 		
 	},
-	render:function () {
-		return(
-			<div className="flex-container" style={{flex:1,flexDirection:"column"}}>
+	render: function () {
+		return (
+			<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 				{this.renderContent()}
 				<CountDown gameLogic={this.props.gameLogic} time={this.time}/>
 			</div>

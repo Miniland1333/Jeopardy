@@ -184,8 +184,8 @@ export const EditModal = React.createClass({
 			fileReader.onload = function (fileLoadedEvent) {
 				var textFromFileLoaded = fileLoadedEvent.target.result;
 				console.log(fileToLoad.size);
-				if(fileToLoad.size>6000000){
-					alert("File exceeds individual limit of 5MB!")
+				if(fileToLoad.size>1500000){
+					alert("File exceeds individual limit of 1MB!")
 				}else {
 					$("#imageView").attr("src", textFromFileLoaded);
 					$("#imageURL").val(textFromFileLoaded);
@@ -427,7 +427,7 @@ export const EditModal = React.createClass({
 			case "image":
 				mediaButtons = <div className="flex-container " style={{justifyContent: "flex-start",flex:1}}>
 					<button style={imageStyle} onClick={this.handleRemoveImage}>Remove Image</button>
-					<button style={imageStyle} onClick={()=>{$("#imageToLoad").click()}}>Upload Image</button>
+					{/*<button style={imageStyle} onClick={()=>{$("#imageToLoad").click()}}>Upload Image</button>*/}
 				</div>;
 				break;
 			case "video":

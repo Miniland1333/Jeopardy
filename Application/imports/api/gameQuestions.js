@@ -114,8 +114,14 @@ Meteor.methods({
 			var currentCategory = gameQuestions.find().fetch()[0]["currentRound"]["category" + i];
 			var empty = true;
 			for(var q=1;q<=5;q++){
-				if(currentCategory["question"+q]["question"].trim()!=""){
-					empty = false;
+				if (typeof currentCategory["question" + q]["question"] === "string") {
+					if (currentCategory["question" + q]["question"].trim() != "") {
+						empty = false;
+					}
+				} else {
+					if (currentCategory["question" + q]["question"]) {
+						empty = false;
+					}
 				}
 			}
 			if(empty){
@@ -128,7 +134,6 @@ Meteor.methods({
 			var catName = currentCategory["categoryName"];
 			if (catName.trim() != "") {
 				catCount++;
-				
 			}else {
 				//code to remove questions from empty category
 				bundle ={};

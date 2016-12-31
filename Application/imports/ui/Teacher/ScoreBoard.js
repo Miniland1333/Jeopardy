@@ -4,26 +4,26 @@ import {Meteor} from 'meteor/meteor';
 
 
 
-var ScoreBoard = React.createClass({
+export const ScoreBoard = React.createClass({
 	propTypes: {
 		playerLogic: React.PropTypes.object,
-		gameLogic:React.PropTypes.object,
-		round:React.PropTypes.number,
+		gameLogic: React.PropTypes.object,
+		round: React.PropTypes.number,
 	},
-	numDisplay:function () {
+	numDisplay: function () {
 		if (this.props.round == 0) {
-			switch (this.props.playerLogic["status"]){
+			switch (this.props.playerLogic["status"]) {
 				case "pending":
 					return "----";
 					break;
 				case "ready":
-					return "Team"+this.props.playerLogic["teamNumber"];
+					return "Team" + this.props.playerLogic["teamNumber"];
 					break;
 				default:
 					return "0000";
 			}
-		}else{
-			switch (this.props.playerLogic["status"]){
+		} else {
+			switch (this.props.playerLogic["status"]) {
 				case "reconnect":
 					return "----";
 					break;
@@ -37,69 +37,73 @@ var ScoreBoard = React.createClass({
 	},
 	handleClick: function () {
 		if (this.props.round == 0) {
-			if(confirm("This will kick player"+this.props.playerLogic["teamNumber"]+". Are you sure?")){
-				Meteor.call('gameLogic.kick',this.props.playerLogic["teamNumber"],this.props.playerLogic["connectionId"]);
+			if (confirm("This will kick player" + this.props.playerLogic["teamNumber"] + ". Are you sure?")) {
+				Meteor.call('gameLogic.kick', this.props.playerLogic["teamNumber"], this.props.playerLogic["connectionId"]);
 			}
 		}
-		else  {
+		else {
 			//if(this.props.gameLogic["state"]=="pickQuestion")
 			if (this.props.round == 1) {
 				//show  J options
-				if (confirm("Advance?")){
+				if (confirm("Advance?")) {
 					Meteor.call('gameLogic.advance');
 				}
 			} else if (this.props.round == 2) {
 				//show DJ options
-				if(confirm("Reset?")){
+				if (confirm("Reset?")) {
 					Meteor.call("gameLogic.init");
 				}
-			}else if (this.props.round == 3) {
+			} else if (this.props.round == 3) {
 				//show DJ options
-				if(confirm("Reset?")){
+				if (confirm("Reset?")) {
 					Meteor.call("gameLogic.init");
 				}
 			}
 		}
 		
 	},
-	scoreStyle:function () {
-		var green={
+	scoreStyle: function () {
+		const green = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid #00e800",
 			padding: "10px",
 			borderRadius: 8,
+			zIndex: -1,
 		};
 		
-		var orange={
+		const orange = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid orange",
 			padding: "10px",
 			borderRadius: 8,
+			zIndex:-1,
 		};
 		
-		var red={
+		const red = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid #ff3f3f",
 			padding: "10px",
 			borderRadius: 8,
+			zIndex:-1,
 		};
 		
-		var normal={
+		const normal = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
 			border: "4px solid #060CE9",
 			padding: "10px",
 			borderRadius: 8,
+			zIndex:-1,
 		};
 		
-		var teamNumber = this.props.playerLogic["teamNumber"];
+		const teamNumber = this.props.playerLogic["teamNumber"];
 		if (this.props.round == 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
@@ -113,13 +117,13 @@ var ScoreBoard = React.createClass({
 			}
 		} else if (this.props.playerLogic["status"] == "reconnect") {
 			return orange;
-		}else if (this.props.gameLogic["round"]!=3){
-			switch (this.props.gameLogic["state"]){
+		} else if (this.props.gameLogic["round"] != 3) {
+			switch (this.props.gameLogic["state"]) {
 				case "intro":
 				case "categoryIntro":
 				case "categories":
 				case "pickQuestion":
-					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
+					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
 						return orange;
 					} else {
 						return normal;
@@ -129,23 +133,23 @@ var ScoreBoard = React.createClass({
 				case "wager":
 				case "DDread":
 				case "DDanswer":
-					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
+					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
 						return green;
 					} else {
 						return normal;
 					}
 				case "open":
-					if(this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)){
+					if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
 						return red;
-					}else{
+					} else {
 						return normal;
 					}
 				case "answer":
-					if(this.props.gameLogic["currentQuestionLogic"]["first"]==teamNumber){
+					if (this.props.gameLogic["currentQuestionLogic"]["first"] == teamNumber) {
 						return green;
-					}else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)){
+					} else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
 						return red
-					}else{
+					} else {
 						return normal;
 					}
 				
@@ -154,13 +158,13 @@ var ScoreBoard = React.createClass({
 					return normal;
 					break;
 			}
-		}else if (this.props.gameLogic["round"]==3){
+		} else if (this.props.gameLogic["round"] == 3) {
 			//Code for wager
-			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)&&this.props.gameLogic["state"]=="FJwager") {
+			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber) && this.props.gameLogic["state"] == "FJwager") {
 				return green
-			}else if (this.props.gameLogic["state"]=="FJanswer"&&this.props.gameLogic["FJ"]["currentPlayer"]==teamNumber){
+			} else if (this.props.gameLogic["state"] == "FJanswer" && this.props.gameLogic["FJ"]["currentPlayer"] == teamNumber) {
 				return green
-			}else{
+			} else {
 				return normal;
 			}
 		} else {

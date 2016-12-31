@@ -158,8 +158,11 @@ Meteor.methods({
 		var round = gameLogic.find().fetch()[0]['round']+1;
 		Meteor.call('gameLogic.setRound',round);
 		Meteor.call('gameLogic.setState','intro');
+	},
+	'gameLogic.loadRound'(){
+		var round = gameLogic.find().fetch()[0]['round'];
 		Meteor.call('gameQuestions.loadRound',round);
-		
+		console.log("loadRound");
 		switch (round) {
 			case 1:
 				Meteor.call('gameLogic.lastWinner',Math.floor((Math.random() * gameLogic.find().fetch()[0]['numPlayers']) + 1));
