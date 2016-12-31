@@ -207,6 +207,26 @@ var ViewerContent = React.createClass({
 			case "DailyDouble":
 				return <div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
 					whiteSpace: "pre-wrap",}}>Daily<br/>Double</div>;
+			case "read":
+			case "DDread":
+				//Alternate Logic Needed
+				this.lastState=this.props.gameLogic["state"];
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
+					return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+							<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+						</div>;
+				}
+				else {
+					if (this.props.gameQuestions["currentQuestion"]["question"].type == "image") {
+						return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+							<img src={this.props.gameQuestions["currentQuestion"]["question"].image}/>
+						</div>
+						} else {
+						return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
+							<iframe src={this.props.gameQuestions["currentQuestion"]["question"].URL} style={{flex:1}}></iframe>
+						</div>
+					}
+				}
 			case "wager":
 				var DDwager = this.props.gameLogic["player"+this.props.gameLogic["lastWinner"]]["wager"];
 				return [<div className="flex-container" style={{fontFamily:"gyparody",fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
@@ -216,6 +236,7 @@ var ViewerContent = React.createClass({
 						minWidth: "10vw",
 					}}>{"Team Wager: "+DDwager}</div>];
 			case "open":
+				//Alternate Logic Needed
 				if(this.lastState!="open") {
 					this.lastState="open";
 					clearInterval(timer);
@@ -242,6 +263,7 @@ var ViewerContent = React.createClass({
 					</div>);
 			case "answer":
 			case "DDanswer":
+				//Alternate Logic Needed
 				if(this.lastState!="answer"&&this.lastState!="DDanswer") {
 					this.lastState=this.props.gameLogic["state"];
 					clearInterval(timer);
@@ -273,13 +295,7 @@ var ViewerContent = React.createClass({
 					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 					</div>);
-			case "read":
-			case "DDread":
-				this.lastState=this.props.gameLogic["state"];
-				return(
-					<div className="flex-container" style={{flexDirection:"column",flex:1}}>
-						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
-					</div>);
+
 			
 			case "FJwager":
 				return <div style={{fontSize:"20vmin",flex:1,alignItems:"center",justifyContent:"center",
@@ -287,6 +303,7 @@ var ViewerContent = React.createClass({
 				break;
 			case "FJread":
 			case "FJopen":
+				//Alternate Logic Needed
 				return <div style={questionStyle}>
 					{this.props.gameQuestions["currentRound"]['question']}
 					<canvas className="needsclick" style={{width:1,height:1}} id="writingPad"/></div>;

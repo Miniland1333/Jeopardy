@@ -158,7 +158,6 @@ export const EditModal = React.createClass({
 	},
 	componentDidMount: function () {
 		$("#myModal").fadeIn();
-		//todo allow question loading
 		if(typeof this.props.question==="string") {
 			
 		}else{
@@ -184,8 +183,13 @@ export const EditModal = React.createClass({
 			var fileReader = new FileReader();
 			fileReader.onload = function (fileLoadedEvent) {
 				var textFromFileLoaded = fileLoadedEvent.target.result;
-				$("#imageView").attr("src",textFromFileLoaded);
-				$("#imageURL").val(textFromFileLoaded);
+				console.log(fileToLoad.size);
+				if(fileToLoad.size>6000000){
+					alert("File exceeds individual limit of 5MB!")
+				}else {
+					$("#imageView").attr("src", textFromFileLoaded);
+					$("#imageURL").val(textFromFileLoaded);
+				}
 			};
 			fileReader.readAsDataURL(fileToLoad);
 			$("#fileToLoad").value="";
@@ -276,35 +280,57 @@ export const EditModal = React.createClass({
 						this.state.isSinglePlay);
 					break;
 				case "image":
-					bundle = {
-						type:"image",
-						image:$("#imageView").attr("src"),
-						text:question.val(),
-					};
-					Meteor.call('editorDatabase.updateQuestion',
-						this.props.roundName,
-						this.props.key1,
-						this.props.key2,
-						bundle,
-						answer.val(),
-						this.state.isSinglePlay);
+					let image =$("#imageView").attr("src");
+					if(image!=undefined) {
+						bundle = {
+							type: "image",
+							image: image,
+							text: question.val(),
+						};
+						Meteor.call('editorDatabase.updateQuestion',
+							this.props.roundName,
+							this.props.key1,
+							this.props.key2,
+							bundle,
+							answer.val(),
+							this.state.isSinglePlay);
+					}else{
+						Meteor.call('editorDatabase.updateQuestion',
+							this.props.roundName,
+							this.props.key1,
+							this.props.key2,
+							"",
+							"",
+							false);
+					}
 					break;
 				case "video":
-					
-					bundle ={
-						type:"video",
-						URL:$("#Embed").val(),
-						VID:$("#VID").val(),
-						start:$("#Start").val(),
-						end:$("#End").val(),
-					};
-					Meteor.call('editorDatabase.updateQuestion',
-						this.props.roundName,
-						this.props.key1,
-						this.props.key2,
-						bundle,
-						answer.val(),
-						this.state.isSinglePlay);
+					let VID = $("#VID").val();
+					if(VID!=""){
+						bundle ={
+							type:"video",
+							URL:$("#Embed").val(),
+							VID:VID,
+							start:$("#Start").val(),
+							end:$("#End").val(),
+						};
+						Meteor.call('editorDatabase.updateQuestion',
+							this.props.roundName,
+							this.props.key1,
+							this.props.key2,
+							bundle,
+							answer.val(),
+							this.state.isSinglePlay);
+						break;
+					}else {
+						Meteor.call('editorDatabase.updateQuestion',
+							this.props.roundName,
+							this.props.key1,
+							this.props.key2,
+							"",
+							"",
+							false);
+					}
 					break;
 			}
 		}
@@ -354,7 +380,7 @@ export const EditModal = React.createClass({
 										       videoURL = "https://www.youtube.com/embed/"+VID+"?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0";
 										       $("#Start").val("");
 										       $("#End").val("");
-										       
+										
 										       $("#VID").val(VID);
 										       $("#Embed").val(videoURL);
 										       $("#videoView").attr("src",videoURL);}
@@ -391,7 +417,7 @@ export const EditModal = React.createClass({
 	},
 	renderButtons: function () {
 		let mediaButtons;
-		switch(this.state.questionType) {
+		switch(!this.props.isHeader&&this.state.questionType) {
 			case "text":
 				mediaButtons = <div className="flex-container " style={{justifyContent: "flex-start",flex:1}}>
 					<button style={imageStyle} onClick={this.handleAddImage}>Add Image</button>
@@ -401,7 +427,7 @@ export const EditModal = React.createClass({
 			case "image":
 				mediaButtons = <div className="flex-container " style={{justifyContent: "flex-start",flex:1}}>
 					<button style={imageStyle} onClick={this.handleRemoveImage}>Remove Image</button>
-					{/*<button style={imageStyle} onClick={()=>{$("#imageToLoad").click()}}>Upload Image</button>*/}
+					<button style={imageStyle} onClick={()=>{$("#imageToLoad").click()}}>Upload Image</button>
 				</div>;
 				break;
 			case "video":

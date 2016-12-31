@@ -38,7 +38,6 @@ var EditorTable = React.createClass({
 	        Meteor.call('editorDatabase.init');
         }
         var round = this.props.editorDatabase[0][roundName];
-        console.log(roundName);
         return (roundName == "FinalJeopardy" ?
                 <div key="" className="Table">
                     <div className="Column" key="C1">
