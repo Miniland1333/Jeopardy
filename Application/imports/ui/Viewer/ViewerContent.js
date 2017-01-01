@@ -100,7 +100,6 @@ export const ViewerContent = React.createClass({
 						});
 						Jcat.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categories');
-							Meteor.call('gameLogic.loadRound');
 						});
 						break;
 					case 2:
@@ -111,11 +110,9 @@ export const ViewerContent = React.createClass({
 						});
 						DJcat.on('end', function () {
 							Meteor.call('gameLogic.setState', 'categories');
-							Meteor.call('gameLogic.loadRound');
 						});
 						break;
 					case 3:
-						Meteor.call('gameLogic.loadRound');
 				}
 				break;
 			case "DailyDouble":
