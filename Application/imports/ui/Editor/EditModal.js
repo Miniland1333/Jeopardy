@@ -221,12 +221,14 @@ export const EditModal = React.createClass({
 				min = start;
 				extra+="&start="+start;
 			}
-			if (end != "" && end > min){
+			if (end != ""){
 				if(end.includes(":")) {
 					let tempArray = end.split(":");
 					end = tempArray[0] * 60 + tempArray[1];
 				}
-				extra+="&end="+end;
+				if(end > min) {
+					extra += "&end=" + end;
+				}
 			}
 			return extra;
 		};
