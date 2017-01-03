@@ -356,7 +356,7 @@ export const EditModal = React.createClass({
 						<div className="flex-container" style={{maxHeight:100,maxWidth:200,justifyContent:"center",flex:1}}>
 							<img id="imageView" src={this.props.question.image} style={{maxHeight:100,maxWidth:200,}} />
 						</div>
-						<input id="imageURL" placeholder="http://" defaultValue={this.props.question.image} style={{maxHeight:20,}}
+						<input id="imageURL" placeholder="http://" type="url" defaultValue={this.props.question.image} style={{maxHeight:20,}}
 						       onChange={
 							       ()=>{$("#imageView").attr("src",$("#imageURL").val());
 								       this.setState({questionText: $("#question").val()});}}/>
@@ -373,7 +373,7 @@ export const EditModal = React.createClass({
 					<div className="flex-container" style={{flex:1, flexDirection:"column"}}>
 						<div className="flex-container" style={{flex:1}}>
 							<div style={{width:80}}>Video URL</div>
-							<input id="videoURL" placeholder="http://www.youtube.com/" style={{flex:1}}
+							<input id="videoURL" type="url" placeholder="http://www.youtube.com/" style={{flex:1}}
 							       onChange={
 								       ()=>{
 									       let videoURL = $("#videoURL").val();
