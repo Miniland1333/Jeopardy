@@ -54,11 +54,11 @@ export const ViewerContent = React.createClass({
 		let scrap = new Howl({
 			src: ['./../Jp/jtime.mp3'],
 		});
+		Howler.unload();
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						Howler.unload();
 						const intro = new Howl({
 							src: ['./../Jp/jintrofade.mp3'],
 							autoplay: true,
@@ -68,17 +68,16 @@ export const ViewerContent = React.createClass({
 						});
 						break;
 					case 2:
-						Howler.unload();
 						const DJintro = new Howl({
 							src: ['./../Jp/DJ.mp3'],
 							autoplay: true,
 						});
 						DJintro.on('end', function () {
+							console.log("finishedDJintro");
 							Meteor.call('gameLogic.setState', 'categoryIntro');
 						});
 						break;
 					case 3:
-						Howler.unload();
 						const FJintro = new Howl({
 							src: ['./../Jp/FJ.mp3'],
 							autoplay: true,
@@ -93,7 +92,6 @@ export const ViewerContent = React.createClass({
 			case "categoryIntro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						Howler.unload();
 						const Jcat = new Howl({
 							src: ['./../Jp/Jcat.mp3'],
 							autoplay: true,
@@ -103,7 +101,6 @@ export const ViewerContent = React.createClass({
 						});
 						break;
 					case 2:
-						Howler.unload();
 						const DJcat = new Howl({
 							src: ['./../Jp/DJcat.mp3'],
 							autoplay: true,
@@ -116,7 +113,6 @@ export const ViewerContent = React.createClass({
 				}
 				break;
 			case "DailyDouble":
-				Howler.unload();
 				const DD = new Howl({
 					src: ['./../Jp/jdaily2x.mp3'],
 					autoplay: true,
@@ -126,7 +122,6 @@ export const ViewerContent = React.createClass({
 				});
 				break;
 			case "FJopen":
-				Howler.unload();
 				const FJ = new Howl({
 					src: ['./../Jp/jthink.mp3'],
 					autoplay: true,
@@ -136,7 +131,6 @@ export const ViewerContent = React.createClass({
 				});
 				break;
 			case "FJread":
-				Howler.unload();
 				//noinspection JSUnusedLocalSymbols
 				let FJcat = new Howl({
 					src: ['./../Jp/jfinalj.mp3'],
@@ -145,10 +139,8 @@ export const ViewerContent = React.createClass({
 				break;
 			case "pickQuestion":
 			case "":
-				Howler.unload();
 				break;
 			case "complete":
-				Howler.unload();
 				//noinspection JSUnusedLocalSymbols
 				let loop = new Howl({
 					src: ['./../Jp/jloop.mp3'],
@@ -391,29 +383,50 @@ export const ViewerContent = React.createClass({
 				}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
 				break;
 			case "FJread":
-			case "FJopen":
-				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
+				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
 					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+						<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
 						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+					if (this.props.gameQuestions["currentRound"]["question"]["type"] == "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image} style={imageStyle}/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
 					} else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
-							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
+							        src={this.props.gameQuestions["currentRound"]["question"].URL}
 							        style={{flex: 1}}></iframe>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
 					}
 				}
 				break;
+			case "FJopen":
+				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
+					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+						<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
+						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+					</div>;
+				}
+				else {
+					if (this.props.gameQuestions["currentRound"]["question"]["type"] == "image") {
+						return <div key="imageContainer" style={imageContainer}>
+							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image} style={imageStyle}/>
+							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+						</div>
+					} else {
+						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+							<iframe key="video"
+							        src={this.props.gameQuestions["currentRound"]["question"].URL.replace('autoplay=1', '')}
+							        style={{flex: 1}}></iframe>
+							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+						</div>
+					}
+				}
 			case "FJanswer":
 				if (setup) {
 					setup = false;

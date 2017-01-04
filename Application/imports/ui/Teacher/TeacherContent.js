@@ -181,11 +181,11 @@ export const TeacherContent = React.createClass({
 				} else {
 					wager = "";
 				}
-				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
+				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
 					return (
 						<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-							<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
-							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
+							<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
+							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>
 							<div style={{
 								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
@@ -194,11 +194,11 @@ export const TeacherContent = React.createClass({
 						</div>);
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"].type == "image") {
+					if (this.props.gameQuestions["currentRound"]["question"].type == "image") {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<div
-								style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"].text}</div>
-							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
+								style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"].text}</div>
+							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>
 							<div style={{
 								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
@@ -214,7 +214,7 @@ export const TeacherContent = React.createClass({
 							justifyContent: "center",
 							whiteSpace: "pre-wrap",
 						}}>Video<br/>Question</div>,
-							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>,
+							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>,
 							<div style={{
 								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
