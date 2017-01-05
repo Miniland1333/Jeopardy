@@ -54,11 +54,11 @@ export const ViewerContent = React.createClass({
 		let scrap = new Howl({
 			src: ['./../Jp/jtime.mp3'],
 		});
-		Howler.unload();
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
+						Howler.unload();
 						const intro = new Howl({
 							src: ['./../Jp/jintrofade.mp3'],
 							autoplay: true,
@@ -68,6 +68,7 @@ export const ViewerContent = React.createClass({
 						});
 						break;
 					case 2:
+						Howler.unload();
 						const DJintro = new Howl({
 							src: ['./../Jp/DJ.mp3'],
 							autoplay: true,
@@ -78,6 +79,7 @@ export const ViewerContent = React.createClass({
 						});
 						break;
 					case 3:
+						Howler.unload();
 						const FJintro = new Howl({
 							src: ['./../Jp/FJ.mp3'],
 							autoplay: true,
@@ -92,6 +94,7 @@ export const ViewerContent = React.createClass({
 			case "categoryIntro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
+						Howler.unload();
 						const Jcat = new Howl({
 							src: ['./../Jp/Jcat.mp3'],
 							autoplay: true,
@@ -101,6 +104,7 @@ export const ViewerContent = React.createClass({
 						});
 						break;
 					case 2:
+						Howler.unload();
 						const DJcat = new Howl({
 							src: ['./../Jp/DJcat.mp3'],
 							autoplay: true,
@@ -113,6 +117,7 @@ export const ViewerContent = React.createClass({
 				}
 				break;
 			case "DailyDouble":
+				Howler.unload();
 				const DD = new Howl({
 					src: ['./../Jp/jdaily2x.mp3'],
 					autoplay: true,
@@ -122,6 +127,7 @@ export const ViewerContent = React.createClass({
 				});
 				break;
 			case "FJopen":
+				Howler.unload();
 				const FJ = new Howl({
 					src: ['./../Jp/jthink.mp3'],
 					autoplay: true,
@@ -131,16 +137,19 @@ export const ViewerContent = React.createClass({
 				});
 				break;
 			case "FJread":
+				Howler.unload();
 				//noinspection JSUnusedLocalSymbols
-				let FJcat = new Howl({
+				const FJcat = new Howl({
 					src: ['./../Jp/jfinalj.mp3'],
 					autoplay: true,
 				});
 				break;
 			case "pickQuestion":
 			case "":
+				Howler.unload();
 				break;
 			case "complete":
+				Howler.unload();
 				//noinspection JSUnusedLocalSymbols
 				let loop = new Howl({
 					src: ['./../Jp/jloop.mp3'],
@@ -278,9 +287,6 @@ export const ViewerContent = React.createClass({
 					this.lastState = "open";
 					clearInterval(timer);
 					this.time = maxTimeResponse;
-					const time = new Howl({
-						src: ['./../Jp/jtime.mp3'],
-					});
 					timer = setInterval(() => {
 						if (this.time > 0) {
 							this.time -= 1;
@@ -288,6 +294,9 @@ export const ViewerContent = React.createClass({
 						}
 						if (this.time == 0) {
 							clearInterval(timer);
+							const time = new Howl({
+								src: ['./../Jp/jtime.mp3'],
+							});
 							time.play(undefined, false);
 							this.forceUpdate();
 							Meteor.call('gameLogic.setState', "next");
@@ -319,9 +328,7 @@ export const ViewerContent = React.createClass({
 					this.lastState = this.props.gameLogic["state"];
 					clearInterval(timer);
 					this.time = maxTimeAnswer;
-					const time1 = new Howl({
-						src: ['./../Jp/jtime.mp3'],
-					});
+
 					timer = setInterval(() => {
 						if (this.time > 0) {
 							this.time -= 1;
@@ -329,6 +336,9 @@ export const ViewerContent = React.createClass({
 						}
 						if (this.time == 0) {
 							this.forceUpdate();
+							const time1 = new Howl({
+								src: ['./../Jp/jtime.mp3'],
+							});
 							time1.play(undefined, false);
 							clearInterval(timer);
 						}

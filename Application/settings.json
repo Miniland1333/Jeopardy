@@ -1,0 +1,7 @@
+{
+  "galaxy.meteor.com": {
+     "env": {
+       "MONGO_URL": "mongodb://galaxyhost:galaxyhost@ds151078.mlab.com:51078/jgame"
+     }
+   }
+}
