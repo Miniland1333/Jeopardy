@@ -165,7 +165,6 @@ export const ViewerContent = React.createClass({
 		}
 		this.handleSound();
 		
-		//todo add logic for alternate question logic
 		switch (this.props.gameLogic["state"]) {
 			case "":
 				return <div className="flex-container" style={inputStyle}><input style={inputStyle}
@@ -226,6 +225,7 @@ export const ViewerContent = React.createClass({
 				</div>;
 				break;
 			case "pickQuestion":
+				clearInterval(timer);
 				const round = this.props.gameLogic["round"];
 				this.lastState = "pickQuestion";
 				return <div key="" className="Table">
