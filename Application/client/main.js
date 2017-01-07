@@ -5,7 +5,7 @@ import { Router, Route, browserHistory } from 'react-router';
 
 import FastClick from "./fastclick"
 
-import App from '../imports/simple-todos/ui/App.js';
+import App from '../imports/simple-todos/ui/App.jsx';
 import PageNotFound from '../imports/ui/PageNotFound';
 import Viewer from '../imports/ui/Viewer/Viewer';
 import Editor from '../imports/ui/Editor/Editor';
@@ -13,7 +13,7 @@ import Teacher from '../imports/ui/Teacher/Teacher';
 import Student from '../imports/ui/Student/Student';
 
 
-var renderRoutes = () => (
+const renderRoutes = () => (
     <Router history={browserHistory}>
         <Route path="/" component={Student}/>
         
@@ -41,5 +41,3 @@ if (window.navigator.standalone) {
         new FastClick(document.body);
     }, false);
 }
-
-

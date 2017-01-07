@@ -5,7 +5,7 @@ babel-compiler@6.13.0
 babel-runtime@1.0.1
 base64@1.0.10
 binary-heap@1.0.10
-blaze@2.2.0
+blaze@2.2.1
 blaze-html-templates@1.0.5
 blaze-tools@1.0.10
 boilerplate-generator@1.0.11
@@ -47,7 +47,7 @@ mizzao:user-status@0.6.6
 mobile-experience@1.0.4
 mobile-status-bar@1.0.13
 modules@0.7.7
-modules-runtime@0.7.7
+modules-runtime@0.7.8
 mongo@1.1.14
 mongo-id@1.0.6
 npm-mongo@2.2.11_2
