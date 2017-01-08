@@ -21,16 +21,20 @@ var StudentHeader = React.createClass({
 					            connectionId={Meteor.connection._lastSessionId}/>)
 			});
 		} else {
-			return $.map(this.props.gameLogic, function (contents, field) {
-				if (field.includes("player")) {
-					return (
-						<ScoreBoard key={field}
-						            playerLogic={contents}
-						            gameLogic={gameLogic.find().fetch()[0]}
-						            round={gameLogic.find().fetch()[0]["round"]}
-						            connectionId={Meteor.connection._lastSessionId}/>)
-				}
-			});
+			if(this.props.gameLogic["state"]=="FJopen"||this.props.gameLogic["state"]=="FJread"){
+				return [];
+			}else {
+				return $.map(this.props.gameLogic, function (contents, field) {
+					if (field.includes("player")) {
+						return (
+							<ScoreBoard key={field}
+							            playerLogic={contents}
+							            gameLogic={gameLogic.find().fetch()[0]}
+							            round={gameLogic.find().fetch()[0]["round"]}
+							            connectionId={Meteor.connection._lastSessionId}/>)
+					}
+				});
+			}
 		}
 	},
 	render:function () {

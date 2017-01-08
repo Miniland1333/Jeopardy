@@ -163,7 +163,7 @@ var StudentContent = React.createClass({
 				case "FJopen":
 					if(setup){
 						setup = false;
-						return <canvas style={{border:"2px solid white",flex:1}} id="writingPad"/>;
+						return <canvas style={{flex:1}} id="writingPad"/>;
 					}else{
 						paper.install(window);
 						var canvas = document.getElementById('writingPad');
@@ -183,7 +183,7 @@ var StudentContent = React.createClass({
 							path = new Path({
 								segments: [event.point],
 								strokeColor: 'white',
-								strokeWidth: 10,
+								strokeWidth: 6,
 							});
 						};
 						
@@ -197,10 +197,7 @@ var StudentContent = React.createClass({
 							path.simplify(10);
 							finalAnswer = paper.project.exportJSON();
 						};
-						return <canvas className="needsclick" style={{border: "2px solid white", flex: 1}}
-						               id="writingPad">
-						
-						</canvas>;
+						return <canvas className="needsclick" style={{flex: 1}} id="writingPad"/>;
 					}
 				case "FJanswer":
 					Meteor.call('gameLogic.finalAnswer',teamNumber,finalAnswer);
