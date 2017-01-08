@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/main.html" afterPath="$PROJECT_DIR$/client/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Old Games/Friend Game.txt" afterPath="$PROJECT_DIR$/../Old Games/Friend Game.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Old Games/JJeopardy.txt" afterPath="$PROJECT_DIR$/../Old Games/JJeopardy.txt" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +28,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StudentContent.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
+      <file leaf-file-name="addtohomescreen.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/addtohomescreen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="43" column="12" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+            <state relative-caret-position="306">
+              <caret line="177" column="34" lean-forward="true" selection-start-line="177" selection-start-column="34" selection-end-line="177" selection-end-column="34" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addtohomescreen.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/addtohomescreen.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-425">
+              <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -72,6 +86,7 @@
       <find>[]</find>
       <find>start</find>
       <find>setinter</find>
+      <find>add to</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -98,8 +113,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorTableBody.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/gameLi.js" />
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/App.js" />
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/Task.js" />
         <option value="$PROJECT_DIR$/imports/ui/temp" />
@@ -133,7 +146,6 @@
         <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/public/jquery.maskedinput.js" />
-        <option value="$PROJECT_DIR$/client/main.html" />
         <option value="$PROJECT_DIR$/.meteor/local/build/programs/server/packages/igorescobar_jquery-mask-plugin.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
@@ -148,7 +160,10 @@
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
         <option value="$PROJECT_DIR$/imports/simple-todos/ui/Task.jsx" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
+        <option value="$PROJECT_DIR$/client/main.html" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
+        <option value="$PROJECT_DIR$/public/addtohomescreen.js" />
+        <option value="$PROJECT_DIR$/client/addtohomescreen.css" />
       </list>
     </option>
   </component>
@@ -293,11 +308,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -311,47 +322,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Student" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imports" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
+              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1192,14 +1163,7 @@
       <workItem from="1483640126675" duration="1935000" />
       <workItem from="1483665371739" duration="418000" />
       <workItem from="1483822796454" duration="1211000" />
-      <workItem from="1483843714692" duration="3024000" />
-    </task>
-    <task id="LOCAL-00029" summary="Added DSEG7 and Installation executables">
-      <created>1472707699849</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1472707699849</updated>
+      <workItem from="1483843714692" duration="3813000" />
     </task>
     <task id="LOCAL-00030" summary="Implemented ScoreBoard element Dynamically as well as player kicking&#10;&#10;&#10;Will move on to Player setup in order to test ScoreBoard">
       <created>1472868929622</created>
@@ -1537,11 +1501,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483823949129</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Accessibility for writing on phones">
+      <created>1483848068610</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1483848068610</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="466776000" />
+    <option name="totallyTimeSpent" value="467565000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1605,7 +1576,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added in Scoring of responses&#10;&#10;&#10;On to final Jeopardy!" />
     <MESSAGE value="Resolved issue where timer would keep firing if advancing.&#10;Resolved issue where CheckRemaining would still count any removed categories" />
     <MESSAGE value="Resolved issue where timer would keep firing if advancing.&#10;Resolved issue where CheckRemaining would still count any removed categories&#10;&#10;#Contains bug where DJ intro will not play if previous state was &quot;next&quot;" />
     <MESSAGE value="Resolved issue where timer would keep firing if advancing.&#10;                                                                       Resolved issue where CheckRemaining would still count any removed categories&#10;                                                                       &#10;                                                                       #Contains bug where DJ intro will not play if previous state was &quot;next&quot;" />
@@ -1630,7 +1600,8 @@
     <MESSAGE value="Minor fix to end time" />
     <MESSAGE value="Final Jeopardy Bug Fix&#10;&#10;DJintro sound not working" />
     <MESSAGE value="Made Timeout sound not play on pickQuestion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made Timeout sound not play on pickQuestion" />
+    <MESSAGE value="Accessibility for writing on phones" />
+    <option name="LAST_COMMIT_MESSAGE" value="Accessibility for writing on phones" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1658,8 +1629,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/.meteor/packages/ddp-client/1.2.9/web.browser/livedata_connection.js" />
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/PlayerSetup.js" />
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/GameLi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1786,13 +1755,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/jquery.maskedinput.js" />
-    <entry file="file://$PROJECT_DIR$/client/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.meteor/local/build/programs/server/packages/igorescobar_jquery-mask-plugin.js" />
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1907,13 +1869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/simple-todos/ui/App.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1965,11 +1920,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="43" column="12" lean-forward="true" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+        <state relative-caret-position="267">
+          <caret line="70" column="19" lean-forward="true" selection-start-line="69" selection-start-column="37" selection-end-line="70" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/addtohomescreen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/addtohomescreen.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="177" column="34" lean-forward="true" selection-start-line="177" selection-start-column="34" selection-end-line="177" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
