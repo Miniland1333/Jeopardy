@@ -42,6 +42,41 @@ const maxTimeResponse = 5;
 const maxTimeAnswer = 5;
 let setup = true;
 
+//sound declarations
+const intro = new Howl({src: ['./../Jp/jintrofade.mp3'],});
+intro.on('end', function () {
+	Meteor.call('gameLogic.setState', 'categoryIntro');
+});
+const DJintro = new Howl({src: ['./../Jp/DJ.mp3'],});
+DJintro.on('end', function () {
+	console.log("finishedDJintro");
+	Meteor.call('gameLogic.setState', 'categoryIntro');
+});
+const FJintro = new Howl({src: ['./../Jp/FJ.mp3'],});
+FJintro.on('end', function () {
+	Meteor.call('gameLogic.setState', 'categoryIntro');
+});
+
+const Jcat = new Howl({src: ['./../Jp/Jcat.mp3'],});
+Jcat.on('end', function () {
+	Meteor.call('gameLogic.setState', 'categories');
+});
+const DJcat = new Howl({src: ['./../Jp/DJcat.mp3'],});
+DJcat.on('end', function () {
+	Meteor.call('gameLogic.setState', 'categories');
+});
+const DD = new Howl({	src: ['./../Jp/jdaily2x.mp3'],});
+DD.on('end', function () {
+	Meteor.call('gameLogic.setState', 'wager');
+});
+const FJ = new Howl({src: ['./../Jp/jthink.mp3'],});
+FJ.on('end', function () {
+	Meteor.call('gameLogic.setState', 'FJanswer');
+});
+const FJcat = new Howl({src: ['./../Jp/jfinalj.mp3'],});
+const loop = new Howl({src: ['./../Jp/jloop.mp3'],loop: true,});
+const time = new Howl({src: ['./../Jp/jtime.mp3'],});
+
 export const ViewerContent = React.createClass({
 	propTypes: {
 		gameLogic: React.PropTypes.object,
@@ -49,44 +84,22 @@ export const ViewerContent = React.createClass({
 	},
 	time: 5,
 	lastState: "",
+	
 	handleSound: function () {
-		//noinspection JSUnusedLocalSymbols
-		let scrap = new Howl({
-			src: ['./../Jp/jtime.mp3'],
-		});
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						Howler.unload();
-						const intro = new Howl({
-							src: ['./../Jp/jintrofade.mp3'],
-							autoplay: true,
-						});
-						intro.on('end', function () {
-							Meteor.call('gameLogic.setState', 'categoryIntro');
-						});
+						this.handleSoundStop();
+						intro.play();
 						break;
 					case 2:
-						Howler.unload();
-						const DJintro = new Howl({
-							src: ['./../Jp/DJ.mp3'],
-							autoplay: true,
-						});
-						DJintro.on('end', function () {
-							console.log("finishedDJintro");
-							Meteor.call('gameLogic.setState', 'categoryIntro');
-						});
+						this.handleSoundStop();
+						DJintro.play();
 						break;
 					case 3:
-						Howler.unload();
-						const FJintro = new Howl({
-							src: ['./../Jp/FJ.mp3'],
-							autoplay: true,
-						});
-						FJintro.on('end', function () {
-							Meteor.call('gameLogic.setState', 'categoryIntro');
-						});
+						this.handleSoundStop();
+						FJintro.play();
 						break;
 				}
 				break;
@@ -94,69 +107,40 @@ export const ViewerContent = React.createClass({
 			case "categoryIntro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						Howler.unload();
-						const Jcat = new Howl({
-							src: ['./../Jp/Jcat.mp3'],
-							autoplay: true,
-						});
-						Jcat.on('end', function () {
-							Meteor.call('gameLogic.setState', 'categories');
-						});
+						this.handleSoundStop();
+						Jcat.play();
 						break;
 					case 2:
-						Howler.unload();
-						const DJcat = new Howl({
-							src: ['./../Jp/DJcat.mp3'],
-							autoplay: true,
-						});
-						DJcat.on('end', function () {
-							Meteor.call('gameLogic.setState', 'categories');
-						});
+						this.handleSoundStop();
+						DJcat.play();
 						break;
 					case 3:
 				}
 				break;
 			case "DailyDouble":
-				Howler.unload();
-				const DD = new Howl({
-					src: ['./../Jp/jdaily2x.mp3'],
-					autoplay: true,
-				});
-				DD.on('end', function () {
-					Meteor.call('gameLogic.setState', 'wager');
-				});
+				this.handleSoundStop();
+				DD.play();
 				break;
 			case "FJopen":
-				Howler.unload();
-				const FJ = new Howl({
-					src: ['./../Jp/jthink.mp3'],
-					autoplay: true,
-				});
-				FJ.on('end', function () {
-					Meteor.call('gameLogic.setState', 'FJanswer');
-				});
+				this.handleSoundStop();
+				FJ.play();
 				break;
 			case "FJread":
-				Howler.unload();
-				//noinspection JSUnusedLocalSymbols
-				const FJcat = new Howl({
-					src: ['./../Jp/jfinalj.mp3'],
-					autoplay: true,
-				});
+				this.handleSoundStop();
+				FJcat.play();
 				break;
 			case "pickQuestion":
 			case "":
-				Howler.unload();
+				this.handleSoundStop();
 				break;
 			case "complete":
-				Howler.unload();
-				//noinspection JSUnusedLocalSymbols
-				let loop = new Howl({
-					src: ['./../Jp/jloop.mp3'],
-					autoplay: true,
-					loop: true,
-				});
+				this.handleSoundStop();
+				loop.play();
 		}
+	},
+	handleSoundStop:function () {
+		const soundArray = [intro,DJintro,FJintro,Jcat,DJcat,DD,FJ,loop,time];
+		soundArray.forEach(function(sound){sound.stop()});
 	},
 	renderContent: function () {
 		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
@@ -294,9 +278,6 @@ export const ViewerContent = React.createClass({
 						}
 						if (this.time == 0) {
 							clearInterval(timer);
-							const time = new Howl({
-								src: ['./../Jp/jtime.mp3'],
-							});
 							time.play(undefined, false);
 							this.forceUpdate();
 							Meteor.call('gameLogic.setState', "next");
@@ -328,7 +309,7 @@ export const ViewerContent = React.createClass({
 					this.lastState = this.props.gameLogic["state"];
 					clearInterval(timer);
 					this.time = maxTimeAnswer;
-
+					
 					timer = setInterval(() => {
 						if (this.time > 0) {
 							this.time -= 1;
@@ -336,10 +317,7 @@ export const ViewerContent = React.createClass({
 						}
 						if (this.time == 0) {
 							this.forceUpdate();
-							const time1 = new Howl({
-								src: ['./../Jp/jtime.mp3'],
-							});
-							time1.play(undefined, false);
+							time.play(undefined, false);
 							clearInterval(timer);
 						}
 					}, 1000);
@@ -441,7 +419,7 @@ export const ViewerContent = React.createClass({
 				if (setup) {
 					setup = false;
 					return <div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
-						<canvas style={{border: "2px solid white", flex: 1}} id="writingPad"/>
+						<canvas style={{flex: 1}} id="writingPad"/>
 						;
 					</div>
 					
@@ -462,7 +440,7 @@ export const ViewerContent = React.createClass({
 					}
 					return (
 						<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
-							<canvas style={{border: "2px solid white", flex: 1}} id="writingPad"/>
+							<canvas style={{flex: 1}} id="writingPad"/>
 							<div style={{
 								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
