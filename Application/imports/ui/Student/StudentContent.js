@@ -1,69 +1,84 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 
-var buttonStyle={
-	backgroundColor:"#555555",
-	fontSize:"24px",
-	margin:"5px",
-	height:"30px",
-	width:"100px",
-	display:"inline-block",
+const buttonStyle = {
+	backgroundColor: "#555555",
+	fontSize: "24px",
+	margin: "5px",
+	height: "30px",
+	width: "100px",
+	display: "inline-block",
 	borderRadius: 8,
 };
-var confirmStyle={
-	backgroundColor:"#007d0a",
-	fontSize:"26px",
-	margin:"5px",
-	height:"50px",
-	display:"block",
+const confirmStyle = {
+	backgroundColor: "#007d0a",
+	fontSize: "26px",
+	margin: "5px",
+	height: "50px",
+	display: "block",
 	borderRadius: 8,
 };
-var teamNumber;
-var finalAnswer;
-var setup = true;
+let teamNumber;
+let finalAnswer;
 
-var StudentContent = React.createClass({
-	propTypes:{
-		gameLogic:React.PropTypes.object,
+export const StudentContent = React.createClass({
+	getInitialState: function () {
+		return {
+			setup: true,
+		}
 	},
-	handleFirst:function () {
-		Meteor.call("gameLogic.setFirst",teamNumber);
-		Meteor.call("gameLogic.setState","answer");
+	propTypes: {
+		gameLogic: React.PropTypes.object,
 	},
-	handleLate:function () {
-		Meteor.call('gameLogic.addLate',teamNumber);
+	handleFirst: function () {
+		Meteor.call("gameLogic.setFirst", teamNumber);
+		Meteor.call("gameLogic.setState", "answer");
 	},
-	render:function () {
+	handleLate: function () {
+		Meteor.call('gameLogic.addLate', teamNumber);
+	},
+	render: function () {
 		
-		var wager;
-		var max;
-		var points;
+		let wager;
+		let max;
+		let points;
 		
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
-		if(teamNumber==undefined) {
+		if (teamNumber == undefined) {
 			addToHomescreen();
 			return (<div className="flex-container" style={{flexDirection: "column"}}>
 					<h1>Tap a box to register!</h1>
 					<p>{Meteor.connection._lastSessionId}</p>
 				</div>
 			);
-		}else if(this.props.gameLogic["state"]=="wager"&&this.props.gameLogic["lastWinner"]==teamNumber){
+		} else if (this.props.gameLogic["state"] == "wager" && this.props.gameLogic["lastWinner"] == teamNumber) {
 			points = this.props.gameLogic["player" + teamNumber]["points"];
 			max = Math.max(this.props.gameLogic["round"] == 1 ? 1000 : 2000, points);
 			
 			
 			wager = Math.max(5, Math.min(this.props.gameLogic["player" + teamNumber]["wager"], max));
-			Meteor.call('gameLogic.setWager',teamNumber,wager);
-			return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-				<div style={{flex:1}}></div>
+			Meteor.call('gameLogic.setWager', teamNumber, wager);
+			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+				<div style={{flex: 1}}></div>
 				<div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager+=10000)}>+10,000</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager+=1000)}>+1,000</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager+=100)}>+100</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager+=10)}>+10</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager+=1)}>+1</div>
+					<div style={buttonStyle}
+					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>+10,000
+					</div>
+					<div style={buttonStyle}
+					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1000)}>+1,000
+					</div>
+					<div style={buttonStyle}
+					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 100)}>+100
+					</div>
+					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10)}>
+						+10
+					</div>
+					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1)}>
+						+1
+					</div>
 				</div>
-				<div style={{fontFamily: "D7",
+				<div style={{
+					fontFamily: "D7",
 					fontSize: "4vw",
 					padding: "10px",
 					border: "4px solid #f1f1f1",
@@ -72,51 +87,64 @@ var StudentContent = React.createClass({
 					Wager: {wager}
 				</div>
 				<div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager-=10000)}>-10,000</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager-=1000)}>-1,000</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager-=100)}>-100</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager-=10)}>-10</div>
-					<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager',teamNumber,wager-=1)}>-1</div>
+					<div style={buttonStyle}
+					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>-10,000
+					</div>
+					<div style={buttonStyle}
+					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1000)}>-1,000
+					</div>
+					<div style={buttonStyle}
+					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 100)}>-100
+					</div>
+					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10)}>
+						-10
+					</div>
+					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1)}>
+						-1
+					</div>
 				</div>
-				<div style={{fontSize:15}}>You can wager between $5 and ${max}</div>
-				<div style={{flex:1}}></div>
-				<div style={confirmStyle} onClick={()=>Meteor.call('gameLogic.setState','DDread')}>Confirm Wager</div>
+				<div style={{fontSize: 15}}>You can wager between $5 and ${max}</div>
+				<div style={{flex: 1}}></div>
+				<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.setState', 'DDread')}>Confirm Wager
+				</div>
 			</div>;
 			
-		}else if(this.props.gameLogic["state"]=="read"){
-			return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-				<div  style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
+		} else if (this.props.gameLogic["state"] == "read") {
+			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+				<div style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
 			</div>;
-		}else if(this.props.gameLogic["state"]=="open"){
-			var incorrect = this.props.gameLogic["currentQuestionLogic"]["Incorrect"];
-			if(!incorrect.includes(teamNumber)){
+		} else if (this.props.gameLogic["state"] == "open") {
+			const incorrect = this.props.gameLogic["currentQuestionLogic"]["Incorrect"];
+			if (!incorrect.includes(teamNumber)) {
 				//If not on incorrect list
-				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-					<div onClick={this.handleFirst} style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
+				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					<div onClick={this.handleFirst}
+					     style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
-			}else{
-				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-					<div  style={{background:"#ff3f3f",borderRadius:"8px",margin:"30px",flex:1}}/>
-				</div>;
-			}
-			
-			
-		}else if(this.props.gameLogic["state"]=="answer"){
-			if(this.props.gameLogic["currentQuestionLogic"]["first"]==teamNumber){
-				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-					<div  style={{background:"#00b500",borderRadius:"8px",margin:"30px",flex:1}}/>
-				</div>;
-			}else if(this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)){
-				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-					<div  style={{background:"#ff3f3f",borderRadius:"8px",margin:"30px",flex:1}}/>
-				</div>;
-			}else{
-				return <div className="flex-container" style={{flexDirection:"column",flex:1}}>
-					<div onClick={this.handleLate} style={{background:"#f6f6f6",borderRadius:"8px",margin:"30px",flex:1}}/>
+			} else {
+				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
 			}
 			
-		}else if (this.props.gameLogic["round"]==3&&this.props.gameLogic["player" + teamNumber]["status"] == "active") {
+			
+		} else if (this.props.gameLogic["state"] == "answer") {
+			if (this.props.gameLogic["currentQuestionLogic"]["first"] == teamNumber) {
+				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					<div style={{background: "#00b500", borderRadius: "8px", margin: "30px", flex: 1}}/>
+				</div>;
+			} else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
+				</div>;
+			} else {
+				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					<div onClick={this.handleLate}
+					     style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
+				</div>;
+			}
+			
+		} else if (this.props.gameLogic["round"] == 3 && this.props.gameLogic["player" + teamNumber]["status"] == "active") {
 			switch (this.props.gameLogic["state"]) {
 				case "FJwager":
 					if (!this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
@@ -127,11 +155,22 @@ var StudentContent = React.createClass({
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<div style={{flex: 1}}></div>
 							<div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>+10,000</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager += 1000)}>+1,000</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager += 100)}>+100</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager += 10)}>+10</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager += 1)}>+1</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>
+									+10,000
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1000)}>+1,000
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 100)}>+100
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10)}>+10
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1)}>+1
+								</div>
 							</div>
 							<div style={{
 								fontFamily: "D7",
@@ -143,15 +182,27 @@ var StudentContent = React.createClass({
 								Wager: {wager}
 							</div>
 							<div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>-10,000</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager -= 1000)}>-1,000</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager -= 100)}>-100</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager -= 10)}>-10</div>
-								<div style={buttonStyle} onClick={()=>Meteor.call('gameLogic.setWager', teamNumber, wager -= 1)}>-1</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>
+									-10,000
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1000)}>-1,000
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 100)}>-100
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10)}>-10
+								</div>
+								<div style={buttonStyle}
+								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1)}>-1
+								</div>
 							</div>
 							<div style={{fontSize: 15}}>You can wager between $0 and ${points}</div>
 							<div style={{flex: 1}}></div>
-							<div style={confirmStyle} onClick={()=>Meteor.call('gameLogic.addLate', teamNumber)}>Confirm
+							<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
+								Confirm
 								Wager
 							</div>
 						</div>;
@@ -160,24 +211,20 @@ var StudentContent = React.createClass({
 					}
 				
 				case "FJread":
+					this.setState({setup: false});
+					return <canvas style={{flex: 1}} id="writingPad"/>;
 				case "FJopen":
-					if(setup){
-						setup = false;
-						this.forceUpdate();
-						return <canvas style={{flex:1}} id="writingPad"/>;
-					}else{
+					if (this.state.setup) {
+						this.setState({setup: false});
+						return <canvas style={{flex: 1}} id="writingPad"/>;
+					} else {
 						paper.install(window);
-						var canvas = document.getElementById('writingPad');
+						const canvas = document.getElementById('writingPad');
 						paper.setup(canvas);
 						
-						let previousAnswer = this.props.gameLogic["player"+teamNumber+".finalPhoto"];
-						if (previousAnswer!=undefined){
-							paper.project.importJSON(previousAnswer);
-						}
-						
-						var path;
-						var tool = new Tool();
-						var textItem = new PointText({
+						let path;
+						const tool = new Tool();
+						let textItem = new PointText({
 							content: 'Write your answer here',
 							point: new Point(20, 30),
 							fillColor: 'white',
@@ -198,7 +245,7 @@ var StudentContent = React.createClass({
 						};
 						
 						tool.onMouseUp = function up(event) {
-							var segmentCount = path.segments.length;
+							let segmentCount = path.segments.length;
 							// When the mouse is released, simplify it:
 							path.simplify(10);
 							finalAnswer = paper.project.exportJSON();
@@ -206,7 +253,7 @@ var StudentContent = React.createClass({
 						return <canvas className="needsclick" style={{flex: 1}} id="writingPad"/>;
 					}
 				case "FJanswer":
-					Meteor.call('gameLogic.finalAnswer',teamNumber,finalAnswer);
+					Meteor.call('gameLogic.finalAnswer', teamNumber, finalAnswer);
 					return null;
 				default:
 					return null;

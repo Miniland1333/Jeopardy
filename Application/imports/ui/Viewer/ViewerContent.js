@@ -40,7 +40,6 @@ const imageContainer = {
 let timer;
 const maxTimeResponse = 5;
 const maxTimeAnswer = 5;
-let setup = true;
 
 //sound declarations
 const intro = new Howl({src: ['./../Jp/jintrofade.mp3'],});
@@ -77,6 +76,11 @@ const loop = new Howl({src: ['./../Jp/jloop.mp3'],loop: true,});
 const time = new Howl({src: ['./../Jp/jtime.mp3'],});
 
 export const ViewerContent = React.createClass({
+	getInitialState:function(){
+		return {
+			setup: true,
+		}
+	},
 	propTypes: {
 		gameLogic: React.PropTypes.object,
 		gameQuestions: React.PropTypes.object,
@@ -426,8 +430,8 @@ export const ViewerContent = React.createClass({
 					}
 				}
 			case "FJanswer":
-				if (setup) {
-					setup = false;
+				if (this.state.setup) {
+					this.setState({setup: false});
 					return <div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 						<canvas style={{flex: 1}} id="writingPad"/>
 						;
