@@ -24,43 +24,49 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="ViewerContent.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="432" column="21" lean-forward="true" selection-start-line="432" selection-start-column="21" selection-end-line="432" selection-end-column="21" />
+            <state relative-caret-position="-552">
+              <caret line="102" column="27" lean-forward="true" selection-start-line="102" selection-start-column="27" selection-end-line="102" selection-end-column="27" />
               <folding>
                 <element signature="e#221#359#0" expanded="false" />
                 <element signature="e#380#573#0" expanded="false" />
                 <element signature="e#594#632#0" expanded="false" />
                 <element signature="e#657#757#0" expanded="false" />
-                <marker date="1484192578409" expanded="true" signature="863:2044" ph="..." />
-                <marker date="1484192578409" expanded="false" signature="4043:4851" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="4110:4286" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-                <marker date="1484192578409" expanded="false" signature="4370:4546" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-                <marker date="1484192578409" expanded="false" signature="4641:4817" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-                <marker date="1484192578409" expanded="false" signature="4896:5428" ph="&lt;div/&gt;" />
-                <marker date="1484192578409" expanded="false" signature="5588:6197" ph="&lt;div/&gt;" />
-                <marker date="1484192578409" expanded="false" signature="6272:6414" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-                <marker date="1484192578409" expanded="false" signature="6611:6816" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="6826:7368" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="7549:7691" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-                <marker date="1484192578409" expanded="false" signature="8383:8588" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="8598:9181" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="9789:9994" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="10004:10587" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="10771:10976" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="10986:11569" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="11620:11765" ph="{&quot;fontSize&quot;: &quot;20vmin&quot;...}" />
-                <marker date="1484192578409" expanded="false" signature="11940:12227" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="12237:12957" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="13069:13356" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="13366:14112" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="15348:15516" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="15540:15791" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="15797:16098" ph="{...}" />
-                <marker date="1484192578409" expanded="false" signature="16138:16341" ph="{...}" />
+                <element signature="e#951#1007#0" expanded="false" />
+                <element signature="e#1094#1150#0" expanded="false" />
+                <element signature="e#1237#1293#0" expanded="false" />
+                <element signature="e#1516#1569#0" expanded="false" />
+                <element signature="e#1653#1701#0" expanded="false" />
+                <element signature="e#1782#1833#0" expanded="false" />
+                <element signature="e#4123#4970#0" expanded="false" />
+                <element signature="e#4229#4405#0" expanded="false" />
+                <element signature="e#4489#4665#0" expanded="false" />
+                <element signature="e#4760#4936#0" expanded="false" />
+                <element signature="e#5015#5547#0" expanded="false" />
+                <element signature="e#5707#6316#0" expanded="false" />
+                <element signature="e#6391#6533#0" expanded="false" />
+                <element signature="e#6730#6935#0" expanded="false" />
+                <element signature="e#6945#7487#0" expanded="false" />
+                <element signature="e#7668#7810#0" expanded="false" />
+                <element signature="e#8502#8707#0" expanded="false" />
+                <element signature="e#8717#9300#0" expanded="false" />
+                <element signature="e#9908#10113#0" expanded="false" />
+                <element signature="e#10123#10706#0" expanded="false" />
+                <element signature="e#10890#11095#0" expanded="false" />
+                <element signature="e#11105#11688#0" expanded="false" />
+                <element signature="e#11739#11884#0" expanded="false" />
+                <element signature="e#12059#12346#0" expanded="false" />
+                <element signature="e#12356#13076#0" expanded="false" />
+                <element signature="e#13188#13475#0" expanded="false" />
+                <element signature="e#13485#14231#0" expanded="false" />
+                <element signature="e#15467#15635#0" expanded="false" />
+                <element signature="e#15659#15910#0" expanded="false" />
+                <element signature="e#15916#16217#0" expanded="false" />
+                <element signature="e#16257#16460#0" expanded="false" />
+                <marker date="1484202755986" expanded="false" signature="863:2011" ph="..." />
               </folding>
             </state>
           </provider>
@@ -223,10 +229,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="x" value="793" />
+    <option name="width" value="814" />
+    <option name="height" value="867" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -883,6 +888,8 @@
       <setting name="testName" value="" />
       <setting name="testKind" value="Class" />
       <setting name="showProgressMessages" value="true" />
+      <classRegexps />
+      <testRegexps />
       <envs />
       <method />
     </configuration>
@@ -898,6 +905,8 @@
       <setting name="testName" value="" />
       <setting name="testKind" value="Class" />
       <setting name="showProgressMessages" value="true" />
+      <classRegexps />
+      <testRegexps />
       <envs />
       <method />
     </configuration>
@@ -1117,6 +1126,8 @@
       <setting name="testName" value="" />
       <setting name="testKind" value="Class" />
       <setting name="showProgressMessages" value="true" />
+      <classRegexps />
+      <testRegexps />
       <envs />
       <method />
     </configuration>
@@ -1259,14 +1270,9 @@
       <workItem from="1483849158920" duration="300000" />
       <workItem from="1483849572184" duration="57000" />
       <workItem from="1483923700787" duration="468000" />
-      <workItem from="1484179438152" duration="4800000" />
-    </task>
-    <task id="LOCAL-00033" summary="Completed game setup/transition to round 1&#10;&#10;setupPlayers convert to players&#10;&#10;only allow start if game selected and 2 or more players">
-      <created>1472947147042</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1472947147042</updated>
+      <workItem from="1484179438152" duration="4845000" />
+      <workItem from="1484193193725" duration="36000" />
+      <workItem from="1484202554766" duration="229000" />
     </task>
     <task id="LOCAL-00034" summary="Added in Reconnect during the game&#10;&#10;&#10;//Cannot reconnect to an OUT">
       <created>1472963476093</created>
@@ -1604,11 +1610,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483849621212</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Sound initialization at beginning to eliminate latency">
+      <created>1484192690176</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1484192690177</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="473250000" />
+    <option name="totallyTimeSpent" value="473560000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1620,7 +1633,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="793" y="0" width="814" height="867" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1632,13 +1645,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19665273" sideWeight="0.5051414" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32078102" sideWeight="0.49485862" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32078102" sideWeight="0.49485862" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22236504" sideWeight="0.5352941" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51743376" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21465296" sideWeight="0.46582985" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45358092" sideWeight="0.46582985" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1704,7 +1717,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Attempt to add Final Jeopardy writing pad&#10;&#10;&#10;#Sound bug is related to &quot;advance&quot; command somehow" />
     <MESSAGE value="Implemented player side writing pad" />
     <MESSAGE value="Moved paperjs to global html" />
     <MESSAGE value="Finished Final Jeopardy" />
@@ -1729,7 +1741,8 @@
     <MESSAGE value="Added &quot;Add to Homescreen prompt&quot;" />
     <MESSAGE value="Fixed &quot;Add to Homescreen prompt&quot;" />
     <MESSAGE value="Spelling Fix for Add to Home Screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Spelling Fix for Add to Home Screen" />
+    <MESSAGE value="Sound initialization at beginning to eliminate latency" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sound initialization at beginning to eliminate latency" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2035,7 +2048,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2050,7 +2062,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="221" column="77" lean-forward="false" selection-start-line="221" selection-start-column="77" selection-end-line="221" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2058,45 +2069,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="432" column="21" lean-forward="true" selection-start-line="432" selection-start-column="21" selection-end-line="432" selection-end-column="21" />
+        <state relative-caret-position="-552">
+          <caret line="102" column="27" lean-forward="true" selection-start-line="102" selection-start-column="27" selection-end-line="102" selection-end-column="27" />
           <folding>
             <element signature="e#221#359#0" expanded="false" />
             <element signature="e#380#573#0" expanded="false" />
             <element signature="e#594#632#0" expanded="false" />
             <element signature="e#657#757#0" expanded="false" />
-            <marker date="1484192578409" expanded="true" signature="863:2044" ph="..." />
-            <marker date="1484192578409" expanded="false" signature="4043:4851" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="4110:4286" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-            <marker date="1484192578409" expanded="false" signature="4370:4546" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-            <marker date="1484192578409" expanded="false" signature="4641:4817" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-            <marker date="1484192578409" expanded="false" signature="4896:5428" ph="&lt;div/&gt;" />
-            <marker date="1484192578409" expanded="false" signature="5588:6197" ph="&lt;div/&gt;" />
-            <marker date="1484192578409" expanded="false" signature="6272:6414" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-            <marker date="1484192578409" expanded="false" signature="6611:6816" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="6826:7368" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="7549:7691" ph="{&quot;fontFamily&quot;: &quot;gyparody&quot;...}" />
-            <marker date="1484192578409" expanded="false" signature="8383:8588" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="8598:9181" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="9789:9994" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="10004:10587" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="10771:10976" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="10986:11569" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="11620:11765" ph="{&quot;fontSize&quot;: &quot;20vmin&quot;...}" />
-            <marker date="1484192578409" expanded="false" signature="11940:12227" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="12237:12957" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="13069:13356" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="13366:14112" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="15348:15516" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="15540:15791" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="15797:16098" ph="{...}" />
-            <marker date="1484192578409" expanded="false" signature="16138:16341" ph="{...}" />
+            <element signature="e#951#1007#0" expanded="false" />
+            <element signature="e#1094#1150#0" expanded="false" />
+            <element signature="e#1237#1293#0" expanded="false" />
+            <element signature="e#1516#1569#0" expanded="false" />
+            <element signature="e#1653#1701#0" expanded="false" />
+            <element signature="e#1782#1833#0" expanded="false" />
+            <element signature="e#4123#4970#0" expanded="false" />
+            <element signature="e#4229#4405#0" expanded="false" />
+            <element signature="e#4489#4665#0" expanded="false" />
+            <element signature="e#4760#4936#0" expanded="false" />
+            <element signature="e#5015#5547#0" expanded="false" />
+            <element signature="e#5707#6316#0" expanded="false" />
+            <element signature="e#6391#6533#0" expanded="false" />
+            <element signature="e#6730#6935#0" expanded="false" />
+            <element signature="e#6945#7487#0" expanded="false" />
+            <element signature="e#7668#7810#0" expanded="false" />
+            <element signature="e#8502#8707#0" expanded="false" />
+            <element signature="e#8717#9300#0" expanded="false" />
+            <element signature="e#9908#10113#0" expanded="false" />
+            <element signature="e#10123#10706#0" expanded="false" />
+            <element signature="e#10890#11095#0" expanded="false" />
+            <element signature="e#11105#11688#0" expanded="false" />
+            <element signature="e#11739#11884#0" expanded="false" />
+            <element signature="e#12059#12346#0" expanded="false" />
+            <element signature="e#12356#13076#0" expanded="false" />
+            <element signature="e#13188#13475#0" expanded="false" />
+            <element signature="e#13485#14231#0" expanded="false" />
+            <element signature="e#15467#15635#0" expanded="false" />
+            <element signature="e#15659#15910#0" expanded="false" />
+            <element signature="e#15916#16217#0" expanded="false" />
+            <element signature="e#16257#16460#0" expanded="false" />
+            <marker date="1484202755986" expanded="false" signature="863:2011" ph="..." />
           </folding>
         </state>
       </provider>

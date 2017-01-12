@@ -49,7 +49,6 @@ intro.on('end', function () {
 });
 const DJintro = new Howl({src: ['./../Jp/DJ.mp3'],});
 DJintro.on('end', function () {
-	console.log("finishedDJintro");
 	Meteor.call('gameLogic.setState', 'categoryIntro');
 });
 const FJintro = new Howl({src: ['./../Jp/FJ.mp3'],});
@@ -90,16 +89,22 @@ export const ViewerContent = React.createClass({
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						this.handleSoundStop();
-						intro.play();
+						if(!intro.playing()){
+							this.handleSoundStop();
+							intro.play();
+						}
 						break;
 					case 2:
-						this.handleSoundStop();
-						DJintro.play();
+						if(!DJintro.playing()){
+							this.handleSoundStop();
+							DJintro.play();
+						}
 						break;
 					case 3:
-						this.handleSoundStop();
-						FJintro.play();
+						if(!FJintro.playing()){
+							this.handleSoundStop();
+							FJintro.play();
+						}
 						break;
 				}
 				break;
@@ -134,8 +139,11 @@ export const ViewerContent = React.createClass({
 				this.handleSoundStop();
 				break;
 			case "complete":
-				this.handleSoundStop();
-				loop.play();
+				if(!loop.playing()){
+					this.handleSoundStop();
+					loop.play();
+				}
+
 		}
 	},
 	handleSoundStop:function () {
