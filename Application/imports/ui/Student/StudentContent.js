@@ -163,11 +163,17 @@ var StudentContent = React.createClass({
 				case "FJopen":
 					if(setup){
 						setup = false;
+						this.forceUpdate();
 						return <canvas style={{flex:1}} id="writingPad"/>;
 					}else{
 						paper.install(window);
 						var canvas = document.getElementById('writingPad');
 						paper.setup(canvas);
+						
+						let previousAnswer = this.props.gameLogic["player"+teamNumber+".finalPhoto"];
+						if (previousAnswer!=undefined){
+							paper.project.importJSON(previousAnswer);
+						}
 						
 						var path;
 						var tool = new Tool();
