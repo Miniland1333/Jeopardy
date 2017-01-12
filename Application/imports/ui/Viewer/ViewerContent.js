@@ -131,8 +131,10 @@ export const ViewerContent = React.createClass({
 				FJ.play();
 				break;
 			case "FJread":
-				this.handleSoundStop();
-				FJcat.play();
+				if(!FJcat.playing()){
+					this.handleSoundStop();
+					FJcat.play();
+				}
 				break;
 			case "pickQuestion":
 			case "":
