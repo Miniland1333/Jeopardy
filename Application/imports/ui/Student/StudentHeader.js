@@ -21,7 +21,7 @@ var StudentHeader = React.createClass({
 					            connectionId={Meteor.connection._lastSessionId}/>)
 			});
 		} else {
-			if(this.props.gameLogic["state"]=="FJopen"||this.props.gameLogic["state"]=="FJread"){
+			if((this.props.gameLogic["state"]=="FJopen"||this.props.gameLogic["state"]=="FJread")&&this.props.gameLogic["connections"][Meteor.connection._lastSessionId]!=undefined){
 				return [];
 			}else {
 				return $.map(this.props.gameLogic, function (contents, field) {
