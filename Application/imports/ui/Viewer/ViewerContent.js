@@ -127,14 +127,14 @@ export const ViewerContent = React.createClass({
 				DD.play();
 				break;
 			case "FJopen":
-				this.handleSoundStop();
-				FJ.play();
+				if(!FJ.playing()) {
+					this.handleSoundStop();
+					FJ.play();
+				}
 				break;
 			case "FJread":
-				if(!FJcat.playing()){
-					this.handleSoundStop();
-					FJcat.play();
-				}
+				this.handleSoundStop();
+				FJcat.play();
 				break;
 			case "pickQuestion":
 			case "":
