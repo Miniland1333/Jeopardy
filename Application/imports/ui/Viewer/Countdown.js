@@ -39,6 +39,11 @@ const containerStyle={
 	position:"relative",
 	top:"-35px",
 	zIndex:2};
+
+const progressStyle = {
+	height:"35px",
+	flex:1,
+};
 export const CountDown = React.createClass({
 	propTypes: {
 		gameLogic: React.PropTypes.object,
@@ -76,6 +81,11 @@ export const CountDown = React.createClass({
 			case "DDread":
 			case "next":
 				return <div/>;
+			
+			case "FJopen":
+				return <div className="flex-container" style={containerStyle}>
+					<div id="progressbar" style={progressStyle}/>
+				</div>;
 			default:
 				return null;
 		}

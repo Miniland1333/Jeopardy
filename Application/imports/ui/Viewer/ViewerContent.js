@@ -1,9 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 import "./../howler";
+import "./../jquery-ui";
 
 import Question from "./../Teacher/Question";
 import CountDown from "./Countdown";
+import {Rainbow} from "../rainbowvis";
 
 
 const questionStyle = {
@@ -149,7 +151,7 @@ export const ViewerContent = React.createClass({
 					this.handleSoundStop();
 					loop.play();
 				}
-
+			
 		}
 	},
 	handleSoundStop:function () {
@@ -408,6 +410,18 @@ export const ViewerContent = React.createClass({
 				}
 				break;
 			case "FJopen":
+				let color ="#ffffff";
+				let time =0;
+				const rainbow = new Rainbow;
+				rainbow.setSpectrum("#00ff37","#ff1616");
+				timer = setInterval(()=>{
+					let progressbar = $( "#progressbar" );
+					time = Math.round(FJ.seek()/FJ.duration()*100.0);
+					progressbar.progressbar({
+						value: time
+					});
+					progressbar.find( ".ui-progressbar-value" ).css({"background":"#"+rainbow.colourAt(time)});
+				},100);
 				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
 					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
@@ -430,6 +444,7 @@ export const ViewerContent = React.createClass({
 					}
 				}
 			case "FJanswer":
+				clearInterval(timer);
 				if (this.state.setup) {
 					this.setState({setup: false});
 					return <div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
@@ -464,6 +479,7 @@ export const ViewerContent = React.createClass({
 					);
 				}
 			case "complete":
+				clearInterval(timer);
 				const logic = this.props.gameLogic;
 				//Greatest
 				let greatest = 0;
