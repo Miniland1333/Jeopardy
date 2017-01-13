@@ -37,6 +37,12 @@ export const StudentContent = React.createClass({
 	handleLate: function () {
 		Meteor.call('gameLogic.addLate', teamNumber);
 	},
+	shouldComponentUpdate:function (nextProps, nextState) {
+		let currentState = this.props.gameLogic["state"];
+		let futureState = nextProps.gameLogic["state"];
+		return !(currentState == "FJopen" && futureState == "FJopen" && !this.state.setup);
+		
+	},
 	render: function () {
 		
 		let wager;
