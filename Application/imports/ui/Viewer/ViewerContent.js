@@ -422,7 +422,7 @@ export const ViewerContent = React.createClass({
 					progressbar.progressbar({
 						value: FJtime
 					});
-					progressbar.find( ".ui-progressbar-value" ).css({"background":"#"+rainbow.colourAt(timeout)});
+					progressbar.find( ".ui-progressbar-value" ).css({"background":"#"+rainbow.colourAt(FJtime)});
 				},100);
 				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
 					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
