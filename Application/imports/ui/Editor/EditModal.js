@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 
+const medium = "2vmin";
 
 const modalStyle = {
 	display: 'none', /* hidden by default */
@@ -27,7 +28,7 @@ const headerStyle = {
 	padding: "10px 0",
 	background: "#060CE9",
 	border: "none",
-	fontSize: 16,
+	fontSize: medium,
 	textAlign: "center",
 	flexGrow: 1,
 	textTransform: "uppercase",
@@ -39,7 +40,7 @@ const textAreaStyle = {
 	padding: "10px 0",
 	background: "#060CE9",
 	border: "none",
-	fontSize: 16,
+	fontSize: medium,
 	textAlign: "center",
 	flexGrow: 1,
 	textTransform: "uppercase",
@@ -52,7 +53,7 @@ const answerStyle = {
 	padding: "10px 0",
 	background: "#060CE9",
 	border: "none",
-	fontSize: 16,
+	fontSize: medium,
 	textAlign: "center",
 	flexGrow: 1,
 	color: "white",
@@ -61,12 +62,12 @@ const playStyle = {
 	backgroundColor: '#ff9900', /* green */
 	border: 'white solid 1px',
 	color: 'white',
-	padding: '15px 21px',
+	padding: '15px 2vw',
 	textAlign: 'center',
 	textDecoration: 'none',
 	display: 'inline-block',
-	fontSize: 20,
-	width: 200,
+	fontSize: medium,
+	maxWidth: 200,
 	//borderRadius:8,
 	cursor: "pointer",
 };
@@ -74,11 +75,11 @@ const cancelStyle = {
 	backgroundColor: '#FFD700', /* green */
 	border: 'white solid 1px',
 	color: 'white',
-	padding: '15px 21px',
+	padding: '15px 2vw',
 	textAlign: 'center',
 	textDecoration: 'none',
 	display: 'inline-block',
-	fontSize: 20,
+	fontSize: medium,
 	//borderRadius:8,
 	cursor: "pointer",
 };
@@ -89,7 +90,7 @@ const imageStyle = {
 	textAlign: 'center',
 	textDecoration: 'none',
 	display: 'inline-block',
-	fontSize: 20,
+	fontSize: medium,
 	borderRadius:8,
 	cursor: "pointer",
 };
@@ -100,7 +101,7 @@ const videoStyle = {
 	textAlign: 'center',
 	textDecoration: 'none',
 	display: 'inline-block',
-	fontSize: 20,
+	fontSize: medium,
 	borderRadius:8,
 	cursor: "pointer",
 };
@@ -108,11 +109,11 @@ const saveStyle = {
 	backgroundColor: '#4CAF50', /* green */
 	border: 'white solid 1px',
 	color: 'white',
-	padding: '15px 21px',
+	padding: '15px 2vw',
 	textAlign: 'center',
 	textDecoration: 'none',
 	display: 'inline-block',
-	fontSize: 20,
+	fontSize: medium,
 	//borderRadius:8,
 	cursor: "pointer",
 };

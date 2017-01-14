@@ -11,6 +11,7 @@ var divStyle = {
 	flexDirection: 'column',
 	margin: 0,
 	whiteSpace: "pre-wrap",
+	fontSize: "1.8vmin",
 };
 var Question = React.createClass({
 	getInitialState:function () {

@@ -63,28 +63,6 @@ var EditorTable = React.createClass({
                     })}
                 </div>
         );
-        /*        return(
-         <div className="Table">
-         <div className="Column">
-         <div style={{order:1}} className="Header"><h3 className="question">Eddard Stark</h3></div>
-         <div style={{order:2}} className="Rtable-cell"><p className="question">Has a sword named Ice</p></div>
-         <div style={{order:3}} className="Rtable-cell"><p className="question">No direwolf</p></div>
-         <div style={{order:4}} className="Rtable-cell"><p className="question">Lord of Winterfell</p></div>
-         </div>
-         <div className="Column">
-         <div style={{order:1}} className="Header"><h3 className="question">Jon Snow</h3></div>
-         <div style={{order:2}} className="Rtable-cell"><p className="question">Has a sword named Longclaw</p></div>
-         <div style={{order:3}} className="Rtable-cell"><p className="question">Direwolf: Ghost</p></div>
-         <div style={{order:4}} className="Rtable-cell"><p className="question">Knows nothing</p></div>
-         </div>
-         <div className="Column">
-         <div style={{order:1}} className="Header"><h3 className="question">Arya Stark</h3></div>
-         <div style={{order:2}} className="Rtable-cell"><p className="question">This version of Harry Potter adds this type of new character to the series.</p><p>What is the act of seeing ghosts at night or maybe in the toilet?</p></div>
-         <div style={{order:3}} className="Rtable-cell"><p className="question">Direwolf: Nymeria</p></div>
-         <div style={{order:4}} className="Rtable-cell"><p className="question">No one</p></div>
-         </div>
-         </div>
-         )*/
     },
     
     render: function () {

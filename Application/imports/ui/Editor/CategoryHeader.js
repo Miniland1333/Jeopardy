@@ -25,7 +25,7 @@ var CategoryHeader = React.createClass({
     },
     render:function () {
         return(<div>
-            <div className="Header"  onClick={this.handleQuestionHeaderClick}>{this.props.categoryName}</div>
+            <div className="Header"  onClick={this.handleQuestionHeaderClick} style={{fontSize: "2vmin"}}>{this.props.categoryName}</div>
             {this.state.EditModal?
                 <EditModal
                     roundName={this.props.roundName}
