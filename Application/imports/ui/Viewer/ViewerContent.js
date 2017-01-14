@@ -75,7 +75,7 @@ FJ.on('end', function () {
 });
 const FJcat = new Howl({src: ['./../Jp/jfinalj.mp3'],});
 const loop = new Howl({src: ['./../Jp/jloop.mp3'],loop: true,});
-const time = new Howl({src: ['./../Jp/jtime.mp3'],});
+const timeout = new Howl({src: ['./../Jp/jtime.mp3'],});
 
 export const ViewerContent = React.createClass({
 	getInitialState:function(){
@@ -155,7 +155,7 @@ export const ViewerContent = React.createClass({
 		}
 	},
 	handleSoundStop:function () {
-		const soundArray = [intro,DJintro,FJintro,Jcat,DJcat,DD,FJ,loop,time];
+		const soundArray = [intro,DJintro,FJintro,Jcat,DJcat,DD,FJ,loop,timeout];
 		soundArray.forEach(function(sound){sound.stop()});
 	},
 	renderContent: function () {
@@ -294,7 +294,8 @@ export const ViewerContent = React.createClass({
 						}
 						if (this.time == 0) {
 							clearInterval(timer);
-							time.play(undefined, false);
+							this.handleSoundStop();
+							timeout.play();
 							this.forceUpdate();
 							Meteor.call('gameLogic.setState', "next");
 						}
@@ -332,9 +333,10 @@ export const ViewerContent = React.createClass({
 							this.forceUpdate();
 						}
 						if (this.time == 0) {
-							this.forceUpdate();
-							time.play(undefined, false);
 							clearInterval(timer);
+							this.handleSoundStop();
+							timeout.play();
+							this.forceUpdate();
 						}
 					}, 1000);
 				}
@@ -411,16 +413,16 @@ export const ViewerContent = React.createClass({
 				break;
 			case "FJopen":
 				let color ="#ffffff";
-				let time =0;
+				let FJtime =0;
 				const rainbow = new Rainbow;
 				rainbow.setSpectrum("#00ff37","#ff1616");
 				timer = setInterval(()=>{
 					let progressbar = $( "#progressbar" );
-					time = Math.round(FJ.seek()/FJ.duration()*100.0);
+					FJtime = Math.round(FJ.seek()/FJ.duration()*100.0);
 					progressbar.progressbar({
-						value: time
+						value: FJtime
 					});
-					progressbar.find( ".ui-progressbar-value" ).css({"background":"#"+rainbow.colourAt(time)});
+					progressbar.find( ".ui-progressbar-value" ).css({"background":"#"+rainbow.colourAt(timeout)});
 				},100);
 				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
 					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
