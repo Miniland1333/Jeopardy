@@ -217,7 +217,7 @@ export const EditModal = React.createClass({
 			if(start!=""){
 				if(start.includes(":")){
 					let tempArray = start.split(":");
-					start = parseInt(tempArray[0]*60,10)+parseInt(tempArray[1],10);
+					start = parseInt(tempArray[0]*60, 10)+parseInt(tempArray[1], 10);
 				}
 				min = start;
 				extra+="&start="+start;
@@ -225,7 +225,7 @@ export const EditModal = React.createClass({
 			if (end != ""){
 				if(end.includes(":")) {
 					let tempArray = end.split(":");
-					end = tempArray[0] * 60 + tempArray[1];
+					end = parseInt(tempArray[0] * 60, 10)+ parseInt(tempArray[1], 10);
 				}
 				if(end > min) {
 					extra += "&end=" + end;
