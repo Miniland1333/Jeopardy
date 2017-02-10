@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {Meteor} from 'meteor/meteor';
-
+import "./../jquery-ui";
+import "./../jquery.ui.touch-punch";
 
 
 

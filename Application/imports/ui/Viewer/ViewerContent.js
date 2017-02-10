@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 import "./../howler";
 import "./../jquery-ui";
+import "./../jquery.ui.touch-punch";
 
 import Question from "./../Teacher/Question";
 import CountDown from "./Countdown";
