@@ -11,10 +11,13 @@ const modalStyle = {
 	height: '100%', /* full height */
 	overflow: 'hide', /* enable scroll if needed */
 	backgroundColor: 'rgba(0,0,0,0.4)',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignContent: 'center',
 };
 const modalContentStyle = {
-	margin: '15% auto',
-	padding: 20,
+	margin: '0% auto',
+	padding: '3vim',
 	border: '1px solid #888',
 	width: '80%',
 	backgroundColor: "#fefefe",

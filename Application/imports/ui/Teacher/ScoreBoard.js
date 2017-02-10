@@ -67,7 +67,7 @@ export const ScoreBoard = React.createClass({
 		const green = {
 			fontFamily: "D7",
 			fontSize: "4vw",
-			minWidth: "10vw",
+			minWidth: "10vw 0",
 			border: "4px solid #00e800",
 			padding: "10px",
 			borderRadius: 8,
@@ -77,7 +77,7 @@ export const ScoreBoard = React.createClass({
 		const orange = {
 			fontFamily: "D7",
 			fontSize: "4vw",
-			minWidth: "10vw",
+			minWidth: "10vw 0",
 			border: "4px solid orange",
 			padding: "10px",
 			borderRadius: 8,
@@ -87,7 +87,7 @@ export const ScoreBoard = React.createClass({
 		const red = {
 			fontFamily: "D7",
 			fontSize: "4vw",
-			minWidth: "10vw",
+			minWidth: "10vw 0",
 			border: "4px solid #ff3f3f",
 			padding: "10px",
 			borderRadius: 8,
@@ -97,7 +97,7 @@ export const ScoreBoard = React.createClass({
 		const normal = {
 			fontFamily: "D7",
 			fontSize: "4vw",
-			minWidth: "10vw",
+			minWidth: "10vw 0",
 			border: "4px solid #060CE9",
 			padding: "10px",
 			borderRadius: 8,
@@ -177,7 +177,7 @@ export const ScoreBoard = React.createClass({
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{
-				     padding: "10px",
+			     	padding: screen.width<1000? "10px 0 ": "10px",
 				     border: "4px solid white",
 				     flexDirection: "column",
 				     flex: 1,

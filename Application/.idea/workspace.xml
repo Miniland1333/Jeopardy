@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imports/ui/jquery.ui.touch-punch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,20 +29,19 @@
       <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="219" column="54" lean-forward="false" selection-start-line="219" selection-start-column="54" selection-end-line="219" selection-end-column="54" />
+            <state relative-caret-position="231">
+              <caret line="8" column="31" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="8" selection-end-column="31" />
               <folding>
-                <element signature="e#136#421#0" expanded="false" />
-                <element signature="e#696#906#0" expanded="false" />
-                <element signature="e#930#1157#0" expanded="false" />
-                <element signature="e#1179#1360#0" expanded="false" />
-                <element signature="e#1380#1638#0" expanded="false" />
-                <element signature="e#1660#1902#0" expanded="false" />
-                <element signature="e#1923#2141#0" expanded="false" />
-                <element signature="e#2162#2380#0" expanded="false" />
-                <element signature="e#2400#2642#0" expanded="false" />
-                <element signature="e#2670#2702#0" expanded="false" />
-                <element signature="e#2730#2759#0" expanded="false" />
+                <element signature="e#777#987#0" expanded="false" />
+                <element signature="e#1011#1238#0" expanded="false" />
+                <element signature="e#1260#1441#0" expanded="false" />
+                <element signature="e#1461#1719#0" expanded="false" />
+                <element signature="e#1741#1983#0" expanded="false" />
+                <element signature="e#2004#2222#0" expanded="false" />
+                <element signature="e#2243#2461#0" expanded="false" />
+                <element signature="e#2481#2723#0" expanded="false" />
+                <element signature="e#2751#2783#0" expanded="false" />
+                <element signature="e#2811#2840#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,7 +50,7 @@
       <file leaf-file-name="GameDropdown.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="861">
+            <state relative-caret-position="1056">
               <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
               <folding />
             </state>
@@ -60,11 +60,9 @@
       <file leaf-file-name="ScoreBoard.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="957">
+              <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$(&quot;#answer&quot;)</find>
       <find>click</find>
       <find>&lt;/td&gt;</find>
       <find>&lt;div&gt;</find>
@@ -112,6 +109,7 @@
       <find>e</find>
       <find>medium</find>
       <find>progress</find>
+      <find>&quot;10vw&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -120,6 +118,7 @@
       <replace>margin: &quot;10px 1vw&quot;,</replace>
       <replace>&lt;div style={{width:80}}&gt;</replace>
       <replace>this.handleSoundStop()</replace>
+      <replace>&quot;10vw 0&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -187,8 +186,8 @@
         <option value="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
       </list>
     </option>
@@ -454,9 +453,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1060,14 +1059,8 @@
       <workItem from="1486281688046" duration="1184000" />
       <workItem from="1486496815088" duration="467000" />
       <workItem from="1486753200487" duration="623000" />
-      <workItem from="1486753958988" duration="41000" />
-    </task>
-    <task id="LOCAL-00044" summary="Added Category Invalidation based on empty name or empty questions">
-      <created>1473123989266</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1473123989266</updated>
+      <workItem from="1486753958988" duration="149000" />
+      <workItem from="1486762534465" duration="1223000" />
     </task>
     <task id="LOCAL-00045" summary="DailyDouble partial implementation&#10;&#10;&#10;Will Add student wager, button, and drawing next">
       <created>1473135026482</created>
@@ -1405,11 +1398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486753492255</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Added touch-punch.js">
+      <created>1486754002771</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1486754002771</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="492497000" />
+    <option name="totallyTimeSpent" value="493828000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1433,13 +1433,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19665273" sideWeight="0.5051414" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22236504" sideWeight="0.5352941" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31938633" sideWeight="0.49485862" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22236504" sideWeight="0.5352941" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51743376" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24244712" sideWeight="0.46582985" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23376133" sideWeight="0.46582985" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1866,7 +1866,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
+        <state relative-caret-position="1056">
           <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
           <folding />
         </state>
@@ -1874,31 +1874,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="219" column="54" lean-forward="false" selection-start-line="219" selection-start-column="54" selection-end-line="219" selection-end-column="54" />
+        <state relative-caret-position="231">
+          <caret line="8" column="31" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="8" selection-end-column="31" />
           <folding>
-            <element signature="e#136#421#0" expanded="false" />
-            <element signature="e#696#906#0" expanded="false" />
-            <element signature="e#930#1157#0" expanded="false" />
-            <element signature="e#1179#1360#0" expanded="false" />
-            <element signature="e#1380#1638#0" expanded="false" />
-            <element signature="e#1660#1902#0" expanded="false" />
-            <element signature="e#1923#2141#0" expanded="false" />
-            <element signature="e#2162#2380#0" expanded="false" />
-            <element signature="e#2400#2642#0" expanded="false" />
-            <element signature="e#2670#2702#0" expanded="false" />
-            <element signature="e#2730#2759#0" expanded="false" />
+            <element signature="e#777#987#0" expanded="false" />
+            <element signature="e#1011#1238#0" expanded="false" />
+            <element signature="e#1260#1441#0" expanded="false" />
+            <element signature="e#1461#1719#0" expanded="false" />
+            <element signature="e#1741#1983#0" expanded="false" />
+            <element signature="e#2004#2222#0" expanded="false" />
+            <element signature="e#2243#2461#0" expanded="false" />
+            <element signature="e#2481#2723#0" expanded="false" />
+            <element signature="e#2751#2783#0" expanded="false" />
+            <element signature="e#2811#2840#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="957">
+          <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
