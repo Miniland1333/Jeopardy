@@ -12,36 +12,41 @@ import TeacherHeader  from "./TeacherHeader";
 import TeacherFooter  from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
-var Teacher = React.createClass({
-	propTypes:{
-		gameDatabase:React.PropTypes.array,
-		gameLogic:React.PropTypes.array,
-		gameQuestions:React.PropTypes.array,
+export const Teacher = React.createClass({
+	propTypes: {
+		gameDatabase: React.PropTypes.array,
+		gameLogic: React.PropTypes.array,
+		gameQuestions: React.PropTypes.array,
 	},
-	render:function() {
-		if(this.props.isReady&&this.props.gameLogic.length==0){
+	render: function () {
+		if (this.props.isReady && this.props.gameLogic.length == 0) {
 			Meteor.call('gameLogic.init');
 		}
 		return (
 			<DocumentTitle title='Jeopardy'>
 				<div>
 					{this.props.isReady ?
-						<div className="flex-container Main" style={{overflow:"auto",flexDirection:"column"}}>
-							<TeacherHeader  gameLogic={this.props.gameLogic[0]}/>
-							<TeacherContent gameLogic={this.props.gameLogic[0]} gameQuestions={this.props.gameQuestions[0]} gameDatabase={this.props.gameDatabase}/>
-							<TeacherFooter  gameLogic={this.props.gameLogic[0]} gameQuestions={this.props.gameQuestions[0]}/>
-						</div>:<div></div>
+						<div className="flex-container Main" style={{flexDirection: "column"}}>
+							<TeacherHeader gameLogic={this.props.gameLogic[0]}/>
+							<TeacherContent gameLogic={this.props.gameLogic[0]}
+							                gameQuestions={this.props.gameQuestions[0]}
+							                gameDatabase={this.props.gameDatabase}/>
+							<TeacherFooter gameLogic={this.props.gameLogic[0]}
+							               gameQuestions={this.props.gameQuestions[0]}/>
+						</div> : <div></div>
+					
 					}
 				</div>
 			</DocumentTitle>
-		)}
+		)
+	}
 });
 
 
 export default createContainer(() => {
-	var handle1 = Meteor.subscribe('gameDatabase');
-	var handle2 = Meteor.subscribe('gameLogic');
-	var handle3 = Meteor.subscribe('gameQuestions');
+	const handle1 = Meteor.subscribe('gameDatabase');
+	const handle2 = Meteor.subscribe('gameLogic');
+	const handle3 = Meteor.subscribe('gameQuestions');
 	
 	return {
 		isReady:handle1.ready()&&handle2.ready()&&handle3.ready(),

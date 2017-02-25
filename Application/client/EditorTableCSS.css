@@ -24,8 +24,7 @@
 .Main{
     display: flex;
     flex-direction: column;
-    overflow: auto;
-    height:100vh;
+	height: 100vh;
 }
 .question  {
     flex:1;

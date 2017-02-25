@@ -26,6 +26,7 @@ export const TeacherContent = React.createClass({
 	},
 	renderContent: function () {
 		if (this.props.gameLogic["round"] == 0) {
+			addToHomescreen();
 			return <div className="flex-container" style={{flex: 1}}>
 				<GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic}/>
 			</div>;

@@ -15,9 +15,19 @@ const modalStyle = {
 	justifyContent: 'center',
 	alignContent: 'center',
 };
+
+const modalContainer = {
+	display: 'flex',
+	flexDirection: "column",
+	alignItems: 'center',
+	alignContent: 'center',
+	justifyContent: 'center',
+	height: 'inherit',
+};
+
 const modalContentStyle = {
 	margin: '0% auto',
-	padding: '3vim',
+	padding: '3vmin',
 	border: '1px solid #888',
 	width: '80%',
 	backgroundColor: "#fefefe",
@@ -262,7 +272,7 @@ export const EditModal = React.createClass({
 	handlePlay: function () {
 		this.setState({isSinglePlay: !this.state.isSinglePlay})
 	},
-	handleCancel: function () {
+	handleExit: function () {
 		$("#myModal").fadeOut(this.props.handleClose);
 	},
 	handleComplete: function () {
@@ -340,7 +350,7 @@ export const EditModal = React.createClass({
 					break;
 			}
 		}
-		this.handleCancel();
+		this.handleExit();
 	},
 	renderModalContent: function () {
 		if (this.props.isHeader) {
@@ -449,7 +459,7 @@ export const EditModal = React.createClass({
 				{!this.props.isHeader && this.props.roundName != "FinalJeopardy" ?
 					<button style={playStyle} onClick={this.handlePlay}>Single
 						Play {this.state.isSinglePlay ? "ON  " : "OFF"}</button> : ""}
-				<button style={cancelStyle} onClick={this.handleCancel}>Close</button>
+				<button style={cancelStyle} onClick={this.handleExit}>Close</button>
 				<button style={saveStyle} onClick={this.handleComplete}>Save</button>
 			</div>
 		</div>
@@ -457,9 +467,11 @@ export const EditModal = React.createClass({
 	render: function () {
 		return (
 			<div id="myModal" style={modalStyle}>
-				<div className="modal-content flex-container" style={modalContentStyle}>
-					{this.renderModalContent()}
-					{this.renderButtons()}
+				<div style={modalContainer}>
+					<div className="modal-content flex-container" style={modalContentStyle}>
+						{this.renderModalContent()}
+						{this.renderButtons()}
+					</div>
 				</div>
 			</div>
 		)

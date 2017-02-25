@@ -3,9 +3,15 @@ import {Meteor} from 'meteor/meteor';
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";
 
+import Options from "./Options";
 
 
 export const ScoreBoard = React.createClass({
+	getInitialState: function () {
+		return {
+			options: false,
+		}
+	},
 	propTypes: {
 		playerLogic: React.PropTypes.object,
 		gameLogic: React.PropTypes.object,
@@ -43,8 +49,11 @@ export const ScoreBoard = React.createClass({
 			}
 		}
 		else {
+			if(!this.state.options){
+				this.setState({options:true});
+			}
 			//if(this.props.gameLogic["state"]=="pickQuestion")
-			if (this.props.round == 1) {
+/*			if (this.props.round == 1) {
 				//show  J options
 				if (confirm("Advance?")) {
 					Meteor.call('gameLogic.advance');
@@ -59,27 +68,27 @@ export const ScoreBoard = React.createClass({
 				if (confirm("Reset?")) {
 					Meteor.call("gameLogic.init");
 				}
-			}
+			}*/
 		}
 		
 	},
 	scoreStyle: function () {
+		
 		const green = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid #00e800",
-			padding: "10px",
+			padding: screen.width<1000? "10px 0 ": "10px",
 			borderRadius: 8,
 			zIndex: -1,
 		};
-		
 		const orange = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid orange",
-			padding: "10px",
+			padding: screen.width<1000? "10px 0 ": "10px",
 			borderRadius: 8,
 			zIndex:-1,
 		};
@@ -89,7 +98,7 @@ export const ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid #ff3f3f",
-			padding: "10px",
+			padding: screen.width<1000? "10px 0 ": "10px",
 			borderRadius: 8,
 			zIndex:-1,
 		};
@@ -99,7 +108,7 @@ export const ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid #060CE9",
-			padding: "10px",
+			padding: screen.width<1000? "10px 0 ": "10px",
 			borderRadius: 8,
 			zIndex:-1,
 		};
@@ -177,13 +186,19 @@ export const ScoreBoard = React.createClass({
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{
-			     	padding: screen.width<1000? "10px 0 ": "10px",
+				     padding: screen.width<1000? "10px 0 ": "10px",
 				     border: "4px solid white",
 				     flexDirection: "column",
 				     flex: 1,
 			     }}>
 				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
 				<div >{this.props.playerLogic.teamName}</div>
+				{this.state.options?
+				<Options gameLogic={this.props.gameLogic}
+				         playerLogic={this.props.playerLogic}
+				         round={this.props.round}/>
+				:[]}
+				
 			</div>
 		)
 	}

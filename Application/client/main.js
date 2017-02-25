@@ -38,6 +38,24 @@ Meteor.startup(() => {
 });
 if (window.navigator.standalone) {
     window.addEventListener('load', function() {
+    	refresh();
         new FastClick(document.body);
     }, false);
+}
+if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
+	refresh();
+}
+window.addEventListener("orientationchange", function(event) {
+	if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
+		refresh();
+	}
+}, false);
+
+function refresh(){
+	$(".Main").css({
+		"height": window.innerHeight,
+	});
+	$("body").css({
+		"height": window.innerHeight,
+	});
 }
