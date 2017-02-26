@@ -72,6 +72,9 @@ export const ScoreBoard = React.createClass({
 		}
 		
 	},
+	handleClose: function () {
+		this.setState({options:false});
+	},
 	scoreStyle: function () {
 		
 		const green = {
@@ -196,7 +199,8 @@ export const ScoreBoard = React.createClass({
 				{this.state.options?
 				<Options gameLogic={this.props.gameLogic}
 				         playerLogic={this.props.playerLogic}
-				         round={this.props.round}/>
+				         round={this.props.round}
+				         handleClose={this.handleClose}/>
 				:[]}
 				
 			</div>

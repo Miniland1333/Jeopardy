@@ -9,7 +9,6 @@ import {editorDatabase}from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
 import EditorTable from "./EditorTable"
 
-
 var Editor = React.createClass({
     getInitialState: function () {
         return {

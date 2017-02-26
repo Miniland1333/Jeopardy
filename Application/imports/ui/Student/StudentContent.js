@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
+import refresh from "../refresh"
 
 const buttonStyle = {
 	backgroundColor: "#555555",
@@ -44,7 +45,7 @@ export const StudentContent = React.createClass({
 		
 	},
 	render: function () {
-		
+		refresh();
 		let wager;
 		let max;
 		let points;

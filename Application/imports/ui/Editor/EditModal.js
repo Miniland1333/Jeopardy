@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
+import refresh from "../refresh"
 
 const medium = "2vmin";
 
@@ -465,6 +466,7 @@ export const EditModal = React.createClass({
 		</div>
 	},
 	render: function () {
+		refresh();
 		return (
 			<div id="myModal" style={modalStyle}>
 				<div style={modalContainer}>

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 
 import {gameDatabase} from "../../api/gameDatabase";
+import refresh from "../refresh"
 
 export const TeacherFooter = React.createClass({
 	propTypes: {
@@ -164,6 +165,7 @@ export const TeacherFooter = React.createClass({
 		return count;
 	},
 	renderContent: function () {
+		refresh();
 		const round = this.props.gameLogic["round"];
 		if (round == 0) {
 			switch (this.readyToStart()) {

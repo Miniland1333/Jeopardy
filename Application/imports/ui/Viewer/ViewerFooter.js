@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 
 import ScoreBoard from "../Teacher/ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
+import refresh from "../refresh"
 
 var ViewerFooter = React.createClass({
 	propTypes:{
@@ -33,7 +34,7 @@ var ViewerFooter = React.createClass({
 		}
 	},
 	render:function () {
-		
+		refresh();
 		return (
 			<div className="flex-container" id="border" >
 				{this.renderInput()}

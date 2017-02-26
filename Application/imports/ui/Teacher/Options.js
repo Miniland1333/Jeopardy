@@ -69,7 +69,6 @@ export const Options = React.createClass({
 		round: React.PropTypes.number,
 	},
 	renderButtons: function () {
-		
 		return [
 			this.props.round != 3 ?
 				<div key="advance" style={enabledStyle} onClick={
@@ -86,7 +85,7 @@ export const Options = React.createClass({
 				this.setState({state: "adjust"});
 			}}>Adjust Scores</div>,
 			
-			this.props.playerLogic["numPlayers"] < 6 ?
+			this.props.gameLogic["numPlayers"] < 6 ?
 				<div key="add" style={enabledStyle} onClick={() => {
 					this.setState({state: "add"});
 				}}>Add Player</div> :
@@ -110,7 +109,6 @@ export const Options = React.createClass({
 	},
 	exit: function () {
 		$("#optionModal").fadeOut(this.props.handleClose);
-		
 	},
 	renderContent: function () {
 		switch (this.state.state) {

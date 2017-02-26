@@ -36,26 +36,31 @@ const renderRoutes = () => (
 Meteor.startup(() => {
     render(renderRoutes(), document.getElementById('render-target'));
 });
-if (window.navigator.standalone) {
-    window.addEventListener('load', function() {
-    	refresh();
-        new FastClick(document.body);
-    }, false);
-}
-if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
-	refresh();
-}
-window.addEventListener("orientationchange", function(event) {
-	if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
-		refresh();
+window.addEventListener('load', function() {
+	if (window.navigator.standalone) {
+		new FastClick(document.body);
 	}
 }, false);
 
+window.addEventListener("orientationchange", function(event) {
+	refresh();
+}, false);
+
+$(window).resize(refresh);
+
 function refresh(){
-	$(".Main").css({
-		"height": window.innerHeight,
-	});
-	$("body").css({
-		"height": window.innerHeight,
-	});
+	if (navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i)) {
+		$(".Main").css({
+			"height": window.innerHeight,
+		});
+		$("body").css({
+			"height": window.innerHeight,
+		});
+		$("#myModal").css({
+			"height": window.innerHeight,
+		});
+		$("#optionsModal").css({
+			"height": window.innerHeight,
+		});
+	}
 }

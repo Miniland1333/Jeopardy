@@ -4,25 +4,14 @@ import {Meteor} from 'meteor/meteor';
 
 import Question from "./Question";
 import CategoryHeader from "./CategoryHeader"
+import refresh from "../refresh"
 
 var EditorTable = React.createClass({
     propTypes: {
         round: PropTypes.string.isRequired,
         editorDatabase: PropTypes.array.isRequired,
     },
-    resize:function () {
-        $(".Main").css({
-            "height": window.innerHeight,
-            "width":window.innerWidth,
-        });
-        $("body").css({
-            "height": window.innerHeight,
-            "width":window.innerWidth,
-        });
-    },
     renderInput: function () {
-        $(window).resize(this.resize);
-        this.resize();
         var roundName;
         switch (this.props.round) {
             case "Single":
@@ -66,8 +55,7 @@ var EditorTable = React.createClass({
     },
     
     render: function () {
-        
-        
+    	refresh();
         return (
             <div className="Table">
                 {this.renderInput()}
