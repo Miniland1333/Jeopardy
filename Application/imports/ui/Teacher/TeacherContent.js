@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import GameDropdown from "./GameDropdown";
 
 import Question from "./Question";
+import refresh from "../refresh"
 
 
 const questionStyle = {
@@ -226,7 +227,7 @@ export const TeacherContent = React.createClass({
 		}
 	},
 	render: function () {
-		
+		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 				{this.renderContent()}

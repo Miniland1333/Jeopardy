@@ -316,6 +316,7 @@ export const TeacherFooter = React.createClass({
 							color: "#a5a5a5",
 							flex: 1,
 							verticalAlign: "middle",
+							fontSize: "4vh",
 						}}
 						>Waiting for Student Response
 						</div>
@@ -473,7 +474,8 @@ export const TeacherFooter = React.createClass({
 							backgroundColor: "#eaeaea",
 							color: "#a5a5a5",
 							flex: 1,
-							verticalAlign: "middle"
+							verticalAlign: "middle",
+							fontSize: "4vh",
 						}}>Waiting for answers
 						</div>
 					</div>
