@@ -32,7 +32,7 @@ Meteor.methods({
 		});
 	},
 	'gameQuestions.loadRound'(roundNumber){
-		var roundName;
+		let roundName;
 		switch (roundNumber){
 			case 1:
 				roundName = "Jeopardy";
@@ -48,57 +48,58 @@ Meteor.methods({
 		
 		//Remove empty categories and update remaining Columns
 		if(roundNumber!=3) {
-			
 			Meteor.call('gameQuestions.checkRemainingColumns');
-			var currentRound = gameQuestions.find().fetch()[0]["currentRound"];
-			//Daily Double handling
-			if(roundNumber==1){
-				//set single
-				pickDailyDouble("single");
-			}else if(roundNumber==2){
-				//set double
-				pickDailyDouble("double1");
-				pickDailyDouble("double2");
-			}
-			function pickRandomProperty(obj) {
-				var result;
-				var count = 0;
-				for (var prop in obj) {
-					if (obj.hasOwnProperty(prop) && prop != "categoryName" && Math.random() < 1 / ++count) {
-						result = prop;
-					}
+			const currentRound = gameQuestions.find().fetch()[0]["currentRound"];
+			if(gameQuestions.find().fetch()[0]["remainingColumns"]!=0){
+				//Daily Double handling
+				if(roundNumber==1){
+					//set single
+					pickDailyDouble("single");
+				}else if(roundNumber==2){
+					//set double
+					pickDailyDouble("double1");
+					pickDailyDouble("double2");
 				}
-				return result;
-			}
-			
-			function pickDailyDouble(name){
-				var dailyDouble = gameQuestions.find().fetch()[0]["dailyDouble"];
-				var done = false;
-				while(!done){
-					var category=pickRandomProperty(currentRound);
-					if(currentRound[category]["categoryName"]!="") {
-						var question = pickRandomProperty(currentRound[category]);
-						var bundle = {};
-						bundle['dailyDouble.' + name] = {
-							category: category,
-							question: question,
-						};
-						var duplicate = false;
-						
-						function isEqual(name, category, question) {
-							if (dailyDouble[name]['category'] == category && dailyDouble[name]['question'] == question) {
-								duplicate = true;
-							}
+				function pickRandomProperty(obj) {
+					let result;
+					let count = 0;
+					for (let prop in obj) {
+						if (obj.hasOwnProperty(prop) && prop != "categoryName" && Math.random() < 1 / ++count) {
+							result = prop;
 						}
-						
-						for (var prop in dailyDouble) {
-							if (dailyDouble.hasOwnProperty(prop)) {
-								isEqual(prop, category, question);
+					}
+					return result;
+				}
+				
+				function pickDailyDouble(name) {
+					const dailyDouble = gameQuestions.find().fetch()[0]["dailyDouble"];
+					let done = false;
+					while (!done) {
+						const category = pickRandomProperty(currentRound);
+						if (currentRound[category]["categoryName"] != "") {
+							const question = pickRandomProperty(currentRound[category]);
+							const bundle = {};
+							bundle['dailyDouble.' + name] = {
+								category: category,
+								question: question,
+							};
+							let duplicate = false;
+							
+							function isEqual(name, category, question) {
+								if (dailyDouble[name]['category'] == category && dailyDouble[name]['question'] == question) {
+									duplicate = true;
+								}
 							}
-						}
-						if (!duplicate) {
-							gameQuestions.update({}, {$set: bundle});
-							done = true;
+							
+							for (let prop in dailyDouble) {
+								if (dailyDouble.hasOwnProperty(prop)) {
+									isEqual(prop, category, question);
+								}
+							}
+							if (!duplicate) {
+								gameQuestions.update({}, {$set: bundle});
+								done = true;
+							}
 						}
 					}
 				}
@@ -106,14 +107,14 @@ Meteor.methods({
 		}
 	},
 	'gameQuestions.checkRemainingColumns'(){
-		var catCount = 0;
+		let catCount = 0;
 		
-		for (var i = 1; i <= 6; i++) {
+		for (let i = 1; i <= 6; i++) {
 			//code to remove category name if questions are empty
-			var bundle ={};
-			var currentCategory = gameQuestions.find().fetch()[0]["currentRound"]["category" + i];
-			var empty = true;
-			for(var q=1;q<=5;q++){
+			let bundle = {};
+			let currentCategory = gameQuestions.find().fetch()[0]["currentRound"]["category" + i];
+			let empty = true;
+			for(let q=1; q<=5; q++){
 				if (typeof currentCategory["question" + q]["question"] === "string") {
 					if (currentCategory["question" + q]["question"].trim() != "") {
 						empty = false;
@@ -131,16 +132,16 @@ Meteor.methods({
 			
 			//only categories with a name are counted
 			currentCategory = gameQuestions.find().fetch()[0]["currentRound"]["category" + i];
-			var catName = currentCategory["categoryName"];
+			const catName = currentCategory["categoryName"];
 			if (catName.trim() != "") {
 				catCount++;
 			}else {
 				//code to remove questions from empty category
 				bundle ={};
-				var categoryTemplate = {
-					categoryName:"",
+				const categoryTemplate = {
+					categoryName: "",
 				};
-				for(var c=1;c<=5;c++){
+				for(let c=1; c<=5; c++){
 					categoryTemplate["question"+c] = {
 						isSinglePlay:false,
 						question:"",
@@ -154,8 +155,8 @@ Meteor.methods({
 		gameQuestions.update({},{$set:{remainingColumns:catCount}});
 	},
 	'gameQuestions.pickQuestion'(key1,key2,question,answer,isSinglePlay,round){
-		var dailyDouble = gameQuestions.find().fetch()[0]['dailyDouble'];
-		var isDailyDouble = false;
+		const dailyDouble = gameQuestions.find().fetch()[0]['dailyDouble'];
+		let isDailyDouble = false;
 		
 		function isEqual(name){
 			if(dailyDouble[name]['category']==key1&&dailyDouble[name]['question']==key2){
@@ -168,26 +169,26 @@ Meteor.methods({
 			isEqual('double1');
 			isEqual('double2');
 		}
-		var value;
-			switch (key2) {
-				case "question1":
-					value = 200;
-					break;
-				case "question2":
-					value = 400;
-					break;
-				case "question3":
-					value = 600;
-					break;
-				case "question4":
-					value = 800;
-					break;
-				case "question5":
-					value = 1000;
-					break;
-			}
-			value = value*round;
-		var bundle={};
+		let value;
+		switch (key2) {
+			case "question1":
+				value = 200;
+				break;
+			case "question2":
+				value = 400;
+				break;
+			case "question3":
+				value = 600;
+				break;
+			case "question4":
+				value = 800;
+				break;
+			case "question5":
+				value = 1000;
+				break;
+		}
+		value = value*round;
+		let bundle = {};
 		bundle['currentQuestion'] = {
 			question: question,
 			answer: answer,

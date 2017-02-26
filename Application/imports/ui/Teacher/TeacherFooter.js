@@ -105,54 +105,39 @@ export const TeacherFooter = React.createClass({
 		}
 		let tempRound;
 		
-		//SJ & DJ
-		for (let h = 1; h <= 2; h++) {
-			if (h == 1) {
-				tempRound = game.Jeopardy;
-			} else {
-				tempRound = game.DoubleJeopardy;
-			}
-			let catCount = 0;
-			for (let c = 1; c <= 6; c++) {
-				//code to remove category name if questions are empty
-				let bundle = {};
-				let currentCategory = tempRound["category" + c];
-				let empty = true;
-				for (let q = 1; q <= 5; q++) {
-					if (typeof currentCategory["question" + q]["question"] === "string") {
-						if (currentCategory["question" + q]["question"].trim() != "") {
-							empty = false;
-						}
-					} else {
-						if (currentCategory["question" + q]["question"]) {
-							empty = false;
-						}
+		//TODO Allow incomplete games
+		//At least 1 SJ question
+		tempRound = game.Jeopardy;
+		let catCount = 0;
+		for (let c = 1; c <= 6; c++) {
+			//code to remove category name if questions are empty
+			let bundle = {};
+			let currentCategory = tempRound["category" + c];
+			let empty = true;
+			for (let q = 1; q <= 5; q++) {
+				if (typeof currentCategory["question" + q]["question"] === "string") {
+					if (currentCategory["question" + q]["question"].trim() != "") {
+						empty = false;
 					}
-					
-				}
-				if (empty) {
-					tempRound["category" + c]["categoryName"] = "";
+				} else {
+					if (currentCategory["question" + q]["question"]) {
+						empty = false;
+					}
 				}
 				
-				//only categories with a name are counted
-				currentCategory = tempRound["category" + c];
-				const catName = currentCategory["categoryName"];
-				if (catName.trim() != "") {
-					catCount++;
-				}
 			}
-			if (catCount == 0) {
-				return false;
+			if (empty) {
+				tempRound["category" + c]["categoryName"] = "";
+			}
+			
+			//only categories with a name are counted
+			currentCategory = tempRound["category" + c];
+			const catName = currentCategory["categoryName"];
+			if (catName.trim() != "") {
+				catCount++;
 			}
 		}
-		//FJ
-		tempRound = game.FinalJeopardy;
-		const hasCategory = game.FinalJeopardy.category;
-		const hasQuestion = game.FinalJeopardy.question;
-		
-		return hasCategory && hasQuestion;
-		
-		
+		return catCount != 0;
 	},
 	playerCount: function () {
 		let count = 0;
@@ -239,7 +224,7 @@ export const TeacherFooter = React.createClass({
 					return null;
 				}
 			case "categories":
-				if (this.props.gameLogic["remainingColumns"] == 0) {
+				if (this.props.gameQuestions["remainingColumns"] == 0) {
 					return (
 						<div className="flex-container" style={{flex: 1}}>
 							<div style={{
@@ -249,7 +234,9 @@ export const TeacherFooter = React.createClass({
 								color: "black",
 								flex: 1,
 								verticalAlign: "middle",
-							}} onClick={this.advance}
+							}} onClick={()=>{
+								Meteor.call('gameLogic.advance');
+							}}
 							>Advance to next Round
 							</div>
 						</div>

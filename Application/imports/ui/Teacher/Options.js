@@ -87,7 +87,10 @@ export const Options = React.createClass({
 			
 			this.props.gameLogic["numPlayers"] < 6 ?
 				<div key="add" style={enabledStyle} onClick={() => {
-					this.setState({state: "add"});
+					let result = prompt("Enter Team Name");
+					if(result!=null){
+						
+					}
 				}}>Add Player</div> :
 				<div key="add" style={disabledStyle}>Add Player</div>
 			,
@@ -107,6 +110,20 @@ export const Options = React.createClass({
 			<div key="exit" style={enabledStyle} onClick={this.exit}>Exit Menu</div>,
 		]
 	},
+	renderAdjust: function () {
+		return[
+			<div key="mainMenu" style={enabledStyle} onClick={() => {
+			this.setState({state: "buttons"});
+		}}>Main Menu</div>,
+		];
+	},
+	renderSort: function () {
+		return[
+			<div key="mainMenu" style={enabledStyle} onClick={() => {
+				this.setState({state: "buttons"});
+			}}>Main Menu</div>,
+		];
+	},
 	exit: function () {
 		$("#optionModal").fadeOut(this.props.handleClose);
 	},
@@ -114,6 +131,12 @@ export const Options = React.createClass({
 		switch (this.state.state) {
 			case "buttons":
 				return this.renderButtons();
+			case "adjust":
+				return this.renderAdjust();
+			case "add":
+				return this.renderAdd();
+			case "sort":
+				return this.renderSort();
 		}
 	},
 	componentDidMount: function () {

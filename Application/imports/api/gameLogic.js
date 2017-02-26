@@ -5,6 +5,7 @@
 //Available to Everyone
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import {gameQuestions} from "./gameQuestions";
 
 
 export const gameLogic = new Mongo.Collection('gameLogic');
@@ -155,6 +156,7 @@ Meteor.methods({
 		}
 	},
 	'gameLogic.advance'(){
+		//Check for Round Skipping
 		const round = gameLogic.find().fetch()[0]['round'] + 1;
 		Meteor.call('gameLogic.setRound',round);
 		Meteor.call('gameLogic.setState','intro');
@@ -162,27 +164,42 @@ Meteor.methods({
 	},
 	'gameLogic.loadRound'(){
 		const round = gameLogic.find().fetch()[0]['round'];
-		Meteor.call('gameQuestions.loadRound',round);
-		switch (round) {
-			case 1:
-				Meteor.call('gameLogic.lastWinner',Math.floor((Math.random() * gameLogic.find().fetch()[0]['numPlayers']) + 1));
-				break;
-			case 2:
-				//Least
-				let least = 0;
-				let lowestAmount = 999999999;
-				for(let h=1; h<=gameLogic.find().fetch()[0]['numPlayers']; h++){
-					const playerAmount = gameLogic.find().fetch()[0]['player' + h]['points'];
-					if(playerAmount<lowestAmount){
-						least = h;
-						lowestAmount = playerAmount;
+		if(round==3){
+			const currentRound = gameQuestions.find().fetch()[0]["FinalJeopardy"];
+			const hasCategory = currentRound.category;
+			const hasQuestion = currentRound.question;
+			if(!(hasCategory && hasQuestion)){
+				Meteor.call('gameLogic.setState', "complete");
+			}
+		}else {
+			Meteor.call('gameQuestions.loadRound', round);
+			
+			if (gameQuestions.find().fetch()[0]["remainingColumns"] == 0) {
+				Meteor.call('gameLogic.advance');
+				return;
+			}
+			
+			switch (round) {
+				case 1:
+					Meteor.call('gameLogic.lastWinner', Math.floor((Math.random() * gameLogic.find().fetch()[0]['numPlayers']) + 1));
+					break;
+				case 2:
+					//Least
+					let least = 0;
+					let lowestAmount = 999999999;
+					for (let h = 1; h <= gameLogic.find().fetch()[0]['numPlayers']; h++) {
+						const playerAmount = gameLogic.find().fetch()[0]['player' + h]['points'];
+						if (playerAmount < lowestAmount) {
+							least = h;
+							lowestAmount = playerAmount;
+						}
 					}
-				}
-				Meteor.call('gameLogic.lastWinner',least);
-				break;
-			case 3:
-				Meteor.call('gameLogic.eliminate');
-				break;
+					Meteor.call('gameLogic.lastWinner', least);
+					break;
+				case 3:
+					Meteor.call('gameLogic.eliminate');
+					break;
+			}
 		}
 	},
 	'gameLogic.setState'(state){
