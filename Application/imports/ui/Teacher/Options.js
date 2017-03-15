@@ -81,7 +81,7 @@ export const Options = React.createClass({
 				<div key="advance" style={disabledStyle}>Advance to Next Round</div>
 			,
 			
-			<div key="adjust" style={enabledStyle} onClick={() => {
+		/*	<div key="adjust" style={enabledStyle} onClick={() => {
 				this.setState({state: "adjust"});
 			}}>Adjust Scores</div>,
 			
@@ -97,7 +97,7 @@ export const Options = React.createClass({
 			
 			<div key="sort" style={enabledStyle} onClick={() => {
 				this.setState({state: "sort"})
-			}}>Sort Players</div>,
+			}}>Sort Players</div>,*/
 			
 			<div key="reset" style={enabledStyle} onClick={
 				() => {
