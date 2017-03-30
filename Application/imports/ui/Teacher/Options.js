@@ -42,7 +42,7 @@ const enabledStyle = {
 const disabledStyle = {
 	color: "#a5a5a5",
 	margin: '5px 5px 0 5px',
-	cursor: 'pointer',
+	cursor: 'not-allowed',
 	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
 	zIndex: 1,
 	textDecoration: 'none',
@@ -82,21 +82,24 @@ export const Options = React.createClass({
 			,
 			
 			<div key="adjust" style={enabledStyle} onClick={() => {
-				this.setState({state: "adjust"});
+				/*this.setState({state: "adjust"});*/
 			}}>Adjust Scores</div>,
 			
 			this.props.gameLogic["numPlayers"] < 6 ?
 				<div key="add" style={enabledStyle} onClick={() => {
-					let result = prompt("Enter Team Name");
-					if(result!=null){
-						
+					let teamName = prompt("Enter Team Name");
+					if(teamName && teamName.trim()!=""){
+						Meteor.call('gameLogic.addPlayer', this.props.gameLogic["numPlayers"] + 1,teamName);
+						this.exit();
+					}else{
+						alert("Invalid Name!");
 					}
 				}}>Add Player</div> :
 				<div key="add" style={disabledStyle}>Add Player</div>
 			,
 			
 			<div key="sort" style={enabledStyle} onClick={() => {
-				this.setState({state: "sort"})
+				/*this.setState({state: "sort"});*/
 			}}>Sort Players</div>,
 			
 			<div key="reset" style={enabledStyle} onClick={

@@ -70,6 +70,21 @@ Meteor.methods({
 		gameLogic.update({},{$unset:{setupPlayers:""}});
 		gameLogic.update({},{$set:{numPlayers:numPlayers}});
 	},
+	'gameLogic.addPlayer'(teamNumber,teamName){
+		const bundle = {};
+		bundle["player"+teamNumber]={
+			teamName:teamName,
+			points:0,
+			connectionId:"",
+			finalPhoto:"",
+			status:"reconnect",
+			wager:0,
+			teamNumber:teamNumber,
+		};
+		gameLogic.update({},{$set:bundle});
+		gameLogic.update({},{$set:{numPlayers:teamNumber}});
+		
+	},
 	'gameLogic.setTeamName'(teamNumber,teamName){
 		
 		const bundle = {};
