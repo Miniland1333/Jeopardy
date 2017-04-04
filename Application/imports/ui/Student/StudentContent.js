@@ -54,7 +54,7 @@ export const StudentContent = React.createClass({
 		if (teamNumber == undefined) {
 			addToHomescreen();
 			return (<div className="flex-container" style={{flexDirection: "column"}}>
-					<h1>Tap a box to register!</h1>
+					<h1>Tap an open box to register!</h1>
 					<p>{Meteor.connection._lastSessionId}</p>
 				</div>
 			);

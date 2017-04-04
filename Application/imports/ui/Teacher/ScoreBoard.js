@@ -27,7 +27,7 @@ export const ScoreBoard = React.createClass({
 					return "Team" + this.props.playerLogic["teamNumber"];
 					break;
 				default:
-					return "0000";
+					return "OPEN";
 			}
 		} else {
 			switch (this.props.playerLogic["status"]) {
