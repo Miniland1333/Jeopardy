@@ -270,8 +270,11 @@ export const StudentContent = React.createClass({
 	},
 	render: function () {
 		refresh();
-		return this.renderContent();
-		
+		return (
+			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+				{this.renderContent()}
+			</div>
+		);
 	}
 });
 

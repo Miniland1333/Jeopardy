@@ -47,8 +47,8 @@
           <file leaf-file-name="StudentContent.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="53" column="62" lean-forward="false" selection-start-line="53" selection-start-column="62" selection-end-line="53" selection-end-column="62" />
+                <state relative-caret-position="374">
+                  <caret line="276" column="10" lean-forward="false" selection-start-line="276" selection-start-column="10" selection-end-line="276" selection-end-column="10" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
                   </folding>
@@ -70,17 +70,17 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="TeacherContent.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="TeacherContent.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="238">
-                  <caret line="230" column="16" lean-forward="true" selection-start-line="230" selection-start-column="16" selection-end-line="230" selection-end-column="16" />
+                  <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="234" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="EditorTable.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="188">
@@ -1367,14 +1367,7 @@
       <workItem from="1489699418953" duration="124000" />
       <workItem from="1490686436809" duration="596000" />
       <workItem from="1490845449235" duration="2851000" />
-      <workItem from="1491278582020" duration="6426000" />
-    </task>
-    <task id="LOCAL-00048" summary="Implementation of buzzer">
-      <created>1473221839807</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1473221839807</updated>
+      <workItem from="1491278582020" duration="7106000" />
     </task>
     <task id="LOCAL-00049" summary="Added in Timeout&#10;&#10;Uses this.forceupdate on ViewerContent">
       <created>1473267299148</created>
@@ -1712,11 +1705,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491283365090</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Attempt to Fix Resize bug with StudentContent">
+      <created>1491285779085</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1491285779085</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="532159000" />
+    <option name="totallyTimeSpent" value="532839000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1830,7 +1830,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Updated Game Checking and prototype Media Views" />
     <MESSAGE value="Finished Media Views&#10;&#10;Uploaded Images Disabled due to file restrictions" />
     <MESSAGE value="Made loadRound execute during advance" />
     <MESSAGE value="Minor fix to end time" />
@@ -1855,7 +1854,8 @@
     <MESSAGE value="Made Options more Responsive" />
     <MESSAGE value="Implemented Kicking Option&#10;&#10;Researching onhover to provide visual feedback" />
     <MESSAGE value="Changed 0000 to OPEN" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed 0000 to OPEN" />
+    <MESSAGE value="Attempt to Fix Resize bug with StudentContent" />
+    <option name="LAST_COMMIT_MESSAGE" value="Attempt to Fix Resize bug with StudentContent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2230,14 +2230,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="230" column="16" lean-forward="true" selection-start-line="230" selection-start-column="16" selection-end-line="230" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorTable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -2246,10 +2238,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="234" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="53" column="62" lean-forward="false" selection-start-line="53" selection-start-column="62" selection-end-line="53" selection-end-column="62" />
+        <state relative-caret-position="374">
+          <caret line="276" column="10" lean-forward="false" selection-start-line="276" selection-start-column="10" selection-end-line="276" selection-end-column="10" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
