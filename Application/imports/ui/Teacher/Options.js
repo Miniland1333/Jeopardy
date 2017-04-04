@@ -5,6 +5,7 @@ import React, {Component, PropTypes} from 'react';
 import {Meteor} from 'meteor/meteor';
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";
+import {gameLogic} from "../../api/gameLogic";
 
 const modalStyle = {
 	display: 'none', /* hidden by default */
@@ -55,6 +56,21 @@ const disabledStyle = {
 	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
 	backgroundColor: '#f1f1f1'
 };
+const playerStyle={
+		margin: '5px 5px 0 5px',
+		cursor: 'pointer',
+		boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+		zIndex: 1,
+		color: 'black',
+		textDecoration: 'none',
+		display: 'block',
+		padding: '15px 25px',
+		fontSize: '4vh',
+		borderRadius: 25,
+		transition: '.5s',
+		fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
+		backgroundColor: '#f1f1f1'
+};
 
 export const Options = React.createClass({
 	getInitialState: function () {
@@ -102,6 +118,11 @@ export const Options = React.createClass({
 				/*this.setState({state: "sort"});*/
 			}}>Sort Players</div>,
 			
+			<div key="kick" style={enabledStyle} onClick={() => {
+				this.setState({state: "kick"});
+			}}>Kick Player</div>,
+			
+			
 			<div key="reset" style={enabledStyle} onClick={
 				() => {
 					if (confirm("Reset?")) {
@@ -120,6 +141,23 @@ export const Options = React.createClass({
 		}}>Main Menu</div>,
 		];
 	},
+	renderKick: function () {
+		let innerArray = [];
+		for (let i=1; i<=this.props.gameLogic["numPlayers"]; i++){
+			innerArray.push(<div key={"Player "+i} style={playerStyle} onClick={function(){
+				Meteor.call('gameLogic.kick', i, gameLogic.find().fetch()[0]["player"+i]["connectionId"]);
+			}}>{"Kick Player "+i}</div>)
+		}
+		
+		return[
+			innerArray,
+			<div key="buffer" style={{height:10}}></div>,
+			
+			<div key="mainMenu" style={enabledStyle} onClick={() => {
+				this.setState({state: "buttons"});
+			}}>Main Menu</div>,
+		];
+	},
 	renderSort: function () {
 		return[
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
@@ -136,8 +174,8 @@ export const Options = React.createClass({
 				return this.renderButtons();
 			case "adjust":
 				return this.renderAdjust();
-			case "add":
-				return this.renderAdd();
+			case "kick":
+				return this.renderKick();
 			case "sort":
 				return this.renderSort();
 		}
@@ -146,6 +184,11 @@ export const Options = React.createClass({
 		$("#optionModal").fadeIn();
 	},
 	render: function () {
+		//States where options are invalid
+		if([""].indexOf(this.props.gameLogic.state)>=0){
+			this.exit();
+		}
+		
 		return (
 			<div id="optionModal" style={modalStyle}>
 				<div className="modal-content flex-container" style={modalContentStyle}>

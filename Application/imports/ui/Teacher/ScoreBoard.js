@@ -52,23 +52,6 @@ export const ScoreBoard = React.createClass({
 			if(!this.state.options){
 				this.setState({options:true});
 			}
-			//if(this.props.gameLogic["state"]=="pickQuestion")
-/*			if (this.props.round == 1) {
-				//show  J options
-				if (confirm("Advance?")) {
-					Meteor.call('gameLogic.advance');
-				}
-			} else if (this.props.round == 2) {
-				//show DJ options
-				if (confirm("Reset?")) {
-					Meteor.call("gameLogic.init");
-				}
-			} else if (this.props.round == 3) {
-				//show DJ options
-				if (confirm("Reset?")) {
-					Meteor.call("gameLogic.init");
-				}
-			}*/
 		}
 		
 	},
