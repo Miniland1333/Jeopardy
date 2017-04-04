@@ -44,12 +44,10 @@ export const StudentContent = React.createClass({
 		return !(currentState == "FJopen" && futureState == "FJopen" && !this.state.setup);
 		
 	},
-	render: function () {
-		refresh();
+	renderContent: function () {
 		let wager;
 		let max;
 		let points;
-		
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
 		if (teamNumber == undefined) {
 			addToHomescreen();
@@ -269,6 +267,11 @@ export const StudentContent = React.createClass({
 		} else {
 			return null;
 		}
+	},
+	render: function () {
+		refresh();
+		return this.renderContent();
+		
 	}
 });
 
