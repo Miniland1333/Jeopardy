@@ -105,7 +105,6 @@ export const TeacherFooter = React.createClass({
 		}
 		let tempRound;
 		
-		//TODO Allow incomplete games
 		//At least 1 SJ question
 		tempRound = game.Jeopardy;
 		let catCount = 0;

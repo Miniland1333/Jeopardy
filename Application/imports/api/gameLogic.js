@@ -183,6 +183,7 @@ Meteor.methods({
 			const currentRound = gameQuestions.find().fetch()[0]["FinalJeopardy"];
 			const hasCategory = currentRound.category;
 			const hasQuestion = currentRound.question;
+			Meteor.call('gameLogic.eliminate');
 			if(!(hasCategory && hasQuestion)){
 				Meteor.call('gameLogic.setState', "complete");
 			}
