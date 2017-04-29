@@ -20,15 +20,15 @@ export const Student = React.createClass({
 		return (
 			<DocumentTitle title='Jeopardy'>
 				<div>
-					<div style={{position: "fixed"}}>
-						{this.props.isReady ?
-							<div className="flex-container Main" style={{flexDirection: "column"}}>
-								<StudentHeader gameLogic={this.props.gameLogic[0]}/>
-								<StudentContent gameLogic={this.props.gameLogic[0]}/>
-							</div> : <div/>
-						}
+					{this.props.isReady ?
+						<div className="flex-container Main" style={{flexDirection: "column"}}>
+							<StudentHeader gameLogic={this.props.gameLogic[0]}/>
+							<StudentContent gameLogic={this.props.gameLogic[0]}/>
+						</div> : <div/>
+					}
+{/*					<div style={{position: "fixed", width: "100vw", top: 0}}>
 					</div>
-					<div id="buffer" style={{height: '200vh'}}/>
+					<div id="buffer" style={{height: '200vh'}}/>*/}
 				</div>
 			</DocumentTitle>
 		)
