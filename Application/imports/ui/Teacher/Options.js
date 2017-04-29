@@ -86,7 +86,7 @@ export const Options = React.createClass({
 	},
 	renderButtons: function () {
 		return [
-			this.props.round != 3 ?
+			this.props.round !== 3 ?
 				<div key="advance" style={enabledStyle} onClick={
 					() => {
 						if (confirm("Advance?")) {
@@ -104,6 +104,7 @@ export const Options = React.createClass({
 			this.props.gameLogic["numPlayers"] < 6 ?
 				<div key="add" style={enabledStyle} onClick={() => {
 					let teamName = prompt("Enter Team Name");
+					//noinspection EqualityComparisonWithCoercionJS
 					if(teamName && teamName.trim()!=""){
 						Meteor.call('gameLogic.addPlayer', this.props.gameLogic["numPlayers"] + 1,teamName);
 						this.exit();

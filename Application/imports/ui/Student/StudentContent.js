@@ -41,7 +41,7 @@ export const StudentContent = React.createClass({
 	shouldComponentUpdate:function (nextProps, nextState) {
 		let currentState = this.props.gameLogic["state"];
 		let futureState = nextProps.gameLogic["state"];
-		return !(currentState == "FJopen" && futureState == "FJopen" && !this.state.setup);
+		return !(currentState === "FJopen" && futureState === "FJopen" && !this.state.setup);
 		
 	},
 	renderContent: function () {
@@ -49,22 +49,22 @@ export const StudentContent = React.createClass({
 		let max;
 		let points;
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
-		if (teamNumber == undefined) {
-			addToHomescreen();
+		if (teamNumber === undefined) {
+			//addToHomescreen();
 			return (<div className="flex-container" style={{flexDirection: "column"}}>
 					<h1>Tap an open box to register!</h1>
 					<p>{Meteor.connection._lastSessionId}</p>
 				</div>
 			);
-		} else if (this.props.gameLogic["state"] == "wager" && this.props.gameLogic["lastWinner"] == teamNumber) {
+		} else if (this.props.gameLogic["state"] === "wager" && this.props.gameLogic["lastWinner"] === teamNumber) {
 			points = this.props.gameLogic["player" + teamNumber]["points"];
-			max = Math.max(this.props.gameLogic["round"] == 1 ? 1000 : 2000, points);
+			max = Math.max(this.props.gameLogic["round"] === 1 ? 1000 : 2000, points);
 			
 			
 			wager = Math.max(5, Math.min(this.props.gameLogic["player" + teamNumber]["wager"], max));
 			Meteor.call('gameLogic.setWager', teamNumber, wager);
 			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-				<div style={{flex: 1}}></div>
+				<div style={{flex: 1}}/>
 				<div>
 					<div style={buttonStyle}
 					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>+10,000
@@ -109,16 +109,16 @@ export const StudentContent = React.createClass({
 					</div>
 				</div>
 				<div style={{fontSize: 15}}>You can wager between $5 and ${max}</div>
-				<div style={{flex: 1}}></div>
+				<div style={{flex: 1}}/>
 				<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.setState', 'DDread')}>Confirm Wager
 				</div>
 			</div>;
 			
-		} else if (this.props.gameLogic["state"] == "read") {
+		} else if (this.props.gameLogic["state"] === "read") {
 			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 				<div style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
 			</div>;
-		} else if (this.props.gameLogic["state"] == "open") {
+		} else if (this.props.gameLogic["state"] === "open") {
 			const incorrect = this.props.gameLogic["currentQuestionLogic"]["Incorrect"];
 			if (!incorrect.includes(teamNumber)) {
 				//If not on incorrect list
@@ -133,8 +133,8 @@ export const StudentContent = React.createClass({
 			}
 			
 			
-		} else if (this.props.gameLogic["state"] == "answer") {
-			if (this.props.gameLogic["currentQuestionLogic"]["first"] == teamNumber) {
+		} else if (this.props.gameLogic["state"] === "answer") {
+			if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber) {
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 					<div style={{background: "#00b500", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
@@ -149,7 +149,7 @@ export const StudentContent = React.createClass({
 				</div>;
 			}
 			
-		} else if (this.props.gameLogic["round"] == 3 && this.props.gameLogic["player" + teamNumber]["status"] == "active") {
+		} else if (this.props.gameLogic["round"] === 3 && this.props.gameLogic["player" + teamNumber]["status"] === "active") {
 			switch (this.props.gameLogic["state"]) {
 				case "FJwager":
 					if (!this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
@@ -158,7 +158,7 @@ export const StudentContent = React.createClass({
 						wager = Math.max(0, Math.min(this.props.gameLogic["player" + teamNumber]["wager"], points));
 						Meteor.call('gameLogic.setWager', teamNumber, wager);
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-							<div style={{flex: 1}}></div>
+							<div style={{flex: 1}}/>
 							<div>
 								<div style={buttonStyle}
 								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>
@@ -205,7 +205,7 @@ export const StudentContent = React.createClass({
 								</div>
 							</div>
 							<div style={{fontSize: 15}}>You can wager between $0 and ${points}</div>
-							<div style={{flex: 1}}></div>
+							<div style={{flex: 1}}/>
 							<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
 								Confirm
 								Wager

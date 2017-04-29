@@ -19,7 +19,7 @@ export const Teacher = React.createClass({
 		gameQuestions: React.PropTypes.array,
 	},
 	render: function () {
-		if (this.props.isReady && this.props.gameLogic.length == 0) {
+		if (this.props.isReady && this.props.gameLogic.length === 0) {
 			Meteor.call('gameLogic.init');
 		}
 		return (
@@ -33,7 +33,7 @@ export const Teacher = React.createClass({
 							                gameDatabase={this.props.gameDatabase}/>
 							<TeacherFooter gameLogic={this.props.gameLogic[0]}
 							               gameQuestions={this.props.gameQuestions[0]}/>
-						</div> : <div></div>
+						</div> : <div/>
 					
 					}
 				</div>

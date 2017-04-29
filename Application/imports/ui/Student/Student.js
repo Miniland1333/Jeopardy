@@ -8,23 +8,33 @@ import {gameLogic} from "../../api/gameLogic"
 
 import StudentHeader from "./StudentHeader";
 import StudentContent from "./StudentContent";
-import Brim from 'Brim'
-import Scram from 'Scream'
+import Brim from 'brim'
+import Scram from 'scream'
+import platform from 'platform'
+let scream,
+	brim;
 
 window.addEventListener('DOMContentLoaded', function () {
-	let scream,
-		brim;
 	
-	scream = Scram({
-		width: {
-			portrait: 320,
-			landscape: 640
-		}
-	});
-	
-	brim = Brim({
-		viewport: scream
-	});
+	if (platform.os.family === 'iOS' && parseInt(platform.os.version, 10) > 8) {
+		scream = Scram({
+			width: {
+				portrait: screen.width,
+				landscape: screen.height * 2
+			}
+		});
+		
+		brim = Brim({
+			viewport: scream
+		});
+		
+		brim.on('viewchange', function (e) {
+			document.body.className = e.viewName;
+		});
+	}
+	else{
+		$("#brim-mask").hide();
+	}
 });
 
 export const Student = React.createClass({
@@ -34,18 +44,21 @@ export const Student = React.createClass({
 		}
 	},
 	render: function () {
+		if(scream)
+			$("#DISPLAY").text(scream.getOrientation());
 		return (
 			<DocumentTitle title='Jeopardy'>
 				<div>
 					<div id="brim-mask">
-						<div>Yoghurt</div>
+						<div>Yoy</div>
+						<div id="DISPLAY"/>
 					</div>
 					<div id="brim-main">
 						{this.props.isReady ?
 							<div className="flex-container Main" style={{flexDirection: "column"}}>
 								<StudentHeader gameLogic={this.props.gameLogic[0]}/>
 								<StudentContent gameLogic={this.props.gameLogic[0]}/>
-							</div> : <div></div>
+							</div> : <div/>
 						}
 					</div>
 				</div>
