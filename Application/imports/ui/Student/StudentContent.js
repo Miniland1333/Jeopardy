@@ -50,7 +50,7 @@ export const StudentContent = React.createClass({
 		let points;
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
 		if (teamNumber === undefined) {
-			//addToHomescreen();
+			addToHomescreen();
 			return (<div className="flex-container" style={{flexDirection: "column"}}>
 					<h1>Tap an open box to register!</h1>
 					<p>{Meteor.connection._lastSessionId}</p>
