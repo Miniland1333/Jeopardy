@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
+import {Meteor} from "meteor/meteor";
 
 import GameDropdown from "./GameDropdown";
 
 import Question from "./Question";
-import refresh from "../refresh"
+import refresh from "../refresh";
 
 
 const questionStyle = {
@@ -127,7 +127,8 @@ export const TeacherContent = React.createClass({
 				Meteor.call('gameLogic.resetCurrentQuestionLogic');
 				if (this.props.gameQuestions["currentQuestion"]["isDailyDouble"]) {
 					Meteor.call('gameLogic.setState', "DailyDouble");
-				} else {
+				}
+				else {
 					Meteor.call('gameLogic.setState', "read");
 				}
 				break;
@@ -151,7 +152,8 @@ export const TeacherContent = React.createClass({
 								style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"].text}</div>
 							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
 						</div>
-					} else {
+					}
+					else {
 						return [<div className="flex-container" style={{
 							fontFamily: "gyparody",
 							fontSize: "20vmin",
@@ -180,7 +182,8 @@ export const TeacherContent = React.createClass({
 				let wager;
 				if (player != 0) {
 					wager = "Wager: " + this.props.gameLogic["player" + player]["wager"];
-				} else {
+				}
+				else {
 					wager = "";
 				}
 				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
@@ -207,7 +210,8 @@ export const TeacherContent = React.createClass({
 								minWidth: "10vw",
 							}}>{wager}</div>
 						</div>
-					} else {
+					}
+					else {
 						return [<div className="flex-container" style={{
 							fontFamily: "gyparody",
 							fontSize: "20vmin",

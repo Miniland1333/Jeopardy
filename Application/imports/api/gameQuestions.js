@@ -3,9 +3,8 @@
  * Storage for the current game's remaining questions
  */
 //Available to Server, Teacher, and Viewer
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
 
 
 export const gameQuestions = new Mongo.Collection('gameQuestions');
@@ -22,18 +21,18 @@ Meteor.methods({
 		//copies game into gameQuestions or editorDatabase
 		gameQuestions.remove({});
 		gameQuestions.insert({
-			currentRound:{},
-			remainingColumns:6,
-			dailyDouble:{},
-			currentQuestion:{},
-			Jeopardy:game.Jeopardy,
-			DoubleJeopardy:game.DoubleJeopardy,
-			FinalJeopardy:game.FinalJeopardy
+			currentRound: {},
+			remainingColumns: 6,
+			dailyDouble: {},
+			currentQuestion: {},
+			Jeopardy: game.Jeopardy,
+			DoubleJeopardy: game.DoubleJeopardy,
+			FinalJeopardy: game.FinalJeopardy
 		});
 	},
 	'gameQuestions.loadRound'(roundNumber){
 		let roundName;
-		switch (roundNumber){
+		switch (roundNumber) {
 			case 1:
 				roundName = "Jeopardy";
 				break;
@@ -44,18 +43,19 @@ Meteor.methods({
 				roundName = "FinalJeopardy";
 				break;
 		}
-		gameQuestions.update({},{$set:{currentRound:gameQuestions.find().fetch()[0][roundName]}});
+		gameQuestions.update({}, {$set: {currentRound: gameQuestions.find().fetch()[0][roundName]}});
 		
 		//Remove empty categories and update remaining Columns
-		if(roundNumber!=3) {
+		if (roundNumber != 3) {
 			Meteor.call('gameQuestions.checkRemainingColumns');
 			const currentRound = gameQuestions.find().fetch()[0]["currentRound"];
-			if(gameQuestions.find().fetch()[0]["remainingColumns"]!=0){
+			if (gameQuestions.find().fetch()[0]["remainingColumns"] != 0) {
 				//Daily Double handling
-				if(roundNumber==1){
+				if (roundNumber == 1) {
 					//set single
 					pickDailyDouble("single");
-				}else if(roundNumber==2){
+				}
+				else if (roundNumber == 2) {
 					//set double
 					pickDailyDouble("double1");
 					pickDailyDouble("double2");
@@ -114,20 +114,21 @@ Meteor.methods({
 			let bundle = {};
 			let currentCategory = gameQuestions.find().fetch()[0]["currentRound"]["category" + i];
 			let empty = true;
-			for(let q=1; q<=5; q++){
+			for (let q = 1; q <= 5; q++) {
 				if (typeof currentCategory["question" + q]["question"] === "string") {
 					if (currentCategory["question" + q]["question"].trim() != "") {
 						empty = false;
 					}
-				} else {
+				}
+				else {
 					if (currentCategory["question" + q]["question"]) {
 						empty = false;
 					}
 				}
 			}
-			if(empty){
-				bundle["currentRound.category" + i+".categoryName"]="";
-				gameQuestions.update({},{$set:bundle});
+			if (empty) {
+				bundle["currentRound.category" + i + ".categoryName"] = "";
+				gameQuestions.update({}, {$set: bundle});
 			}
 			
 			//only categories with a name are counted
@@ -135,37 +136,40 @@ Meteor.methods({
 			const catName = currentCategory["categoryName"];
 			if (catName.trim() != "") {
 				catCount++;
-			}else {
+			}
+			else {
 				//code to remove questions from empty category
-				bundle ={};
+				bundle = {};
 				const categoryTemplate = {
 					categoryName: "",
 				};
-				for(let c=1; c<=5; c++){
-					categoryTemplate["question"+c] = {
-						isSinglePlay:false,
-						question:"",
-						answer:"",
+				for (let c = 1; c <= 5; c++) {
+					categoryTemplate["question" + c] = {
+						isSinglePlay: false,
+						question: "",
+						answer: "",
 					};
 				}
 				bundle["currentRound.category" + i] = categoryTemplate;
-				gameQuestions.update({},{$set:bundle});
+				gameQuestions.update({}, {$set: bundle});
 			}
 		}
-		gameQuestions.update({},{$set:{remainingColumns:catCount}});
+		gameQuestions.update({}, {$set: {remainingColumns: catCount}});
 	},
-	'gameQuestions.pickQuestion'(key1,key2,question,answer,isSinglePlay,round){
+	'gameQuestions.pickQuestion'(key1, key2, question, answer, isSinglePlay, round){
 		const dailyDouble = gameQuestions.find().fetch()[0]['dailyDouble'];
 		let isDailyDouble = false;
 		
-		function isEqual(name){
-			if(dailyDouble[name]['category']==key1&&dailyDouble[name]['question']==key2){
-				isDailyDouble=true;
+		function isEqual(name) {
+			if (dailyDouble[name]['category'] == key1 && dailyDouble[name]['question'] == key2) {
+				isDailyDouble = true;
 			}
 		}
-		if(round==1){
+		
+		if (round == 1) {
 			isEqual('single');
-		}else{
+		}
+		else {
 			isEqual('double1');
 			isEqual('double2');
 		}
@@ -187,24 +191,24 @@ Meteor.methods({
 				value = 1000;
 				break;
 		}
-		value = value*round;
+		value = value * round;
 		let bundle = {};
 		bundle['currentQuestion'] = {
 			question: question,
 			answer: answer,
 			isSinglePlay: isSinglePlay,
 			isDailyDouble: isDailyDouble,
-			value:value,
+			value: value,
 		};
-		gameQuestions.update({},{$set:bundle});
+		gameQuestions.update({}, {$set: bundle});
 		//Pops Question and then checks Columns.
-		bundle={};
-		bundle["currentRound."+key1+"."+key2]={
-			isSinglePlay:false,
-			question:"",
-			answer:"",
+		bundle = {};
+		bundle["currentRound." + key1 + "." + key2] = {
+			isSinglePlay: false,
+			question: "",
+			answer: "",
 		};
-		gameQuestions.update({},{$set:bundle});
+		gameQuestions.update({}, {$set: bundle});
 		Meteor.call('gameQuestions.checkRemainingColumns');
 	}
 });

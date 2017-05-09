@@ -3,8 +3,8 @@
  * Storage for the internal game logic
  */
 //Available to Everyone
-import {Meteor} from 'meteor/meteor';
-import {Mongo} from 'meteor/mongo';
+import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
 import {gameQuestions} from "./gameQuestions";
 
 
@@ -188,7 +188,6 @@ Meteor.methods({
 			const currentRound = gameQuestions.find().fetch()[0]["FinalJeopardy"];
 			const hasCategory = currentRound.category;
 			const hasQuestion = currentRound.question;
-			console.log(currentRound);
 			Meteor.call('gameLogic.eliminate');
 			if (!(hasCategory && hasQuestion)) {
 				Meteor.call('gameLogic.setState', "complete");

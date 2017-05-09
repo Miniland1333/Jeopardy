@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
-import refresh from "../refresh"
+import React from "react";
+import {Meteor} from "meteor/meteor";
+import refresh from "../refresh";
 
 const buttonStyle = {
 	backgroundColor: "#555555",
@@ -38,7 +38,7 @@ export const StudentContent = React.createClass({
 	handleLate: function () {
 		Meteor.call('gameLogic.addLate', teamNumber);
 	},
-	shouldComponentUpdate:function (nextProps, nextState) {
+	shouldComponentUpdate: function (nextProps, nextState) {
 		let currentState = this.props.gameLogic["state"];
 		let futureState = nextProps.gameLogic["state"];
 		return !(currentState === "FJopen" && futureState === "FJopen" && !this.state.setup);
@@ -56,7 +56,8 @@ export const StudentContent = React.createClass({
 					<p>{Meteor.connection._lastSessionId}</p>
 				</div>
 			);
-		} else if (this.props.gameLogic["state"] === "wager" && this.props.gameLogic["lastWinner"] === teamNumber) {
+		}
+		else if (this.props.gameLogic["state"] === "wager" && this.props.gameLogic["lastWinner"] === teamNumber) {
 			points = this.props.gameLogic["player" + teamNumber]["points"];
 			max = Math.max(this.props.gameLogic["round"] === 1 ? 1000 : 2000, points);
 			
@@ -114,11 +115,13 @@ export const StudentContent = React.createClass({
 				</div>
 			</div>;
 			
-		} else if (this.props.gameLogic["state"] === "read") {
+		}
+		else if (this.props.gameLogic["state"] === "read") {
 			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 				<div style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
 			</div>;
-		} else if (this.props.gameLogic["state"] === "open") {
+		}
+		else if (this.props.gameLogic["state"] === "open") {
 			const incorrect = this.props.gameLogic["currentQuestionLogic"]["Incorrect"];
 			if (!incorrect.includes(teamNumber)) {
 				//If not on incorrect list
@@ -126,30 +129,35 @@ export const StudentContent = React.createClass({
 					<div onClick={this.handleFirst}
 					     style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
-			} else {
+			}
+			else {
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
 			}
 			
 			
-		} else if (this.props.gameLogic["state"] === "answer") {
+		}
+		else if (this.props.gameLogic["state"] === "answer") {
 			if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber) {
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 					<div style={{background: "#00b500", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
-			} else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+			}
+			else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
-			} else {
+			}
+			else {
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 					<div onClick={this.handleLate}
 					     style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
 			}
 			
-		} else if (this.props.gameLogic["round"] === 3 && this.props.gameLogic["player" + teamNumber]["status"] === "active") {
+		}
+		else if (this.props.gameLogic["round"] === 3 && this.props.gameLogic["player" + teamNumber]["status"] === "active") {
 			switch (this.props.gameLogic["state"]) {
 				case "FJwager":
 					if (!this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
@@ -211,7 +219,8 @@ export const StudentContent = React.createClass({
 								Wager
 							</div>
 						</div>;
-					} else {
+					}
+					else {
 						return null;
 					}
 				
@@ -222,7 +231,8 @@ export const StudentContent = React.createClass({
 					if (this.state.setup) {
 						this.setState({setup: false});
 						return <canvas style={{flex: 1}} id="writingPad"/>;
-					} else {
+					}
+					else {
 						paper.install(window);
 						const canvas = document.getElementById('writingPad');
 						paper.setup(canvas);
@@ -264,7 +274,8 @@ export const StudentContent = React.createClass({
 					return null;
 				
 			}
-		} else {
+		}
+		else {
 			return null;
 		}
 	},

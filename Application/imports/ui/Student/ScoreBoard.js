@@ -1,39 +1,40 @@
-import React, {Component, PropTypes} from 'react';
-import {Meteor} from 'meteor/meteor';
+import React from "react";
+import {Meteor} from "meteor/meteor";
 
 
 var inputStyle = {
-	textAlign:"center",
-	background:"transparent",
-	border:"none",
-	color:"white",
-	fontSize:"1vw",
-	flex:1,
-	overFlow:"hide",
+	textAlign: "center",
+	background: "transparent",
+	border: "none",
+	color: "white",
+	fontSize: "1vw",
+	flex: 1,
+	overFlow: "hide",
 	minWidth: "10vw",
 };
 
 var ScoreBoard = React.createClass({
 	propTypes: {
 		playerLogic: React.PropTypes.object,
-		gameLogic:React.PropTypes.object,
-		round:React.PropTypes.number,
-		connectionId:React.PropTypes.string,
+		gameLogic: React.PropTypes.object,
+		round: React.PropTypes.number,
+		connectionId: React.PropTypes.string,
 	},
-	numDisplay:function () {
+	numDisplay: function () {
 		if (this.props.round == 0) {
-			switch (this.props.playerLogic["status"]){
+			switch (this.props.playerLogic["status"]) {
 				case "pending":
 					return "----";
 					break;
 				case "ready":
-					return "Team"+this.props.playerLogic["teamNumber"];
+					return "Team" + this.props.playerLogic["teamNumber"];
 					break;
 				default:
 					return "OPEN";
 			}
-		}else{
-			switch (this.props.playerLogic["status"]){
+		}
+		else {
+			switch (this.props.playerLogic["status"]) {
 				case "reconnect":
 					return "----";
 					break;
@@ -45,46 +46,49 @@ var ScoreBoard = React.createClass({
 			}
 		}
 	},
-	handleName:function (name) {
-		Meteor.call('gameLogic.setTeamName',this.props.playerLogic["teamNumber"],name.target.value);
+	handleName: function (name) {
+		Meteor.call('gameLogic.setTeamName', this.props.playerLogic["teamNumber"], name.target.value);
 	},
 	handleClick: function () {
 		var status = this.props.playerLogic["status"];
 		if (this.props.round == 0) {
 			
-			var input = $("#input"+this.props.playerLogic["teamNumber"]);
-			if(status==""&&this.props.gameLogic["connections"][this.props.connectionId]==undefined){
-				Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,this.props.connectionId);
-				input.prop( "disabled", false );
-				input.focus();
-			}else if(status=="ready"&&this.props.connectionId==this.props.playerLogic["connectionId"]){
-				input.prop( "disabled", false );
+			var input = $("#input" + this.props.playerLogic["teamNumber"]);
+			if (status == "" && this.props.gameLogic["connections"][this.props.connectionId] == undefined) {
+				Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, this.props.connectionId);
+				input.prop("disabled", false);
 				input.focus();
 			}
-		}else if(status=="reconnect"&&this.props.gameLogic["connections"][this.props.connectionId]==undefined){
-			Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,this.props.connectionId);
-			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"active",this.props.round);
+			else if (status == "ready" && this.props.connectionId == this.props.playerLogic["connectionId"]) {
+				input.prop("disabled", false);
+				input.focus();
+			}
+		}
+		else if (status == "reconnect" && this.props.gameLogic["connections"][this.props.connectionId] == undefined) {
+			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, this.props.connectionId);
+			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "active", this.props.round);
 		}
 	},
-	handleSubmit:function (e) {
+	handleSubmit: function (e) {
 		e.preventDefault();
-		$("#input"+this.props.playerLogic["teamNumber"]).blur();
+		$("#input" + this.props.playerLogic["teamNumber"]).blur();
 	},
-	handleFocus:function () {
-		Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"pending",0)
+	handleFocus: function () {
+		Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "pending", 0)
 	},
-	handleBlur:function (name) {
-		$("#input"+this.props.playerLogic["teamNumber"]).prop( "disabled", true );
-		if(name.target.value==""){
-			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"",0);
-			Meteor.call('gameLogic.setConnectionId',this.props.playerLogic["teamNumber"],this.props.round,"",this.props.connectionId);
-		}else{
-			Meteor.call('gameLogic.setStatus',this.props.playerLogic["teamNumber"],"ready",0)
+	handleBlur: function (name) {
+		$("#input" + this.props.playerLogic["teamNumber"]).prop("disabled", true);
+		if (name.target.value == "") {
+			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "", 0);
+			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, "", this.props.connectionId);
+		}
+		else {
+			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "ready", 0)
 		}
 		
 	},
-	scoreStyle:function () {
-		var green={
+	scoreStyle: function () {
+		var green = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
@@ -93,7 +97,7 @@ var ScoreBoard = React.createClass({
 			borderRadius: 8,
 		};
 		
-		var orange={
+		var orange = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
@@ -102,7 +106,7 @@ var ScoreBoard = React.createClass({
 			borderRadius: 8,
 		};
 		
-		var red={
+		var red = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
@@ -111,7 +115,7 @@ var ScoreBoard = React.createClass({
 			borderRadius: 8,
 		};
 		
-		var normal={
+		var normal = {
 			fontFamily: "D7",
 			fontSize: "4vw",
 			minWidth: "10vw",
@@ -132,58 +136,69 @@ var ScoreBoard = React.createClass({
 				default:
 					return normal;
 			}
-		} else if (this.props.playerLogic["status"] == "reconnect") {
+		}
+		else if (this.props.playerLogic["status"] == "reconnect") {
 			return orange;
-		}else if (this.props.gameLogic["round"]!=3){
-			switch (this.props.gameLogic["state"]){
+		}
+		else if (this.props.gameLogic["round"] != 3) {
+			switch (this.props.gameLogic["state"]) {
 				case "intro":
 				case "categoryIntro":
 				case "categories":
 				case "pickQuestion":
-					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
+					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
 						return orange;
-					} else {
+					}
+					else {
 						return normal;
 					}
 				case "DailyDouble":
 				case "wager":
 				case "DDread":
 				case "DDanswer":
-					if(this.props.gameLogic["lastWinner"]==this.props.playerLogic["teamNumber"]){
+					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
 						return green;
-					} else {
+					}
+					else {
 						return normal;
 					}
 				case "open":
-					if(this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)){
+					if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
 						return red;
-					}else{
+					}
+					else {
 						return normal;
 					}
 				case "answer":
-					if(this.props.gameLogic["currentQuestionLogic"]["first"]==teamNumber){
+					if (this.props.gameLogic["currentQuestionLogic"]["first"] == teamNumber) {
 						return green;
-					}else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)){
+					}
+					else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
 						return red
-					}else{
+					}
+					else {
 						return normal;
 					}
-					
-					
+				
+				
 				default:
 					return normal;
 					break;
 			}
-		}else if (this.props.gameLogic["round"]==3){
+		}
+		else if (this.props.gameLogic["round"] == 3) {
 			//Code for FJ wager
-			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)&&this.props.gameLogic["state"]=="FJwager") {
+			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber) && this.props.gameLogic["state"] == "FJwager") {
 				return green
-			}else if (this.props.gameLogic["state"]=="FJanswer"&&this.props.gameLogic["FJ"]["currentPlayer"]==teamNumber){
+			}
+			else if (this.props.gameLogic["state"] == "FJanswer" && this.props.gameLogic["FJ"]["currentPlayer"] == teamNumber) {
 				return green
-			}else{
+			}
+			else {
 				return normal;
 			}
-		} else {
+		}
+		else {
 			return normal;
 		}
 	},
@@ -198,7 +213,7 @@ var ScoreBoard = React.createClass({
 			     }}>
 				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
 				<form onSubmit={this.handleSubmit} className="flex-container">
-					<input id={"input"+this.props.playerLogic["teamNumber"]}
+					<input id={"input" + this.props.playerLogic["teamNumber"]}
 					       spellCheck="true"
 					       type="text"
 					       value={this.props.playerLogic["teamName"]}

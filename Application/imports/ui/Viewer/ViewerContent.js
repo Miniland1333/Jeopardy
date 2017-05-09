@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
+import {Meteor} from "meteor/meteor";
 import "./../howler";
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";
@@ -30,14 +30,14 @@ const inputStyle = {
 };
 const imageStyle = {
 	height: "100%",
-	maxWidth:"100%",
+	maxWidth: "100%",
 };
 const imageContainer = {
 	maxHeight: "100%",
-	maxWidth:"100%",
+	maxWidth: "100%",
 	flex: 1,
 	justifyContent: "center",
-	alignItems:"center",
+	alignItems: "center",
 };
 
 let timer;
@@ -66,7 +66,7 @@ const DJcat = new Howl({src: ['./../Jp/DJcat.mp3'],});
 DJcat.on('end', function () {
 	Meteor.call('gameLogic.setState', 'categories');
 });
-const DD = new Howl({	src: ['./../Jp/jdaily2x.mp3'],});
+const DD = new Howl({src: ['./../Jp/jdaily2x.mp3'],});
 DD.on('end', function () {
 	Meteor.call('gameLogic.setState', 'wager');
 });
@@ -75,11 +75,11 @@ FJ.on('end', function () {
 	Meteor.call('gameLogic.setState', 'FJanswer');
 });
 const FJcat = new Howl({src: ['./../Jp/jfinalj.mp3'],});
-const loop = new Howl({src: ['./../Jp/jloop.mp3'],loop: true,});
+const loop = new Howl({src: ['./../Jp/jloop.mp3'], loop: true,});
 const timeout = new Howl({src: ['./../Jp/jtime.mp3'],});
 
 export const ViewerContent = React.createClass({
-	getInitialState:function(){
+	getInitialState: function () {
 		return {
 			setup: true,
 		}
@@ -96,19 +96,19 @@ export const ViewerContent = React.createClass({
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						if(!intro.playing()){
+						if (!intro.playing()) {
 							this.handleSoundStop();
 							intro.play();
 						}
 						break;
 					case 2:
-						if(!DJintro.playing()){
+						if (!DJintro.playing()) {
 							this.handleSoundStop();
 							DJintro.play();
 						}
 						break;
 					case 3:
-						if(!FJintro.playing()){
+						if (!FJintro.playing()) {
 							this.handleSoundStop();
 							FJintro.play();
 						}
@@ -134,7 +134,7 @@ export const ViewerContent = React.createClass({
 				DD.play();
 				break;
 			case "FJopen":
-				if(!FJ.playing()) {
+				if (!FJ.playing()) {
 					this.handleSoundStop();
 					FJ.play();
 				}
@@ -148,16 +148,18 @@ export const ViewerContent = React.createClass({
 				this.handleSoundStop();
 				break;
 			case "complete":
-				if(!loop.playing()){
+				if (!loop.playing()) {
 					this.handleSoundStop();
 					loop.play();
 				}
 			
 		}
 	},
-	handleSoundStop:function () {
-		const soundArray = [intro,DJintro,FJintro,Jcat,DJcat,DD,FJ,loop,timeout];
-		soundArray.forEach(function(sound){sound.stop()});
+	handleSoundStop: function () {
+		const soundArray = [intro, DJintro, FJintro, Jcat, DJcat, DD, FJ, loop, timeout];
+		soundArray.forEach(function (sound) {
+			sound.stop()
+		});
 	},
 	renderContent: function () {
 		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
@@ -264,9 +266,11 @@ export const ViewerContent = React.createClass({
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+							     style={imageStyle}/>
 						</div>
-					} else {
+					}
+					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video" src={this.props.gameQuestions["currentQuestion"]["question"].URL}
 							        style={{flex: 1}}></iframe>
@@ -310,9 +314,11 @@ export const ViewerContent = React.createClass({
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+							     style={imageStyle}/>
 						</div>
-					} else {
+					}
+					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
@@ -349,9 +355,11 @@ export const ViewerContent = React.createClass({
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+							     style={imageStyle}/>
 						</div>
-					} else {
+					}
+					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
@@ -371,9 +379,11 @@ export const ViewerContent = React.createClass({
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image} style={imageStyle}/>
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+							     style={imageStyle}/>
 						</div>
-					} else {
+					}
+					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
@@ -399,10 +409,12 @@ export const ViewerContent = React.createClass({
 				else {
 					if (this.props.gameQuestions["currentRound"]["question"]["type"] == "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image} style={imageStyle}/>
+							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
+							     style={imageStyle}/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
-					} else {
+					}
+					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentRound"]["question"].URL}
@@ -413,18 +425,18 @@ export const ViewerContent = React.createClass({
 				}
 				break;
 			case "FJopen":
-				let color ="#ffffff";
-				let FJtime =0;
+				let color = "#ffffff";
+				let FJtime = 0;
 				const rainbow = new Rainbow;
-				rainbow.setSpectrum("#00ff37","#ff1616");
-				timer = setInterval(()=>{
-					let progressbar = $( "#progressbar" );
-					FJtime = Math.round(FJ.seek()/FJ.duration()*100.0);
+				rainbow.setSpectrum("#00ff37", "#ff1616");
+				timer = setInterval(() => {
+					let progressbar = $("#progressbar");
+					FJtime = Math.round(FJ.seek() / FJ.duration() * 100.0);
 					progressbar.progressbar({
 						value: FJtime
 					});
-					progressbar.find( ".ui-progressbar-value" ).css({"background":"#"+rainbow.colourAt(FJtime)});
-				},100);
+					progressbar.find(".ui-progressbar-value").css({"background": "#" + rainbow.colourAt(FJtime)});
+				}, 100);
 				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
 					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 						<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
@@ -434,10 +446,12 @@ export const ViewerContent = React.createClass({
 				else {
 					if (this.props.gameQuestions["currentRound"]["question"]["type"] == "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image} style={imageStyle}/>
+							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
+							     style={imageStyle}/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
-					} else {
+					}
+					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentRound"]["question"].URL.replace('autoplay=1', '')}
@@ -455,7 +469,8 @@ export const ViewerContent = React.createClass({
 						;
 					</div>
 					
-				} else {
+				}
+				else {
 					paper.install(window);
 					const canvas = document.getElementById('writingPad');
 					paper.setup(canvas);
@@ -467,7 +482,8 @@ export const ViewerContent = React.createClass({
 					let wager;
 					if (player != 0) {
 						wager = "Wager: " + this.props.gameLogic["player" + player]["wager"];
-					} else {
+					}
+					else {
 						wager = "";
 					}
 					return (
@@ -500,7 +516,8 @@ export const ViewerContent = React.createClass({
 						fontSize: "18vmin", flex: 1, alignItems: "center", justifyContent: "center",
 						whiteSpace: "pre-wrap",
 					}}>All Players have been eliminated</div>;
-				} else {
+				}
+				else {
 					//Display complete
 					return <div className="flex-container" style={{
 						fontSize: "10vmin", flex: 1, alignItems: "center", justifyContent: "center",

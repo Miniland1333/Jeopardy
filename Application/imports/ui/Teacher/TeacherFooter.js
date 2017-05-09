@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
+import {Meteor} from "meteor/meteor";
 
 import {gameDatabase} from "../../api/gameDatabase";
-import refresh from "../refresh"
+import refresh from "../refresh";
 
 export const TeacherFooter = React.createClass({
 	propTypes: {
@@ -24,7 +24,8 @@ export const TeacherFooter = React.createClass({
 		Meteor.call('gameLogic.changePoints', first, value);
 		if (this.props.gameQuestions["remainingColumns"] == 0) {
 			Meteor.call('gameLogic.advance');
-		} else {
+		}
+		else {
 			Meteor.call('gameLogic.setState', "pickQuestion");
 		}
 		
@@ -45,7 +46,8 @@ export const TeacherFooter = React.createClass({
 		//Adjust for single play or out of players
 		if (this.props.gameLogic["state"] == "DDanswer" || this.props.gameQuestions["currentQuestion"]["isSinglePlay"] || this.props.gameLogic["currentQuestionLogic"]["Incorrect"].length + 1 == this.props.gameLogic["numPlayers"]) {
 			Meteor.call('gameLogic.setState', "next");
-		} else {
+		}
+		else {
 			Meteor.call('gameLogic.setState', "open");
 		}
 		
@@ -60,7 +62,8 @@ export const TeacherFooter = React.createClass({
 		//check if no more players
 		if (this.props.gameLogic["FJ"]["remaining"].length <= 1) {
 			Meteor.call('gameLogic.setState', "complete");
-		} else {
+		}
+		else {
 			Meteor.call('gameLogic.removeFJ', player);
 		}
 	},
@@ -72,7 +75,8 @@ export const TeacherFooter = React.createClass({
 		//check if no more players
 		if (this.props.gameLogic["FJ"]["remaining"].length <= 1) {
 			Meteor.call('gameLogic.setState', "complete");
-		} else {
+		}
+		else {
 			Meteor.call('gameLogic.removeFJ', player);
 		}
 	},
@@ -87,13 +91,16 @@ export const TeacherFooter = React.createClass({
 	readyToStart: function () {
 		if (this.playerCount() < 2) {
 			return "morePlayers";
-		} else if (this.props.gameLogic["gameName"] != "Please select a game") {
+		}
+		else if (this.props.gameLogic["gameName"] != "Please select a game") {
 			if (this.isValid(this.props.gameLogic["gameName"])) {
 				return "ready";
-			} else {
+			}
+			else {
 				return "invalidGame";
 			}
-		} else {
+		}
+		else {
 			return "gameSelection";
 		}
 	},
@@ -118,7 +125,8 @@ export const TeacherFooter = React.createClass({
 					if (currentCategory["question" + q]["question"].trim() != "") {
 						empty = false;
 					}
-				} else {
+				}
+				else {
 					if (currentCategory["question" + q]["question"]) {
 						empty = false;
 					}
@@ -218,7 +226,8 @@ export const TeacherFooter = React.createClass({
 							</div>
 						</div>
 					);
-				} else {
+				}
+				else {
 					Meteor.call('gameLogic.resetCurrentQuestionLogic');
 					return null;
 				}
@@ -233,14 +242,15 @@ export const TeacherFooter = React.createClass({
 								color: "black",
 								flex: 1,
 								verticalAlign: "middle",
-							}} onClick={()=>{
+							}} onClick={() => {
 								Meteor.call('gameLogic.advance');
 							}}
 							>Advance to next Round
 							</div>
 						</div>
 					)
-				} else {
+				}
+				else {
 					return (
 						<div className="flex-container" style={{flex: 1}}>
 							<div style={{
@@ -326,7 +336,8 @@ export const TeacherFooter = React.createClass({
 							</div>
 						</div>
 					);
-				} else {
+				}
+				else {
 					return (
 						<div className="flex-container" style={{flex: 1}}>
 							<div style={{
@@ -403,7 +414,8 @@ export const TeacherFooter = React.createClass({
 							</div>
 						</div>
 					);
-				} else {
+				}
+				else {
 					return [];
 				}
 			case "FJwager":
@@ -424,7 +436,8 @@ export const TeacherFooter = React.createClass({
 							</div>
 						</div>
 					);
-				} else {
+				}
+				else {
 					return <div style={{
 						padding: 0,
 						border: "none",

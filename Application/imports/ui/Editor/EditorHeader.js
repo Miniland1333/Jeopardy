@@ -1,6 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor';
+import React, {PropTypes} from "react";
+import {Meteor} from "meteor/meteor";
 
 import GameLi from "./GameLi";
 
@@ -90,7 +89,8 @@ export const EditorHeader = React.createClass({
 	handleSave: function () {
 		if (this.props.editorDatabase[0].name.trim() == "") {
 			alert("Name field cannot be empty!");
-		} else if (confirm("This will overwrite any game with the same name.\nEmpty Columns will be ignored\nContinue?")) {
+		}
+		else if (confirm("This will overwrite any game with the same name.\nEmpty Columns will be ignored\nContinue?")) {
 			Meteor.call('gameDatabase.save', this.props.editorDatabase[0]);
 		}
 	},
@@ -176,38 +176,39 @@ export const EditorHeader = React.createClass({
 		);
 	},
 	/*    componentWillReceiveProps:function(newProps){
-     console.log("EditorHeader is receiving "+newProps);
-     },*/
-    render: function (){
-        return (
-            <div>
-                <div className="flex-container" style={barStyle}>
-                    <button style={buttonStyle} id="New" onClick={this.handleNew}>New</button>
-                    <div className="dropdown" style={ {border:"none"}}>
-                        <button style={loadButtonStyle} id="Load" onClick={this.handleLoad}>Load</button>
-                        <ul className="dropdown-content" id="myDropdown" style={dropdownStyle}>
-                            {this.renderDropdown()}
-                        </ul>
-                    </div>
-                    <button style={buttonStyle} id="Save" onClick={this.handleSave}>Save</button>
-                    
-                    {this.renderInput()}
-                    <select
-                        style={pickerStyle}
-                        id="selector"
-                        onChange={this.handleRound}>
-                        <option value="Single">Single</option>
-                        <option value="Double">Double</option>
-                        <option value="Final" >Final</option>
-                    </select>
-                    <button style={buttonStyle} id="Import" onClick={this.handleImport}>Import</button>
-                    <button style={buttonStyle} id="Export" onClick={this.handleExport}>Export</button>
-                    <input type="file" id="fileToLoad" accept=".txt" onChange={this.handleFile} style={ {position:"absolute", display: "none", width:0,height:0}}/>
-                </div>
-            </div
-            >
-        )
-    }
+	 console.log("EditorHeader is receiving "+newProps);
+	 },*/
+	render: function () {
+		return (
+			<div>
+				<div className="flex-container" style={barStyle}>
+					<button style={buttonStyle} id="New" onClick={this.handleNew}>New</button>
+					<div className="dropdown" style={ {border: "none"}}>
+						<button style={loadButtonStyle} id="Load" onClick={this.handleLoad}>Load</button>
+						<ul className="dropdown-content" id="myDropdown" style={dropdownStyle}>
+							{this.renderDropdown()}
+						</ul>
+					</div>
+					<button style={buttonStyle} id="Save" onClick={this.handleSave}>Save</button>
+					
+					{this.renderInput()}
+					<select
+						style={pickerStyle}
+						id="selector"
+						onChange={this.handleRound}>
+						<option value="Single">Single</option>
+						<option value="Double">Double</option>
+						<option value="Final">Final</option>
+					</select>
+					<button style={buttonStyle} id="Import" onClick={this.handleImport}>Import</button>
+					<button style={buttonStyle} id="Export" onClick={this.handleExport}>Export</button>
+					<input type="file" id="fileToLoad" accept=".txt" onChange={this.handleFile}
+					       style={ {position: "absolute", display: "none", width: 0, height: 0}}/>
+				</div>
+			</div
+			>
+		)
+	}
 });
 
 module.exports = EditorHeader;

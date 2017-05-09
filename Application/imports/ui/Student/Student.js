@@ -1,10 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import {createContainer} from 'meteor/react-meteor-data';
-import DocumentTitle from 'react-document-title';
-import ReactDOM from 'react-dom';
-import {Meteor} from 'meteor/meteor';
+import React from "react";
+import {createContainer} from "meteor/react-meteor-data";
+import DocumentTitle from "react-document-title";
+import {Meteor} from "meteor/meteor";
 
-import {gameLogic} from "../../api/gameLogic"
+import {gameLogic} from "../../api/gameLogic";
 
 import StudentHeader from "./StudentHeader";
 import StudentContent from "./StudentContent";
@@ -26,9 +25,9 @@ export const Student = React.createClass({
 							<StudentContent gameLogic={this.props.gameLogic[0]}/>
 						</div> : <div/>
 					}
-{/*					<div style={{position: "fixed", width: "100vw", top: 0}}>
-					</div>
-					<div id="buffer" style={{height: '200vh'}}/>*/}
+					{/*					<div style={{position: "fixed", width: "100vw", top: 0}}>
+					 </div>
+					 <div id="buffer" style={{height: '200vh'}}/>*/}
 				</div>
 			</DocumentTitle>
 		)

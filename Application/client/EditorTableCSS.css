@@ -1,51 +1,60 @@
-.Rtable-cell  {
-    display: flex;
-    flex:1;
-    text-align: center;
-    border:2px solid black;
-    flex-direction: column;
-    margin:0;
+.Rtable-cell {
+	display: flex;
+	flex: 1;
+	text-align: center;
+	border: 2px solid black;
+	flex-direction: column;
+	margin: 0;
 }
-.Header{
-    border:2px solid black;
-    min-height: 40px;
-    text-transform: uppercase;
+
+.Header {
+	border: 2px solid black;
+	min-height: 40px;
+	text-transform: uppercase;
 }
-.Column{
-    display: flex;
-    flex-direction: column;
-    flex:1;
+
+.Column {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
-.Table{
-    display: flex;
-    width: 100%;
-    flex:1;
+
+.Table {
+	display: flex;
+	width: 100%;
+	flex: 1;
 }
-.Main{
-    display: flex;
-    flex-direction: column;
+
+.Main {
+	display: flex;
+	flex-direction: column;
 	height: 100vh;
 }
-.question  {
-    flex:1;
-    vertical-align:middle;
-    align-self: center;
-    text-transform: uppercase;
-    /*font-family: gyparody,serif;*/
+
+.question {
+	flex: 1;
+	vertical-align: middle;
+	align-self: center;
+	text-transform: uppercase;
+	/*font-family: gyparody,serif;*/
 }
-@font-face{
-    font-family: gyparody;
-    src: url("/gyparody.ttf");
+
+@font-face {
+	font-family: gyparody;
+	src: url("/gyparody.ttf");
 }
-@font-face{
-    font-family: DSEG7;
-    src: url("/DSEG7ClassicMini-Regular.woff") format('woff');
+
+@font-face {
+	font-family: DSEG7;
+	src: url("/DSEG7ClassicMini-Regular.woff") format('woff');
 }
-@font-face{
-    font-family: D7;
-    src: url("/digital-7 (mono).ttf");
+
+@font-face {
+	font-family: D7;
+	src: url("/digital-7 (mono).ttf");
 }
-@font-face{
-    font-family: D7Italic;
-    src: url("/digital-7 (mono italic).ttf");
+
+@font-face {
+	font-family: D7Italic;
+	src: url("/digital-7 (mono italic).ttf");
 }

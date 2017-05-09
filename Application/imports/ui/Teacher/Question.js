@@ -1,34 +1,33 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
-
+import React from "react";
+import {Meteor} from "meteor/meteor";
 
 
 var divStyle = {
-    flex: 1,
-    textAlign: 'center',
-    margin: 0,
-	alignItems:"center",
-	justifyContent:"center",
-	fontSize:"5vw",
+	flex: 1,
+	textAlign: 'center',
+	margin: 0,
+	alignItems: "center",
+	justifyContent: "center",
+	fontSize: "5vw",
 };
 var Question = React.createClass({
-    propTypes:{
-        round:React.PropTypes.number,
-        key1:React.PropTypes.string,
-        key2:React.PropTypes.string,
-        game:React.PropTypes.object,
-        cell:React.PropTypes.object,
-    },
-    handleQuestionClick:function () {
-	    if(this.props.cell.question!="") {
-		    Meteor.call('gameQuestions.pickQuestion',this.props.key1,this.props.key2,this.props.cell.question, this.props.cell.answer,this.props.cell.isSinglePlay,this.props.round);
-
-		    Meteor.call('gameLogic.setState',"questionDecide");
-	    }
-    },
-	renderContent:function () {
-    	var thing;
-		if(this.props.cell.question!="") {
+	propTypes: {
+		round: React.PropTypes.number,
+		key1: React.PropTypes.string,
+		key2: React.PropTypes.string,
+		game: React.PropTypes.object,
+		cell: React.PropTypes.object,
+	},
+	handleQuestionClick: function () {
+		if (this.props.cell.question != "") {
+			Meteor.call('gameQuestions.pickQuestion', this.props.key1, this.props.key2, this.props.cell.question, this.props.cell.answer, this.props.cell.isSinglePlay, this.props.round);
+			
+			Meteor.call('gameLogic.setState', "questionDecide");
+		}
+	},
+	renderContent: function () {
+		var thing;
+		if (this.props.cell.question != "") {
 			switch (this.props.key2) {
 				case "question1":
 					thing = 200;
@@ -47,17 +46,18 @@ var Question = React.createClass({
 					break;
 			}
 			return "$" + this.props.round * thing;
-		}else{
+		}
+		else {
 			return "";
 		}
 	},
-    render:function () {
-        return(
-                <div className="Rtable-cell" style={divStyle} onClick={this.handleQuestionClick}>
-	                {this.renderContent()}
-                </div>)
-    }
-    
+	render: function () {
+		return (
+			<div className="Rtable-cell" style={divStyle} onClick={this.handleQuestionClick}>
+				{this.renderContent()}
+			</div>)
+	}
+	
 });
 
 module.exports = Question;

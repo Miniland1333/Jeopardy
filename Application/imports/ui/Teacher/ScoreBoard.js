@@ -1,5 +1,5 @@
-import React, {Component, PropTypes} from 'react';
-import {Meteor} from 'meteor/meteor';
+import React from "react";
+import {Meteor} from "meteor/meteor";
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";
 
@@ -29,7 +29,8 @@ export const ScoreBoard = React.createClass({
 				default:
 					return "OPEN";
 			}
-		} else {
+		}
+		else {
 			switch (this.props.playerLogic["status"]) {
 				case "reconnect":
 					return "----";
@@ -49,14 +50,14 @@ export const ScoreBoard = React.createClass({
 			}
 		}
 		else {
-			if(!this.state.options){
-				this.setState({options:true});
+			if (!this.state.options) {
+				this.setState({options: true});
 			}
 		}
 		
 	},
 	handleClose: function () {
-		this.setState({options:false});
+		this.setState({options: false});
 	},
 	scoreStyle: function () {
 		
@@ -65,7 +66,7 @@ export const ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid #00e800",
-			padding: screen.width<1000? "10px 0 ": "10px",
+			padding: screen.width < 1000 ? "10px 0 " : "10px",
 			borderRadius: 8,
 			zIndex: -1,
 		};
@@ -74,9 +75,9 @@ export const ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid orange",
-			padding: screen.width<1000? "10px 0 ": "10px",
+			padding: screen.width < 1000 ? "10px 0 " : "10px",
 			borderRadius: 8,
-			zIndex:-1,
+			zIndex: -1,
 		};
 		
 		const red = {
@@ -84,9 +85,9 @@ export const ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid #ff3f3f",
-			padding: screen.width<1000? "10px 0 ": "10px",
+			padding: screen.width < 1000 ? "10px 0 " : "10px",
 			borderRadius: 8,
-			zIndex:-1,
+			zIndex: -1,
 		};
 		
 		const normal = {
@@ -94,9 +95,9 @@ export const ScoreBoard = React.createClass({
 			fontSize: "4vw",
 			minWidth: "10vw 0",
 			border: "4px solid #060CE9",
-			padding: screen.width<1000? "10px 0 ": "10px",
+			padding: screen.width < 1000 ? "10px 0 " : "10px",
 			borderRadius: 8,
-			zIndex:-1,
+			zIndex: -1,
 		};
 		
 		const teamNumber = this.props.playerLogic["teamNumber"];
@@ -111,9 +112,11 @@ export const ScoreBoard = React.createClass({
 				default:
 					return normal;
 			}
-		} else if (this.props.playerLogic["status"] == "reconnect") {
+		}
+		else if (this.props.playerLogic["status"] == "reconnect") {
 			return orange;
-		} else if (this.props.gameLogic["round"] != 3) {
+		}
+		else if (this.props.gameLogic["round"] != 3) {
 			switch (this.props.gameLogic["state"]) {
 				case "intro":
 				case "categoryIntro":
@@ -121,7 +124,8 @@ export const ScoreBoard = React.createClass({
 				case "pickQuestion":
 					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
 						return orange;
-					} else {
+					}
+					else {
 						return normal;
 					}
 					break;
@@ -131,21 +135,25 @@ export const ScoreBoard = React.createClass({
 				case "DDanswer":
 					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
 						return green;
-					} else {
+					}
+					else {
 						return normal;
 					}
 				case "open":
 					if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
 						return red;
-					} else {
+					}
+					else {
 						return normal;
 					}
 				case "answer":
 					if (this.props.gameLogic["currentQuestionLogic"]["first"] == teamNumber) {
 						return green;
-					} else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+					}
+					else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
 						return red
-					} else {
+					}
+					else {
 						return normal;
 					}
 				
@@ -154,16 +162,20 @@ export const ScoreBoard = React.createClass({
 					return normal;
 					break;
 			}
-		} else if (this.props.gameLogic["round"] == 3) {
+		}
+		else if (this.props.gameLogic["round"] == 3) {
 			//Code for wager
 			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber) && this.props.gameLogic["state"] == "FJwager") {
 				return green
-			} else if (this.props.gameLogic["state"] == "FJanswer" && this.props.gameLogic["FJ"]["currentPlayer"] == teamNumber) {
+			}
+			else if (this.props.gameLogic["state"] == "FJanswer" && this.props.gameLogic["FJ"]["currentPlayer"] == teamNumber) {
 				return green
-			} else {
+			}
+			else {
 				return normal;
 			}
-		} else {
+		}
+		else {
 			return normal;
 		}
 	},
@@ -172,20 +184,20 @@ export const ScoreBoard = React.createClass({
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{
-				     padding: screen.width<1000? "10px 0 ": "10px",
+				     padding: screen.width < 1000 ? "10px 0 " : "10px",
 				     border: "4px solid white",
 				     flexDirection: "column",
 				     flex: 1,
 			     }}>
 				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
 				<div >{this.props.playerLogic.teamName}</div>
-				{this.state.options?
-				<Options gameLogic={this.props.gameLogic}
-				         playerLogic={this.props.playerLogic}
-				         round={this.props.round}
-				         handleClose={this.handleClose}/>
-				:[]}
-				
+				{this.state.options ?
+					<Options gameLogic={this.props.gameLogic}
+					         playerLogic={this.props.playerLogic}
+					         round={this.props.round}
+					         handleClose={this.handleClose}/>
+					: []}
+			
 			</div>
 		)
 	}

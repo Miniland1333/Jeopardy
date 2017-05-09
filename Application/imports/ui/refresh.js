@@ -2,7 +2,7 @@
  * Created by Henry on 2/25/2017.
  */
 
-export default function refresh(){
+export default function refresh() {
 	if (navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && false) {
 		$("#render-target").css({
 			"height": window.innerHeight,

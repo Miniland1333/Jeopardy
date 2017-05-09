@@ -1,15 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import { createContainer } from 'meteor/react-meteor-data';
-import DocumentTitle from 'react-document-title';
-import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
+import {createContainer} from "meteor/react-meteor-data";
+import DocumentTitle from "react-document-title";
+import {Meteor} from "meteor/meteor";
 
 import {gameDatabase} from "../../api/gameDatabase";
 import {gameLogic} from "../../api/gameLogic";
 import {gameQuestions} from "../../api/gameQuestions";
 
-import TeacherHeader  from "./TeacherHeader";
-import TeacherFooter  from "./TeacherFooter";
+import TeacherHeader from "./TeacherHeader";
+import TeacherFooter from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
 export const Teacher = React.createClass({
@@ -34,7 +33,7 @@ export const Teacher = React.createClass({
 							<TeacherFooter gameLogic={this.props.gameLogic[0]}
 							               gameQuestions={this.props.gameQuestions[0]}/>
 						</div> : <div/>
-					
+						
 					}
 				</div>
 			</DocumentTitle>
@@ -49,10 +48,10 @@ export default createContainer(() => {
 	const handle3 = Meteor.subscribe('gameQuestions');
 	
 	return {
-		isReady:handle1.ready()&&handle2.ready()&&handle3.ready(),
+		isReady: handle1.ready() && handle2.ready() && handle3.ready(),
 		
-		gameDatabase:gameDatabase.find().fetch(),
-		gameLogic:gameLogic.find().fetch(),
-		gameQuestions:gameQuestions.find().fetch(),
+		gameDatabase: gameDatabase.find().fetch(),
+		gameLogic: gameLogic.find().fetch(),
+		gameQuestions: gameQuestions.find().fetch(),
 	};
 }, Teacher);

@@ -1,7 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
 
-import EditModal from "./EditModal"
+import EditModal from "./EditModal";
 
 
 var divStyle = {
@@ -14,30 +13,30 @@ var divStyle = {
 	fontSize: "1.8vmin",
 };
 var Question = React.createClass({
-	getInitialState:function () {
-		return  {
-			EditModal:false,
+	getInitialState: function () {
+		return {
+			EditModal: false,
 		};
 	},
-	propTypes:{
-		roundName:React.PropTypes.string,
-		key1:React.PropTypes.string,
-		key2:React.PropTypes.string,
-		game:React.PropTypes.object,
-		cell:React.PropTypes.object,
+	propTypes: {
+		roundName: React.PropTypes.string,
+		key1: React.PropTypes.string,
+		key2: React.PropTypes.string,
+		game: React.PropTypes.object,
+		cell: React.PropTypes.object,
 	},
-	handleQuestionClick:function () {
-		if(!this.state.EditModal){
+	handleQuestionClick: function () {
+		if (!this.state.EditModal) {
 			//alert("You clicked " + this.props.roundName + "," + this.props.key1 + "," + this.props.key2);
 			this.setState({EditModal: true})
 		}
 	},
-	handleClose:function(){
-		this.setState({EditModal:false});
+	handleClose: function () {
+		this.setState({EditModal: false});
 	},
-	handleEditModule:function () {
-		if(this.state.EditModal){
-			return(
+	handleEditModule: function () {
+		if (this.state.EditModal) {
+			return (
 				<EditModal
 					roundName={this.props.roundName}
 					key1={this.props.key1}
@@ -48,28 +47,31 @@ var Question = React.createClass({
 					isHeader={false}
 					handleClose={this.handleClose}
 				/>)
-		}else{
+		}
+		else {
 			return [];
 		}
 	},
-	renderQuestion:function () {
+	renderQuestion: function () {
 		let questionContent;
 		let questionType;
-		if(typeof this.props.cell.question==="string"){
+		if (typeof this.props.cell.question === "string") {
 			questionContent = this.props.cell.question;
 			questionType = "text";
-		}else{
-			if (this.props.cell.question.type=="image"){
+		}
+		else {
+			if (this.props.cell.question.type == "image") {
 				questionContent = this.props.cell.question.text;
 				questionType = "image";
-			}else{
+			}
+			else {
 				questionContent = this.props.cell.question.VID;
 				questionType = "video";
 				
 			}
 		}
-		let extraContent = ()=>{
-			let content = this.props.cell.isSinglePlay?"SINGLE PLAY":"";
+		let extraContent = () => {
+			let content = this.props.cell.isSinglePlay ? "SINGLE PLAY" : "";
 			switch (questionType) {
 				case "image":
 					content += " 📷 ";
@@ -80,17 +82,19 @@ var Question = React.createClass({
 			}
 			return content;
 		};
-		{/*add logic for alternate question logic "▶ 📷"*/}
-		return [<p style={{margin: 0}} className="question" key={this.props.key1+this.props.key2+"question"}>{questionContent}</p>,
-			<h6 style={{margin:0}} key={this.props.key1+this.props.key2+"extra"}>{extraContent()}</h6>]
+		{/*add logic for alternate question logic "▶ 📷"*/
+		}
+		return [<p style={{margin: 0}} className="question"
+		           key={this.props.key1 + this.props.key2 + "question"}>{questionContent}</p>,
+			<h6 style={{margin: 0}} key={this.props.key1 + this.props.key2 + "extra"}>{extraContent()}</h6>]
 		
 	},
-	render:function () {
-		return(
+	render: function () {
+		return (
 			<div style={divStyle}>
 				<div className="Rtable-cell" onClick={this.handleQuestionClick}>
 					{this.renderQuestion()}
-					<p style={{margin:0}}>{this.props.cell.answer}</p>
+					<p style={{margin: 0}}>{this.props.cell.answer}</p>
 				</div>
 				{this.handleEditModule()}
 			</div>)

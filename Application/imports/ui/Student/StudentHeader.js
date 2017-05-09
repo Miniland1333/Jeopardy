@@ -1,14 +1,14 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
+import {Meteor} from "meteor/meteor";
 
 import ScoreBoard from "./ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
 
 var StudentHeader = React.createClass({
-	propTypes:{
-		gameLogic:React.PropTypes.object,
+	propTypes: {
+		gameLogic: React.PropTypes.object,
 	},
-	renderInput:function() {
+	renderInput: function () {
 		var isSetup = !this.props.gameLogic["round"];
 		
 		if (isSetup) {
@@ -20,10 +20,12 @@ var StudentHeader = React.createClass({
 					            round={gameLogic.find().fetch()[0]["round"]}
 					            connectionId={Meteor.connection._lastSessionId}/>)
 			});
-		} else {
-			if((this.props.gameLogic["state"]=="FJopen"||this.props.gameLogic["state"]=="FJread")&&this.props.gameLogic["connections"][Meteor.connection._lastSessionId]!=undefined){
+		}
+		else {
+			if ((this.props.gameLogic["state"] == "FJopen" || this.props.gameLogic["state"] == "FJread") && this.props.gameLogic["connections"][Meteor.connection._lastSessionId] != undefined) {
 				return [];
-			}else {
+			}
+			else {
 				return $.map(this.props.gameLogic, function (contents, field) {
 					if (field.includes("player")) {
 						return (
@@ -37,10 +39,10 @@ var StudentHeader = React.createClass({
 			}
 		}
 	},
-	render:function () {
+	render: function () {
 		
 		return (
-			<div className="flex-container" id="border" >
+			<div className="flex-container" id="border">
 				{this.renderInput()}
 			</div>
 		);

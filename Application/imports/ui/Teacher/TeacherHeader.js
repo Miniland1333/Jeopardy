@@ -1,18 +1,17 @@
-import React, {Component, PropTypes} from 'react';
-import { Meteor } from 'meteor/meteor';
+import React from "react";
 
 
 import ScoreBoard from "./ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
 
 var TeacherHeader = React.createClass({
-	propTypes:{
-		gameLogic:React.PropTypes.object,
+	propTypes: {
+		gameLogic: React.PropTypes.object,
 	},
-	renderInput:function() {
+	renderInput: function () {
 		var isSetup = !this.props.gameLogic["round"];
 		
-		if(isSetup) {
+		if (isSetup) {
 			return $.map(this.props.gameLogic["setupPlayers"], function (contents, field) {
 				return (
 					<ScoreBoard key={field}
@@ -20,7 +19,8 @@ var TeacherHeader = React.createClass({
 					            gameLogic={gameLogic.find().fetch()[0]}
 					            round={gameLogic.find().fetch()[0]["round"]}/>)
 			});
-		}else{
+		}
+		else {
 			return $.map(this.props.gameLogic, function (contents, field) {
 				if (field.includes("player")) {
 					return <ScoreBoard key={field}
@@ -31,10 +31,10 @@ var TeacherHeader = React.createClass({
 			});
 		}
 	},
-	render:function () {
+	render: function () {
 		
 		return (
-			<div className="flex-container" id="border" >
+			<div className="flex-container" id="border">
 				{this.renderInput()}
 			</div>
 		);
@@ -91,4 +91,5 @@ module.exports = TeacherHeader;
  <div >Hanks</div>
  </div>
  </div>
- */}
+ */
+}

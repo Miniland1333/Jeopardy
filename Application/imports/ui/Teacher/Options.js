@@ -1,8 +1,8 @@
 /**
  * Created by Henry on 2/24/2017.
  */
-import React, {Component, PropTypes} from 'react';
-import {Meteor} from 'meteor/meteor';
+import React from "react";
+import {Meteor} from "meteor/meteor";
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";
 import {gameLogic} from "../../api/gameLogic";
@@ -56,20 +56,20 @@ const disabledStyle = {
 	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
 	backgroundColor: '#f1f1f1'
 };
-const playerStyle={
-		margin: '5px 5px 0 5px',
-		cursor: 'pointer',
-		boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
-		zIndex: 1,
-		color: 'black',
-		textDecoration: 'none',
-		display: 'block',
-		padding: '15px 25px',
-		fontSize: '4vh',
-		borderRadius: 25,
-		transition: '.5s',
-		fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
-		backgroundColor: '#f1f1f1'
+const playerStyle = {
+	margin: '5px 5px 0 5px',
+	cursor: 'pointer',
+	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+	zIndex: 1,
+	color: 'black',
+	textDecoration: 'none',
+	display: 'block',
+	padding: '15px 25px',
+	fontSize: '4vh',
+	borderRadius: 25,
+	transition: '.5s',
+	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
+	backgroundColor: '#f1f1f1'
 };
 
 export const Options = React.createClass({
@@ -105,10 +105,11 @@ export const Options = React.createClass({
 				<div key="add" style={enabledStyle} onClick={() => {
 					let teamName = prompt("Enter Team Name");
 					//noinspection EqualityComparisonWithCoercionJS
-					if(teamName && teamName.trim()!=""){
-						Meteor.call('gameLogic.addPlayer', this.props.gameLogic["numPlayers"] + 1,teamName);
+					if (teamName && teamName.trim() != "") {
+						Meteor.call('gameLogic.addPlayer', this.props.gameLogic["numPlayers"] + 1, teamName);
 						this.exit();
-					}else{
+					}
+					else {
 						alert("Invalid Name!");
 					}
 				}}>Add Player</div> :
@@ -136,23 +137,23 @@ export const Options = React.createClass({
 		]
 	},
 	renderAdjust: function () {
-		return[
+		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
-			this.setState({state: "buttons"});
-		}}>Main Menu</div>,
+				this.setState({state: "buttons"});
+			}}>Main Menu</div>,
 		];
 	},
 	renderKick: function () {
 		let innerArray = [];
-		for (let i=1; i<=this.props.gameLogic["numPlayers"]; i++){
-			innerArray.push(<div key={"Player "+i} style={playerStyle} onClick={function(){
-				Meteor.call('gameLogic.kick', i, gameLogic.find().fetch()[0]["player"+i]["connectionId"]);
-			}}>{"Kick Player "+i}</div>)
+		for (let i = 1; i <= this.props.gameLogic["numPlayers"]; i++) {
+			innerArray.push(<div key={"Player " + i} style={playerStyle} onClick={function () {
+				Meteor.call('gameLogic.kick', i, gameLogic.find().fetch()[0]["player" + i]["connectionId"]);
+			}}>{"Kick Player " + i}</div>)
 		}
 		
-		return[
+		return [
 			innerArray,
-			<div key="buffer" style={{height:10}}></div>,
+			<div key="buffer" style={{height: 10}}></div>,
 			
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
@@ -160,7 +161,7 @@ export const Options = React.createClass({
 		];
 	},
 	renderSort: function () {
-		return[
+		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
@@ -186,7 +187,7 @@ export const Options = React.createClass({
 	},
 	render: function () {
 		//States where options are invalid
-		if([""].indexOf(this.props.gameLogic.state)>=0){
+		if ([""].indexOf(this.props.gameLogic.state) >= 0) {
 			this.exit();
 		}
 		
