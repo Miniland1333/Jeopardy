@@ -4,6 +4,10 @@
 
 export default function refresh(){
 	if (navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && false) {
+		$("#render-target").css({
+			"height": window.innerHeight,
+			"width": window.innerWidth,
+		});
 		$(".Main").css({
 			"height": window.innerHeight,
 			"width": window.innerWidth,

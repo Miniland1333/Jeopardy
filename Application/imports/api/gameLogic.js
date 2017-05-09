@@ -51,7 +51,7 @@ Meteor.methods({
 		let numPlayers = 0;
 		for (let i = 1; i <= 6; i++) {
 			const player = setupPlayers["player" + i];
-			if (player["status"] == "ready") {
+			if (player["status"] === "ready") {
 				const bundle = {};
 				numPlayers++;
 				bundle["player" + numPlayers] = {
@@ -100,21 +100,21 @@ Meteor.methods({
 	'gameLogic.kick'(teamNumber, connectionId){
 		//resets a setupPlayer{player} or sets player to reconnect
 		const round = gameLogic.find().fetch()[0]["round"];
-		if (teamNumber == 0) {
+		if (teamNumber === 0) {
 			//Use connectionId to find team number
-			if (connectionId != undefined) {
+			if (connectionId !== undefined) {
 				teamNumber = gameLogic.find().fetch()[0]["connections"][connectionId];
-				if (teamNumber == undefined) {
+				if (teamNumber === undefined) {
 					teamNumber = 0;
 				}
 			}
 		}
 		
 		//Will skip if not connected to a team
-		if (teamNumber != 0) {
+		if (teamNumber !== 0) {
 			const bundle = {};
 			Meteor.call('gameLogic.setConnectionId', teamNumber, round, "", connectionId);
-			if (round == 0) {
+			if (round === 0) {
 				console.log("Kicked player" + teamNumber + " (" + connectionId + ")");
 				bundle["setupPlayers.player" + teamNumber] = {
 					teamName: "",
@@ -124,7 +124,7 @@ Meteor.methods({
 				};
 				gameLogic.update({}, {$set: bundle});
 			}
-			else if (gameLogic.find().fetch()[0]["player" + teamNumber]["status"] == "active") {
+			else if (gameLogic.find().fetch()[0]["player" + teamNumber]["status"] === "active") {
 				console.log("Player" + teamNumber + "disabled (" + connectionId + ")");
 				bundle["player" + teamNumber + ".connectionId"] = "";
 				bundle["player" + teamNumber + ".status"] = "reconnect";
@@ -135,7 +135,7 @@ Meteor.methods({
 	
 	'gameLogic.setStatus'(teamNumber, teamStatus, round){
 		const bundle = {};
-		if (round == 0) {
+		if (round === 0) {
 			bundle["setupPlayers.player" + teamNumber + ".status"] = teamStatus;
 			gameLogic.update({}, {$set: bundle});
 			
@@ -156,7 +156,7 @@ Meteor.methods({
 	},
 	'gameLogic.setConnectionId'(teamNumber, round, connectionId, formerId){
 		const bundle = {};
-		if (round == 0) {
+		if (round === 0) {
 			bundle["setupPlayers.player" + teamNumber + ".connectionId"] = connectionId;
 		}
 		else {
@@ -184,7 +184,7 @@ Meteor.methods({
 	'gameLogic.loadRound'(){
 		const round = gameLogic.find().fetch()[0]['round'];
 		Meteor.call('gameQuestions.loadRound', round);
-		if (round == 3) {
+		if (round === 3) {
 			const currentRound = gameQuestions.find().fetch()[0]["FinalJeopardy"];
 			const hasCategory = currentRound.category;
 			const hasQuestion = currentRound.question;
@@ -195,7 +195,7 @@ Meteor.methods({
 			}
 		}
 		else {
-			if (gameQuestions.find().fetch()[0]["remainingColumns"] == 0) {
+			if (gameQuestions.find().fetch()[0]["remainingColumns"] === 0) {
 				Meteor.call('gameLogic.advance');
 				return;
 			}
@@ -288,7 +288,7 @@ Meteor.methods({
 		for (let prop in obj) {
 			if (obj.hasOwnProperty(prop)
 				&& prop.includes("player")
-				&& obj[prop]["status"] == "active") {
+				&& obj[prop]["status"] === "active") {
 				remaining.push(obj[prop]["teamNumber"]);
 			}
 		}
@@ -308,7 +308,7 @@ Meteor.methods({
 				lowestAmount = playerAmount;
 			}
 		});
-		if (logic['player' + least]['finalPhoto'] != "") {
+		if (logic['player' + least]['finalPhoto'] !== "") {
 			const bundle = {};
 			bundle["FJ.currentPlayer"] = least;
 			bundle["FJ.currentAnswer"] = logic['player' + least]['finalPhoto'];

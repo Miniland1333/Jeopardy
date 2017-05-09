@@ -49,7 +49,7 @@ window.addEventListener("orientationchange", function(event) {
 $(window).resize(refresh);
 
 function refresh(){
-	if (navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i)) {
+	if (navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && false) {
 		$(".Main").css({
 			"height": window.innerHeight,
 			"width": window.innerWidth,
