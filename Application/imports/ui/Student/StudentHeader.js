@@ -22,7 +22,7 @@ var StudentHeader = React.createClass({
 			});
 		}
 		else {
-			if ((this.props.gameLogic["state"] == "FJopen" || this.props.gameLogic["state"] == "FJread") && this.props.gameLogic["connections"][Meteor.connection._lastSessionId] != undefined) {
+			if ((this.props.gameLogic["state"] === "FJopen" || this.props.gameLogic["state"] === "FJread") && this.props.gameLogic["connections"][Meteor.connection._lastSessionId] !== undefined) {
 				return [];
 			}
 			else {
