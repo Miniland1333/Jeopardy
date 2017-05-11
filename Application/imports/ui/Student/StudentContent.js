@@ -237,7 +237,12 @@ export const StudentContent = React.createClass({
 					}
 					else {
 						return <div className="flex-container"
-						            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9",fontSize: "4vmin"}}>Make sure you device is landscape!</div>;
+						            style={{
+							            flexDirection: "column",
+							            flex: 1,
+							            backgroundColor: "#060CE9",
+							            fontSize: "4vmin"
+						            }}>Make sure you device is landscape!</div>;
 					}
 				
 				case "FJread":

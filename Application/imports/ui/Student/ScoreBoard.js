@@ -57,15 +57,15 @@ const ScoreBoard = React.createClass({
 			if (status === "" && this.props.gameLogic["connections"][this.props.connectionId] === undefined) {
 				Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, this.props.connectionId);
 				
-				if(navigator.userAgent.match(/(Android|iPhone|iPod)/i)){
+				if (navigator.userAgent.match(/(Android|iPhone|iPod)/i)) {
 					this.handleFocus();
 					let name = prompt("Enter Team Name");
-					if(!name){
-						name ="";
+					if (!name) {
+						name = "";
 					}
 					input.val(name);
-					this.handleBlur({target:{value:name}});
-					this.handleName({target:{value:name}});
+					this.handleBlur({target: {value: name}});
+					this.handleName({target: {value: name}});
 				}
 				else {
 					input.prop("disabled", false);
@@ -73,15 +73,15 @@ const ScoreBoard = React.createClass({
 				}
 			}
 			else if (status === "ready" && this.props.connectionId === this.props.playerLogic["connectionId"]) {
-				if(navigator.userAgent.match(/(Android|iPhone|iPod)/i)){
+				if (navigator.userAgent.match(/(Android|iPhone|iPod)/i)) {
 					this.handleFocus();
-					let name = prompt("Enter Team Name",input.val());
-					if(name === null) {
+					let name = prompt("Enter Team Name", input.val());
+					if (name === null) {
 						name = input.val();
 					}
 					input.val(name);
-					this.handleBlur({target:{value:name}});
-					this.handleName({target:{value:name}});
+					this.handleBlur({target: {value: name}});
+					this.handleName({target: {value: name}});
 				}
 				else {
 					input.prop("disabled", false);

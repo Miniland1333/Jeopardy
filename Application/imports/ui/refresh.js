@@ -1,14 +1,14 @@
 /**
  * Created by Henry on 2/25/2017.
  */
-if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i) && !window.navigator.standalone){
+if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i) && !window.navigator.standalone) {
 	
-/*	window.addEventListener("orientationchange", function( event ) {
-		refresh();
-		alert("the orientation of the device is now " + event.orientation);
-	}, false);*/
+	/*	window.addEventListener("orientationchange", function( event ) {
+	 refresh();
+	 alert("the orientation of the device is now " + event.orientation);
+	 }, false);*/
 	
-	$(window).on("orientationchange",function(event){
+	$(window).on("orientationchange", function (event) {
 		refresh();
 	});
 	// $(window).resize(refresh);
@@ -37,6 +37,6 @@ export default function refresh() {
 			"height": window.innerHeight,
 			"width": window.innerWidth,
 		});
-
+		
 	}
 }

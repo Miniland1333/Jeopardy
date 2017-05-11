@@ -362,7 +362,7 @@ export const EditModal = React.createClass({
 		}
 		this.handleExit();
 	},
-	getValue: function (){
+	getValue: function () {
 		let value;
 		let multiplier;
 		switch (this.props.roundName) {
