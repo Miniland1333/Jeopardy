@@ -4,18 +4,20 @@ import refresh from "../refresh";
 
 const buttonStyle = {
 	backgroundColor: "#555555",
-	fontSize: "24px",
+	fontSize: "5vmin",
 	margin: "5px",
-	height: "30px",
-	width: "100px",
-	display: "inline-block",
+	height: "5vh",
+	width: "18vw",
+	display: "inline-grid",
 	borderRadius: 8,
+	verticalAlign: "middle",
+	alignContent: "center",
 };
 const confirmStyle = {
 	backgroundColor: "#007d0a",
-	fontSize: "26px",
+	fontSize: "5vmin",
 	margin: "5px",
-	height: "50px",
+	height: "7vh",
 	display: "block",
 	borderRadius: 8,
 };
@@ -51,7 +53,8 @@ export const StudentContent = React.createClass({
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
 		if (teamNumber === undefined) {
 			addToHomescreen();
-			return (<div className="flex-container" style={{flexDirection: "column"}}>
+			return (
+				<div className="flex-container" style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}>
 					<h1>Tap an open box to register!</h1>
 					<p>{Meteor.connection._lastSessionId}</p>
 				</div>
@@ -65,53 +68,59 @@ export const StudentContent = React.createClass({
 			wager = Math.max(5, Math.min(this.props.gameLogic["player" + teamNumber]["wager"], max));
 			Meteor.call('gameLogic.setWager', teamNumber, wager);
 			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-				<div style={{flex: 1}}/>
-				<div>
-					<div style={buttonStyle}
-					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>+10,000
+				<div className="flex-container" style={{flexDirection: "column", flex: 1, justifyContent: "center"}}>
+					<div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>+10,000
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1000)}>+1,000
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 100)}>+100
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10)}>
+							+10
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1)}>
+							+1
+						</div>
 					</div>
-					<div style={buttonStyle}
-					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1000)}>+1,000
+					<div style={{
+						fontFamily: "D7",
+						fontSize: "4vw",
+						padding: "10px",
+						border: "4px solid #f1f1f1",
+						borderRadius: 20,
+					}}>
+						Wager: {wager}
 					</div>
-					<div style={buttonStyle}
-					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 100)}>+100
+					<div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>-10,000
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1000)}>-1,000
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 100)}>-100
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10)}>
+							-10
+						</div>
+						<div style={buttonStyle}
+						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1)}>
+							-1
+						</div>
 					</div>
-					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10)}>
-						+10
-					</div>
-					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1)}>
-						+1
-					</div>
+					<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${points}</div>
 				</div>
-				<div style={{
-					fontFamily: "D7",
-					fontSize: "4vw",
-					padding: "10px",
-					border: "4px solid #f1f1f1",
-					borderRadius: 20,
-				}}>
-					Wager: {wager}
-				</div>
-				<div>
-					<div style={buttonStyle}
-					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>-10,000
-					</div>
-					<div style={buttonStyle}
-					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1000)}>-1,000
-					</div>
-					<div style={buttonStyle}
-					     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 100)}>-100
-					</div>
-					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10)}>
-						-10
-					</div>
-					<div style={buttonStyle} onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1)}>
-						-1
-					</div>
-				</div>
-				<div style={{fontSize: 15}}>You can wager between $5 and ${max}</div>
-				<div style={{flex: 1}}/>
-				<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.setState', 'DDread')}>Confirm Wager
+				<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.setState', 'DDread')}>
+					Confirm
+					Wager
 				</div>
 			</div>;
 			
@@ -166,54 +175,59 @@ export const StudentContent = React.createClass({
 						wager = Math.max(0, Math.min(this.props.gameLogic["player" + teamNumber]["wager"], points));
 						Meteor.call('gameLogic.setWager', teamNumber, wager);
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-							<div style={{flex: 1}}/>
-							<div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>
-									+10,000
+							<div className="flex-container"
+							     style={{flexDirection: "column", flex: 1, justifyContent: "center"}}>
+								<div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>
+										+10,000
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1000)}>
+										+1,000
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 100)}>
+										+100
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10)}>+10
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1)}>+1
+									</div>
 								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1000)}>+1,000
+								<div style={{
+									fontFamily: "D7",
+									fontSize: "8vw",
+									padding: "10px",
+									border: "4px solid #f1f1f1",
+									borderRadius: 20,
+								}}>
+									Wager: {wager}
 								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 100)}>+100
+								<div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>
+										-10,000
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1000)}>
+										-1,000
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 100)}>
+										-100
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10)}>-10
+									</div>
+									<div style={buttonStyle}
+									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1)}>-1
+									</div>
 								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10)}>+10
-								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 1)}>+1
-								</div>
+								<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${points}</div>
 							</div>
-							<div style={{
-								fontFamily: "D7",
-								fontSize: "4vw",
-								padding: "10px",
-								border: "4px solid #f1f1f1",
-								borderRadius: 20,
-							}}>
-								Wager: {wager}
-							</div>
-							<div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>
-									-10,000
-								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1000)}>-1,000
-								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 100)}>-100
-								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10)}>-10
-								</div>
-								<div style={buttonStyle}
-								     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 1)}>-1
-								</div>
-							</div>
-							<div style={{fontSize: 15}}>You can wager between $0 and ${points}</div>
-							<div style={{flex: 1}}/>
 							<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
 								Confirm
 								Wager
@@ -221,7 +235,8 @@ export const StudentContent = React.createClass({
 						</div>;
 					}
 					else {
-						return null;
+						return <div className="flex-container"
+						            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}/>;
 					}
 				
 				case "FJread":
@@ -243,6 +258,7 @@ export const StudentContent = React.createClass({
 							content: 'Write your answer here',
 							point: new Point(20, 30),
 							fillColor: 'white',
+							fontSize: "4vmin",
 						});
 						finalAnswer = paper.project.exportJSON();
 						tool.onMouseDown = function down(event) {
@@ -269,14 +285,17 @@ export const StudentContent = React.createClass({
 					}
 				case "FJanswer":
 					Meteor.call('gameLogic.finalAnswer', teamNumber, finalAnswer);
-					return null;
+					return <div className="flex-container"
+					            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}/>;
 				default:
-					return null;
+					return <div className="flex-container"
+					            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}/>;
 				
 			}
 		}
 		else {
-			return null;
+			return <div className="flex-container"
+			            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}/>;
 		}
 	},
 	render: function () {

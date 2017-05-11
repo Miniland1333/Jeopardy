@@ -41,30 +41,3 @@ window.addEventListener('load', function () {
 		new FastClick(document.body);
 	}
 }, false);
-
-window.addEventListener("orientationchange", function (event) {
-	refresh();
-}, false);
-
-$(window).resize(refresh);
-
-function refresh() {
-	if (navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && false) {
-		$(".Main").css({
-			"height": window.innerHeight,
-			"width": window.innerWidth,
-		});
-		$("body").css({
-			"height": window.innerHeight,
-			"width": window.innerWidth,
-		});
-		$("#myModal").css({
-			"height": window.innerHeight,
-			"width": window.innerWidth,
-		});
-		$("#optionsModal").css({
-			"height": window.innerHeight,
-			"width": window.innerWidth,
-		});
-	}
-}

@@ -58,3 +58,7 @@
 	font-family: D7Italic;
 	src: url("/digital-7 (mono italic).ttf");
 }
+
+body{
+	border: 2px white solid;
+}

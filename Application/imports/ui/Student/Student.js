@@ -10,11 +10,6 @@ import StudentContent from "./StudentContent";
 
 
 export const Student = React.createClass({
-	getInitialState: function () {
-		return {
-			teamNumber: "", //this is set during Start or during reconnect
-		}
-	},
 	render: function () {
 		return (
 			<DocumentTitle title='Jeopardy'>

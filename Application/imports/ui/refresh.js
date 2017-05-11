@@ -1,9 +1,22 @@
 /**
  * Created by Henry on 2/25/2017.
  */
+if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i) && !window.navigator.standalone){
+	
+/*	window.addEventListener("orientationchange", function( event ) {
+		refresh();
+		alert("the orientation of the device is now " + event.orientation);
+	}, false);*/
+	
+	$(window).on("orientationchange",function(event){
+		refresh();
+	});
+	// $(window).resize(refresh);
+}
 
 export default function refresh() {
-	if (navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && false) {
+	//Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini
+	if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i) && !window.navigator.standalone) {
 		$("#render-target").css({
 			"height": window.innerHeight,
 			"width": window.innerWidth,
@@ -24,5 +37,6 @@ export default function refresh() {
 			"height": window.innerHeight,
 			"width": window.innerWidth,
 		});
+
 	}
 }
