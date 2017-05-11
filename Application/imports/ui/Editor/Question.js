@@ -89,9 +89,42 @@ var Question = React.createClass({
 			<h6 style={{margin: 0}} key={this.props.key1 + this.props.key2 + "extra"}>{extraContent()}</h6>]
 		
 	},
+	getValue: function () {
+		let value;
+		let multiplier;
+		switch (this.props.roundName) {
+			case "Jeopardy":
+				multiplier = 1;
+				break;
+			
+			case "DoubleJeopardy":
+				multiplier = 2;
+				break;
+			case "FinalJeopardy":
+				return "Final Jeopardy";
+		}
+		switch (this.props.key2) {
+			case "question1":
+				value = 200;
+				break;
+			case "question2":
+				value = 400;
+				break;
+			case "question3":
+				value = 600;
+				break;
+			case "question4":
+				value = 800;
+				break;
+			case "question5":
+				value = 1000;
+				break;
+		}
+		return "$" + value * multiplier;
+	},
 	render: function () {
 		return (
-			<div style={divStyle}>
+			<div style={divStyle} title={this.getValue()}>
 				<div className="Rtable-cell" onClick={this.handleQuestionClick}>
 					{this.renderQuestion()}
 					<p style={{margin: 0}}>{this.props.cell.answer}</p>

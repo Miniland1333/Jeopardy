@@ -362,6 +362,39 @@ export const EditModal = React.createClass({
 		}
 		this.handleExit();
 	},
+	getValue: function (){
+		let value;
+		let multiplier;
+		switch (this.props.roundName) {
+			case "Jeopardy":
+				multiplier = 1;
+				break;
+			
+			case "DoubleJeopardy":
+				multiplier = 2;
+				break;
+			case "FinalJeopardy":
+				return "";
+		}
+		switch (this.props.key2) {
+			case "question1":
+				value = 200;
+				break;
+			case "question2":
+				value = 400;
+				break;
+			case "question3":
+				value = 600;
+				break;
+			case "question4":
+				value = 800;
+				break;
+			case "question5":
+				value = 1000;
+				break;
+		}
+		return " - $" + value * multiplier;
+	},
 	renderModalContent: function () {
 		if (this.props.isHeader) {
 			return <div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
@@ -453,7 +486,7 @@ export const EditModal = React.createClass({
 				break;
 		}
 		return <div className="flex-container" style={verticalFlexStyle}>
-			<h1>Question</h1>
+			<h1>Question{this.getValue()}</h1>
 			{questionContent}
 			<h2>Answer</h2>
 			<input id="answer" spellCheck="true" defaultValue={this.props.answer}

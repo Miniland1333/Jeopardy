@@ -227,6 +227,7 @@ export const StudentContent = React.createClass({
 									</div>
 								</div>
 								<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${points}</div>
+								<div style={{fontSize: "3vmin"}}>Make sure you device is landscape!</div>
 							</div>
 							<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
 								Confirm
@@ -236,7 +237,7 @@ export const StudentContent = React.createClass({
 					}
 					else {
 						return <div className="flex-container"
-						            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}/>;
+						            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9",fontSize: "4vmin"}}>Make sure you device is landscape!</div>;
 					}
 				
 				case "FJread":
