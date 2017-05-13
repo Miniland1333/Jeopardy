@@ -10,12 +10,13 @@ import {Rainbow} from "../rainbowvis";
 
 
 const questionStyle = {
-	fontSize: "10vmin",
+	fontSize: "8vmin",
 	flex: 1,
 	alignItems: "center",
 	justifyContent: "center",
 	whiteSpace: "pre-wrap",
 	textTransform: "uppercase",
+	display: "inline-flex"
 };
 const inputStyle = {
 	fontSize: "10vmin",
@@ -163,7 +164,7 @@ export const ViewerContent = React.createClass({
 	},
 	renderContent: function () {
 		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
-		if (this.props.gameLogic["round"] == 0 && this.props.gameLogic["state"] != "") {
+		if (this.props.gameLogic["round"] === 0 && this.props.gameLogic["state"] !== "") {
 			Meteor.call('gameLogic.setState', "");
 		}
 		this.handleSound();
@@ -212,7 +213,7 @@ export const ViewerContent = React.createClass({
 						return (
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
-									return key2 == "categoryName" ?
+									return key2 === "categoryName" ?
 										<div className="Header" key={key1 + "H"} style={{
 											alignItems: "center",
 											justifyContent: "center",
@@ -236,7 +237,7 @@ export const ViewerContent = React.createClass({
 						return (
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
-									return key2 == "categoryName" ?
+									return key2 === "categoryName" ?
 										<div className="Header" key={key1 + "H"} style={{
 											alignItems: "center",
 											justifyContent: "center",
@@ -264,7 +265,7 @@ export const ViewerContent = React.createClass({
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
 						return <div key="imageContainer" style={imageContainer}>
 							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 							     style={imageStyle}/>
@@ -288,7 +289,7 @@ export const ViewerContent = React.createClass({
 						minWidth: "10vw",
 					}}>{"Team Wager: " + DDwager}</div>];
 			case "open":
-				if (this.lastState != "open") {
+				if (this.lastState !== "open") {
 					this.lastState = "open";
 					clearInterval(timer);
 					this.time = maxTimeResponse;
@@ -297,7 +298,7 @@ export const ViewerContent = React.createClass({
 							this.time -= 1;
 							this.forceUpdate();
 						}
-						if (this.time == 0) {
+						if (this.time === 0) {
 							clearInterval(timer);
 							this.handleSoundStop();
 							timeout.play();
@@ -312,7 +313,7 @@ export const ViewerContent = React.createClass({
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
 						return <div key="imageContainer" style={imageContainer}>
 							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 							     style={imageStyle}/>
@@ -329,7 +330,7 @@ export const ViewerContent = React.createClass({
 			case "answer":
 			case "DDanswer":
 				//Alternate Logic Needed
-				if (this.lastState != "answer" && this.lastState != "DDanswer") {
+				if (this.lastState !== "answer" && this.lastState !== "DDanswer") {
 					this.lastState = this.props.gameLogic["state"];
 					clearInterval(timer);
 					this.time = maxTimeAnswer;
@@ -339,7 +340,7 @@ export const ViewerContent = React.createClass({
 							this.time -= 1;
 							this.forceUpdate();
 						}
-						if (this.time == 0) {
+						if (this.time === 0) {
 							clearInterval(timer);
 							this.handleSoundStop();
 							timeout.play();
@@ -353,7 +354,7 @@ export const ViewerContent = React.createClass({
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
 						return <div key="imageContainer" style={imageContainer}>
 							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 							     style={imageStyle}/>
@@ -377,7 +378,7 @@ export const ViewerContent = React.createClass({
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] == "image") {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
 						return <div key="imageContainer" style={imageContainer}>
 							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 							     style={imageStyle}/>
@@ -407,7 +408,7 @@ export const ViewerContent = React.createClass({
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentRound"]["question"]["type"] == "image") {
+					if (this.props.gameQuestions["currentRound"]["question"]["type"] === "image") {
 						return <div key="imageContainer" style={imageContainer}>
 							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
 							     style={imageStyle}/>
@@ -444,7 +445,7 @@ export const ViewerContent = React.createClass({
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentRound"]["question"]["type"] == "image") {
+					if (this.props.gameQuestions["currentRound"]["question"]["type"] === "image") {
 						return <div key="imageContainer" style={imageContainer}>
 							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
 							     style={imageStyle}/>
@@ -475,12 +476,12 @@ export const ViewerContent = React.createClass({
 					const canvas = document.getElementById('writingPad');
 					paper.setup(canvas);
 					paper.project.clear();
-					if (this.props.gameLogic["FJ"]["currentPlayer"] != 0) {
+					if (this.props.gameLogic["FJ"]["currentPlayer"] !== 0) {
 						paper.project.importJSON(this.props.gameLogic["FJ"]["currentAnswer"]);
 					}
 					const player = this.props.gameLogic["FJ"]["currentPlayer"];
 					let wager;
-					if (player != 0) {
+					if (player !== 0) {
 						wager = "Wager: " + this.props.gameLogic["player" + player]["wager"];
 					}
 					else {
@@ -510,7 +511,7 @@ export const ViewerContent = React.createClass({
 						highestAmount = playerAmount;
 					}
 				}
-				if (greatest == 0) {
+				if (greatest === 0) {
 					//All Players Eliminated
 					return <div className="flex-container" style={{
 						fontSize: "18vmin", flex: 1, alignItems: "center", justifyContent: "center",

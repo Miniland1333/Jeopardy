@@ -46,6 +46,16 @@ export const StudentContent = React.createClass({
 		return !(currentState === "FJopen" && futureState === "FJopen" && !this.state.setup);
 		
 	},
+	componentDidMount: function () {
+		this.componentDidUpdate();
+	},
+	componentDidUpdate: function () {
+		
+		if (this.state.setup && teamNumber !== undefined &&
+			(this.props.gameLogic["state"] === "FJread" || this.props.gameLogic["state"] === "FJopen")) {
+			this.setState({setup: false});
+		}
+	},
 	renderContent: function () {
 		let wager;
 		let max;
@@ -246,11 +256,9 @@ export const StudentContent = React.createClass({
 					}
 				
 				case "FJread":
-					this.setState({setup: false});
 					return <canvas style={{flex: 1}} id="writingPad"/>;
 				case "FJopen":
 					if (this.state.setup) {
-						this.setState({setup: false});
 						return <canvas style={{flex: 1}} id="writingPad"/>;
 					}
 					else {
