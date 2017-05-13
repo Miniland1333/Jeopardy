@@ -60,6 +60,7 @@ const textAreaStyle = {
 	textTransform: "uppercase",
 	color: "white",
 	minHeight: 120,
+	overflowX: "hidden",
 };
 const answerStyle = {
 	maxWidth: "100%",

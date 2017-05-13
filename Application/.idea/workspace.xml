@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="Attempt 2 to Fix Resize bug with StudentContent">
+    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,13 +37,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewerContent.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
+      <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2805">
-              <caret line="323" column="47" lean-forward="true" selection-start-line="323" selection-start-column="47" selection-end-line="323" selection-end-column="47" />
+            <state relative-caret-position="204">
+              <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#144#507#0" expanded="false" />
+                <element signature="e#533#675#0" expanded="false" />
+                <element signature="e#704#933#0" expanded="false" />
+                <element signature="e#955#1165#0" expanded="false" />
+                <element signature="e#1460#1641#0" expanded="false" />
+                <element signature="e#1661#1919#0" expanded="false" />
+                <element signature="e#1941#2183#0" expanded="false" />
+                <element signature="e#2204#2423#0" expanded="false" />
+                <element signature="e#2444#2663#0" expanded="false" />
+                <element signature="e#2683#2925#0" expanded="false" />
+                <element signature="e#2953#2985#0" expanded="false" />
+                <element signature="e#3013#3042#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -176,11 +186,11 @@
         <option value="$PROJECT_DIR$/imports/ui/refresh.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
         <option value="$PROJECT_DIR$/server/main.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
       </list>
     </option>
   </component>
@@ -412,6 +422,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Student" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="imports" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Editor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1329,14 +1361,7 @@
       <workItem from="1494446986915" duration="15011000" />
       <workItem from="1494481275306" duration="1319000" />
       <workItem from="1494482863401" duration="24000" />
-      <workItem from="1494634784856" duration="3085000" />
-    </task>
-    <task id="LOCAL-00050" summary="Added in Timeout&#10;&#10;Uses this.forceupdate on ViewerContent">
-      <created>1473267923137</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1473267923137</updated>
+      <workItem from="1494634784856" duration="3777000" />
     </task>
     <task id="LOCAL-00051" summary="Added in buzzing in&#10;&#10;will move on to scoring the student next">
       <created>1473271541409</created>
@@ -1674,11 +1699,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491286554037</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Fixed Writing Pad initialization error">
+      <created>1494638470818</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1494638470818</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="588091000" />
+    <option name="totallyTimeSpent" value="588783000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1793,7 +1825,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Made loadRound execute during advance" />
     <MESSAGE value="Minor fix to end time" />
     <MESSAGE value="Final Jeopardy Bug Fix&#10;&#10;DJintro sound not working" />
     <MESSAGE value="Made Timeout sound not play on pickQuestion" />
@@ -1818,7 +1849,8 @@
     <MESSAGE value="Changed 0000 to OPEN" />
     <MESSAGE value="Attempt to Fix Resize bug with StudentContent" />
     <MESSAGE value="Attempt 2 to Fix Resize bug with StudentContent" />
-    <option name="LAST_COMMIT_MESSAGE" value="Attempt 2 to Fix Resize bug with StudentContent" />
+    <MESSAGE value="Fixed Writing Pad initialization error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Writing Pad initialization error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2101,33 +2133,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="395" column="17" lean-forward="false" selection-start-line="395" selection-start-column="17" selection-end-line="395" selection-end-column="17" />
-          <folding>
-            <element signature="e#144#507#0" expanded="false" />
-            <element signature="e#533#675#0" expanded="false" />
-            <element signature="e#704#933#0" expanded="false" />
-            <element signature="e#955#1165#0" expanded="false" />
-            <element signature="e#1189#1416#0" expanded="false" />
-            <element signature="e#1438#1619#0" expanded="false" />
-            <element signature="e#1639#1897#0" expanded="false" />
-            <element signature="e#1919#2161#0" expanded="false" />
-            <element signature="e#2182#2401#0" expanded="false" />
-            <element signature="e#2422#2641#0" expanded="false" />
-            <element signature="e#2661#2903#0" expanded="false" />
-            <element signature="e#2931#2963#0" expanded="false" />
-            <element signature="e#2991#3020#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2141,12 +2161,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2805">
-          <caret line="323" column="47" lean-forward="true" selection-start-line="323" selection-start-column="47" selection-end-line="323" selection-end-column="47" />
+        <state relative-caret-position="204">
+          <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#144#507#0" expanded="false" />
+            <element signature="e#533#675#0" expanded="false" />
+            <element signature="e#704#933#0" expanded="false" />
+            <element signature="e#955#1165#0" expanded="false" />
+            <element signature="e#1460#1641#0" expanded="false" />
+            <element signature="e#1661#1919#0" expanded="false" />
+            <element signature="e#1941#2183#0" expanded="false" />
+            <element signature="e#2204#2423#0" expanded="false" />
+            <element signature="e#2444#2663#0" expanded="false" />
+            <element signature="e#2683#2925#0" expanded="false" />
+            <element signature="e#2953#2985#0" expanded="false" />
+            <element signature="e#3013#3042#0" expanded="false" />
           </folding>
         </state>
       </provider>
