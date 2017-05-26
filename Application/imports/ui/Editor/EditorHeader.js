@@ -97,7 +97,7 @@ export const EditorHeader = React.createClass({
 	handleImport: function () {
 		if (confirm("This will delete all unsaved work. Continue?")) {
 			$("#myDropdown").slideUp();
-			
+
 			$("#fileToLoad").click();
 		}
 	},
@@ -115,18 +115,18 @@ export const EditorHeader = React.createClass({
 				}
 			};
 			fileReader.readAsText(fileToLoad, "UTF-8");
-			$("#fileToLoad").value = "";
 		}
+		$("#fileToLoad").val("");
 	},
 	destroyClickedElement: function (event) {
 		document.body.removeChild(event.target);
 	},
 	handleExport: function () {
 		const textToSave = JSON.stringify(this.props.editorDatabase[0]);
-		const textToSaveAsBlob = new Blob([textToSave], {type: "text/plain"});
+		const textToSaveAsBlob = new Blob([textToSave], {type: "application/json"});
 		const textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-		const fileNameToSaveAs = this.props.editorDatabase[0].name.trim();
-		
+		const fileNameToSaveAs = this.props.editorDatabase[0].name.trim() + '.json';
+
 		const downloadLink = document.createElement("a");
 		downloadLink.download = fileNameToSaveAs;
 		downloadLink.innerHTML = "Download File";
@@ -134,9 +134,9 @@ export const EditorHeader = React.createClass({
 		downloadLink.onclick = this.destroyClickedElement;
 		downloadLink.style.display = "none";
 		document.body.appendChild(downloadLink);
-		
+
 		downloadLink.click();
-		
+
 	},
 	handleRound: function (e) {
 		const round = e.target.value;
@@ -190,7 +190,7 @@ export const EditorHeader = React.createClass({
 						</ul>
 					</div>
 					<button style={buttonStyle} id="Save" onClick={this.handleSave}>Save</button>
-					
+
 					{this.renderInput()}
 					<select
 						style={pickerStyle}
@@ -202,11 +202,10 @@ export const EditorHeader = React.createClass({
 					</select>
 					<button style={buttonStyle} id="Import" onClick={this.handleImport}>Import</button>
 					<button style={buttonStyle} id="Export" onClick={this.handleExport}>Export</button>
-					<input type="file" id="fileToLoad" accept=".txt" onChange={this.handleFile}
+					<input type="file" id="fileToLoad" accept=".txt,.json" onChange={this.handleFile}
 					       style={ {position: "absolute", display: "none", width: 0, height: 0}}/>
 				</div>
-			</div
-			>
+			</div>
 		)
 	}
 });
