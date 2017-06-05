@@ -3,7 +3,7 @@ import React from "react";
 import EditModal from "./EditModal";
 
 
-var divStyle = {
+const divStyle = {
 	display: 'flex',
 	flex: 1,
 	textAlign: 'center',
@@ -12,9 +12,20 @@ var divStyle = {
 	whiteSpace: "pre-wrap",
 	fontSize: "1.8vmin",
 };
-var Question = React.createClass({
+const redStyle = {
+	display: 'flex',
+	flex: 1,
+	textAlign: 'center',
+	flexDirection: 'column',
+	margin: 0,
+	whiteSpace: "pre-wrap",
+	fontSize: "1.8vmin",
+	backgroundColor: "red",
+};
+const Question = React.createClass({
 	getInitialState: function () {
 		return {
+			isImageOkay: true,
 			EditModal: false,
 		};
 	},
@@ -27,7 +38,6 @@ var Question = React.createClass({
 	},
 	handleQuestionClick: function () {
 		if (!this.state.EditModal) {
-			//alert("You clicked " + this.props.roundName + "," + this.props.key1 + "," + this.props.key2);
 			this.setState({EditModal: true})
 		}
 	},
@@ -60,7 +70,7 @@ var Question = React.createClass({
 			questionType = "text";
 		}
 		else {
-			if (this.props.cell.question.type == "image") {
+			if (this.props.cell.question.type === "image") {
 				questionContent = this.props.cell.question.text;
 				questionType = "image";
 			}
@@ -75,6 +85,9 @@ var Question = React.createClass({
 			switch (questionType) {
 				case "image":
 					content += " 📷 ";
+					return [content,
+						<img key="1" src={this.props.cell.question.image} style={{height: 0, width: 0, display: "none"}}
+						     onError={this.brokenImage}/>];
 					break;
 				case "video":
 					content += " ▶ ";
@@ -88,6 +101,13 @@ var Question = React.createClass({
 		           key={this.props.key1 + this.props.key2 + "question"}>{questionContent}</p>,
 			<h6 style={{margin: 0}} key={this.props.key1 + this.props.key2 + "extra"}>{extraContent()}</h6>]
 		
+	},
+	brokenImage: function () {
+		if (this.state.isImageOkay)
+			this.setState({isImageOkay: false});
+	},
+	componentWillReceiveProps: function (nextProps) {
+		this.setState({isImageOkay: true});
 	},
 	getValue: function () {
 		let value;
@@ -124,7 +144,7 @@ var Question = React.createClass({
 	},
 	render: function () {
 		return (
-			<div style={divStyle} title={this.getValue()}>
+			<div style={this.state.isImageOkay ? divStyle : redStyle} title={this.getValue()}>
 				<div className="Rtable-cell" onClick={this.handleQuestionClick}>
 					{this.renderQuestion()}
 					<p style={{margin: 0}}>{this.props.cell.answer}</p>
