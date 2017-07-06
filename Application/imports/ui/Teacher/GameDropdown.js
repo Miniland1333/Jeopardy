@@ -14,22 +14,24 @@ var selectStyle = {
 	border: "none",
 };
 
-var GameDropdown = React.createClass({
-	propTypes: {
+class GameDropdown extends React.Component {
+    static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.object,
-	},
-	renderDropdown: function () {
+	};
+
+    renderDropdown = () => {
 		return ($.map(this.props.gameDatabase, function (game) {
 			return <option key={game.name}>{game.name}</option>;
 		}))
-	},
-	handleGame: function (e) {
+	};
+
+    handleGame = (e) => {
 		var gameName = e.target.value;
 		Meteor.call('gameLogic.setGame', gameName);
-	},
-	
-	render: function () {
+	};
+
+    render() {
 		return (
 			<div className="flex-container" style={{flex: 1}}>
 				<select style={selectStyle} onChange={this.handleGame} value={this.props.gameLogic["gameName"]}>
@@ -38,8 +40,8 @@ var GameDropdown = React.createClass({
 				</select>
 			</div>
 		)
-	},
-});
+	}
+}
 
 
 module.exports = GameDropdown;

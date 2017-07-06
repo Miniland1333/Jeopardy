@@ -9,8 +9,8 @@ import {gameQuestions} from "../../api/gameQuestions";
 import ViewerContent from "./ViewerContent";
 import ViewerFooter from "./ViewerFooter";
 
-var Viewer = React.createClass({
-	render: function () {
+class Viewer extends React.Component {
+    render() {
 		return (
 			<DocumentTitle title='Jeopardy Viewer'>
 				<div>
@@ -25,7 +25,7 @@ var Viewer = React.createClass({
 			</DocumentTitle>
 		)
 	}
-});
+}
 
 
 export default createContainer(() => {

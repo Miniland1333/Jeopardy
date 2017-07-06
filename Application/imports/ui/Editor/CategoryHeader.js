@@ -3,27 +3,29 @@ import React from "react";
 
 import EditModal from "./EditModal";
 
-var CategoryHeader = React.createClass({
-	getInitialState: function () {
-		return {
-			EditModal: false,
-		};
-	},
-	propTypes: {
+class CategoryHeader extends React.Component {
+    static propTypes = {
 		roundName: PropTypes.string,
 		key1: PropTypes.string,
 		categoryName: PropTypes.string,
-	},
-	handleQuestionHeaderClick: function () {
+	};
+
+    state = {
+        EditModal: false,
+    };
+
+    handleQuestionHeaderClick = () => {
 		if (!this.state.EditModal) {
 			//alert("You clicked "+this.props.roundName+","+this.props.key1);
 			this.setState({EditModal: true});
 		}
-	},
-	handleClose: function () {
+	};
+
+    handleClose = () => {
 		this.setState({EditModal: false});
-	},
-	render: function () {
+	};
+
+    render() {
 		return (<div>
 			<div className="Header" onClick={this.handleQuestionHeaderClick}
 			     style={{fontSize: "2vmin"}}>{this.props.categoryName}</div>
@@ -37,7 +39,6 @@ var CategoryHeader = React.createClass({
 				/> : []}
 		</div>)
 	}
-	
-});
+}
 
 module.exports = CategoryHeader;

@@ -80,20 +80,20 @@ const FJcat = new Howl({src: ['./../Jp/jfinalj.mp3'],});
 const loop = new Howl({src: ['./../Jp/jloop.mp3'], loop: true,});
 const timeout = new Howl({src: ['./../Jp/jtime.mp3'],});
 
-export const ViewerContent = React.createClass({
-	getInitialState: function () {
-		return {
-			setup: true,
-		}
-	},
-	propTypes: {
+export class ViewerContent extends React.Component {
+    static propTypes = {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object,
-	},
-	time: 5,
-	lastState: "",
-	
-	handleSound: function () {
+	};
+
+    state = {
+        setup: true,
+    };
+
+    time = 5;
+    lastState = "";
+
+    handleSound = () => {
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
@@ -156,14 +156,16 @@ export const ViewerContent = React.createClass({
 				}
 			
 		}
-	},
-	handleSoundStop: function () {
+	};
+
+    handleSoundStop = () => {
 		const soundArray = [intro, DJintro, FJintro, Jcat, DJcat, DD, FJ, loop, timeout];
 		soundArray.forEach(function (sound) {
 			sound.stop()
 		});
-	},
-	renderContent: function () {
+	};
+
+    renderContent = () => {
 		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
 		if (this.props.gameLogic["round"] === 0 && this.props.gameLogic["state"] !== "") {
 			Meteor.call('gameLogic.setState', "");
@@ -530,8 +532,9 @@ export const ViewerContent = React.createClass({
 		}
 		
 		
-	},
-	render: function () {
+	};
+
+    render() {
 		return (
 			<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 				{this.renderContent()}
@@ -539,6 +542,6 @@ export const ViewerContent = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
 module.exports = ViewerContent;

@@ -14,14 +14,15 @@ const inputStyle = {
 	minWidth: "10vw",
 };
 
-const ScoreBoard = React.createClass({
-	propTypes: {
+class ScoreBoard extends React.Component {
+    static propTypes = {
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
 		round: PropTypes.number,
 		connectionId: PropTypes.string,
-	},
-	numDisplay: function () {
+	};
+
+    numDisplay = () => {
 		if (this.props.round === 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
@@ -46,11 +47,13 @@ const ScoreBoard = React.createClass({
 					return "OUT";
 			}
 		}
-	},
-	handleName: function (name) {
+	};
+
+    handleName = (name) => {
 		Meteor.call('gameLogic.setTeamName', this.props.playerLogic["teamNumber"], name.target.value);
-	},
-	handleClick: function () {
+	};
+
+    handleClick = () => {
 		const status = this.props.playerLogic["status"];
 		if (this.props.round === 0) {
 			
@@ -94,15 +97,18 @@ const ScoreBoard = React.createClass({
 			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, this.props.connectionId);
 			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "active", this.props.round);
 		}
-	},
-	handleSubmit: function (e) {
+	};
+
+    handleSubmit = (e) => {
 		e.preventDefault();
 		$("#input" + this.props.playerLogic["teamNumber"]).blur();
-	},
-	handleFocus: function () {
+	};
+
+    handleFocus = () => {
 		Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "pending", 0)
-	},
-	handleBlur: function (name) {
+	};
+
+    handleBlur = (name) => {
 		$("#input" + this.props.playerLogic["teamNumber"]).prop("disabled", true);
 		//noinspection EqualityComparisonWithCoercionJS
 		if (name.target.value == "") {
@@ -114,8 +120,9 @@ const ScoreBoard = React.createClass({
 			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "ready", 0)
 		}
 		
-	},
-	scoreStyle: function () {
+	};
+
+    scoreStyle = () => {
 		const green = {
 			fontFamily: "D7",
 			fontSize: "4vw",
@@ -229,8 +236,9 @@ const ScoreBoard = React.createClass({
 		else {
 			return normal;
 		}
-	},
-	render: function () {
+	};
+
+    render() {
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{
@@ -254,8 +262,7 @@ const ScoreBoard = React.createClass({
 			</div>
 		)
 	}
-	
-});
+}
 
 module.exports = ScoreBoard;
 

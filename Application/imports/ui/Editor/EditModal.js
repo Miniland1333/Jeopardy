@@ -140,29 +140,21 @@ const verticalFlexStyle = {
 	flexDirection: "column",
 };
 
-export const EditModal = React.createClass({
-	getInitialState: function () {
-		return {
-			isSinglePlay: this.props.isSinglePlay,
-			questionType: "text",
-			questionText: typeof this.props.question === "string" ? this.props.question : "",
-		}
-	},
-	getDefaultProps: function () {
-		return {
-			roundName: "",
-			categoryName: "",
-			question: "",
-			answer: "",
-			isSinglePlay: false,
-			isHeader: false,
-			key1: "",
-			key2: "",
-			handleClose: function () {
-			},
-		};
-	},
-	propTypes: {
+export class EditModal extends React.Component {
+    static defaultProps = {
+        roundName: "",
+        categoryName: "",
+        question: "",
+        answer: "",
+        isSinglePlay: false,
+        isHeader: false,
+        key1: "",
+        key2: "",
+        handleClose: function () {
+        },
+    };
+
+    static propTypes = {
 		roundName: PropTypes.string,
 		categoryName: PropTypes.string,
 		question: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -172,8 +164,15 @@ export const EditModal = React.createClass({
 		key1: PropTypes.string,
 		key2: PropTypes.string,
 		handleClose: PropTypes.func,
-	},
-	componentDidMount: function () {
+	};
+
+    state = {
+        isSinglePlay: this.props.isSinglePlay,
+        questionType: "text",
+        questionText: typeof this.props.question === "string" ? this.props.question : "",
+    };
+
+    componentDidMount() {
 		$("#myModal").fadeIn();
 		if (typeof this.props.question === "string") {
 			
@@ -187,16 +186,19 @@ export const EditModal = React.createClass({
 				this.setState({questionType: "video"});
 			}
 		}
-	},
-	handleAddImage: function () {
+	}
+
+    handleAddImage = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "image"});
-	},
-	handleAddVideo: function () {
+	};
+
+    handleAddVideo = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "video"});
-	},
-	handleFile: function () {
+	};
+
+    handleFile = () => {
 		var fileToLoad = document.getElementById("imageToLoad").files[0];
 		if (fileToLoad != "") {
 			var fileReader = new FileReader();
@@ -214,8 +216,9 @@ export const EditModal = React.createClass({
 			fileReader.readAsDataURL(fileToLoad);
 			$("#fileToLoad").value = "";
 		}
-	},
-	parseVID: function (videoURL) {
+	};
+
+    parseVID = (videoURL) => {
 		let videoID = videoURL.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/);
 		if (videoID != null) {
 			console.log("video id = ", videoID[2]);
@@ -226,8 +229,9 @@ export const EditModal = React.createClass({
 			console.log("Invalid URL");
 			return null;
 		}
-	},
-	handleTime: function () {
+	};
+
+    handleTime = () => {
 		let VID = $("#VID").val();
 		let start = $("#Start").val();
 		let end = $("#End").val();
@@ -259,8 +263,9 @@ export const EditModal = React.createClass({
 			$("#Embed").val(videoURL);
 			$("#videoView").attr("src", videoURL);
 		}
-	},
-	handleSeconds: function (JQuery) {
+	};
+
+    handleSeconds = (JQuery) => {
 		let working = JQuery.val();
 		if (!working.includes(":") && working != "") {
 			if (working % 60 < 10) {
@@ -270,21 +275,26 @@ export const EditModal = React.createClass({
 				JQuery.val(Math.floor(working / 60) + ":" + working % 60);
 			}
 		}
-	},
-	handleRemoveImage: function () {
+	};
+
+    handleRemoveImage = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "text"});
-	},
-	handleRemoveVideo: function () {
+	};
+
+    handleRemoveVideo = () => {
 		this.setState({questionType: "text"});
-	},
-	handlePlay: function () {
+	};
+
+    handlePlay = () => {
 		this.setState({isSinglePlay: !this.state.isSinglePlay})
-	},
-	handleExit: function () {
+	};
+
+    handleExit = () => {
 		$("#myModal").fadeOut(this.props.handleClose);
-	},
-	handleComplete: function () {
+	};
+
+    handleComplete = () => {
 		if (this.props.isHeader) {
 			Meteor.call('editorDatabase.updateCategory',
 				this.props.roundName,
@@ -363,8 +373,9 @@ export const EditModal = React.createClass({
 			}
 		}
 		this.handleExit();
-	},
-	getValue: function () {
+	};
+
+    getValue = () => {
 		let value;
 		let multiplier;
 		switch (this.props.roundName) {
@@ -396,8 +407,9 @@ export const EditModal = React.createClass({
 				break;
 		}
 		return " - $" + value * multiplier;
-	},
-	renderModalContent: function () {
+	};
+
+    renderModalContent = () => {
 		if (this.props.isHeader) {
 			return <div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
 				<input id="category" defaultValue={this.props.categoryName} placeholder="Category Name"
@@ -493,8 +505,9 @@ export const EditModal = React.createClass({
 			<h2>Answer</h2>
 			<input id="answer" spellCheck="true" defaultValue={this.props.answer}
 			       placeholder="Answer" style={answerStyle}/></div>
-	},
-	renderButtons: function () {
+	};
+
+    renderButtons = () => {
 		let mediaButtons;
 		switch (!this.props.isHeader && this.state.questionType) {
 			case "text":
@@ -526,8 +539,9 @@ export const EditModal = React.createClass({
 				<button style={saveStyle} onClick={this.handleComplete}>Save</button>
 			</div>
 		</div>
-	},
-	render: function () {
+	};
+
+    render() {
 		refresh();
 		return (
 			<div id="myModal" style={modalStyle}>
@@ -540,7 +554,6 @@ export const EditModal = React.createClass({
 			</div>
 		)
 	}
-	
-});
+}
 
 module.exports = EditModal;

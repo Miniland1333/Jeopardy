@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import "../imports/simple-todos/api/tasks.js";
 import "../imports/api/editorDatabase";
 import "../imports/api/gameDatabase";
 import "../imports/api/gameLogic";

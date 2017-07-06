@@ -45,12 +45,13 @@ const progressStyle = {
 	height: "35px",
 	flex: 1,
 };
-export const CountDown = React.createClass({
-	propTypes: {
+export class CountDown extends React.Component {
+    static propTypes = {
 		gameLogic: PropTypes.object,
 		time: PropTypes.number,
-	},
-	render: function () {
+	};
+
+    render() {
 		switch (this.props.gameLogic["state"]) {
 			case "open":
 				return <div className="flex-container" style={containerStyle}>
@@ -91,7 +92,7 @@ export const CountDown = React.createClass({
 				return null;
 		}
 	}
-});
+}
 
 
 module.exports = CountDown;

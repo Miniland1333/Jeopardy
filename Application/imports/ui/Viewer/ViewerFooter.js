@@ -6,11 +6,12 @@ import ScoreBoard from "../Teacher/ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
 import refresh from "../refresh";
 
-var ViewerFooter = React.createClass({
-	propTypes: {
+class ViewerFooter extends React.Component {
+    static propTypes = {
 		gameLogic: PropTypes.object,
-	},
-	renderInput: function () {
+	};
+
+    renderInput = () => {
 		var isSetup = !this.props.gameLogic["round"];
 		
 		if (isSetup) {
@@ -33,8 +34,9 @@ var ViewerFooter = React.createClass({
 				}
 			});
 		}
-	},
-	render: function () {
+	};
+
+    render() {
 		refresh();
 		return (
 			<div className="flex-container" id="border">
@@ -42,8 +44,7 @@ var ViewerFooter = React.createClass({
 			</div>
 		);
 	}
-	
-});
+}
 
 module.exports = ViewerFooter;
 

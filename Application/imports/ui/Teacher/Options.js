@@ -73,19 +73,19 @@ const playerStyle = {
 	backgroundColor: '#f1f1f1'
 };
 
-export const Options = React.createClass({
-	getInitialState: function () {
-		return {
-			state: "buttons",
-		}
-	},
-	propTypes: {
+export class Options extends React.Component {
+    static propTypes = {
 		handleClose: PropTypes.func,
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
 		round: PropTypes.number,
-	},
-	renderButtons: function () {
+	};
+
+    state = {
+        state: "buttons",
+    };
+
+    renderButtons = () => {
 		return [
 			this.props.round !== 3 ?
 				<div key="advance" style={enabledStyle} onClick={
@@ -136,15 +136,17 @@ export const Options = React.createClass({
 			
 			<div key="exit" style={enabledStyle} onClick={this.exit}>Exit Menu</div>,
 		]
-	},
-	renderAdjust: function () {
+	};
+
+    renderAdjust = () => {
 		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		];
-	},
-	renderKick: function () {
+	};
+
+    renderKick = () => {
 		let innerArray = [];
 		for (let i = 1; i <= this.props.gameLogic["numPlayers"]; i++) {
 			innerArray.push(<div key={"Player " + i} style={playerStyle} onClick={function () {
@@ -160,18 +162,21 @@ export const Options = React.createClass({
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		];
-	},
-	renderSort: function () {
+	};
+
+    renderSort = () => {
 		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		];
-	},
-	exit: function () {
+	};
+
+    exit = () => {
 		$("#optionModal").fadeOut(this.props.handleClose);
-	},
-	renderContent: function () {
+	};
+
+    renderContent = () => {
 		switch (this.state.state) {
 			case "buttons":
 				return this.renderButtons();
@@ -182,11 +187,13 @@ export const Options = React.createClass({
 			case "sort":
 				return this.renderSort();
 		}
-	},
-	componentDidMount: function () {
+	};
+
+    componentDidMount() {
 		$("#optionModal").fadeIn();
-	},
-	render: function () {
+	}
+
+    render() {
 		//States where options are invalid
 		if ([""].indexOf(this.props.gameLogic.state) >= 0) {
 			this.exit();
@@ -200,6 +207,6 @@ export const Options = React.createClass({
 			</div>
 		)
 	}
-});
+}
 
 module.exports = Options;

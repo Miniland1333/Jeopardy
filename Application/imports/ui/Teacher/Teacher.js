@@ -12,13 +12,14 @@ import TeacherHeader from "./TeacherHeader";
 import TeacherFooter from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
-export const Teacher = React.createClass({
-	propTypes: {
+export class Teacher extends React.Component {
+    static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.array,
 		gameQuestions: PropTypes.array,
-	},
-	render: function () {
+	};
+
+    render() {
 		if (this.props.isReady && this.props.gameLogic.length === 0) {
 			Meteor.call('gameLogic.init');
 		}
@@ -40,7 +41,7 @@ export const Teacher = React.createClass({
 			</DocumentTitle>
 		)
 	}
-});
+}
 
 
 export default createContainer(() => {

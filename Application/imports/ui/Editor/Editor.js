@@ -8,19 +8,20 @@ import {editorDatabase} from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
 import EditorTable from "./EditorTable";
 
-var Editor = React.createClass({
-	getInitialState: function () {
-		return {
-			round: "Single",
-		};
-	},
-	handleRoundChange: function (round) {
+class Editor extends React.Component {
+    state = {
+        round: "Single",
+    };
+
+    handleRoundChange = (round) => {
 		this.setState({round: round});
-	},
-	componentWillReceiveProps: function (newProps) {
+	};
+
+    componentWillReceiveProps(newProps) {
 		console.log("Editor is receiving " + newProps);
-	},
-	render: function () {
+	}
+
+    render() {
 		console.log(this.props.isReady);
 		return (
 			<DocumentTitle title='Jeopardy Editor'>
@@ -42,7 +43,7 @@ var Editor = React.createClass({
 			</DocumentTitle>
 		)
 	}
-});
+}
 
 
 export default createContainer(() => {

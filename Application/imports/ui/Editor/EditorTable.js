@@ -6,12 +6,13 @@ import Question from "./Question";
 import CategoryHeader from "./CategoryHeader";
 import refresh from "../refresh";
 
-var EditorTable = React.createClass({
-	propTypes: {
+class EditorTable extends React.Component {
+    static propTypes = {
 		round: PropTypes.string.isRequired,
 		editorDatabase: PropTypes.array.isRequired,
-	},
-	renderInput: function () {
+	};
+
+    renderInput = () => {
 		var roundName;
 		switch (this.props.round) {
 			case "Single":
@@ -54,9 +55,9 @@ var EditorTable = React.createClass({
 					})}
 				</div>
 		);
-	},
-	
-	render: function () {
+	};
+
+    render() {
 		refresh();
 		return (
 			<div className="Table">
@@ -64,7 +65,7 @@ var EditorTable = React.createClass({
 			</div>
 		)
 	}
-});
+}
 
 
 module.exports = EditorTable;

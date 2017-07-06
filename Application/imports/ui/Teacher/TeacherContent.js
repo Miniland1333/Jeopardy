@@ -20,13 +20,14 @@ const answerStyle = {
 	fontSize: "4vmin",
 };
 
-export const TeacherContent = React.createClass({
-	propTypes: {
+export class TeacherContent extends React.Component {
+    static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object,
-	},
-	renderContent: function () {
+	};
+
+    renderContent = () => {
 		if (this.props.gameLogic["round"] == 0) {
 			addToHomescreen();
 			return <div className="flex-container" style={{flex: 1}}>
@@ -230,8 +231,9 @@ export const TeacherContent = React.createClass({
 					}
 				}
 		}
-	},
-	render: function () {
+	};
+
+    render() {
 		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -239,6 +241,6 @@ export const TeacherContent = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
 module.exports = TeacherContent;

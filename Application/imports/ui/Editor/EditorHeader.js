@@ -68,41 +68,47 @@ const dropdownStyle = {
 	color: "black",
 };
 
-export const EditorHeader = React.createClass({
-	propTypes: {
+export class EditorHeader extends React.Component {
+    static propTypes = {
 		gameList: PropTypes.array.isRequired,
 		editorDatabase: PropTypes.array.isRequired,
 		dbReady: PropTypes.bool.isRequired,
 		onRoundChange: PropTypes.func.isRequired,
-	},
-	onUserInput: function (name) {
+	};
+
+    onUserInput = (name) => {
 		Meteor.call('editorDatabase.updateName', name.target.value);
-	},
-	handleNew: function () {
+	};
+
+    handleNew = () => {
 		if (confirm("This will delete all unsaved work. Continue?")) {
 			Meteor.call('editorDatabase.init');
 			$("#myDropdown").slideUp();
 		}
-	},
-	handleLoad: function () {
+	};
+
+    handleLoad = () => {
 		$("#myDropdown").slideToggle();
-	},
-	handleSave: function () {
+	};
+
+    handleSave = () => {
 		if (this.props.editorDatabase[0].name.trim() == "") {
 			alert("Name field cannot be empty!");
 		}
 		else if (confirm("This will overwrite any game with the same name.\nEmpty Columns will be ignored\nContinue?")) {
 			Meteor.call('gameDatabase.save', this.props.editorDatabase[0]);
 		}
-	},
-	handleImport: function () {
+	};
+
+    handleImport = () => {
 		if (confirm("This will delete all unsaved work. Continue?")) {
 			$("#myDropdown").slideUp();
 
 			$("#fileToLoad").click();
 		}
-	},
-	handleFile: function () {
+	};
+
+    handleFile = () => {
 		const fileToLoad = document.getElementById("fileToLoad").files[0];
 		if (fileToLoad != "") {
 			const fileReader = new FileReader();
@@ -118,11 +124,13 @@ export const EditorHeader = React.createClass({
 			fileReader.readAsText(fileToLoad, "UTF-8");
 		}
 		$("#fileToLoad").val("");
-	},
-	destroyClickedElement: function (event) {
+	};
+
+    destroyClickedElement = (event) => {
 		document.body.removeChild(event.target);
-	},
-	handleExport: function () {
+	};
+
+    handleExport = () => {
 		const textToSave = JSON.stringify(this.props.editorDatabase[0]);
 		const textToSaveAsBlob = new Blob([textToSave], {type: "application/json"});
 		const textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
@@ -138,17 +146,20 @@ export const EditorHeader = React.createClass({
 
 		downloadLink.click();
 
-	},
-	handleRound: function (e) {
+	};
+
+    handleRound = (e) => {
 		const round = e.target.value;
 		this.props.onRoundChange(round);
-	},
-	renderDropdown: function () {
+	};
+
+    renderDropdown = () => {
 		return ($.map(this.props.gameList, function (game) {
 			return (<GameLi key={game.name} game={game}/>)
 		}))
-	},
-	refresh: function () {
+	};
+
+    refresh = () => {
 		$(".Main").css({
 			"height": window.innerHeight,
 			"width": window.innerWidth,
@@ -161,8 +172,9 @@ export const EditorHeader = React.createClass({
 			"height": window.innerHeight,
 			"width": window.innerWidth,
 		});
-	},
-	renderInput: function () {
+	};
+
+    renderInput = () => {
 		return this.props.editorDatabase.map(thing =>
 			<input
 				spellCheck="true"
@@ -175,11 +187,12 @@ export const EditorHeader = React.createClass({
 				onBlur={this.refresh}
 			/>
 		);
-	},
-	/*    componentWillReceiveProps:function(newProps){
+	};
+
+    /*    componentWillReceiveProps:function(newProps){
 	 console.log("EditorHeader is receiving "+newProps);
 	 },*/
-	render: function () {
+    render() {
 		return (
 			<div>
 				<div className="flex-container" style={barStyle}>
@@ -209,6 +222,6 @@ export const EditorHeader = React.createClass({
 			</div>
 		)
 	}
-});
+}
 
 module.exports = EditorHeader;

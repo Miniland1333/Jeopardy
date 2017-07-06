@@ -9,8 +9,8 @@ import StudentHeader from "./StudentHeader";
 import StudentContent from "./StudentContent";
 
 
-export const Student = React.createClass({
-	render: function () {
+export class Student extends React.Component {
+    render() {
 		return (
 			<DocumentTitle title='Jeopardy'>
 				<div>
@@ -27,7 +27,7 @@ export const Student = React.createClass({
 			</DocumentTitle>
 		)
 	}
-});
+}
 
 
 export default createContainer(() => {

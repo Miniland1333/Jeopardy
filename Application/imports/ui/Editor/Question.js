@@ -23,29 +23,32 @@ const redStyle = {
 	fontSize: "1.8vmin",
 	backgroundColor: "red",
 };
-const Question = React.createClass({
-	getInitialState: function () {
-		return {
-			isImageOkay: true,
-			EditModal: false,
-		};
-	},
-	propTypes: {
+
+class Question extends React.Component {
+    static propTypes = {
 		roundName: PropTypes.string,
 		key1: PropTypes.string,
 		key2: PropTypes.string,
 		game: PropTypes.object,
 		cell: PropTypes.object,
-	},
-	handleQuestionClick: function () {
+	};
+
+    state = {
+        isImageOkay: true,
+        EditModal: false,
+    };
+
+    handleQuestionClick = () => {
 		if (!this.state.EditModal) {
 			this.setState({EditModal: true})
 		}
-	},
-	handleClose: function () {
+	};
+
+    handleClose = () => {
 		this.setState({EditModal: false});
-	},
-	handleEditModule: function () {
+	};
+
+    handleEditModule = () => {
 		if (this.state.EditModal) {
 			return (
 				<EditModal
@@ -62,8 +65,9 @@ const Question = React.createClass({
 		else {
 			return [];
 		}
-	},
-	renderQuestion: function () {
+	};
+
+    renderQuestion = () => {
 		let questionContent;
 		let questionType;
 		if (typeof this.props.cell.question === "string") {
@@ -102,15 +106,18 @@ const Question = React.createClass({
 		           key={this.props.key1 + this.props.key2 + "question"}>{questionContent}</p>,
 			<h6 style={{margin: 0}} key={this.props.key1 + this.props.key2 + "extra"}>{extraContent()}</h6>]
 		
-	},
-	brokenImage: function () {
+	};
+
+    brokenImage = () => {
 		if (this.state.isImageOkay)
 			this.setState({isImageOkay: false});
-	},
-	componentWillReceiveProps: function (nextProps) {
+	};
+
+    componentWillReceiveProps(nextProps) {
 		this.setState({isImageOkay: true});
-	},
-	getValue: function () {
+	}
+
+    getValue = () => {
 		let value;
 		let multiplier;
 		switch (this.props.roundName) {
@@ -142,8 +149,9 @@ const Question = React.createClass({
 				break;
 		}
 		return "$" + value * multiplier;
-	},
-	render: function () {
+	};
+
+    render() {
 		return (
 			<div style={this.state.isImageOkay ? divStyle : redStyle} title={this.getValue()}>
 				<div className="Rtable-cell" onClick={this.handleQuestionClick}>
@@ -153,7 +161,6 @@ const Question = React.createClass({
 				{this.handleEditModule()}
 			</div>)
 	}
-	
-});
+}
 
 module.exports = Question;

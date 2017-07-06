@@ -5,11 +5,12 @@ import React from "react";
 import ScoreBoard from "./ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
 
-var TeacherHeader = React.createClass({
-	propTypes: {
+class TeacherHeader extends React.Component {
+    static propTypes = {
 		gameLogic: PropTypes.object,
-	},
-	renderInput: function () {
+	};
+
+    renderInput = () => {
 		var isSetup = !this.props.gameLogic["round"];
 		
 		if (isSetup) {
@@ -31,8 +32,9 @@ var TeacherHeader = React.createClass({
 				}
 			});
 		}
-	},
-	render: function () {
+	};
+
+    render() {
 		
 		return (
 			<div className="flex-container" id="border">
@@ -40,8 +42,7 @@ var TeacherHeader = React.createClass({
 			</div>
 		);
 	}
-	
-});
+}
 
 module.exports = TeacherHeader;
 

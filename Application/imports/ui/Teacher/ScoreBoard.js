@@ -7,18 +7,18 @@ import "./../jquery.ui.touch-punch";
 import Options from "./Options";
 
 
-export const ScoreBoard = React.createClass({
-	getInitialState: function () {
-		return {
-			options: false,
-		}
-	},
-	propTypes: {
+export class ScoreBoard extends React.Component {
+    static propTypes = {
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
 		round: PropTypes.number,
-	},
-	numDisplay: function () {
+	};
+
+    state = {
+        options: false,
+    };
+
+    numDisplay = () => {
 		if (this.props.round == 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
@@ -43,8 +43,9 @@ export const ScoreBoard = React.createClass({
 					return "OUT";
 			}
 		}
-	},
-	handleClick: function () {
+	};
+
+    handleClick = () => {
 		if (this.props.round == 0) {
 			if (confirm("This will kick player" + this.props.playerLogic["teamNumber"] + ". Are you sure?")) {
 				Meteor.call('gameLogic.kick', this.props.playerLogic["teamNumber"], this.props.playerLogic["connectionId"]);
@@ -56,11 +57,13 @@ export const ScoreBoard = React.createClass({
 			}
 		}
 		
-	},
-	handleClose: function () {
+	};
+
+    handleClose = () => {
 		this.setState({options: false});
-	},
-	scoreStyle: function () {
+	};
+
+    scoreStyle = () => {
 		
 		const green = {
 			fontFamily: "D7",
@@ -179,8 +182,9 @@ export const ScoreBoard = React.createClass({
 		else {
 			return normal;
 		}
-	},
-	render: function () {
+	};
+
+    render() {
 		
 		return (
 			<div className="flex-container" onClick={this.handleClick}
@@ -202,8 +206,7 @@ export const ScoreBoard = React.createClass({
 			</div>
 		)
 	}
-	
-});
+}
 
 module.exports = ScoreBoard;
 

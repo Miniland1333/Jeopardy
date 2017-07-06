@@ -25,39 +25,44 @@ const confirmStyle = {
 let teamNumber;
 let finalAnswer;
 
-export const StudentContent = React.createClass({
-	getInitialState: function () {
-		return {
-			setup: true,
-		}
-	},
-	propTypes: {
+export class StudentContent extends React.Component {
+    static propTypes = {
 		gameLogic: PropTypes.object,
-	},
-	handleFirst: function () {
+	};
+
+    state = {
+        setup: true,
+    };
+
+    handleFirst = () => {
 		Meteor.call("gameLogic.setFirst", teamNumber);
 		Meteor.call("gameLogic.setState", "answer");
-	},
-	handleLate: function () {
+	};
+
+    handleLate = () => {
 		Meteor.call('gameLogic.addLate', teamNumber);
-	},
-	shouldComponentUpdate: function (nextProps, nextState) {
+	};
+
+    shouldComponentUpdate(nextProps, nextState) {
 		let currentState = this.props.gameLogic["state"];
 		let futureState = nextProps.gameLogic["state"];
 		return !(currentState === "FJopen" && futureState === "FJopen" && !this.state.setup);
 		
-	},
-	componentDidMount: function () {
+	}
+
+    componentDidMount() {
 		this.componentDidUpdate();
-	},
-	componentDidUpdate: function () {
+	}
+
+    componentDidUpdate() {
 		
 		if (this.state.setup && teamNumber !== undefined &&
 			(this.props.gameLogic["state"] === "FJread" || this.props.gameLogic["state"] === "FJopen")) {
 			this.setState({setup: false});
 		}
-	},
-	renderContent: function () {
+	}
+
+    renderContent = () => {
 		let wager;
 		let max;
 		let points;
@@ -312,8 +317,9 @@ export const StudentContent = React.createClass({
 			return <div className="flex-container"
 			            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}/>;
 		}
-	},
-	render: function () {
+	};
+
+    render() {
 		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -321,7 +327,7 @@ export const StudentContent = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
 
 module.exports = StudentContent;
