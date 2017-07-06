@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 
 
@@ -6,7 +7,7 @@ import {gameLogic} from "../../api/gameLogic";
 
 var TeacherHeader = React.createClass({
 	propTypes: {
-		gameLogic: React.PropTypes.object,
+		gameLogic: PropTypes.object,
 	},
 	renderInput: function () {
 		var isSetup = !this.props.gameLogic["round"];

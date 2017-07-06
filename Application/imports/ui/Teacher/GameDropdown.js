@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -15,8 +16,8 @@ var selectStyle = {
 
 var GameDropdown = React.createClass({
 	propTypes: {
-		gameDatabase: React.PropTypes.array,
-		gameLogic: React.PropTypes.object,
+		gameDatabase: PropTypes.array,
+		gameLogic: PropTypes.object,
 	},
 	renderDropdown: function () {
 		return ($.map(this.props.gameDatabase, function (game) {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -6,8 +7,8 @@ import refresh from "../refresh";
 
 export const TeacherFooter = React.createClass({
 	propTypes: {
-		gameLogic: React.PropTypes.object,
-		gameQuestions: React.PropTypes.object
+		gameLogic: PropTypes.object,
+		gameQuestions: PropTypes.object
 	},
 	handleCorrect: function () {
 		let first = this.props.gameLogic["currentQuestionLogic"]["first"];

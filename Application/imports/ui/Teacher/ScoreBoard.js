@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import "./../jquery-ui";
@@ -13,9 +14,9 @@ export const ScoreBoard = React.createClass({
 		}
 	},
 	propTypes: {
-		playerLogic: React.PropTypes.object,
-		gameLogic: React.PropTypes.object,
-		round: React.PropTypes.number,
+		playerLogic: PropTypes.object,
+		gameLogic: PropTypes.object,
+		round: PropTypes.number,
 	},
 	numDisplay: function () {
 		if (this.props.round == 0) {

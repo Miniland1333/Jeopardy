@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 
 
@@ -7,7 +8,7 @@ import refresh from "../refresh";
 
 var ViewerFooter = React.createClass({
 	propTypes: {
-		gameLogic: React.PropTypes.object,
+		gameLogic: PropTypes.object,
 	},
 	renderInput: function () {
 		var isSetup = !this.props.gameLogic["round"];

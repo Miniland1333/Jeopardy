@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import refresh from "../refresh";
@@ -162,15 +163,15 @@ export const EditModal = React.createClass({
 		};
 	},
 	propTypes: {
-		roundName: React.PropTypes.string,
-		categoryName: React.PropTypes.string,
-		question: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.object]),
-		answer: React.PropTypes.string,
-		isSinglePlay: React.PropTypes.bool,
-		isHeader: React.PropTypes.bool,
-		key1: React.PropTypes.string,
-		key2: React.PropTypes.string,
-		handleClose: React.PropTypes.func,
+		roundName: PropTypes.string,
+		categoryName: PropTypes.string,
+		question: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+		answer: PropTypes.string,
+		isSinglePlay: PropTypes.bool,
+		isHeader: PropTypes.bool,
+		key1: PropTypes.string,
+		key2: PropTypes.string,
+		handleClose: PropTypes.func,
 	},
 	componentDidMount: function () {
 		$("#myModal").fadeIn();

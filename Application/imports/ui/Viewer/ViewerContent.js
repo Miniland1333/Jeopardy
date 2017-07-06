@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import "./../howler";
@@ -86,8 +87,8 @@ export const ViewerContent = React.createClass({
 		}
 	},
 	propTypes: {
-		gameLogic: React.PropTypes.object,
-		gameQuestions: React.PropTypes.object,
+		gameLogic: PropTypes.object,
+		gameQuestions: PropTypes.object,
 	},
 	time: 5,
 	lastState: "",

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 
 import EditModal from "./EditModal";
@@ -30,11 +31,11 @@ const Question = React.createClass({
 		};
 	},
 	propTypes: {
-		roundName: React.PropTypes.string,
-		key1: React.PropTypes.string,
-		key2: React.PropTypes.string,
-		game: React.PropTypes.object,
-		cell: React.PropTypes.object,
+		roundName: PropTypes.string,
+		key1: PropTypes.string,
+		key2: PropTypes.string,
+		game: PropTypes.object,
+		cell: PropTypes.object,
 	},
 	handleQuestionClick: function () {
 		if (!this.state.EditModal) {

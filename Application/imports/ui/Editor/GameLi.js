@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -8,7 +9,7 @@ var cursorStyle = {
 
 var GameLi = React.createClass({
 	propTypes: {
-		game: React.PropTypes.object.isRequired,
+		game: PropTypes.object.isRequired,
 	},
 	handleDelete: function () {
 		if (confirm("This will delete " + this.props.game.name + ". Are you sure?")) {

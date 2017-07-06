@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -15,10 +16,10 @@ const inputStyle = {
 
 const ScoreBoard = React.createClass({
 	propTypes: {
-		playerLogic: React.PropTypes.object,
-		gameLogic: React.PropTypes.object,
-		round: React.PropTypes.number,
-		connectionId: React.PropTypes.string,
+		playerLogic: PropTypes.object,
+		gameLogic: PropTypes.object,
+		round: PropTypes.number,
+		connectionId: PropTypes.string,
 	},
 	numDisplay: function () {
 		if (this.props.round === 0) {

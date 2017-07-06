@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 
 
@@ -46,8 +47,8 @@ const progressStyle = {
 };
 export const CountDown = React.createClass({
 	propTypes: {
-		gameLogic: React.PropTypes.object,
-		time: React.PropTypes.number,
+		gameLogic: PropTypes.object,
+		time: PropTypes.number,
 	},
 	render: function () {
 		switch (this.props.gameLogic["state"]) {

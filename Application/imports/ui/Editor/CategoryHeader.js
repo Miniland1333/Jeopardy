@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 
 import EditModal from "./EditModal";
@@ -9,9 +10,9 @@ var CategoryHeader = React.createClass({
 		};
 	},
 	propTypes: {
-		roundName: React.PropTypes.string,
-		key1: React.PropTypes.string,
-		categoryName: React.PropTypes.string,
+		roundName: PropTypes.string,
+		key1: PropTypes.string,
+		categoryName: PropTypes.string,
 	},
 	handleQuestionHeaderClick: function () {
 		if (!this.state.EditModal) {

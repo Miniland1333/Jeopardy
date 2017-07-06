@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -12,11 +13,11 @@ var divStyle = {
 };
 var Question = React.createClass({
 	propTypes: {
-		round: React.PropTypes.number,
-		key1: React.PropTypes.string,
-		key2: React.PropTypes.string,
-		game: React.PropTypes.object,
-		cell: React.PropTypes.object,
+		round: PropTypes.number,
+		key1: PropTypes.string,
+		key2: PropTypes.string,
+		game: PropTypes.object,
+		cell: PropTypes.object,
 	},
 	handleQuestionClick: function () {
 		if (this.props.cell.question != "") {

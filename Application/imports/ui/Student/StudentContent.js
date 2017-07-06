@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import refresh from "../refresh";
@@ -31,7 +32,7 @@ export const StudentContent = React.createClass({
 		}
 	},
 	propTypes: {
-		gameLogic: React.PropTypes.object,
+		gameLogic: PropTypes.object,
 	},
 	handleFirst: function () {
 		Meteor.call("gameLogic.setFirst", teamNumber);

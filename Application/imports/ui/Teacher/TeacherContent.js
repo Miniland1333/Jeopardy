@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -21,9 +22,9 @@ const answerStyle = {
 
 export const TeacherContent = React.createClass({
 	propTypes: {
-		gameDatabase: React.PropTypes.array,
-		gameLogic: React.PropTypes.object,
-		gameQuestions: React.PropTypes.object,
+		gameDatabase: PropTypes.array,
+		gameLogic: PropTypes.object,
+		gameQuestions: PropTypes.object,
 	},
 	renderContent: function () {
 		if (this.props.gameLogic["round"] == 0) {

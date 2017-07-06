@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 /**
  * Created by Henry on 2/24/2017.
  */
@@ -79,10 +80,10 @@ export const Options = React.createClass({
 		}
 	},
 	propTypes: {
-		handleClose: React.PropTypes.func,
-		playerLogic: React.PropTypes.object,
-		gameLogic: React.PropTypes.object,
-		round: React.PropTypes.number,
+		handleClose: PropTypes.func,
+		playerLogic: PropTypes.object,
+		gameLogic: PropTypes.object,
+		round: PropTypes.number,
 	},
 	renderButtons: function () {
 		return [
