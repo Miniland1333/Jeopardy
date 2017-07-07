@@ -182,14 +182,28 @@ export default class Options extends React.Component {
 	
 	renderPing() {
 		return [
-			<div className="flex-container" style={{width: "100vw", flex:1, justifyContent:"center"}}>
-				<PingReport />
+			<div key="1" className="flex-container"
+			     style={{width: "100vw", flex: 1, justifyContent: "center", flexDirection: "column"}}>
+				<div key="2" style={{
+					backgroundColor: "#F1F1F1",
+					margin: "5vmin",
+					padding: "3vmin",
+					borderRadius: "30px",
+					boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)'
+				}}>
+					<PingReport />
+				</div>
 			</div>,
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		]
 	}
+	
+	//margin 5
+	//padding 3
+	//boxshadow
+	// border - radius 30px
 	
 	renderContent = () => {
 		switch (this.state.state) {
@@ -219,7 +233,7 @@ export default class Options extends React.Component {
 		
 		return (
 			<div id="optionModal" style={modalStyle}>
-				<div className="modal-content flex-container" style={modalContentStyle}>
+				<div key="mainContent" className="modal-content flex-container" style={modalContentStyle}>
 					{this.renderContent()}
 				</div>
 			</div>

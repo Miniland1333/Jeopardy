@@ -21,9 +21,7 @@ class PingReport extends React.Component {
 	render() {
 		return <div className="flex-container" style={{
 			flexDirection: "column",
-			flex: 1,
 			fontSize: "3vmin",
-			color: "white",
 		}}>
 			
 			<div className="flex-container">
