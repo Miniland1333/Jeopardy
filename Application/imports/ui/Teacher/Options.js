@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 /**
  * Created by Henry on 2/24/2017.
  */
@@ -74,18 +74,18 @@ const playerStyle = {
 };
 
 export default class Options extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		handleClose: PropTypes.func,
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
 		round: PropTypes.number,
 	};
-
-    state = {
-        state: "buttons",
-    };
-
-    renderButtons = () => {
+	
+	state = {
+		state: "buttons",
+	};
+	
+	renderButtons = () => {
 		return [
 			this.props.round !== 3 ?
 				<div key="advance" style={enabledStyle} onClick={
@@ -137,16 +137,16 @@ export default class Options extends React.Component {
 			<div key="exit" style={enabledStyle} onClick={this.exit}>Exit Menu</div>,
 		]
 	};
-
-    renderAdjust = () => {
+	
+	renderAdjust = () => {
 		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		];
 	};
-
-    renderKick = () => {
+	
+	renderKick = () => {
 		let innerArray = [];
 		for (let i = 1; i <= this.props.gameLogic["numPlayers"]; i++) {
 			innerArray.push(<div key={"Player " + i} style={playerStyle} onClick={function () {
@@ -156,27 +156,27 @@ export default class Options extends React.Component {
 		
 		return [
 			innerArray,
-			<div key="buffer" style={{height: 10}}></div>,
+			<div key="buffer" style={{height: 10}}/>,
 			
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		];
 	};
-
-    renderSort = () => {
+	
+	renderSort = () => {
 		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		];
 	};
-
-    exit = () => {
+	
+	exit = () => {
 		$("#optionModal").fadeOut(this.props.handleClose);
 	};
-
-    renderContent = () => {
+	
+	renderContent = () => {
 		switch (this.state.state) {
 			case "buttons":
 				return this.renderButtons();
@@ -188,12 +188,12 @@ export default class Options extends React.Component {
 				return this.renderSort();
 		}
 	};
-
-    componentDidMount() {
+	
+	componentDidMount() {
 		$("#optionModal").fadeIn();
 	}
-
-    render() {
+	
+	render() {
 		//States where options are invalid
 		if ([""].indexOf(this.props.gameLogic.state) >= 0) {
 			this.exit();

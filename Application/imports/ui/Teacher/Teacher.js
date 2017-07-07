@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {createContainer} from "meteor/react-meteor-data";
 import DocumentTitle from "react-document-title";
@@ -13,13 +13,13 @@ import TeacherFooter from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
 class Teacher extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.array,
 		gameQuestions: PropTypes.array,
 	};
-
-    render() {
+	
+	render() {
 		if (this.props.isReady && this.props.gameLogic.length === 0) {
 			Meteor.call('gameLogic.init');
 		}

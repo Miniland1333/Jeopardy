@@ -9,19 +9,19 @@ import EditorHeader from "./EditorHeader";
 import EditorTable from "./EditorTable";
 
 class Editor extends React.Component {
-    state = {
-        round: "Single",
-    };
-
-    handleRoundChange = (round) => {
+	state = {
+		round: "Single",
+	};
+	
+	handleRoundChange = (round) => {
 		this.setState({round: round});
 	};
-
-    componentWillReceiveProps(newProps) {
+	
+	componentWillReceiveProps(newProps) {
 		console.log("Editor is receiving " + newProps);
 	}
-
-    render() {
+	
+	render() {
 		console.log(this.props.isReady);
 		return (
 			<DocumentTitle title='Jeopardy Editor'>
@@ -47,8 +47,8 @@ class Editor extends React.Component {
 
 
 export default createContainer(() => {
-	var handle1 = Meteor.subscribe('gameDatabase');
-	var handle2 = Meteor.subscribe('editorDatabase');
+	const handle1 = Meteor.subscribe('gameDatabase');
+	const handle2 = Meteor.subscribe('editorDatabase');
 	return {
 		isReady: handle1.ready() && handle2.ready(),
 		editorDatabase: editorDatabase.find().fetch(),

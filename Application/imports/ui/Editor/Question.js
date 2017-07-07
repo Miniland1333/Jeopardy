@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 
 import EditModal from "./EditModal";
@@ -25,30 +25,30 @@ const redStyle = {
 };
 
 export default class Question extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		roundName: PropTypes.string,
 		key1: PropTypes.string,
 		key2: PropTypes.string,
 		game: PropTypes.object,
 		cell: PropTypes.object,
 	};
-
-    state = {
-        isImageOkay: true,
-        EditModal: false,
-    };
-
-    handleQuestionClick = () => {
+	
+	state = {
+		isImageOkay: true,
+		EditModal: false,
+	};
+	
+	handleQuestionClick = () => {
 		if (!this.state.EditModal) {
 			this.setState({EditModal: true})
 		}
 	};
-
-    handleClose = () => {
+	
+	handleClose = () => {
 		this.setState({EditModal: false});
 	};
-
-    handleEditModule = () => {
+	
+	handleEditModule = () => {
 		if (this.state.EditModal) {
 			return (
 				<EditModal
@@ -66,8 +66,8 @@ export default class Question extends React.Component {
 			return [];
 		}
 	};
-
-    renderQuestion = () => {
+	
+	renderQuestion = () => {
 		let questionContent;
 		let questionType;
 		if (typeof this.props.cell.question === "string") {
@@ -107,17 +107,17 @@ export default class Question extends React.Component {
 			<h6 style={{margin: 0}} key={this.props.key1 + this.props.key2 + "extra"}>{extraContent()}</h6>]
 		
 	};
-
-    brokenImage = () => {
+	
+	brokenImage = () => {
 		if (this.state.isImageOkay)
 			this.setState({isImageOkay: false});
 	};
-
-    componentWillReceiveProps(nextProps) {
+	
+	componentWillReceiveProps(nextProps) {
 		this.setState({isImageOkay: true});
 	}
-
-    getValue = () => {
+	
+	getValue = () => {
 		let value;
 		let multiplier;
 		switch (this.props.roundName) {
@@ -150,8 +150,8 @@ export default class Question extends React.Component {
 		}
 		return "$" + value * multiplier;
 	};
-
-    render() {
+	
+	render() {
 		return (
 			<div style={this.state.isImageOkay ? divStyle : redStyle} title={this.getValue()}>
 				<div className="Rtable-cell" onClick={this.handleQuestionClick}>

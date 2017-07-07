@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -15,14 +15,14 @@ const inputStyle = {
 };
 
 export default class ScoreBoard extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
 		round: PropTypes.number,
 		connectionId: PropTypes.string,
 	};
-
-    numDisplay = () => {
+	
+	numDisplay = () => {
 		if (this.props.round === 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
@@ -48,12 +48,12 @@ export default class ScoreBoard extends React.Component {
 			}
 		}
 	};
-
-    handleName = (name) => {
+	
+	handleName = (name) => {
 		Meteor.call('gameLogic.setTeamName', this.props.playerLogic["teamNumber"], name.target.value);
 	};
-
-    handleClick = () => {
+	
+	handleClick = () => {
 		const status = this.props.playerLogic["status"];
 		if (this.props.round === 0) {
 			
@@ -98,17 +98,17 @@ export default class ScoreBoard extends React.Component {
 			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "active", this.props.round);
 		}
 	};
-
-    handleSubmit = (e) => {
+	
+	handleSubmit = (e) => {
 		e.preventDefault();
 		$("#input" + this.props.playerLogic["teamNumber"]).blur();
 	};
-
-    handleFocus = () => {
+	
+	handleFocus = () => {
 		Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "pending", 0)
 	};
-
-    handleBlur = (name) => {
+	
+	handleBlur = (name) => {
 		$("#input" + this.props.playerLogic["teamNumber"]).prop("disabled", true);
 		//noinspection EqualityComparisonWithCoercionJS
 		if (name.target.value == "") {
@@ -121,8 +121,8 @@ export default class ScoreBoard extends React.Component {
 		}
 		
 	};
-
-    scoreStyle = () => {
+	
+	scoreStyle = () => {
 		const green = {
 			fontFamily: "D7",
 			fontSize: "4vw",
@@ -237,8 +237,8 @@ export default class ScoreBoard extends React.Component {
 			return normal;
 		}
 	};
-
-    render() {
+	
+	render() {
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{

@@ -21,10 +21,10 @@ Meteor.methods({
 	'editorDatabase.init'(){
 		editorDatabase.remove({});
 		//initializes editorDatabase
-		var categoryTemplate = {
+		const categoryTemplate = {
 			categoryName: "",
 		};
-		for (var i = 1; i <= 5; i++) {
+		for (let i = 1; i <= 5; i++) {
 			/*            categoryTemplate["question"+i] = {
 			 isSinglePlay:true,
 			 question:"question"+i,
@@ -37,8 +37,8 @@ Meteor.methods({
 			};
 		}
 		
-		var gameTemplate = {};
-		for (var j = 1; j <= 6; j++) {
+		const gameTemplate = {};
+		for (let j = 1; j <= 6; j++) {
 			gameTemplate["category" + j] = categoryTemplate;
 		}
 		
@@ -72,7 +72,7 @@ Meteor.methods({
 			editorDatabase.update({}, {$set: {"FinalJeopardy.category": name}});
 		}
 		else {
-			var bundle = {};
+			const bundle = {};
 			bundle[round + "." + identifier + ".categoryName"] = name;
 			editorDatabase.update({}, {$set: bundle});
 		}
@@ -85,12 +85,12 @@ Meteor.methods({
 			editorDatabase.update({}, {$set: {"FinalJeopardy.question": question, "FinalJeopardy.answer": answer}});
 		}
 		else {
-			var minibundle = {
+			const minibundle = {
 				question: question,
 				answer: answer,
 				isSinglePlay: isSinglePlay,
 			};
-			var bundle = {};
+			const bundle = {};
 			bundle[round + "." + identifier1 + "." + identifier2] = minibundle;
 			
 			editorDatabase.update({}, {$set: bundle});

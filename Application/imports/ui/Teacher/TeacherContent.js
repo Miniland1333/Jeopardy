@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -21,13 +21,13 @@ const answerStyle = {
 };
 
 export default class TeacherContent extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object,
 	};
-
-    renderContent = () => {
+	
+	renderContent = () => {
 		if (this.props.gameLogic["round"] == 0) {
 			addToHomescreen();
 			return <div className="flex-container" style={{flex: 1}}>
@@ -232,8 +232,8 @@ export default class TeacherContent extends React.Component {
 				}
 		}
 	};
-
-    render() {
+	
+	render() {
 		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>

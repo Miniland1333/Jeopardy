@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -6,12 +6,12 @@ import {gameDatabase} from "../../api/gameDatabase";
 import refresh from "../refresh";
 
 export default class TeacherFooter extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object
 	};
-
-    handleCorrect = () => {
+	
+	handleCorrect = () => {
 		let first = this.props.gameLogic["currentQuestionLogic"]["first"];
 		let value = this.props.gameQuestions["currentQuestion"]["value"];
 		
@@ -32,8 +32,8 @@ export default class TeacherFooter extends React.Component {
 		}
 		
 	};
-
-    handleIncorrect = () => {
+	
+	handleIncorrect = () => {
 		let first = this.props.gameLogic["currentQuestionLogic"]["first"];
 		let value = this.props.gameQuestions["currentQuestion"]["value"];
 		
@@ -55,8 +55,8 @@ export default class TeacherFooter extends React.Component {
 		}
 		
 	};
-
-    handleFJCorrect = () => {
+	
+	handleFJCorrect = () => {
 		const player = this.props.gameLogic["FJ"]["currentPlayer"];
 		const wager = this.props.gameLogic["player" + player]["wager"];
 		Meteor.call('gameLogic.changePoints', player, wager);
@@ -71,8 +71,8 @@ export default class TeacherFooter extends React.Component {
 			Meteor.call('gameLogic.removeFJ', player);
 		}
 	};
-
-    handleFJIncorrect = () => {
+	
+	handleFJIncorrect = () => {
 		const player = this.props.gameLogic["FJ"]["currentPlayer"];
 		let wager = this.props.gameLogic["player" + player]["wager"];
 		Meteor.call('gameLogic.changePoints', player, -wager);
@@ -85,8 +85,8 @@ export default class TeacherFooter extends React.Component {
 			Meteor.call('gameLogic.removeFJ', player);
 		}
 	};
-
-    handleStart = () => {
+	
+	handleStart = () => {
 		if (this.readyToStart() == "ready") {
 			const game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
 			Meteor.call('gameQuestions.load', game);
@@ -94,8 +94,8 @@ export default class TeacherFooter extends React.Component {
 			Meteor.call('gameLogic.advance');
 		}
 	};
-
-    readyToStart = () => {
+	
+	readyToStart = () => {
 		if (this.playerCount() < 2) {
 			return "morePlayers";
 		}
@@ -111,8 +111,8 @@ export default class TeacherFooter extends React.Component {
 			return "gameSelection";
 		}
 	};
-
-    isValid = (gameName) => {
+	
+	isValid = (gameName) => {
 		const game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
 		if (game === undefined) {
 			Meteor.call('gameLogic.setGame', "Please select a game");
@@ -154,8 +154,8 @@ export default class TeacherFooter extends React.Component {
 		}
 		return catCount != 0;
 	};
-
-    playerCount = () => {
+	
+	playerCount = () => {
 		let count = 0;
 		const setupPlayers = this.props.gameLogic["setupPlayers"];
 		for (let i = 1; i <= 6; i++) {
@@ -165,8 +165,8 @@ export default class TeacherFooter extends React.Component {
 		}
 		return count;
 	};
-
-    renderContent = () => {
+	
+	renderContent = () => {
 		refresh();
 		const round = this.props.gameLogic["round"];
 		if (round == 0) {
@@ -524,8 +524,8 @@ export default class TeacherFooter extends React.Component {
 		
 		
 	};
-
-    render() {
+	
+	render() {
 		
 		return (
 			<div className="flex-container" style={{minHeight: "10vh", fontSize: "5vh", flexDirection: "column"}}>

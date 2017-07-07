@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import refresh from "../refresh";
@@ -26,43 +26,43 @@ let teamNumber;
 let finalAnswer;
 
 export default class StudentContent extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		gameLogic: PropTypes.object,
 	};
-
-    state = {
-        setup: true,
-    };
-
-    handleFirst = () => {
+	
+	state = {
+		setup: true,
+	};
+	
+	handleFirst = () => {
 		Meteor.call("gameLogic.setFirst", teamNumber);
 		Meteor.call("gameLogic.setState", "answer");
 	};
-
-    handleLate = () => {
+	
+	handleLate = () => {
 		Meteor.call('gameLogic.addLate', teamNumber);
 	};
-
-    shouldComponentUpdate(nextProps, nextState) {
+	
+	shouldComponentUpdate(nextProps, nextState) {
 		let currentState = this.props.gameLogic["state"];
 		let futureState = nextProps.gameLogic["state"];
 		return !(currentState === "FJopen" && futureState === "FJopen" && !this.state.setup);
 		
 	}
-
-    componentDidMount() {
+	
+	componentDidMount() {
 		this.componentDidUpdate();
 	}
-
-    componentDidUpdate() {
+	
+	componentDidUpdate() {
 		
 		if (this.state.setup && teamNumber !== undefined &&
 			(this.props.gameLogic["state"] === "FJread" || this.props.gameLogic["state"] === "FJopen")) {
 			this.setState({setup: false});
 		}
 	}
-
-    renderContent = () => {
+	
+	renderContent = () => {
 		let wager;
 		let max;
 		let points;
@@ -318,8 +318,8 @@ export default class StudentContent extends React.Component {
 			            style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}/>;
 		}
 	};
-
-    render() {
+	
+	render() {
 		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>

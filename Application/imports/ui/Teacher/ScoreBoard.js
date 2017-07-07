@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import "./../jquery-ui";
@@ -8,17 +8,17 @@ import Options from "./Options";
 
 
 export default class ScoreBoard extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
 		round: PropTypes.number,
 	};
-
-    state = {
-        options: false,
-    };
-
-    numDisplay = () => {
+	
+	state = {
+		options: false,
+	};
+	
+	numDisplay = () => {
 		if (this.props.round == 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
@@ -44,8 +44,8 @@ export default class ScoreBoard extends React.Component {
 			}
 		}
 	};
-
-    handleClick = () => {
+	
+	handleClick = () => {
 		if (this.props.round == 0) {
 			if (confirm("This will kick player" + this.props.playerLogic["teamNumber"] + ". Are you sure?")) {
 				Meteor.call('gameLogic.kick', this.props.playerLogic["teamNumber"], this.props.playerLogic["connectionId"]);
@@ -58,12 +58,12 @@ export default class ScoreBoard extends React.Component {
 		}
 		
 	};
-
-    handleClose = () => {
+	
+	handleClose = () => {
 		this.setState({options: false});
 	};
-
-    scoreStyle = () => {
+	
+	scoreStyle = () => {
 		
 		const green = {
 			fontFamily: "D7",
@@ -183,8 +183,8 @@ export default class ScoreBoard extends React.Component {
 			return normal;
 		}
 	};
-
-    render() {
+	
+	render() {
 		
 		return (
 			<div className="flex-container" onClick={this.handleClick}

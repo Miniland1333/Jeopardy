@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -6,12 +6,12 @@ import ScoreBoard from "./ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
 
 export default class StudentHeader extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		gameLogic: PropTypes.object,
 	};
-
-    renderInput = () => {
-		 const isSetup = !this.props.gameLogic["round"];
+	
+	renderInput = () => {
+		const isSetup = !this.props.gameLogic["round"];
 		
 		if (isSetup) {
 			return $.map(this.props.gameLogic["setupPlayers"], function (contents, field) {
@@ -41,8 +41,8 @@ export default class StudentHeader extends React.Component {
 			}
 		}
 	};
-
-    render() {
+	
+	render() {
 		
 		return (
 			<div className="flex-container" id="border">

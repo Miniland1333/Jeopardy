@@ -1,31 +1,31 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 
 import EditModal from "./EditModal";
 
 export default class CategoryHeader extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		roundName: PropTypes.string,
 		key1: PropTypes.string,
 		categoryName: PropTypes.string,
 	};
-
-    state = {
-        EditModal: false,
-    };
-
-    handleQuestionHeaderClick = () => {
+	
+	state = {
+		EditModal: false,
+	};
+	
+	handleQuestionHeaderClick = () => {
 		if (!this.state.EditModal) {
 			//alert("You clicked "+this.props.roundName+","+this.props.key1);
 			this.setState({EditModal: true});
 		}
 	};
-
-    handleClose = () => {
+	
+	handleClose = () => {
 		this.setState({EditModal: false});
 	};
-
-    render() {
+	
+	render() {
 		return (<div>
 			<div className="Header" onClick={this.handleQuestionHeaderClick}
 			     style={{fontSize: "2vmin"}}>{this.props.categoryName}</div>

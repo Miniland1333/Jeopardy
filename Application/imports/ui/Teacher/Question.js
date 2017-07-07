@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -13,23 +13,23 @@ const divStyle = {
 };
 
 export default class Question extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		round: PropTypes.number,
 		key1: PropTypes.string,
 		key2: PropTypes.string,
 		game: PropTypes.object,
 		cell: PropTypes.object,
 	};
-
-    handleQuestionClick = () => {
+	
+	handleQuestionClick = () => {
 		if (this.props.cell.question != "") {
 			Meteor.call('gameQuestions.pickQuestion', this.props.key1, this.props.key2, this.props.cell.question, this.props.cell.answer, this.props.cell.isSinglePlay, this.props.round);
 			
 			Meteor.call('gameLogic.setState', "questionDecide");
 		}
 	};
-
-    renderContent = () => {
+	
+	renderContent = () => {
 		let thing;
 		if (this.props.cell.question != "") {
 			switch (this.props.key2) {
@@ -55,8 +55,8 @@ export default class Question extends React.Component {
 			return "";
 		}
 	};
-
-    render() {
+	
+	render() {
 		return (
 			<div className="Rtable-cell" style={divStyle} onClick={this.handleQuestionClick}>
 				{this.renderContent()}

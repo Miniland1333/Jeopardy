@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 
 
@@ -7,11 +7,11 @@ import {gameLogic} from "../../api/gameLogic";
 import refresh from "../refresh";
 
 export default class ViewerFooter extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		gameLogic: PropTypes.object,
 	};
-
-    renderInput = () => {
+	
+	renderInput = () => {
 		const isSetup = !this.props.gameLogic["round"];
 		
 		if (isSetup) {
@@ -35,8 +35,8 @@ export default class ViewerFooter extends React.Component {
 			});
 		}
 	};
-
-    render() {
+	
+	render() {
 		refresh();
 		return (
 			<div className="flex-container" id="border">

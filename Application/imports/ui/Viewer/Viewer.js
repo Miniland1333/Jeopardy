@@ -10,7 +10,7 @@ import ViewerContent from "./ViewerContent";
 import ViewerFooter from "./ViewerFooter";
 
 class Viewer extends React.Component {
-    render() {
+	render() {
 		return (
 			<DocumentTitle title='Jeopardy Viewer'>
 				<div>

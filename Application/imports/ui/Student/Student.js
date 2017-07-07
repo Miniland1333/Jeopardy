@@ -10,7 +10,7 @@ import StudentContent from "./StudentContent";
 
 
 class Student extends React.Component {
-    render() {
+	render() {
 		return (
 			<DocumentTitle title='Jeopardy'>
 				<div>

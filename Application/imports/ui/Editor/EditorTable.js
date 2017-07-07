@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
@@ -7,13 +7,13 @@ import CategoryHeader from "./CategoryHeader";
 import refresh from "../refresh";
 
 export default class EditorTable extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		round: PropTypes.string.isRequired,
 		editorDatabase: PropTypes.array.isRequired,
 	};
-
-    renderInput = () => {
-		var roundName;
+	
+	renderInput = () => {
+		let roundName;
 		switch (this.props.round) {
 			case "Single":
 				roundName = "Jeopardy";
@@ -27,7 +27,7 @@ export default class EditorTable extends React.Component {
 		if (this.props.editorDatabase[0] == undefined) {
 			Meteor.call('editorDatabase.init');
 		}
-		var round = this.props.editorDatabase[0][roundName];
+		const round = this.props.editorDatabase[0][roundName];
 		return (roundName == "FinalJeopardy" ?
 				<div key="" className="Table">
 					<div className="Column" key="C1">
@@ -56,8 +56,8 @@ export default class EditorTable extends React.Component {
 				</div>
 		);
 	};
-
-    render() {
+	
+	render() {
 		refresh();
 		return (
 			<div className="Table">

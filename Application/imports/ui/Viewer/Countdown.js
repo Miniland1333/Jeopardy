@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 
 
@@ -46,12 +46,12 @@ const progressStyle = {
 	flex: 1,
 };
 export default class CountDown extends React.Component {
-    static propTypes = {
+	static propTypes = {
 		gameLogic: PropTypes.object,
 		time: PropTypes.number,
 	};
-
-    render() {
+	
+	render() {
 		switch (this.props.gameLogic["state"]) {
 			case "open":
 				return <div className="flex-container" style={containerStyle}>
