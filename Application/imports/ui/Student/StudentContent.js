@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import refresh from "../refresh";
+import Ping from "../Ping";
 
 const buttonStyle = {
 	backgroundColor: "#555555",
@@ -319,11 +320,24 @@ export default class StudentContent extends React.Component {
 		}
 	};
 	
+	getTeamName() {
+		if(this.props.gameLogic["connections"][Meteor.connection._lastSessionId] === undefined) {
+			return Meteor.connection._lastSessionId;
+		}
+		else if (this.props.gameLogic["round"] === 0){
+			return this.props.gameLogic["setupPlayers"]["player" + teamNumber]["teamName"]
+		}
+		else {
+			return this.props.gameLogic["player" + teamNumber]["teamName"]
+		}
+	}
+	
 	render() {
 		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 				{this.renderContent()}
+				<Ping name={this.getTeamName()}/>
 			</div>
 		);
 	}

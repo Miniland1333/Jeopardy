@@ -6,7 +6,7 @@ import GameDropdown from "./GameDropdown";
 
 import Question from "./Question";
 import refresh from "../refresh";
-
+import PingReport from "./PingReport"
 
 const questionStyle = {
 	fontSize: "6vmin",
@@ -30,8 +30,9 @@ export default class TeacherContent extends React.Component {
 	renderContent = () => {
 		if (this.props.gameLogic["round"] == 0) {
 			addToHomescreen();
-			return <div className="flex-container" style={{flex: 1}}>
+			return <div className="flex-container" style={{flex: 1, flexDirection: 'column'}}>
 				<GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic}/>
+				<PingReport/>
 			</div>;
 		}
 		switch (this.props.gameLogic["state"]) {

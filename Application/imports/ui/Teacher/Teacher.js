@@ -12,6 +12,8 @@ import TeacherHeader from "./TeacherHeader";
 import TeacherFooter from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
+import Ping from "../Ping"
+
 class Teacher extends React.Component {
 	static propTypes = {
 		gameDatabase: PropTypes.array,
@@ -34,6 +36,7 @@ class Teacher extends React.Component {
 							                gameDatabase={this.props.gameDatabase}/>
 							<TeacherFooter gameLogic={this.props.gameLogic[0]}
 							               gameQuestions={this.props.gameQuestions[0]}/>
+							<Ping name={"Teacher"}/>
 						</div> : <div/>
 						
 					}

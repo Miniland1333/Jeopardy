@@ -20,9 +20,6 @@ class Student extends React.Component {
 							<StudentContent gameLogic={this.props.gameLogic[0]}/>
 						</div> : <div/>
 					}
-					{/*					<div style={{position: "fixed", width: "100vw", top: 0}}>
-					 </div>
-					 <div id="buffer" style={{height: '200vh'}}/>*/}
 				</div>
 			</DocumentTitle>
 		)

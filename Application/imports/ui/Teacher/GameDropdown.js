@@ -10,7 +10,6 @@ const selectStyle = {
 	display: 'block',
 	fontSize: "4vh",
 	backgroundColor: '#C99700', /* yellow */
-	flex: 1,
 	WebkitAppearance: "none",
 	border: "none",
 };
@@ -34,12 +33,10 @@ export default class GameDropdown extends React.Component {
 	
 	render() {
 		return (
-			<div className="flex-container" style={{flex: 1}}>
-				<select style={selectStyle} onChange={this.handleGame} value={this.props.gameLogic["gameName"]}>
-					<option>Please select a game</option>
-					{this.renderDropdown()}
-				</select>
-			</div>
+			<select style={selectStyle} onChange={this.handleGame} value={this.props.gameLogic["gameName"]}>
+				<option>Please select a game</option>
+				{this.renderDropdown()}
+			</select>
 		)
 	}
 }

@@ -18,10 +18,10 @@
 		return;
 	}
 	
-	var mouseProto = $.ui.mouse.prototype,
+	const mouseProto = $.ui.mouse.prototype,
 		_mouseInit = mouseProto._mouseInit,
-		_mouseDestroy = mouseProto._mouseDestroy,
-		touchHandled;
+		_mouseDestroy = mouseProto._mouseDestroy;
+	let touchHandled;
 	
 	/**
 	 * Simulate a mouse event based on a corresponding touch event
@@ -37,7 +37,7 @@
 		
 		event.preventDefault();
 		
-		var touch = event.originalEvent.changedTouches[0],
+		const touch = event.originalEvent.changedTouches[0],
 			simulatedEvent = document.createEvent('MouseEvents');
 		
 		// Initialize the simulated mouse event using the touch event's coordinates
@@ -69,7 +69,7 @@
 	 */
 	mouseProto._touchStart = function (event) {
 		
-		var self = this;
+		const self = this;
 		
 		// Ignore the event if another widget is already being handled
 		if (touchHandled || !self._mouseCapture(event.originalEvent.changedTouches[0])) {
@@ -146,7 +146,7 @@
 	 */
 	mouseProto._mouseInit = function () {
 		
-		var self = this;
+		const self = this;
 		
 		// Delegate the touch handlers to the widget's element
 		self.element.bind({
@@ -164,7 +164,7 @@
 	 */
 	mouseProto._mouseDestroy = function () {
 		
-		var self = this;
+		const self = this;
 		
 		// Delegate the touch handlers to the widget's element
 		self.element.unbind({
