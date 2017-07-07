@@ -9,11 +9,11 @@
     "classnames": "^2.2.5",
     "jquery": "^3.1.1",
     "meteor-node-stubs": "~0.2.0",
+    "prop-types": "latest",
     "react": "^15.6.0",
     "react-addons-pure-render-mixin": "^15.5.2",
     "react-document-title": "^2.0.2",
     "react-dom": "^15.6.0",
     "react-router": "latest",
-    "prop-types": "latest"
   }
 }
