@@ -8,6 +8,7 @@ import {gameQuestions} from "../../api/gameQuestions";
 
 import ViewerContent from "./ViewerContent";
 import ViewerFooter from "./ViewerFooter";
+import Ping from "../Ping";
 
 class Viewer extends React.Component {
 	render() {
@@ -19,6 +20,7 @@ class Viewer extends React.Component {
 							<ViewerContent gameLogic={this.props.gameLogic[0]}
 							               gameQuestions={this.props.gameQuestions[0]}/>
 							<ViewerFooter gameLogic={this.props.gameLogic[0]}/>
+							<Ping name={"Viewer"}/>
 						</div> : <div/>
 					}
 				</div>

@@ -21,5 +21,5 @@ Meteor.startup(() => {
 		console.log(connection.id);
 	});
 	
-	Meteor.setTimeout(Meteor.call("pingDatabase.init"), 6000);
+	Meteor.setTimeout(()=>Meteor.call("pingDatabase.init"), 6000);
 });

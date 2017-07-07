@@ -7,6 +7,7 @@ import {Meteor} from "meteor/meteor";
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";
 import {gameLogic} from "../../api/gameLogic";
+import PingReport from "./PingReport";
 
 const modalStyle = {
 	display: 'none', /* hidden by default */
@@ -85,7 +86,7 @@ export default class Options extends React.Component {
 		state: "buttons",
 	};
 	
-	renderButtons = () => {
+	renderButtons() {
 		return [
 			this.props.round !== 3 ?
 				<div key="advance" style={enabledStyle} onClick={
@@ -125,6 +126,9 @@ export default class Options extends React.Component {
 				this.setState({state: "kick"});
 			}}>Kick Player</div>,
 			
+			<div key="ping" style={enabledStyle} onClick={() => {
+				this.setState({state: "ping"});
+			}}>Check Ping</div>,
 			
 			<div key="reset" style={enabledStyle} onClick={
 				() => {
@@ -138,7 +142,7 @@ export default class Options extends React.Component {
 		]
 	};
 	
-	renderAdjust = () => {
+	renderAdjust() {
 		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
@@ -146,7 +150,7 @@ export default class Options extends React.Component {
 		];
 	};
 	
-	renderKick = () => {
+	renderKick() {
 		let innerArray = [];
 		for (let i = 1; i <= this.props.gameLogic["numPlayers"]; i++) {
 			innerArray.push(<div key={"Player " + i} style={playerStyle} onClick={function () {
@@ -164,7 +168,7 @@ export default class Options extends React.Component {
 		];
 	};
 	
-	renderSort = () => {
+	renderSort() {
 		return [
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
@@ -176,12 +180,25 @@ export default class Options extends React.Component {
 		$("#optionModal").fadeOut(this.props.handleClose);
 	};
 	
+	renderPing() {
+		return [
+			<div className="flex-container" style={{width: "100vw", flex:1, justifyContent:"center"}}>
+				<PingReport />
+			</div>,
+			<div key="mainMenu" style={enabledStyle} onClick={() => {
+				this.setState({state: "buttons"});
+			}}>Main Menu</div>,
+		]
+	}
+	
 	renderContent = () => {
 		switch (this.state.state) {
 			case "buttons":
 				return this.renderButtons();
 			case "adjust":
 				return this.renderAdjust();
+			case "ping":
+				return this.renderPing();
 			case "kick":
 				return this.renderKick();
 			case "sort":
@@ -189,6 +206,7 @@ export default class Options extends React.Component {
 		}
 	};
 	
+	//noinspection JSMethodCanBeStatic
 	componentDidMount() {
 		$("#optionModal").fadeIn();
 	}

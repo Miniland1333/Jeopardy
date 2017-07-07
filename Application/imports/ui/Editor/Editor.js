@@ -7,6 +7,7 @@ import {gameDatabase} from "../../api/gameDatabase";
 import {editorDatabase} from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
 import EditorTable from "./EditorTable";
+import Ping from "../Ping";
 
 class Editor extends React.Component {
 	state = {
@@ -17,6 +18,7 @@ class Editor extends React.Component {
 		this.setState({round: round});
 	};
 	
+	//noinspection JSMethodCanBeStatic
 	componentWillReceiveProps(newProps) {
 		console.log("Editor is receiving " + newProps);
 	}
@@ -37,7 +39,8 @@ class Editor extends React.Component {
 								round={this.state.round}
 								editorDatabase={this.props.editorDatabase}
 							/>
-						</div> : <div></div>
+							<Ping name={"Editor"}/>
+						</div> : <div/>
 					}
 				</div>
 			</DocumentTitle>

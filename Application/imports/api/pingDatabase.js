@@ -16,15 +16,14 @@ Meteor.methods({
 		pingDatabase.remove({});
 	},
 	'pingDatabase.updateUser'(connectionId, name, ping){
-		const bundle = {};
-		bundle[connectionId] = {
+		pingDatabase.upsert({connectionId: connectionId}, {
 			connectionId: connectionId,
 			name: name,
 			roundTripTime: ping,
-		};
-		pingDatabase.upsert({}, {$set: bundle});
+		});
 	},
 	'pingDatabase.kick'(connectionId){
-		pingDatabase.remove({connectionId});
+		console.log("Kicking " + connectionId);
+		pingDatabase.remove({connectionId: connectionId});
 	},
 });
