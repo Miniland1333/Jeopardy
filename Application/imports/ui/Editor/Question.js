@@ -24,7 +24,7 @@ const redStyle = {
 	backgroundColor: "red",
 };
 
-class Question extends React.Component {
+export default class Question extends React.Component {
     static propTypes = {
 		roundName: PropTypes.string,
 		key1: PropTypes.string,
@@ -162,5 +162,3 @@ class Question extends React.Component {
 			</div>)
 	}
 }
-
-module.exports = Question;

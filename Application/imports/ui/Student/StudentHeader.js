@@ -5,13 +5,13 @@ import {Meteor} from "meteor/meteor";
 import ScoreBoard from "./ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
 
-class StudentHeader extends React.Component {
+export default class StudentHeader extends React.Component {
     static propTypes = {
 		gameLogic: PropTypes.object,
 	};
 
     renderInput = () => {
-		var isSetup = !this.props.gameLogic["round"];
+		 const isSetup = !this.props.gameLogic["round"];
 		
 		if (isSetup) {
 			return $.map(this.props.gameLogic["setupPlayers"], function (contents, field) {
@@ -51,5 +51,3 @@ class StudentHeader extends React.Component {
 		);
 	}
 }
-
-module.exports = StudentHeader;

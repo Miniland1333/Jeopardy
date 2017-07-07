@@ -3,7 +3,7 @@ import React from "react";
 
 import EditModal from "./EditModal";
 
-class CategoryHeader extends React.Component {
+export default class CategoryHeader extends React.Component {
     static propTypes = {
 		roundName: PropTypes.string,
 		key1: PropTypes.string,
@@ -40,5 +40,3 @@ class CategoryHeader extends React.Component {
 		</div>)
 	}
 }
-
-module.exports = CategoryHeader;

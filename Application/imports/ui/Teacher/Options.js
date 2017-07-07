@@ -73,7 +73,7 @@ const playerStyle = {
 	backgroundColor: '#f1f1f1'
 };
 
-export class Options extends React.Component {
+export default class Options extends React.Component {
     static propTypes = {
 		handleClose: PropTypes.func,
 		playerLogic: PropTypes.object,
@@ -208,5 +208,3 @@ export class Options extends React.Component {
 		)
 	}
 }
-
-module.exports = Options;

@@ -20,7 +20,7 @@ const answerStyle = {
 	fontSize: "4vmin",
 };
 
-export class TeacherContent extends React.Component {
+export default class TeacherContent extends React.Component {
     static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.object,
@@ -242,5 +242,3 @@ export class TeacherContent extends React.Component {
 		);
 	}
 }
-
-module.exports = TeacherContent;

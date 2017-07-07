@@ -6,13 +6,13 @@ import ScoreBoard from "../Teacher/ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
 import refresh from "../refresh";
 
-class ViewerFooter extends React.Component {
+export default class ViewerFooter extends React.Component {
     static propTypes = {
 		gameLogic: PropTypes.object,
 	};
 
     renderInput = () => {
-		var isSetup = !this.props.gameLogic["round"];
+		const isSetup = !this.props.gameLogic["round"];
 		
 		if (isSetup) {
 			return $.map(this.props.gameLogic["setupPlayers"], function (contents, field) {
@@ -44,56 +44,4 @@ class ViewerFooter extends React.Component {
 			</div>
 		);
 	}
-}
-
-module.exports = ViewerFooter;
-
-
-{/*
- <div className="flex-container" id="full">
- <div className="flex-container"
- style={{padding: "10px", border: "4px solid white", flexDirection: "column", flex: 1,}}>
- <div 
- style={{fontFamily: "D7", fontSize: "4vw", minWidth: "10vw", borderRadius: 8,}}>000000
- </div>
- <div >Hanks</div>
- </div>
- <div className="flex-container" style={{
- padding: "10px",
- border: "4px solid white",
- flexDirection: "column",
- flex: 1,
- backgroundColor: "green"
- }}>
- <div 
- style={{fontFamily: "D7", fontSize: "4vw", minWidth: "10vw", borderRadius: 8,}}>000000
- </div>
- <div >Hanks</div>
- </div>
- <div className="flex-container" style={{
- padding: "10px",
- border: "4px solid white",
- flexDirection: "column",
- flex: 1,
- backgroundColor: "red"
- }}>
- <div 
- style={{fontFamily: "D7", fontSize: "4vw", minWidth: "10vw", borderRadius: 8,}}>-2000
- </div>
- <div >Hanks</div>
- </div>
- <div className="flex-container" style={{
- padding: "10px",
- border: "4px solid white",
- flexDirection: "column",
- flex: 1,
- backgroundColor: "orange"
- }}>
- <div 
- style={{fontFamily: "D7", fontSize: "4vw", minWidth: "10vw", borderRadius: 8,}}>000000
- </div>
- <div >Hanks</div>
- </div>
- </div>
- */
 }

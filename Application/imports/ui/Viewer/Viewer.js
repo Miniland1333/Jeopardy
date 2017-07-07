@@ -19,7 +19,7 @@ class Viewer extends React.Component {
 							<ViewerContent gameLogic={this.props.gameLogic[0]}
 							               gameQuestions={this.props.gameQuestions[0]}/>
 							<ViewerFooter gameLogic={this.props.gameLogic[0]}/>
-						</div> : <div></div>
+						</div> : <div/>
 					}
 				</div>
 			</DocumentTitle>
@@ -29,8 +29,8 @@ class Viewer extends React.Component {
 
 
 export default createContainer(() => {
-	var handle1 = Meteor.subscribe('gameLogic');
-	var handle2 = Meteor.subscribe('gameQuestions');
+	const handle1 = Meteor.subscribe('gameLogic');
+	const handle2 = Meteor.subscribe('gameQuestions');
 	
 	return {
 		isReady: handle1.ready() && handle2.ready(),

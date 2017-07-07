@@ -9,7 +9,7 @@ import StudentHeader from "./StudentHeader";
 import StudentContent from "./StudentContent";
 
 
-export class Student extends React.Component {
+class Student extends React.Component {
     render() {
 		return (
 			<DocumentTitle title='Jeopardy'>

@@ -25,7 +25,7 @@ const confirmStyle = {
 let teamNumber;
 let finalAnswer;
 
-export class StudentContent extends React.Component {
+export default class StudentContent extends React.Component {
     static propTypes = {
 		gameLogic: PropTypes.object,
 	};
@@ -328,6 +328,3 @@ export class StudentContent extends React.Component {
 		);
 	}
 }
-
-
-module.exports = StudentContent;

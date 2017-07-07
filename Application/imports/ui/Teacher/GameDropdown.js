@@ -3,7 +3,7 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 
 
-var selectStyle = {
+const selectStyle = {
 	height: "15vh",
 	textAlign: 'center',
 	display: 'block',
@@ -14,7 +14,7 @@ var selectStyle = {
 	border: "none",
 };
 
-class GameDropdown extends React.Component {
+export default class GameDropdown extends React.Component {
     static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.object,
@@ -27,7 +27,7 @@ class GameDropdown extends React.Component {
 	};
 
     handleGame = (e) => {
-		var gameName = e.target.value;
+		const gameName = e.target.value;
 		Meteor.call('gameLogic.setGame', gameName);
 	};
 
@@ -42,6 +42,3 @@ class GameDropdown extends React.Component {
 		)
 	}
 }
-
-
-module.exports = GameDropdown;

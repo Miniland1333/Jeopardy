@@ -6,7 +6,7 @@ import Question from "./Question";
 import CategoryHeader from "./CategoryHeader";
 import refresh from "../refresh";
 
-class EditorTable extends React.Component {
+export default class EditorTable extends React.Component {
     static propTypes = {
 		round: PropTypes.string.isRequired,
 		editorDatabase: PropTypes.array.isRequired,
@@ -66,6 +66,3 @@ class EditorTable extends React.Component {
 		)
 	}
 }
-
-
-module.exports = EditorTable;

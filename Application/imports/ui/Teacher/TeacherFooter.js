@@ -5,7 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {gameDatabase} from "../../api/gameDatabase";
 import refresh from "../refresh";
 
-export class TeacherFooter extends React.Component {
+export default class TeacherFooter extends React.Component {
     static propTypes = {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object
@@ -534,5 +534,3 @@ export class TeacherFooter extends React.Component {
 		);
 	}
 }
-
-module.exports = TeacherFooter;

@@ -45,7 +45,7 @@ const progressStyle = {
 	height: "35px",
 	flex: 1,
 };
-export class CountDown extends React.Component {
+export default class CountDown extends React.Component {
     static propTypes = {
 		gameLogic: PropTypes.object,
 		time: PropTypes.number,
@@ -93,6 +93,3 @@ export class CountDown extends React.Component {
 		}
 	}
 }
-
-
-module.exports = CountDown;

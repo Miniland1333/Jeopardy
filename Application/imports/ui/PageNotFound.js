@@ -5,7 +5,7 @@ import React from "react";
 import DocumentTitle from "react-document-title";
 
 
-var divstyle = {
+const divstyle = {
 	margin: '0 auto',
 	padding: '1em',
 	fontFamily: 'Helvetica',
@@ -15,7 +15,7 @@ var divstyle = {
 	maxWidth: "40em",
 	color: "white"
 };
-var h1style = {
+const h1style = {
 	fontWeight: 300,
 	margin: '1em 0',
 	padding: '0 0 0.25em 0',
@@ -25,14 +25,14 @@ var h1style = {
 	lineHeight: '1.1em',
 	display: "block"
 };
-var pstyle = {
+const pstyle = {
 	margin: '0 0 0.5em 0',
 	lineHeight: '1.8em',
 	fontSize: '1.2em'
 };
 
 
-function PageNotFound() {
+export default function PageNotFound() {
 	return (
 		<DocumentTitle title='Page Not Found'>
 			<div style={divstyle}>
@@ -43,5 +43,3 @@ function PageNotFound() {
 		</DocumentTitle>
 	)
 }
-
-module.exports = PageNotFound;

@@ -7,7 +7,7 @@ import "./../jquery.ui.touch-punch";
 import Options from "./Options";
 
 
-export class ScoreBoard extends React.Component {
+export default class ScoreBoard extends React.Component {
     static propTypes = {
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
@@ -207,6 +207,4 @@ export class ScoreBoard extends React.Component {
 		)
 	}
 }
-
-module.exports = ScoreBoard;
 

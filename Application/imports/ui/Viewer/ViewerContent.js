@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import "./../howler";
@@ -80,20 +80,20 @@ const FJcat = new Howl({src: ['./../Jp/jfinalj.mp3'],});
 const loop = new Howl({src: ['./../Jp/jloop.mp3'], loop: true,});
 const timeout = new Howl({src: ['./../Jp/jtime.mp3'],});
 
-export class ViewerContent extends React.Component {
-    static propTypes = {
+export default class ViewerContent extends React.Component {
+	static propTypes = {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object,
 	};
-
-    state = {
-        setup: true,
-    };
-
-    time = 5;
-    lastState = "";
-
-    handleSound = () => {
+	
+	state = {
+		setup: true,
+	};
+	
+	time = 5;
+	lastState = "";
+	
+	handleSound = () => {
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				switch (this.props.gameLogic["round"]) {
@@ -157,15 +157,15 @@ export class ViewerContent extends React.Component {
 			
 		}
 	};
-
-    handleSoundStop = () => {
+	
+	handleSoundStop = () => {
 		const soundArray = [intro, DJintro, FJintro, Jcat, DJcat, DD, FJ, loop, timeout];
 		soundArray.forEach(function (sound) {
 			sound.stop()
 		});
 	};
-
-    renderContent = () => {
+	
+	renderContent = () => {
 		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
 		if (this.props.gameLogic["round"] === 0 && this.props.gameLogic["state"] !== "") {
 			Meteor.call('gameLogic.setState', "");
@@ -277,7 +277,7 @@ export class ViewerContent extends React.Component {
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video" src={this.props.gameQuestions["currentQuestion"]["question"].URL}
-							        style={{flex: 1}}></iframe>
+							        style={{flex: 1}}/>
 						</div>
 					}
 				}
@@ -326,7 +326,7 @@ export class ViewerContent extends React.Component {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
-							        style={{flex: 1}}></iframe>
+							        style={{flex: 1}}/>
 						</div>
 					}
 				}
@@ -367,7 +367,7 @@ export class ViewerContent extends React.Component {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
-							        style={{flex: 1}}></iframe>
+							        style={{flex: 1}}/>
 						</div>
 					}
 				}
@@ -391,7 +391,7 @@ export class ViewerContent extends React.Component {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
-							        style={{flex: 1}}></iframe>
+							        style={{flex: 1}}/>
 						</div>
 					}
 				}
@@ -422,7 +422,7 @@ export class ViewerContent extends React.Component {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentRound"]["question"].URL}
-							        style={{flex: 1}}></iframe>
+							        style={{flex: 1}}/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
 					}
@@ -459,7 +459,7 @@ export class ViewerContent extends React.Component {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentRound"]["question"].URL.replace('autoplay=1', '')}
-							        style={{flex: 1}}></iframe>
+							        style={{flex: 1}}/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
 					}
@@ -533,8 +533,8 @@ export class ViewerContent extends React.Component {
 		
 		
 	};
-
-    render() {
+	
+	render() {
 		return (
 			<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 				{this.renderContent()}
@@ -543,5 +543,3 @@ export class ViewerContent extends React.Component {
 		);
 	}
 }
-
-module.exports = ViewerContent;

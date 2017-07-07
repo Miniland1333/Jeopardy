@@ -3,7 +3,7 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 
 
-var divStyle = {
+const divStyle = {
 	flex: 1,
 	textAlign: 'center',
 	margin: 0,
@@ -12,7 +12,7 @@ var divStyle = {
 	fontSize: "5vw",
 };
 
-class Question extends React.Component {
+export default class Question extends React.Component {
     static propTypes = {
 		round: PropTypes.number,
 		key1: PropTypes.string,
@@ -30,7 +30,7 @@ class Question extends React.Component {
 	};
 
     renderContent = () => {
-		var thing;
+		let thing;
 		if (this.props.cell.question != "") {
 			switch (this.props.key2) {
 				case "question1":
@@ -63,5 +63,3 @@ class Question extends React.Component {
 			</div>)
 	}
 }
-
-module.exports = Question;

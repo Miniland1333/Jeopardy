@@ -14,7 +14,7 @@ const inputStyle = {
 	minWidth: "10vw",
 };
 
-class ScoreBoard extends React.Component {
+export default class ScoreBoard extends React.Component {
     static propTypes = {
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
@@ -263,6 +263,3 @@ class ScoreBoard extends React.Component {
 		)
 	}
 }
-
-module.exports = ScoreBoard;
-

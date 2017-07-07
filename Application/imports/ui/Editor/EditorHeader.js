@@ -68,7 +68,7 @@ const dropdownStyle = {
 	color: "black",
 };
 
-export class EditorHeader extends React.Component {
+export default class EditorHeader extends React.Component {
     static propTypes = {
 		gameList: PropTypes.array.isRequired,
 		editorDatabase: PropTypes.array.isRequired,
@@ -223,5 +223,3 @@ export class EditorHeader extends React.Component {
 		)
 	}
 }
-
-module.exports = EditorHeader;

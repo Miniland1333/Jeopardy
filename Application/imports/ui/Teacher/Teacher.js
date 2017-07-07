@@ -12,7 +12,7 @@ import TeacherHeader from "./TeacherHeader";
 import TeacherFooter from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
-export class Teacher extends React.Component {
+class Teacher extends React.Component {
     static propTypes = {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.array,

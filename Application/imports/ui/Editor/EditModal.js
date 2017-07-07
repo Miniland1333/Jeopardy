@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import refresh from "../refresh";
@@ -140,21 +140,21 @@ const verticalFlexStyle = {
 	flexDirection: "column",
 };
 
-export class EditModal extends React.Component {
-    static defaultProps = {
-        roundName: "",
-        categoryName: "",
-        question: "",
-        answer: "",
-        isSinglePlay: false,
-        isHeader: false,
-        key1: "",
-        key2: "",
-        handleClose: function () {
-        },
-    };
-
-    static propTypes = {
+export default class EditModal extends React.Component {
+	static defaultProps = {
+		roundName: "",
+		categoryName: "",
+		question: "",
+		answer: "",
+		isSinglePlay: false,
+		isHeader: false,
+		key1: "",
+		key2: "",
+		handleClose: function () {
+		},
+	};
+	
+	static propTypes = {
 		roundName: PropTypes.string,
 		categoryName: PropTypes.string,
 		question: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -165,14 +165,14 @@ export class EditModal extends React.Component {
 		key2: PropTypes.string,
 		handleClose: PropTypes.func,
 	};
-
-    state = {
-        isSinglePlay: this.props.isSinglePlay,
-        questionType: "text",
-        questionText: typeof this.props.question === "string" ? this.props.question : "",
-    };
-
-    componentDidMount() {
+	
+	state = {
+		isSinglePlay: this.props.isSinglePlay,
+		questionType: "text",
+		questionText: typeof this.props.question === "string" ? this.props.question : "",
+	};
+	
+	componentDidMount() {
 		$("#myModal").fadeIn();
 		if (typeof this.props.question === "string") {
 			
@@ -187,18 +187,18 @@ export class EditModal extends React.Component {
 			}
 		}
 	}
-
-    handleAddImage = () => {
+	
+	handleAddImage = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "image"});
 	};
-
-    handleAddVideo = () => {
+	
+	handleAddVideo = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "video"});
 	};
-
-    handleFile = () => {
+	
+	handleFile = () => {
 		var fileToLoad = document.getElementById("imageToLoad").files[0];
 		if (fileToLoad != "") {
 			var fileReader = new FileReader();
@@ -217,8 +217,8 @@ export class EditModal extends React.Component {
 			$("#fileToLoad").value = "";
 		}
 	};
-
-    parseVID = (videoURL) => {
+	
+	parseVID = (videoURL) => {
 		let videoID = videoURL.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/);
 		if (videoID != null) {
 			console.log("video id = ", videoID[2]);
@@ -230,8 +230,8 @@ export class EditModal extends React.Component {
 			return null;
 		}
 	};
-
-    handleTime = () => {
+	
+	handleTime = () => {
 		let VID = $("#VID").val();
 		let start = $("#Start").val();
 		let end = $("#End").val();
@@ -264,8 +264,8 @@ export class EditModal extends React.Component {
 			$("#videoView").attr("src", videoURL);
 		}
 	};
-
-    handleSeconds = (JQuery) => {
+	
+	handleSeconds = (JQuery) => {
 		let working = JQuery.val();
 		if (!working.includes(":") && working != "") {
 			if (working % 60 < 10) {
@@ -276,25 +276,25 @@ export class EditModal extends React.Component {
 			}
 		}
 	};
-
-    handleRemoveImage = () => {
+	
+	handleRemoveImage = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "text"});
 	};
-
-    handleRemoveVideo = () => {
+	
+	handleRemoveVideo = () => {
 		this.setState({questionType: "text"});
 	};
-
-    handlePlay = () => {
+	
+	handlePlay = () => {
 		this.setState({isSinglePlay: !this.state.isSinglePlay})
 	};
-
-    handleExit = () => {
+	
+	handleExit = () => {
 		$("#myModal").fadeOut(this.props.handleClose);
 	};
-
-    handleComplete = () => {
+	
+	handleComplete = () => {
 		if (this.props.isHeader) {
 			Meteor.call('editorDatabase.updateCategory',
 				this.props.roundName,
@@ -374,8 +374,8 @@ export class EditModal extends React.Component {
 		}
 		this.handleExit();
 	};
-
-    getValue = () => {
+	
+	getValue = () => {
 		let value;
 		let multiplier;
 		switch (this.props.roundName) {
@@ -408,8 +408,8 @@ export class EditModal extends React.Component {
 		}
 		return " - $" + value * multiplier;
 	};
-
-    renderModalContent = () => {
+	
+	renderModalContent = () => {
 		if (this.props.isHeader) {
 			return <div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
 				<input id="category" defaultValue={this.props.categoryName} placeholder="Category Name"
@@ -449,7 +449,7 @@ export class EditModal extends React.Component {
 				questionContent = <div className="flex-container"
 				                       style={{maxWidth: "100%", maxHeight: 120, background: "#f2f3ea", flexGrow: 1}}>
 					<iframe id="videoView" width="213" height="120" src={this.props.question.URL}
-					        style={{flex: 0, border: "none", background: "black"}}></iframe>
+					        style={{flex: 0, border: "none", background: "black"}}/>
 					<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 						<div className="flex-container" style={{flex: 1}}>
 							<div style={{width: 80}}>Video URL</div>
@@ -506,8 +506,8 @@ export class EditModal extends React.Component {
 			<input id="answer" spellCheck="true" defaultValue={this.props.answer}
 			       placeholder="Answer" style={answerStyle}/></div>
 	};
-
-    renderButtons = () => {
+	
+	renderButtons = () => {
 		let mediaButtons;
 		switch (!this.props.isHeader && this.state.questionType) {
 			case "text":
@@ -540,8 +540,8 @@ export class EditModal extends React.Component {
 			</div>
 		</div>
 	};
-
-    render() {
+	
+	render() {
 		refresh();
 		return (
 			<div id="myModal" style={modalStyle}>
@@ -555,5 +555,3 @@ export class EditModal extends React.Component {
 		)
 	}
 }
-
-module.exports = EditModal;

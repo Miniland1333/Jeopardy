@@ -7,7 +7,7 @@ var cursorStyle = {
 	cursor: "pointer"
 };
 
-class GameLi extends React.Component {
+export default class GameLi extends React.Component {
     static propTypes = {
 		game: PropTypes.object.isRequired,
 	};
@@ -34,6 +34,3 @@ class GameLi extends React.Component {
 		
 	}
 }
-
-
-module.exports = GameLi;
