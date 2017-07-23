@@ -23,10 +23,29 @@ const confirmStyle = {
 	display: "block",
 	borderRadius: 8,
 };
+const errorStyle = {
+	backgroundColor: "#e05957",
+	fontSize: "5vmin",
+	margin: "5px",
+	height: "7vh",
+	display: "block",
+	borderRadius: 8,
+};
 let teamNumber;
 let finalAnswer;
 
 export default class StudentContent extends React.Component {
+	constructor(props) {
+		super(props);
+		$(window).on("orientationchange", (event) => {
+			refresh();
+			this.forceUpdate();
+			Meteor.timeout(() => {
+				refresh();
+			}, 20);
+		});
+	}
+	
 	static propTypes = {
 		gameLogic: PropTypes.object,
 	};
@@ -69,7 +88,7 @@ export default class StudentContent extends React.Component {
 		let points;
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
 		if (teamNumber === undefined) {
-			addToHomescreen();
+			//addToHomescreen();
 			return (
 				<div className="flex-container" style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}>
 					<h1>Tap an open box to register!</h1>
@@ -139,6 +158,8 @@ export default class StudentContent extends React.Component {
 					Confirm
 					Wager
 				</div>
+				{navigator.userAgent.match(/(iPhone|iPod)/i) && !window.navigator.standalone ?
+					<div style={{height: 20}}/> : []}
 			</div>;
 			
 		}
@@ -244,12 +265,15 @@ export default class StudentContent extends React.Component {
 									</div>
 								</div>
 								<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${points}</div>
-								<div style={{fontSize: "3vmin"}}>Make sure you device is landscape!</div>
 							</div>
-							<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
-								Confirm
-								Wager
-							</div>
+							{(navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && window.innerHeight > window.innerWidth) ?
+								<div style={errorStyle}>Please view in Landscape Mode</div> :
+								<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
+									Confirm
+									Wager
+								</div>}
+							{navigator.userAgent.match(/(iPhone|iPod)/i) && !window.navigator.standalone ?
+								<div style={{height: 20}}/> : []}
 						</div>;
 					}
 					else {
@@ -321,10 +345,10 @@ export default class StudentContent extends React.Component {
 	};
 	
 	getTeamName() {
-		if(this.props.gameLogic["connections"][Meteor.connection._lastSessionId] === undefined) {
+		if (this.props.gameLogic["connections"][Meteor.connection._lastSessionId] === undefined) {
 			return Meteor.connection._lastSessionId;
 		}
-		else if (this.props.gameLogic["round"] === 0){
+		else if (this.props.gameLogic["round"] === 0) {
 			return this.props.gameLogic["setupPlayers"]["player" + teamNumber]["teamName"]
 		}
 		else {

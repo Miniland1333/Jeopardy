@@ -242,8 +242,9 @@ export default class ScoreBoard extends React.Component {
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{
-				     padding: "10px 1vw",
+				     padding: screen.width < 1000 ? "10px 0" : "10px 1vw",
 				     border: "4px solid white",
+				     borderLeft: screen.width < 1000 ? "0" : "4px solid white",
 				     flexDirection: "column",
 				     flex: 1,
 			     }}>
