@@ -8,6 +8,7 @@ import "./../jquery.ui.touch-punch";
 import Question from "./../Teacher/Question";
 import CountDown from "./Countdown";
 import {Rainbow} from "../rainbowvis";
+import Connect from "./Connect";
 
 
 const questionStyle = {
@@ -85,14 +86,14 @@ export default class ViewerContent extends React.Component {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object,
 	};
-	
+
 	state = {
 		setup: true,
 	};
-	
+
 	time = 5;
 	lastState = "";
-	
+
 	handleSound = () => {
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
@@ -117,7 +118,7 @@ export default class ViewerContent extends React.Component {
 						break;
 				}
 				break;
-			
+
 			case "categoryIntro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
@@ -154,29 +155,27 @@ export default class ViewerContent extends React.Component {
 					this.handleSoundStop();
 					loop.play();
 				}
-			
+
 		}
 	};
-	
+
 	handleSoundStop = () => {
 		const soundArray = [intro, DJintro, FJintro, Jcat, DJcat, DD, FJ, loop, timeout];
 		soundArray.forEach(function (sound) {
 			sound.stop()
 		});
 	};
-	
+
 	renderContent = () => {
 		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
 		if (this.props.gameLogic["round"] === 0 && this.props.gameLogic["state"] !== "") {
 			Meteor.call('gameLogic.setState', "");
 		}
 		this.handleSound();
-		
+
 		switch (this.props.gameLogic["state"]) {
 			case "":
-				return <div className="flex-container" style={inputStyle}><input style={inputStyle}
-				                                                                 defaultValue="Press F11 for fullscreen"/>
-				</div>;
+				return <Connect/>;
 			case "intro":
 			case "categoryIntro":
 				clearInterval(timer);
@@ -224,7 +223,7 @@ export default class ViewerContent extends React.Component {
 										}}>{cell}</div>
 										:
 										[];
-									
+
 								})}
 							</div>
 						)
@@ -248,7 +247,7 @@ export default class ViewerContent extends React.Component {
 										}}>{cell}</div>
 										:
 										<Question key={key1 + key2} cell={cell} round={round} key1={key1} key2={key2}/>;
-									
+
 								})}
 							</div>
 						)
@@ -337,7 +336,7 @@ export default class ViewerContent extends React.Component {
 					this.lastState = this.props.gameLogic["state"];
 					clearInterval(timer);
 					this.time = maxTimeAnswer;
-					
+
 					timer = setInterval(() => {
 						if (this.time > 0) {
 							this.time -= 1;
@@ -371,7 +370,7 @@ export default class ViewerContent extends React.Component {
 						</div>
 					}
 				}
-			
+
 			case "next":
 				clearInterval(timer);
 				this.lastState = this.props.gameLogic["state"];
@@ -395,8 +394,8 @@ export default class ViewerContent extends React.Component {
 						</div>
 					}
 				}
-			
-			
+
+
 			case "FJwager":
 				return <div style={{
 					fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
@@ -472,7 +471,7 @@ export default class ViewerContent extends React.Component {
 						<canvas style={{flex: 1}} id="writingPad"/>
 						;
 					</div>
-					
+
 				}
 				else {
 					paper.install(window);
@@ -528,12 +527,12 @@ export default class ViewerContent extends React.Component {
 						whiteSpace: "pre-wrap",
 					}}>{logic['player' + greatest]['teamName']} is the winner with a score of ${highestAmount}!</div>;
 				}
-			
+
 		}
-		
-		
+
+
 	};
-	
+
 	render() {
 		return (
 			<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>

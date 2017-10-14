@@ -30,58 +30,60 @@
  *
  */
 
-var paper = function (self, undefined) {
+let paper = function (self, undefined) {
 	
-	var window = self ? self.window : require('./node/window'),
-		document = window && window.document;
+	let window = self ? self.window : require('./node/window');
+	const document = window && window.document;
 	
 	self = self || window;
 	
-	var Base = new function () {
-		var hidden = /^(statics|enumerable|beans|preserve)$/,
+	const Base = new function () {
+		const hidden = /^(statics|enumerable|beans|preserve)$/,
 			
 			forEach = [].forEach || function (iter, bind) {
-					for (var i = 0, l = this.length; i < l; i++)
-						iter.call(bind, this[i], i, this);
-				},
+				let i = 0;
+				const l = this.length;
+				for (; i < l; i++)
+					iter.call(bind, this[i], i, this);
+			},
 			
 			forIn = function (iter, bind) {
-				for (var i in this)
+				for (let i in this)
 					if (this.hasOwnProperty(i))
 						iter.call(bind, this[i], i, this);
 			},
 			
 			create = Object.create || function (proto) {
-					return {__proto__: proto};
-				},
+				return {__proto__: proto};
+			},
 			
 			describe = Object.getOwnPropertyDescriptor || function (obj, name) {
-					var get = obj.__lookupGetter__ && obj.__lookupGetter__(name);
-					return get
+				const get = obj.__lookupGetter__ && obj.__lookupGetter__(name);
+				return get
+					? {
+						get: get, set: obj.__lookupSetter__(name),
+						enumerable: true, configurable: true
+					}
+					: obj.hasOwnProperty(name)
 						? {
-							get: get, set: obj.__lookupSetter__(name),
-							enumerable: true, configurable: true
+							value: obj[name], enumerable: true,
+							configurable: true, writable: true
 						}
-						: obj.hasOwnProperty(name)
-							? {
-								value: obj[name], enumerable: true,
-								configurable: true, writable: true
-							}
-							: null;
-				},
+						: null;
+			},
 			
 			_define = Object.defineProperty || function (obj, name, desc) {
-					if ((desc.get || desc.set) && obj.__defineGetter__) {
-						if (desc.get)
-							obj.__defineGetter__(name, desc.get);
-						if (desc.set)
-							obj.__defineSetter__(name, desc.set);
-					}
-					else {
-						obj[name] = desc.value;
-					}
-					return obj;
-				},
+				if ((desc.get || desc.set) && obj.__defineGetter__) {
+					if (desc.get)
+						obj.__defineGetter__(name, desc.get);
+					if (desc.set)
+						obj.__defineSetter__(name, desc.set);
+				}
+				else {
+					obj[name] = desc.value;
+				}
+				return obj;
+			},
 			
 			define = function (obj, name, desc) {
 				delete obj[name];
@@ -89,15 +91,15 @@ var paper = function (self, undefined) {
 			};
 		
 		function inject(dest, src, enumerable, beans, preserve) {
-			var beansNames = {};
+			const beansNames = {};
 			
 			function field(name, val) {
 				val = val || (val = describe(src, name))
 					&& (val.get ? val : val.value);
 				if (typeof val === 'string' && val[0] === '#')
 					val = dest[val.substring(1)] || val;
-				var isFunc = typeof val === 'function',
-					res = val,
+				const isFunc = typeof val === 'function';
+				let res = val,
 					prev = preserve || isFunc && !val.base
 						? (val && val.get ? name in dest : dest[name])
 						: null,
@@ -112,7 +114,7 @@ var paper = function (self, undefined) {
 						|| !Base.isPlainObject(res))
 						res = {value: res, writable: true};
 					if ((describe(dest, name)
-						|| {configurable: true}).configurable) {
+							|| {configurable: true}).configurable) {
 						res.configurable = true;
 						res.enumerable = enumerable;
 					}
@@ -126,7 +128,7 @@ var paper = function (self, undefined) {
 						field(name);
 				}
 				for (var name in beansNames) {
-					var part = beansNames[name],
+					const part = beansNames[name],
 						set = dest['set' + part],
 						get = dest['get' + part] || set && dest['is' + part];
 					if (get && (beans === true || get.length === 0))
@@ -146,9 +148,11 @@ var paper = function (self, undefined) {
 		}
 		
 		function set(obj, args, start) {
-			for (var i = start, l = args.length; i < l; i++) {
-				var props = args[i];
-				for (var key in props)
+			let i = start;
+			const l = args.length;
+			for (; i < l; i++) {
+				const props = args[i];
+				for (let key in props)
 					if (props.hasOwnProperty(key))
 						obj[key] = props[key];
 			}
@@ -160,31 +164,35 @@ var paper = function (self, undefined) {
 		}, {
 			inject: function (src) {
 				if (src) {
-					var statics = src.statics === true ? src : src.statics,
+					const statics = src.statics === true ? src : src.statics,
 						beans = src.beans,
 						preserve = src.preserve;
 					if (statics !== src)
 						inject(this.prototype, src, src.enumerable, beans, preserve);
 					inject(this, statics, true, beans, preserve);
 				}
-				for (var i = 1, l = arguments.length; i < l; i++)
+				let i = 1;
+				const l = arguments.length;
+				for (; i < l; i++)
 					this.inject(arguments[i]);
 				return this;
 			},
 			
 			extend: function () {
-				var base = this,
-					ctor,
+				const base = this;
+				let ctor,
 					proto;
-				for (var i = 0, obj, l = arguments.length;
-				     i < l && !(ctor && proto); i++) {
+				let i = 0, obj;
+				const l = arguments.length;
+				for (;
+					i < l && !(ctor && proto); i++) {
 					obj = arguments[i];
 					ctor = ctor || obj.initialize;
 					proto = proto || obj.prototype;
 				}
 				ctor = ctor || function () {
-						base.apply(this, arguments);
-					};
+					base.apply(this, arguments);
+				};
 				proto = ctor.prototype = proto || create(this.prototype);
 				define(proto, 'constructor',
 					{value: ctor, writable: true, configurable: true});
@@ -196,8 +204,10 @@ var paper = function (self, undefined) {
 			}
 		}, true).inject({
 			inject: function () {
-				for (var i = 0, l = arguments.length; i < l; i++) {
-					var src = arguments[i];
+				let i = 0;
+				const l = arguments.length;
+				for (; i < l; i++) {
+					const src = arguments[i];
 					if (src)
 						inject(this, src, src.enumerable, src.beans, src.preserve);
 				}
@@ -205,7 +215,7 @@ var paper = function (self, undefined) {
 			},
 			
 			extend: function () {
-				var res = create(this);
+				const res = create(this);
 				return res.inject.apply(res, arguments);
 			},
 			
@@ -236,7 +246,7 @@ var paper = function (self, undefined) {
 				},
 				
 				isPlainObject: function (obj) {
-					var ctor = obj != null && obj.constructor;
+					const ctor = obj != null && obj.constructor;
 					return ctor && (ctor === Object || ctor === Base
 						|| ctor.name === 'Object');
 				},
@@ -255,16 +265,16 @@ var paper = function (self, undefined) {
 		toString: function () {
 			return this._id != null
 				? (this._class || 'Object') + (this._name
-					? " '" + this._name + "'"
-					: ' @' + this._id)
+				? " '" + this._name + "'"
+				: ' @' + this._id)
 				: '{ ' + Base.each(this, function (value, key) {
-					if (!/^_/.test(key)) {
-						var type = typeof value;
-						this.push(key + ': ' + (type === 'number'
-								? Formatter.instance.number(value)
-								: type === 'string' ? "'" + value + "'" : value));
-					}
-				}, []).join(', ') + ' }';
+				if (!/^_/.test(key)) {
+					const type = typeof value;
+					this.push(key + ': ' + (type === 'number'
+						? Formatter.instance.number(value)
+						: type === 'string' ? "'" + value + "'" : value));
+				}
+			}, []).join(', ') + ' }';
 		},
 		
 		getClassName: function () {
@@ -295,7 +305,7 @@ var paper = function (self, undefined) {
 			},
 			
 			extend: function extend() {
-				var res = extend.base.apply(this, arguments),
+				const res = extend.base.apply(this, arguments),
 					name = res.prototype._class;
 				if (name && !Base.exports[name])
 					Base.exports[name] = res;
@@ -326,9 +336,9 @@ var paper = function (self, undefined) {
 						if (length !== Object.keys(obj2).length)
 							return false;
 						while (length--) {
-							var key = keys[length];
+							const key = keys[length];
 							if (!(obj2.hasOwnProperty(key)
-								&& Base.equals(obj1[key], obj2[key])))
+									&& Base.equals(obj1[key], obj2[key])))
 								return false;
 						}
 					}
@@ -339,16 +349,16 @@ var paper = function (self, undefined) {
 			
 			read: function (list, start, options, length) {
 				if (this === Base) {
-					var value = this.peek(list, start);
+					const value = this.peek(list, start);
 					list.__index++;
 					return value;
 				}
-				var proto = this.prototype,
+				const proto = this.prototype,
 					readIndex = proto._readIndex,
 					index = start || readIndex && list.__index || 0;
 				if (!length)
 					length = list.length - index;
-				var obj = list[index];
+				let obj = list[index];
 				if (obj instanceof this
 					|| options && options.readNull && obj == null && length <= 1) {
 					if (readIndex)
@@ -359,8 +369,8 @@ var paper = function (self, undefined) {
 				if (readIndex)
 					obj.__read = true;
 				obj = obj.initialize.apply(obj, index > 0 || length < list.length
-						? Array.prototype.slice.call(list, index, index + length)
-						: list) || obj;
+					? Array.prototype.slice.call(list, index, index + length)
+					: list) || obj;
 				if (readIndex) {
 					list.__index = index + obj.__read;
 					obj.__read = undefined;
@@ -377,9 +387,11 @@ var paper = function (self, undefined) {
 			},
 			
 			readAll: function (list, start, options) {
-				var res = [],
-					entry;
-				for (var i = start || 0, l = list.length; i < l; i++) {
+				const res = [];
+				let entry;
+				let i = start || 0;
+				const l = list.length;
+				for (; i < l; i++) {
 					res.push(Array.isArray(entry = list[i])
 						? this.read(entry, 0, options)
 						: this.read(list, i, options, 1));
@@ -388,10 +400,10 @@ var paper = function (self, undefined) {
 			},
 			
 			readNamed: function (list, name, start, options, length) {
-				var value = this.getNamed(list, name),
+				const value = this.getNamed(list, name),
 					hasObject = value !== undefined;
 				if (hasObject) {
-					var filtered = list._filtered;
+					let filtered = list._filtered;
 					if (!filtered) {
 						filtered = list._filtered = Base.create(list[0]);
 						filtered._filtering = list[0];
@@ -402,7 +414,7 @@ var paper = function (self, undefined) {
 			},
 			
 			getNamed: function (list, name) {
-				var arg = list[0];
+				const arg = list[0];
 				if (list._hasObject === undefined)
 					list._hasObject = list.length === 1 && Base.isPlainObject(arg);
 				if (list._hasObject)
@@ -414,11 +426,13 @@ var paper = function (self, undefined) {
 			},
 			
 			filter: function (dest, source, exclude) {
-				var keys = Object.keys(source._filtering || source);
-				for (var i = 0, l = keys.length; i < l; i++) {
-					var key = keys[i];
+				const keys = Object.keys(source._filtering || source);
+				let i = 0;
+				const l = keys.length;
+				for (; i < l; i++) {
+					const key = keys[i];
 					if (!(exclude && exclude[key])) {
-						var value = source[key];
+						const value = source[key];
 						if (value !== undefined)
 							dest[key] = value;
 					}
@@ -434,8 +448,8 @@ var paper = function (self, undefined) {
 			serialize: function (obj, options, compact, dictionary) {
 				options = options || {};
 				
-				var isRoot = !dictionary,
-					res;
+				const isRoot = !dictionary;
+				let res;
 				if (isRoot) {
 					options.formatter = new Formatter(options.precision);
 					dictionary = {
@@ -443,11 +457,11 @@ var paper = function (self, undefined) {
 						definitions: {},
 						references: {},
 						add: function (item, create) {
-							var id = '#' + item._id,
-								ref = this.references[id];
+							const id = '#' + item._id;
+							let ref = this.references[id];
 							if (!ref) {
 								this.length++;
-								var res = create.call(item),
+								const res = create.call(item),
 									name = item._class;
 								if (name && res[0] !== name)
 									res.unshift(name);
@@ -474,9 +488,9 @@ var paper = function (self, undefined) {
 				}
 				else if (Base.isPlainObject(obj)) {
 					res = {};
-					var keys = Object.keys(obj);
+					const keys = Object.keys(obj);
 					for (var i = 0, l = keys.length; i < l; i++) {
-						var key = keys[i];
+						const key = keys[i];
 						res[key] = Base.serialize(obj[key], options, compact,
 							dictionary);
 					}
@@ -493,25 +507,27 @@ var paper = function (self, undefined) {
 			},
 			
 			deserialize: function (json, create, _data, _setDictionary, _isRoot) {
-				var res = json,
-					isFirst = !_data,
+				let res = json;
+				const isFirst = !_data,
 					hasDictionary = isFirst && json && json.length
 						&& json[0][0] === 'dictionary';
 				_data = _data || {};
 				if (Array.isArray(json)) {
-					var type = json[0],
-						isDictionary = type === 'dictionary';
+					let type = json[0];
+					const isDictionary = type === 'dictionary';
 					if (json.length == 1 && /^#/.test(type)) {
 						return _data.dictionary[type];
 					}
 					type = Base.exports[type];
 					res = [];
-					for (var i = type ? 1 : 0, l = json.length; i < l; i++) {
+					let i = type ? 1 : 0;
+					const l = json.length;
+					for (; i < l; i++) {
 						res.push(Base.deserialize(json[i], create, _data,
 							isDictionary, hasDictionary));
 					}
 					if (type) {
-						var args = res;
+						const args = res;
 						if (create) {
 							res = create(type, args, isFirst || _isRoot);
 						}
@@ -525,14 +541,14 @@ var paper = function (self, undefined) {
 					res = {};
 					if (_setDictionary)
 						_data.dictionary = res;
-					for (var key in json)
+					for (let key in json)
 						res[key] = Base.deserialize(json[key], create, _data);
 				}
 				return hasDictionary ? res[1] : res;
 			},
 			
 			exportJSON: function (obj, options) {
-				var json = Base.serialize(obj, options);
+				const json = Base.serialize(obj, options);
 				return options && options.asString === false
 					? json
 					: JSON.stringify(json);
@@ -542,13 +558,13 @@ var paper = function (self, undefined) {
 				return Base.deserialize(
 					typeof json === 'string' ? JSON.parse(json) : json,
 					function (ctor, args, isRoot) {
-						var useTarget = isRoot && target
-								&& target.constructor === ctor,
+						const useTarget = isRoot && target
+							&& target.constructor === ctor,
 							obj = useTarget ? target
 								: Base.create(ctor.prototype);
 						if (args.length === 1 && obj instanceof Item
 							&& (useTarget || !(obj instanceof Layer))) {
-							var arg = args[0];
+							const arg = args[0];
 							if (Base.isPlainObject(arg))
 								arg.insert = false;
 						}
@@ -560,7 +576,7 @@ var paper = function (self, undefined) {
 			},
 			
 			splice: function (list, items, index, remove) {
-				var amount = items && items.length,
+				const amount = items && items.length,
 					append = index === undefined;
 				index = append ? list.length : index;
 				if (index > list.length)
@@ -572,10 +588,10 @@ var paper = function (self, undefined) {
 					return [];
 				}
 				else {
-					var args = [index, remove];
+					const args = [index, remove];
 					if (items)
 						args.push.apply(args, items);
-					var removed = list.splice.apply(list, args);
+					const removed = list.splice.apply(list, args);
 					for (var i = 0, l = removed.length; i < l; i++)
 						removed[i]._index = undefined;
 					for (var i = index + amount, l = list.length; i < l; i++)
@@ -602,7 +618,7 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var Emitter = {
+	const Emitter = {
 		on: function (type, func) {
 			if (typeof type !== 'string') {
 				Base.each(type, function (value, key) {
@@ -610,9 +626,9 @@ var paper = function (self, undefined) {
 				}, this);
 			}
 			else {
-				var types = this._eventTypes,
-					entry = types && types[type],
-					handlers = this._callbacks = this._callbacks || {};
+				const types = this._eventTypes,
+					entry = types && types[type];
+				let handlers = this._callbacks = this._callbacks || {};
 				handlers = handlers[type] = handlers[type] || [];
 				if (handlers.indexOf(func) === -1) {
 					handlers.push(func);
@@ -630,10 +646,10 @@ var paper = function (self, undefined) {
 				}, this);
 				return;
 			}
-			var types = this._eventTypes,
+			const types = this._eventTypes,
 				entry = types && types[type],
-				handlers = this._callbacks && this._callbacks[type],
-				index;
+				handlers = this._callbacks && this._callbacks[type];
+			let index;
 			if (handlers) {
 				if (!func || (index = handlers.indexOf(func)) !== -1
 					&& handlers.length === 1) {
@@ -656,15 +672,17 @@ var paper = function (self, undefined) {
 		},
 		
 		emit: function (type, event) {
-			var handlers = this._callbacks && this._callbacks[type];
+			let handlers = this._callbacks && this._callbacks[type];
 			if (!handlers)
 				return false;
-			var args = [].slice.call(arguments, 1),
+			const args = [].slice.call(arguments, 1),
 				setTarget = event && event.target && !event.currentTarget;
 			handlers = handlers.slice();
 			if (setTarget)
 				event.currentTarget = this;
-			for (var i = 0, l = handlers.length; i < l; i++) {
+			let i = 0;
+			const l = handlers.length;
+			for (; i < l; i++) {
 				if (handlers[i].apply(this, args) === false) {
 					if (event && event.stop)
 						event.stop();
@@ -685,13 +703,13 @@ var paper = function (self, undefined) {
 		fire: '#emit',
 		
 		_installEvents: function (install) {
-			var types = this._eventTypes,
+			const types = this._eventTypes,
 				handlers = this._callbacks,
 				key = install ? 'install' : 'uninstall';
 			if (types) {
-				for (var type in handlers) {
+				for (let type in handlers) {
 					if (handlers[type].length > 0) {
-						var entry = types[type],
+						const entry = types[type],
 							func = entry && entry[key];
 						if (func)
 							func.call(this, type);
@@ -702,13 +720,13 @@ var paper = function (self, undefined) {
 		
 		statics: {
 			inject: function inject(src) {
-				var events = src._events;
+				const events = src._events;
 				if (events) {
-					var types = {};
+					const types = {};
 					Base.each(events, function (entry, key) {
-						var isString = typeof entry === 'string',
-							name = isString ? entry : key,
-							part = Base.capitalize(name),
+						const isString = typeof entry === 'string';
+						let name = isString ? entry : key;
+						const part = Base.capitalize(name),
 							type = name.substring(2).toLowerCase();
 						types[type] = isString ? {} : entry;
 						name = '_' + name;
@@ -716,7 +734,7 @@ var paper = function (self, undefined) {
 							return this[name];
 						};
 						src['set' + part] = function (func) {
-							var prev = this[name];
+							const prev = this[name];
 							if (prev)
 								this.off(type, prev);
 							if (func)
@@ -731,7 +749,7 @@ var paper = function (self, undefined) {
 		}
 	};
 	
-	var PaperScope = Base.extend({
+	const PaperScope = Base.extend({
 		_class: 'PaperScope',
 		
 		initialize: function PaperScope() {
@@ -748,9 +766,9 @@ var paper = function (self, undefined) {
 			this.palettes = [];
 			this._id = PaperScope._id++;
 			PaperScope._scopes[this._id] = this;
-			var proto = PaperScope.prototype;
+			const proto = PaperScope.prototype;
 			if (!this.support) {
-				var ctx = CanvasProvider.getContext(1, 1) || {};
+				const ctx = CanvasProvider.getContext(1, 1) || {};
 				proto.support = {
 					nativeDash: 'setLineDash' in ctx || 'mozDash' in ctx,
 					nativeBlendModes: BlendMode.nativeModes
@@ -758,7 +776,7 @@ var paper = function (self, undefined) {
 				CanvasProvider.release(ctx);
 			}
 			if (!this.agent) {
-				var user = self.navigator.userAgent.toLowerCase(),
+				const user = self.navigator.userAgent.toLowerCase(),
 					os = (/(darwin|win|mac|linux|freebsd|sunos)/.exec(user) || [])[0],
 					platform = os === 'darwin' ? 'mac' : os,
 					agent = proto.agent = proto.browser = {platform: platform};
@@ -768,7 +786,7 @@ var paper = function (self, undefined) {
 					/(opera|chrome|safari|webkit|firefox|msie|trident|atom|node)\/?\s*([.\d]+)(?:.*version\/([.\d]+))?(?:.*rv\:v?([.\d]+))?/g,
 					function (all, n, v1, v2, rv) {
 						if (!agent.chrome) {
-							var v = n === 'opera' ? v2 :
+							const v = n === 'opera' ? v2 :
 								/^(node|trident)$/.test(n) ? rv : v1;
 							agent.version = v;
 							agent.versionNumber = parseFloat(v);
@@ -788,7 +806,7 @@ var paper = function (self, undefined) {
 		version: "0.10.2-develop",
 		
 		getView: function () {
-			var project = this.project;
+			const project = this.project;
 			return project && project._view;
 		},
 		
@@ -802,7 +820,7 @@ var paper = function (self, undefined) {
 		},
 		
 		install: function (scope) {
-			var that = this;
+			const that = this;
 			Base.each(['project', 'view', 'tool'], function (key) {
 				Base.define(scope, key, {
 					configurable: true,
@@ -831,7 +849,7 @@ var paper = function (self, undefined) {
 		},
 		
 		clear: function () {
-			var projects = this.projects,
+			const projects = this.projects,
 				tools = this.tools,
 				palettes = this.palettes;
 			for (var i = projects.length - 1; i >= 0; i--)
@@ -869,7 +887,7 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var PaperScopeItem = Base.extend(Emitter, {
+	const PaperScopeItem = Base.extend(Emitter, {
 		
 		initialize: function (activate) {
 			this._scope = paper;
@@ -881,7 +899,7 @@ var paper = function (self, undefined) {
 		activate: function () {
 			if (!this._scope)
 				return false;
-			var prev = this._scope[this._reference];
+			const prev = this._scope[this._reference];
 			if (prev && prev !== this)
 				prev.emit('deactivate');
 			this._scope[this._reference] = this;
@@ -940,9 +958,9 @@ var paper = function (self, undefined) {
 	
 	Formatter.instance = new Formatter();
 	
-	var Numerical = new function () {
+	const Numerical = new function () {
 		
-		var abscissas = [
+		const abscissas = [
 			[0.5773502691896257645091488],
 			[0, 0.7745966692414833770358531],
 			[0.3399810435848562648026658, 0.8611363115940525752239465],
@@ -960,7 +978,7 @@ var paper = function (self, undefined) {
 			[0.0950125098376374401853193, 0.2816035507792589132304605, 0.4580167776572273863424194, 0.6178762444026437484466718, 0.7554044083550030338951012, 0.8656312023878317438804679, 0.9445750230732325760779884, 0.9894009349916499325961542]
 		];
 		
-		var weights = [
+		const weights = [
 			[1],
 			[0.8888888888888888888888889, 0.5555555555555555555555556],
 			[0.6521451548625461426269361, 0.3478548451374538573730639],
@@ -978,13 +996,13 @@ var paper = function (self, undefined) {
 			[0.1894506104550684962853967, 0.1826034150449235888667637, 0.1691565193950025381893121, 0.1495959888165767320815017, 0.1246289712555338720524763, 0.0951585116824927848099251, 0.0622535239386478928628438, 0.0271524594117540948517806]
 		];
 		
-		var abs = Math.abs,
+		const abs = Math.abs,
 			sqrt = Math.sqrt,
 			pow = Math.pow,
 			log2 = Math.log2 || function (x) {
-					return Math.log(x) * Math.LOG2E;
-				},
-			EPSILON = 1e-12,
+				return Math.log(x) * Math.LOG2E;
+			};
+		let EPSILON = 1e-12,
 			MACHINE_EPSILON = 1.12e-16;
 		
 		function clamp(value, min, max) {
@@ -993,17 +1011,17 @@ var paper = function (self, undefined) {
 		
 		function getDiscriminant(a, b, c) {
 			function split(v) {
-				var x = v * 134217729,
+				const x = v * 134217729,
 					y = v - x,
 					hi = y + x,
 					lo = v - hi;
 				return [hi, lo];
 			}
 			
-			var D = b * b - a * c,
-				E = b * b + a * c;
+			let D = b * b - a * c;
+			const E = b * b + a * c;
 			if (abs(D) * 3 < E) {
-				var ad = split(a),
+				const ad = split(a),
 					bd = split(b),
 					cd = split(c),
 					p = b * b,
@@ -1017,7 +1035,7 @@ var paper = function (self, undefined) {
 		}
 		
 		function getNormalizationFactor() {
-			var norm = Math.max.apply(Math, arguments);
+			const norm = Math.max.apply(Math, arguments);
 			return norm && (norm < 1e-8 || norm > 1e8)
 				? pow(2, -Math.round(log2(norm)))
 				: 0;
@@ -1041,23 +1059,23 @@ var paper = function (self, undefined) {
 			clamp: clamp,
 			
 			integrate: function (f, a, b, n) {
-				var x = abscissas[n - 2],
+				const x = abscissas[n - 2],
 					w = weights[n - 2],
 					A = (b - a) * 0.5,
-					B = A + a,
-					i = 0,
-					m = (n + 1) >> 1,
-					sum = n & 1 ? w[i++] * f(B) : 0;
+					B = A + a;
+				let i = 0;
+				const m = (n + 1) >> 1;
+				let sum = n & 1 ? w[i++] * f(B) : 0;
 				while (i < m) {
-					var Ax = A * x[i];
+					const Ax = A * x[i];
 					sum += w[i++] * (f(B + Ax) + f(B - Ax));
 				}
 				return A * sum;
 			},
 			
 			findRoot: function (f, df, x, a, b, n, tolerance) {
-				for (var i = 0; i < n; i++) {
-					var fx = f(x),
+				for (let i = 0; i < n; i++) {
+					const fx = f(x),
 						dx = fx / df(x),
 						nx = x - dx;
 					if (abs(dx) < tolerance)
@@ -1075,7 +1093,7 @@ var paper = function (self, undefined) {
 			},
 			
 			solveQuadratic: function (a, b, c, roots, min, max) {
-				var x1, x2 = Infinity;
+				let x1, x2 = Infinity;
 				if (abs(a) < EPSILON) {
 					if (abs(b) < EPSILON)
 						return abs(c) < EPSILON ? -1 : 0;
@@ -1083,9 +1101,9 @@ var paper = function (self, undefined) {
 				}
 				else {
 					b *= -0.5;
-					var D = getDiscriminant(a, b, c);
+					let D = getDiscriminant(a, b, c);
 					if (D && abs(D) < MACHINE_EPSILON) {
-						var f = getNormalizationFactor(abs(a), abs(b), abs(c));
+						const f = getNormalizationFactor(abs(a), abs(b), abs(c));
 						if (f) {
 							a *= f;
 							b *= f;
@@ -1094,8 +1112,8 @@ var paper = function (self, undefined) {
 						}
 					}
 					if (D >= -MACHINE_EPSILON) {
-						var Q = D < 0 ? 0 : sqrt(D),
-							R = b + (b < 0 ? -Q : Q);
+						let Q = D < 0 ? 0 : sqrt(D);
+						const R = b + (b < 0 ? -Q : Q);
 						if (R === 0) {
 							x1 = c / a;
 							x2 = -x1;
@@ -1106,8 +1124,8 @@ var paper = function (self, undefined) {
 						}
 					}
 				}
-				var count = 0,
-					boundless = min == null,
+				let count = 0;
+				const boundless = min == null,
 					minB = min - EPSILON,
 					maxB = max + EPSILON;
 				if (isFinite(x1) && (boundless || x1 > minB && x1 < maxB))
@@ -1119,8 +1137,8 @@ var paper = function (self, undefined) {
 			},
 			
 			solveCubic: function (a, b, c, d, roots, min, max) {
-				var f = getNormalizationFactor(abs(a), abs(b), abs(c), abs(d)),
-					x, b1, c2, qd, q;
+				const f = getNormalizationFactor(abs(a), abs(b), abs(c), abs(d));
+				let x, b1, c2, qd, q;
 				if (f) {
 					a *= f;
 					b *= f;
@@ -1130,7 +1148,7 @@ var paper = function (self, undefined) {
 				
 				function evaluate(x0) {
 					x = x0;
-					var tmp = a * x;
+					const tmp = a * x;
 					b1 = tmp + b;
 					c2 = b1 * x + c;
 					qd = (tmp + b1) * x + c2;
@@ -1167,10 +1185,10 @@ var paper = function (self, undefined) {
 						}
 					}
 				}
-				var count = Numerical.solveQuadratic(a, b1, c2, roots, min, max),
-					boundless = min == null;
+				let count = Numerical.solveQuadratic(a, b1, c2, roots, min, max);
+				const boundless = min == null;
 				if (isFinite(x) && (count === 0
-					|| count > 0 && x !== roots[0] && x !== roots[1])
+						|| count > 0 && x !== roots[0] && x !== roots[1])
 					&& (boundless || x > min - EPSILON && x < max + EPSILON))
 					roots[count++] = boundless ? x : clamp(x, min, max);
 				return count;
@@ -1178,13 +1196,13 @@ var paper = function (self, undefined) {
 		};
 	};
 	
-	var UID = {
+	const UID = {
 		_id: 1,
 		_pools: {},
 		
 		get: function (name) {
 			if (name) {
-				var pool = this._pools[name];
+				let pool = this._pools[name];
 				if (!pool)
 					pool = this._pools[name] = {_id: 1};
 				return pool._id++;
@@ -1195,14 +1213,14 @@ var paper = function (self, undefined) {
 		}
 	};
 	
-	var Point = Base.extend({
+	const Point = Base.extend({
 		_class: 'Point',
 		_readIndex: true,
 		
 		initialize: function Point(arg0, arg1) {
-			var type = typeof arg0;
+			const type = typeof arg0;
 			if (type === 'number') {
-				var hasY = typeof arg1 === 'number';
+				const hasY = typeof arg1 === 'number';
 				this.x = arg0;
 				this.y = hasY ? arg1 : arg0;
 				if (this.__read)
@@ -1214,7 +1232,7 @@ var paper = function (self, undefined) {
 					this.__read = arg0 === null ? 1 : 0;
 			}
 			else {
-				var obj = type === 'string' ? arg0.split(/[\s,]+/) || [] : arg0;
+				const obj = type === 'string' ? arg0.split(/[\s,]+/) || [] : arg0;
 				if (Array.isArray(obj)) {
 					this.x = obj[0];
 					this.y = obj.length > 1 ? obj[1] : obj[0];
@@ -1251,8 +1269,8 @@ var paper = function (self, undefined) {
 		equals: function (point) {
 			return this === point || point
 				&& (this.x === point.x && this.y === point.y
-				|| Array.isArray(point)
-				&& this.x === point[0] && this.y === point[1])
+					|| Array.isArray(point)
+					&& this.x === point[0] && this.y === point[1])
 				|| false;
 		},
 		
@@ -1261,12 +1279,12 @@ var paper = function (self, undefined) {
 		},
 		
 		toString: function () {
-			var f = Formatter.instance;
+			const f = Formatter.instance;
 			return '{ x: ' + f.number(this.x) + ', y: ' + f.number(this.y) + ' }';
 		},
 		
 		_serialize: function (options) {
-			var f = options.formatter;
+			const f = options.formatter;
 			return [f.number(this.x), f.number(this.y)];
 		},
 		
@@ -1276,14 +1294,14 @@ var paper = function (self, undefined) {
 		
 		setLength: function (length) {
 			if (this.isZero()) {
-				var angle = this._angle || 0;
+				const angle = this._angle || 0;
 				this.set(
 					Math.cos(angle) * length,
 					Math.sin(angle) * length
 				);
 			}
 			else {
-				var scale = length / this.getLength();
+				const scale = length / this.getLength();
 				if (Numerical.isZero(scale))
 					this.getAngle();
 				this.set(
@@ -1310,13 +1328,13 @@ var paper = function (self, undefined) {
 					: this._angle = Math.atan2(this.y, this.x);
 			}
 			else {
-				var point = Point.read(arguments),
+				const point = Point.read(arguments),
 					div = this.getLength() * point.getLength();
 				if (Numerical.isZero(div)) {
 					return NaN;
 				}
 				else {
-					var a = this.dot(point) / div;
+					const a = this.dot(point) / div;
 					return Math.acos(a < -1 ? -1 : a > 1 ? 1 : a);
 				}
 			}
@@ -1325,7 +1343,7 @@ var paper = function (self, undefined) {
 		setAngleInRadians: function (angle) {
 			this._angle = angle;
 			if (!this.isZero()) {
-				var length = this.getLength();
+				const length = this.getLength();
 				this.set(
 					Math.cos(angle) * length,
 					Math.sin(angle) * length
@@ -1340,12 +1358,12 @@ var paper = function (self, undefined) {
 		beans: false,
 		
 		getDirectedAngle: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return Math.atan2(this.cross(point), this.dot(point)) * 180 / Math.PI;
 		},
 		
 		getDistance: function () {
-			var point = Point.read(arguments),
+			const point = Point.read(arguments),
 				x = point.x - this.x,
 				y = point.y - this.y,
 				d = x * x + y * y,
@@ -1356,7 +1374,7 @@ var paper = function (self, undefined) {
 		normalize: function (length) {
 			if (length === undefined)
 				length = 1;
-			var current = this.getLength(),
+			const current = this.getLength(),
 				scale = current !== 0 ? length / current : 0,
 				point = new Point(this.x * scale, this.y * scale);
 			if (scale >= 0)
@@ -1368,8 +1386,8 @@ var paper = function (self, undefined) {
 			if (angle === 0)
 				return this.clone();
 			angle = angle * Math.PI / 180;
-			var point = center ? this.subtract(center) : this,
-				sin = Math.sin(angle),
+			let point = center ? this.subtract(center) : this;
+			const sin = Math.sin(angle),
 				cos = Math.cos(angle);
 			point = new Point(
 				point.x * cos - point.y * sin,
@@ -1383,27 +1401,27 @@ var paper = function (self, undefined) {
 		},
 		
 		add: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return new Point(this.x + point.x, this.y + point.y);
 		},
 		
 		subtract: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return new Point(this.x - point.x, this.y - point.y);
 		},
 		
 		multiply: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return new Point(this.x * point.x, this.y * point.y);
 		},
 		
 		divide: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return new Point(this.x / point.x, this.y / point.y);
 		},
 		
 		modulo: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return new Point(this.x % point.x, this.y % point.y);
 		},
 		
@@ -1416,20 +1434,20 @@ var paper = function (self, undefined) {
 		},
 		
 		isClose: function () {
-			var point = Point.read(arguments),
+			const point = Point.read(arguments),
 				tolerance = Base.read(arguments);
 			return this.getDistance(point) <= tolerance;
 		},
 		
 		isCollinear: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return Point.isCollinear(this.x, this.y, point.x, point.y);
 		},
 		
 		isColinear: '#isCollinear',
 		
 		isOrthogonal: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return Point.isOrthogonal(this.x, this.y, point.x, point.y);
 		},
 		
@@ -1442,17 +1460,17 @@ var paper = function (self, undefined) {
 		},
 		
 		dot: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return this.x * point.x + this.y * point.y;
 		},
 		
 		cross: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			return this.x * point.y - this.y * point.x;
 		},
 		
 		project: function () {
-			var point = Point.read(arguments),
+			const point = Point.read(arguments),
 				scale = point.isZero() ? 0 : this.dot(point) / point.dot(point);
 			return new Point(
 				point.x * scale,
@@ -1462,7 +1480,7 @@ var paper = function (self, undefined) {
 		
 		statics: {
 			min: function () {
-				var point1 = Point.read(arguments),
+				const point1 = Point.read(arguments),
 					point2 = Point.read(arguments);
 				return new Point(
 					Math.min(point1.x, point2.x),
@@ -1471,7 +1489,7 @@ var paper = function (self, undefined) {
 			},
 			
 			max: function () {
-				var point1 = Point.read(arguments),
+				const point1 = Point.read(arguments),
 					point2 = Point.read(arguments);
 				return new Point(
 					Math.max(point1.x, point2.x),
@@ -1496,13 +1514,13 @@ var paper = function (self, undefined) {
 			}
 		}
 	}, Base.each(['round', 'ceil', 'floor', 'abs'], function (key) {
-		var op = Math[key];
+		const op = Math[key];
 		this[key] = function () {
 			return new Point(op(this.x), op(this.y));
 		};
 	}, {}));
 	
-	var LinkedPoint = Point.extend({
+	const LinkedPoint = Point.extend({
 		initialize: function Point(x, y, owner, setter) {
 			this._x = x;
 			this._y = y;
@@ -1549,14 +1567,14 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var Size = Base.extend({
+	const Size = Base.extend({
 		_class: 'Size',
 		_readIndex: true,
 		
 		initialize: function Size(arg0, arg1) {
-			var type = typeof arg0;
+			const type = typeof arg0;
 			if (type === 'number') {
-				var hasHeight = typeof arg1 === 'number';
+				const hasHeight = typeof arg1 === 'number';
 				this.width = arg0;
 				this.height = hasHeight ? arg1 : arg0;
 				if (this.__read)
@@ -1568,7 +1586,7 @@ var paper = function (self, undefined) {
 					this.__read = arg0 === null ? 1 : 0;
 			}
 			else {
-				var obj = type === 'string' ? arg0.split(/[\s,]+/) || [] : arg0;
+				const obj = type === 'string' ? arg0.split(/[\s,]+/) || [] : arg0;
 				if (Array.isArray(obj)) {
 					this.width = obj[0];
 					this.height = obj.length > 1 ? obj[1] : obj[0];
@@ -1609,39 +1627,39 @@ var paper = function (self, undefined) {
 		},
 		
 		toString: function () {
-			var f = Formatter.instance;
+			const f = Formatter.instance;
 			return '{ width: ' + f.number(this.width)
 				+ ', height: ' + f.number(this.height) + ' }';
 		},
 		
 		_serialize: function (options) {
-			var f = options.formatter;
+			const f = options.formatter;
 			return [f.number(this.width),
 				f.number(this.height)];
 		},
 		
 		add: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			return new Size(this.width + size.width, this.height + size.height);
 		},
 		
 		subtract: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			return new Size(this.width - size.width, this.height - size.height);
 		},
 		
 		multiply: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			return new Size(this.width * size.width, this.height * size.height);
 		},
 		
 		divide: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			return new Size(this.width / size.width, this.height / size.height);
 		},
 		
 		modulo: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			return new Size(this.width % size.width, this.height % size.height);
 		},
 		
@@ -1675,13 +1693,13 @@ var paper = function (self, undefined) {
 			}
 		}
 	}, Base.each(['round', 'ceil', 'floor', 'abs'], function (key) {
-		var op = Math[key];
+		const op = Math[key];
 		this[key] = function () {
 			return new Size(op(this.width), op(this.height));
 		};
 	}, {}));
 	
-	var LinkedSize = Size.extend({
+	const LinkedSize = Size.extend({
 		initialize: function Size(width, height, owner, setter) {
 			this._width = width;
 			this._height = height;
@@ -1722,8 +1740,8 @@ var paper = function (self, undefined) {
 		beans: true,
 		
 		initialize: function Rectangle(arg0, arg1, arg2, arg3) {
-			var type = typeof arg0,
-				read = 0;
+			const type = typeof arg0;
+			let read = 0;
 			if (type === 'number') {
 				this.x = arg0;
 				this.y = arg1;
@@ -1757,12 +1775,12 @@ var paper = function (self, undefined) {
 				}
 			}
 			if (!read) {
-				var point = Point.readNamed(arguments, 'from'),
+				const point = Point.readNamed(arguments, 'from'),
 					next = Base.peek(arguments);
 				this.x = point.x;
 				this.y = point.y;
 				if (next && next.x !== undefined || Base.hasNamed(arguments, 'to')) {
-					var to = Point.readNamed(arguments, 'to');
+					const to = Point.readNamed(arguments, 'to');
 					this.width = to.x - point.x;
 					this.height = to.y - point.y;
 					if (this.width < 0) {
@@ -1775,7 +1793,7 @@ var paper = function (self, undefined) {
 					}
 				}
 				else {
-					var size = Size.read(arguments);
+					const size = Size.read(arguments);
 					this.width = size.width;
 					this.height = size.height;
 				}
@@ -1798,7 +1816,7 @@ var paper = function (self, undefined) {
 		},
 		
 		equals: function (rect) {
-			var rt = Base.isPlainValue(rect)
+			const rt = Base.isPlainValue(rect)
 				? Rectangle.read(arguments)
 				: rect;
 			return rt === this
@@ -1808,7 +1826,7 @@ var paper = function (self, undefined) {
 		},
 		
 		toString: function () {
-			var f = Formatter.instance;
+			const f = Formatter.instance;
 			return '{ x: ' + f.number(this.x)
 				+ ', y: ' + f.number(this.y)
 				+ ', width: ' + f.number(this.width)
@@ -1817,7 +1835,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_serialize: function (options) {
-			var f = options.formatter;
+			const f = options.formatter;
 			return [f.number(this.x),
 				f.number(this.y),
 				f.number(this.width),
@@ -1825,23 +1843,23 @@ var paper = function (self, undefined) {
 		},
 		
 		getPoint: function (_dontLink) {
-			var ctor = _dontLink ? Point : LinkedPoint;
+			const ctor = _dontLink ? Point : LinkedPoint;
 			return new ctor(this.x, this.y, this, 'setPoint');
 		},
 		
 		setPoint: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			this.x = point.x;
 			this.y = point.y;
 		},
 		
 		getSize: function (_dontLink) {
-			var ctor = _dontLink ? Size : LinkedSize;
+			const ctor = _dontLink ? Size : LinkedSize;
 			return new ctor(this.width, this.height, this, 'setSize');
 		},
 		
 		setSize: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			if (this._fixX)
 				this.x += (this.width - size.width) * this._fixX;
 			if (this._fixY)
@@ -1921,12 +1939,12 @@ var paper = function (self, undefined) {
 		},
 		
 		getCenter: function (_dontLink) {
-			var ctor = _dontLink ? Point : LinkedPoint;
+			const ctor = _dontLink ? Point : LinkedPoint;
 			return new ctor(this.getCenterX(), this.getCenterY(), this, 'setCenter');
 		},
 		
 		setCenter: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			this.setCenterX(point.x);
 			this.setCenterY(point.y);
 			return this;
@@ -1948,7 +1966,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_containsPoint: function (point) {
-			var x = point.x,
+			const x = point.x,
 				y = point.y;
 			return x >= this.x && y >= this.y
 				&& x <= this.x + this.width
@@ -1956,7 +1974,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_containsRectangle: function (rect) {
-			var x = rect.x,
+			const x = rect.x,
 				y = rect.y;
 			return x >= this.x && y >= this.y
 				&& x + rect.width <= this.x + this.width
@@ -1964,7 +1982,7 @@ var paper = function (self, undefined) {
 		},
 		
 		intersects: function () {
-			var rect = Rectangle.read(arguments);
+			const rect = Rectangle.read(arguments);
 			return rect.x + rect.width > this.x
 				&& rect.y + rect.height > this.y
 				&& rect.x < this.x + this.width
@@ -1972,7 +1990,7 @@ var paper = function (self, undefined) {
 		},
 		
 		touches: function () {
-			var rect = Rectangle.read(arguments);
+			const rect = Rectangle.read(arguments);
 			return rect.x + rect.width >= this.x
 				&& rect.y + rect.height >= this.y
 				&& rect.x <= this.x + this.width
@@ -1980,7 +1998,7 @@ var paper = function (self, undefined) {
 		},
 		
 		intersect: function () {
-			var rect = Rectangle.read(arguments),
+			const rect = Rectangle.read(arguments),
 				x1 = Math.max(this.x, rect.x),
 				y1 = Math.max(this.y, rect.y),
 				x2 = Math.min(this.x + this.width, rect.x + rect.width),
@@ -1989,7 +2007,7 @@ var paper = function (self, undefined) {
 		},
 		
 		unite: function () {
-			var rect = Rectangle.read(arguments),
+			const rect = Rectangle.read(arguments),
 				x1 = Math.min(this.x, rect.x),
 				y1 = Math.min(this.y, rect.y),
 				x2 = Math.max(this.x + this.width, rect.x + rect.width),
@@ -1998,8 +2016,8 @@ var paper = function (self, undefined) {
 		},
 		
 		include: function () {
-			var point = Point.read(arguments);
-			var x1 = Math.min(this.x, point.x),
+			const point = Point.read(arguments);
+			const x1 = Math.min(this.x, point.x),
 				y1 = Math.min(this.y, point.y),
 				x2 = Math.max(this.x + this.width, point.x),
 				y2 = Math.max(this.y + this.height, point.y);
@@ -2007,7 +2025,7 @@ var paper = function (self, undefined) {
 		},
 		
 		expand: function () {
-			var amount = Size.read(arguments),
+			const amount = Size.read(arguments),
 				hor = amount.width,
 				ver = amount.height;
 			return new Rectangle(this.x - hor / 2, this.y - ver / 2,
@@ -2025,11 +2043,11 @@ var paper = function (self, undefined) {
 			['Right', 'Center'], ['Bottom', 'Center']
 		],
 		function (parts, index) {
-			var part = parts.join(''),
+			const part = parts.join(''),
 				xFirst = /^[RL]/.test(part);
 			if (index >= 4)
 				parts[1] += xFirst ? 'Y' : 'X';
-			var x = parts[xFirst ? 0 : 1],
+			const x = parts[xFirst ? 0 : 1],
 				y = parts[xFirst ? 1 : 0],
 				getX = 'get' + x,
 				getY = 'get' + y,
@@ -2038,11 +2056,11 @@ var paper = function (self, undefined) {
 				get = 'get' + part,
 				set = 'set' + part;
 			this[get] = function (_dontLink) {
-				var ctor = _dontLink ? Point : LinkedPoint;
+				const ctor = _dontLink ? Point : LinkedPoint;
 				return new ctor(this[getX](), this[getY](), this, set);
 			};
 			this[set] = function () {
-				var point = Point.read(arguments);
+				const point = Point.read(arguments);
 				this[setX](point.x);
 				this[setY](point.y);
 			};
@@ -2051,7 +2069,7 @@ var paper = function (self, undefined) {
 		}
 	));
 	
-	var LinkedRectangle = Rectangle.extend({
+	const LinkedRectangle = Rectangle.extend({
 			initialize: function Rectangle(x, y, width, height, owner, setter) {
 				this.set(x, y, width, height, true);
 				this._owner = owner;
@@ -2069,10 +2087,10 @@ var paper = function (self, undefined) {
 			}
 		},
 		new function () {
-			var proto = Rectangle.prototype;
+			const proto = Rectangle.prototype;
 			
 			return Base.each(['x', 'y', 'width', 'height'], function (key) {
-					var part = Base.capitalize(key),
+					const part = Base.capitalize(key),
 						internal = '_' + key;
 					this['get' + part] = function () {
 						return this[internal];
@@ -2088,7 +2106,7 @@ var paper = function (self, undefined) {
 					'TopLeft', 'TopRight', 'BottomLeft', 'BottomRight',
 					'LeftCenter', 'TopCenter', 'RightCenter', 'BottomCenter'],
 				function (key) {
-					var name = 'set' + key;
+					const name = 'set' + key;
 					this[name] = function () {
 						this._dontNotify = true;
 						proto[name].apply(this, arguments);
@@ -2101,7 +2119,7 @@ var paper = function (self, undefined) {
 					},
 					
 					setSelected: function (selected) {
-						var owner = this._owner;
+						const owner = this._owner;
 						if (owner.changeSelection) {
 							owner.changeSelection(2, selected);
 						}
@@ -2110,12 +2128,12 @@ var paper = function (self, undefined) {
 			);
 		});
 	
-	var Matrix = Base.extend({
+	const Matrix = Base.extend({
 		_class: 'Matrix',
 		
 		initialize: function Matrix(arg) {
-			var count = arguments.length,
-				ok = true;
+			const count = arguments.length;
+			let ok = true;
 			if (count === 6) {
 				this.set.apply(this, arguments);
 			}
@@ -2158,7 +2176,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_changed: function () {
-			var owner = this._owner;
+			const owner = this._owner;
 			if (owner) {
 				if (owner._applyMatrix) {
 					owner.transform(null, true);
@@ -2181,7 +2199,7 @@ var paper = function (self, undefined) {
 		},
 		
 		toString: function () {
-			var f = Formatter.instance;
+			const f = Formatter.instance;
 			return '[[' + [f.number(this._a), f.number(this._c),
 					f.number(this._tx)].join(', ') + '], ['
 				+ [f.number(this._b), f.number(this._d),
@@ -2197,7 +2215,7 @@ var paper = function (self, undefined) {
 		},
 		
 		apply: function (recursively, _setApplyMatrix) {
-			var owner = this._owner;
+			const owner = this._owner;
 			if (owner) {
 				owner.transform(null, true, Base.pick(recursively, true),
 					_setApplyMatrix);
@@ -2207,7 +2225,7 @@ var paper = function (self, undefined) {
 		},
 		
 		translate: function () {
-			var point = Point.read(arguments),
+			const point = Point.read(arguments),
 				x = point.x,
 				y = point.y;
 			this._tx += x * this._a + y * this._c;
@@ -2217,7 +2235,7 @@ var paper = function (self, undefined) {
 		},
 		
 		scale: function () {
-			var scale = Point.read(arguments),
+			const scale = Point.read(arguments),
 				center = Point.read(arguments, 0, {readNull: true});
 			if (center)
 				this.translate(center);
@@ -2233,12 +2251,12 @@ var paper = function (self, undefined) {
 		
 		rotate: function (angle) {
 			angle *= Math.PI / 180;
-			var center = Point.read(arguments, 1),
+			const center = Point.read(arguments, 1),
 				x = center.x,
 				y = center.y,
-				cos = Math.cos(angle),
-				sin = Math.sin(angle),
-				tx = x - x * cos + y * sin,
+				cos = Math.cos(angle);
+			let sin = Math.sin(angle);
+			const tx = x - x * cos + y * sin,
 				ty = y - x * sin - y * cos,
 				a = this._a,
 				b = this._b,
@@ -2255,11 +2273,11 @@ var paper = function (self, undefined) {
 		},
 		
 		shear: function () {
-			var shear = Point.read(arguments),
+			const shear = Point.read(arguments),
 				center = Point.read(arguments, 0, {readNull: true});
 			if (center)
 				this.translate(center);
-			var a = this._a,
+			const a = this._a,
 				b = this._b;
 			this._a += shear.y * this._c;
 			this._b += shear.y * this._d;
@@ -2272,7 +2290,7 @@ var paper = function (self, undefined) {
 		},
 		
 		skew: function () {
-			var skew = Point.read(arguments),
+			const skew = Point.read(arguments),
 				center = Point.read(arguments, 0, {readNull: true}),
 				toRadians = Math.PI / 180,
 				shear = new Point(Math.tan(skew.x * toRadians),
@@ -2282,7 +2300,7 @@ var paper = function (self, undefined) {
 		
 		append: function (mx) {
 			if (mx) {
-				var a1 = this._a,
+				const a1 = this._a,
 					b1 = this._b,
 					c1 = this._c,
 					d1 = this._d,
@@ -2305,7 +2323,7 @@ var paper = function (self, undefined) {
 		
 		prepend: function (mx) {
 			if (mx) {
-				var a1 = this._a,
+				const a1 = this._a,
 					b1 = this._b,
 					c1 = this._c,
 					d1 = this._d,
@@ -2337,14 +2355,14 @@ var paper = function (self, undefined) {
 		},
 		
 		invert: function () {
-			var a = this._a,
-				b = this._b,
-				c = this._c,
-				d = this._d,
+			const a = this._a;
+			let b = this._b,
+				c = this._c;
+			const d = this._d,
 				tx = this._tx,
 				ty = this._ty,
-				det = a * d - b * c,
-				res = null;
+				det = a * d - b * c;
+			let res = null;
 			if (det && !isNaN(det) && isFinite(tx) && isFinite(ty)) {
 				this._a = d / det;
 				this._b = -b / det;
@@ -2379,7 +2397,7 @@ var paper = function (self, undefined) {
 		},
 		
 		isInvertible: function () {
-			var det = this._a * this._d - this._c * this._b;
+			const det = this._a * this._d - this._c * this._b;
 			return det && !isNaN(det) && isFinite(this._tx) && isFinite(this._ty);
 		},
 		
@@ -2394,7 +2412,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_transformPoint: function (point, dest, _dontNotify) {
-			var x = point.x,
+			const x = point.x,
 				y = point.y;
 			if (!dest)
 				dest = new Point();
@@ -2405,8 +2423,10 @@ var paper = function (self, undefined) {
 		},
 		
 		_transformCoordinates: function (src, dst, count) {
-			for (var i = 0, max = 2 * count; i < max; i += 2) {
-				var x = src[i],
+			let i = 0;
+			const max = 2 * count;
+			for (; i < max; i += 2) {
+				const x = src[i],
 					y = src[i + 1];
 				dst[i] = x * this._a + y * this._c + this._tx;
 				dst[i + 1] = x * this._b + y * this._d + this._ty;
@@ -2415,7 +2435,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_transformCorners: function (rect) {
-			var x1 = rect.x,
+			const x1 = rect.x,
 				y1 = rect.y,
 				x2 = x1 + rect.width,
 				y2 = y1 + rect.height,
@@ -2424,11 +2444,11 @@ var paper = function (self, undefined) {
 		},
 		
 		_transformBounds: function (bounds, dest, _dontNotify) {
-			var coords = this._transformCorners(bounds),
+			const coords = this._transformCorners(bounds),
 				min = coords.slice(0, 2),
 				max = min.slice();
-			for (var i = 2; i < 8; i++) {
-				var val = coords[i],
+			for (let i = 2; i < 8; i++) {
+				const val = coords[i],
 					j = i & 1;
 				if (val < min[j]) {
 					min[j] = val;
@@ -2448,16 +2468,16 @@ var paper = function (self, undefined) {
 		},
 		
 		_inverseTransform: function (point, dest, _dontNotify) {
-			var a = this._a,
+			const a = this._a,
 				b = this._b,
 				c = this._c,
 				d = this._d,
 				tx = this._tx,
 				ty = this._ty,
-				det = a * d - b * c,
-				res = null;
+				det = a * d - b * c;
+			let res = null;
 			if (det && !isNaN(det) && isFinite(tx) && isFinite(ty)) {
-				var x = point.x - this._tx,
+				const x = point.x - this._tx,
 					y = point.y - this._ty;
 				if (!dest)
 					dest = new Point();
@@ -2470,25 +2490,25 @@ var paper = function (self, undefined) {
 		},
 		
 		decompose: function () {
-			var a = this._a,
+			const a = this._a,
 				b = this._b,
 				c = this._c,
 				d = this._d,
 				det = a * d - b * c,
 				sqrt = Math.sqrt,
 				atan2 = Math.atan2,
-				degrees = 180 / Math.PI,
-				rotate,
+				degrees = 180 / Math.PI;
+			let rotate,
 				scale,
 				skew;
 			if (a !== 0 || b !== 0) {
-				var r = sqrt(a * a + b * b);
+				const r = sqrt(a * a + b * b);
 				rotate = Math.acos(a / r) * (b > 0 ? 1 : -1);
 				scale = [r, det / r];
 				skew = [atan2(a * c + b * d, r * r), 0];
 			}
 			else if (c !== 0 || d !== 0) {
-				var s = sqrt(c * c + d * d);
+				const s = sqrt(c * c + d * d);
 				rotate = Math.asin(c / s) * (d > 0 ? 1 : -1);
 				scale = [det / s, s];
 				skew = [0, atan2(a * c + b * d, s * s)];
@@ -2528,7 +2548,7 @@ var paper = function (self, undefined) {
 			}
 		}
 	}, Base.each(['a', 'b', 'c', 'd', 'tx', 'ty'], function (key) {
-		var part = Base.capitalize(key),
+		const part = Base.capitalize(key),
 			prop = '_' + key;
 		this['get' + part] = function () {
 			return this[prop];
@@ -2539,11 +2559,11 @@ var paper = function (self, undefined) {
 		};
 	}, {}));
 	
-	var Line = Base.extend({
+	const Line = Base.extend({
 		_class: 'Line',
 		
 		initialize: function Line(arg0, arg1, arg2, arg3, arg4) {
-			var asVector = false;
+			let asVector = false;
 			if (arguments.length >= 4) {
 				this._px = arg0;
 				this._py = arg1;
@@ -2612,14 +2632,14 @@ var paper = function (self, undefined) {
 					v2x -= p2x;
 					v2y -= p2y;
 				}
-				var cross = v1x * v2y - v1y * v2x;
+				const cross = v1x * v2y - v1y * v2x;
 				if (!Numerical.isZero(cross)) {
-					var dx = p1x - p2x,
-						dy = p1y - p2y,
-						u1 = (v2x * dy - v2y * dx) / cross,
-						u2 = (v1x * dy - v1y * dx) / cross,
-						epsilon = 1e-12,
-						uMin = -epsilon,
+					const dx = p1x - p2x,
+						dy = p1y - p2y;
+					let u1 = (v2x * dy - v2y * dx) / cross;
+					const u2 = (v1x * dy - v1y * dx) / cross;
+					let epsilon = 1e-12;
+					const uMin = -epsilon,
 						uMax = 1 + epsilon;
 					if (isInfinite
 						|| uMin < u1 && u1 < uMax && uMin < u2 && u2 < uMax) {
@@ -2638,9 +2658,9 @@ var paper = function (self, undefined) {
 					vx -= px;
 					vy -= py;
 				}
-				var v2x = x - px,
-					v2y = y - py,
-					ccw = v2x * vy - v2y * vx;
+				const v2x = x - px,
+					v2y = y - py;
+				let ccw = v2x * vy - v2y * vx;
 				if (ccw === 0 && !isInfinite) {
 					ccw = (v2x * vx + v2x * vx) / (vx * vx + vy * vy);
 					if (ccw >= 0 && ccw <= 1)
@@ -2686,16 +2706,16 @@ var paper = function (self, undefined) {
 		
 		_changed: function (flags, item) {
 			if (flags & 1) {
-				var view = this._view;
+				const view = this._view;
 				if (view) {
 					view._needsUpdate = true;
 					if (!view._requested && view._autoUpdate)
 						view.requestUpdate();
 				}
 			}
-			var changes = this._changes;
+			const changes = this._changes;
 			if (changes && item) {
-				var changesById = this._changesById,
+				const changesById = this._changesById,
 					id = item._id,
 					entry = changesById[id];
 				if (entry) {
@@ -2708,8 +2728,8 @@ var paper = function (self, undefined) {
 		},
 		
 		clear: function () {
-			var children = this._children;
-			for (var i = children.length - 1; i >= 0; i--)
+			const children = this._children;
+			for (let i = children.length - 1; i >= 0; i--)
 				children[i].remove();
 		},
 		
@@ -2754,12 +2774,12 @@ var paper = function (self, undefined) {
 		},
 		
 		getSymbolDefinitions: function () {
-			var definitions = [],
+			const definitions = [],
 				ids = {};
 			this.getItems({
 				class: SymbolItem,
 				match: function (item) {
-					var definition = item._definition,
+					const definition = item._definition,
 						id = definition._id;
 					if (!ids[id]) {
 						ids[id] = true;
@@ -2774,11 +2794,11 @@ var paper = function (self, undefined) {
 		getSymbols: 'getSymbolDefinitions',
 		
 		getSelectedItems: function () {
-			var selectionItems = this._selectionItems,
+			const selectionItems = this._selectionItems,
 				items = [];
-			for (var id in selectionItems) {
-				var item = selectionItems[id],
-					selection = item._selection;
+			for (let id in selectionItems) {
+				const item = selectionItems[id];
+				let selection = item._selection;
 				if (selection & 1 && item.isInserted()) {
 					items.push(item);
 				}
@@ -2790,7 +2810,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_updateSelection: function (item) {
-			var id = item._id,
+			const id = item._id,
 				selectionItems = this._selectionItems;
 			if (item._selection) {
 				if (selectionItems[id] !== item) {
@@ -2805,14 +2825,16 @@ var paper = function (self, undefined) {
 		},
 		
 		selectAll: function () {
-			var children = this._children;
-			for (var i = 0, l = children.length; i < l; i++)
+			const children = this._children;
+			let i = 0;
+			const l = children.length;
+			for (; i < l; i++)
 				children[i].setFullySelected(true);
 		},
 		
 		deselectAll: function () {
-			var selectionItems = this._selectionItems;
-			for (var i in selectionItems)
+			const selectionItems = this._selectionItems;
+			for (let i in selectionItems)
 				selectionItems[i].setFullySelected(false);
 		},
 		
@@ -2825,7 +2847,7 @@ var paper = function (self, undefined) {
 				layer._remove(false, true);
 				Base.splice(this._children, [layer], index, 0);
 				layer._setProject(this, true);
-				var name = layer._name;
+				const name = layer._name;
 				if (name)
 					layer.setName(name);
 				if (this._changes)
@@ -2859,21 +2881,21 @@ var paper = function (self, undefined) {
 		
 		importJSON: function (json) {
 			this.activate();
-			var layer = this._activeLayer;
+			const layer = this._activeLayer;
 			return Base.importJSON(json, layer && layer.isEmpty() && layer);
 		},
 		
 		removeOn: function (type) {
-			var sets = this._removeSets;
+			const sets = this._removeSets;
 			if (sets) {
 				if (type === 'mouseup')
 					sets.mousedrag = null;
-				var set = sets[type];
+				const set = sets[type];
 				if (set) {
-					for (var id in set) {
-						var item = set[id];
-						for (var key in sets) {
-							var other = sets[key];
+					for (let id in set) {
+						const item = set[id];
+						for (let key in sets) {
+							const other = sets[key];
 							if (other && other != set)
 								delete other[item._id];
 						}
@@ -2888,7 +2910,7 @@ var paper = function (self, undefined) {
 			this._updateVersion++;
 			ctx.save();
 			matrix.applyToContext(ctx);
-			var children = this._children,
+			const children = this._children,
 				param = new Base({
 					offset: new Point(0, 0),
 					pixelRatio: pixelRatio,
@@ -2896,7 +2918,9 @@ var paper = function (self, undefined) {
 					matrices: [new Matrix()],
 					updateMatrix: true
 				});
-			for (var i = 0, l = children.length; i < l; i++) {
+			let i = 0;
+			const l = children.length;
+			for (; i < l; i++) {
 				children[i].draw(ctx, param);
 			}
 			ctx.restore();
@@ -2904,10 +2928,10 @@ var paper = function (self, undefined) {
 			if (this._selectionCount > 0) {
 				ctx.save();
 				ctx.strokeWidth = 1;
-				var items = this._selectionItems,
+				const items = this._selectionItems,
 					size = this._scope.settings.handleSize,
 					version = this._updateVersion;
-				for (var id in items) {
+				for (let id in items) {
 					items[id]._drawSelection(ctx, matrix, size, items, version);
 				}
 				ctx.restore();
@@ -2958,7 +2982,7 @@ var paper = function (self, undefined) {
 			}
 		},
 		new function () {
-			var handlers = ['onMouseDown', 'onMouseUp', 'onMouseDrag', 'onClick',
+			const handlers = ['onMouseDown', 'onMouseUp', 'onMouseDrag', 'onClick',
 				'onDoubleClick', 'onMouseMove', 'onMouseEnter', 'onMouseLeave'];
 			return Base.each(handlers,
 				function (name) {
@@ -2996,7 +3020,7 @@ var paper = function (self, undefined) {
 			},
 			
 			_initialize: function (props, point) {
-				var hasProps = props && Base.isPlainObject(props),
+				const hasProps = props && Base.isPlainObject(props),
 					internal = hasProps && props.internal === true,
 					matrix = this._matrix = new Matrix(),
 					project = hasProps && props.project || paper.project,
@@ -3025,12 +3049,12 @@ var paper = function (self, undefined) {
 			},
 			
 			_serialize: function (options, dictionary) {
-				var props = {},
+				const props = {},
 					that = this;
 				
 				function serialize(fields) {
-					for (var key in fields) {
-						var value = that[key];
+					for (let key in fields) {
+						const value = that[key];
 						if (!Base.equals(value, key === 'leading'
 								? fields.fontSize * 1.2 : fields[key])) {
 							props[key] = Base.serialize(value, options,
@@ -3046,7 +3070,7 @@ var paper = function (self, undefined) {
 			},
 			
 			_changed: function (flags) {
-				var symbol = this._symbol,
+				const symbol = this._symbol,
 					cacheParent = this._parent || symbol,
 					project = this._project;
 				if (flags & 8) {
@@ -3087,9 +3111,9 @@ var paper = function (self, undefined) {
 				if (name === (+name) + '')
 					throw new Error(
 						'Names consisting only of numbers are not supported.');
-				var owner = this._getOwner();
+				const owner = this._getOwner();
 				if (name && owner) {
-					var children = owner._children,
+					const children = owner._children,
 						namedChildren = owner._namedChildren;
 					(namedChildren[name] = namedChildren[name] || []).push(this);
 					if (!(name in children))
@@ -3131,7 +3155,7 @@ var paper = function (self, undefined) {
 			setSelection: function (selection) {
 				if (selection !== this._selection) {
 					this._selection = selection;
-					var project = this._project;
+					const project = this._project;
 					if (project) {
 						project._updateSelection(this);
 						this._changed(129);
@@ -3140,14 +3164,16 @@ var paper = function (self, undefined) {
 			},
 			
 			changeSelection: function (flag, selected) {
-				var selection = this._selection;
+				const selection = this._selection;
 				this.setSelection(selected ? selection | flag : selection & ~flag);
 			},
 			
 			isSelected: function () {
 				if (this._selectChildren) {
-					var children = this._children;
-					for (var i = 0, l = children.length; i < l; i++)
+					const children = this._children;
+					let i = 0;
+					const l = children.length;
+					for (; i < l; i++)
 						if (children[i].isSelected())
 							return true;
 				}
@@ -3156,18 +3182,22 @@ var paper = function (self, undefined) {
 			
 			setSelected: function (selected) {
 				if (this._selectChildren) {
-					var children = this._children;
-					for (var i = 0, l = children.length; i < l; i++)
+					const children = this._children;
+					let i = 0;
+					const l = children.length;
+					for (; i < l; i++)
 						children[i].setSelected(selected);
 				}
 				this.changeSelection(1, selected);
 			},
 			
 			isFullySelected: function () {
-				var children = this._children,
+				const children = this._children,
 					selected = !!(this._selection & 1);
 				if (children && selected) {
-					for (var i = 0, l = children.length; i < l; i++)
+					let i = 0;
+					const l = children.length;
+					for (; i < l; i++)
 						if (!children[i].isFullySelected())
 							return false;
 					return true;
@@ -3176,9 +3206,11 @@ var paper = function (self, undefined) {
 			},
 			
 			setFullySelected: function (selected) {
-				var children = this._children;
+				const children = this._children;
 				if (children) {
-					for (var i = 0, l = children.length; i < l; i++)
+					let i = 0;
+					const l = children.length;
+					for (; i < l; i++)
 						children[i].setFullySelected(selected);
 				}
 				this.changeSelection(1, selected);
@@ -3212,10 +3244,10 @@ var paper = function (self, undefined) {
 			},
 			
 			getPosition: function (_dontLink) {
-				var position = this._position,
-					ctor = _dontLink ? Point : LinkedPoint;
+				let position = this._position;
+				const ctor = _dontLink ? Point : LinkedPoint;
 				if (!position) {
-					var pivot = this._pivot;
+					const pivot = this._pivot;
 					position = this._position = pivot
 						? this._matrix._transformPoint(pivot)
 						: this.getBounds().getCenter(true);
@@ -3228,9 +3260,9 @@ var paper = function (self, undefined) {
 			},
 			
 			getPivot: function (_dontLink) {
-				var pivot = this._pivot;
+				let pivot = this._pivot;
 				if (pivot) {
-					var ctor = _dontLink ? Point : LinkedPoint;
+					const ctor = _dontLink ? Point : LinkedPoint;
 					pivot = new ctor(pivot.x, pivot.y, this, 'setPivot');
 				}
 				return pivot;
@@ -3254,12 +3286,12 @@ var paper = function (self, undefined) {
 				beans: true,
 				
 				getBounds: function (matrix, options) {
-					var hasMatrix = options || matrix instanceof Matrix,
+					const hasMatrix = options || matrix instanceof Matrix,
 						opts = Base.set({}, hasMatrix ? options : matrix,
 							this._boundsOptions);
 					if (!opts.stroke || this.getStrokeScaling())
 						opts.cacheItem = this;
-					var bounds = this._getCachedBounds(hasMatrix && matrix, opts);
+					const bounds = this._getCachedBounds(hasMatrix && matrix, opts);
 					return arguments.length === 0
 						? new LinkedRectangle(bounds.x, bounds.y, bounds.width,
 							bounds.height, this, 'setBounds')
@@ -3267,11 +3299,11 @@ var paper = function (self, undefined) {
 				},
 				
 				setBounds: function () {
-					var rect = Rectangle.read(arguments),
-						bounds = this.getBounds(),
-						_matrix = this._matrix,
-						matrix = new Matrix(),
-						center = rect.getCenter();
+					const rect = Rectangle.read(arguments);
+					let bounds = this.getBounds();
+					const _matrix = this._matrix,
+						matrix = new Matrix();
+					let center = rect.getCenter();
 					matrix.translate(center);
 					if (rect.width != bounds.width || rect.height != bounds.height) {
 						if (!_matrix.isInvertible()) {
@@ -3289,7 +3321,7 @@ var paper = function (self, undefined) {
 				},
 				
 				_getBounds: function (matrix, options) {
-					var children = this._children;
+					let children = this._children;
 					if (!children || children.length === 0)
 						return new Rectangle();
 					Item._updateBoundsCache(this, options.cacheItem);
@@ -3298,22 +3330,22 @@ var paper = function (self, undefined) {
 				
 				_getCachedBounds: function (matrix, options) {
 					matrix = matrix && matrix._orNullIfIdentity();
-					var internal = options.internal,
+					const internal = options.internal,
 						cacheItem = options.cacheItem,
 						_matrix = internal ? null : this._matrix._orNullIfIdentity(),
 						cacheKey = cacheItem && (!matrix || matrix.equals(_matrix)) && [
-								options.stroke ? 1 : 0,
-								options.handle ? 1 : 0,
-								internal ? 1 : 0
-							].join('');
+							options.stroke ? 1 : 0,
+							options.handle ? 1 : 0,
+							internal ? 1 : 0
+						].join('');
 					Item._updateBoundsCache(this._parent || this._symbol, cacheItem);
 					if (cacheKey && this._bounds && cacheKey in this._bounds)
 						return this._bounds[cacheKey].rect.clone();
-					var bounds = this._getBounds(matrix || _matrix, options);
+					const bounds = this._getBounds(matrix || _matrix, options);
 					if (cacheKey) {
 						if (!this._bounds)
 							this._bounds = {};
-						var cached = this._bounds[cacheKey] = {
+						const cached = this._bounds[cacheKey] = {
 							rect: bounds.clone(),
 							internal: options.internal
 						};
@@ -3322,9 +3354,9 @@ var paper = function (self, undefined) {
 				},
 				
 				_getStrokeMatrix: function (matrix, options) {
-					var parent = this.getStrokeScaling() ? null
-							: options && options.internal ? this
-								: this._parent || this._symbol && this._symbol._item,
+					const parent = this.getStrokeScaling() ? null
+						: options && options.internal ? this
+							: this._parent || this._symbol && this._symbol._item,
 						mx = parent ? parent.getViewMatrix().invert() : matrix;
 					return mx && mx._shiftless();
 				},
@@ -3332,11 +3364,11 @@ var paper = function (self, undefined) {
 				statics: {
 					_updateBoundsCache: function (parent, item) {
 						if (parent && item) {
-							var id = item._id,
+							const id = item._id,
 								ref = parent._boundsCache = parent._boundsCache || {
-										ids: {},
-										list: []
-									};
+									ids: {},
+									list: []
+								};
 							if (!ref.ids[id]) {
 								ref.list.push(item);
 								ref.ids[id] = item;
@@ -3345,11 +3377,13 @@ var paper = function (self, undefined) {
 					},
 					
 					_clearBoundsCache: function (item) {
-						var cache = item._boundsCache;
+						const cache = item._boundsCache;
 						if (cache) {
 							item._bounds = item._position = item._boundsCache = undefined;
-							for (var i = 0, list = cache.list, l = list.length; i < l; i++) {
-								var other = list[i];
+							let i = 0;
+							const list = cache.list, l = list.length;
+							for (; i < l; i++) {
+								const other = list[i];
 								if (other !== item) {
 									other._bounds = other._position = undefined;
 									if (other._boundsCache)
@@ -3360,15 +3394,17 @@ var paper = function (self, undefined) {
 					},
 					
 					_getBounds: function (items, matrix, options) {
-						var x1 = Infinity,
+						let x1 = Infinity,
 							x2 = -x1,
 							y1 = x1,
 							y2 = x2;
 						options = options || {};
-						for (var i = 0, l = items.length; i < l; i++) {
-							var item = items[i];
+						let i = 0;
+						const l = items.length;
+						for (; i < l; i++) {
+							const item = items[i];
 							if (item._visible && !item.isEmpty()) {
-								var rect = item._getCachedBounds(
+								const rect = item._getCachedBounds(
 									matrix && matrix.appended(item._matrix), options);
 								x1 = Math.min(rect.x, x1);
 								y1 = Math.min(rect.y, y1);
@@ -3390,26 +3426,26 @@ var paper = function (self, undefined) {
 			},
 			
 			getRotation: function () {
-				var decomposed = this._decompose();
+				const decomposed = this._decompose();
 				return decomposed && decomposed.rotation;
 			},
 			
 			setRotation: function (rotation) {
-				var current = this.getRotation();
+				const current = this.getRotation();
 				if (current != null && rotation != null) {
 					this.rotate(rotation - current);
 				}
 			},
 			
 			getScaling: function (_dontLink) {
-				var decomposed = this._decompose(),
+				const decomposed = this._decompose(),
 					scaling = decomposed && decomposed.scaling,
 					ctor = _dontLink ? Point : LinkedPoint;
 				return scaling && new ctor(scaling.x, scaling.y, this, 'setScaling');
 			},
 			
 			setScaling: function () {
-				var current = this.getScaling(),
+				const current = this.getScaling(),
 					scaling = Point.read(arguments, 0, {clone: true, readNull: true});
 				if (current && scaling) {
 					this.scale(scaling.x / current.x, scaling.y / current.y);
@@ -3421,18 +3457,18 @@ var paper = function (self, undefined) {
 			},
 			
 			setMatrix: function () {
-				var matrix = this._matrix;
+				const matrix = this._matrix;
 				matrix.initialize.apply(matrix, arguments);
 			},
 			
 			getGlobalMatrix: function (_dontClone) {
-				var matrix = this._globalMatrix,
-					updateVersion = this._project._updateVersion;
+				let matrix = this._globalMatrix;
+				const updateVersion = this._project._updateVersion;
 				if (matrix && matrix._updateVersion !== updateVersion)
 					matrix = null;
 				if (!matrix) {
 					matrix = this._globalMatrix = this._matrix.clone();
-					var parent = this._parent;
+					const parent = this._parent;
 					if (parent)
 						matrix.prepend(parent.getGlobalMatrix(true));
 					matrix._updateVersion = updateVersion;
@@ -3465,8 +3501,10 @@ var paper = function (self, undefined) {
 					if (this._project)
 						this._installEvents(false);
 					this._project = project;
-					var children = this._children;
-					for (var i = 0, l = children && children.length; i < l; i++)
+					const children = this._children;
+					let i = 0;
+					const l = children && children.length;
+					for (; i < l; i++)
 						children[i]._setProject(project);
 					installEvents = true;
 				}
@@ -3480,13 +3518,15 @@ var paper = function (self, undefined) {
 			
 			_installEvents: function _installEvents(install) {
 				_installEvents.base.call(this, install);
-				var children = this._children;
-				for (var i = 0, l = children && children.length; i < l; i++)
+				const children = this._children;
+				let i = 0;
+				const l = children && children.length;
+				for (; i < l; i++)
 					children[i]._installEvents(install);
 			},
 			
 			getLayer: function () {
-				var parent = this;
+				let parent = this;
 				while (parent = parent._parent) {
 					if (parent instanceof Layer)
 						return parent;
@@ -3523,12 +3563,12 @@ var paper = function (self, undefined) {
 			},
 			
 			getNextSibling: function () {
-				var owner = this._getOwner();
+				const owner = this._getOwner();
 				return owner && owner._children[this._index + 1] || null;
 			},
 			
 			getPreviousSibling: function () {
-				var owner = this._getOwner();
+				const owner = this._getOwner();
 				return owner && owner._children[this._index - 1] || null;
 			},
 			
@@ -3568,8 +3608,8 @@ var paper = function (self, undefined) {
 					copy.copyAttributes(this);
 				if (insert)
 					copy.insertAbove(this);
-				var name = this._name,
-					parent = this._parent;
+				let name = this._name;
+				const parent = this._parent;
 				if (name && parent) {
 					var children = parent._children,
 						orig = name,
@@ -3583,18 +3623,22 @@ var paper = function (self, undefined) {
 			},
 			
 			copyContent: function (source) {
-				var children = source._children;
-				for (var i = 0, l = children && children.length; i < l; i++) {
+				const children = source._children;
+				let i = 0;
+				const l = children && children.length;
+				for (; i < l; i++) {
 					this.addChild(children[i].clone(false), true);
 				}
 			},
 			
 			copyAttributes: function (source, excludeMatrix) {
 				this.setStyle(source._style);
-				var keys = ['_locked', '_visible', '_blendMode', '_opacity',
+				const keys = ['_locked', '_visible', '_blendMode', '_opacity',
 					'_clipMask', '_guide'];
-				for (var i = 0, l = keys.length; i < l; i++) {
-					var key = keys[i];
+				let i = 0;
+				const l = keys.length;
+				for (; i < l; i++) {
+					const key = keys[i];
 					if (source.hasOwnProperty(key))
 						this[key] = source[key];
 				}
@@ -3603,7 +3647,7 @@ var paper = function (self, undefined) {
 				this.setApplyMatrix(source._applyMatrix);
 				this.setPivot(source._pivot);
 				this.setSelection(source._selection);
-				var data = source._data,
+				const data = source._data,
 					name = source._name;
 				this._data = data ? Base.clone(data) : null;
 				if (name)
@@ -3611,14 +3655,14 @@ var paper = function (self, undefined) {
 			},
 			
 			rasterize: function (resolution, insert) {
-				var bounds = this.getStrokeBounds(),
+				const bounds = this.getStrokeBounds(),
 					scale = (resolution || this.getView().getResolution()) / 72,
 					topLeft = bounds.getTopLeft().floor(),
 					bottomRight = bounds.getBottomRight().ceil(),
 					size = new Size(bottomRight.subtract(topLeft)),
 					raster = new Raster(Item.NO_INSERT);
 				if (!size.isZero()) {
-					var canvas = CanvasProvider.getCanvas(size.multiply(scale)),
+					const canvas = CanvasProvider.getCanvas(size.multiply(scale)),
 						ctx = canvas.getContext('2d'),
 						matrix = new Matrix().scale(scale).translate(topLeft.negate());
 					ctx.save();
@@ -3640,9 +3684,9 @@ var paper = function (self, undefined) {
 			},
 			
 			_contains: function (point) {
-				var children = this._children;
+				const children = this._children;
 				if (children) {
-					for (var i = children.length - 1; i >= 0; i--) {
+					for (let i = children.length - 1; i >= 0; i--) {
 						if (children[i].contains(point))
 							return true;
 					}
@@ -3667,7 +3711,7 @@ var paper = function (self, undefined) {
 				if (!(item instanceof Item))
 					return false;
 				return this._asPathItem().getIntersections(item._asPathItem(), null,
-						_matrix, true).length > 0;
+					_matrix, true).length > 0;
 			}
 		},
 		new function () {
@@ -3678,10 +3722,10 @@ var paper = function (self, undefined) {
 			}
 			
 			function hitTestAll() {
-				var point = Point.read(arguments),
-					options = HitResult.getOptions(arguments),
-					callback = options.match,
-					results = [];
+				const point = Point.read(arguments);
+				let options = HitResult.getOptions(arguments),
+					callback = options.match;
+				const results = [];
 				options = Base.set({}, options, {
 					match: function (hit) {
 						if (!callback || callback(hit))
@@ -3693,12 +3737,12 @@ var paper = function (self, undefined) {
 			}
 			
 			function hitTestChildren(point, options, viewMatrix, _exclude) {
-				var children = this._children;
+				const children = this._children;
 				if (children) {
-					for (var i = children.length - 1; i >= 0; i--) {
-						var child = children[i];
-						var res = child !== _exclude && child._hitTest(point, options,
-								viewMatrix);
+					for (let i = children.length - 1; i >= 0; i--) {
+						const child = children[i];
+						const res = child !== _exclude && child._hitTest(point, options,
+							viewMatrix);
 						if (res)
 							return res;
 					}
@@ -3725,7 +3769,7 @@ var paper = function (self, undefined) {
 					return null;
 				}
 				
-				var matrix = this._matrix,
+				const matrix = this._matrix,
 					viewMatrix = parentViewMatrix
 						? parentViewMatrix.appended(matrix)
 						: this.getGlobalMatrix().prepend(this.getView()._matrix),
@@ -3742,13 +3786,13 @@ var paper = function (self, undefined) {
 					return null;
 				}
 				
-				var checkSelf = !(options.guides && !this._guide
+				const checkSelf = !(options.guides && !this._guide
 					|| options.selected && !this.isSelected()
 					|| options.type && options.type !== Base.hyphenate(this._class)
-					|| options.class && !(this instanceof options.class)),
-					callback = options.match,
-					that = this,
-					bounds,
+					|| options.class && !(this instanceof options.class));
+				let callback = options.match;
+				const that = this;
+				let bounds,
 					res;
 				
 				function match(hit) {
@@ -3756,7 +3800,7 @@ var paper = function (self, undefined) {
 				}
 				
 				function checkBounds(type, part) {
-					var pt = bounds['get' + part]();
+					const pt = bounds['get' + part]();
 					if (point.subtract(pt).divide(tolerancePadding).length <= 1) {
 						return new HitResult(type, that,
 							{name: Base.hyphenate(part), point: pt});
@@ -3769,11 +3813,11 @@ var paper = function (self, undefined) {
 						res = checkBounds('center', 'Center');
 					}
 					if (!res && options.bounds) {
-						var points = [
+						const points = [
 							'TopLeft', 'TopRight', 'BottomLeft', 'BottomRight',
 							'LeftCenter', 'TopCenter', 'RightCenter', 'BottomCenter'
 						];
-						for (var i = 0; i < 8 && !res; i++) {
+						for (let i = 0; i < 8 && !res; i++) {
 							res = checkBounds('bounds', points[i]);
 						}
 					}
@@ -3800,9 +3844,9 @@ var paper = function (self, undefined) {
 			
 			matches: function (name, compare) {
 				function matchObject(obj1, obj2) {
-					for (var i in obj1) {
+					for (let i in obj1) {
 						if (obj1.hasOwnProperty(i)) {
-							var val1 = obj1[i],
+							const val1 = obj1[i],
 								val2 = obj2[i];
 							if (Base.isPlainObject(val1) && Base.isPlainObject(val2)) {
 								if (!matchObject(val1, val2))
@@ -3816,9 +3860,9 @@ var paper = function (self, undefined) {
 					return true;
 				}
 				
-				var type = typeof name;
+				const type = typeof name;
 				if (type === 'object') {
-					for (var key in name) {
+					for (let key in name) {
 						if (name.hasOwnProperty(key) && !this.matches(key, name[key]))
 							return false;
 					}
@@ -3831,7 +3875,7 @@ var paper = function (self, undefined) {
 					return compare(this);
 				}
 				else {
-					var value = /^(empty|editable)$/.test(name)
+					let value = /^(empty|editable)$/.test(name)
 						? this['is' + Base.capitalize(name)]()
 						: name === 'type'
 							? Base.hyphenate(this._class)
@@ -3894,17 +3938,19 @@ var paper = function (self, undefined) {
 						items = param.items,
 						rect = param.rect;
 					matrix = rect && (matrix || new Matrix());
-					for (var i = 0, l = children && children.length; i < l; i++) {
-						var child = children[i],
-							childMatrix = matrix && matrix.appended(child._matrix),
-							add = true;
+					let i = 0;
+					const l = children && children.length;
+					for (; i < l; i++) {
+						const child = children[i],
+							childMatrix = matrix && matrix.appended(child._matrix);
+						let add = true;
 						if (rect) {
 							var bounds = child.getBounds(childMatrix);
 							if (!rect.intersects(bounds))
 								continue;
 							if (!(rect.contains(bounds)
-								|| param.overlapping && (bounds.contains(rect)
-								|| param.path.intersects(child, childMatrix))))
+									|| param.overlapping && (bounds.contains(rect)
+										|| param.path.intersects(child, childMatrix))))
 								add = false;
 						}
 						if (add && child.matches(options)) {
@@ -3924,7 +3970,7 @@ var paper = function (self, undefined) {
 		}, {
 			
 			importJSON: function (json) {
-				var res = Base.importJSON(json, this);
+				const res = Base.importJSON(json, this);
 				return res !== this ? this.addChild(res) : res;
 			},
 			
@@ -3933,7 +3979,7 @@ var paper = function (self, undefined) {
 			},
 			
 			insertChild: function (index, item, _preserve) {
-				var res = item ? this.insertChildren(index, [item], _preserve) : null;
+				const res = item ? this.insertChildren(index, [item], _preserve) : null;
 				return res && res[0];
 			},
 			
@@ -3942,7 +3988,7 @@ var paper = function (self, undefined) {
 			},
 			
 			insertChildren: function (index, items, _preserve, _proto) {
-				var children = this._children;
+				const children = this._children;
 				if (children && items && items.length > 0) {
 					items = Array.prototype.slice.apply(items);
 					for (var i = items.length - 1; i >= 0; i--) {
@@ -3955,7 +4001,7 @@ var paper = function (self, undefined) {
 						}
 					}
 					Base.splice(children, items, index, 0);
-					var project = this._project,
+					const project = this._project,
 						notifySelf = project._changes;
 					for (var i = 0, l = items.length; i < l; i++) {
 						var item = items[i],
@@ -3978,9 +4024,9 @@ var paper = function (self, undefined) {
 			_insertItem: '#insertChild',
 			
 			_insertAt: function (item, offset, _preserve) {
-				var res = this;
+				let res = this;
 				if (res !== item) {
-					var owner = item && item._getOwner();
+					const owner = item && item._getOwner();
 					if (owner) {
 						res._remove(false, true);
 						owner._insertItem(item._index + offset, res, _preserve);
@@ -4001,12 +4047,12 @@ var paper = function (self, undefined) {
 			},
 			
 			sendToBack: function () {
-				var owner = this._getOwner();
+				const owner = this._getOwner();
 				return owner ? owner._insertItem(0, this) : null;
 			},
 			
 			bringToFront: function () {
-				var owner = this._getOwner();
+				const owner = this._getOwner();
 				return owner ? owner._insertItem(undefined, this) : null;
 			},
 			
@@ -4025,9 +4071,9 @@ var paper = function (self, undefined) {
 			},
 			
 			reduce: function (options) {
-				var children = this._children;
+				const children = this._children;
 				if (children && children.length === 1) {
-					var child = children[0].reduce(options);
+					const child = children[0].reduce(options);
 					if (this._parent) {
 						child.insertAbove(this);
 						this.remove();
@@ -4041,9 +4087,9 @@ var paper = function (self, undefined) {
 			},
 			
 			_removeNamed: function () {
-				var owner = this._getOwner();
+				const owner = this._getOwner();
 				if (owner) {
-					var children = owner._children,
+					const children = owner._children,
 						namedChildren = owner._namedChildren,
 						name = this._name,
 						namedArray = namedChildren[name],
@@ -4063,7 +4109,7 @@ var paper = function (self, undefined) {
 			},
 			
 			_remove: function (notifySelf, notifyParent) {
-				var owner = this._getOwner(),
+				const owner = this._getOwner(),
 					project = this._project,
 					index = this._index;
 				if (owner) {
@@ -4091,7 +4137,7 @@ var paper = function (self, undefined) {
 			},
 			
 			replaceWith: function (item) {
-				var ok = item && item.insertBelow(this);
+				const ok = item && item.insertBelow(this);
 				if (ok)
 					this.remove();
 				return ok;
@@ -4102,8 +4148,8 @@ var paper = function (self, undefined) {
 					return null;
 				start = start || 0;
 				end = Base.pick(end, this._children.length);
-				var removed = Base.splice(this._children, null, start, end - start);
-				for (var i = removed.length - 1; i >= 0; i--) {
+				const removed = Base.splice(this._children, null, start, end - start);
+				for (let i = removed.length - 1; i >= 0; i--) {
 					removed[i]._remove(true, false);
 				}
 				if (removed.length > 0)
@@ -4116,7 +4162,9 @@ var paper = function (self, undefined) {
 			reverseChildren: function () {
 				if (this._children) {
 					this._children.reverse();
-					for (var i = 0, l = this._children.length; i < l; i++)
+					let i = 0;
+					const l = this._children.length;
+					for (; i < l; i++)
 						this._children[i]._index = i;
 					this._changed(11);
 				}
@@ -4127,7 +4175,7 @@ var paper = function (self, undefined) {
 			},
 			
 			isEditable: function () {
-				var item = this;
+				let item = this;
 				while (item) {
 					if (!item._visible || item._locked)
 						return false;
@@ -4150,16 +4198,18 @@ var paper = function (self, undefined) {
 			
 			_getOrder: function (item) {
 				function getList(item) {
-					var list = [];
+					const list = [];
 					do {
 						list.unshift(item);
 					} while (item = item._parent);
 					return list;
 				}
 				
-				var list1 = getList(this),
+				const list1 = getList(this),
 					list2 = getList(item);
-				for (var i = 0, l = Math.min(list1.length, list2.length); i < l; i++) {
+				let i = 0;
+				const l = Math.min(list1.length, list2.length);
+				for (; i < l; i++) {
 					if (list1[i] != list2[i]) {
 						return list1[i]._index < list2[i]._index ? 1 : -1;
 					}
@@ -4192,7 +4242,7 @@ var paper = function (self, undefined) {
 			},
 			
 			isDescendant: function (item) {
-				var parent = this;
+				let parent = this;
 				while (parent = parent._parent) {
 					if (parent === item)
 						return true;
@@ -4209,7 +4259,7 @@ var paper = function (self, undefined) {
 			},
 			
 			isGroupedWith: function (item) {
-				var parent = this._parent;
+				let parent = this._parent;
 				while (parent) {
 					if (parent._parent
 						&& /^(Group|Layer|CompoundPath)$/.test(parent._class)
@@ -4221,16 +4271,16 @@ var paper = function (self, undefined) {
 			},
 			
 		}, Base.each(['rotate', 'scale', 'shear', 'skew'], function (key) {
-			var rotate = key === 'rotate';
+			const rotate = key === 'rotate';
 			this[key] = function () {
-				var value = (rotate ? Base : Point).read(arguments),
+				const value = (rotate ? Base : Point).read(arguments),
 					center = Point.read(arguments, 0, {readNull: true});
 				return this.transform(new Matrix()[key](value,
 					center || this.getPosition(true)));
 			};
 		}, {
 			translate: function () {
-				var mx = new Matrix();
+				const mx = new Matrix();
 				return this.transform(mx.translate.apply(mx, arguments));
 			},
 			
@@ -4238,9 +4288,9 @@ var paper = function (self, undefined) {
 			                     _setApplyMatrix) {
 				if (matrix && matrix.isIdentity())
 					matrix = null;
-				var _matrix = this._matrix,
-					applyMatrix = (_applyMatrix || this._applyMatrix)
-						&& ((!_matrix.isIdentity() || matrix)
+				const _matrix = this._matrix;
+				let applyMatrix = (_applyMatrix || this._applyMatrix)
+					&& ((!_matrix.isIdentity() || matrix)
 						|| _applyMatrix && _applyRecursively && this._children);
 				if (!matrix && !applyMatrix)
 					return this;
@@ -4250,8 +4300,8 @@ var paper = function (self, undefined) {
 					_matrix.prepend(matrix);
 				}
 				if (applyMatrix = applyMatrix && this._transformContent(_matrix,
-							_applyRecursively, _setApplyMatrix)) {
-					var pivot = this._pivot,
+						_applyRecursively, _setApplyMatrix)) {
+					const pivot = this._pivot,
 						style = this._style,
 						fillColor = style.getFillColor(true),
 						strokeColor = style.getStrokeColor(true);
@@ -4265,13 +4315,13 @@ var paper = function (self, undefined) {
 					if (_setApplyMatrix && this._canApplyMatrix)
 						this._applyMatrix = true;
 				}
-				var bounds = this._bounds,
+				const bounds = this._bounds,
 					position = this._position;
 				this._changed(9);
-				var decomp = bounds && matrix && matrix.decompose();
+				const decomp = bounds && matrix && matrix.decompose();
 				if (decomp && !decomp.shearing && decomp.rotation % 90 === 0) {
-					for (var key in bounds) {
-						var cache = bounds[key];
+					for (let key in bounds) {
+						const cache = bounds[key];
 						if (applyMatrix || !cache.internal) {
 							var rect = cache.rect;
 							matrix._transformBounds(rect, rect);
@@ -4290,9 +4340,11 @@ var paper = function (self, undefined) {
 			},
 			
 			_transformContent: function (matrix, applyRecursively, setApplyMatrix) {
-				var children = this._children;
+				const children = this._children;
 				if (children) {
-					for (var i = 0, l = children.length; i < l; i++)
+					let i = 0;
+					const l = children.length;
+					for (; i < l; i++)
 						children[i].transform(matrix, true, applyRecursively,
 							setApplyMatrix);
 					return true;
@@ -4319,7 +4371,7 @@ var paper = function (self, undefined) {
 			
 			fitBounds: function (rectangle, fill) {
 				rectangle = Rectangle.read(arguments);
-				var bounds = this.getBounds(),
+				const bounds = this.getBounds(),
 					itemRatio = bounds.height / bounds.width,
 					rectRatio = rectangle.height / rectangle.width,
 					scale = (fill ? itemRatio > rectRatio : itemRatio < rectRatio)
@@ -4333,14 +4385,14 @@ var paper = function (self, undefined) {
 		}), {
 			
 			_setStyles: function (ctx, param, viewMatrix) {
-				var style = this._style;
+				const style = this._style;
 				if (style.hasFill()) {
 					ctx.fillStyle = style.getFillColor().toCanvasStyle(ctx);
 				}
 				if (style.hasStroke()) {
 					ctx.strokeStyle = style.getStrokeColor().toCanvasStyle(ctx);
 					ctx.lineWidth = style.getStrokeWidth();
-					var strokeJoin = style.getStrokeJoin(),
+					const strokeJoin = style.getStrokeJoin(),
 						strokeCap = style.getStrokeCap(),
 						miterLimit = style.getMiterLimit();
 					if (strokeJoin)
@@ -4350,7 +4402,7 @@ var paper = function (self, undefined) {
 					if (miterLimit)
 						ctx.miterLimit = miterLimit;
 					if (paper.support.nativeDash) {
-						var dashArray = style.getDashArray(),
+						const dashArray = style.getDashArray(),
 							dashOffset = style.getDashOffset();
 						if (dashArray && dashArray.length) {
 							if ('setLineDash' in ctx) {
@@ -4365,7 +4417,7 @@ var paper = function (self, undefined) {
 					}
 				}
 				if (style.hasShadow()) {
-					var pixelRatio = param.pixelRatio || 1,
+					const pixelRatio = param.pixelRatio || 1,
 						mx = viewMatrix._shiftless().prepend(
 							new Matrix().scale(pixelRatio, pixelRatio)),
 						blur = mx.transform(new Point(style.getShadowBlur(), 0)),
@@ -4378,12 +4430,12 @@ var paper = function (self, undefined) {
 			},
 			
 			draw: function (ctx, param, parentStrokeMatrix) {
-				var updateVersion = this._updateVersion = this._project._updateVersion;
+				const updateVersion = this._updateVersion = this._project._updateVersion;
 				if (!this._visible || this._opacity === 0)
 					return;
-				var matrices = param.matrices,
-					viewMatrix = param.viewMatrix,
-					matrix = this._matrix,
+				const matrices = param.matrices;
+				let viewMatrix = param.viewMatrix;
+				const matrix = this._matrix,
 					globalMatrix = matrices[matrices.length - 1].appended(matrix);
 				if (!globalMatrix.isInvertible())
 					return;
@@ -4397,19 +4449,19 @@ var paper = function (self, undefined) {
 					this._globalMatrix = globalMatrix;
 				}
 				
-				var blendMode = this._blendMode,
+				const blendMode = this._blendMode,
 					opacity = this._opacity,
 					normalBlend = blendMode === 'normal',
-					nativeBlend = BlendMode.nativeModes[blendMode],
-					direct = normalBlend && opacity === 1
-						|| param.dontStart
-						|| param.clip
-						|| (nativeBlend || normalBlend && opacity < 1)
-						&& this._canComposite(),
-					pixelRatio = param.pixelRatio || 1,
-					mainCtx, itemOffset, prevOffset;
+					nativeBlend = BlendMode.nativeModes[blendMode];
+				let direct = normalBlend && opacity === 1
+					|| param.dontStart
+					|| param.clip
+					|| (nativeBlend || normalBlend && opacity < 1)
+					&& this._canComposite();
+				const pixelRatio = param.pixelRatio || 1;
+				let mainCtx, itemOffset, prevOffset;
 				if (!direct) {
-					var bounds = this.getStrokeBounds(viewMatrix);
+					const bounds = this.getStrokeBounds(viewMatrix);
 					if (!bounds.width || !bounds.height)
 						return;
 					prevOffset = param.offset;
@@ -4421,11 +4473,11 @@ var paper = function (self, undefined) {
 						ctx.scale(pixelRatio, pixelRatio);
 				}
 				ctx.save();
-				var strokeMatrix = parentStrokeMatrix
-						? parentStrokeMatrix.appended(matrix)
-						: this._canScaleStroke && !this.getStrokeScaling(true)
-						&& viewMatrix,
-					clip = !direct && param.clipItem,
+				let strokeMatrix = parentStrokeMatrix
+					? parentStrokeMatrix.appended(matrix)
+					: this._canScaleStroke && !this.getStrokeScaling(true)
+					&& viewMatrix;
+				const clip = !direct && param.clipItem,
 					transform = !strokeMatrix || clip;
 				if (direct) {
 					ctx.globalAlpha = opacity;
@@ -4443,7 +4495,7 @@ var paper = function (self, undefined) {
 				}
 				if (strokeMatrix) {
 					ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-					var offset = param.offset;
+					const offset = param.offset;
 					if (offset)
 						ctx.translate(-offset.x, -offset.y);
 				}
@@ -4461,10 +4513,10 @@ var paper = function (self, undefined) {
 			},
 			
 			_isUpdated: function (updateVersion) {
-				var parent = this._parent;
+				const parent = this._parent;
 				if (parent instanceof CompoundPath)
 					return parent._isUpdated(updateVersion);
-				var updated = this._updateVersion === updateVersion;
+				let updated = this._updateVersion === updateVersion;
 				if (!updated && parent && parent._visible
 					&& parent._isUpdated(updateVersion)) {
 					this._updateVersion = updateVersion;
@@ -4474,18 +4526,18 @@ var paper = function (self, undefined) {
 			},
 			
 			_drawSelection: function (ctx, matrix, size, selectionItems, updateVersion) {
-				var selection = this._selection,
-					itemSelected = selection & 1,
-					boundsSelected = selection & 2
-						|| itemSelected && this._selectBounds,
+				const selection = this._selection;
+				let itemSelected = selection & 1;
+				const boundsSelected = selection & 2
+					|| itemSelected && this._selectBounds,
 					positionSelected = selection & 4;
 				if (!this._drawSelected)
 					itemSelected = false;
 				if ((itemSelected || boundsSelected || positionSelected)
 					&& this._isUpdated(updateVersion)) {
-					var layer,
-						color = this.getSelectedColor(true) || (layer = this.getLayer())
-							&& layer.getSelectedColor(true),
+					let layer;
+					const color = this.getSelectedColor(true) || (layer = this.getLayer())
+						&& layer.getSelectedColor(true),
 						mx = matrix.appended(this.getGlobalMatrix(true)),
 						half = size / 2;
 					ctx.strokeStyle = ctx.fillStyle = color
@@ -4493,17 +4545,17 @@ var paper = function (self, undefined) {
 					if (itemSelected)
 						this._drawSelected(ctx, mx, selectionItems);
 					if (positionSelected) {
-						var point = this.getPosition(true),
+						const point = this.getPosition(true),
 							x = point.x,
 							y = point.y;
 						ctx.beginPath();
 						ctx.arc(x, y, half, 0, Math.PI * 2, true);
 						ctx.stroke();
-						var deltas = [[0, -1], [1, 0], [0, 1], [-1, 0]],
+						const deltas = [[0, -1], [1, 0], [0, 1], [-1, 0]],
 							start = half,
 							end = size + 1;
 						for (var i = 0; i < 4; i++) {
-							var delta = deltas[i],
+							const delta = deltas[i],
 								dx = delta[0],
 								dy = delta[1];
 							ctx.moveTo(x + dx * start, y + dy * start);
@@ -4512,7 +4564,7 @@ var paper = function (self, undefined) {
 						}
 					}
 					if (boundsSelected) {
-						var coords = mx._transformCorners(this.getInternalBounds());
+						const coords = mx._transformCorners(this.getInternalBounds());
 						ctx.beginPath();
 						for (var i = 0; i < 8; i++) {
 							ctx[i === 0 ? 'moveTo' : 'lineTo'](coords[i], coords[++i]);
@@ -4532,16 +4584,16 @@ var paper = function (self, undefined) {
 			}
 		}, Base.each(['down', 'drag', 'up', 'move'], function (key) {
 			this['removeOn' + Base.capitalize(key)] = function () {
-				var hash = {};
+				const hash = {};
 				hash[key] = true;
 				return this.removeOn(hash);
 			};
 		}, {
 			
 			removeOn: function (obj) {
-				for (var name in obj) {
+				for (let name in obj) {
 					if (obj[name]) {
-						var key = 'mouse' + name,
+						const key = 'mouse' + name,
 							project = this._project,
 							sets = project._removeSets = project._removeSets || {};
 						sets[key] = sets[key] || {};
@@ -4575,11 +4627,13 @@ var paper = function (self, undefined) {
 		},
 		
 		_getClipItem: function () {
-			var clipItem = this._clipItem;
+			let clipItem = this._clipItem;
 			if (clipItem === undefined) {
 				clipItem = null;
-				var children = this._children;
-				for (var i = 0, l = children.length; i < l; i++) {
+				const children = this._children;
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++) {
 					if (children[i]._clipMask) {
 						clipItem = children[i];
 						break;
@@ -4595,13 +4649,13 @@ var paper = function (self, undefined) {
 		},
 		
 		setClipped: function (clipped) {
-			var child = this.getFirstChild();
+			const child = this.getFirstChild();
 			if (child)
 				child.setClipMask(clipped);
 		},
 		
 		_getBounds: function _getBounds(matrix, options) {
-			var clipItem = this._getClipItem();
+			const clipItem = this._getClipItem();
 			return clipItem
 				? clipItem._getCachedBounds(
 					matrix && matrix.appended(clipItem._matrix),
@@ -4610,15 +4664,15 @@ var paper = function (self, undefined) {
 		},
 		
 		_hitTestChildren: function _hitTestChildren(point, options, viewMatrix) {
-			var clipItem = this._getClipItem();
+			let clipItem = this._getClipItem();
 			return (!clipItem || clipItem.contains(point))
 				&& _hitTestChildren.base.call(this, point, options, viewMatrix,
 					clipItem);
 		},
 		
 		_draw: function (ctx, param) {
-			var clip = param.clip,
-				clipItem = !clip && this._getClipItem();
+			let clip = param.clip;
+			const clipItem = !clip && this._getClipItem();
 			param = param.extend({clipItem: clipItem, clip: false});
 			if (clip) {
 				ctx.beginPath();
@@ -4627,9 +4681,11 @@ var paper = function (self, undefined) {
 			else if (clipItem) {
 				clipItem.draw(ctx, param.extend({clip: true}));
 			}
-			var children = this._children;
-			for (var i = 0, l = children.length; i < l; i++) {
-				var item = children[i];
+			const children = this._children;
+			let i = 0;
+			const l = children.length;
+			for (; i < l; i++) {
+				const item = children[i];
 				if (item !== clipItem)
 					item.draw(ctx, param);
 			}
@@ -4659,7 +4715,7 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var Shape = Item.extend({
+	const Shape = Item.extend({
 			_class: 'Shape',
 			_applyMatrix: false,
 			_canApplyMatrix: false,
@@ -4698,21 +4754,21 @@ var paper = function (self, undefined) {
 			setShape: '#setType',
 			
 			getSize: function () {
-				var size = this._size;
+				const size = this._size;
 				return new LinkedSize(size.width, size.height, this, 'setSize');
 			},
 			
 			setSize: function () {
-				var size = Size.read(arguments);
+				const size = Size.read(arguments);
 				if (!this._size) {
 					this._size = size.clone();
 				}
 				else if (!this._size.equals(size)) {
-					var type = this._type,
-						width = size.width,
+					const type = this._type;
+					let width = size.width,
 						height = size.height;
 					if (type === 'rectangle') {
-						var radius = Size.min(this._radius, size.divide(2));
+						const radius = Size.min(this._radius, size.divide(2));
 						this._radius.set(radius.width, radius.height);
 					}
 					else if (type === 'circle') {
@@ -4728,14 +4784,14 @@ var paper = function (self, undefined) {
 			},
 			
 			getRadius: function () {
-				var rad = this._radius;
+				const rad = this._radius;
 				return this._type === 'circle'
 					? rad
 					: new LinkedSize(rad.width, rad.height, this, 'setRadius');
 			},
 			
 			setRadius: function (radius) {
-				var type = this._type;
+				const type = this._type;
 				if (type === 'circle') {
 					if (radius === this._radius)
 						return;
@@ -4769,7 +4825,7 @@ var paper = function (self, undefined) {
 			},
 			
 			toPath: function (insert) {
-				var path = new Path[Base.capitalize(this._type)]({
+				const path = new Path[Base.capitalize(this._type)]({
 					center: new Point(),
 					size: this._size,
 					radius: this._radius,
@@ -4786,13 +4842,13 @@ var paper = function (self, undefined) {
 			toShape: '#clone',
 			
 			_draw: function (ctx, param, viewMatrix, strokeMatrix) {
-				var style = this._style,
+				const style = this._style,
 					hasFill = style.hasFill(),
-					hasStroke = style.hasStroke(),
-					dontPaint = param.dontFinish || param.clip,
-					untransformed = !strokeMatrix;
+					hasStroke = style.hasStroke();
+				let dontPaint = param.dontFinish || param.clip;
+				const untransformed = !strokeMatrix;
 				if (hasFill || hasStroke || dontPaint) {
-					var type = this._type,
+					const type = this._type,
 						radius = this._radius,
 						isCircle = type === 'circle';
 					if (!param.dontStart)
@@ -4801,18 +4857,18 @@ var paper = function (self, undefined) {
 						ctx.arc(0, 0, radius, 0, Math.PI * 2, true);
 					}
 					else {
-						var rx = isCircle ? radius : radius.width,
+						const rx = isCircle ? radius : radius.width,
 							ry = isCircle ? radius : radius.height,
-							size = this._size,
-							width = size.width,
+							size = this._size;
+						let width = size.width,
 							height = size.height;
 						if (untransformed && type === 'rectangle' && rx === 0 && ry === 0) {
 							ctx.rect(-width / 2, -height / 2, width, height);
 						}
 						else {
-							var x = width / 2,
-								y = height / 2,
-								kappa = 1 - 0.5522847498307936,
+							let x = width / 2,
+								y = height / 2;
+							const kappa = 1 - 0.5522847498307936,
 								cx = rx * kappa,
 								cy = ry * kappa,
 								c = [
@@ -4866,8 +4922,8 @@ var paper = function (self, undefined) {
 			},
 			
 			_getBounds: function (matrix, options) {
-				var rect = new Rectangle(this._size).setCenter(0, 0),
-					style = this._style,
+				let rect = new Rectangle(this._size).setCenter(0, 0);
+				const style = this._style,
 					strokeWidth = options.stroke && style.hasStroke()
 						&& style.getStrokeWidth();
 				if (matrix)
@@ -4880,11 +4936,11 @@ var paper = function (self, undefined) {
 		},
 		new function () {
 			function getCornerCenter(that, point, expand) {
-				var radius = that._radius;
+				const radius = that._radius;
 				if (!radius.isZero()) {
-					var halfSize = that._size.divide(2);
-					for (var i = 0; i < 4; i++) {
-						var dir = new Point(i & 1 ? 1 : -1, i > 1 ? 1 : -1),
+					const halfSize = that._size.divide(2);
+					for (let i = 0; i < 4; i++) {
+						const dir = new Point(i & 1 ? 1 : -1, i > 1 ? 1 : -1),
 							corner = dir.multiply(halfSize),
 							center = corner.subtract(dir.multiply(radius)),
 							rect = new Rectangle(corner, center);
@@ -4895,7 +4951,7 @@ var paper = function (self, undefined) {
 			}
 			
 			function isOnEllipseStroke(point, radius, padding, quadrant) {
-				var vector = point.divide(radius);
+				const vector = point.divide(radius);
 				return (!quadrant || vector.quadrant === quadrant) &&
 					vector.subtract(vector.normalize()).multiply(radius)
 						.divide(padding).length <= 1;
@@ -4904,10 +4960,10 @@ var paper = function (self, undefined) {
 			return {
 				_contains: function _contains(point) {
 					if (this._type === 'rectangle') {
-						var center = getCornerCenter(this, point);
+						const center = getCornerCenter(this, point);
 						return center
 							? point.subtract(center).divide(this._radius)
-								.getLength() <= 1
+							.getLength() <= 1
 							: _contains.base.call(this, point);
 					}
 					else {
@@ -4917,26 +4973,26 @@ var paper = function (self, undefined) {
 				
 				_hitTestSelf: function _hitTestSelf(point, options, viewMatrix,
 				                                    strokeMatrix) {
-					var hit = false,
-						style = this._style,
+					let hit = false;
+					const style = this._style,
 						hitStroke = options.stroke && style.hasStroke(),
 						hitFill = options.fill && style.hasFill();
 					if (hitStroke || hitFill) {
-						var type = this._type,
+						const type = this._type,
 							radius = this._radius,
 							strokeRadius = hitStroke ? style.getStrokeWidth() / 2 : 0,
 							strokePadding = options._tolerancePadding.add(
 								Path._getStrokePadding(strokeRadius,
 									!style.getStrokeScaling() && strokeMatrix));
 						if (type === 'rectangle') {
-							var padding = strokePadding.multiply(2),
+							const padding = strokePadding.multiply(2),
 								center = getCornerCenter(this, point, padding);
 							if (center) {
 								hit = isOnEllipseStroke(point.subtract(center), radius,
 									strokePadding, center.getQuadrant());
 							}
 							else {
-								var rect = new Rectangle(this._size).setCenter(0, 0),
+								const rect = new Rectangle(this._size).setCenter(0, 0),
 									outer = rect.expand(padding),
 									inner = rect.expand(padding.negate());
 								hit = outer._containsPoint(point)
@@ -4955,7 +5011,7 @@ var paper = function (self, undefined) {
 			
 			statics: new function () {
 				function createShape(type, point, size, radius, args) {
-					var item = new Shape(Base.getNamed(args));
+					const item = new Shape(Base.getNamed(args));
 					item._type = type;
 					item._size = size;
 					item._radius = radius;
@@ -4964,14 +5020,14 @@ var paper = function (self, undefined) {
 				
 				return {
 					Circle: function () {
-						var center = Point.readNamed(arguments, 'center'),
+						const center = Point.readNamed(arguments, 'center'),
 							radius = Base.readNamed(arguments, 'radius');
 						return createShape('circle', center, new Size(radius * 2), radius,
 							arguments);
 					},
 					
 					Rectangle: function () {
-						var rect = Rectangle.readNamed(arguments, 'rectangle'),
+						const rect = Rectangle.readNamed(arguments, 'rectangle'),
 							radius = Size.min(Size.readNamed(arguments, 'radius'),
 								rect.getSize(true).divide(2));
 						return createShape('rectangle', rect.getCenter(true),
@@ -4979,21 +5035,21 @@ var paper = function (self, undefined) {
 					},
 					
 					Ellipse: function () {
-						var ellipse = Shape._readEllipse(arguments),
+						const ellipse = Shape._readEllipse(arguments),
 							radius = ellipse.radius;
 						return createShape('ellipse', ellipse.center, radius.multiply(2),
 							radius, arguments);
 					},
 					
 					_readEllipse: function (args) {
-						var center,
+						let center,
 							radius;
 						if (Base.hasNamed(args, 'radius')) {
 							center = Point.readNamed(args, 'center');
 							radius = Size.readNamed(args, 'radius');
 						}
 						else {
-							var rect = Rectangle.readNamed(args, 'rectangle');
+							const rect = Rectangle.readNamed(args, 'rectangle');
 							center = rect.getCenter(true);
 							radius = rect.getSize(true).divide(2);
 						}
@@ -5016,7 +5072,7 @@ var paper = function (self, undefined) {
 		initialize: function Raster(object, position) {
 			if (!this._initialize(object,
 					position !== undefined && Point.read(arguments, 1))) {
-				var image = typeof object === 'string'
+				const image = typeof object === 'string'
 					? document.getElementById(object) : object;
 				if (image) {
 					this.setImage(image);
@@ -5036,13 +5092,13 @@ var paper = function (self, undefined) {
 		},
 		
 		copyContent: function (source) {
-			var image = source._image,
+			const image = source._image,
 				canvas = source._canvas;
 			if (image) {
 				this._setImage(image);
 			}
 			else if (canvas) {
-				var copyCanvas = CanvasProvider.getCanvas(source._size);
+				const copyCanvas = CanvasProvider.getCanvas(source._size);
 				copyCanvas.getContext('2d').drawImage(canvas, 0, 0);
 				this._setImage(copyCanvas);
 			}
@@ -5050,16 +5106,16 @@ var paper = function (self, undefined) {
 		},
 		
 		getSize: function () {
-			var size = this._size;
+			const size = this._size;
 			return new LinkedSize(size ? size.width : 0, size ? size.height : 0,
 				this, 'setSize');
 		},
 		
 		setSize: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			if (!size.equals(this._size)) {
 				if (size.width > 0 && size.height > 0) {
-					var element = this.getElement();
+					const element = this.getElement();
 					this._setImage(CanvasProvider.getCanvas(size));
 					if (element)
 						this.getContext(true).drawImage(element, 0, 0,
@@ -5094,12 +5150,12 @@ var paper = function (self, undefined) {
 		},
 		
 		isEmpty: function () {
-			var size = this._size;
+			let size = this._size;
 			return !size || size.width === 0 && size.height === 0;
 		},
 		
 		getResolution: function () {
-			var matrix = this._matrix,
+			const matrix = this._matrix,
 				orig = new Point(0, 0).transform(matrix),
 				u = new Point(1, 0).transform(matrix).subtract(orig),
 				v = new Point(0, 1).transform(matrix).subtract(orig);
@@ -5116,10 +5172,10 @@ var paper = function (self, undefined) {
 		},
 		
 		setImage: function (image) {
-			var that = this;
+			const that = this;
 			
 			function emit(event) {
-				var view = that.getView(),
+				const view = that.getView(),
 					type = event && event.type || 'load';
 				if (view && that.responds(type)) {
 					paper = view._scope;
@@ -5164,7 +5220,7 @@ var paper = function (self, undefined) {
 		
 		getCanvas: function () {
 			if (!this._canvas) {
-				var ctx = CanvasProvider.getContext(this._size);
+				const ctx = CanvasProvider.getContext(this._size);
 				try {
 					if (this._image)
 						ctx.drawImage(this._image, 0, 0);
@@ -5193,12 +5249,12 @@ var paper = function (self, undefined) {
 		},
 		
 		getSource: function () {
-			var image = this._image;
+			const image = this._image;
 			return image && image.src || this.toDataURL();
 		},
 		
 		setSource: function (src) {
-			var image = new window.Image(),
+			const image = new window.Image(),
 				crossOrigin = this._crossOrigin;
 			if (crossOrigin)
 				image.crossOrigin = crossOrigin;
@@ -5207,13 +5263,13 @@ var paper = function (self, undefined) {
 		},
 		
 		getCrossOrigin: function () {
-			var image = this._image;
+			const image = this._image;
 			return image && image.crossOrigin || this._crossOrigin || '';
 		},
 		
 		setCrossOrigin: function (crossOrigin) {
 			this._crossOrigin = crossOrigin;
-			var image = this._image;
+			const image = this._image;
 			if (image)
 				image.crossOrigin = crossOrigin;
 		},
@@ -5225,7 +5281,7 @@ var paper = function (self, undefined) {
 		beans: false,
 		
 		getSubCanvas: function () {
-			var rect = Rectangle.read(arguments),
+			const rect = Rectangle.read(arguments),
 				ctx = CanvasProvider.getContext(rect.getSize());
 			ctx.drawImage(this.getCanvas(), rect.x, rect.y,
 				rect.width, rect.height, 0, 0, rect.width, rect.height);
@@ -5233,7 +5289,7 @@ var paper = function (self, undefined) {
 		},
 		
 		getSubRaster: function () {
-			var rect = Rectangle.read(arguments),
+			const rect = Rectangle.read(arguments),
 				raster = new Raster(Item.NO_INSERT);
 			raster._setImage(this.getSubCanvas(rect));
 			raster.translate(rect.getCenter().subtract(this.getSize().divide(2)));
@@ -5243,21 +5299,21 @@ var paper = function (self, undefined) {
 		},
 		
 		toDataURL: function () {
-			var image = this._image,
+			const image = this._image,
 				src = image && image.src;
 			if (/^data:/.test(src))
 				return src;
-			var canvas = this.getCanvas();
+			const canvas = this.getCanvas();
 			return canvas ? canvas.toDataURL.apply(canvas, arguments) : null;
 		},
 		
 		drawImage: function (image) {
-			var point = Point.read(arguments, 1);
+			const point = Point.read(arguments, 1);
 			this.getContext(true).drawImage(image, point.x, point.y);
 		},
 		
 		getAverageColor: function (object) {
-			var bounds, path;
+			let bounds, path;
 			if (!object) {
 				bounds = this.getBounds();
 			}
@@ -5275,10 +5331,10 @@ var paper = function (self, undefined) {
 			}
 			if (!bounds)
 				return null;
-			var sampleSize = 32,
+			const sampleSize = 32,
 				width = Math.min(bounds.width, sampleSize),
 				height = Math.min(bounds.height, sampleSize);
-			var ctx = Raster._sampleContext;
+			let ctx = Raster._sampleContext;
 			if (!ctx) {
 				ctx = Raster._sampleContext = CanvasProvider.getContext(
 					new Size(sampleSize));
@@ -5287,24 +5343,24 @@ var paper = function (self, undefined) {
 				ctx.clearRect(0, 0, sampleSize + 1, sampleSize + 1);
 			}
 			ctx.save();
-			var matrix = new Matrix()
+			const matrix = new Matrix()
 				.scale(width / bounds.width, height / bounds.height)
 				.translate(-bounds.x, -bounds.y);
 			matrix.applyToContext(ctx);
 			if (path)
 				path.draw(ctx, new Base({clip: true, matrices: [matrix]}));
 			this._matrix.applyToContext(ctx);
-			var element = this.getElement(),
+			const element = this.getElement(),
 				size = this._size;
 			if (element)
 				ctx.drawImage(element, -size.width / 2, -size.height / 2);
 			ctx.restore();
-			var pixels = ctx.getImageData(0.5, 0.5, Math.ceil(width),
+			const pixels = ctx.getImageData(0.5, 0.5, Math.ceil(width),
 				Math.ceil(height)).data,
-				channels = [0, 0, 0],
-				total = 0;
+				channels = [0, 0, 0];
+			let total = 0;
 			for (var i = 0, l = pixels.length; i < l; i += 4) {
-				var alpha = pixels[i + 3];
+				let alpha = pixels[i + 3];
 				total += alpha;
 				alpha /= 255;
 				channels[0] += pixels[i] * alpha;
@@ -5317,14 +5373,14 @@ var paper = function (self, undefined) {
 		},
 		
 		getPixel: function () {
-			var point = Point.read(arguments);
-			var data = this.getContext().getImageData(point.x, point.y, 1, 1).data;
+			const point = Point.read(arguments);
+			const data = this.getContext().getImageData(point.x, point.y, 1, 1).data;
 			return new Color('rgb', [data[0] / 255, data[1] / 255, data[2] / 255],
 				data[3] / 255);
 		},
 		
 		setPixel: function () {
-			var point = Point.read(arguments),
+			const point = Point.read(arguments),
 				color = Color.read(arguments),
 				components = color._convert('rgb'),
 				alpha = color._alpha,
@@ -5339,12 +5395,12 @@ var paper = function (self, undefined) {
 		},
 		
 		createImageData: function () {
-			var size = Size.read(arguments);
+			const size = Size.read(arguments);
 			return this.getContext().createImageData(size.width, size.height);
 		},
 		
 		getImageData: function () {
-			var rect = Rectangle.read(arguments);
+			let rect = Rectangle.read(arguments);
 			if (rect.isEmpty())
 				rect = new Rectangle(this._size);
 			return this.getContext().getImageData(rect.x, rect.y,
@@ -5352,18 +5408,18 @@ var paper = function (self, undefined) {
 		},
 		
 		setImageData: function (data) {
-			var point = Point.read(arguments, 1);
+			const point = Point.read(arguments, 1);
 			this.getContext(true).putImageData(data, point.x, point.y);
 		},
 		
 		_getBounds: function (matrix, options) {
-			var rect = new Rectangle(this._size).setCenter(0, 0);
+			const rect = new Rectangle(this._size).setCenter(0, 0);
 			return matrix ? matrix._transformBounds(rect) : rect;
 		},
 		
 		_hitTestSelf: function (point) {
 			if (this._contains(point)) {
-				var that = this;
+				const that = this;
 				return new HitResult('pixel', that, {
 					offset: point.add(that._size.divide(2)).round(),
 					color: {
@@ -5376,7 +5432,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_draw: function (ctx) {
-			var element = this.getElement();
+			const element = this.getElement();
 			if (element) {
 				ctx.globalAlpha = this._opacity;
 				ctx.drawImage(element,
@@ -5430,12 +5486,12 @@ var paper = function (self, undefined) {
 		},
 		
 		_getBounds: function (matrix, options) {
-			var item = this._definition._item;
+			const item = this._definition._item;
 			return item._getCachedBounds(item._matrix.prepended(matrix), options);
 		},
 		
 		_hitTestSelf: function (point, options, viewMatrix, strokeMatrix) {
-			var res = this._definition._item._hitTest(point, options, viewMatrix);
+			const res = this._definition._item._hitTest(point, options, viewMatrix);
 			if (res)
 				res.item = this;
 			return res;
@@ -5521,7 +5577,7 @@ var paper = function (self, undefined) {
 		
 		statics: {
 			getOptions: function (args) {
-				var options = args && Base.read(args);
+				let options = args && Base.read(args);
 				return Base.set({
 					type: null,
 					tolerance: paper.settings.hitTolerance,
@@ -5539,14 +5595,14 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var Segment = Base.extend({
+	const Segment = Base.extend({
 		_class: 'Segment',
 		beans: true,
 		_selection: 0,
 		
 		initialize: function Segment(arg0, arg1, arg2, arg3, arg4, arg5) {
-			var count = arguments.length,
-				point, handleIn, handleOut,
+			const count = arguments.length;
+			let point, handleIn, handleOut,
 				selection;
 			if (count === 0) {
 			}
@@ -5580,7 +5636,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_serialize: function (options, dictionary) {
-			var point = this._point,
+			const point = this._point,
 				selection = this._selection,
 				obj = selection || this.hasHandles()
 					? [point, this._handleIn, this._handleOut]
@@ -5591,12 +5647,12 @@ var paper = function (self, undefined) {
 		},
 		
 		_changed: function (point) {
-			var path = this._path;
+			let path = this._path;
 			if (!path)
 				return;
-			var curves = path._curves,
-				index = this._index,
-				curve;
+			const curves = path._curves,
+				index = this._index;
+			let curve;
 			if (curves) {
 				if ((!point || point === this._point || point === this._handleIn)
 					&& (curve = index > 0 ? curves[index - 1] : path._closed
@@ -5614,7 +5670,7 @@ var paper = function (self, undefined) {
 		},
 		
 		setPoint: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			this._point.set(point.x, point.y);
 		},
 		
@@ -5623,7 +5679,7 @@ var paper = function (self, undefined) {
 		},
 		
 		setHandleIn: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			this._handleIn.set(point.x, point.y);
 		},
 		
@@ -5632,7 +5688,7 @@ var paper = function (self, undefined) {
 		},
 		
 		setHandleOut: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			this._handleOut.set(point.x, point.y);
 		},
 		
@@ -5650,7 +5706,7 @@ var paper = function (self, undefined) {
 		},
 		
 		setSelection: function (selection) {
-			var oldSelection = this._selection,
+			const oldSelection = this._selection,
 				path = this._path;
 			this._selection = selection = selection || 0;
 			if (path && selection !== oldSelection) {
@@ -5660,7 +5716,7 @@ var paper = function (self, undefined) {
 		},
 		
 		changeSelection: function (flag, selected) {
-			var selection = this._selection;
+			const selection = this._selection;
 			this.setSelection(selected ? selection | flag : selection & ~flag);
 		},
 		
@@ -5681,8 +5737,8 @@ var paper = function (self, undefined) {
 		},
 		
 		getCurve: function () {
-			var path = this._path,
-				index = this._index;
+			const path = this._path;
+			let index = this._index;
 			if (path) {
 				if (index > 0 && !path._closed
 					&& index === path._segments.length - 1)
@@ -5693,22 +5749,22 @@ var paper = function (self, undefined) {
 		},
 		
 		getLocation: function () {
-			var curve = this.getCurve();
+			const curve = this.getCurve();
 			return curve
 				? new CurveLocation(curve, this === curve._segment1 ? 0 : 1)
 				: null;
 		},
 		
 		getNext: function () {
-			var segments = this._path && this._path._segments;
+			const segments = this._path && this._path._segments;
 			return segments && (segments[this._index + 1]
 				|| this._path._closed && segments[0]) || null;
 		},
 		
 		smooth: function (options, _first, _last) {
-			var opts = options || {},
-				type = opts.type,
-				factor = opts.factor,
+			const opts = options || {};
+			let type = opts.type;
+			const factor = opts.factor,
 				prev = this.getPrevious(),
 				next = this.getNext(),
 				p0 = (prev || this)._point,
@@ -5717,7 +5773,7 @@ var paper = function (self, undefined) {
 				d1 = p0.getDistance(p1),
 				d2 = p1.getDistance(p2);
 			if (!type || type === 'catmull-rom') {
-				var a = factor === undefined ? 0.5 : factor,
+				const a = factor === undefined ? 0.5 : factor,
 					d1_a = Math.pow(d1, a),
 					d1_2a = d1_a * d1_a,
 					d2_a = Math.pow(d2, a),
@@ -5743,7 +5799,7 @@ var paper = function (self, undefined) {
 			}
 			else if (type === 'geometric') {
 				if (prev && next) {
-					var vector = p0.subtract(p2),
+					const vector = p0.subtract(p2),
 						t = factor === undefined ? 0.4 : factor,
 						k = t * d1 / (d1 + d2);
 					if (!_first)
@@ -5758,7 +5814,7 @@ var paper = function (self, undefined) {
 		},
 		
 		getPrevious: function () {
-			var segments = this._path && this._path._segments;
+			const segments = this._path && this._path._segments;
 			return segments && (segments[this._index - 1]
 				|| this._path._closed && segments[segments.length - 1]) || null;
 		},
@@ -5768,12 +5824,12 @@ var paper = function (self, undefined) {
 		},
 		
 		isLast: function () {
-			var path = this._path;
+			const path = this._path;
 			return path && this._index === path._segments.length - 1 || false;
 		},
 		
 		reverse: function () {
-			var handleIn = this._handleIn,
+			const handleIn = this._handleIn,
 				handleOut = this._handleOut,
 				inX = handleIn._x,
 				inY = handleIn._y;
@@ -5802,7 +5858,7 @@ var paper = function (self, undefined) {
 		},
 		
 		toString: function () {
-			var parts = ['point: ' + this._point];
+			const parts = ['point: ' + this._point];
 			if (!this._handleIn.isZero())
 				parts.push('handleIn: ' + this._handleIn);
 			if (!this._handleOut.isZero())
@@ -5816,7 +5872,7 @@ var paper = function (self, undefined) {
 		},
 		
 		interpolate: function (from, to, factor) {
-			var u = 1 - factor,
+			const u = 1 - factor,
 				v = factor,
 				point1 = from._point,
 				point2 = to._point,
@@ -5837,9 +5893,9 @@ var paper = function (self, undefined) {
 		},
 		
 		_transformCoordinates: function (matrix, coords, change) {
-			var point = this._point,
-				handleIn = !change || !this._handleIn.isZero()
-					? this._handleIn : null,
+			const point = this._point;
+			let handleIn = !change || !this._handleIn.isZero()
+				? this._handleIn : null,
 				handleOut = !change || !this._handleOut.isZero()
 					? this._handleOut : null,
 				x = point._x,
@@ -5889,7 +5945,7 @@ var paper = function (self, undefined) {
 	
 	var SegmentPoint = Point.extend({
 		initialize: function SegmentPoint(point, owner, key) {
-			var x, y,
+			let x, y,
 				selected;
 			if (!point) {
 				x = y = 0;
@@ -5898,7 +5954,7 @@ var paper = function (self, undefined) {
 				y = point[1];
 			}
 			else {
-				var pt = point;
+				let pt = point;
 				if ((x = pt.x) === undefined) {
 					pt = Point.read(arguments);
 					x = pt.x;
@@ -5952,7 +6008,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_getSelection: function () {
-			var owner = this._owner;
+			const owner = this._owner;
 			return this === owner._point ? 1
 				: this === owner._handleIn ? 2
 					: this === owner._handleOut ? 4
@@ -5960,12 +6016,12 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var Curve = Base.extend({
+	const Curve = Base.extend({
 			_class: 'Curve',
 			
 			initialize: function Curve(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) {
-				var count = arguments.length,
-					seg1, seg2,
+				const count = arguments.length;
+				let seg1, seg2,
 					point1, point2,
 					handle1, handle2;
 				if (count === 3) {
@@ -6017,9 +6073,9 @@ var paper = function (self, undefined) {
 			
 			_serialize: function (options, dictionary) {
 				return Base.serialize(this.hasHandles()
-						? [this.getPoint1(), this.getHandle1(), this.getHandle2(),
-							this.getPoint2()]
-						: [this.getPoint1(), this.getPoint2()],
+					? [this.getPoint1(), this.getHandle1(), this.getHandle2(),
+						this.getPoint2()]
+					: [this.getPoint1(), this.getPoint2()],
 					options, true, dictionary);
 			},
 			
@@ -6032,7 +6088,7 @@ var paper = function (self, undefined) {
 			},
 			
 			toString: function () {
-				var parts = ['point1: ' + this._segment1._point];
+				const parts = ['point1: ' + this._segment1._point];
 				if (!this._segment1._handleOut.isZero())
 					parts.push('handle1: ' + this._segment1._handleOut);
 				if (!this._segment2._handleIn.isZero())
@@ -6042,9 +6098,9 @@ var paper = function (self, undefined) {
 			},
 			
 			remove: function () {
-				var removed = false;
+				let removed = false;
 				if (this._path) {
-					var segment2 = this._segment2,
+					const segment2 = this._segment2,
 						handleOut = segment2._handleOut;
 					removed = segment2.remove();
 					if (removed)
@@ -6058,7 +6114,7 @@ var paper = function (self, undefined) {
 			},
 			
 			setPoint1: function () {
-				var point = Point.read(arguments);
+				const point = Point.read(arguments);
 				this._segment1._point.set(point.x, point.y);
 			},
 			
@@ -6067,7 +6123,7 @@ var paper = function (self, undefined) {
 			},
 			
 			setPoint2: function () {
-				var point = Point.read(arguments);
+				const point = Point.read(arguments);
 				this._segment2._point.set(point.x, point.y);
 			},
 			
@@ -6076,7 +6132,7 @@ var paper = function (self, undefined) {
 			},
 			
 			setHandle1: function () {
-				var point = Point.read(arguments);
+				const point = Point.read(arguments);
 				this._segment1._handleOut.set(point.x, point.y);
 			},
 			
@@ -6085,7 +6141,7 @@ var paper = function (self, undefined) {
 			},
 			
 			setHandle2: function () {
-				var point = Point.read(arguments);
+				const point = Point.read(arguments);
 				this._segment2._handleIn.set(point.x, point.y);
 			},
 			
@@ -6106,13 +6162,13 @@ var paper = function (self, undefined) {
 			},
 			
 			getNext: function () {
-				var curves = this._path && this._path._curves;
+				const curves = this._path && this._path._curves;
 				return curves && (curves[this._segment1._index + 1]
 					|| this._path._closed && curves[0]) || null;
 			},
 			
 			getPrevious: function () {
-				var curves = this._path && this._path._curves;
+				const curves = this._path && this._path._curves;
 				return curves && (curves[this._segment1._index - 1]
 					|| this._path._closed && curves[curves.length - 1]) || null;
 			},
@@ -6122,7 +6178,7 @@ var paper = function (self, undefined) {
 			},
 			
 			isLast: function () {
-				var path = this._path;
+				const path = this._path;
 				return path && this._segment1._index === path._curves.length - 1
 					|| false;
 			},
@@ -6146,9 +6202,9 @@ var paper = function (self, undefined) {
 			},
 			
 			getPoints: function () {
-				var coords = this.getValues(),
+				const coords = this.getValues(),
 					points = [];
-				for (var i = 0; i < 8; i += 2)
+				for (let i = 0; i < 8; i += 2)
 					points.push(new Point(coords[i], coords[i + 1]));
 				return points;
 			},
@@ -6187,11 +6243,11 @@ var paper = function (self, undefined) {
 			},
 			
 			divideAtTime: function (time, _setHandles) {
-				var tMin = 4e-7,
-					tMax = 1 - tMin,
-					res = null;
+				const tMin = 4e-7,
+					tMax = 1 - tMin;
+				let res = null;
 				if (time >= tMin && time <= tMax) {
-					var parts = Curve.subdivide(this.getValues(), time),
+					const parts = Curve.subdivide(this.getValues(), time),
 						left = parts[0],
 						right = parts[1],
 						setHandles = _setHandles || this.hasHandles(),
@@ -6202,7 +6258,7 @@ var paper = function (self, undefined) {
 						segment1._handleOut.set(left[2] - left[0], left[3] - left[1]);
 						segment2._handleIn.set(right[4] - right[6], right[5] - right[7]);
 					}
-					var x = left[6], y = left[7],
+					const x = left[6], y = left[7],
 						segment = new Segment(new Point(x, y),
 							setHandles && new Point(left[4] - x, left[5] - y),
 							setHandles && new Point(right[2] - x, right[3] - y));
@@ -6248,7 +6304,7 @@ var paper = function (self, undefined) {
 			
 			statics: {
 				getValues: function (segment1, segment2, matrix) {
-					var p1 = segment1._point,
+					const p1 = segment1._point,
 						h1 = segment1._handleOut,
 						h2 = segment2._handleIn,
 						p2 = segment2._point,
@@ -6264,13 +6320,13 @@ var paper = function (self, undefined) {
 				},
 				
 				subdivide: function (v, t) {
-					var p1x = v[0], p1y = v[1],
+					const p1x = v[0], p1y = v[1],
 						c1x = v[2], c1y = v[3],
 						c2x = v[4], c2y = v[5],
 						p2x = v[6], p2y = v[7];
 					if (t === undefined)
 						t = 0.5;
-					var u = 1 - t,
+					const u = 1 - t,
 						p3x = u * p1x + t * c1x, p3y = u * p1y + t * c1y,
 						p4x = u * c1x + t * c2x, p4y = u * c1y + t * c2y,
 						p5x = u * c2x + t * p2x, p5y = u * c2y + t * p2y,
@@ -6284,14 +6340,14 @@ var paper = function (self, undefined) {
 				},
 				
 				solveCubic: function (v, coord, val, roots, min, max) {
-					var p1 = v[coord],
+					const p1 = v[coord],
 						c1 = v[coord + 2],
 						c2 = v[coord + 4],
-						p2 = v[coord + 6],
-						res = 0;
+						p2 = v[coord + 6];
+					let res = 0;
 					if (!(p1 < val && p2 < val && c1 < val && c2 < val ||
-						p1 > val && p2 > val && c1 > val && c2 > val)) {
-						var c = 3 * (c1 - p1),
+							p1 > val && p2 > val && c1 > val && c2 > val)) {
+						const c = 3 * (c1 - p1),
 							b = 3 * (c2 - c1) - c,
 							a = p2 - p1 - c - b;
 						res = Numerical.solveCubic(a, b, c, p1 - val, roots, min, max);
@@ -6300,20 +6356,20 @@ var paper = function (self, undefined) {
 				},
 				
 				getTimeOf: function (v, point) {
-					var p1 = new Point(v[0], v[1]),
+					const p1 = new Point(v[0], v[1]),
 						p2 = new Point(v[6], v[7]),
-						epsilon = 1e-12,
-						t = point.isClose(p1, epsilon) ? 0
-							: point.isClose(p2, epsilon) ? 1
-								: null;
+						epsilon = 1e-12;
+					let t = point.isClose(p1, epsilon) ? 0
+						: point.isClose(p2, epsilon) ? 1
+							: null;
 					if (t !== null)
 						return t;
-					var coords = [point.x, point.y],
+					const coords = [point.x, point.y],
 						roots = [],
 						geomEpsilon = 2e-7;
-					for (var c = 0; c < 2; c++) {
-						var count = Curve.solveCubic(v, c, coords[c], roots, 0, 1);
-						for (var i = 0; i < count; i++) {
+					for (let c = 0; c < 2; c++) {
+						const count = Curve.solveCubic(v, c, coords[c], roots, 0, 1);
+						for (let i = 0; i < count; i++) {
 							t = roots[i];
 							if (point.isClose(Curve.getPoint(v, t), geomEpsilon))
 								return t;
@@ -6326,26 +6382,26 @@ var paper = function (self, undefined) {
 				
 				getNearestTime: function (v, point) {
 					if (Curve.isStraight(v)) {
-						var p1x = v[0], p1y = v[1],
+						const p1x = v[0], p1y = v[1],
 							p2x = v[6], p2y = v[7],
 							vx = p2x - p1x, vy = p2y - p1y,
 							det = vx * vx + vy * vy;
 						if (det === 0)
 							return 0;
-						var u = ((point.x - p1x) * vx + (point.y - p1y) * vy) / det;
+						const u = ((point.x - p1x) * vx + (point.y - p1y) * vy) / det;
 						return u < 1e-12 ? 0
 							: u > 0.999999999999 ? 1
 								: Curve.getTimeOf(v,
 									new Point(p1x + u * vx, p1y + u * vy));
 					}
 					
-					var count = 100,
-						minDist = Infinity,
+					const count = 100;
+					let minDist = Infinity,
 						minT = 0;
 					
 					function refine(t) {
 						if (t >= 0 && t <= 1) {
-							var dist = point.getDistance(Curve.getPoint(v, t), true);
+							const dist = point.getDistance(Curve.getPoint(v, t), true);
 							if (dist < minDist) {
 								minDist = dist;
 								minT = t;
@@ -6354,10 +6410,10 @@ var paper = function (self, undefined) {
 						}
 					}
 					
-					for (var i = 0; i <= count; i++)
+					for (let i = 0; i <= count; i++)
 						refine(i / count);
 					
-					var step = 1 / (count * 2);
+					let step = 1 / (count * 2);
 					while (step > 4e-7) {
 						if (!refine(minT - step) && !refine(minT + step))
 							step /= 2;
@@ -6366,9 +6422,9 @@ var paper = function (self, undefined) {
 				},
 				
 				getPart: function (v, from, to) {
-					var flip = from > to;
+					const flip = from > to;
 					if (flip) {
-						var tmp = from;
+						const tmp = from;
 						from = to;
 						to = tmp;
 					}
@@ -6382,7 +6438,7 @@ var paper = function (self, undefined) {
 				},
 				
 				isFlatEnough: function (v, flatness) {
-					var p1x = v[0], p1y = v[1],
+					const p1x = v[0], p1y = v[1],
 						c1x = v[2], c1y = v[3],
 						c2x = v[4], c2y = v[5],
 						p2x = v[6], p2y = v[7],
@@ -6395,7 +6451,7 @@ var paper = function (self, undefined) {
 				},
 				
 				getArea: function (v) {
-					var p1x = v[0], p1y = v[1],
+					const p1x = v[0], p1y = v[1],
 						c1x = v[2], c1y = v[3],
 						c2x = v[4], c2y = v[5],
 						p2x = v[6], p2y = v[7];
@@ -6405,10 +6461,10 @@ var paper = function (self, undefined) {
 				},
 				
 				getBounds: function (v) {
-					var min = v.slice(0, 2),
+					const min = v.slice(0, 2),
 						max = min.slice(),
 						roots = [0, 0];
-					for (var i = 0; i < 2; i++)
+					for (let i = 0; i < 2; i++)
 						Curve._addBounds(v[i], v[i + 2], v[i + 4], v[i + 6],
 							i, 0, min, max, roots);
 					return new Rectangle(min[0], min[1], max[0] - min[0], max[1] - min[1]);
@@ -6416,7 +6472,7 @@ var paper = function (self, undefined) {
 				
 				_addBounds: function (v0, v1, v2, v3, coord, padding, min, max, roots) {
 					function add(value, padding) {
-						var left = value - padding,
+						const left = value - padding,
 							right = value + padding;
 						if (left < min[coord])
 							min[coord] = left;
@@ -6425,7 +6481,7 @@ var paper = function (self, undefined) {
 					}
 					
 					padding /= 2;
-					var minPad = min[coord] - padding,
+					const minPad = min[coord] - padding,
 						maxPad = max[coord] + padding;
 					if (v0 < minPad || v1 < minPad || v2 < minPad || v3 < minPad ||
 						v0 > maxPad || v1 > maxPad || v2 > maxPad || v3 > maxPad) {
@@ -6434,15 +6490,15 @@ var paper = function (self, undefined) {
 							add(v3, padding);
 						}
 						else {
-							var a = 3 * (v1 - v2) - v0 + v3,
+							const a = 3 * (v1 - v2) - v0 + v3,
 								b = 2 * (v0 + v2) - 4 * v1,
 								c = v1 - v0,
 								count = Numerical.solveQuadratic(a, b, c, roots),
 								tMin = 4e-7,
 								tMax = 1 - tMin;
 							add(v3, 0);
-							for (var i = 0; i < count; i++) {
-								var t = roots[i],
+							for (let i = 0; i < count; i++) {
+								const t = roots[i],
 									u = 1 - t;
 								if (tMin < t && t < tMax)
 									add(u * u * u * v0
@@ -6461,7 +6517,7 @@ var paper = function (self, undefined) {
 			this[name] = function () {
 				if (!this._bounds)
 					this._bounds = {};
-				var bounds = this._bounds[name];
+				let bounds = this._bounds[name];
 				if (!bounds) {
 					bounds = this._bounds[name] = Path[name](
 						[this._segment1, this._segment2], false, this._path);
@@ -6475,14 +6531,14 @@ var paper = function (self, undefined) {
 					return true;
 				}
 				else {
-					var v = l.getVector(),
+					const v = l.getVector(),
 						epsilon = 2e-7;
 					if (v.isZero()) {
 						return false;
 					}
 					else if (l.getDistance(h1) < epsilon
 						&& l.getDistance(h2) < epsilon) {
-						var div = v.dot(v),
+						const div = v.dot(v),
 							p1 = v.dot(h1) / div,
 							p2 = v.dot(h2) / div;
 						return p1 >= 0 && p1 <= 1 && p2 <= 0 && p2 >= -1;
@@ -6492,19 +6548,19 @@ var paper = function (self, undefined) {
 			},
 			
 			isLinear: function (l, h1, h2) {
-				var third = l.getVector().divide(3);
+				const third = l.getVector().divide(3);
 				return h1.equals(third) && h2.negate().equals(third);
 			}
 		}, function (test, name) {
 			this[name] = function () {
-				var seg1 = this._segment1,
+				const seg1 = this._segment1,
 					seg2 = this._segment2;
 				return test(new Line(seg1._point, seg2._point),
 					seg1._handleOut, seg2._handleIn);
 			};
 			
 			this.statics[name] = function (v) {
-				var p1x = v[0], p1y = v[1],
+				const p1x = v[0], p1y = v[1],
 					p2x = v[6], p2y = v[7];
 				return test(new Line(p1x, p1y, p2x, p2y),
 					new Point(v[2] - p1x, v[3] - p1y),
@@ -6561,7 +6617,7 @@ var paper = function (self, undefined) {
 			},
 			
 			getOffsetOf: function () {
-				var loc = this.getLocationOf.apply(this, arguments);
+				const loc = this.getLocationOf.apply(this, arguments);
 				return loc ? loc.getOffset() : null;
 			},
 			
@@ -6572,7 +6628,7 @@ var paper = function (self, undefined) {
 			getParameterOf: '#getTimeOf',
 			
 			getNearestLocation: function () {
-				var point = Point.read(arguments),
+				const point = Point.read(arguments),
 					values = this.getValues(),
 					t = Curve.getNearestTime(values, point),
 					pt = Curve.getPoint(values, t);
@@ -6580,18 +6636,18 @@ var paper = function (self, undefined) {
 			},
 			
 			getNearestPoint: function () {
-				var loc = this.getNearestLocation.apply(this, arguments);
+				const loc = this.getNearestLocation.apply(this, arguments);
 				return loc ? loc.getPoint() : loc;
 			}
 			
 		},
 		new function () {
-			var methods = ['getPoint', 'getTangent', 'getNormal', 'getWeightedTangent',
+			const methods = ['getPoint', 'getTangent', 'getNormal', 'getWeightedTangent',
 				'getWeightedNormal', 'getCurvature'];
 			return Base.each(methods,
 				function (name) {
 					this[name + 'At'] = function (location, _isTime) {
-						var values = this.getValues();
+						const values = this.getValues();
 						return Curve[name](values, _isTime ? location
 							: Curve.getTimeAt(values, location));
 					};
@@ -6609,7 +6665,7 @@ var paper = function (self, undefined) {
 		new function () {
 			
 			function getLengthIntegrand(v) {
-				var p1x = v[0], p1y = v[1],
+				const p1x = v[0], p1y = v[1],
 					c1x = v[2], c1y = v[3],
 					c2x = v[4], c2y = v[5],
 					p2x = v[6], p2y = v[7],
@@ -6623,7 +6679,7 @@ var paper = function (self, undefined) {
 					cy = 3 * (c1y - p1y);
 				
 				return function (t) {
-					var dx = (ax * t + bx) * t + cx,
+					const dx = (ax * t + bx) * t + cx,
 						dy = (ay * t + by) * t + cy;
 					return Math.sqrt(dx * dx + dy * dy);
 				};
@@ -6636,10 +6692,10 @@ var paper = function (self, undefined) {
 			function evaluate(v, t, type, normalized) {
 				if (t == null || t < 0 || t > 1)
 					return null;
-				var p1x = v[0], p1y = v[1],
-					c1x = v[2], c1y = v[3],
-					c2x = v[4], c2y = v[5],
-					p2x = v[6], p2y = v[7],
+				const p1x = v[0], p1y = v[1];
+				let c1x = v[2], c1y = v[3],
+					c2x = v[4], c2y = v[5];
+				const p2x = v[6], p2y = v[7],
 					isZero = Numerical.isZero;
 				if (isZero(c1x - p1x) && isZero(c1y - p1y)) {
 					c1x = p1x;
@@ -6649,13 +6705,13 @@ var paper = function (self, undefined) {
 					c2x = p2x;
 					c2y = p2y;
 				}
-				var cx = 3 * (c1x - p1x),
+				const cx = 3 * (c1x - p1x),
 					bx = 3 * (c2x - c1x) - cx,
 					ax = p2x - p1x - cx - bx,
 					cy = 3 * (c1y - p1y),
 					by = 3 * (c2y - c1y) - cy,
-					ay = p2y - p1y - cy - by,
-					x, y;
+					ay = p2y - p1y - cy - by;
+				let x, y;
 				if (type === 0) {
 					x = t === 0 ? p1x : t === 1 ? p2x
 						: ((ax * t + bx) * t + cx) * t + p1x;
@@ -6663,7 +6719,7 @@ var paper = function (self, undefined) {
 						: ((ay * t + by) * t + cy) * t + p1y;
 				}
 				else {
-					var tMin = 4e-7,
+					const tMin = 4e-7,
 						tMax = 1 - tMin;
 					if (t < tMin) {
 						x = cx;
@@ -6682,14 +6738,14 @@ var paper = function (self, undefined) {
 							x = c2x - c1x;
 							y = c2y - c1y;
 						}
-						var len = Math.sqrt(x * x + y * y);
+						const len = Math.sqrt(x * x + y * y);
 						if (len) {
 							x /= len;
 							y /= len;
 						}
 					}
 					if (type === 3) {
-						var x2 = 6 * ax * t + 2 * bx,
+						const x2 = 6 * ax * t + 2 * bx,
 							y2 = 6 * ay * t + 2 * by,
 							d = Math.pow(x * x + y * y, 3 / 2);
 						x = d !== 0 ? (x * y2 - y * x2) / d : 0;
@@ -6708,7 +6764,7 @@ var paper = function (self, undefined) {
 						if (b === undefined)
 							b = 1;
 						if (Curve.isStraight(v)) {
-							var c = v;
+							let c = v;
 							if (b < 1) {
 								c = Curve.subdivide(c, b)[0];
 								a /= b;
@@ -6716,7 +6772,7 @@ var paper = function (self, undefined) {
 							if (a > 0) {
 								c = Curve.subdivide(c, a)[1];
 							}
-							var dx = c[6] - c[0],
+							const dx = c[6] - c[0],
 								dy = c[7] - c[1];
 							return Math.sqrt(dx * dx + dy * dy);
 						}
@@ -6729,7 +6785,7 @@ var paper = function (self, undefined) {
 							start = offset < 0 ? 1 : 0;
 						if (offset === 0)
 							return start;
-						var abs = Math.abs,
+						const abs = Math.abs,
 							epsilon = 1e-12,
 							forward = offset > 0,
 							a = forward ? start : 0,
@@ -6743,8 +6799,8 @@ var paper = function (self, undefined) {
 						else if (diff > epsilon) {
 							return null;
 						}
-						var guess = offset / rangeLength,
-							length = 0;
+						const guess = offset / rangeLength;
+						let length = 0;
 						
 						function f(t) {
 							length += Numerical.integrate(ds, start, t,
@@ -6787,7 +6843,7 @@ var paper = function (self, undefined) {
 			
 			function addLocation(locations, param, v1, c1, t1, p1, v2, c2, t2, p2,
 			                     overlap) {
-				var excludeStart = !overlap && param.excludeStart,
+				const excludeStart = !overlap && param.excludeStart,
 					excludeEnd = !overlap && param.excludeEnd,
 					tMin = 4e-7,
 					tMax = 1 - tMin;
@@ -6799,20 +6855,20 @@ var paper = function (self, undefined) {
 						t2 = Curve.getTimeOf(v2, p2);
 					if (t2 !== null && t2 >= (excludeEnd ? tMin : 0) &&
 						t2 <= (excludeStart ? tMax : 1)) {
-						var renormalize = param.renormalize;
+						const renormalize = param.renormalize;
 						if (renormalize) {
-							var res = renormalize(t1, t2);
+							const res = renormalize(t1, t2);
 							t1 = res[0];
 							t2 = res[1];
 						}
-						var loc1 = new CurveLocation(c1, t1,
-								p1 || Curve.getPoint(v1, t1), overlap),
+						const loc1 = new CurveLocation(c1, t1,
+							p1 || Curve.getPoint(v1, t1), overlap),
 							loc2 = new CurveLocation(c2, t2,
 								p2 || Curve.getPoint(v2, t2), overlap),
 							flip = loc1.getPath() === loc2.getPath()
 								&& loc1.getIndex() > loc2.getIndex(),
-							loc = flip ? loc2 : loc1,
-							include = param.include;
+							loc = flip ? loc2 : loc1;
+						let include = param.include;
 						loc1._intersection = loc2;
 						loc2._intersection = loc1;
 						if (!include || include(loc)) {
@@ -6826,7 +6882,7 @@ var paper = function (self, undefined) {
 			                               uMin, uMax, flip, recursion, calls) {
 				if (++recursion >= 48 || ++calls > 4096)
 					return calls;
-				var q0x = v2[0], q0y = v2[1], q3x = v2[6], q3y = v2[7],
+				const q0x = v2[0], q0y = v2[1], q3x = v2[6], q3y = v2[7],
 					getSignedDistance = Line.getSignedDistance,
 					d1 = getSignedDistance(q0x, q0y, q3x, q3y, v2[2], v2[3]),
 					d2 = getSignedDistance(q0x, q0y, q3x, q3y, v2[4], v2[5]),
@@ -6839,8 +6895,8 @@ var paper = function (self, undefined) {
 					dp3 = getSignedDistance(q0x, q0y, q3x, q3y, v1[6], v1[7]),
 					hull = getConvexHull(dp0, dp1, dp2, dp3),
 					top = hull[0],
-					bottom = hull[1],
-					tMinClip,
+					bottom = hull[1];
+				let tMinClip,
 					tMaxClip;
 				if (d1 === 0 && d2 === 0
 					&& dp0 === 0 && dp1 === 0 && dp2 === 0 && dp3 === 0
@@ -6848,7 +6904,7 @@ var paper = function (self, undefined) {
 					|| (tMaxClip = clipConvexHull(top.reverse(), bottom.reverse(),
 						dMin, dMax)) == null)
 					return calls;
-				var tMinNew = tMin + (tMax - tMin) * tMinClip,
+				const tMinNew = tMin + (tMax - tMin) * tMinClip,
 					tMaxNew = tMin + (tMax - tMin) * tMaxClip;
 				if (Math.max(uMax - uMin, tMaxNew - tMinNew)
 					< 1e-9) {
@@ -6894,18 +6950,18 @@ var paper = function (self, undefined) {
 			}
 			
 			function getConvexHull(dq0, dq1, dq2, dq3) {
-				var p0 = [0, dq0],
+				const p0 = [0, dq0],
 					p1 = [1 / 3, dq1],
 					p2 = [2 / 3, dq2],
 					p3 = [1, dq3],
 					dist1 = dq1 - (2 * dq0 + dq3) / 3,
-					dist2 = dq2 - (dq0 + 2 * dq3) / 3,
-					hull;
+					dist2 = dq2 - (dq0 + 2 * dq3) / 3;
+				let hull;
 				if (dist1 * dist2 < 0) {
 					hull = [[p0, p1, p3], [p0, p2, p3]];
 				}
 				else {
-					var distRatio = dist1 / dist2;
+					const distRatio = dist1 / dist2;
 					hull = [
 						distRatio >= 2 ? [p0, p1, p3]
 							: distRatio <= 0.5 ? [p0, p2, p3]
@@ -6929,10 +6985,12 @@ var paper = function (self, undefined) {
 			}
 			
 			function clipConvexHullPart(part, top, threshold) {
-				var px = part[0][0],
+				let px = part[0][0],
 					py = part[0][1];
-				for (var i = 1, l = part.length; i < l; i++) {
-					var qx = part[i][0],
+				let i = 1;
+				const l = part.length;
+				for (; i < l; i++) {
+					const qx = part[i][0],
 						qy = part[i][1];
 					if (top ? qy >= threshold : qy <= threshold) {
 						return qy === threshold ? qx
@@ -6945,32 +7003,32 @@ var paper = function (self, undefined) {
 			}
 			
 			function addCurveLineIntersections(v1, v2, c1, c2, locations, param) {
-				var flip = Curve.isStraight(v1),
+				const flip = Curve.isStraight(v1),
 					vc = flip ? v2 : v1,
 					vl = flip ? v1 : v2,
 					lx1 = vl[0], ly1 = vl[1],
 					lx2 = vl[6], ly2 = vl[7],
-					ldx = lx2 - lx1,
-					ldy = ly2 - ly1,
-					angle = Math.atan2(-ldy, ldx),
+					ldx = lx2 - lx1;
+				let ldy = ly2 - ly1;
+				const angle = Math.atan2(-ldy, ldx),
 					sin = Math.sin(angle),
 					cos = Math.cos(angle),
 					rvc = [];
 				for (var i = 0; i < 8; i += 2) {
-					var x = vc[i] - lx1,
+					const x = vc[i] - lx1,
 						y = vc[i + 1] - ly1;
 					rvc.push(
 						x * cos - y * sin,
 						x * sin + y * cos);
 				}
-				var roots = [],
+				const roots = [],
 					count = Curve.solveCubic(rvc, 1, 0, roots, 0, 1);
 				for (var i = 0; i < count; i++) {
-					var tc = roots[i],
+					const tc = roots[i],
 						pc = Curve.getPoint(vc, tc),
 						tl = Curve.getTimeOf(vl, pc);
 					if (tl !== null) {
-						var pl = Curve.getPoint(vl, tl),
+						const pl = Curve.getPoint(vl, tl),
 							t1 = flip ? tl : tc,
 							t2 = flip ? tc : tl;
 						if (!param.excludeEnd || t2 > Numerical.CURVETIME_EPSILON) {
@@ -6983,7 +7041,7 @@ var paper = function (self, undefined) {
 			}
 			
 			function addLineIntersection(v1, v2, c1, c2, locations, param) {
-				var pt = Line.intersect(
+				const pt = Line.intersect(
 					v1[0], v1[1], v1[6], v1[7],
 					v2[0], v2[1], v2[6], v2[7]);
 				if (pt) {
@@ -6997,7 +7055,7 @@ var paper = function (self, undefined) {
 						if (!v2) {
 							return Curve._getSelfIntersection(v1, c1, locations, param);
 						}
-						var epsilon = 2e-7,
+						const epsilon = 2e-7,
 							c1p1x = v1[0], c1p1y = v1[1],
 							c1p2x = v1[6], c1p2y = v1[7],
 							c2p1x = v2[0], c2p1y = v2[1],
@@ -7013,18 +7071,18 @@ var paper = function (self, undefined) {
 							min = Math.min,
 							max = Math.max;
 						if (!(  max(c1p1x, c1s1x, c1s2x, c1p2x) + epsilon >
-							min(c2p1x, c2s1x, c2s2x, c2p2x) &&
-							min(c1p1x, c1s1x, c1s2x, c1p2x) - epsilon <
-							max(c2p1x, c2s1x, c2s2x, c2p2x) &&
-							max(c1p1y, c1s1y, c1s2y, c1p2y) + epsilon >
-							min(c2p1y, c2s1y, c2s2y, c2p2y) &&
-							min(c1p1y, c1s1y, c1s2y, c1p2y) - epsilon <
-							max(c2p1y, c2s1y, c2s2y, c2p2y)))
+								min(c2p1x, c2s1x, c2s2x, c2p2x) &&
+								min(c1p1x, c1s1x, c1s2x, c1p2x) - epsilon <
+								max(c2p1x, c2s1x, c2s2x, c2p2x) &&
+								max(c1p1y, c1s1y, c1s2y, c1p2y) + epsilon >
+								min(c2p1y, c2s1y, c2s2y, c2p2y) &&
+								min(c1p1y, c1s1y, c1s2y, c1p2y) - epsilon <
+								max(c2p1y, c2s1y, c2s2y, c2p2y)))
 							return locations;
-						var overlaps = Curve.getOverlaps(v1, v2);
+						const overlaps = Curve.getOverlaps(v1, v2);
 						if (overlaps) {
-							for (var i = 0; i < 2; i++) {
-								var overlap = overlaps[i];
+							for (let i = 0; i < 2; i++) {
+								const overlap = overlaps[i];
 								addLocation(locations, param,
 									v1, c1, overlap[0], null,
 									v2, c2, overlap[1], null, true);
@@ -7032,7 +7090,7 @@ var paper = function (self, undefined) {
 							return locations;
 						}
 						
-						var straight1 = Curve.isStraight(v1),
+						const straight1 = Curve.isStraight(v1),
 							straight2 = Curve.isStraight(v2),
 							straight = straight1 && straight2,
 							before = locations.length;
@@ -7045,7 +7103,7 @@ var paper = function (self, undefined) {
 							0, 1, 0, 1, 0, 0, 0);
 						if (straight && locations.length > before)
 							return locations;
-						var c1p1 = new Point(c1p1x, c1p1y),
+						const c1p1 = new Point(c1p1x, c1p1y),
 							c1p2 = new Point(c1p2x, c1p2y),
 							c2p1 = new Point(c2p1x, c2p1y),
 							c2p2 = new Point(c2p2x, c2p2y);
@@ -7061,20 +7119,20 @@ var paper = function (self, undefined) {
 					},
 					
 					_getSelfIntersection: function (v1, c1, locations, param) {
-						var p1x = v1[0], p1y = v1[1],
+						const p1x = v1[0], p1y = v1[1],
 							h1x = v1[2], h1y = v1[3],
 							h2x = v1[4], h2y = v1[5],
 							p2x = v1[6], p2y = v1[7];
-						var line = new Line(p1x, p1y, p2x, p2y, false),
+						const line = new Line(p1x, p1y, p2x, p2y, false),
 							side1 = line.getSide(new Point(h1x, h1y), true),
 							side2 = line.getSide(new Point(h2x, h2y), true);
 						if (side1 === side2) {
-							var edgeSum = (p1x - h2x) * (h1y - p2y)
+							const edgeSum = (p1x - h2x) * (h1y - p2y)
 								+ (h1x - p2x) * (h2y - p1y);
 							if (edgeSum * side1 > 0)
 								return locations;
 						}
-						var ax = p2x - 3 * h2x + 3 * h1x - p1x,
+						const ax = p2x - 3 * h2x + 3 * h1x - p1x,
 							bx = h2x - 2 * h1x + p1x,
 							cx = h1x - p1x,
 							ay = p2y - 3 * h2y + 3 * h1y - p1y,
@@ -7084,24 +7142,25 @@ var paper = function (self, undefined) {
 							ab = ay * bx - ax * by,
 							bc = by * cx - bx * cy;
 						if (ac * ac - 4 * ab * bc < 0) {
-							var roots = [],
-								tSplit,
-								count = Numerical.solveCubic(
-									ax * ax + ay * ay,
-									3 * (ax * bx + ay * by),
-									2 * (bx * bx + by * by) + ax * cx + ay * cy,
-									bx * cx + by * cy,
-									roots, 0, 1);
+							const roots = [];
+							let tSplit;
+							const count = Numerical.solveCubic(
+								ax * ax + ay * ay,
+								3 * (ax * bx + ay * by),
+								2 * (bx * bx + by * by) + ax * cx + ay * cy,
+								bx * cx + by * cy,
+								roots, 0, 1);
 							if (count > 0) {
-								for (var i = 0, maxCurvature = 0; i < count; i++) {
-									var curvature = Math.abs(
+								let i = 0, maxCurvature = 0;
+								for (; i < count; i++) {
+									const curvature = Math.abs(
 										c1.getCurvatureAtTime(roots[i]));
 									if (curvature > maxCurvature) {
 										maxCurvature = curvature;
 										tSplit = roots[i];
 									}
 								}
-								var parts = Curve.subdivide(v1, tSplit);
+								const parts = Curve.subdivide(v1, tSplit);
 								param.excludeEnd = true;
 								param.renormalize = function (t1, t2) {
 									return [t1 * tSplit, t2 * (1 - tSplit) + tSplit];
@@ -7114,20 +7173,20 @@ var paper = function (self, undefined) {
 					},
 					
 					getOverlaps: function (v1, v2) {
-						var abs = Math.abs,
+						const abs = Math.abs,
 							timeEpsilon = 4e-7,
-							geomEpsilon = 2e-7,
-							straight1 = Curve.isStraight(v1),
+							geomEpsilon = 2e-7;
+						let straight1 = Curve.isStraight(v1),
 							straight2 = Curve.isStraight(v2),
 							straightBoth = straight1 && straight2;
 						
 						function getSquaredLineLength(v) {
-							var x = v[6] - v[0],
+							const x = v[6] - v[0],
 								y = v[7] - v[1];
 							return x * x + y * y;
 						}
 						
-						var flip = getSquaredLineLength(v1) < getSquaredLineLength(v2),
+						const flip = getSquaredLineLength(v1) < getSquaredLineLength(v2),
 							l1 = flip ? v2 : v1,
 							l2 = flip ? v1 : v2,
 							line = new Line(l1[0], l1[1], l1[6], l1[7]);
@@ -7150,14 +7209,15 @@ var paper = function (self, undefined) {
 						
 						var v = [v1, v2],
 							pairs = [];
-						for (var i = 0, t1 = 0;
-						     i < 2 && pairs.length < 2;
-						     i += t1 === 0 ? 0 : 1, t1 = t1 ^ 1) {
-							var t2 = Curve.getTimeOf(v[i ^ 1], new Point(
+						let i = 0, t1 = 0;
+						for (;
+							i < 2 && pairs.length < 2;
+							i += t1 === 0 ? 0 : 1, t1 = t1 ^ 1) {
+							const t2 = Curve.getTimeOf(v[i ^ 1], new Point(
 								v[i][t1 === 0 ? 0 : 6],
 								v[i][t1 === 0 ? 1 : 7]));
 							if (t2 != null) {
-								var pair = i === 0 ? [t1, t2] : [t2, t1];
+								const pair = i === 0 ? [t1, t2] : [t2, t1];
 								if (pairs.length === 0 ||
 									abs(pair[0] - pairs[0][0]) > timeEpsilon &&
 									abs(pair[1] - pairs[0][1]) > timeEpsilon)
@@ -7170,7 +7230,7 @@ var paper = function (self, undefined) {
 							pairs = null;
 						}
 						else if (!straightBoth) {
-							var o1 = Curve.getPart(v1, pairs[0][0], pairs[1][0]),
+							const o1 = Curve.getPart(v1, pairs[0][0], pairs[1][0]),
 								o2 = Curve.getPart(v2, pairs[0][1], pairs[1][1]);
 							if (abs(o2[2] - o1[2]) > geomEpsilon ||
 								abs(o2[3] - o1[3]) > geomEpsilon ||
@@ -7190,7 +7250,7 @@ var paper = function (self, undefined) {
 			
 			initialize: function CurveLocation(curve, time, point, _overlap, _distance) {
 				if (time > 0.9999996) {
-					var next = curve.getNext();
+					const next = curve.getNext();
 					if (next) {
 						time = 0;
 						curve = next;
@@ -7205,7 +7265,7 @@ var paper = function (self, undefined) {
 			},
 			
 			_setCurve: function (curve) {
-				var path = curve._path;
+				const path = curve._path;
 				this._path = path;
 				this._version = path ? path._version : 0;
 				this._curve = curve;
@@ -7222,10 +7282,10 @@ var paper = function (self, undefined) {
 			},
 			
 			getSegment: function () {
-				var curve = this.getCurve(),
-					segment = this._segment;
+				const curve = this.getCurve();
+				let segment = this._segment;
 				if (!segment) {
-					var time = this.getTime();
+					const time = this.getTime();
 					if (time === 0) {
 						segment = curve._segment1;
 					}
@@ -7244,14 +7304,14 @@ var paper = function (self, undefined) {
 			},
 			
 			getCurve: function () {
-				var path = this._path,
+				const path = this._path,
 					that = this;
 				if (path && path._version !== this._version) {
 					this._time = this._curve = this._offset = null;
 				}
 				
 				function trySegment(segment) {
-					var curve = segment && segment.getCurve();
+					const curve = segment && segment.getCurve();
 					if (curve && (that._time = curve.getTimeOf(that._point))
 						!= null) {
 						that._setCurve(curve);
@@ -7267,17 +7327,17 @@ var paper = function (self, undefined) {
 			},
 			
 			getPath: function () {
-				var curve = this.getCurve();
+				const curve = this.getCurve();
 				return curve && curve._path;
 			},
 			
 			getIndex: function () {
-				var curve = this.getCurve();
+				const curve = this.getCurve();
 				return curve && curve.getIndex();
 			},
 			
 			getTime: function () {
-				var curve = this.getCurve(),
+				const curve = this.getCurve(),
 					time = this._time;
 				return curve && time == null
 					? this._time = curve.getTimeOf(this._point)
@@ -7291,14 +7351,14 @@ var paper = function (self, undefined) {
 			},
 			
 			getOffset: function () {
-				var offset = this._offset;
+				let offset = this._offset;
 				if (offset == null) {
 					offset = 0;
-					var path = this.getPath(),
+					const path = this.getPath(),
 						index = this.getIndex();
 					if (path && index != null) {
-						var curves = path.getCurves();
-						for (var i = 0; i < index; i++)
+						const curves = path.getCurves();
+						for (let i = 0; i < index; i++)
 							offset += curves[i].getLength();
 					}
 					this._offset = offset += this.getCurveOffset();
@@ -7307,7 +7367,7 @@ var paper = function (self, undefined) {
 			},
 			
 			getCurveOffset: function () {
-				var curve = this.getCurve(),
+				const curve = this.getCurve(),
 					time = this.getTime();
 				return time != null && curve && curve.getPartLength(0, time);
 			},
@@ -7321,8 +7381,8 @@ var paper = function (self, undefined) {
 			},
 			
 			divide: function () {
-				var curve = this.getCurve(),
-					res = null;
+				const curve = this.getCurve();
+				let res = null;
 				if (curve) {
 					res = curve.divideAtTime(this.getTime());
 					if (res)
@@ -7332,45 +7392,45 @@ var paper = function (self, undefined) {
 			},
 			
 			split: function () {
-				var curve = this.getCurve();
+				const curve = this.getCurve();
 				return curve ? curve.splitAtTime(this.getTime()) : null;
 			},
 			
 			equals: function (loc, _ignoreOther) {
-				var res = this === loc,
-					epsilon = 2e-7;
+				let res = this === loc;
+				const epsilon = 2e-7;
 				if (!res && loc instanceof CurveLocation
 					&& this.getPath() === loc.getPath()
 					&& this.getPoint().isClose(loc.getPoint(), epsilon)) {
-					var c1 = this.getCurve(),
+					const c1 = this.getCurve(),
 						c2 = loc.getCurve(),
-						abs = Math.abs,
-						diff = abs(
-							((c1.isLast() && c2.isFirst() ? -1 : c1.getIndex())
+						abs = Math.abs;
+					let diff = abs(
+						((c1.isLast() && c2.isFirst() ? -1 : c1.getIndex())
 							+ this.getTime()) -
-							((c2.isLast() && c1.isFirst() ? -1 : c2.getIndex())
+						((c2.isLast() && c1.isFirst() ? -1 : c2.getIndex())
 							+ loc.getTime()));
 					res = (diff < 4e-7
 						|| ((diff = abs(this.getOffset() - loc.getOffset())) < epsilon
-						|| abs(this.getPath().getLength() - diff) < epsilon))
+							|| abs(this.getPath().getLength() - diff) < epsilon))
 						&& (_ignoreOther
-						|| (!this._intersection && !loc._intersection
-						|| this._intersection && this._intersection.equals(
-							loc._intersection, true)));
+							|| (!this._intersection && !loc._intersection
+								|| this._intersection && this._intersection.equals(
+									loc._intersection, true)));
 				}
 				return res;
 			},
 			
 			toString: function () {
-				var parts = [],
+				const parts = [],
 					point = this.getPoint(),
 					f = Formatter.instance;
 				if (point)
 					parts.push('point: ' + point);
-				var index = this.getIndex();
+				const index = this.getIndex();
 				if (index != null)
 					parts.push('index: ' + index);
-				var time = this.getTime();
+				const time = this.getTime();
 				if (time != null)
 					parts.push('time: ' + f.number(time));
 				if (this._distance != null)
@@ -7379,29 +7439,29 @@ var paper = function (self, undefined) {
 			},
 			
 			isTouching: function () {
-				var inter = this._intersection;
+				const inter = this._intersection;
 				if (inter && this.getTangent().isCollinear(inter.getTangent())) {
-					var curve1 = this.getCurve(),
+					const curve1 = this.getCurve(),
 						curve2 = inter.getCurve();
 					return !(curve1.isStraight() && curve2.isStraight()
-					&& curve1.getLine().intersect(curve2.getLine()));
+						&& curve1.getLine().intersect(curve2.getLine()));
 				}
 				return false;
 			},
 			
 			isCrossing: function () {
-				var inter = this._intersection;
+				let inter = this._intersection;
 				if (!inter)
 					return false;
-				var t1 = this.getTime(),
+				const t1 = this.getTime(),
 					t2 = inter.getTime(),
 					tMin = 4e-7,
-					tMax = 1 - tMin,
-					t1Inside = t1 > tMin && t1 < tMax,
+					tMax = 1 - tMin;
+				let t1Inside = t1 > tMin && t1 < tMax,
 					t2Inside = t2 > tMin && t2 < tMax;
 				if (t1Inside && t2Inside)
 					return !this.isTouching();
-				var c2 = this.getCurve(),
+				let c2 = this.getCurve(),
 					c1 = t1 <= tMin ? c2.getPrevious() : c2,
 					c4 = inter.getCurve(),
 					c3 = t2 <= tMin ? c4.getPrevious() : c4;
@@ -7418,15 +7478,15 @@ var paper = function (self, undefined) {
 						: angle > min || angle < max;
 				}
 				
-				var lenghts = [];
+				const lenghts = [];
 				if (!t1Inside)
 					lenghts.push(c1.getLength(), c2.getLength());
 				if (!t2Inside)
 					lenghts.push(c3.getLength(), c4.getLength());
-				var pt = this.getPoint(),
-					offset = Math.min.apply(Math, lenghts) / 64,
-					v2 = t1Inside ? c2.getTangentAtTime(t1)
-						: c2.getPointAt(offset).subtract(pt),
+				const pt = this.getPoint();
+				let offset = Math.min.apply(Math, lenghts) / 64;
+				const v2 = t1Inside ? c2.getTangentAtTime(t1)
+					: c2.getPointAt(offset).subtract(pt),
 					v1 = t1Inside ? v2.negate()
 						: c1.getPointAt(-offset).subtract(pt),
 					v4 = t2Inside ? c4.getTangentAtTime(t2)
@@ -7448,9 +7508,9 @@ var paper = function (self, undefined) {
 				return !!this._overlap;
 			}
 		}, Base.each(Curve._evaluateMethods, function (name) {
-			var get = name + 'At';
+			const get = name + 'At';
 			this[name] = function () {
-				var curve = this.getCurve(),
+				const curve = this.getCurve(),
 					time = this.getTime();
 				return time != null && curve && curve[get](time, true);
 			};
@@ -7460,13 +7520,13 @@ var paper = function (self, undefined) {
 		new function () {
 			
 			function insert(locations, loc, merge) {
-				var length = locations.length,
-					l = 0,
+				const length = locations.length;
+				let l = 0,
 					r = length - 1;
 				
 				function search(index, dir) {
-					for (var i = index + dir; i >= -1 && i <= length; i += dir) {
-						var loc2 = locations[((i % length) + length) % length];
+					for (let i = index + dir; i >= -1 && i <= length; i += dir) {
+						const loc2 = locations[((i % length) + length) % length];
 						if (!loc.getPoint().isClose(loc2.getPoint(),
 								2e-7))
 							break;
@@ -7487,7 +7547,7 @@ var paper = function (self, undefined) {
 						}
 						return found;
 					}
-					var path1 = loc.getPath(),
+					const path1 = loc.getPath(),
 						path2 = loc2.getPath(),
 						diff = path1 === path2
 							? (loc.getIndex() + loc.getTime())
@@ -7509,8 +7569,8 @@ var paper = function (self, undefined) {
 					insert: insert,
 					
 					expand: function (locations) {
-						var expanded = locations.slice();
-						for (var i = locations.length - 1; i >= 0; i--) {
+						const expanded = locations.slice();
+						for (let i = locations.length - 1; i >= 0; i--) {
 							insert(expanded, locations[i]._intersection, false);
 						}
 						return expanded;
@@ -7529,7 +7589,7 @@ var paper = function (self, undefined) {
 		
 		statics: {
 			create: function (pathData) {
-				var ctor = (pathData && pathData.match(/m/gi) || []).length > 1
+				const ctor = (pathData && pathData.match(/m/gi) || []).length > 1
 				|| /z\s*\S+/i.test(pathData) ? CompoundPath : Path;
 				return new ctor(pathData);
 			}
@@ -7541,8 +7601,8 @@ var paper = function (self, undefined) {
 		
 		setPathData: function (data) {
 			
-			var parts = data && data.match(/[mlhvcsqtaz][^mlhvcsqtaz]*/ig),
-				coords,
+			const parts = data && data.match(/[mlhvcsqtaz][^mlhvcsqtaz]*/ig);
+			let coords,
 				relative = false,
 				previous,
 				control,
@@ -7550,7 +7610,7 @@ var paper = function (self, undefined) {
 				start = new Point();
 			
 			function getCoord(index, coord) {
-				var val = +coords[index];
+				let val = +coords[index];
 				if (relative)
 					val += current[coord];
 				return val;
@@ -7565,19 +7625,21 @@ var paper = function (self, undefined) {
 			
 			this.clear();
 			
-			for (var i = 0, l = parts && parts.length; i < l; i++) {
-				var part = parts[i],
+			let i = 0;
+			const l = parts && parts.length;
+			for (; i < l; i++) {
+				const part = parts[i],
 					command = part[0],
 					lower = command.toLowerCase();
 				coords = part.match(/[+-]?(?:\d*\.\d+|\d+\.?)(?:[eE][+-]?\d+)?/g);
-				var length = coords && coords.length;
+				const length = coords && coords.length;
 				relative = command === lower;
 				if (previous === 'z' && !/[mz]/.test(lower))
 					this.moveTo(current = start);
 				switch (lower) {
 					case 'm':
 					case 'l':
-						var move = lower === 'm';
+						const move = lower === 'm';
 						for (var j = 0; j < length; j += 2)
 							this[j === 0 && move ? 'moveTo' : 'lineTo'](
 								current = getPoint(j));
@@ -7650,15 +7712,15 @@ var paper = function (self, undefined) {
 		},
 		
 		_contains: function (point) {
-			var winding = point.isInside(
-					this.getBounds({internal: true, handle: true}))
+			const winding = point.isInside(
+				this.getBounds({internal: true, handle: true}))
 				&& this._getWinding(point);
 			return !!(this.getFillRule() === 'evenodd' ? winding & 1 : winding);
 		},
 		
 		getIntersections: function (path, include, _matrix, _returnFirst) {
-			var self = this === path || !path,
-				matrix1 = this._matrix._orNullIfIdentity(),
+			let self = this === path || !path;
+			const matrix1 = this._matrix._orNullIfIdentity(),
 				matrix2 = self ? matrix1
 					: (_matrix || path._matrix)._orNullIfIdentity();
 			if (!self && !this.getBounds(matrix1).touches(path.getBounds(matrix2)))
@@ -7674,7 +7736,7 @@ var paper = function (self, undefined) {
 			for (var i = 0; i < length2; i++)
 				values2[i] = curves2[i].getValues(matrix2);
 			for (var i = 0; i < length1; i++) {
-				var curve1 = curves1[i],
+				const curve1 = curves1[i],
 					values1 = self ? values2[i] : curve1.getValues(matrix1),
 					path1 = curve1.getPath();
 				if (path1 !== path) {
@@ -7689,10 +7751,10 @@ var paper = function (self, undefined) {
 						curve1.getPoint1().equals(curve1.getPoint2())
 					});
 				}
-				for (var j = self ? i + 1 : 0; j < length2; j++) {
+				for (let j = self ? i + 1 : 0; j < length2; j++) {
 					if (_returnFirst && locations.length)
 						return locations;
-					var curve2 = curves2[j];
+					const curve2 = curves2[j];
 					Curve._getIntersections(
 						values1, values2[j], curve1, curve2, locations,
 						{
@@ -7717,12 +7779,14 @@ var paper = function (self, undefined) {
 		},
 		
 		getNearestLocation: function () {
-			var point = Point.read(arguments),
-				curves = this.getCurves(),
-				minDist = Infinity,
+			const point = Point.read(arguments),
+				curves = this.getCurves();
+			let minDist = Infinity,
 				minLoc = null;
-			for (var i = 0, l = curves.length; i < l; i++) {
-				var loc = curves[i].getNearestLocation(point);
+			let i = 0;
+			const l = curves.length;
+			for (; i < l; i++) {
+				const loc = curves[i].getNearestLocation(point);
 				if (loc._distance < minDist) {
 					minDist = loc._distance;
 					minLoc = loc;
@@ -7732,24 +7796,24 @@ var paper = function (self, undefined) {
 		},
 		
 		getNearestPoint: function () {
-			var loc = this.getNearestLocation.apply(this, arguments);
+			const loc = this.getNearestLocation.apply(this, arguments);
 			return loc ? loc.getPoint() : loc;
 		},
 		
 		interpolate: function (from, to, factor) {
-			var isPath = !this._children,
-				name = isPath ? '_segments' : '_children',
-				itemsFrom = from[name],
-				itemsTo = to[name],
-				items = this[name];
+			const isPath = !this._children,
+				name = isPath ? '_segments' : '_children';
+			let itemsFrom = from[name],
+				itemsTo = to[name];
+			const items = this[name];
 			if (!itemsFrom || !itemsTo || itemsFrom.length !== itemsTo.length) {
 				throw new Error('Invalid operands in interpolate() call: ' +
 					from + ', ' + to);
 			}
-			var current = items.length,
+			const current = items.length,
 				length = itemsTo.length;
 			if (current < length) {
-				var ctor = isPath ? Segment : Path;
+				const ctor = isPath ? Segment : Path;
 				for (var i = current; i < length; i++) {
 					this.add(new ctor());
 				}
@@ -7779,12 +7843,12 @@ var paper = function (self, undefined) {
 				this._closed = false;
 				this._segments = [];
 				this._version = 0;
-				var segments = Array.isArray(arg)
+				let segments = Array.isArray(arg)
 					? typeof arg[0] === 'object'
 						? arg
 						: arguments
 					: arg && (arg.size === undefined && (arg.x !== undefined
-					|| arg.point !== undefined))
+						|| arg.point !== undefined))
 						? arguments
 						: null;
 				if (segments && segments.length > 0) {
@@ -7809,7 +7873,7 @@ var paper = function (self, undefined) {
 			copyContent: function (source) {
 				this.setSegments(source._segments);
 				this._closed = source._closed;
-				var clockwise = source._clockwise;
+				const clockwise = source._clockwise;
 				if (clockwise !== undefined)
 					this._clockwise = clockwise;
 			},
@@ -7823,7 +7887,9 @@ var paper = function (self, undefined) {
 						this._version++;
 					}
 					else if (this._curves) {
-						for (var i = 0, l = this._curves.length; i < l; i++)
+						let i = 0;
+						const l = this._curves.length;
+						for (; i < l; i++)
 							this._curves[i]._changed();
 					}
 				}
@@ -7833,7 +7899,7 @@ var paper = function (self, undefined) {
 			},
 			
 			getStyle: function () {
-				var parent = this._parent;
+				const parent = this._parent;
 				return (parent instanceof CompoundPath ? parent : this)._style;
 			},
 			
@@ -7842,7 +7908,7 @@ var paper = function (self, undefined) {
 			},
 			
 			setSegments: function (segments) {
-				var fullySelected = this.isFullySelected();
+				const fullySelected = this.isFullySelected();
 				this._segments.length = 0;
 				this._segmentSelection = 0;
 				this._curves = undefined;
@@ -7861,12 +7927,12 @@ var paper = function (self, undefined) {
 			},
 			
 			getCurves: function () {
-				var curves = this._curves,
-					segments = this._segments;
+				let curves = this._curves;
+				const segments = this._segments;
 				if (!curves) {
-					var length = this._countCurves();
+					const length = this._countCurves();
 					curves = this._curves = new Array(length);
-					for (var i = 0; i < length; i++)
+					for (let i = 0; i < length; i++)
 						curves[i] = new Curve(this, segments[i],
 							segments[i + 1] || segments[0]);
 				}
@@ -7878,7 +7944,7 @@ var paper = function (self, undefined) {
 			},
 			
 			getLastCurve: function () {
-				var curves = this.getCurves();
+				const curves = this.getCurves();
 				return curves[curves.length - 1];
 			},
 			
@@ -7890,7 +7956,7 @@ var paper = function (self, undefined) {
 				if (this._closed != (closed = !!closed)) {
 					this._closed = closed;
 					if (this._curves) {
-						var length = this._curves.length = this._countCurves();
+						const length = this._curves.length = this._countCurves();
 						if (closed)
 							this._curves[length - 1] = new Curve(this,
 								this._segments[length - 1], this._segments[0]);
@@ -7902,16 +7968,16 @@ var paper = function (self, undefined) {
 			beans: true,
 			
 			getPathData: function (_matrix, _precision) {
-				var segments = this._segments,
+				const segments = this._segments,
 					length = segments.length,
 					f = new Formatter(_precision),
-					coords = new Array(6),
-					first = true,
+					coords = new Array(6);
+				let first = true,
 					curX, curY,
 					prevX, prevY,
 					inX, inY,
-					outX, outY,
-					parts = [];
+					outX, outY;
+				const parts = [];
 				
 				function addSegment(segment, skipLine) {
 					segment._transformCoordinates(_matrix, coords);
@@ -7944,7 +8010,7 @@ var paper = function (self, undefined) {
 				if (length === 0)
 					return '';
 				
-				for (var i = 0; i < length; i++)
+				for (let i = 0; i < length; i++)
 					addSegment(segments[i]);
 				if (this._closed && length > 0) {
 					addSegment(segments[0], true);
@@ -7958,9 +8024,11 @@ var paper = function (self, undefined) {
 			},
 			
 			_transformContent: function (matrix) {
-				var segments = this._segments,
+				const segments = this._segments,
 					coords = new Array(6);
-				for (var i = 0, l = segments.length; i < l; i++)
+				let i = 0;
+				const l = segments.length;
+				for (; i < l; i++)
 					segments[i]._transformCoordinates(matrix, coords, true);
 				return true;
 			},
@@ -7972,7 +8040,7 @@ var paper = function (self, undefined) {
 					append = index == null,
 					index = append ? segments.length : index;
 				for (var i = 0; i < amount; i++) {
-					var segment = segs[i];
+					let segment = segs[i];
 					if (segment._path)
 						segment = segs[i] = segment.clone();
 					segment._path = this;
@@ -7989,11 +8057,11 @@ var paper = function (self, undefined) {
 						segments[i]._index = i;
 				}
 				if (curves) {
-					var total = this._countCurves(),
+					const total = this._countCurves(),
 						start = index > 0 && index + amount - 1 === total ? index - 1
-							: index,
-						insert = start,
-						end = Math.min(start + amount, total);
+							: index;
+					let insert = start;
+					const end = Math.min(start + amount, total);
 					if (segs._curves) {
 						curves.splice.apply(curves, [start, 0].concat(segs._curves));
 						insert += segs._curves.length;
@@ -8007,10 +8075,10 @@ var paper = function (self, undefined) {
 			},
 			
 			_adjustCurves: function (start, end) {
-				var segments = this._segments,
-					curves = this._curves,
-					curve;
-				for (var i = start; i < end; i++) {
+				const segments = this._segments,
+					curves = this._curves;
+				let curve;
+				for (let i = start; i < end; i++) {
 					curve = curves[i];
 					curve._path = this;
 					curve._segment1 = segments[i];
@@ -8029,7 +8097,7 @@ var paper = function (self, undefined) {
 			},
 			
 			_countCurves: function () {
-				var length = this._segments.length;
+				const length = this._segments.length;
 				return !this._closed && length > 0 ? length - 1 : length;
 			},
 			
@@ -8076,7 +8144,7 @@ var paper = function (self, undefined) {
 				if (!amount)
 					return removed;
 				for (var i = 0; i < amount; i++) {
-					var segment = removed[i];
+					const segment = removed[i];
 					if (segment._selection)
 						this._updateSelection(segment, segment._selection, 0);
 					segment._index = segment._path = null;
@@ -8085,8 +8153,8 @@ var paper = function (self, undefined) {
 					segments[i]._index = i;
 				if (curves) {
 					var index = start > 0 && end === count + (this._closed ? 1 : 0)
-							? start - 1
-							: start,
+						? start - 1
+						: start,
 						curves = curves.splice(index, amount);
 					for (var i = curves.length - 1; i >= 0; i--)
 						curves[i]._path = null;
@@ -8101,8 +8169,10 @@ var paper = function (self, undefined) {
 			clear: '#removeSegments',
 			
 			hasHandles: function () {
-				var segments = this._segments;
-				for (var i = 0, l = segments.length; i < l; i++) {
+				const segments = this._segments;
+				let i = 0;
+				const l = segments.length;
+				for (; i < l; i++) {
 					if (segments[i].hasHandles())
 						return true;
 				}
@@ -8110,16 +8180,20 @@ var paper = function (self, undefined) {
 			},
 			
 			clearHandles: function () {
-				var segments = this._segments;
-				for (var i = 0, l = segments.length; i < l; i++)
+				const segments = this._segments;
+				let i = 0;
+				const l = segments.length;
+				for (; i < l; i++)
 					segments[i].clearHandles();
 			},
 			
 			getLength: function () {
 				if (this._length == null) {
-					var curves = this.getCurves(),
-						length = 0;
-					for (var i = 0, l = curves.length; i < l; i++)
+					const curves = this.getCurves();
+					let length = 0;
+					let i = 0;
+					const l = curves.length;
+					for (; i < l; i++)
 						length += curves[i].getLength();
 					this._length = length;
 				}
@@ -8127,15 +8201,17 @@ var paper = function (self, undefined) {
 			},
 			
 			getArea: function (_closed) {
-				var cached = _closed === undefined,
+				let cached = _closed === undefined,
 					area = this._area;
 				if (!cached || area == null) {
-					var segments = this._segments,
+					const segments = this._segments,
 						count = segments.length,
 						closed = cached ? this._closed : _closed,
 						last = count - 1;
 					area = 0;
-					for (var i = 0, l = closed ? count : last; i < l; i++) {
+					let i = 0;
+					const l = closed ? count : last;
+					for (; i < l; i++) {
 						area += Curve.getArea(Curve.getValues(
 							segments[i], segments[i < last ? i + 1 : 0]));
 					}
@@ -8158,7 +8234,7 @@ var paper = function (self, undefined) {
 			},
 			
 			isFullySelected: function () {
-				var length = this._segments.length;
+				const length = this._segments.length;
 				return this.isSelected() && length > 0 && this._segmentSelection
 					=== length * 7;
 			},
@@ -8176,39 +8252,39 @@ var paper = function (self, undefined) {
 			},
 			
 			_selectSegments: function (selected) {
-				var segments = this._segments,
+				const segments = this._segments,
 					length = segments.length,
 					selection = selected ? 7 : 0;
 				this._segmentSelection = selection * length;
-				for (var i = 0; i < length; i++)
+				for (let i = 0; i < length; i++)
 					segments[i]._selection = selection;
 			},
 			
 			_updateSelection: function (segment, oldSelection, newSelection) {
 				segment._selection = newSelection;
-				var selection = this._segmentSelection += newSelection - oldSelection;
+				const selection = this._segmentSelection += newSelection - oldSelection;
 				if (selection > 0)
 					this.setSelected(true);
 			},
 			
 			splitAt: function (location) {
-				var loc = typeof location === 'number'
-						? this.getLocationAt(location) : location,
-					index = loc && loc.index,
-					time = loc && loc.time,
-					tMin = 4e-7,
+				const loc = typeof location === 'number'
+					? this.getLocationAt(location) : location;
+				let index = loc && loc.index,
+					time = loc && loc.time;
+				const tMin = 4e-7,
 					tMax = 1 - tMin;
 				if (time >= tMax) {
 					index++;
 					time = 0;
 				}
-				var curves = this.getCurves();
+				const curves = this.getCurves();
 				if (index >= 0 && index < curves.length) {
 					if (time >= tMin) {
 						curves[index++].divideAtTime(time);
 					}
-					var segs = this.removeSegments(index, this._segments.length, true),
-						path;
+					const segs = this.removeSegments(index, this._segments.length, true);
+					let path;
 					if (this._closed) {
 						this.setClosed(false);
 						path = this;
@@ -8226,30 +8302,30 @@ var paper = function (self, undefined) {
 			},
 			
 			split: function (index, time) {
-				var curve,
-					location = time === undefined ? index
-						: (curve = this.getCurves()[index])
-						&& curve.getLocationAtTime(time);
+				let curve;
+				const location = time === undefined ? index
+					: (curve = this.getCurves()[index])
+					&& curve.getLocationAtTime(time);
 				return location != null ? this.splitAt(location) : null;
 			},
 			
 			join: function (path, tolerance) {
-				var epsilon = tolerance || 0;
+				const epsilon = tolerance || 0;
 				if (path && path !== this) {
-					var segments = path._segments,
-						last1 = this.getLastSegment(),
-						last2 = path.getLastSegment();
+					const segments = path._segments,
+						last1 = this.getLastSegment();
+					let last2 = path.getLastSegment();
 					if (!last2)
 						return this;
 					if (last1 && last1._point.isClose(last2._point, epsilon))
 						path.reverse();
-					var first2 = path.getFirstSegment();
+					const first2 = path.getFirstSegment();
 					if (last1 && last1._point.isClose(first2._point, epsilon)) {
 						last1.setHandleOut(first2._handleOut);
 						this._add(segments.slice(1));
 					}
 					else {
-						var first1 = this.getFirstSegment();
+						const first1 = this.getFirstSegment();
 						if (first1 && first1._point.isClose(first2._point, epsilon))
 							path.reverse();
 						last2 = path.getLastSegment();
@@ -8265,7 +8341,7 @@ var paper = function (self, undefined) {
 						this._add([segments[0]]);
 					path.remove();
 				}
-				var first = this.getFirstSegment(),
+				const first = this.getFirstSegment(),
 					last = this.getLastSegment();
 				if (first !== last && first._point.isClose(last._point, epsilon)) {
 					first.setHandleIn(last._handleIn);
@@ -8276,13 +8352,13 @@ var paper = function (self, undefined) {
 			},
 			
 			reduce: function (options) {
-				var curves = this.getCurves(),
+				const curves = this.getCurves(),
 					simplify = options && options.simplify,
 					tolerance = simplify ? 2e-7 : 0;
-				for (var i = curves.length - 1; i >= 0; i--) {
-					var curve = curves[i];
+				for (let i = curves.length - 1; i >= 0; i--) {
+					const curve = curves[i];
 					if (!curve.hasHandles() && (curve.getLength() < tolerance
-						|| simplify && curve.isCollinear(curve.getNext())))
+							|| simplify && curve.isCollinear(curve.getNext())))
 						curve.remove();
 				}
 				return this;
@@ -8290,9 +8366,11 @@ var paper = function (self, undefined) {
 			
 			reverse: function () {
 				this._segments.reverse();
-				for (var i = 0, l = this._segments.length; i < l; i++) {
-					var segment = this._segments[i];
-					var handleIn = segment._handleIn;
+				let i = 0;
+				const l = this._segments.length;
+				for (; i < l; i++) {
+					const segment = this._segments[i];
+					const handleIn = segment._handleIn;
 					segment._handleIn = segment._handleOut;
 					segment._handleOut = handleIn;
 					segment._index = i;
@@ -8304,11 +8382,11 @@ var paper = function (self, undefined) {
 			},
 			
 			flatten: function (flatness) {
-				var iterator = new PathIterator(this, flatness || 0.25, 256, true),
+				const iterator = new PathIterator(this, flatness || 0.25, 256, true),
 					parts = iterator.parts,
 					length = parts.length,
 					segments = [];
-				for (var i = 0; i < length; i++) {
+				for (let i = 0; i < length; i++) {
 					segments.push(new Segment(parts[i].curve.slice(0, 2)));
 				}
 				if (!this._closed && length > 0) {
@@ -8318,24 +8396,24 @@ var paper = function (self, undefined) {
 			},
 			
 			simplify: function (tolerance) {
-				var segments = new PathFitter(this).fit(tolerance || 2.5);
+				let segments = new PathFitter(this).fit(tolerance || 2.5);
 				if (segments)
 					this.setSegments(segments);
 				return !!segments;
 			},
 			
 			smooth: function (options) {
-				var that = this,
+				const that = this,
 					opts = options || {},
 					type = opts.type || 'asymmetric',
 					segments = this._segments,
-					length = segments.length,
-					closed = this._closed;
+					length = segments.length;
+				let closed = this._closed;
 				
 				function getIndex(value, _default) {
-					var index = value && value.index;
+					let index = value && value.index;
 					if (index != null) {
-						var path = value.path;
+						const path = value.path;
 						if (path && path !== that)
 							throw new Error(value._class + ' ' + index + ' of ' + path
 								+ ' is not part of ' + that);
@@ -8350,7 +8428,7 @@ var paper = function (self, undefined) {
 						: index < 0 ? index + length : index, length - 1);
 				}
 				
-				var loop = closed && opts.from === undefined && opts.to === undefined,
+				let loop = closed && opts.from === undefined && opts.to === undefined,
 					from = getIndex(opts.from, 0),
 					to = getIndex(opts.to, length - 1);
 				
@@ -8359,20 +8437,20 @@ var paper = function (self, undefined) {
 						from -= length;
 					}
 					else {
-						var tmp = from;
+						const tmp = from;
 						from = to;
 						to = tmp;
 					}
 				}
 				if (/^(?:asymmetric|continuous)$/.test(type)) {
-					var asymmetric = type === 'asymmetric',
+					const asymmetric = type === 'asymmetric',
 						min = Math.min,
-						amount = to - from + 1,
-						n = amount - 1,
-						padding = loop ? min(amount, 4) : 1,
-						paddingLeft = padding,
-						paddingRight = padding,
-						knots = [];
+						amount = to - from + 1;
+					let n = amount - 1;
+					const padding = loop ? min(amount, 4) : 1;
+					let paddingLeft = padding,
+						paddingRight = padding;
+					const knots = [];
 					if (!closed) {
 						paddingLeft = min(1, from);
 						paddingRight = min(1, length - to - 1);
@@ -8384,17 +8462,17 @@ var paper = function (self, undefined) {
 						knots[i] = segments[(j < 0 ? j + length : j) % length]._point;
 					}
 					
-					var x = knots[0]._x + 2 * knots[1]._x,
+					let x = knots[0]._x + 2 * knots[1]._x,
 						y = knots[0]._y + 2 * knots[1]._y,
-						f = 2,
-						n_1 = n - 1,
+						f = 2;
+					const n_1 = n - 1,
 						rx = [x],
 						ry = [y],
 						rf = [f],
 						px = [],
 						py = [];
 					for (var i = 1; i < n; i++) {
-						var internal = i < n_1,
+						const internal = i < n_1,
 							a = internal ? 1 : asymmetric ? 1 : 2,
 							b = internal ? 4 : asymmetric ? 2 : 7,
 							u = internal ? 4 : asymmetric ? 3 : 8,
@@ -8416,9 +8494,9 @@ var paper = function (self, undefined) {
 					
 					for (var i = paddingLeft, max = n - paddingRight, j = from;
 					     i <= max; i++, j++) {
-						var segment = segments[j < 0 ? j + length : j],
-							pt = segment._point,
-							hx = px[i] - pt._x,
+						const segment = segments[j < 0 ? j + length : j],
+							pt = segment._point;
+						let hx = px[i] - pt._x,
 							hy = py[i] - pt._y;
 						if (loop || i < max)
 							segment.setHandleOut(hx, hy);
@@ -8438,14 +8516,14 @@ var paper = function (self, undefined) {
 				if (!this._closed)
 					return null;
 				
-				var segments = this._segments,
-					type,
+				const segments = this._segments;
+				let type,
 					size,
 					radius,
 					topCenter;
 				
 				function isCollinear(i, j) {
-					var seg1 = segments[i],
+					const seg1 = segments[i],
 						seg2 = seg1.getNext(),
 						seg3 = segments[j],
 						seg4 = seg3.getNext();
@@ -8456,7 +8534,7 @@ var paper = function (self, undefined) {
 				}
 				
 				function isOrthogonal(i) {
-					var seg2 = segments[i],
+					const seg2 = segments[i],
 						seg1 = seg2.getPrevious(),
 						seg3 = seg2.getNext();
 					return seg1._handleOut.isZero() && seg2._handleIn.isZero()
@@ -8466,18 +8544,18 @@ var paper = function (self, undefined) {
 				}
 				
 				function isArc(i) {
-					var seg1 = segments[i],
+					const seg1 = segments[i],
 						seg2 = seg1.getNext(),
 						handle1 = seg1._handleOut,
 						handle2 = seg2._handleIn,
 						kappa = 0.5522847498307936;
 					if (handle1.isOrthogonal(handle2)) {
-						var pt1 = seg1._point,
+						const pt1 = seg1._point,
 							pt2 = seg2._point,
 							corner = new Line(pt1, handle1, true).intersect(
 								new Line(pt2, handle2, true), true);
 						return corner && Numerical.isZero(handle1.getLength() /
-								corner.subtract(pt1).getLength() - kappa)
+							corner.subtract(pt1).getLength() - kappa)
 							&& Numerical.isZero(handle2.getLength() /
 								corner.subtract(pt2).getLength() - kappa);
 					}
@@ -8516,7 +8594,7 @@ var paper = function (self, undefined) {
 				}
 				
 				if (type) {
-					var center = this.getPosition(true),
+					const center = this.getPosition(true),
 						shape = new type({
 							center: center,
 							size: size,
@@ -8536,22 +8614,22 @@ var paper = function (self, undefined) {
 			toPath: '#clone',
 			
 			_hitTestSelf: function (point, options, viewMatrix, strokeMatrix) {
-				var that = this,
+				const that = this,
 					style = this.getStyle(),
 					segments = this._segments,
-					numSegments = segments.length,
-					closed = this._closed,
-					tolerancePadding = options._tolerancePadding,
-					strokePadding = tolerancePadding,
+					numSegments = segments.length;
+				let closed = this._closed;
+				const tolerancePadding = options._tolerancePadding;
+				let strokePadding = tolerancePadding,
 					join, cap, miterLimit,
 					area, loc, res,
-					hitStroke = options.stroke && style.hasStroke(),
-					hitFill = options.fill && style.hasFill(),
-					hitCurves = options.curves,
-					strokeRadius = hitStroke
-						? style.getStrokeWidth() / 2
-						: hitFill && options.tolerance > 0 || hitCurves
-							? 0 : null;
+					hitStroke = options.stroke && style.hasStroke();
+				const hitFill = options.fill && style.hasFill();
+				let hitCurves = options.curves;
+				const strokeRadius = hitStroke
+					? style.getStrokeWidth() / 2
+					: hitFill && options.tolerance > 0 || hitCurves
+						? 0 : null;
 				if (strokeRadius !== null) {
 					if (strokeRadius > 0) {
 						join = style.getStrokeJoin();
@@ -8571,7 +8649,7 @@ var paper = function (self, undefined) {
 				
 				function checkSegmentPoint(seg, pt, name) {
 					if (!options.selected || pt.isSelected()) {
-						var anchor = seg._point;
+						const anchor = seg._point;
 						if (pt !== anchor)
 							pt = pt.add(anchor);
 						if (isCloseEnough(pt, strokePadding)) {
@@ -8587,8 +8665,8 @@ var paper = function (self, undefined) {
 					return (ends || options.segments)
 						&& checkSegmentPoint(seg, seg._point, 'segment')
 						|| (!ends && options.handles) && (
-						checkSegmentPoint(seg, seg._handleIn, 'handle-in') ||
-						checkSegmentPoint(seg, seg._handleOut, 'handle-out'));
+							checkSegmentPoint(seg, seg._handleIn, 'handle-in') ||
+							checkSegmentPoint(seg, seg._handleOut, 'handle-out'));
 				}
 				
 				function addToArea(point) {
@@ -8601,7 +8679,7 @@ var paper = function (self, undefined) {
 						if (closed || segment._index > 0
 							&& segment._index < numSegments - 1) {
 							if (join !== 'round' && (segment._handleIn.isZero()
-								|| segment._handleOut.isZero()))
+									|| segment._handleOut.isZero()))
 								Path._addBevelJoin(segment, join, strokeRadius,
 									miterLimit, null, strokeMatrix, addToArea, true);
 						}
@@ -8610,7 +8688,7 @@ var paper = function (self, undefined) {
 								strokeMatrix, addToArea, true);
 						}
 						if (!area.isEmpty()) {
-							var loc;
+							let loc;
 							return area.contains(point)
 								|| (loc = area.getNearestLocation(point))
 								&& isCloseEnough(loc.getPoint(), tolerancePadding);
@@ -8632,7 +8710,7 @@ var paper = function (self, undefined) {
 				if (strokeRadius !== null) {
 					loc = this.getNearestLocation(point);
 					if (loc) {
-						var time = loc.getTime();
+						const time = loc.getTime();
 						if (time === 0 || time === 1 && numSegments > 1) {
 							if (!checkSegmentStroke(loc.getSegment()))
 								loc = null;
@@ -8666,7 +8744,7 @@ var paper = function (self, undefined) {
 		}, Base.each(Curve._evaluateMethods,
 		function (name) {
 			this[name + 'At'] = function (offset) {
-				var loc = this.getLocationAt(offset);
+				const loc = this.getLocationAt(offset);
 				return loc && loc[name]();
 			};
 		},
@@ -8674,10 +8752,12 @@ var paper = function (self, undefined) {
 			beans: false,
 			
 			getLocationOf: function () {
-				var point = Point.read(arguments),
+				const point = Point.read(arguments),
 					curves = this.getCurves();
-				for (var i = 0, l = curves.length; i < l; i++) {
-					var loc = curves[i].getLocationOf(point);
+				let i = 0;
+				const l = curves.length;
+				for (; i < l; i++) {
+					const loc = curves[i].getLocationOf(point);
 					if (loc)
 						return loc;
 				}
@@ -8685,15 +8765,17 @@ var paper = function (self, undefined) {
 			},
 			
 			getOffsetOf: function () {
-				var loc = this.getLocationOf.apply(this, arguments);
+				const loc = this.getLocationOf.apply(this, arguments);
 				return loc ? loc.getOffset() : null;
 			},
 			
 			getLocationAt: function (offset) {
-				var curves = this.getCurves(),
-					length = 0;
-				for (var i = 0, l = curves.length; i < l; i++) {
-					var start = length,
+				const curves = this.getCurves();
+				let length = 0;
+				let i = 0;
+				const l = curves.length;
+				for (; i < l; i++) {
+					const start = length,
 						curve = curves[i];
 					length += curve.getLength();
 					if (length > offset) {
@@ -8709,12 +8791,12 @@ var paper = function (self, undefined) {
 		new function () {
 			
 			function drawHandles(ctx, segments, matrix, size) {
-				var half = size / 2,
-					coords = new Array(6),
-					pX, pY;
+				const half = size / 2,
+					coords = new Array(6);
+				let pX, pY;
 				
 				function drawHandle(index) {
-					var hX = coords[index],
+					const hX = coords[index],
 						hY = coords[index + 1];
 					if (pX != hX || pY != hY) {
 						ctx.beginPath();
@@ -8727,8 +8809,10 @@ var paper = function (self, undefined) {
 					}
 				}
 				
-				for (var i = 0, l = segments.length; i < l; i++) {
-					var segment = segments[i],
+				let i = 0;
+				const l = segments.length;
+				for (; i < l; i++) {
+					const segment = segments[i],
 						selection = segment._selection;
 					segment._transformCoordinates(matrix, coords);
 					pX = coords[0];
@@ -8739,7 +8823,7 @@ var paper = function (self, undefined) {
 						drawHandle(4);
 					ctx.fillRect(pX - half, pY - half, size, size);
 					if (!(selection & 1)) {
-						var fillStyle = ctx.fillStyle;
+						const fillStyle = ctx.fillStyle;
 						ctx.fillStyle = '#ffffff';
 						ctx.fillRect(pX - half + 1, pY - half + 1, size - 2, size - 2);
 						ctx.fillStyle = fillStyle;
@@ -8748,10 +8832,10 @@ var paper = function (self, undefined) {
 			}
 			
 			function drawSegments(ctx, path, matrix) {
-				var segments = path._segments,
+				const segments = path._segments,
 					length = segments.length,
-					coords = new Array(6),
-					first = true,
+					coords = new Array(6);
+				let first = true,
 					curX, curY,
 					prevX, prevY,
 					inX, inY,
@@ -8764,7 +8848,7 @@ var paper = function (self, undefined) {
 						curY = coords[1];
 					}
 					else {
-						var point = segment._point;
+						const point = segment._point;
 						curX = point._x;
 						curY = point._y;
 					}
@@ -8803,7 +8887,7 @@ var paper = function (self, undefined) {
 					}
 				}
 				
-				for (var i = 0; i < length; i++)
+				for (let i = 0; i < length; i++)
 					drawSegment(segments[i]);
 				if (path._closed && length > 0)
 					drawSegment(segments[0]);
@@ -8811,14 +8895,14 @@ var paper = function (self, undefined) {
 			
 			return {
 				_draw: function (ctx, param, viewMatrix, strokeMatrix) {
-					var dontStart = param.dontStart,
-						dontPaint = param.dontFinish || param.clip,
-						style = this.getStyle(),
+					let dontStart = param.dontStart,
+						dontPaint = param.dontFinish || param.clip;
+					const style = this.getStyle(),
 						hasFill = style.hasFill(),
 						hasStroke = style.hasStroke(),
-						dashArray = style.getDashArray(),
-						dashLength = !paper.support.nativeDash && hasStroke
-							&& dashArray && dashArray.length;
+						dashArray = style.getDashArray();
+					let dashLength = !paper.support.nativeDash && hasStroke
+						&& dashArray && dashArray.length;
 					
 					if (!dontStart)
 						ctx.beginPath();
@@ -8875,7 +8959,7 @@ var paper = function (self, undefined) {
 		},
 		new function () {
 			function getCurrentSegment(that) {
-				var segments = that._segments;
+				const segments = that._segments;
 				if (segments.length === 0)
 					throw new Error('Use a moveTo() command first');
 				return segments[segments.length - 1];
@@ -8883,7 +8967,7 @@ var paper = function (self, undefined) {
 			
 			return {
 				moveTo: function () {
-					var segments = this._segments;
+					const segments = this._segments;
 					if (segments.length === 1)
 						this.removeSegment(0);
 					if (!segments.length)
@@ -8899,7 +8983,7 @@ var paper = function (self, undefined) {
 				},
 				
 				cubicCurveTo: function () {
-					var handle1 = Point.read(arguments),
+					const handle1 = Point.read(arguments),
 						handle2 = Point.read(arguments),
 						to = Point.read(arguments),
 						current = getCurrentSegment(this);
@@ -8908,7 +8992,7 @@ var paper = function (self, undefined) {
 				},
 				
 				quadraticCurveTo: function () {
-					var handle = Point.read(arguments),
+					const handle = Point.read(arguments),
 						to = Point.read(arguments),
 						current = getCurrentSegment(this)._point;
 					this.cubicCurveTo(
@@ -8919,7 +9003,7 @@ var paper = function (self, undefined) {
 				},
 				
 				curveTo: function () {
-					var through = Point.read(arguments),
+					const through = Point.read(arguments),
 						to = Point.read(arguments),
 						t = Base.pick(Base.read(arguments), 0.5),
 						t1 = 1 - t,
@@ -8950,7 +9034,7 @@ var paper = function (self, undefined) {
 						to = Point.read(arguments);
 					}
 					else {
-						var radius = Size.read(arguments),
+						const radius = Size.read(arguments),
 							isZero = Numerical.isZero;
 						if (isZero(radius.width) || isZero(radius.height))
 							return this.lineTo(to);
@@ -8968,7 +9052,7 @@ var paper = function (self, undefined) {
 							rySq = ry * ry,
 							xSq = x * x,
 							ySq = y * y;
-						var factor = Math.sqrt(xSq / rxSq + ySq / rySq);
+						let factor = Math.sqrt(xSq / rxSq + ySq / rySq);
 						if (factor > 1) {
 							rx *= factor;
 							ry *= factor;
@@ -8996,12 +9080,12 @@ var paper = function (self, undefined) {
 							extent += 360;
 					}
 					if (through) {
-						var l1 = new Line(from.add(through).divide(2),
+						const l1 = new Line(from.add(through).divide(2),
 							through.subtract(from).rotate(90), true),
 							l2 = new Line(through.add(to).divide(2),
 								to.subtract(through).rotate(90), true),
-							line = new Line(from, to),
-							throughSide = line.getSide(through);
+							line = new Line(from, to);
+						let throughSide = line.getSide(through);
 						center = l1.intersect(l2, true);
 						if (!center) {
 							if (!throughSide)
@@ -9011,7 +9095,7 @@ var paper = function (self, undefined) {
 						}
 						vector = from.subtract(center);
 						extent = vector.getDirectedAngle(to.subtract(center));
-						var centerSide = line.getSide(center);
+						const centerSide = line.getSide(center);
 						if (centerSide === 0) {
 							extent = throughSide * Math.abs(extent);
 						}
@@ -9019,13 +9103,13 @@ var paper = function (self, undefined) {
 							extent += extent < 0 ? 360 : -360;
 						}
 					}
-					var ext = Math.abs(extent),
+					const ext = Math.abs(extent),
 						count = ext >= 360 ? 4 : Math.ceil(ext / 90),
 						inc = extent / count,
 						half = inc * Math.PI / 360,
 						z = 4 / 3 * Math.sin(half) / (1 + Math.cos(half)),
 						segments = [];
-					for (var i = 0; i <= count; i++) {
+					for (let i = 0; i <= count; i++) {
 						var pt = to,
 							out = null;
 						if (i < count) {
@@ -9043,7 +9127,7 @@ var paper = function (self, undefined) {
 							current.setHandleOut(out);
 						}
 						else {
-							var _in = vector.rotate(-90).multiply(z);
+							let _in = vector.rotate(-90).multiply(z);
 							if (matrix) {
 								_in = matrix._transformPoint(vector.add(_in))
 									.subtract(pt);
@@ -9056,13 +9140,13 @@ var paper = function (self, undefined) {
 				},
 				
 				lineBy: function () {
-					var to = Point.read(arguments),
+					const to = Point.read(arguments),
 						current = getCurrentSegment(this)._point;
 					this.lineTo(current.add(to));
 				},
 				
 				curveBy: function () {
-					var through = Point.read(arguments),
+					const through = Point.read(arguments),
 						to = Point.read(arguments),
 						parameter = Base.read(arguments),
 						current = getCurrentSegment(this)._point;
@@ -9070,7 +9154,7 @@ var paper = function (self, undefined) {
 				},
 				
 				cubicCurveBy: function () {
-					var handle1 = Point.read(arguments),
+					const handle1 = Point.read(arguments),
 						handle2 = Point.read(arguments),
 						to = Point.read(arguments),
 						current = getCurrentSegment(this)._point;
@@ -9079,16 +9163,16 @@ var paper = function (self, undefined) {
 				},
 				
 				quadraticCurveBy: function () {
-					var handle = Point.read(arguments),
+					const handle = Point.read(arguments),
 						to = Point.read(arguments),
 						current = getCurrentSegment(this)._point;
 					this.quadraticCurveTo(current.add(handle), current.add(to));
 				},
 				
 				arcBy: function () {
-					var current = getCurrentSegment(this)._point,
-						point = current.add(Point.read(arguments)),
-						clockwise = Base.pick(Base.peek(arguments), true);
+					const current = getCurrentSegment(this)._point,
+						point = current.add(Point.read(arguments));
+					let clockwise = Base.pick(Base.peek(arguments), true);
 					if (typeof clockwise === 'boolean') {
 						this.arcTo(point, clockwise);
 					}
@@ -9105,7 +9189,7 @@ var paper = function (self, undefined) {
 		}, {
 			
 			_getBounds: function (matrix, options) {
-				var method = options.handle
+				const method = options.handle
 					? 'getHandleBounds'
 					: options.stroke
 						? 'getStrokeBounds'
@@ -9115,18 +9199,18 @@ var paper = function (self, undefined) {
 			
 			statics: {
 				getBounds: function (segments, closed, path, matrix, options, strokePadding) {
-					var first = segments[0];
+					let first = segments[0];
 					if (!first)
 						return new Rectangle();
-					var coords = new Array(6),
-						prevCoords = first._transformCoordinates(matrix, new Array(6)),
-						min = prevCoords.slice(0, 2),
+					let coords = new Array(6),
+						prevCoords = first._transformCoordinates(matrix, new Array(6));
+					const min = prevCoords.slice(0, 2),
 						max = min.slice(),
 						roots = new Array(2);
 					
 					function processSegment(segment) {
 						segment._transformCoordinates(matrix, coords);
-						for (var i = 0; i < 2; i++) {
+						for (let i = 0; i < 2; i++) {
 							Curve._addBounds(
 								prevCoords[i],
 								prevCoords[i + 4],
@@ -9134,7 +9218,7 @@ var paper = function (self, undefined) {
 								coords[i],
 								i, strokePadding ? strokePadding[i] : 0, min, max, roots);
 						}
-						var tmp = prevCoords;
+						const tmp = prevCoords;
 						prevCoords = coords;
 						coords = tmp;
 					}
@@ -9147,17 +9231,17 @@ var paper = function (self, undefined) {
 				},
 				
 				getStrokeBounds: function (segments, closed, path, matrix, options) {
-					var style = path.getStyle(),
-						stroke = style.hasStroke(),
-						strokeWidth = style.getStrokeWidth(),
+					const style = path.getStyle();
+					let stroke = style.hasStroke();
+					const strokeWidth = style.getStrokeWidth(),
 						strokeMatrix = stroke && path._getStrokeMatrix(matrix, options),
 						strokePadding = stroke && Path._getStrokePadding(strokeWidth,
-								strokeMatrix),
-						bounds = Path.getBounds(segments, closed, path, matrix, options,
-							strokePadding);
+							strokeMatrix);
+					let bounds = Path.getBounds(segments, closed, path, matrix, options,
+						strokePadding);
 					if (!stroke)
 						return bounds;
-					var strokeRadius = strokeWidth / 2,
+					const strokeRadius = strokeWidth / 2,
 						join = style.getStrokeJoin(),
 						cap = style.getStrokeCap(),
 						miterLimit = strokeRadius * style.getMiterLimit(),
@@ -9173,7 +9257,7 @@ var paper = function (self, undefined) {
 					}
 					
 					function addJoin(segment, join) {
-						var handleIn = segment._handleIn,
+						const handleIn = segment._handleIn,
 							handleOut = segment._handleOut;
 						if (join === 'round' || !handleIn.isZero() && !handleOut.isZero()
 							&& handleIn.isCollinear(handleOut)) {
@@ -9195,8 +9279,8 @@ var paper = function (self, undefined) {
 						}
 					}
 					
-					var length = segments.length - (closed ? 0 : 1);
-					for (var i = 1; i < length; i++)
+					const length = segments.length - (closed ? 0 : 1);
+					for (let i = 1; i < length; i++)
 						addJoin(segments[i], join);
 					if (closed) {
 						addJoin(segments[0], join);
@@ -9211,12 +9295,12 @@ var paper = function (self, undefined) {
 				_getStrokePadding: function (radius, matrix) {
 					if (!matrix)
 						return [radius, radius];
-					var hor = new Point(radius, 0).transform(matrix),
+					const hor = new Point(radius, 0).transform(matrix),
 						ver = new Point(0, radius).transform(matrix),
 						phi = hor.getAngleInRadians(),
 						a = hor.getLength(),
 						b = ver.getLength();
-					var sin = Math.sin(phi),
+					const sin = Math.sin(phi),
 						cos = Math.cos(phi),
 						tan = Math.tan(phi),
 						tx = Math.atan2(b * tan, a),
@@ -9227,7 +9311,7 @@ var paper = function (self, undefined) {
 				
 				_addBevelJoin: function (segment, join, radius, miterLimit, matrix,
 				                         strokeMatrix, addPoint, isArea) {
-					var curve2 = segment.getCurve(),
+					const curve2 = segment.getCurve(),
 						curve1 = curve2.getPrevious(),
 						point = curve2.getPointAtTime(0),
 						normal1 = curve1.getNormalAtTime(1),
@@ -9246,7 +9330,7 @@ var paper = function (self, undefined) {
 						addPoint(point.add(normal1));
 					}
 					if (join === 'miter') {
-						var corner = new Line(point.add(normal1),
+						const corner = new Line(point.add(normal1),
 							new Point(-normal1.y, normal1.x), true
 						).intersect(new Line(point.add(normal2),
 							new Point(-normal2.y, normal2.x), true
@@ -9264,8 +9348,8 @@ var paper = function (self, undefined) {
 				
 				_addSquareCap: function (segment, cap, radius, matrix, strokeMatrix,
 				                         addPoint, isArea) {
-					var point = segment._point,
-						loc = segment.getLocation(),
+					let point = segment._point;
+					const loc = segment.getLocation(),
 						normal = loc.getNormal().multiply(radius);
 					if (matrix)
 						matrix._transformPoint(point, point);
@@ -9284,14 +9368,14 @@ var paper = function (self, undefined) {
 				},
 				
 				getHandleBounds: function (segments, closed, path, matrix, options) {
-					var style = path.getStyle(),
-						stroke = options.stroke && style.hasStroke(),
-						strokePadding,
+					const style = path.getStyle(),
+						stroke = options.stroke && style.hasStroke();
+					let strokePadding,
 						joinPadding;
 					if (stroke) {
-						var strokeMatrix = path._getStrokeMatrix(matrix, options),
-							strokeRadius = style.getStrokeWidth() / 2,
-							joinRadius = strokeRadius;
+						const strokeMatrix = path._getStrokeMatrix(matrix, options),
+							strokeRadius = style.getStrokeWidth() / 2;
+						let joinRadius = strokeRadius;
 						if (style.getStrokeJoin() === 'miter')
 							joinRadius = strokeRadius * style.getMiterLimit();
 						if (style.getStrokeCap() === 'square')
@@ -9299,16 +9383,18 @@ var paper = function (self, undefined) {
 						strokePadding = Path._getStrokePadding(strokeRadius, strokeMatrix);
 						joinPadding = Path._getStrokePadding(joinRadius, strokeMatrix);
 					}
-					var coords = new Array(6),
-						x1 = Infinity,
+					const coords = new Array(6);
+					let x1 = Infinity,
 						x2 = -x1,
 						y1 = x1,
 						y2 = x2;
-					for (var i = 0, l = segments.length; i < l; i++) {
-						var segment = segments[i];
+					let i = 0;
+					const l = segments.length;
+					for (; i < l; i++) {
+						const segment = segments[i];
 						segment._transformCoordinates(matrix, coords);
-						for (var j = 0; j < 6; j += 2) {
-							var padding = j === 0 ? joinPadding : strokePadding,
+						for (let j = 0; j < 6; j += 2) {
+							const padding = j === 0 ? joinPadding : strokePadding,
 								paddingX = padding ? padding[0] : 0,
 								paddingY = padding ? padding[1] : 0,
 								x = coords[j],
@@ -9331,16 +9417,16 @@ var paper = function (self, undefined) {
 	Path.inject({
 		statics: new function () {
 			
-			var kappa = 0.5522847498307936,
-				ellipseSegments = [
-					new Segment([-1, 0], [0, kappa], [0, -kappa]),
-					new Segment([0, -1], [-kappa, 0], [kappa, 0]),
-					new Segment([1, 0], [0, -kappa], [0, kappa]),
-					new Segment([0, 1], [kappa, 0], [-kappa, 0])
-				];
+			let kappa = 0.5522847498307936;
+			const ellipseSegments = [
+				new Segment([-1, 0], [0, kappa], [0, -kappa]),
+				new Segment([0, -1], [-kappa, 0], [kappa, 0]),
+				new Segment([1, 0], [0, -kappa], [0, kappa]),
+				new Segment([0, 1], [kappa, 0], [-kappa, 0])
+			];
 			
 			function createPath(segments, closed, args) {
-				var props = Base.getNamed(args),
+				const props = Base.getNamed(args),
 					path = new Path(props && props.insert === false && Item.NO_INSERT);
 				path._add(segments);
 				path._closed = closed;
@@ -9348,9 +9434,9 @@ var paper = function (self, undefined) {
 			}
 			
 			function createEllipse(center, radius, args) {
-				var segments = new Array(4);
-				for (var i = 0; i < 4; i++) {
-					var segment = ellipseSegments[i];
+				const segments = new Array(4);
+				for (let i = 0; i < 4; i++) {
+					const segment = ellipseSegments[i];
 					segments[i] = new Segment(
 						segment._point.multiply(radius).add(center),
 						segment._handleIn.multiply(radius),
@@ -9369,20 +9455,20 @@ var paper = function (self, undefined) {
 				},
 				
 				Circle: function () {
-					var center = Point.readNamed(arguments, 'center'),
+					const center = Point.readNamed(arguments, 'center'),
 						radius = Base.readNamed(arguments, 'radius');
 					return createEllipse(center, new Size(radius), arguments);
 				},
 				
 				Rectangle: function () {
-					var rect = Rectangle.readNamed(arguments, 'rectangle'),
-						radius = Size.readNamed(arguments, 'radius', 0,
-							{readNull: true}),
-						bl = rect.getBottomLeft(true),
+					const rect = Rectangle.readNamed(arguments, 'rectangle');
+					let radius = Size.readNamed(arguments, 'radius', 0,
+						{readNull: true});
+					const bl = rect.getBottomLeft(true),
 						tl = rect.getTopLeft(true),
 						tr = rect.getTopRight(true),
-						br = rect.getBottomRight(true),
-						segments;
+						br = rect.getBottomRight(true);
+					let segments;
 					if (!radius || radius.isZero()) {
 						segments = [
 							new Segment(bl),
@@ -9393,9 +9479,9 @@ var paper = function (self, undefined) {
 					}
 					else {
 						radius = Size.min(radius, rect.getSize(true).divide(2));
-						var rx = radius.width,
-							ry = radius.height,
-							hx = rx * kappa,
+						const rx = radius.width,
+							ry = radius.height;
+						let hx = rx * kappa,
 							hy = ry * kappa;
 						segments = [
 							new Segment(bl.add(rx, 0), null, [-hx, 0]),
@@ -9414,14 +9500,14 @@ var paper = function (self, undefined) {
 				RoundRectangle: '#Rectangle',
 				
 				Ellipse: function () {
-					var ellipse = Shape._readEllipse(arguments);
+					const ellipse = Shape._readEllipse(arguments);
 					return createEllipse(ellipse.center, ellipse.radius, arguments);
 				},
 				
 				Oval: '#Ellipse',
 				
 				Arc: function () {
-					var from = Point.readNamed(arguments, 'from'),
+					const from = Point.readNamed(arguments, 'from'),
 						through = Point.readNamed(arguments, 'through'),
 						to = Point.readNamed(arguments, 'to'),
 						props = Base.getNamed(arguments),
@@ -9433,29 +9519,29 @@ var paper = function (self, undefined) {
 				},
 				
 				RegularPolygon: function () {
-					var center = Point.readNamed(arguments, 'center'),
-						sides = Base.readNamed(arguments, 'sides'),
-						radius = Base.readNamed(arguments, 'radius'),
-						step = 360 / sides,
+					const center = Point.readNamed(arguments, 'center'),
+						sides = Base.readNamed(arguments, 'sides');
+					let radius = Base.readNamed(arguments, 'radius');
+					const step = 360 / sides,
 						three = sides % 3 === 0,
 						vector = new Point(0, three ? -radius : radius),
 						offset = three ? -1 : 0.5,
 						segments = new Array(sides);
-					for (var i = 0; i < sides; i++)
+					for (let i = 0; i < sides; i++)
 						segments[i] = new Segment(center.add(
 							vector.rotate((i + offset) * step)));
 					return createPath(segments, true, arguments);
 				},
 				
 				Star: function () {
-					var center = Point.readNamed(arguments, 'center'),
+					const center = Point.readNamed(arguments, 'center'),
 						points = Base.readNamed(arguments, 'points') * 2,
 						radius1 = Base.readNamed(arguments, 'radius1'),
 						radius2 = Base.readNamed(arguments, 'radius2'),
 						step = 360 / points,
 						vector = new Point(0, -1),
 						segments = new Array(points);
-					for (var i = 0; i < points; i++)
+					for (let i = 0; i < points; i++)
 						segments[i] = new Segment(center.add(vector.rotate(step * i)
 							.multiply(i % 2 ? radius2 : radius1)));
 					return createPath(segments, true, arguments);
@@ -9502,8 +9588,8 @@ var paper = function (self, undefined) {
 			},
 			
 			reduce: function reduce(options) {
-				var children = this._children;
-				for (var i = children.length - 1; i >= 0; i--) {
+				const children = this._children;
+				for (let i = children.length - 1; i >= 0; i--) {
 					var path = children[i].reduce(options);
 					if (path.isEmpty())
 						path.remove();
@@ -9519,7 +9605,7 @@ var paper = function (self, undefined) {
 			},
 			
 			isClockwise: function () {
-				var child = this.getFirstChild();
+				const child = this.getFirstChild();
 				return child && child.isClockwise();
 			},
 			
@@ -9529,37 +9615,41 @@ var paper = function (self, undefined) {
 			},
 			
 			getFirstSegment: function () {
-				var first = this.getFirstChild();
+				const first = this.getFirstChild();
 				return first && first.getFirstSegment();
 			},
 			
 			getLastSegment: function () {
-				var last = this.getLastChild();
+				const last = this.getLastChild();
 				return last && last.getLastSegment();
 			},
 			
 			getCurves: function () {
-				var children = this._children,
+				const children = this._children,
 					curves = [];
-				for (var i = 0, l = children.length; i < l; i++)
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++)
 					curves.push.apply(curves, children[i].getCurves());
 				return curves;
 			},
 			
 			getFirstCurve: function () {
-				var first = this.getFirstChild();
+				const first = this.getFirstChild();
 				return first && first.getFirstCurve();
 			},
 			
 			getLastCurve: function () {
-				var last = this.getLastChild();
+				const last = this.getLastChild();
 				return last && last.getFirstCurve();
 			},
 			
 			getArea: function () {
-				var children = this._children,
-					area = 0;
-				for (var i = 0, l = children.length; i < l; i++)
+				const children = this._children;
+				let area = 0;
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++)
 					area += children[i].getArea();
 				return area;
 			}
@@ -9567,10 +9657,12 @@ var paper = function (self, undefined) {
 			beans: true,
 			
 			getPathData: function (_matrix, _precision) {
-				var children = this._children,
+				const children = this._children,
 					paths = [];
-				for (var i = 0, l = children.length; i < l; i++) {
-					var child = children[i],
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++) {
+					const child = children[i],
 						mx = child._matrix;
 					paths.push(child.getPathData(_matrix && !mx.isIdentity()
 						? _matrix.appended(mx) : _matrix, _precision));
@@ -9586,18 +9678,20 @@ var paper = function (self, undefined) {
 			},
 			
 			_draw: function (ctx, param, viewMatrix, strokeMatrix) {
-				var children = this._children;
+				const children = this._children;
 				if (children.length === 0)
 					return;
 				
 				param = param.extend({dontStart: true, dontFinish: true});
 				ctx.beginPath();
-				for (var i = 0, l = children.length; i < l; i++)
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++)
 					children[i].draw(ctx, param, strokeMatrix);
 				
 				if (!param.clip) {
 					this._setStyles(ctx, param, viewMatrix);
-					var style = this._style;
+					const style = this._style;
 					if (style.hasFill()) {
 						ctx.fill(style.getFillRule());
 						ctx.shadowColor = 'rgba(0,0,0,0)';
@@ -9608,9 +9702,11 @@ var paper = function (self, undefined) {
 			},
 			
 			_drawSelected: function (ctx, matrix, selectionItems) {
-				var children = this._children;
-				for (var i = 0, l = children.length; i < l; i++) {
-					var child = children[i],
+				const children = this._children;
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++) {
+					const child = children[i],
 						mx = child._matrix;
 					if (!selectionItems[child._id]) {
 						child._drawSelected(ctx, mx.isIdentity() ? matrix
@@ -9621,7 +9717,7 @@ var paper = function (self, undefined) {
 		},
 		new function () {
 			function getCurrentPath(that, check) {
-				var children = that._children;
+				const children = that._children;
 				if (check && children.length === 0)
 					throw new Error('Use a moveTo() command first');
 				return children[children.length - 1];
@@ -9632,12 +9728,12 @@ var paper = function (self, undefined) {
 					'arcBy'],
 				function (key) {
 					this[key] = function () {
-						var path = getCurrentPath(this, true);
+						const path = getCurrentPath(this, true);
 						path[key].apply(path, arguments);
 					};
 				}, {
 					moveTo: function () {
-						var current = getCurrentPath(this),
+						const current = getCurrentPath(this),
 							path = current && current.isEmpty() ? current
 								: new Path(Item.NO_INSERT);
 						if (path !== current)
@@ -9646,7 +9742,7 @@ var paper = function (self, undefined) {
 					},
 					
 					moveBy: function () {
-						var current = getCurrentPath(this, true),
+						const current = getCurrentPath(this, true),
 							last = current && current.getLastSegment(),
 							point = Point.read(arguments);
 						this.moveTo(last ? point.add(last._point) : point);
@@ -9659,9 +9755,11 @@ var paper = function (self, undefined) {
 			);
 		}, Base.each(['reverse', 'flatten', 'simplify', 'smooth'], function (key) {
 			this[key] = function (param) {
-				var children = this._children,
-					res;
-				for (var i = 0, l = children.length; i < l; i++) {
+				const children = this._children;
+				let res;
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++) {
 					res = children[i][key](param) || res;
 				}
 				return res;
@@ -9669,7 +9767,7 @@ var paper = function (self, undefined) {
 		}, {}));
 	
 	PathItem.inject(new function () {
-		var operators = {
+		const operators = {
 			unite: {1: true},
 			intersect: {2: true},
 			subtract: {1: true},
@@ -9677,13 +9775,13 @@ var paper = function (self, undefined) {
 		};
 		
 		function preparePath(path, resolve) {
-			var res = path.clone(false).reduce({simplify: true})
+			const res = path.clone(false).reduce({simplify: true})
 				.transform(null, true, true);
 			return resolve ? res.resolveCrossings() : res;
 		}
 		
 		function createResult(ctor, paths, reduce, path1, path2) {
-			var result = new ctor(Item.NO_INSERT);
+			let result = new ctor(Item.NO_INSERT);
 			result.addChildren(paths, true);
 			if (reduce)
 				result = result.reduce({simplify: true});
@@ -9694,23 +9792,25 @@ var paper = function (self, undefined) {
 		}
 		
 		function computeBoolean(path1, path2, operation) {
-			var operator = operators[operation];
+			const operator = operators[operation];
 			operator[operation] = true;
 			if (!path1._children && !path1._closed)
 				return computeOpenBoolean(path1, path2, operator);
-			var _path1 = preparePath(path1, true),
+			const _path1 = preparePath(path1, true),
 				_path2 = path2 && path1 !== path2 && preparePath(path2, true);
 			if (_path2 && (operator.subtract || operator.exclude)
 				^ (_path2.isClockwise() ^ _path1.isClockwise()))
 				_path2.reverse();
-			var crossings = divideLocations(
+			const crossings = divideLocations(
 				CurveLocation.expand(_path1.getCrossings(_path2))),
 				segments = [],
 				monoCurves = [];
 			
 			function collect(paths) {
-				for (var i = 0, l = paths.length; i < l; i++) {
-					var path = paths[i];
+				let i = 0;
+				const l = paths.length;
+				for (; i < l; i++) {
+					const path = paths[i];
 					segments.push.apply(segments, path._segments);
 					monoCurves.push.apply(monoCurves, path._getMonoCurves());
 					path._overlapsOnly = path._validOverlapsOnly = true;
@@ -9725,7 +9825,7 @@ var paper = function (self, undefined) {
 					operator);
 			}
 			for (var i = 0, l = segments.length; i < l; i++) {
-				var segment = segments[i],
+				const segment = segments[i],
 					inter = segment._intersection;
 				if (segment._winding == null) {
 					propagateWinding(segment, _path1, _path2, monoCurves, operator);
@@ -9745,7 +9845,7 @@ var paper = function (self, undefined) {
 			if (!path2 || !path2._children && !path2._closed
 				|| !operator.subtract && !operator.intersect)
 				return null;
-			var _path1 = preparePath(path1, false),
+			const _path1 = preparePath(path1, false),
 				_path2 = preparePath(path2, false),
 				crossings = _path1.getCrossings(_path2),
 				sub = operator.subtract,
@@ -9758,7 +9858,7 @@ var paper = function (self, undefined) {
 				}
 			}
 			
-			for (var i = crossings.length - 1; i >= 0; i--) {
+			for (let i = crossings.length - 1; i >= 0; i--) {
 				var path = crossings[i].split();
 				if (path) {
 					if (addPath(path))
@@ -9771,7 +9871,7 @@ var paper = function (self, undefined) {
 		}
 		
 		function linkIntersections(from, to) {
-			var prev = from;
+			let prev = from;
 			while (prev) {
 				if (prev === to)
 					return;
@@ -9788,25 +9888,25 @@ var paper = function (self, undefined) {
 		}
 		
 		function divideLocations(locations, include) {
-			var results = include && [],
+			const results = include && [],
 				tMin = 4e-7,
-				tMax = 1 - tMin,
-				noHandles = false,
-				clearCurves = [],
-				prevCurve,
+				tMax = 1 - tMin;
+			let noHandles = false;
+			const clearCurves = [];
+			let prevCurve,
 				prevTime;
 			
 			for (var i = locations.length - 1; i >= 0; i--) {
-				var loc = locations[i];
+				const loc = locations[i];
 				if (include) {
 					if (!include(loc))
 						continue;
 					results.unshift(loc);
 				}
-				var curve = loc._curve,
-					time = loc._time,
-					origTime = time,
-					segment;
+				const curve = loc._curve;
+				let time = loc._time;
+				const origTime = time;
+				let segment;
 				if (curve !== prevCurve) {
 					noHandles = !curve.hasHandles();
 				}
@@ -9820,17 +9920,17 @@ var paper = function (self, undefined) {
 					segment = curve._segment2;
 				}
 				else {
-					var newCurve = curve.divideAtTime(time, true);
+					const newCurve = curve.divideAtTime(time, true);
 					if (noHandles)
 						clearCurves.push(curve, newCurve);
 					segment = newCurve._segment1;
 				}
 				loc._setSegment(segment);
-				var inter = segment._intersection,
+				const inter = segment._intersection,
 					dest = loc._intersection;
 				if (inter) {
 					linkIntersections(inter, dest);
-					var other = inter;
+					let other = inter;
 					while (other) {
 						linkIntersections(other._intersection, inter);
 						other = other._next;
@@ -9849,24 +9949,24 @@ var paper = function (self, undefined) {
 		}
 		
 		function getWinding(point, curves, horizontal) {
-			var epsilon = 2e-7,
+			const epsilon = 2e-7,
 				px = point.x,
-				py = point.y,
-				windLeft = 0,
-				windRight = 0,
-				length = curves.length,
+				py = point.y;
+			let windLeft = 0,
+				windRight = 0;
+			const length = curves.length,
 				roots = [],
 				abs = Math.abs;
 			if (horizontal) {
-				var yTop = -Infinity,
-					yBottom = Infinity,
-					yBefore = py - epsilon,
+				let yTop = -Infinity,
+					yBottom = Infinity;
+				const yBefore = py - epsilon,
 					yAfter = py + epsilon;
 				for (var i = 0; i < length; i++) {
 					var values = curves[i].values,
 						count = Curve.solveCubic(values, 0, px, roots, 0, 1);
-					for (var j = count - 1; j >= 0; j--) {
-						var y = Curve.getPoint(values, roots[j]).y;
+					for (let j = count - 1; j >= 0; j--) {
+						const y = Curve.getPoint(values, roots[j]).y;
 						if (y < yBefore && y > yTop) {
 							yTop = y;
 						}
@@ -9883,9 +9983,9 @@ var paper = function (self, undefined) {
 					windRight = getWinding(new Point(px, yBottom), curves).winding;
 			}
 			else {
-				var xBefore = px - epsilon,
-					xAfter = px + epsilon,
-					prevWinding,
+				const xBefore = px - epsilon,
+					xAfter = px + epsilon;
+				let prevWinding,
 					prevXEnd,
 					windLeftOnCurve = 0,
 					windRightOnCurve = 0,
@@ -9903,7 +10003,7 @@ var paper = function (self, undefined) {
 					}
 					if (py >= yStart && py <= yEnd || py >= yEnd && py <= yStart) {
 						if (winding) {
-							var x = py === yStart ? values[0]
+							const x = py === yStart ? values[0]
 								: py === yEnd ? values[6]
 									: Curve.solveCubic(values, 1, py, roots, 0, 1) === 1
 										? Curve.getPoint(values, roots[0]).x
@@ -9915,7 +10015,7 @@ var paper = function (self, undefined) {
 								else if (
 									(py !== yStart || winding !== prevWinding)
 									&& !(py === yStart
-									&& (px - x) * (px - prevXEnd) < 0)) {
+										&& (px - x) * (px - prevXEnd) < 0)) {
 									if (x < xBefore) {
 										windLeft += winding;
 									}
@@ -9948,9 +10048,9 @@ var paper = function (self, undefined) {
 		}
 		
 		function propagateWinding(segment, path1, path2, monoCurves, operator) {
-			var chain = [],
-				start = segment,
-				totalLength = 0,
+			const chain = [],
+				start = segment;
+			let totalLength = 0,
 				winding;
 			do {
 				var curve = segment.getCurve(),
@@ -9961,7 +10061,7 @@ var paper = function (self, undefined) {
 			} while (segment && !segment._intersection && segment !== start);
 			var length = totalLength / 2;
 			for (var j = 0, l = chain.length; j < l; j++) {
-				var entry = chain[j],
+				const entry = chain[j],
 					curveLength = entry.length;
 				if (length <= curveLength) {
 					var curve = entry.curve,
@@ -9974,8 +10074,8 @@ var paper = function (self, undefined) {
 					if (parent instanceof CompoundPath)
 						path = parent;
 					winding = !(operator.subtract && path2 && (
-					path === path1 && path2._getWinding(pt, hor) ||
-					path === path2 && !path1._getWinding(pt, hor)))
+						path === path1 && path2._getWinding(pt, hor) ||
+						path === path2 && !path1._getWinding(pt, hor)))
 						? getWinding(pt, monoCurves, hor)
 						: {winding: 0};
 					break;
@@ -9983,21 +10083,21 @@ var paper = function (self, undefined) {
 				length -= curveLength;
 			}
 			for (var j = chain.length - 1; j >= 0; j--) {
-				var seg = chain[j].segment;
+				const seg = chain[j].segment;
 				seg._winding = winding.winding;
 				seg._contour = winding.contour;
 			}
 		}
 		
 		function tracePaths(segments, operator) {
-			var paths = [],
-				start,
+			const paths = [];
+			let start,
 				otherStart;
 			
 			function isValid(seg, excludeContour) {
 				return !!(seg && !seg._visited && (!operator
-				|| operator[seg._winding]
-				|| !excludeContour && operator.unite && seg._contour));
+					|| operator[seg._winding]
+					|| !excludeContour && operator.unite && seg._contour));
 			}
 			
 			function isStart(seg) {
@@ -10008,13 +10108,13 @@ var paper = function (self, undefined) {
 				if (!inter._next)
 					return inter;
 				while (inter) {
-					var seg = inter._segment,
+					const seg = inter._segment,
 						nextSeg = seg.getNext(),
 						nextInter = nextSeg && nextSeg._intersection;
 					if (seg !== exclude && (isStart(seg) || isStart(nextSeg)
 							|| !seg._visited && !nextSeg._visited
 							&& (!operator || isValid(seg) && (isValid(nextSeg)
-							|| nextInter && isValid(nextInter._segment)))
+								|| nextInter && isValid(nextInter._segment)))
 						))
 						return inter;
 					inter = inter._next;
@@ -10022,14 +10122,16 @@ var paper = function (self, undefined) {
 				return null;
 			}
 			
-			for (var i = 0, l = segments.length; i < l; i++) {
+			let i = 0;
+			const l = segments.length;
+			for (; i < l; i++) {
 				var path = null,
 					finished = false,
 					seg = segments[i],
 					inter = seg._intersection,
 					handleIn;
 				if (!seg._visited && seg._path._overlapsOnly) {
-					var path1 = seg._path,
+					const path1 = seg._path,
 						path2 = inter._segment._path,
 						segments1 = path1._segments,
 						segments2 = path2._segments;
@@ -10038,7 +10140,9 @@ var paper = function (self, undefined) {
 							&& path1.getArea()) {
 							paths.push(path1.clone(false));
 						}
-						for (var j = 0, k = segments1.length; j < k; j++) {
+						let j = 0;
+						const k = segments1.length;
+						for (; j < k; j++) {
 							segments1[j]._visited = segments2[j]._visited = true;
 						}
 					}
@@ -10049,7 +10153,7 @@ var paper = function (self, undefined) {
 				start = otherStart = null;
 				while (true) {
 					inter = inter && findBestIntersection(inter, seg) || inter;
-					var other = inter && inter._segment;
+					const other = inter && inter._segment;
 					if (isStart(seg)) {
 						finished = true;
 					}
@@ -10077,7 +10181,7 @@ var paper = function (self, undefined) {
 						start = seg;
 						otherStart = other;
 					}
-					var next = seg.getNext();
+					const next = seg.getNext();
 					path.add(new Segment(seg._point, handleIn,
 						next && seg._handleOut));
 					seg._visited = true;
@@ -10090,7 +10194,7 @@ var paper = function (self, undefined) {
 					path.setClosed(true);
 				}
 				else if (path) {
-					var area = path.getArea(true);
+					const area = path.getArea(true);
 					if (Math.abs(area) >= 2e-7) {
 						console.error('Boolean operation resulted in open path',
 							'segments =', path._segments.length,
@@ -10100,7 +10204,7 @@ var paper = function (self, undefined) {
 					path = null;
 				}
 				if (path && (path._segments.length > 8
-					|| !Numerical.isZero(path.getArea()))) {
+						|| !Numerical.isZero(path.getArea()))) {
 					paths.push(path);
 					path = null;
 				}
@@ -10135,15 +10239,15 @@ var paper = function (self, undefined) {
 			},
 			
 			resolveCrossings: function () {
-				var children = this._children,
+				let children = this._children,
 					paths = children || [this];
 				
 				function hasOverlap(seg) {
-					var inter = seg && seg._intersection;
+					const inter = seg && seg._intersection;
 					return inter && inter._overlap;
 				}
 				
-				var hasOverlaps = false,
+				let hasOverlaps = false,
 					hasCrossings = false,
 					intersections = this.getIntersections(null, function (inter) {
 						return inter._overlap && (hasOverlaps = true)
@@ -10151,7 +10255,7 @@ var paper = function (self, undefined) {
 					});
 				intersections = CurveLocation.expand(intersections);
 				if (hasOverlaps) {
-					var overlaps = divideLocations(intersections, function (inter) {
+					const overlaps = divideLocations(intersections, function (inter) {
 						return inter._overlap;
 					});
 					for (var i = overlaps.length - 1; i >= 0; i--) {
@@ -10162,7 +10266,7 @@ var paper = function (self, undefined) {
 							seg.remove();
 							prev._handleOut.set(0, 0);
 							next._handleIn.set(0, 0);
-							var curve = prev.getCurve();
+							const curve = prev.getCurve();
 							if (curve.isStraight() && curve.getLength() === 0)
 								prev.remove();
 						}
@@ -10170,40 +10274,40 @@ var paper = function (self, undefined) {
 				}
 				if (hasCrossings) {
 					divideLocations(intersections, hasOverlaps && function (inter) {
-							var curve1 = inter.getCurve(),
-								curve2 = inter._intersection._curve,
-								seg = inter._segment;
-							if (curve1 && curve2 && curve1._path && curve2._path) {
-								return true;
-							}
-							else if (seg) {
-								seg._intersection = null;
-							}
-						});
+						const curve1 = inter.getCurve(),
+							curve2 = inter._intersection._curve,
+							seg = inter._segment;
+						if (curve1 && curve2 && curve1._path && curve2._path) {
+							return true;
+						}
+						else if (seg) {
+							seg._intersection = null;
+						}
+					});
 					paths = tracePaths(Base.each(paths, function (path) {
 						this.push.apply(this, path._segments);
 					}, []));
 				}
-				var length = paths.length,
+				let length = paths.length,
 					item;
 				if (length > 1) {
 					paths = paths.slice().sort(function (a, b) {
 						return b.getBounds().getArea() - a.getBounds().getArea();
 					});
-					var first = paths[0],
+					const first = paths[0],
 						items = [first],
 						excluded = {},
 						isNonZero = this.getFillRule() === 'nonzero',
 						windings = isNonZero && Base.each(paths, function (path) {
-								this.push(path.isClockwise() ? 1 : -1);
-							}, []);
+							this.push(path.isClockwise() ? 1 : -1);
+						}, []);
 					for (var i = 1; i < length; i++) {
 						var path = paths[i],
 							point = path.getInteriorPoint(),
 							isContained = false,
 							container = null,
 							exclude = false;
-						for (var j = i - 1; j >= 0 && !container; j--) {
+						for (let j = i - 1; j >= 0 && !container; j--) {
 							if (paths[j].contains(point)) {
 								if (isNonZero && !isContained) {
 									windings[i] += windings[j];
@@ -10250,11 +10354,11 @@ var paper = function (self, undefined) {
 	
 	Path.inject({
 		_getMonoCurves: function () {
-			var monoCurves = this._monoCurves,
+			let monoCurves = this._monoCurves,
 				last;
 			
 			function insertCurve(v) {
-				var y0 = v[1],
+				const y0 = v[1],
 					y1 = v[7],
 					winding = Math.abs((y0 - y1) / (v[0] - v[6]))
 					< 2e-7
@@ -10271,7 +10375,7 @@ var paper = function (self, undefined) {
 			function handleCurve(v) {
 				if (Curve.getLength(v) === 0)
 					return;
-				var y0 = v[1],
+				const y0 = v[1],
 					y1 = v[3],
 					y2 = v[5],
 					y3 = v[7];
@@ -10280,7 +10384,7 @@ var paper = function (self, undefined) {
 					insertCurve(v);
 				}
 				else {
-					var a = 3 * (y1 - y2) - y0 + y3,
+					const a = 3 * (y1 - y2) - y0 + y3,
 						b = 2 * (y0 + y2) - 4 * y1,
 						c = y1 - y0,
 						tMin = 4e-7,
@@ -10292,7 +10396,7 @@ var paper = function (self, undefined) {
 					}
 					else {
 						roots.sort();
-						var t = roots[0],
+						let t = roots[0],
 							parts = Curve.subdivide(v, t);
 						insertCurve(parts[0]);
 						if (n > 1) {
@@ -10307,12 +10411,14 @@ var paper = function (self, undefined) {
 			
 			if (!monoCurves) {
 				monoCurves = this._monoCurves = [];
-				var curves = this.getCurves(),
+				const curves = this.getCurves(),
 					segments = this._segments;
-				for (var i = 0, l = curves.length; i < l; i++)
+				let i = 0;
+				const l = curves.length;
+				for (; i < l; i++)
 					handleCurve(curves[i].getValues());
 				if (!this._closed && segments.length > 1) {
-					var p1 = segments[segments.length - 1]._point,
+					const p1 = segments[segments.length - 1]._point,
 						p2 = segments[0]._point,
 						p1x = p1._x, p1y = p1._y,
 						p2x = p2._x, p2y = p2._y;
@@ -10326,20 +10432,22 @@ var paper = function (self, undefined) {
 		},
 		
 		getInteriorPoint: function () {
-			var bounds = this.getBounds(),
+			const bounds = this.getBounds(),
 				point = bounds.getCenter(true);
 			if (!this.contains(point)) {
-				var curves = this._getMonoCurves(),
+				const curves = this._getMonoCurves(),
 					roots = [],
 					y = point.y,
 					intercepts = [];
-				for (var i = 0, l = curves.length; i < l; i++) {
-					var values = curves[i].values;
+				let i = 0;
+				const l = curves.length;
+				for (; i < l; i++) {
+					const values = curves[i].values;
 					if (curves[i].winding === 1
 						&& y > values[1] && y <= values[7]
 						|| y >= values[7] && y < values[1]) {
-						var count = Curve.solveCubic(values, 1, y, roots, 0, 1);
-						for (var j = count - 1; j >= 0; j--) {
+						const count = Curve.solveCubic(values, 1, y, roots, 0, 1);
+						for (let j = count - 1; j >= 0; j--) {
 							intercepts.push(Curve.getPoint(values, roots[j]).x);
 						}
 					}
@@ -10355,9 +10463,11 @@ var paper = function (self, undefined) {
 	
 	CompoundPath.inject({
 		_getMonoCurves: function () {
-			var children = this._children,
+			const children = this._children,
 				monoCurves = [];
-			for (var i = 0, l = children.length; i < l; i++)
+			let i = 0;
+			const l = children.length;
+			for (; i < l; i++)
 				monoCurves.push.apply(monoCurves, children[i]._getMonoCurves());
 			return monoCurves;
 		}
@@ -10367,16 +10477,16 @@ var paper = function (self, undefined) {
 			_class: 'PathIterator',
 			
 			initialize: function (path, flatness, maxRecursion, ignoreStraight, matrix) {
-				var curves = [],
-					parts = [],
-					length = 0,
-					minSpan = 1 / (maxRecursion || 32),
-					segments = path._segments,
-					segment1 = segments[0],
+				const curves = [],
+					parts = [];
+				let length = 0;
+				const minSpan = 1 / (maxRecursion || 32),
+					segments = path._segments;
+				let segment1 = segments[0],
 					segment2;
 				
 				function addCurve(segment1, segment2) {
-					var curve = Curve.getValues(segment1, segment2, matrix);
+					const curve = Curve.getValues(segment1, segment2, matrix);
 					curves.push(curve);
 					computeParts(curve, segment1._index, 0, 1);
 				}
@@ -10385,13 +10495,13 @@ var paper = function (self, undefined) {
 					if ((t2 - t1) > minSpan
 						&& !(ignoreStraight && Curve.isStraight(curve))
 						&& !Curve.isFlatEnough(curve, flatness || 0.25)) {
-						var halves = Curve.subdivide(curve, 0.5),
+						const halves = Curve.subdivide(curve, 0.5),
 							tMid = (t1 + t2) / 2;
 						computeParts(halves[0], index, t1, tMid);
 						computeParts(halves[1], index, tMid, t2);
 					}
 					else {
-						var dx = curve[6] - curve[0],
+						const dx = curve[6] - curve[0],
 							dy = curve[7] - curve[1],
 							dist = Math.sqrt(dx * dx + dy * dy);
 						if (dist > 0) {
@@ -10406,7 +10516,9 @@ var paper = function (self, undefined) {
 					}
 				}
 				
-				for (var i = 1, l = segments.length; i < l; i++) {
+				let i = 1;
+				const l = segments.length;
+				for (; i < l; i++) {
 					segment2 = segments[i];
 					addCurve(segment1, segment2);
 					segment1 = segment2;
@@ -10420,18 +10532,18 @@ var paper = function (self, undefined) {
 			},
 			
 			_get: function (offset) {
-				var i, j = this.index;
+				let i, j = this.index;
 				for (; ;) {
 					i = j;
 					if (j === 0 || this.parts[--j].offset < offset)
 						break;
 				}
-				for (var l = this.parts.length; i < l; i++) {
+				for (const l = this.parts.length; i < l; i++) {
 					var part = this.parts[i];
 					if (part.offset >= offset) {
 						this.index = i;
-						var prev = this.parts[i - 1];
-						var prevTime = prev && prev.index === part.index ? prev.time : 0,
+						const prev = this.parts[i - 1];
+						const prevTime = prev && prev.index === part.index ? prev.time : 0,
 							prevOffset = prev ? prev.offset : 0;
 						return {
 							index: part.index,
@@ -10448,10 +10560,12 @@ var paper = function (self, undefined) {
 			},
 			
 			drawPart: function (ctx, from, to) {
-				var start = this._get(from),
+				const start = this._get(from),
 					end = this._get(to);
-				for (var i = start.index, l = end.index; i <= l; i++) {
-					var curve = Curve.getPart(this.curves[i],
+				let i = start.index;
+				const l = end.index;
+				for (; i <= l; i++) {
+					const curve = Curve.getPart(this.curves[i],
 						i === start.index ? start.time : 0,
 						i === end.index ? end.time : 1);
 					if (i === start.index)
@@ -10462,7 +10576,7 @@ var paper = function (self, undefined) {
 		}, Base.each(Curve._evaluateMethods,
 		function (name) {
 			this[name + 'At'] = function (offset) {
-				var param = this._get(offset);
+				const param = this._get(offset);
 				return Curve[name](this.curves[param.index], param.time);
 			};
 		}, {})
@@ -10470,11 +10584,13 @@ var paper = function (self, undefined) {
 	
 	var PathFitter = Base.extend({
 		initialize: function (path) {
-			var points = this.points = [],
+			const points = this.points = [],
 				segments = path._segments,
 				closed = path._closed;
-			for (var i = 0, prev, l = segments.length; i < l; i++) {
-				var point = segments[i].point;
+			let i = 0, prev;
+			const l = segments.length;
+			for (; i < l; i++) {
+				const point = segments[i].point;
 				if (!prev || !prev.equals(point)) {
 					points.push(prev = point.clone());
 				}
@@ -10487,9 +10603,9 @@ var paper = function (self, undefined) {
 		},
 		
 		fit: function (error) {
-			var points = this.points,
-				length = points.length,
-				segments = null;
+			const points = this.points,
+				length = points.length;
+			let segments = null;
 			if (length > 0) {
 				segments = [new Segment(points[0])];
 				if (length > 1) {
@@ -10506,22 +10622,22 @@ var paper = function (self, undefined) {
 		},
 		
 		fitCubic: function (segments, error, first, last, tan1, tan2) {
-			var points = this.points;
+			const points = this.points;
 			if (last - first === 1) {
-				var pt1 = points[first],
+				const pt1 = points[first],
 					pt2 = points[last],
 					dist = pt1.getDistance(pt2) / 3;
 				this.addCurve(segments, [pt1, pt1.add(tan1.normalize(dist)),
 					pt2.add(tan2.normalize(dist)), pt2]);
 				return;
 			}
-			var uPrime = this.chordLengthParameterize(first, last),
-				maxError = Math.max(error, error * error),
+			const uPrime = this.chordLengthParameterize(first, last);
+			let maxError = Math.max(error, error * error),
 				split,
 				parametersInOrder = true;
-			for (var i = 0; i <= 4; i++) {
-				var curve = this.generateBezier(first, last, uPrime, tan1, tan2);
-				var max = this.findMaxError(first, last, curve, uPrime);
+			for (let i = 0; i <= 4; i++) {
+				const curve = this.generateBezier(first, last, uPrime, tan1, tan2);
+				const max = this.findMaxError(first, last, curve, uPrime);
 				if (max.error < error && parametersInOrder) {
 					this.addCurve(segments, curve);
 					return;
@@ -10532,19 +10648,19 @@ var paper = function (self, undefined) {
 				parametersInOrder = this.reparameterize(first, last, uPrime, curve);
 				maxError = max.error;
 			}
-			var tanCenter = points[split - 1].subtract(points[split + 1]);
+			const tanCenter = points[split - 1].subtract(points[split + 1]);
 			this.fitCubic(segments, error, first, split, tan1, tanCenter);
 			this.fitCubic(segments, error, split, last, tanCenter.negate(), tan2);
 		},
 		
 		addCurve: function (segments, curve) {
-			var prev = segments[segments.length - 1];
+			const prev = segments[segments.length - 1];
 			prev.setHandleOut(curve[1].subtract(curve[0]));
 			segments.push(new Segment(curve[3], curve[2].subtract(curve[3])));
 		},
 		
 		generateBezier: function (first, last, uPrime, tan1, tan2) {
-			var epsilon = 1e-12,
+			const epsilon = 1e-12,
 				abs = Math.abs,
 				points = this.points,
 				pt1 = points[first],
@@ -10552,8 +10668,10 @@ var paper = function (self, undefined) {
 				C = [[0, 0], [0, 0]],
 				X = [0, 0];
 			
-			for (var i = 0, l = last - first + 1; i < l; i++) {
-				var u = uPrime[i],
+			let i = 0;
+			const l = last - first + 1;
+			for (; i < l; i++) {
+				const u = uPrime[i],
 					t = 1 - u,
 					b = 3 * u * t,
 					b0 = t * t * t,
@@ -10573,16 +10691,16 @@ var paper = function (self, undefined) {
 				X[1] += a2.dot(tmp);
 			}
 			
-			var detC0C1 = C[0][0] * C[1][1] - C[1][0] * C[0][1],
-				alpha1, alpha2;
+			const detC0C1 = C[0][0] * C[1][1] - C[1][0] * C[0][1];
+			let alpha1, alpha2;
 			if (abs(detC0C1) > epsilon) {
-				var detC0X = C[0][0] * X[1] - C[1][0] * X[0],
+				const detC0X = C[0][0] * X[1] - C[1][0] * X[0],
 					detXC1 = X[0] * C[1][1] - X[1] * C[0][1];
 				alpha1 = detXC1 / detC0C1;
 				alpha2 = detC0X / detC0C1;
 			}
 			else {
-				var c0 = C[0][0] + C[0][1],
+				const c0 = C[0][0] + C[0][1],
 					c1 = C[1][0] + C[1][1];
 				if (abs(c0) > epsilon) {
 					alpha1 = alpha2 = X[0] / c0;
@@ -10595,15 +10713,15 @@ var paper = function (self, undefined) {
 				}
 			}
 			
-			var segLength = pt2.getDistance(pt1),
-				eps = epsilon * segLength,
-				handle1,
+			const segLength = pt2.getDistance(pt1),
+				eps = epsilon * segLength;
+			let handle1,
 				handle2;
 			if (alpha1 < eps || alpha2 < eps) {
 				alpha1 = alpha2 = segLength / 3;
 			}
 			else {
-				var line = pt2.subtract(pt1);
+				const line = pt2.subtract(pt1);
 				handle1 = tan1.normalize(alpha1);
 				handle2 = tan2.normalize(alpha2);
 				if (handle1.dot(line) - handle2.dot(line) > segLength * segLength) {
@@ -10630,7 +10748,7 @@ var paper = function (self, undefined) {
 		},
 		
 		findRoot: function (curve, point, u) {
-			var curve1 = [],
+			const curve1 = [],
 				curve2 = [];
 			for (var i = 0; i <= 2; i++) {
 				curve1[i] = curve[i + 1].subtract(curve[i]).multiply(3);
@@ -10638,7 +10756,7 @@ var paper = function (self, undefined) {
 			for (var i = 0; i <= 1; i++) {
 				curve2[i] = curve1[i + 1].subtract(curve1[i]).multiply(2);
 			}
-			var pt = this.evaluate(3, curve, u),
+			const pt = this.evaluate(3, curve, u),
 				pt1 = this.evaluate(2, curve1, u),
 				pt2 = this.evaluate(1, curve2, u),
 				diff = pt.subtract(point),
@@ -10649,9 +10767,9 @@ var paper = function (self, undefined) {
 		},
 		
 		evaluate: function (degree, curve, t) {
-			var tmp = curve.slice();
-			for (var i = 1; i <= degree; i++) {
-				for (var j = 0; j <= degree - i; j++) {
+			const tmp = curve.slice();
+			for (let i = 1; i <= degree; i++) {
+				for (let j = 0; j <= degree - i; j++) {
 					tmp[j] = tmp[j].multiply(1 - t).add(tmp[j + 1].multiply(t));
 				}
 			}
@@ -10659,7 +10777,7 @@ var paper = function (self, undefined) {
 		},
 		
 		chordLengthParameterize: function (first, last) {
-			var u = [0];
+			const u = [0];
 			for (var i = first + 1; i <= last; i++) {
 				u[i - first] = u[i - first - 1]
 					+ this.points[i].getDistance(this.points[i - 1]);
@@ -10671,12 +10789,12 @@ var paper = function (self, undefined) {
 		},
 		
 		findMaxError: function (first, last, curve, u) {
-			var index = Math.floor((last - first + 1) / 2),
+			let index = Math.floor((last - first + 1) / 2),
 				maxDist = 0;
-			for (var i = first + 1; i < last; i++) {
-				var P = this.evaluate(3, curve, u[i - first]);
-				var v = P.subtract(this.points[i]);
-				var dist = v.x * v.x + v.y * v.y;
+			for (let i = first + 1; i < last; i++) {
+				const P = this.evaluate(3, curve, u[i - first]);
+				const v = P.subtract(this.points[i]);
+				const dist = v.x * v.x + v.y * v.y;
 				if (dist >= maxDist) {
 					maxDist = dist;
 					index = i;
@@ -10689,7 +10807,7 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var TextItem = Item.extend({
+	const TextItem = Item.extend({
 		_class: 'TextItem',
 		_applyMatrix: false,
 		_canApplyMatrix: false,
@@ -10701,7 +10819,7 @@ var paper = function (self, undefined) {
 		initialize: function TextItem(arg) {
 			this._content = '';
 			this._lines = [];
-			var hasProps = arg && Base.isPlainObject(arg)
+			let hasProps = arg && Base.isPlainObject(arg)
 				&& arg.x === undefined && arg.y === undefined;
 			this._initialize(hasProps && arg, !hasProps && Point.read(arguments));
 		},
@@ -10735,7 +10853,7 @@ var paper = function (self, undefined) {
 		setParagraphStyle: '#setStyle'
 	});
 	
-	var PointText = TextItem.extend({
+	const PointText = TextItem.extend({
 		_class: 'PointText',
 		
 		initialize: function PointText() {
@@ -10743,12 +10861,12 @@ var paper = function (self, undefined) {
 		},
 		
 		getPoint: function () {
-			var point = this._matrix.getTranslation();
+			const point = this._matrix.getTranslation();
 			return new LinkedPoint(point.x, point.y, this, 'setPoint');
 		},
 		
 		setPoint: function () {
-			var point = Point.read(arguments);
+			const point = Point.read(arguments);
 			this.translate(point.subtract(this._matrix.getTranslation()));
 		},
 		
@@ -10756,7 +10874,7 @@ var paper = function (self, undefined) {
 			if (!this._content)
 				return;
 			this._setStyles(ctx, param, viewMatrix);
-			var lines = this._lines,
+			const lines = this._lines,
 				style = this._style,
 				hasFill = style.hasFill(),
 				hasStroke = style.hasStroke(),
@@ -10764,9 +10882,11 @@ var paper = function (self, undefined) {
 				shadowColor = ctx.shadowColor;
 			ctx.font = style.getFontStyle();
 			ctx.textAlign = style.getJustification();
-			for (var i = 0, l = lines.length; i < l; i++) {
+			let i = 0;
+			const l = lines.length;
+			for (; i < l; i++) {
 				ctx.shadowColor = shadowColor;
-				var line = lines[i];
+				const line = lines[i];
 				if (hasFill) {
 					ctx.fillText(line, 0, 0);
 					ctx.shadowColor = 'rgba(0,0,0,0)';
@@ -10778,16 +10898,16 @@ var paper = function (self, undefined) {
 		},
 		
 		_getBounds: function (matrix, options) {
-			var style = this._style,
+			const style = this._style,
 				lines = this._lines,
 				numLines = lines.length,
 				justification = style.getJustification(),
 				leading = style.getLeading(),
-				width = this.getView().getTextWidth(style.getFontStyle(), lines),
-				x = 0;
+				width = this.getView().getTextWidth(style.getFontStyle(), lines);
+			let x = 0;
 			if (justification !== 'left')
 				x -= width / (justification === 'center' ? 2 : 1);
-			var bounds = new Rectangle(x,
+			const bounds = new Rectangle(x,
 				numLines ? -0.75 * leading : 0,
 				width, numLines * leading);
 			return matrix ? matrix._transformBounds(bounds, bounds) : bounds;
@@ -10795,7 +10915,7 @@ var paper = function (self, undefined) {
 	});
 	
 	var Color = Base.extend(new function () {
-			var types = {
+			const types = {
 				gray: ['gray'],
 				rgb: ['red', 'green', 'blue'],
 				hsb: ['hue', 'saturation', 'brightness'],
@@ -10803,19 +10923,19 @@ var paper = function (self, undefined) {
 				gradient: ['gradient', 'origin', 'destination', 'highlight']
 			};
 			
-			var componentParsers = {},
-				colorCache = {},
-				colorCtx;
+			const componentParsers = {},
+				colorCache = {};
+			let colorCtx;
 			
 			function fromCSS(string) {
-				var match = string.match(/^#(\w{1,2})(\w{1,2})(\w{1,2})$/),
+				let match = string.match(/^#(\w{1,2})(\w{1,2})(\w{1,2})$/),
 					components;
 				if (match) {
 					components = [0, 0, 0];
 					for (var i = 0; i < 3; i++) {
 						var value = match[i + 1];
 						components[i] = parseInt(value.length == 1
-								? value + value : value, 16) / 255;
+							? value + value : value, 16) / 255;
 					}
 				}
 				else if (match = string.match(/^rgba?\((.*)\)$/)) {
@@ -10826,7 +10946,7 @@ var paper = function (self, undefined) {
 					}
 				}
 				else if (window) {
-					var cached = colorCache[string];
+					let cached = colorCache[string];
 					if (!cached) {
 						if (!colorCtx) {
 							colorCtx = CanvasProvider.getContext(1, 1);
@@ -10835,7 +10955,7 @@ var paper = function (self, undefined) {
 						colorCtx.fillStyle = 'rgba(0,0,0,0)';
 						colorCtx.fillStyle = string;
 						colorCtx.fillRect(0, 0, 1, 1);
-						var data = colorCtx.getImageData(0, 0, 1, 1).data;
+						const data = colorCtx.getImageData(0, 0, 1, 1).data;
 						cached = colorCache[string] = [
 							data[0] / 255,
 							data[1] / 255,
@@ -10850,7 +10970,7 @@ var paper = function (self, undefined) {
 				return components;
 			}
 			
-			var hsbIndices = [
+			const hsbIndices = [
 				[0, 3, 1],
 				[2, 0, 1],
 				[1, 0, 3],
@@ -10859,15 +10979,15 @@ var paper = function (self, undefined) {
 				[0, 1, 2]
 			];
 			
-			var converters = {
+			const converters = {
 				'rgb-hsb': function (r, g, b) {
-					var max = Math.max(r, g, b),
+					const max = Math.max(r, g, b),
 						min = Math.min(r, g, b),
 						delta = max - min,
 						h = delta === 0 ? 0
 							: ( max == r ? (g - b) / delta + (g < b ? 6 : 0)
-								: max == g ? (b - r) / delta + 2
-									: (r - g) / delta + 4) * 60;
+							: max == g ? (b - r) / delta + 2
+								: (r - g) / delta + 4) * 60;
 					return [h, max === 0 ? 0 : delta / max, max];
 				},
 				
@@ -10886,14 +11006,14 @@ var paper = function (self, undefined) {
 				},
 				
 				'rgb-hsl': function (r, g, b) {
-					var max = Math.max(r, g, b),
+					const max = Math.max(r, g, b),
 						min = Math.min(r, g, b),
 						delta = max - min,
 						achromatic = delta === 0,
 						h = achromatic ? 0
 							: ( max == r ? (g - b) / delta + (g < b ? 6 : 0)
-								: max == g ? (b - r) / delta + 2
-									: (r - g) / delta + 4) * 60,
+							: max == g ? (b - r) / delta + 2
+								: (r - g) / delta + 4) * 60,
 						l = (max + min) / 2,
 						s = achromatic ? 0 : l < 0.5
 							? delta / (max + min)
@@ -10905,12 +11025,12 @@ var paper = function (self, undefined) {
 					h = (((h / 360) % 1) + 1) % 1;
 					if (s === 0)
 						return [l, l, l];
-					var t3s = [h + 1 / 3, h, h - 1 / 3],
+					const t3s = [h + 1 / 3, h, h - 1 / 3],
 						t2 = l < 0.5 ? l * (1 + s) : l + s - l * s,
 						t1 = 2 * l - t2,
 						c = [];
-					for (var i = 0; i < 3; i++) {
-						var t3 = t3s[i];
+					for (let i = 0; i < 3; i++) {
+						let t3 = t3s[i];
 						if (t3 < 0) t3 += 1;
 						if (t3 > 1) t3 -= 1;
 						c[i] = 6 * t3 < 1
@@ -10953,11 +11073,11 @@ var paper = function (self, undefined) {
 			return Base.each(types, function (properties, type) {
 				componentParsers[type] = [];
 				Base.each(properties, function (name, index) {
-					var part = Base.capitalize(name),
+					const part = Base.capitalize(name),
 						hasOverlap = /^(hue|saturation)$/.test(name),
 						parser = componentParsers[type][index] = name === 'gradient'
 							? function (value) {
-								var current = this._components[0];
+								const current = this._components[0];
 								value = Gradient.read(Array.isArray(value) ? value
 									: arguments, 0, {readNull: true});
 								if (current !== value) {
@@ -11002,10 +11122,10 @@ var paper = function (self, undefined) {
 				_readIndex: true,
 				
 				initialize: function Color(arg) {
-					var slice = Array.prototype.slice,
-						args = arguments,
-						reading = this.__read,
-						read = 0,
+					const slice = Array.prototype.slice;
+					let args = arguments;
+					const reading = this.__read;
+					let read = 0,
 						type,
 						components,
 						alpha,
@@ -11014,7 +11134,7 @@ var paper = function (self, undefined) {
 						args = arg;
 						arg = args[0];
 					}
-					var argType = arg != null && typeof arg;
+					let argType = arg != null && typeof arg;
 					if (argType === 'string' && arg in types) {
 						type = arg;
 						arg = args[1];
@@ -11040,7 +11160,7 @@ var paper = function (self, undefined) {
 								type = values.length >= 3
 									? 'rgb'
 									: 'gray';
-							var length = types[type].length;
+							const length = types[type].length;
 							alpha = values[length];
 							if (reading) {
 								read += values === arguments
@@ -11065,7 +11185,7 @@ var paper = function (self, undefined) {
 								alpha = arg._alpha;
 								if (type === 'gradient') {
 									for (var i = 1, l = components.length; i < l; i++) {
-										var point = components[i];
+										const point = components[i];
 										if (point)
 											components[i] = point.clone();
 									}
@@ -11128,7 +11248,7 @@ var paper = function (self, undefined) {
 				_set: '#initialize',
 				
 				_serialize: function (options, dictionary) {
-					var components = this.getComponents();
+					const components = this.getComponents();
 					return Base.serialize(
 						/^(gray|rgb)$/.test(this._type)
 							? components
@@ -11143,7 +11263,7 @@ var paper = function (self, undefined) {
 				},
 				
 				_convert: function (type) {
-					var converter;
+					let converter;
 					return this._type === type
 						? this._components.slice()
 						: (converter = converters[this._type + '-' + type])
@@ -11168,7 +11288,7 @@ var paper = function (self, undefined) {
 				},
 				
 				getComponents: function () {
-					var components = this._components.slice();
+					const components = this._components.slice();
 					if (this._alpha != null)
 						components.push(this._alpha);
 					return components;
@@ -11188,7 +11308,7 @@ var paper = function (self, undefined) {
 				},
 				
 				equals: function (color) {
-					var col = Base.isPlainValue(color, true)
+					const col = Base.isPlainValue(color, true)
 						? Color.read(arguments)
 						: color;
 					return col === this || col && this._class === col._class
@@ -11199,12 +11319,14 @@ var paper = function (self, undefined) {
 				},
 				
 				toString: function () {
-					var properties = this._properties,
+					const properties = this._properties,
 						parts = [],
 						isGradient = this._type === 'gradient',
 						f = Formatter.instance;
-					for (var i = 0, l = properties.length; i < l; i++) {
-						var value = this._components[i];
+					let i = 0;
+					const l = properties.length;
+					for (; i < l; i++) {
+						const value = this._components[i];
 						if (value != null)
 							parts.push(properties[i] + ': '
 								+ (isGradient ? value : f.number(value)));
@@ -11215,8 +11337,8 @@ var paper = function (self, undefined) {
 				},
 				
 				toCSS: function (hex) {
-					var components = this._convert('rgb'),
-						alpha = hex || this._alpha == null ? 1 : this._alpha;
+					let components = this._convert('rgb');
+					const alpha = hex || this._alpha == null ? 1 : this._alpha;
 					
 					function convert(val) {
 						return Math.round((val < 0 ? 0 : val > 1 ? 1 : val) * 255);
@@ -11242,21 +11364,21 @@ var paper = function (self, undefined) {
 						return this._canvasStyle;
 					if (this._type !== 'gradient')
 						return this._canvasStyle = this.toCSS();
-					var components = this._components,
+					const components = this._components,
 						gradient = components[0],
 						stops = gradient._stops,
 						origin = components[1],
-						destination = components[2],
-						canvasGradient;
+						destination = components[2];
+					let canvasGradient;
 					if (gradient._radial) {
-						var radius = destination.getDistance(origin),
-							highlight = components[3];
+						const radius = destination.getDistance(origin);
+						let highlight = components[3];
 						if (highlight) {
-							var vector = highlight.subtract(origin);
+							const vector = highlight.subtract(origin);
 							if (vector.getLength() > radius)
 								highlight = origin.add(vector.normalize(radius - 0.1));
 						}
-						var start = highlight || origin;
+						const start = highlight || origin;
 						canvasGradient = ctx.createRadialGradient(start.x, start.y,
 							0, origin.x, origin.y, radius);
 					}
@@ -11264,8 +11386,10 @@ var paper = function (self, undefined) {
 						canvasGradient = ctx.createLinearGradient(origin.x, origin.y,
 							destination.x, destination.y);
 					}
-					for (var i = 0, l = stops.length; i < l; i++) {
-						var stop = stops[i];
+					let i = 0;
+					const l = stops.length;
+					for (; i < l; i++) {
+						const stop = stops[i];
 						canvasGradient.addColorStop(stop._offset || i / (l - 1),
 							stop._color.toCanvasStyle());
 					}
@@ -11274,9 +11398,11 @@ var paper = function (self, undefined) {
 				
 				transform: function (matrix) {
 					if (this._type === 'gradient') {
-						var components = this._components;
-						for (var i = 1, l = components.length; i < l; i++) {
-							var point = components[i];
+						const components = this._components;
+						let i = 1;
+						const l = components.length;
+						for (; i < l; i++) {
+							const point = components[i];
 							matrix._transformPoint(point, point, true);
 						}
 						this._changed();
@@ -11287,14 +11413,14 @@ var paper = function (self, undefined) {
 					_types: types,
 					
 					random: function () {
-						var random = Math.random;
+						const random = Math.random;
 						return new Color(random(), random(), random());
 					}
 				}
 			});
 		},
 		new function () {
-			var operators = {
+			const operators = {
 				add: function (a, b) {
 					return a + b;
 				},
@@ -11315,10 +11441,12 @@ var paper = function (self, undefined) {
 			return Base.each(operators, function (operator, name) {
 				this[name] = function (color) {
 					color = Color.read(arguments);
-					var type = this._type,
+					const type = this._type,
 						components1 = this._components,
 						components2 = color._convert(type);
-					for (var i = 0, l = components1.length; i < l; i++)
+					let i = 0;
+					const l = components1.length;
+					for (; i < l; i++)
 						components2[i] = operator(components1[i], components2[i]);
 					return new Color(type, components2,
 						this._alpha != null
@@ -11351,7 +11479,9 @@ var paper = function (self, undefined) {
 		},
 		
 		_changed: function () {
-			for (var i = 0, l = this._owners && this._owners.length; i < l; i++) {
+			let i = 0;
+			const l = this._owners && this._owners.length;
+			for (; i < l; i++) {
 				this._owners[i]._changed();
 			}
 		},
@@ -11363,7 +11493,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_removeOwner: function (color) {
-			var index = this._owners ? this._owners.indexOf(color) : -1;
+			const index = this._owners ? this._owners.indexOf(color) : -1;
 			if (index != -1) {
 				this._owners.splice(index, 1);
 				if (this._owners.length === 0)
@@ -11372,8 +11502,10 @@ var paper = function (self, undefined) {
 		},
 		
 		clone: function () {
-			var stops = [];
-			for (var i = 0, l = this._stops.length; i < l; i++) {
+			const stops = [];
+			let i = 0;
+			const l = this._stops.length;
+			for (; i < l; i++) {
 				stops[i] = this._stops[i].clone();
 			}
 			return new Gradient(stops, this._radial);
@@ -11388,7 +11520,7 @@ var paper = function (self, undefined) {
 				throw new Error(
 					'Gradient stop list needs to contain at least two stops.');
 			}
-			var _stops = this._stops;
+			let _stops = this._stops;
 			if (_stops) {
 				for (var i = 0, l = _stops.length; i < l; i++)
 					_stops[i]._owner = undefined;
@@ -11412,11 +11544,11 @@ var paper = function (self, undefined) {
 			if (gradient === this)
 				return true;
 			if (gradient && this._class === gradient._class) {
-				var stops1 = this._stops,
+				const stops1 = this._stops,
 					stops2 = gradient._stops,
 					length = stops1.length;
 				if (length === stops2.length) {
-					for (var i = 0; i < length; i++) {
+					for (let i = 0; i < length; i++) {
 						if (!stops1[i].equals(stops2[i]))
 							return false;
 					}
@@ -11431,7 +11563,7 @@ var paper = function (self, undefined) {
 		_class: 'GradientStop',
 		
 		initialize: function GradientStop(arg0, arg1) {
-			var color = arg0,
+			let color = arg0,
 				offset = arg1;
 			if (typeof arg0 === 'object' && arg1 === undefined) {
 				if (Array.isArray(arg0) && typeof arg0[0] !== 'number') {
@@ -11453,7 +11585,7 @@ var paper = function (self, undefined) {
 		},
 		
 		_serialize: function (options, dictionary) {
-			var color = this._color,
+			const color = this._color,
 				offset = this._offset;
 			return Base.serialize(offset == null ? [color] : [color, offset],
 				options, true, dictionary);
@@ -11481,7 +11613,7 @@ var paper = function (self, undefined) {
 		},
 		
 		setColor: function () {
-			var color = Color.read(arguments, 0, {clone: true});
+			const color = Color.read(arguments, 0, {clone: true});
 			if (color)
 				color._owner = this;
 			this._color = color;
@@ -11497,7 +11629,7 @@ var paper = function (self, undefined) {
 	});
 	
 	var Style = Base.extend(new function () {
-		var itemDefaults = {
+		const itemDefaults = {
 				fillColor: null,
 				fillRule: 'nonzero',
 				strokeColor: null,
@@ -11556,7 +11688,7 @@ var paper = function (self, undefined) {
 			};
 		
 		Base.each(groupDefaults, function (value, key) {
-			var isColor = /Color$/.test(key),
+			const isColor = /Color$/.test(key),
 				isPoint = key === 'shadowOffset',
 				part = Base.capitalize(key),
 				flag = flags[key],
@@ -11564,15 +11696,17 @@ var paper = function (self, undefined) {
 				get = 'get' + part;
 			
 			fields[set] = function (value) {
-				var owner = this._owner,
+				const owner = this._owner,
 					children = owner && owner._children;
 				if (children && children.length > 0
 					&& !(owner instanceof CompoundPath)) {
-					for (var i = 0, l = children.length; i < l; i++)
+					let i = 0;
+					const l = children.length;
+					for (; i < l; i++)
 						children[i]._style[set](value);
 				}
 				else if (key in this._defaults) {
-					var old = this._values[key];
+					const old = this._values[key];
 					if (old !== value) {
 						if (isColor) {
 							if (old && old._owner !== undefined)
@@ -11595,7 +11729,7 @@ var paper = function (self, undefined) {
 					children = owner && owner._children,
 					value;
 				if (key in this._defaults && (!children || children.length === 0
-					|| _dontMerge || owner instanceof CompoundPath)) {
+						|| _dontMerge || owner instanceof CompoundPath)) {
 					var value = this._values[key];
 					if (value === undefined) {
 						value = this._defaults[key];
@@ -11603,7 +11737,7 @@ var paper = function (self, undefined) {
 							value = value.clone();
 					}
 					else {
-						var ctor = isColor ? Color : isPoint ? Point : null;
+						const ctor = isColor ? Color : isPoint ? Point : null;
 						if (ctor && !(value && value.constructor === ctor)) {
 							this._values[key] = value = ctor.read([value], 0,
 								{readNull: true, clone: true});
@@ -11613,8 +11747,10 @@ var paper = function (self, undefined) {
 					}
 				}
 				else if (children) {
-					for (var i = 0, l = children.length; i < l; i++) {
-						var childValue = children[i]._style[get]();
+					let i = 0;
+					const l = children.length;
+					for (; i < l; i++) {
+						const childValue = children[i]._style[get]();
 						if (i === 0) {
 							value = childValue;
 						}
@@ -11639,7 +11775,7 @@ var paper = function (self, undefined) {
 			Font: 'FontFamily',
 			WindingRule: 'FillRule'
 		}, function (value, key) {
-			var get = 'get' + key,
+			const get = 'get' + key,
 				set = 'set' + key;
 			fields[get] = item[get] = '#get' + value;
 			fields[set] = item[set] = '#set' + value;
@@ -11649,12 +11785,12 @@ var paper = function (self, undefined) {
 		return fields;
 	}, {
 		set: function (style) {
-			var isStyle = style instanceof Style,
+			const isStyle = style instanceof Style,
 				values = isStyle ? style._values : style;
 			if (values) {
-				for (var key in values) {
+				for (let key in values) {
 					if (key in this._defaults) {
-						var value = values[key];
+						const value = values[key];
 						this[key] = value && isStyle && value.clone
 							? value.clone() : value;
 					}
@@ -11669,17 +11805,17 @@ var paper = function (self, undefined) {
 		},
 		
 		hasFill: function () {
-			var color = this.getFillColor();
+			let color = this.getFillColor();
 			return !!color && color.alpha > 0;
 		},
 		
 		hasStroke: function () {
-			var color = this.getStrokeColor();
+			let color = this.getStrokeColor();
 			return !!color && color.alpha > 0 && this.getStrokeWidth() > 0;
 		},
 		
 		hasShadow: function () {
-			var color = this.getShadowColor();
+			let color = this.getShadowColor();
 			return !!color && color.alpha > 0 && (this.getShadowBlur() > 0
 				|| !this.getShadowOffset().isZero());
 		},
@@ -11689,7 +11825,7 @@ var paper = function (self, undefined) {
 		},
 		
 		getFontStyle: function () {
-			var fontSize = this.getFontSize();
+			const fontSize = this.getFontSize();
 			return this.getFontWeight()
 				+ ' ' + fontSize + (/[a-z]/i.test(fontSize + '') ? ' ' : 'px ')
 				+ this.getFontFamily();
@@ -11699,8 +11835,8 @@ var paper = function (self, undefined) {
 		setFont: '#setFontFamily',
 		
 		getLeading: function getLeading() {
-			var leading = getLeading.base.call(this),
-				fontSize = this.getFontSize();
+			const leading = getLeading.base.call(this);
+			let fontSize = this.getFontSize();
 			if (/pt|em|%|px/.test(fontSize))
 				fontSize = this.getView().getPixelSize(fontSize);
 			return leading != null ? leading : fontSize * 1.2;
@@ -11708,12 +11844,12 @@ var paper = function (self, undefined) {
 		
 	});
 	
-	var DomElement = new function () {
+	const DomElement = new function () {
 		function handlePrefix(el, name, set, value) {
-			var prefixes = ['', 'webkit', 'moz', 'Moz', 'ms', 'o'],
+			const prefixes = ['', 'webkit', 'moz', 'Moz', 'ms', 'o'],
 				suffix = name[0].toUpperCase() + name.substring(1);
-			for (var i = 0; i < 6; i++) {
-				var prefix = prefixes[i],
+			for (let i = 0; i < 6; i++) {
+				const prefix = prefixes[i],
 					key = prefix ? prefix + suffix : name;
 				if (key in el) {
 					if (set) {
@@ -11729,25 +11865,25 @@ var paper = function (self, undefined) {
 		
 		return {
 			getStyles: function (el) {
-				var doc = el && el.nodeType !== 9 ? el.ownerDocument : el,
+				const doc = el && el.nodeType !== 9 ? el.ownerDocument : el,
 					view = doc && doc.defaultView;
 				return view && view.getComputedStyle(el, '');
 			},
 			
 			getBounds: function (el, viewport) {
-				var doc = el.ownerDocument,
+				const doc = el.ownerDocument,
 					body = doc.body,
-					html = doc.documentElement,
-					rect;
+					html = doc.documentElement;
+				let rect;
 				try {
 					rect = el.getBoundingClientRect();
 				} catch (e) {
 					rect = {left: 0, top: 0, width: 0, height: 0};
 				}
-				var x = rect.left - (html.clientLeft || body.clientLeft || 0),
+				let x = rect.left - (html.clientLeft || body.clientLeft || 0),
 					y = rect.top - (html.clientTop || body.clientTop || 0);
 				if (!viewport) {
-					var view = doc.defaultView;
+					const view = doc.defaultView;
 					x += view.pageXOffset || html.scrollLeft || body.scrollLeft;
 					y += view.pageYOffset || html.scrollTop || body.scrollTop;
 				}
@@ -11755,7 +11891,7 @@ var paper = function (self, undefined) {
 			},
 			
 			getViewportBounds: function (el) {
-				var doc = el.ownerDocument,
+				const doc = el.ownerDocument,
 					view = doc.defaultView,
 					html = doc.documentElement;
 				return new Rectangle(0, 0,
@@ -11792,7 +11928,7 @@ var paper = function (self, undefined) {
 			
 			setPrefixed: function (el, name, value) {
 				if (typeof name === 'object') {
-					for (var key in name)
+					for (let key in name)
 						handlePrefix(el, key, true, name[key]);
 				}
 				else {
@@ -11805,10 +11941,12 @@ var paper = function (self, undefined) {
 	var DomEvent = {
 		add: function (el, events) {
 			if (el) {
-				for (var type in events) {
-					var func = events[type],
+				for (let type in events) {
+					const func = events[type],
 						parts = type.split(/[\s,]+/g);
-					for (var i = 0, l = parts.length; i < l; i++)
+					let i = 0;
+					const l = parts.length;
+					for (; i < l; i++)
 						el.addEventListener(parts[i], func, false);
 				}
 			}
@@ -11816,17 +11954,19 @@ var paper = function (self, undefined) {
 		
 		remove: function (el, events) {
 			if (el) {
-				for (var type in events) {
-					var func = events[type],
+				for (let type in events) {
+					const func = events[type],
 						parts = type.split(/[\s,]+/g);
-					for (var i = 0, l = parts.length; i < l; i++)
+					let i = 0;
+					const l = parts.length;
+					for (; i < l; i++)
 						el.removeEventListener(parts[i], func, false);
 				}
 			}
 		},
 		
 		getPoint: function (event) {
-			var pos = event.targetTouches
+			const pos = event.targetTouches
 				? event.targetTouches.length
 					? event.targetTouches[0]
 					: event.changedTouches[0]
@@ -11852,15 +11992,17 @@ var paper = function (self, undefined) {
 	};
 	
 	DomEvent.requestAnimationFrame = new function () {
-		var nativeRequest = DomElement.getPrefixed(window, 'requestAnimationFrame'),
-			requested = false,
+		const nativeRequest = DomElement.getPrefixed(window, 'requestAnimationFrame');
+		let requested = false,
 			callbacks = [],
 			timer;
 		
 		function handleCallbacks() {
-			var functions = callbacks;
+			const functions = callbacks;
 			callbacks = [];
-			for (var i = 0, l = functions.length; i < l; i++)
+			let i = 0;
+			const l = functions.length;
+			for (; i < l; i++)
 				functions[i]();
 			requested = nativeRequest && callbacks.length;
 			if (requested)
@@ -11891,7 +12033,7 @@ var paper = function (self, undefined) {
 				}
 				
 				function getCanvasSize() {
-					var size = DomElement.getSize(element);
+					const size = DomElement.getSize(element);
 					return size.isNaN() || size.isZero()
 						? new Size(getSize('width'), getSize('height'))
 						: size;
@@ -11903,7 +12045,7 @@ var paper = function (self, undefined) {
 					if (this._id == null)
 						element.setAttribute('id', this._id = 'view-' + View._id++);
 					DomEvent.add(element, this._viewEvents);
-					var none = 'none';
+					const none = 'none';
 					DomElement.setPrefixed(element.style, {
 						userDrag: none,
 						userSelect: none,
@@ -11913,7 +12055,7 @@ var paper = function (self, undefined) {
 					});
 					
 					if (PaperScope.hasAttribute(element, 'resize')) {
-						var that = this;
+						const that = this;
 						DomEvent.add(window, this._windowEvents = {
 							resize: function () {
 								that.setViewSize(getCanvasSize());
@@ -11926,7 +12068,7 @@ var paper = function (self, undefined) {
 					if (PaperScope.hasAttribute(element, 'stats')
 						&& typeof Stats !== 'undefined') {
 						this._stats = new Stats();
-						var stats = this._stats.domElement,
+						const stats = this._stats.domElement,
 							style = stats.style,
 							offset = DomElement.getOffset(element);
 						style.position = 'absolute';
@@ -11966,7 +12108,7 @@ var paper = function (self, undefined) {
 					View._focused = null;
 				View._views.splice(View._views.indexOf(this), 1);
 				delete View._viewsById[this._id];
-				var project = this._project;
+				const project = this._project;
 				if (project._view === this)
 					project._view = null;
 				DomEvent.remove(this._element, this._viewEvents);
@@ -12018,15 +12160,15 @@ var paper = function (self, undefined) {
 			
 			requestUpdate: function () {
 				if (!this._requested) {
-					var that = this;
+					const that = this;
 					DomEvent.requestAnimationFrame(function () {
 						that._requested = false;
 						if (that._animate) {
 							that.requestUpdate();
-							var element = that._element;
+							const element = that._element;
 							if ((!DomElement.getPrefixed(document, 'hidden')
-								|| PaperScope.getAttribute(element, 'keepalive')
-								=== 'true') && DomElement.isInView(element)) {
+									|| PaperScope.getAttribute(element, 'keepalive')
+									=== 'true') && DomElement.isInView(element)) {
 								that._handleFrame();
 							}
 						}
@@ -12048,7 +12190,7 @@ var paper = function (self, undefined) {
 			
 			_handleFrame: function () {
 				paper = this._scope;
-				var now = Date.now() / 1000,
+				const now = Date.now() / 1000,
 					delta = this._last ? now - this._last : 0;
 				this._last = now;
 				this.emit('frame', new Base({
@@ -12061,7 +12203,7 @@ var paper = function (self, undefined) {
 			},
 			
 			_animateItem: function (item, animate) {
-				var items = this._frameItems;
+				const items = this._frameItems;
 				if (animate) {
 					items[item._id] = {
 						item: item,
@@ -12080,8 +12222,8 @@ var paper = function (self, undefined) {
 			},
 			
 			_handleFrameItems: function (event) {
-				for (var i in this._frameItems) {
-					var entry = this._frameItems[i];
+				for (let i in this._frameItems) {
+					const entry = this._frameItems[i];
 					entry.item.emit('frame', new Base(event, {
 						time: entry.time += event.delta,
 						count: entry.count++
@@ -12107,12 +12249,12 @@ var paper = function (self, undefined) {
 			},
 			
 			getViewSize: function () {
-				var size = this._viewSize;
+				const size = this._viewSize;
 				return new LinkedSize(size.width, size.height, this, 'setViewSize');
 			},
 			
 			setViewSize: function () {
-				var size = Size.read(arguments),
+				const size = Size.read(arguments),
 					width = size.width,
 					height = size.height,
 					delta = size.subtract(this._viewSize);
@@ -12130,7 +12272,7 @@ var paper = function (self, undefined) {
 			},
 			
 			_setElementSize: function (width, height) {
-				var element = this._element;
+				const element = this._element;
 				if (element) {
 					if (element.width !== width)
 						element.width = width;
@@ -12155,7 +12297,7 @@ var paper = function (self, undefined) {
 			},
 			
 			setCenter: function () {
-				var center = Point.read(arguments);
+				const center = Point.read(arguments);
 				this.translate(this.getCenter().subtract(center));
 			},
 			
@@ -12174,7 +12316,7 @@ var paper = function (self, undefined) {
 			},
 			
 			setMatrix: function () {
-				var matrix = this._matrix;
+				const matrix = this._matrix;
 				matrix.initialize.apply(matrix, arguments);
 			},
 			
@@ -12187,10 +12329,10 @@ var paper = function (self, undefined) {
 			},
 			
 			getPixelSize: function (size) {
-				var element = this._element,
-					pixels;
+				const element = this._element;
+				let pixels;
 				if (element) {
-					var parent = element.parentNode,
+					const parent = element.parentNode,
 						temp = document.createElement('div');
 					temp.style.fontSize = size;
 					parent.appendChild(temp);
@@ -12207,16 +12349,16 @@ var paper = function (self, undefined) {
 				return 0;
 			}
 		}, Base.each(['rotate', 'scale', 'shear', 'skew'], function (key) {
-			var rotate = key === 'rotate';
+			const rotate = key === 'rotate';
 			this[key] = function () {
-				var value = (rotate ? Base : Point).read(arguments),
+				const value = (rotate ? Base : Point).read(arguments),
 					center = Point.read(arguments, 0, {readNull: true});
 				return this.transform(new Matrix()[key](value,
 					center || this.getCenter(true)));
 			};
 		}, {
 			translate: function () {
-				var mx = new Matrix();
+				const mx = new Matrix();
 				return this.transform(mx.translate.apply(mx, arguments));
 			},
 			
@@ -12250,7 +12392,7 @@ var paper = function (self, undefined) {
 				create: function (project, element) {
 					if (document && typeof element === 'string')
 						element = document.getElementById(element);
-					var ctor = window ? CanvasView : View;
+					const ctor = window ? CanvasView : View;
 					return new ctor(project, element);
 				}
 			}
@@ -12258,21 +12400,23 @@ var paper = function (self, undefined) {
 		new function () {
 			if (!window)
 				return;
-			var prevFocus,
+			let prevFocus,
 				tempFocus,
 				dragging = false,
 				mouseDown = false;
 			
 			function getView(event) {
-				var target = DomEvent.getTarget(event);
+				const target = DomEvent.getTarget(event);
 				return target.getAttribute && View._viewsById[
-						target.getAttribute('id')];
+					target.getAttribute('id')];
 			}
 			
 			function updateFocus() {
-				var view = View._focused;
+				let view = View._focused;
 				if (!view || !view.isVisible()) {
-					for (var i = 0, l = View._views.length; i < l; i++) {
+					let i = 0;
+					const l = View._views.length;
+					for (; i < l; i++) {
 						if ((view = View._views[i]).isVisible()) {
 							View._focused = tempFocus = view;
 							break;
@@ -12285,8 +12429,8 @@ var paper = function (self, undefined) {
 				view._handleMouseEvent('mousemove', event, point);
 			}
 			
-			var navigator = window.navigator,
-				mousedown, mousemove, mouseup;
+			const navigator = window.navigator;
+			let mousedown, mousemove, mouseup;
 			if (navigator.pointerEnabled || navigator.msPointerEnabled) {
 				mousedown = 'pointerdown MSPointerDown';
 				mousemove = 'pointermove MSPointerMove';
@@ -12304,13 +12448,13 @@ var paper = function (self, undefined) {
 				}
 			}
 			
-			var viewEvents = {},
+			const viewEvents = {},
 				docEvents = {
 					mouseout: function (event) {
-						var view = View._focused,
-							target = DomEvent.getRelatedTarget(event);
+						const view = View._focused;
+						let target = DomEvent.getRelatedTarget(event);
 						if (view && (!target || target.nodeName === 'HTML')) {
-							var offset = DomEvent.getOffset(event, view._element),
+							const offset = DomEvent.getOffset(event, view._element),
 								x = offset.x,
 								abs = Math.abs,
 								ax = abs(x),
@@ -12325,7 +12469,7 @@ var paper = function (self, undefined) {
 				};
 			
 			viewEvents[mousedown] = function (event) {
-				var view = View._focused = getView(event);
+				const view = View._focused = getView(event);
 				if (!dragging) {
 					dragging = true;
 					view._handleMouseEvent('mousedown', event);
@@ -12333,9 +12477,9 @@ var paper = function (self, undefined) {
 			};
 			
 			docEvents[mousemove] = function (event) {
-				var view = View._focused;
+				let view = View._focused;
 				if (!mouseDown) {
-					var target = getView(event);
+					const target = getView(event);
 					if (target) {
 						if (view !== target) {
 							if (view)
@@ -12362,7 +12506,7 @@ var paper = function (self, undefined) {
 			};
 			
 			docEvents[mouseup] = function (event) {
-				var view = View._focused;
+				const view = View._focused;
 				if (view && dragging)
 					view._handleMouseEvent('mouseup', event);
 				mouseDown = dragging = false;
@@ -12374,13 +12518,13 @@ var paper = function (self, undefined) {
 				load: updateFocus
 			});
 			
-			var called = false,
-				prevented = false,
-				fallbacks = {
-					doubleclick: 'click',
-					mousedrag: 'mousemove'
-				},
-				wasInView = false,
+			let called = false,
+				prevented = false;
+			const fallbacks = {
+				doubleclick: 'click',
+				mousedrag: 'mousemove'
+			};
+			let wasInView = false,
 				overView,
 				downPoint,
 				lastPoint,
@@ -12393,7 +12537,7 @@ var paper = function (self, undefined) {
 			
 			function emitMouseEvent(obj, target, type, event, point, prevPoint,
 			                        stopItem) {
-				var stopped = false,
+				let stopped = false,
 					mouseEvent;
 				
 				function emit(obj, type) {
@@ -12412,7 +12556,7 @@ var paper = function (self, undefined) {
 						}
 					}
 					else {
-						var fallback = fallbacks[type];
+						const fallback = fallbacks[type];
 						if (fallback)
 							return emit(obj, fallback);
 					}
@@ -12431,15 +12575,15 @@ var paper = function (self, undefined) {
 				prevented = called = false;
 				return (dragItem && emitMouseEvent(dragItem, null, type, event,
 					point, prevPoint)
-				|| hitItem && hitItem !== dragItem
-				&& !hitItem.isDescendant(dragItem)
-				&& emitMouseEvent(hitItem, null, fallbacks[type] || type, event,
-					point, prevPoint, dragItem)
-				|| emitMouseEvent(view, dragItem || hitItem || view, type, event,
-					point, prevPoint));
+					|| hitItem && hitItem !== dragItem
+					&& !hitItem.isDescendant(dragItem)
+					&& emitMouseEvent(hitItem, null, fallbacks[type] || type, event,
+						point, prevPoint, dragItem)
+					|| emitMouseEvent(view, dragItem || hitItem || view, type, event,
+						point, prevPoint));
 			}
 			
-			var itemEventsMap = {
+			const itemEventsMap = {
 				mousedown: {
 					mousedown: 1,
 					mousedrag: 1,
@@ -12464,7 +12608,7 @@ var paper = function (self, undefined) {
 				_viewEvents: viewEvents,
 				
 				_handleMouseEvent: function (type, event, point) {
-					var itemEvents = this._itemEvents,
+					const itemEvents = this._itemEvents,
 						hitItems = itemEvents.native[type],
 						nativeMove = type === 'mousemove',
 						tool = this._scope.tool,
@@ -12480,15 +12624,15 @@ var paper = function (self, undefined) {
 					if (!point)
 						point = this.getEventPoint(event);
 					
-					var inView = this.getBounds().contains(point),
+					const inView = this.getBounds().contains(point),
 						hit = hitItems && inView && view._project.hitTest(point, {
-								tolerance: 0,
-								fill: true,
-								stroke: true
-							}),
-						hitItem = hit && hit.item || null,
-						handle = false,
-						mouse = {};
+							tolerance: 0,
+							fill: true,
+							stroke: true
+						}),
+						hitItem = hit && hit.item || null;
+					let handle = false;
+					const mouse = {};
 					mouse[type.substr(5)] = true;
 					
 					if (hitItems && hitItem !== overItem) {
@@ -12539,14 +12683,15 @@ var paper = function (self, undefined) {
 							|| called;
 					}
 					
-					if (called && !mouse.move || mouse.down && responds('mouseup'))
-						event.preventDefault();
+					if (called && !mouse.move || mouse.down && responds('mouseup')) {
+						//event.preventDefault();
+					}
 				},
 				
 				_handleKeyEvent: function (type, event, key, character) {
-					var scope = this._scope,
-						tool = scope.tool,
-						keyEvent;
+					const scope = this._scope,
+						tool = scope.tool;
+					let keyEvent;
 					
 					function emit(obj) {
 						if (obj.responds(type)) {
@@ -12564,10 +12709,10 @@ var paper = function (self, undefined) {
 				},
 				
 				_countItemEvent: function (type, sign) {
-					var itemEvents = this._itemEvents,
+					const itemEvents = this._itemEvents,
 						native = itemEvents.native,
 						virtual = itemEvents.virtual;
-					for (var key in itemEventsMap) {
+					for (let key in itemEventsMap) {
 						native[key] = (native[key] || 0)
 							+ (itemEventsMap[key][type] || 0) * sign;
 					}
@@ -12585,20 +12730,20 @@ var paper = function (self, undefined) {
 		
 		initialize: function CanvasView(project, canvas) {
 			if (!(canvas instanceof window.HTMLCanvasElement)) {
-				var size = Size.read(arguments, 1);
+				const size = Size.read(arguments, 1);
 				if (size.isZero())
 					throw new Error(
 						'Cannot create CanvasView with the provided argument: '
 						+ [].slice.call(arguments, 1));
 				canvas = CanvasProvider.getCanvas(size);
 			}
-			var ctx = this._context = canvas.getContext('2d');
+			const ctx = this._context = canvas.getContext('2d');
 			ctx.save();
 			this._pixelRatio = 1;
 			if (!/^off|false$/.test(PaperScope.getAttribute(canvas, 'hidpi'))) {
-				var deviceRatio = window.devicePixelRatio || 1,
+				const deviceRatio = window.devicePixelRatio || 1,
 					backingStoreRatio = DomElement.getPrefixed(ctx,
-							'backingStorePixelRatio') || 1;
+						'backingStorePixelRatio') || 1;
 				this._pixelRatio = deviceRatio / backingStoreRatio;
 			}
 			View.call(this, project, canvas);
@@ -12611,13 +12756,13 @@ var paper = function (self, undefined) {
 		},
 		
 		_setElementSize: function _setElementSize(width, height) {
-			var pixelRatio = this._pixelRatio;
+			const pixelRatio = this._pixelRatio;
 			_setElementSize.base.call(this, width * pixelRatio, height * pixelRatio);
 			if (pixelRatio !== 1) {
-				var element = this._element,
+				const element = this._element,
 					ctx = this._context;
 				if (!PaperScope.hasAttribute(element, 'resize')) {
-					var style = element.style;
+					const style = element.style;
 					style.width = width + 'px';
 					style.height = height + 'px';
 				}
@@ -12628,13 +12773,13 @@ var paper = function (self, undefined) {
 		},
 		
 		getPixelSize: function getPixelSize(size) {
-			var agent = paper.agent,
-				pixels;
+			const agent = paper.agent;
+			let pixels;
 			if (agent && agent.firefox) {
 				pixels = getPixelSize.base.call(this, size);
 			}
 			else {
-				var ctx = this._context,
+				const ctx = this._context,
 					prevFont = ctx.font;
 				ctx.font = size + ' serif';
 				pixels = parseFloat(ctx.font);
@@ -12644,11 +12789,13 @@ var paper = function (self, undefined) {
 		},
 		
 		getTextWidth: function (font, lines) {
-			var ctx = this._context,
-				prevFont = ctx.font,
-				width = 0;
+			const ctx = this._context,
+				prevFont = ctx.font;
+			let width = 0;
 			ctx.font = font;
-			for (var i = 0, l = lines.length; i < l; i++)
+			let i = 0;
+			const l = lines.length;
+			for (; i < l; i++)
 				width = Math.max(width, ctx.measureText(lines[i]).width);
 			ctx.font = prevFont;
 			return width;
@@ -12657,7 +12804,7 @@ var paper = function (self, undefined) {
 		update: function () {
 			if (!this._needsUpdate)
 				return false;
-			var project = this._project,
+			const project = this._project,
 				ctx = this._context,
 				size = this._viewSize;
 			ctx.clearRect(0, 0, size.width + 1, size.height + 1);
@@ -12723,7 +12870,7 @@ var paper = function (self, undefined) {
 	});
 	
 	var Key = new function () {
-		var keyLookup = {
+		const keyLookup = {
 				'\t': 'tab',
 				' ': 'space',
 				'\b': 'backspace',
@@ -12741,34 +12888,33 @@ var paper = function (self, undefined) {
 			},
 			
 			keyMap = {},
-			charMap = {},
-			metaFixMap,
-			downKey,
-			
-			modifiers = new Base({
-				shift: false,
-				control: false,
-				alt: false,
-				meta: false,
-				capsLock: false,
-				space: false
-			}).inject({
-				option: {
-					get: function () {
-						return this.alt;
-					}
-				},
-				
-				command: {
-					get: function () {
-						var agent = paper && paper.agent;
-						return agent && agent.mac ? this.meta : this.control;
-					}
+			charMap = {};
+		let metaFixMap,
+			downKey;
+		const modifiers = new Base({
+			shift: false,
+			control: false,
+			alt: false,
+			meta: false,
+			capsLock: false,
+			space: false
+		}).inject({
+			option: {
+				get: function () {
+					return this.alt;
 				}
-			});
+			},
+			
+			command: {
+				get: function () {
+					const agent = paper && paper.agent;
+					return agent && agent.mac ? this.meta : this.control;
+				}
+			}
+		});
 		
 		function getKey(event) {
-			var key = event.key || event.keyIdentifier;
+			let key = event.key || event.keyIdentifier;
 			key = /^U\+/.test(key)
 				? String.fromCharCode(parseInt(key.substr(2), 16))
 				: /^Arrow[A-Z]/.test(key) ? key.substr(5)
@@ -12779,9 +12925,9 @@ var paper = function (self, undefined) {
 		}
 		
 		function handleKey(down, key, character, event) {
-			var type = down ? 'keydown' : 'keyup',
-				view = View._focused,
-				name;
+			const type = down ? 'keydown' : 'keyup',
+				view = View._focused;
+			let name;
 			keyMap[key] = down;
 			if (down) {
 				charMap[key] = character;
@@ -12791,13 +12937,13 @@ var paper = function (self, undefined) {
 			}
 			if (key.length > 1 && (name = Base.camelize(key)) in modifiers) {
 				modifiers[name] = down;
-				var agent = paper && paper.agent;
+				const agent = paper && paper.agent;
 				if (name === 'meta' && agent && agent.mac) {
 					if (down) {
 						metaFixMap = {};
 					}
 					else {
-						for (var k in metaFixMap) {
+						for (let k in metaFixMap) {
 							if (k in charMap)
 								handleKey(false, k, metaFixMap[k], event);
 						}
@@ -12816,11 +12962,11 @@ var paper = function (self, undefined) {
 		
 		DomEvent.add(document, {
 			keydown: function (event) {
-				var key = getKey(event),
+				const key = getKey(event),
 					agent = paper && paper.agent;
 				if (key.length > 1 || agent && (agent.chrome && (event.altKey
-					|| agent.mac && event.metaKey
-					|| !agent.mac && event.ctrlKey))) {
+						|| agent.mac && event.metaKey
+						|| !agent.mac && event.ctrlKey))) {
 					handleKey(true, key,
 						charLookup[key] || (key.length > 1 ? '' : key), event);
 				}
@@ -12831,8 +12977,8 @@ var paper = function (self, undefined) {
 			
 			keypress: function (event) {
 				if (downKey) {
-					var key = getKey(event),
-						code = event.charCode,
+					let key = getKey(event);
+					const code = event.charCode,
 						character = code >= 32 ? String.fromCharCode(code)
 							: key.length > 1 ? '' : key;
 					if (key !== downKey) {
@@ -12844,7 +12990,7 @@ var paper = function (self, undefined) {
 			},
 			
 			keyup: function (event) {
-				var key = getKey(event);
+				const key = getKey(event);
 				if (key in charMap)
 					handleKey(false, key, charMap[key], event);
 			}
@@ -12852,7 +12998,7 @@ var paper = function (self, undefined) {
 		
 		DomEvent.add(window, {
 			blur: function (event) {
-				for (var key in charMap)
+				for (let key in charMap)
 					handleKey(false, key, charMap[key], event);
 			}
 		});
@@ -12887,7 +13033,7 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var ToolEvent = Event.extend({
+	const ToolEvent = Event.extend({
 		_class: 'ToolEvent',
 		_item: null,
 		
@@ -12958,9 +13104,9 @@ var paper = function (self, undefined) {
 		
 		getItem: function () {
 			if (!this._item) {
-				var result = this.tool._scope.project.hitTest(this.getPoint());
+				const result = this.tool._scope.project.hitTest(this.getPoint());
 				if (result) {
-					var item = result.item,
+					let item = result.item,
 						parent = item._parent;
 					while (/^(Group|CompoundPath)$/.test(parent._class)) {
 						item = parent;
@@ -12985,7 +13131,7 @@ var paper = function (self, undefined) {
 		}
 	});
 	
-	var Tool = PaperScopeItem.extend({
+	const Tool = PaperScopeItem.extend({
 		_class: 'Tool',
 		_list: 'tools',
 		_reference: 'tool',
@@ -13037,22 +13183,22 @@ var paper = function (self, undefined) {
 			paper = this._scope;
 			if (mouse.drag && !this.responds(type))
 				type = 'mousemove';
-			var move = mouse.move || mouse.drag,
+			const move = mouse.move || mouse.drag,
 				responds = this.responds(type),
 				minDistance = this.minDistance,
-				maxDistance = this.maxDistance,
-				called = false,
-				tool = this;
+				maxDistance = this.maxDistance;
+			let called = false;
+			const tool = this;
 			
 			function update(minDistance, maxDistance) {
-				var pt = point,
-					toolPoint = move ? tool._point : (tool._downPoint || pt);
+				let pt = point;
+				const toolPoint = move ? tool._point : (tool._downPoint || pt);
 				if (move) {
 					if (tool._moveCount && pt.equals(toolPoint)) {
 						return false;
 					}
 					if (toolPoint && (minDistance != null || maxDistance != null)) {
-						var vector = pt.subtract(toolPoint),
+						const vector = pt.subtract(toolPoint),
 							distance = vector.getLength();
 						if (distance < (minDistance || 0))
 							return false;
@@ -13097,15 +13243,15 @@ var paper = function (self, undefined) {
 		
 	});
 	
-	var Http = {
+	const Http = {
 		request: function (options) {
-			var xhr = new window.XMLHttpRequest();
+			const xhr = new window.XMLHttpRequest();
 			xhr.open((options.method || 'get').toUpperCase(), options.url,
 				Base.pick(options.async, true));
 			if (options.mimeType)
 				xhr.overrideMimeType(options.mimeType);
 			xhr.onload = function () {
-				var status = xhr.status;
+				const status = xhr.status;
 				if (status === 0 || status === 200) {
 					if (options.onLoad) {
 						options.onLoad.call(xhr, xhr.responseText);
@@ -13116,7 +13262,7 @@ var paper = function (self, undefined) {
 				}
 			};
 			xhr.onerror = function () {
-				var status = xhr.status,
+				const status = xhr.status,
 					message = 'Could not load "' + options.url + '" (Status: '
 						+ status + ')';
 				if (options.onError) {
@@ -13136,7 +13282,7 @@ var paper = function (self, undefined) {
 		getCanvas: function (width, height) {
 			if (!window)
 				return null;
-			var canvas,
+			let canvas,
 				clear = true;
 			if (typeof width === 'object') {
 				height = width.height;
@@ -13149,7 +13295,7 @@ var paper = function (self, undefined) {
 				canvas = document.createElement('canvas');
 				clear = false;
 			}
-			var ctx = canvas.getContext('2d');
+			let ctx = canvas.getContext('2d');
 			if (!ctx) {
 				throw new Error('Canvas ' + canvas +
 					' is unable toprovide a 2D context.');
@@ -13167,12 +13313,12 @@ var paper = function (self, undefined) {
 		},
 		
 		getContext: function (width, height) {
-			var canvas = this.getCanvas(width, height);
+			const canvas = this.getCanvas(width, height);
 			return canvas ? canvas.getContext('2d') : null;
 		},
 		
 		release: function (obj) {
-			var canvas = obj && obj.canvas ? obj.canvas : obj;
+			const canvas = obj && obj.canvas ? obj.canvas : obj;
 			if (canvas && canvas.getContext) {
 				canvas.getContext('2d').restore();
 				this.canvases.push(canvas);
@@ -13181,10 +13327,10 @@ var paper = function (self, undefined) {
 	};
 	
 	var BlendMode = new function () {
-		var min = Math.min,
+		const min = Math.min,
 			max = Math.max,
-			abs = Math.abs,
-			sr, sg, sb, sa,
+			abs = Math.abs;
+		let sr, sg, sb, sa,
 			br, bg, bb, ba,
 			dr, dg, db;
 		
@@ -13193,7 +13339,7 @@ var paper = function (self, undefined) {
 		}
 		
 		function setLum(r, g, b, l) {
-			var d = l - getLum(r, g, b);
+			const d = l - getLum(r, g, b);
 			dr = r + d;
 			dg = g + d;
 			db = b + d;
@@ -13201,13 +13347,13 @@ var paper = function (self, undefined) {
 				mn = min(dr, dg, db),
 				mx = max(dr, dg, db);
 			if (mn < 0) {
-				var lmn = l - mn;
+				const lmn = l - mn;
 				dr = l + (dr - l) * l / lmn;
 				dg = l + (dg - l) * l / lmn;
 				db = l + (db - l) * l / lmn;
 			}
 			if (mx > 255) {
-				var ln = 255 - l,
+				const ln = 255 - l,
 					mxl = mx - l;
 				dr = l + (dr - l) * ln / mxl;
 				dg = l + (dg - l) * ln / mxl;
@@ -13220,8 +13366,8 @@ var paper = function (self, undefined) {
 		}
 		
 		function setSat(r, g, b, s) {
-			var col = [r, g, b],
-				mx = max(r, g, b),
+			const col = [r, g, b];
+			let mx = max(r, g, b),
 				mn = min(r, g, b),
 				md;
 			mn = mn === r ? 0 : mn === g ? 1 : 2;
@@ -13240,7 +13386,7 @@ var paper = function (self, undefined) {
 			db = col[2];
 		}
 		
-		var modes = {
+		const modes = {
 			multiply: function () {
 				dr = br * sr / 255;
 				dg = bg * sg / 255;
@@ -13260,7 +13406,7 @@ var paper = function (self, undefined) {
 			},
 			
 			'soft-light': function () {
-				var t = sr * br / 255;
+				let t = sr * br / 255;
 				dr = t + br * (255 - (255 - br) * (255 - sr) / 255 - t) / 255;
 				t = sg * bg / 255;
 				dg = t + bg * (255 - (255 - bg) * (255 - sg) / 255 - t) / 255;
@@ -13359,7 +13505,7 @@ var paper = function (self, undefined) {
 			}
 		};
 		
-		var nativeModes = this.nativeModes = Base.each([
+		const nativeModes = this.nativeModes = Base.each([
 			'source-over', 'source-in', 'source-out', 'source-atop',
 			'destination-over', 'destination-in', 'destination-out',
 			'destination-atop', 'lighter', 'darker', 'copy', 'xor'
@@ -13367,11 +13513,11 @@ var paper = function (self, undefined) {
 			this[mode] = true;
 		}, {});
 		
-		var ctx = CanvasProvider.getContext(1, 1);
+		const ctx = CanvasProvider.getContext(1, 1);
 		if (ctx) {
 			Base.each(modes, function (func, mode) {
-				var darken = mode === 'darken',
-					ok = false;
+				const darken = mode === 'darken';
+				let ok = false;
 				ctx.save();
 				try {
 					ctx.fillStyle = darken ? '#300' : '#a00';
@@ -13392,8 +13538,8 @@ var paper = function (self, undefined) {
 		}
 		
 		this.process = function (mode, srcContext, dstContext, alpha, offset) {
-			var srcCanvas = srcContext.canvas,
-				normal = mode === 'normal';
+			const srcCanvas = srcContext.canvas;
+			let normal = mode === 'normal';
 			if (normal || nativeModes[mode]) {
 				dstContext.save();
 				dstContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -13404,15 +13550,17 @@ var paper = function (self, undefined) {
 				dstContext.restore();
 			}
 			else {
-				var process = modes[mode];
+				let process = modes[mode];
 				if (!process)
 					return;
-				var dstData = dstContext.getImageData(offset.x, offset.y,
+				const dstData = dstContext.getImageData(offset.x, offset.y,
 					srcCanvas.width, srcCanvas.height),
 					dst = dstData.data,
 					src = srcContext.getImageData(0, 0,
 						srcCanvas.width, srcCanvas.height).data;
-				for (var i = 0, l = dst.length; i < l; i += 4) {
+				let i = 0;
+				const l = dst.length;
+				for (; i < l; i += 4) {
 					sr = src[i];
 					br = dst[i];
 					sg = src[i + 1];
@@ -13422,7 +13570,7 @@ var paper = function (self, undefined) {
 					sa = src[i + 3];
 					ba = dst[i + 3];
 					process();
-					var a1 = sa * alpha / 255,
+					const a1 = sa * alpha / 255,
 						a2 = 1 - a1;
 					dst[i] = a1 * dr + a2 * br;
 					dst[i + 1] = a1 * dg + a2 * bg;
@@ -13434,8 +13582,8 @@ var paper = function (self, undefined) {
 		};
 	};
 	
-	var SvgElement = new function () {
-		var svg = 'http://www.w3.org/2000/svg',
+	const SvgElement = new function () {
+		const svg = 'http://www.w3.org/2000/svg',
 			xmlns = 'http://www.w3.org/2000/xmlns',
 			xlink = 'http://www.w3.org/1999/xlink',
 			attributeNamespace = {
@@ -13450,7 +13598,7 @@ var paper = function (self, undefined) {
 		}
 		
 		function get(node, name) {
-			var namespace = attributeNamespace[name],
+			const namespace = attributeNamespace[name],
 				value = namespace
 					? node.getAttributeNS(namespace, name)
 					: node.getAttribute(name);
@@ -13458,9 +13606,9 @@ var paper = function (self, undefined) {
 		}
 		
 		function set(node, attributes, formatter) {
-			for (var name in attributes) {
-				var value = attributes[name],
-					namespace = attributeNamespace[name];
+			for (let name in attributes) {
+				let value = attributes[name];
+				const namespace = attributeNamespace[name];
 				if (typeof value === 'number' && formatter)
 					value = formatter.number(value);
 				if (namespace) {
@@ -13484,7 +13632,7 @@ var paper = function (self, undefined) {
 		};
 	};
 	
-	var SvgStyles = Base.each({
+	const SvgStyles = Base.each({
 		fillColor: ['fill', 'color'],
 		fillRule: ['fill-rule', 'string'],
 		strokeColor: ['stroke', 'color'],
@@ -13497,8 +13645,8 @@ var paper = function (self, undefined) {
 		}, function (item, value) {
 			return !value
 				&& (item instanceof PathItem
-				|| item instanceof Shape
-				|| item instanceof TextItem);
+					|| item instanceof Shape
+					|| item instanceof TextItem);
 		}],
 		miterLimit: ['stroke-miterlimit', 'number'],
 		dashArray: ['stroke-dasharray', 'array'],
@@ -13514,7 +13662,7 @@ var paper = function (self, undefined) {
 		opacity: ['opacity', 'number'],
 		blendMode: ['mix-blend-mode', 'style']
 	}, function (entry, key) {
-		var part = Base.capitalize(key),
+		const part = Base.capitalize(key),
 			lookup = entry[2];
 		this[key] = {
 			type: entry[1],
@@ -13531,22 +13679,22 @@ var paper = function (self, undefined) {
 	}, {});
 	
 	new function () {
-		var formatter;
+		let formatter;
 		
 		function getTransform(matrix, coordinates, center) {
-			var attrs = new Base(),
-				trans = matrix.getTranslation();
+			const attrs = new Base();
+			let trans = matrix.getTranslation();
 			if (coordinates) {
 				matrix = matrix._shiftless();
-				var point = matrix._inverseTransform(trans);
+				const point = matrix._inverseTransform(trans);
 				attrs[center ? 'cx' : 'x'] = point.x;
 				attrs[center ? 'cy' : 'y'] = point.y;
 				trans = null;
 			}
 			if (!matrix.isIdentity()) {
-				var decomposed = matrix.decompose();
+				const decomposed = matrix.decompose();
 				if (decomposed) {
-					var parts = [],
+					const parts = [],
 						angle = decomposed.rotation,
 						scale = decomposed.scaling,
 						skew = decomposed.skewing;
@@ -13571,15 +13719,17 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportGroup(item, options) {
-			var attrs = getTransform(item._matrix),
+			const attrs = getTransform(item._matrix),
 				children = item._children;
-			var node = SvgElement.create('g', attrs, formatter);
-			for (var i = 0, l = children.length; i < l; i++) {
-				var child = children[i];
-				var childNode = exportSVG(child, options);
+			const node = SvgElement.create('g', attrs, formatter);
+			let i = 0;
+			const l = children.length;
+			for (; i < l; i++) {
+				const child = children[i];
+				const childNode = exportSVG(child, options);
 				if (childNode) {
 					if (child.isClipMask()) {
-						var clip = SvgElement.create('clipPath');
+						const clip = SvgElement.create('clipPath');
 						clip.appendChild(childNode);
 						setDefinition(child, clip, 'clip');
 						SvgElement.set(node, {
@@ -13595,7 +13745,7 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportRaster(item, options) {
-			var attrs = getTransform(item._matrix, true),
+			const attrs = getTransform(item._matrix, true),
 				size = item.getSize(),
 				image = item.getImage();
 			attrs.x -= size.width / 2;
@@ -13608,27 +13758,27 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportPath(item, options) {
-			var matchShapes = options.matchShapes;
+			const matchShapes = options.matchShapes;
 			if (matchShapes) {
-				var shape = item.toShape(false);
+				const shape = item.toShape(false);
 				if (shape)
 					return exportShape(shape, options);
 			}
-			var segments = item._segments,
-				length = segments.length,
-				type,
-				attrs = getTransform(item._matrix);
+			const segments = item._segments,
+				length = segments.length;
+			let type;
+			const attrs = getTransform(item._matrix);
 			if (matchShapes && length >= 2 && !item.hasHandles()) {
 				if (length > 2) {
 					type = item._closed ? 'polygon' : 'polyline';
-					var parts = [];
-					for (var i = 0; i < length; i++)
+					const parts = [];
+					for (let i = 0; i < length; i++)
 						parts.push(formatter.point(segments[i]._point));
 					attrs.points = parts.join(' ');
 				}
 				else {
 					type = 'line';
-					var start = segments[0]._point,
+					const start = segments[0]._point,
 						end = segments[1]._point;
 					attrs.set({
 						x1: start.x,
@@ -13646,12 +13796,12 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportShape(item) {
-			var type = item._type,
-				radius = item._radius,
-				attrs = getTransform(item._matrix, true, type !== 'rectangle');
+			let type = item._type,
+				radius = item._radius;
+			const attrs = getTransform(item._matrix, true, type !== 'rectangle');
 			if (type === 'rectangle') {
 				type = 'rect';
-				var size = item._size,
+				const size = item._size,
 					width = size.width,
 					height = size.height;
 				attrs.x -= width / 2;
@@ -13674,18 +13824,18 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportCompoundPath(item, options) {
-			var attrs = getTransform(item._matrix);
-			var data = item.getPathData(null, options.precision);
+			const attrs = getTransform(item._matrix);
+			const data = item.getPathData(null, options.precision);
 			if (data)
 				attrs.d = data;
 			return SvgElement.create('path', attrs, formatter);
 		}
 		
 		function exportSymbolItem(item, options) {
-			var attrs = getTransform(item._matrix, true),
-				definition = item._definition,
-				node = getDefinition(definition, 'symbol'),
-				definitionItem = definition._item,
+			const attrs = getTransform(item._matrix, true),
+				definition = item._definition;
+			let node = getDefinition(definition, 'symbol');
+			const definitionItem = definition._item,
 				bounds = definitionItem.getBounds();
 			if (!node) {
 				node = SvgElement.create('symbol', {
@@ -13704,20 +13854,20 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportGradient(color) {
-			var gradientNode = getDefinition(color, 'color');
+			let gradientNode = getDefinition(color, 'color');
 			if (!gradientNode) {
-				var gradient = color.getGradient(),
+				const gradient = color.getGradient(),
 					radial = gradient._radial,
 					origin = color.getOrigin(),
-					destination = color.getDestination(),
-					attrs;
+					destination = color.getDestination();
+				let attrs;
 				if (radial) {
 					attrs = {
 						cx: origin.x,
 						cy: origin.y,
 						r: origin.getDistance(destination)
 					};
-					var highlight = color.getHighlight();
+					const highlight = color.getHighlight();
 					if (highlight) {
 						attrs.fx = highlight.x;
 						attrs.fy = highlight.y;
@@ -13734,9 +13884,11 @@ var paper = function (self, undefined) {
 				attrs.gradientUnits = 'userSpaceOnUse';
 				gradientNode = SvgElement.create((radial ? 'radial' : 'linear')
 					+ 'Gradient', attrs, formatter);
-				var stops = gradient._stops;
-				for (var i = 0, l = stops.length; i < l; i++) {
-					var stop = stops[i],
+				const stops = gradient._stops;
+				let i = 0;
+				const l = stops.length;
+				for (; i < l; i++) {
+					const stop = stops[i],
 						stopColor = stop._color,
 						alpha = stopColor.getAlpha();
 					attrs = {
@@ -13755,13 +13907,13 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportText(item) {
-			var node = SvgElement.create('text', getTransform(item._matrix, true),
+			const node = SvgElement.create('text', getTransform(item._matrix, true),
 				formatter);
 			node.textContent = item._content;
 			return node;
 		}
 		
-		var exporters = {
+		const exporters = {
 			Group: exportGroup,
 			Layer: exportGroup,
 			Raster: exportRaster,
@@ -13773,22 +13925,22 @@ var paper = function (self, undefined) {
 		};
 		
 		function applyStyle(item, node, isRoot) {
-			var attrs = {},
-				parent = !isRoot && item.getParent(),
-				style = [];
+			const attrs = {};
+			let parent = !isRoot && item.getParent();
+			const style = [];
 			
 			if (item._name != null)
 				attrs.id = item._name;
 			
 			Base.each(SvgStyles, function (entry) {
-				var get = entry.get,
+				const get = entry.get,
 					type = entry.type,
 					value = item[get]();
 				if (entry.exportFilter
 						? entry.exportFilter(item, value)
 						: !parent || !Base.equals(parent[get](), value)) {
 					if (type === 'color' && value != null) {
-						var alpha = value.getAlpha();
+						const alpha = value.getAlpha();
 						if (alpha < 1)
 							attrs[entry.attribute + '-opacity'] = alpha;
 					}
@@ -13819,29 +13971,29 @@ var paper = function (self, undefined) {
 			return SvgElement.set(node, attrs, formatter);
 		}
 		
-		var definitions;
+		let definitions;
 		
 		function getDefinition(item, type) {
 			if (!definitions)
 				definitions = {ids: {}, svgs: {}};
-			var id = item._id || item.__id || (item.__id = UID.get('svg'));
+			const id = item._id || item.__id || (item.__id = UID.get('svg'));
 			return item && definitions.svgs[type + '-' + id];
 		}
 		
 		function setDefinition(item, node, type) {
 			if (!definitions)
 				getDefinition();
-			var typeId = definitions.ids[type] = (definitions.ids[type] || 0) + 1;
+			const typeId = definitions.ids[type] = (definitions.ids[type] || 0) + 1;
 			node.id = type + '-' + typeId;
 			definitions.svgs[type + '-' + (item._id || item.__id)] = node;
 		}
 		
 		function exportDefinitions(node, options) {
-			var svg = node,
+			let svg = node,
 				defs = null;
 			if (definitions) {
 				svg = node.nodeName.toLowerCase() === 'svg' && node;
-				for (var i in definitions.svgs) {
+				for (let i in definitions.svgs) {
 					if (!defs) {
 						if (!svg) {
 							svg = SvgElement.create('svg');
@@ -13860,13 +14012,13 @@ var paper = function (self, undefined) {
 		}
 		
 		function exportSVG(item, options, isRoot) {
-			var exporter = exporters[item._class],
-				node = exporter && exporter(item, options);
+			const exporter = exporters[item._class];
+			let node = exporter && exporter(item, options);
 			if (node) {
-				var onExport = options.onExport;
+				const onExport = options.onExport;
 				if (onExport)
 					node = onExport(item, node, options) || node;
-				var data = JSON.stringify(item._data);
+				const data = JSON.stringify(item._data);
 				if (data && data !== '{}' && data !== 'null')
 					node.setAttribute('data-paper-data', data);
 			}
@@ -13890,7 +14042,7 @@ var paper = function (self, undefined) {
 		Project.inject({
 			exportSVG: function (options) {
 				options = setOptions(options);
-				var children = this._children,
+				const children = this._children,
 					view = this.getView(),
 					bounds = Base.pick(options.bounds, 'view'),
 					mx = options.matrix || bounds === 'view' && view._matrix,
@@ -13911,13 +14063,15 @@ var paper = function (self, undefined) {
 					if (rect.x || rect.y)
 						attrs.viewBox = formatter.rectangle(rect);
 				}
-				var node = SvgElement.create('svg', attrs, formatter),
-					parent = node;
+				const node = SvgElement.create('svg', attrs, formatter);
+				let parent = node;
 				if (matrix && !matrix.isIdentity()) {
 					parent = node.appendChild(SvgElement.create('g',
 						getTransform(matrix), formatter));
 				}
-				for (var i = 0, l = children.length; i < l; i++) {
+				let i = 0;
+				const l = children.length;
+				for (; i < l; i++) {
 					parent.appendChild(exportSVG(children[i], options, true));
 				}
 				return exportDefinitions(node, options);
@@ -13927,11 +14081,11 @@ var paper = function (self, undefined) {
 	
 	new function () {
 		
-		var definitions = {},
+		let definitions = {},
 			rootSize;
 		
 		function getValue(node, name, isString, allowNull, allowPercent) {
-			var value = SvgElement.get(node, name),
+			const value = SvgElement.get(node, name),
 				res = value == null
 					? allowNull
 						? null
@@ -13941,7 +14095,7 @@ var paper = function (self, undefined) {
 						: parseFloat(value);
 			return /%\s*$/.test(value)
 				? (res / 100) * (allowPercent ? 1
-					: rootSize[/x|^width/.test(name) ? 'width' : 'height'])
+				: rootSize[/x|^width/.test(name) ? 'width' : 'height'])
 				: res;
 		}
 		
@@ -13970,11 +14124,11 @@ var paper = function (self, undefined) {
 		}
 		
 		function importGroup(node, type, options, isRoot) {
-			var nodes = node.childNodes,
-				isClip = type === 'clippath',
+			const nodes = node.childNodes;
+			let isClip = type === 'clippath',
 				isDefs = type === 'defs',
-				item = new Group(),
-				project = item._project,
+				item = new Group();
+			const project = item._project,
 				currentStyle = project._currentStyle,
 				children = [];
 			if (!isClip && !isDefs) {
@@ -13982,14 +14136,14 @@ var paper = function (self, undefined) {
 				project._currentStyle = item._style.clone();
 			}
 			if (isRoot) {
-				var defs = node.querySelectorAll('defs');
+				const defs = node.querySelectorAll('defs');
 				for (var i = 0, l = defs.length; i < l; i++) {
 					importNode(defs[i], options, false);
 				}
 			}
 			for (var i = 0, l = nodes.length; i < l; i++) {
-				var childNode = nodes[i],
-					child;
+				const childNode = nodes[i];
+				let child;
 				if (childNode.nodeType === 1
 					&& !/^defs$/i.test(childNode.nodeName)
 					&& (child = importNode(childNode, options, false))
@@ -14008,14 +14162,16 @@ var paper = function (self, undefined) {
 		}
 		
 		function importPoly(node, type) {
-			var coords = node.getAttribute('points').match(
+			const coords = node.getAttribute('points').match(
 				/[+-]?(?:\d*\.\d+|\d+\.?)(?:[eE][+-]?\d+)?/g),
 				points = [];
-			for (var i = 0, l = coords.length; i < l; i += 2)
+			let i = 0;
+			const l = coords.length;
+			for (; i < l; i += 2)
 				points.push(new Point(
 					parseFloat(coords[i]),
 					parseFloat(coords[i + 1])));
-			var path = new Path(points);
+			const path = new Path(points);
 			if (type === 'polygon')
 				path.closePath();
 			return path;
@@ -14026,9 +14182,9 @@ var paper = function (self, undefined) {
 		}
 		
 		function importGradient(node, type) {
-			var id = (getValue(node, 'href', true) || '').substring(1),
-				radial = type === 'radialgradient',
-				gradient;
+			const id = (getValue(node, 'href', true) || '').substring(1),
+				radial = type === 'radialgradient';
+			let gradient;
 			if (id) {
 				gradient = definitions[id].getGradient();
 				if (gradient._radial ^ radial) {
@@ -14037,18 +14193,20 @@ var paper = function (self, undefined) {
 				}
 			}
 			else {
-				var nodes = node.childNodes,
+				const nodes = node.childNodes,
 					stops = [];
-				for (var i = 0, l = nodes.length; i < l; i++) {
-					var child = nodes[i];
+				let i = 0;
+				const l = nodes.length;
+				for (; i < l; i++) {
+					const child = nodes[i];
 					if (child.nodeType === 1)
 						stops.push(applyAttributes(new GradientStop(), child));
 				}
 				gradient = new Gradient(stops, radial);
 			}
-			var origin, destination, highlight,
-				scaleToBounds = getValue(node, 'gradientUnits', true) !==
-					'userSpaceOnUse';
+			let origin, destination, highlight;
+			const scaleToBounds = getValue(node, 'gradientUnits', true) !==
+				'userSpaceOnUse';
 			if (radial) {
 				origin = getPoint(node, 'cx', 'cy', false, scaleToBounds);
 				destination = origin.add(
@@ -14059,17 +14217,19 @@ var paper = function (self, undefined) {
 				origin = getPoint(node, 'x1', 'y1', false, scaleToBounds);
 				destination = getPoint(node, 'x2', 'y2', false, scaleToBounds);
 			}
-			var color = applyAttributes(
+			const color = applyAttributes(
 				new Color(gradient, origin, destination, highlight), node);
 			color._scaleToBounds = scaleToBounds;
 			return null;
 		}
 		
-		var importers = {
+		const importers = {
 			'#document': function (node, type, options, isRoot) {
-				var nodes = node.childNodes;
-				for (var i = 0, l = nodes.length; i < l; i++) {
-					var child = nodes[i];
+				const nodes = node.childNodes;
+				let i = 0;
+				const l = nodes.length;
+				for (; i < l; i++) {
+					const child = nodes[i];
 					if (child.nodeType === 1)
 						return importNode(child, options, isRoot);
 				}
@@ -14084,11 +14244,11 @@ var paper = function (self, undefined) {
 			radialgradient: importGradient,
 			
 			image: function (node) {
-				var raster = new Raster(getValue(node, 'href', true));
+				const raster = new Raster(getValue(node, 'href', true));
 				raster.on('load', function () {
-					var size = getSize(node);
+					const size = getSize(node);
 					this.setSize(size);
-					var center = this._matrix._transformPoint(
+					const center = this._matrix._transformPoint(
 						getPoint(node).add(size.divide(2)));
 					this.translate(center);
 				});
@@ -14103,7 +14263,7 @@ var paper = function (self, undefined) {
 			defs: importGroup,
 			
 			use: function (node) {
-				var id = (getValue(node, 'href', true) || '').substring(1),
+				const id = (getValue(node, 'href', true) || '').substring(1),
 					definition = definitions[id],
 					point = getPoint(node);
 				return definition
@@ -14140,7 +14300,7 @@ var paper = function (self, undefined) {
 			},
 			
 			text: function (node) {
-				var text = new PointText(getPoint(node).add(
+				const text = new PointText(getPoint(node).add(
 					getPoint(node, 'dx', 'dy')));
 				text.setContent(node.textContent.trim() || '');
 				return text;
@@ -14149,16 +14309,20 @@ var paper = function (self, undefined) {
 		
 		function applyTransform(item, value, name, node) {
 			if (item.transform) {
-				var transforms = (node.getAttribute(name) || '').split(/\)\s*/g),
+				const transforms = (node.getAttribute(name) || '').split(/\)\s*/g),
 					matrix = new Matrix();
-				for (var i = 0, l = transforms.length; i < l; i++) {
-					var transform = transforms[i];
+				let i = 0;
+				const l = transforms.length;
+				for (; i < l; i++) {
+					let transform = transforms[i];
 					if (!transform)
 						break;
-					var parts = transform.split(/\(\s*/),
+					const parts = transform.split(/\(\s*/),
 						command = parts[0],
 						v = parts[1].split(/[\s,]+/g);
-					for (var j = 0, m = v.length; j < m; j++)
+					let j = 0;
+					const m = v.length;
+					for (; j < m; j++)
 						v[j] = parseFloat(v[j]);
 					switch (command) {
 						case 'matrix':
@@ -14187,21 +14351,21 @@ var paper = function (self, undefined) {
 		}
 		
 		function applyOpacity(item, value, name) {
-			var key = name === 'fill-opacity' ? 'getFillColor' : 'getStrokeColor',
+			const key = name === 'fill-opacity' ? 'getFillColor' : 'getStrokeColor',
 				color = item[key] && item[key]();
 			if (color)
 				color.setAlpha(parseFloat(value));
 		}
 		
-		var attributes = Base.set(Base.each(SvgStyles, function (entry) {
+		const attributes = Base.set(Base.each(SvgStyles, function (entry) {
 			this[entry.attribute] = function (item, value) {
 				if (item[entry.set]) {
 					item[entry.set](convertValue(value, entry.type, entry.fromSVG));
 					if (entry.type === 'color') {
-						var color = item[entry.get]();
+						const color = item[entry.get]();
 						if (color) {
 							if (color._scaleToBounds) {
-								var bounds = item.getBounds();
+								const bounds = item.getBounds();
 								color.transform(new Matrix()
 									.translate(bounds.getPoint())
 									.scale(bounds.getSize()));
@@ -14222,7 +14386,7 @@ var paper = function (self, undefined) {
 			},
 			
 			'clip-path': function (item, value) {
-				var clip = getDefinition(value);
+				let clip = getDefinition(value);
 				if (clip) {
 					clip = clip.clone();
 					clip.setClipMask(true);
@@ -14263,7 +14427,7 @@ var paper = function (self, undefined) {
 			
 			offset: function (item, value) {
 				if (item.setOffset) {
-					var percent = value.match(/(.*)%$/);
+					const percent = value.match(/(.*)%$/);
 					item.setOffset(percent ? percent[1] / 100 : parseFloat(value));
 				}
 			},
@@ -14286,7 +14450,7 @@ var paper = function (self, undefined) {
 				}
 				if (group) {
 					if (getAttribute(node, 'overflow', styles) !== 'visible') {
-						var clip = new Shape.Rectangle(rect);
+						const clip = new Shape.Rectangle(rect);
 						clip.setClipMask(true);
 						group.addChild(clip);
 					}
@@ -14297,10 +14461,10 @@ var paper = function (self, undefined) {
 		});
 		
 		function getAttribute(node, name, styles) {
-			var attr = node.attributes[name],
-				value = attr && attr.value;
+			const attr = node.attributes[name];
+			let value = attr && attr.value;
 			if (!value) {
-				var style = Base.camelize(name);
+				const style = Base.camelize(name);
 				value = node.style[style];
 				if (!value && styles.node[style] !== styles.parent[style])
 					value = styles.node[style];
@@ -14311,14 +14475,14 @@ var paper = function (self, undefined) {
 		}
 		
 		function applyAttributes(item, node, isRoot) {
-			var parent = node.parentNode,
+			const parent = node.parentNode,
 				styles = {
 					node: DomElement.getStyles(node) || {},
 					parent: !isRoot && !/^defs$/i.test(parent.tagName)
 					&& DomElement.getStyles(parent) || {}
 				};
 			Base.each(attributes, function (apply, name) {
-				var value = getAttribute(node, name, styles);
+				const value = getAttribute(node, name, styles);
 				item = value !== undefined && apply(item, value, name, node, styles)
 					|| item;
 			});
@@ -14326,9 +14490,9 @@ var paper = function (self, undefined) {
 		}
 		
 		function getDefinition(value) {
-			var match = value && value.match(/\((?:["'#]*)([^"')]+)/),
-				res = match && definitions[match[1]
-						.replace(window.location.href.split('#')[0] + '#', '')];
+			const match = value && value.match(/\((?:["'#]*)([^"')]+)/);
+			let res = match && definitions[match[1]
+				.replace(window.location.href.split('#')[0] + '#', '')];
 			if (res && res._scaleToBounds) {
 				res = res.clone();
 				res._scaleToBounds = true;
@@ -14337,10 +14501,10 @@ var paper = function (self, undefined) {
 		}
 		
 		function importNode(node, options, isRoot) {
-			var type = node.nodeName.toLowerCase(),
+			const type = node.nodeName.toLowerCase(),
 				isElement = type !== '#document',
-				body = document.body,
-				container,
+				body = document.body;
+			let container,
 				parent,
 				next;
 			if (isRoot && isElement) {
@@ -14354,19 +14518,19 @@ var paper = function (self, undefined) {
 				container.appendChild(node);
 				body.appendChild(container);
 			}
-			var settings = paper.settings,
+			const settings = paper.settings,
 				applyMatrix = settings.applyMatrix,
 				insertItems = settings.insertItems;
 			settings.applyMatrix = false;
 			settings.insertItems = false;
-			var importer = importers[type],
-				item = importer && importer(node, type, options, isRoot) || null;
+			const importer = importers[type];
+			let item = importer && importer(node, type, options, isRoot) || null;
 			settings.insertItems = insertItems;
 			settings.applyMatrix = applyMatrix;
 			if (item) {
 				if (isElement && !(item instanceof Group))
 					item = applyAttributes(item, node, isRoot);
-				var onImport = options.onImport,
+				const onImport = options.onImport,
 					data = isElement && node.getAttribute('data-paper-data');
 				if (onImport)
 					item = onImport(node, item, options) || item;
@@ -14401,12 +14565,12 @@ var paper = function (self, undefined) {
 				return null;
 			options = typeof options === 'function' ? {onLoad: options}
 				: options || {};
-			var scope = paper,
-				item = null;
+			const scope = paper;
+			let item = null;
 			
 			function onLoad(svg) {
 				try {
-					var node = typeof svg === 'object' ? svg : new window.DOMParser()
+					let node = typeof svg === 'object' ? svg : new window.DOMParser()
 						.parseFromString(svg, 'image/svg+xml');
 					if (!node.nodeName) {
 						node = null;
@@ -14417,7 +14581,7 @@ var paper = function (self, undefined) {
 					if (!options || options.insert !== false) {
 						owner._insertItem(undefined, item);
 					}
-					var onLoad = options.onLoad;
+					const onLoad = options.onLoad;
 					if (onLoad)
 						onLoad(item, svg);
 				} catch (e) {
@@ -14426,7 +14590,7 @@ var paper = function (self, undefined) {
 			}
 			
 			function onError(message, status) {
-				var onError = options.onError;
+				const onError = options.onError;
 				if (onError) {
 					onError(message, status);
 				}
@@ -14450,7 +14614,7 @@ var paper = function (self, undefined) {
 				}
 			}
 			else if (typeof File !== 'undefined' && source instanceof File) {
-				var reader = new FileReader();
+				const reader = new FileReader();
 				reader.onload = function () {
 					onLoad(reader.result);
 				};
@@ -14481,37 +14645,38 @@ var paper = function (self, undefined) {
 	};
 	
 	Base.exports.PaperScript = function () {
-		var exports, define,
-			scope = this;
+		let exports, define;
+		const scope = this;
 		!function (e, r) {
 			return "object" == typeof exports && "object" == typeof module ? r(exports) : "function" == typeof define && define.amd ? define(["exports"], r) : void r(e.acorn || (e.acorn = {}))
 		}(this, function (e) {
 			"use strict";
+			
 			function r(e) {
 				fe = e || {};
-				for (var r in he)Object.prototype.hasOwnProperty.call(fe, r) || (fe[r] = he[r]);
+				for (let r in he) Object.prototype.hasOwnProperty.call(fe, r) || (fe[r] = he[r]);
 				me = fe.sourceFile || null
 			}
 			
 			function t(e, r) {
-				var t = ve(de, e);
+				const t = ve(de, e);
 				r += " (" + t.line + ":" + t.column + ")";
-				var n = new SyntaxError(r);
+				const n = new SyntaxError(r);
 				throw n.pos = e, n.loc = t, n.raisedAt = be, n
 			}
 			
 			function n(e) {
 				function r(e) {
-					if (1 == e.length)return t += "return str === " + JSON.stringify(e[0]) + ";";
+					if (1 == e.length) return t += "return str === " + JSON.stringify(e[0]) + ";";
 					t += "switch(str){";
-					for (var r = 0; r < e.length; ++r)t += "case " + JSON.stringify(e[r]) + ":";
+					for (let r = 0; r < e.length; ++r) t += "case " + JSON.stringify(e[r]) + ":";
 					t += "return true}return false;"
 				}
 				
 				e = e.split(" ");
 				var t = "", n = [];
 				e:for (var a = 0; a < e.length; ++a) {
-					for (var o = 0; o < n.length; ++o)if (n[o][0].length == e[a].length) {
+					for (let o = 0; o < n.length; ++o) if (n[o][0].length == e[a].length) {
 						n[o].push(e[a]);
 						continue e
 					}
@@ -14522,7 +14687,7 @@ var paper = function (self, undefined) {
 						return r.length - e.length
 					}), t += "switch(str.length){";
 					for (var a = 0; a < n.length; ++a) {
-						var i = n[a];
+						const i = n[a];
 						t += "case " + i[0].length + ":", r(i)
 					}
 					t += "}"
@@ -14544,22 +14709,22 @@ var paper = function (self, undefined) {
 			}
 			
 			function s() {
-				var e = fe.onComment && fe.locations && new a, r = be, n = de.indexOf("*/", be += 2);
+				const e = fe.onComment && fe.locations && new a, r = be, n = de.indexOf("*/", be += 2);
 				if (-1 === n && t(be - 2, "Unterminated comment"), be = n + 2, fe.locations) {
 					Kr.lastIndex = r;
-					for (var o; (o = Kr.exec(de)) && o.index < be;)++Ae, Se = o.index + o[0].length
+					for (let o; (o = Kr.exec(de)) && o.index < be;) ++Ae, Se = o.index + o[0].length
 				}
 				fe.onComment && fe.onComment(!0, de.slice(r + 2, n), r, be, e, fe.locations && new a)
 			}
 			
 			function c() {
-				for (var e = be, r = fe.onComment && fe.locations && new a, t = de.charCodeAt(be += 2); pe > be && 10 !== t && 13 !== t && 8232 !== t && 8233 !== t;)++be, t = de.charCodeAt(be);
+				for (var e = be, r = fe.onComment && fe.locations && new a, t = de.charCodeAt(be += 2); pe > be && 10 !== t && 13 !== t && 8232 !== t && 8233 !== t;) ++be, t = de.charCodeAt(be);
 				fe.onComment && fe.onComment(!1, de.slice(e + 2, be), e, be, r, fe.locations && new a)
 			}
 			
 			function u() {
 				for (; pe > be;) {
-					var e = de.charCodeAt(be);
+					const e = de.charCodeAt(be);
 					if (32 === e) ++be;
 					else if (13 === e) {
 						++be;
@@ -14572,55 +14737,56 @@ var paper = function (self, undefined) {
 						var r = de.charCodeAt(be + 1);
 						if (42 === r) s();
 						else {
-							if (47 !== r)break;
+							if (47 !== r) break;
 							c()
 						}
 					}
 					else if (160 === e) ++be;
 					else {
-						if (!(e >= 5760 && Jr.test(String.fromCharCode(e))))break;
+						if (!(e >= 5760 && Jr.test(String.fromCharCode(e)))) break;
 						++be
 					}
 				}
 			}
 			
 			function l() {
-				var e = de.charCodeAt(be + 1);
+				const e = de.charCodeAt(be + 1);
 				return e >= 48 && 57 >= e ? E(!0) : (++be, i(xr))
 			}
 			
 			function f() {
-				var e = de.charCodeAt(be + 1);
+				const e = de.charCodeAt(be + 1);
 				return Ee ? (++be, k()) : 61 === e ? x(Er, 2) : x(wr, 1)
 			}
 			
 			function d() {
-				var e = de.charCodeAt(be + 1);
+				const e = de.charCodeAt(be + 1);
 				return 61 === e ? x(Er, 2) : x(jr, 1)
 			}
 			
 			function p(e) {
-				var r = de.charCodeAt(be + 1);
+				const r = de.charCodeAt(be + 1);
 				return r === e ? x(124 === e ? Ir : Lr, 2) : 61 === r ? x(Er, 2) : x(124 === e ? Ur : Rr, 1)
 			}
 			
 			function m() {
-				var e = de.charCodeAt(be + 1);
+				const e = de.charCodeAt(be + 1);
 				return 61 === e ? x(Er, 2) : x(Fr, 1)
 			}
 			
 			function h(e) {
-				var r = de.charCodeAt(be + 1);
+				const r = de.charCodeAt(be + 1);
 				return r === e ? 45 == r && 62 == de.charCodeAt(be + 2) && Gr.test(de.slice(Le, be)) ? (be += 3, c(), u(), g()) : x(Ar, 2) : 61 === r ? x(Er, 2) : x(qr, 1)
 			}
 			
 			function v(e) {
-				var r = de.charCodeAt(be + 1), t = 1;
+				const r = de.charCodeAt(be + 1);
+				let t = 1;
 				return r === e ? (t = 62 === e && 62 === de.charCodeAt(be + 2) ? 3 : 2, 61 === de.charCodeAt(be + t) ? x(Er, t + 1) : x(Tr, t)) : 33 == r && 60 == e && 45 == de.charCodeAt(be + 2) && 45 == de.charCodeAt(be + 3) ? (be += 4, c(), u(), g()) : (61 === r && (t = 61 === de.charCodeAt(be + 2) ? 3 : 2), x(Vr, t))
 			}
 			
 			function b(e) {
-				var r = de.charCodeAt(be + 1);
+				const r = de.charCodeAt(be + 1);
 				return 61 === r ? x(Or, 61 === de.charCodeAt(be + 2) ? 3 : 2) : x(61 === e ? Cr : Sr, 1)
 			}
 			
@@ -14649,8 +14815,8 @@ var paper = function (self, undefined) {
 					case 63:
 						return ++be, i(kr);
 					case 48:
-						var r = de.charCodeAt(be + 1);
-						if (120 === r || 88 === r)return C();
+						const r = de.charCodeAt(be + 1);
+						if (120 === r || 88 === r) return C();
 					case 49:
 					case 50:
 					case 51:
@@ -14690,40 +14856,40 @@ var paper = function (self, undefined) {
 			}
 			
 			function g(e) {
-				if (e ? be = ye + 1 : ye = be, fe.locations && (xe = new a), e)return k();
-				if (be >= pe)return i(Be);
-				var r = de.charCodeAt(be);
-				if (Qr(r) || 92 === r)return L();
-				var n = y(r);
+				if (e ? be = ye + 1 : ye = be, fe.locations && (xe = new a), e) return k();
+				if (be >= pe) return i(Be);
+				const r = de.charCodeAt(be);
+				if (Qr(r) || 92 === r) return L();
+				const n = y(r);
 				if (n === !1) {
-					var o = String.fromCharCode(r);
-					if ("\\" === o || $r.test(o))return L();
+					const o = String.fromCharCode(r);
+					if ("\\" === o || $r.test(o)) return L();
 					t(be, "Unexpected character '" + o + "'")
 				}
 				return n
 			}
 			
 			function x(e, r) {
-				var t = de.slice(be, be + r);
+				const t = de.slice(be, be + r);
 				be += r, i(e, t)
 			}
 			
 			function k() {
 				for (var e, r, n = "", a = be; ;) {
 					be >= pe && t(a, "Unterminated regular expression");
-					var o = de.charAt(be);
+					const o = de.charAt(be);
 					if (Gr.test(o) && t(a, "Unterminated regular expression"), e) e = !1;
 					else {
 						if ("[" === o) r = !0;
 						else if ("]" === o && r) r = !1;
-						else if ("/" === o && !r)break;
+						else if ("/" === o && !r) break;
 						e = "\\" === o
 					}
 					++be
 				}
 				var n = de.slice(a, be);
 				++be;
-				var s = I();
+				const s = I();
 				s && !/^[gmsiy]*$/.test(s) && t(a, "Invalid regexp flag");
 				try {
 					var c = new RegExp(n, s)
@@ -14735,8 +14901,9 @@ var paper = function (self, undefined) {
 			
 			function w(e, r) {
 				for (var t = be, n = 0, a = 0, o = null == r ? 1 / 0 : r; o > a; ++a) {
-					var i, s = de.charCodeAt(be);
-					if (i = s >= 97 ? s - 97 + 10 : s >= 65 ? s - 65 + 10 : s >= 48 && 57 >= s ? s - 48 : 1 / 0, i >= e)break;
+					let i;
+					const s = de.charCodeAt(be);
+					if (i = s >= 97 ? s - 97 + 10 : s >= 65 ? s - 65 + 10 : s >= 48 && 57 >= s ? s - 48 : 1 / 0, i >= e) break;
 					++be, n = n * e + i
 				}
 				return be === t || null != r && be - t !== r ? null : n
@@ -14744,29 +14911,32 @@ var paper = function (self, undefined) {
 			
 			function C() {
 				be += 2;
-				var e = w(16);
+				const e = w(16);
 				return null == e && t(ye + 2, "Expected hexadecimal number"), Qr(de.charCodeAt(be)) && t(be, "Identifier directly after number"), i(Te, e)
 			}
 			
 			function E(e) {
-				var r = be, n = !1, a = 48 === de.charCodeAt(be);
+				const r = be;
+				let n = !1;
+				const a = 48 === de.charCodeAt(be);
 				e || null !== w(10) || t(r, "Invalid number"), 46 === de.charCodeAt(be) && (++be, w(10), n = !0);
-				var o = de.charCodeAt(be);
+				let o = de.charCodeAt(be);
 				69 !== o && 101 !== o || (o = de.charCodeAt(++be), 43 !== o && 45 !== o || ++be, null === w(10) && t(r, "Invalid number"), n = !0), Qr(de.charCodeAt(be)) && t(be, "Identifier directly after number");
-				var s, c = de.slice(r, be);
+				let s;
+				const c = de.slice(r, be);
 				return n ? s = parseFloat(c) : a && 1 !== c.length ? /[89]/.test(c) || Oe ? t(r, "Invalid number") : s = parseInt(c, 8) : s = parseInt(c, 10), i(Te, s)
 			}
 			
 			function A(e) {
 				be++;
-				for (var r = ""; ;) {
+				for (let r = ""; ;) {
 					be >= pe && t(ye, "Unterminated string constant");
-					var n = de.charCodeAt(be);
-					if (n === e)return ++be, i(je, r);
+					let n = de.charCodeAt(be);
+					if (n === e) return ++be, i(je, r);
 					if (92 === n) {
 						n = de.charCodeAt(++be);
-						var a = /^[0-7]+/.exec(de.slice(be, be + 3));
-						for (a && (a = a[0]); a && parseInt(a, 8) > 255;)a = a.slice(0, -1);
+						let a = /^[0-7]+/.exec(de.slice(be, be + 3));
+						for (a && (a = a[0]); a && parseInt(a, 8) > 255;) a = a.slice(0, -1);
 						if ("0" === a && (a = null), ++be, a) Oe && t(be - 2, "Octal literal in strict mode"), r += String.fromCharCode(parseInt(a, 8)), be += a.length - 1;
 						else switch (n) {
 							case 110:
@@ -14813,19 +14983,19 @@ var paper = function (self, undefined) {
 			}
 			
 			function S(e) {
-				var r = w(16, e);
+				const r = w(16, e);
 				return null === r && t(ye, "Bad character escape sequence"), r
 			}
 			
 			function I() {
 				Br = !1;
 				for (var e, r = !0, n = be; ;) {
-					var a = de.charCodeAt(be);
+					const a = de.charCodeAt(be);
 					if (Yr(a)) Br && (e += de.charAt(be)), ++be;
 					else {
-						if (92 !== a)break;
+						if (92 !== a) break;
 						Br || (e = de.slice(n, be)), Br = !0, 117 != de.charCodeAt(++be) && t(be, "Expecting Unicode escape sequence \\uXXXX"), ++be;
-						var o = S(4), i = String.fromCharCode(o);
+						const o = S(4), i = String.fromCharCode(o);
 						i || t(be - 1, "Invalid Unicode escape"), (r ? Qr(o) : Yr(o)) || t(be - 4, "Invalid Unicode escape"), e += i
 					}
 					r = !1
@@ -14834,7 +15004,8 @@ var paper = function (self, undefined) {
 			}
 			
 			function L() {
-				var e = I(), r = De;
+				const e = I();
+				let r = De;
 				return !Br && Wr(e) && (r = lr[e]), i(r, e)
 			}
 			
@@ -14843,7 +15014,7 @@ var paper = function (self, undefined) {
 			}
 			
 			function F(e) {
-				if (Oe = e, be = ye, fe.locations)for (; Se > be;)Se = de.lastIndexOf("\n", Se - 2) + 1, --Ae;
+				if (Oe = e, be = ye, fe.locations) for (; Se > be;) Se = de.lastIndexOf("\n", Se - 2) + 1, --Ae;
 				u(), g()
 			}
 			
@@ -14856,12 +15027,12 @@ var paper = function (self, undefined) {
 			}
 			
 			function V() {
-				var e = new R;
+				const e = new R;
 				return fe.locations && (e.loc = new O), fe.directSourceFile && (e.sourceFile = fe.directSourceFile), fe.ranges && (e.range = [ye, 0]), e
 			}
 			
 			function T(e) {
-				var r = new R;
+				const r = new R;
 				return r.start = e.start, fe.locations && (r.loc = new O, r.loc.start = e.loc.start), fe.ranges && (r.range = [e.range[0], 0]), r
 			}
 			
@@ -14899,9 +15070,10 @@ var paper = function (self, undefined) {
 			
 			function W(e) {
 				Ie = Le = be, fe.locations && (Ue = new a), Fe = Oe = null, Re = [], g();
-				var r = e || V(), t = !0;
+				const r = e || V();
+				let t = !0;
 				for (e || (r.body = []); we !== Be;) {
-					var n = J();
+					const n = J();
 					r.body.push(n), t && j(n) && F(!0), t = !1
 				}
 				return q(r, "Program")
@@ -14909,18 +15081,18 @@ var paper = function (self, undefined) {
 			
 			function J() {
 				(we === wr || we === Er && "/=" == Ce) && g(!0);
-				var e = we, r = V();
+				const e = we, r = V();
 				switch (e) {
 					case Me:
 					case Ne:
 						U();
-						var n = e === Me;
+						const n = e === Me;
 						D(yr) || B() ? r.label = null : we !== De ? X() : (r.label = le(), M());
 						for (var a = 0; a < Re.length; ++a) {
-							var o = Re[a];
+							const o = Re[a];
 							if (null == r.label || o.name === r.label.name) {
-								if (null != o.kind && (n || "loop" === o.kind))break;
-								if (r.label && n)break
+								if (null != o.kind && (n || "loop" === o.kind)) break;
+								if (r.label && n) break
 							}
 						}
 						return a === Re.length && t(r.start, "Unsyntactic " + e.keyword), q(r, n ? "BreakStatement" : "ContinueStatement");
@@ -14929,7 +15101,7 @@ var paper = function (self, undefined) {
 					case Pe:
 						return U(), Re.push(Zr), r.body = J(), Re.pop(), z(tr), r.test = P(), M(), q(r, "DoWhileStatement");
 					case _e:
-						if (U(), Re.push(Zr), z(hr), we === yr)return $(r, null);
+						if (U(), Re.push(Zr), z(hr), we === yr) return $(r, null);
 						if (we === rr) {
 							var i = V();
 							return U(), G(i, !0), q(i, "VariableDeclaration"), 1 === i.declarations.length && D(ur) ? _(r, i) : $(r, i)
@@ -14944,8 +15116,8 @@ var paper = function (self, undefined) {
 						return Fe || fe.allowReturnOutsideFunction || t(ye, "'return' outside of function"), U(), D(yr) || B() ? r.argument = null : (r.argument = K(), M()), q(r, "ReturnStatement");
 					case Ye:
 						U(), r.discriminant = P(), r.cases = [], z(pr), Re.push(et);
-						for (var s, c; we != mr;)if (we === ze || we === Je) {
-							var u = we === ze;
+						for (var s, c; we != mr;) if (we === ze || we === Je) {
+							const u = we === ze;
 							s && q(s, "SwitchCase"), r.cases.push(s = V()), s.consequent = [], U(), u ? s.test = K() : (c && t(Ie, "Multiple default clauses"), c = !0, s.test = null), z(gr)
 						}
 						else s || X(), s.consequent.push(J());
@@ -14954,7 +15126,7 @@ var paper = function (self, undefined) {
 						return U(), Gr.test(de.slice(Le, ye)) && t(Le, "Illegal newline after throw"), r.argument = K(), M(), q(r, "ThrowStatement");
 					case er:
 						if (U(), r.block = H(), r.handler = null, we === Xe) {
-							var l = V();
+							const l = V();
 							U(), z(hr), l.param = le(), Oe && Nr(l.param.name) && t(l.param.start, "Binding " + l.param.name + " in strict mode"), z(vr), l.guard = null, l.body = H(), r.handler = q(l, "CatchClause")
 						}
 						return r.guardedHandlers = Ve, r.finalizer = D($e) ? H() : null, r.handler || r.finalizer || t(r.start, "Missing catch or finally clause"), q(r, "TryStatement");
@@ -14969,10 +15141,10 @@ var paper = function (self, undefined) {
 					case yr:
 						return U(), q(r, "EmptyStatement");
 					default:
-						var f = Ce, d = K();
+						const f = Ce, d = K();
 						if (e === De && "Identifier" === d.type && D(gr)) {
-							for (var a = 0; a < Re.length; ++a)Re[a].name === f && t(d.start, "Label '" + f + "' is already declared");
-							var p = we.isLoop ? "loop" : we === Ye ? "switch" : null;
+							for (var a = 0; a < Re.length; ++a) Re[a].name === f && t(d.start, "Label '" + f + "' is already declared");
+							const p = we.isLoop ? "loop" : we === Ye ? "switch" : null;
 							return Re.push({
 								name: f,
 								kind: p
@@ -14984,14 +15156,16 @@ var paper = function (self, undefined) {
 			
 			function P() {
 				z(hr);
-				var e = K();
+				const e = K();
 				return z(vr), e
 			}
 			
 			function H(e) {
-				var r, t = V(), n = !0, a = !1;
+				let r;
+				const t = V();
+				let n = !0, a = !1;
 				for (t.body = [], z(pr); !D(mr);) {
-					var o = J();
+					const o = J();
 					t.body.push(o), n && e && j(o) && (r = a, F(a = !0)), n = !1
 				}
 				return a && !r && F(!1), q(t, "BlockStatement")
@@ -15007,35 +15181,35 @@ var paper = function (self, undefined) {
 			
 			function G(e, r) {
 				for (e.declarations = [], e.kind = "var"; ;) {
-					var n = V();
-					if (n.id = le(), Oe && Nr(n.id.name) && t(n.id.start, "Binding " + n.id.name + " in strict mode"), n.init = D(Cr) ? K(!0, r) : null, e.declarations.push(q(n, "VariableDeclarator")), !D(br))break
+					const n = V();
+					if (n.id = le(), Oe && Nr(n.id.name) && t(n.id.start, "Binding " + n.id.name + " in strict mode"), n.init = D(Cr) ? K(!0, r) : null, e.declarations.push(q(n, "VariableDeclarator")), !D(br)) break
 				}
 				return e
 			}
 			
 			function K(e, r) {
-				var t = Q(r);
+				const t = Q(r);
 				if (!e && we === br) {
-					var n = T(t);
-					for (n.expressions = [t]; D(br);)n.expressions.push(Q(r));
+					const n = T(t);
+					for (n.expressions = [t]; D(br);) n.expressions.push(Q(r));
 					return q(n, "SequenceExpression")
 				}
 				return t
 			}
 			
 			function Q(e) {
-				var r = Y(e);
+				const r = Y(e);
 				if (we.isAssign) {
-					var t = T(r);
+					const t = T(r);
 					return t.operator = Ce, t.left = r, U(), t.right = Q(e), N(r), q(t, "AssignmentExpression")
 				}
 				return r
 			}
 			
 			function Y(e) {
-				var r = Z(e);
+				const r = Z(e);
 				if (D(kr)) {
-					var t = T(r);
+					const t = T(r);
 					return t.test = r, t.consequent = K(!0), z(gr), t.alternate = K(!0, e), q(t, "ConditionalExpression")
 				}
 				return r
@@ -15046,13 +15220,13 @@ var paper = function (self, undefined) {
 			}
 			
 			function ee(e, r, t) {
-				var n = we.binop;
+				const n = we.binop;
 				if (null != n && (!t || we !== ur) && n > r) {
-					var a = T(e);
+					const a = T(e);
 					a.left = e, a.operator = Ce;
-					var o = we;
+					const o = we;
 					U(), a.right = ee(re(), n, t);
-					var i = q(a, o === Ir || o === Lr ? "LogicalExpression" : "BinaryExpression");
+					const i = q(a, o === Ir || o === Lr ? "LogicalExpression" : "BinaryExpression");
 					return ee(i, r, t)
 				}
 				return e
@@ -15108,9 +15282,9 @@ var paper = function (self, undefined) {
 						var e = V();
 						return e.value = we.atomValue, e.raw = we.keyword, U(), q(e, "Literal");
 					case hr:
-						var r = xe, t = ye;
+						const r = xe, t = ye;
 						U();
-						var n = K();
+						const n = K();
 						return n.start = t, n.end = ge, fe.locations && (n.loc.start = r, n.loc.end = ke), fe.ranges && (n.range = [t, ge]), z(vr), n;
 					case fr:
 						var e = V();
@@ -15128,20 +15302,23 @@ var paper = function (self, undefined) {
 			}
 			
 			function oe() {
-				var e = V();
+				const e = V();
 				return U(), e.callee = ne(ae(), !0), D(hr) ? e.arguments = ue(vr, !1) : e.arguments = Ve, q(e, "NewExpression")
 			}
 			
 			function ie() {
-				var e = V(), r = !0, n = !1;
+				const e = V();
+				let r = !0, n = !1;
 				for (e.properties = [], U(); !D(mr);) {
 					if (r) r = !1;
-					else if (z(br), fe.allowTrailingCommas && D(mr))break;
-					var a, o = {key: se()}, i = !1;
-					if (D(gr) ? (o.value = K(!0), a = o.kind = "init") : fe.ecmaVersion >= 5 && "Identifier" === o.key.type && ("get" === o.key.name || "set" === o.key.name) ? (i = n = !0, a = o.kind = o.key.name, o.key = se(), we !== hr && X(), o.value = ce(V(), !1)) : X(), "Identifier" === o.key.type && (Oe || n))for (var s = 0; s < e.properties.length; ++s) {
-						var c = e.properties[s];
+					else if (z(br), fe.allowTrailingCommas && D(mr)) break;
+					let a;
+					const o = {key: se()};
+					let i = !1;
+					if (D(gr) ? (o.value = K(!0), a = o.kind = "init") : fe.ecmaVersion >= 5 && "Identifier" === o.key.type && ("get" === o.key.name || "set" === o.key.name) ? (i = n = !0, a = o.kind = o.key.name, o.key = se(), we !== hr && X(), o.value = ce(V(), !1)) : X(), "Identifier" === o.key.type && (Oe || n)) for (let s = 0; s < e.properties.length; ++s) {
+						const c = e.properties[s];
 						if (c.key.name === o.key.name) {
-							var u = a == c.kind || i && "init" === c.kind || "init" === a && ("get" === c.kind || "set" === c.kind);
+							let u = a == c.kind || i && "init" === c.kind || "init" === a && ("get" === c.kind || "set" === c.kind);
 							u && !Oe && "init" === a && "init" === c.kind && (u = !1), u && t(o.key.start, "Redefinition of property")
 						}
 					}
@@ -15156,12 +15333,12 @@ var paper = function (self, undefined) {
 			
 			function ce(e, r) {
 				we === De ? e.id = le() : r ? X() : e.id = null, e.params = [];
-				var n = !0;
-				for (z(hr); !D(vr);)n ? n = !1 : z(br), e.params.push(le());
-				var a = Fe, o = Re;
-				if (Fe = !0, Re = [], e.body = H(!0), Fe = a, Re = o, Oe || e.body.body.length && j(e.body.body[0]))for (var i = e.id ? -1 : 0; i < e.params.length; ++i) {
-					var s = 0 > i ? e.id : e.params[i];
-					if ((Xr(s.name) || Nr(s.name)) && t(s.start, "Defining '" + s.name + "' in strict mode"), i >= 0)for (var c = 0; i > c; ++c)s.name === e.params[c].name && t(s.start, "Argument name clash in strict mode")
+				let n = !0;
+				for (z(hr); !D(vr);) n ? n = !1 : z(br), e.params.push(le());
+				const a = Fe, o = Re;
+				if (Fe = !0, Re = [], e.body = H(!0), Fe = a, Re = o, Oe || e.body.body.length && j(e.body.body[0])) for (let i = e.id ? -1 : 0; i < e.params.length; ++i) {
+					const s = 0 > i ? e.id : e.params[i];
+					if ((Xr(s.name) || Nr(s.name)) && t(s.start, "Defining '" + s.name + "' in strict mode"), i >= 0) for (let c = 0; i > c; ++c) s.name === e.params[c].name && t(s.start, "Argument name clash in strict mode")
 				}
 				return q(e, r ? "FunctionDeclaration" : "FunctionExpression")
 			}
@@ -15169,14 +15346,14 @@ var paper = function (self, undefined) {
 			function ue(e, r, t) {
 				for (var n = [], a = !0; !D(e);) {
 					if (a) a = !1;
-					else if (z(br), r && fe.allowTrailingCommas && D(e))break;
+					else if (z(br), r && fe.allowTrailingCommas && D(e)) break;
 					t && we === br ? n.push(null) : n.push(K(!0))
 				}
 				return n
 			}
 			
 			function le(e) {
-				var r = V();
+				const r = V();
 				return e && "everywhere" == fe.forbidReserved && (e = !1), we === De ? (!e && (fe.forbidReserved && (3 === fe.ecmaVersion ? Mr : zr)(Ce) || Oe && Xr(Ce)) && -1 == de.slice(ye, ge).indexOf("\\") && t(ye, "The keyword '" + Ce + "' is reserved"), r.name = Ce) : e && we.keyword ? r.name = we.keyword : X(), Ee = !1, U(), q(r, "Identifier")
 			}
 			
@@ -15200,8 +15377,8 @@ var paper = function (self, undefined) {
 			}, ve = e.getLineInfo = function (e, r) {
 				for (var t = 1, n = 0; ;) {
 					Kr.lastIndex = n;
-					var a = Kr.exec(e);
-					if (!(a && a.index < r))break;
+					const a = Kr.exec(e);
+					if (!(a && a.index < r)) break;
 					++t, n = a.index + a[0].length
 				}
 				return {line: t, column: r - n}
@@ -15216,7 +15393,7 @@ var paper = function (self, undefined) {
 				return n.jumpTo = function (e, r) {
 					if (be = e, fe.locations) {
 						Ae = 1, Se = Kr.lastIndex = 0;
-						for (var t; (t = Kr.exec(de)) && t.index < e;)++Ae, Se = t.index + t[0].length
+						for (let t; (t = Kr.exec(de)) && t.index < e;) ++Ae, Se = t.index + t[0].length
 					}
 					Ee = r, u()
 				}, n
@@ -15290,7 +15467,7 @@ var paper = function (self, undefined) {
 				regexp: qe,
 				string: je
 			};
-			for (var Dr in lr)e.tokTypes["_" + Dr] = lr[Dr];
+			for (let Dr in lr) e.tokTypes["_" + Dr] = lr[Dr];
 			var Br,
 				Mr = n("abstract boolean byte char class double enum export extends final float goto implements import int interface long native package private protected public short static super synchronized throws transient volatile"),
 				zr = n("class enum extends super const export import"),
@@ -15308,7 +15485,7 @@ var paper = function (self, undefined) {
 				}, Zr = {kind: "loop"}, et = {kind: "switch"}
 		});
 		
-		var binaryOperators = {
+		const binaryOperators = {
 			'+': '__add',
 			'-': '__subtract',
 			'*': '__multiply',
@@ -15318,12 +15495,12 @@ var paper = function (self, undefined) {
 			'!=': '__equals'
 		};
 		
-		var unaryOperators = {
+		const unaryOperators = {
 			'-': '__negate',
 			'+': null
 		};
 		
-		var fields = Base.each(
+		const fields = Base.each(
 			['add', 'subtract', 'multiply', 'divide', 'modulo', 'equals', 'negate'],
 			function (name) {
 				this['__' + name] = '#' + name;
@@ -15335,9 +15512,9 @@ var paper = function (self, undefined) {
 		Color.inject(fields);
 		
 		function __$__(left, operator, right) {
-			var handler = binaryOperators[operator];
+			const handler = binaryOperators[operator];
 			if (left && left[handler]) {
-				var res = left[handler](right);
+				let res = left[handler](right);
 				return operator === '!=' ? !res : res;
 			}
 			switch (operator) {
@@ -15359,7 +15536,7 @@ var paper = function (self, undefined) {
 		}
 		
 		function $__(operator, value) {
-			var handler = unaryOperators[operator];
+			const handler = unaryOperators[operator];
 			if (handler && value && value[handler])
 				return value[handler]();
 			switch (operator) {
@@ -15379,11 +15556,13 @@ var paper = function (self, undefined) {
 				return '';
 			options = options || {};
 			
-			var insertions = [];
+			const insertions = [];
 			
 			function getOffset(offset) {
-				for (var i = 0, l = insertions.length; i < l; i++) {
-					var insertion = insertions[i];
+				let i = 0;
+				const l = insertions.length;
+				for (; i < l; i++) {
+					const insertion = insertions[i];
 					if (insertion[0] >= offset)
 						break;
 					offset += insertion[1];
@@ -15402,10 +15581,10 @@ var paper = function (self, undefined) {
 			}
 			
 			function replaceCode(node, str) {
-				var start = getOffset(node.range[0]),
-					end = getOffset(node.range[1]),
-					insert = 0;
-				for (var i = insertions.length - 1; i >= 0; i--) {
+				const start = getOffset(node.range[0]),
+					end = getOffset(node.range[1]);
+				let insert = 0;
+				for (let i = insertions.length - 1; i >= 0; i--) {
 					if (start > insertions[i][0]) {
 						insert = i + 1;
 						break;
@@ -15418,12 +15597,14 @@ var paper = function (self, undefined) {
 			function walkAST(node, parent) {
 				if (!node)
 					return;
-				for (var key in node) {
+				for (let key in node) {
 					if (key === 'range' || key === 'loc')
 						continue;
-					var value = node[key];
+					let value = node[key];
 					if (Array.isArray(value)) {
-						for (var i = 0, l = value.length; i < l; i++)
+						let i = 0;
+						const l = value.length;
+						for (; i < l; i++)
 							walkAST(value[i], node);
 					}
 					else if (value && typeof value === 'object') {
@@ -15454,7 +15635,7 @@ var paper = function (self, undefined) {
 						break;
 					case 'UpdateExpression':
 					case 'AssignmentExpression':
-						var parentType = parent && parent.type;
+						const parentType = parent && parent.type;
 						if (!(
 								parentType === 'ForStatement'
 								|| parentType === 'BinaryExpression'
@@ -15468,7 +15649,7 @@ var paper = function (self, undefined) {
 									str = arg + ' = ' + exp;
 								if (!node.prefix
 									&& (parentType === 'AssignmentExpression'
-									|| parentType === 'VariableDeclarator')) {
+										|| parentType === 'VariableDeclarator')) {
 									if (getCode(parent.left || parent.id) === arg)
 										str = exp;
 									str = arg + '; ' + str;
@@ -15490,11 +15671,11 @@ var paper = function (self, undefined) {
 			}
 			
 			function encodeVLQ(value) {
-				var res = '',
-					base64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+				let res = '';
+				const base64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 				value = (Math.abs(value) << 1) + (value < 0 ? 1 : 0);
 				while (value || !res) {
-					var next = value & (32 - 1);
+					let next = value & (32 - 1);
 					value >>= 5;
 					if (value)
 						next |= 32;
@@ -15513,23 +15694,23 @@ var paper = function (self, undefined) {
 				offset = options.offset || 0,
 				map;
 			if (sourceMaps && (agent.chrome && version >= 30
-				|| agent.webkit && version >= 537.76
-				|| agent.firefox && version >= 23
-				|| agent.node)) {
+					|| agent.webkit && version >= 537.76
+					|| agent.firefox && version >= 23
+					|| agent.node)) {
 				if (agent.node) {
 					offset -= 2;
 				}
 				else if (window && url && !window.location.href.indexOf(url)) {
-					var html = document.getElementsByTagName('html')[0].innerHTML;
+					const html = document.getElementsByTagName('html')[0].innerHTML;
 					offset = html.substr(0, html.indexOf(code) + 1).match(
-							lineBreaks).length + 1;
+						lineBreaks).length + 1;
 				}
 				offsetCode = offset > 0 && !(
 					agent.chrome && version >= 36 ||
 					agent.safari && version >= 600 ||
 					agent.firefox && version >= 40 ||
 					agent.node);
-				var mappings = ['AA' + encodeVLQ(offsetCode ? 0 : offset) + 'A'];
+				const mappings = ['AA' + encodeVLQ(offsetCode ? 0 : offset) + 'A'];
 				mappings.length = (code.match(lineBreaks) || []).length + 1
 					+ (offsetCode ? offset : 0);
 				map = {
@@ -15564,19 +15745,20 @@ var paper = function (self, undefined) {
 		
 		function execute(code, scope, options) {
 			paper = scope;
-			var view = scope.getView(),
+			const view = scope.getView(),
 				tool = /\btool\.\w+|\s+on(?:Key|Mouse)(?:Up|Down|Move|Drag)\b/
 					.test(code) && !/\bnew\s+Tool\b/.test(code)
 					? new Tool() : null,
-				toolHandlers = tool ? tool._events : [],
-				handlers = ['onFrame', 'onResize'].concat(toolHandlers),
-				params = [],
-				args = [],
-				func,
-				compiled = typeof code === 'object' ? code : compile(code, options);
+				toolHandlers = tool ? tool._events : [];
+			let handlers = ['onFrame', 'onResize'].concat(toolHandlers);
+			const params = [],
+				args = [];
+			let func;
+			const compiled = typeof code === 'object' ? code : compile(code, options);
 			code = compiled.code;
+			
 			function expose(scope, hidden) {
-				for (var key in scope) {
+				for (let key in scope) {
 					if ((hidden || !/^_/.test(key)) && new RegExp('([\\b\\s\\W]|^)'
 							+ key.replace(/\$/g, '\\$') + '\\b').test(code)) {
 						params.push(key);
@@ -15596,10 +15778,10 @@ var paper = function (self, undefined) {
 			}, []).join(', ');
 			if (handlers)
 				code += '\nreturn { ' + handlers + ' };';
-			var agent = paper.agent;
+			const agent = paper.agent;
 			if (document && (agent.chrome
-				|| agent.firefox && agent.versionNumber < 40)) {
-				var script = document.createElement('script'),
+					|| agent.firefox && agent.versionNumber < 40)) {
+				const script = document.createElement('script'),
 					head = document.head || document.getElementsByTagName('head')[0];
 				if (agent.firefox)
 					code = '\n' + code;
@@ -15614,9 +15796,9 @@ var paper = function (self, undefined) {
 			else {
 				func = Function(params, code);
 			}
-			var res = func.apply(scope, args) || {};
+			const res = func.apply(scope, args) || {};
 			Base.each(toolHandlers, function (key) {
-				var value = res[key];
+				const value = res[key];
 				if (value)
 					tool[key] = value;
 			});
@@ -15637,15 +15819,15 @@ var paper = function (self, undefined) {
 		function loadScript(script) {
 			if (/^text\/(?:x-|)paperscript$/.test(script.type)
 				&& PaperScope.getAttribute(script, 'ignore') !== 'true') {
-				var canvasId = PaperScope.getAttribute(script, 'canvas'),
-					canvas = document.getElementById(canvasId),
-					src = script.src || script.getAttribute('data-src'),
+				const canvasId = PaperScope.getAttribute(script, 'canvas');
+				let canvas = document.getElementById(canvasId);
+				const src = script.src || script.getAttribute('data-src'),
 					async = PaperScope.hasAttribute(script, 'async'),
 					scopeAttribute = 'data-paper-scope';
 				if (!canvas)
 					throw new Error('Unable to find canvas with id "'
 						+ canvasId + '"');
-				var scope = PaperScope.get(canvas.getAttribute(scopeAttribute))
+				const scope = PaperScope.get(canvas.getAttribute(scopeAttribute))
 					|| new PaperScope().setup(canvas);
 				canvas.setAttribute(scopeAttribute, scope._id);
 				if (src) {
