@@ -27,7 +27,7 @@ export default class TeacherContent extends React.Component {
 	};
 	
 	renderContent = () => {
-		if (this.props.gameLogic["round"] == 0) {
+		if (this.props.gameLogic["round"] === 0) {
 			addToHomescreen();
 			return <div className="flex-container" style={{flex: 1, flexDirection: 'column'}}>
 				<GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic}/>
@@ -75,7 +75,7 @@ export default class TeacherContent extends React.Component {
 						return (
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
-									return key2 == "categoryName" ?
+									return key2 === "categoryName" ?
 										<div className="Header" key={key1 + "H"} style={{
 											alignItems: "center",
 											justifyContent: "center",
@@ -96,7 +96,7 @@ export default class TeacherContent extends React.Component {
 						return (
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
-									return key2 == "categoryName" ?
+									return key2 === "categoryName" ?
 										<div className="Header" key={key1 + "H"} style={{
 											alignItems: "center",
 											justifyContent: "center",
@@ -117,14 +117,14 @@ export default class TeacherContent extends React.Component {
 				}}>Daily<br/>Double</div>;
 			case "wager":
 				const DDwager = this.props.gameLogic["player" + this.props.gameLogic["lastWinner"]]["wager"];
-				return [<div className="flex-container" style={{
+				return [<div className="flex-container" key="top" style={{
 					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
 					whiteSpace: "pre-wrap",
 				}}>Daily<br/>Double</div>,
 					<div style={{
 						fontSize: "3vw",
 						minWidth: "10vw",
-					}}>{"Team Wager: " + DDwager}</div>];
+					}} key="bottom">{"Team Wager: " + DDwager}</div>];
 			case "questionDecide":
 				Meteor.call('gameLogic.resetCurrentQuestionLogic');
 				if (this.props.gameQuestions["currentQuestion"]["isDailyDouble"]) {
@@ -148,7 +148,7 @@ export default class TeacherContent extends React.Component {
 						</div>);
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"].type == "image") {
+					if (this.props.gameQuestions["currentQuestion"]["question"].type === "image") {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<div
 								style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"].text}</div>
@@ -182,7 +182,7 @@ export default class TeacherContent extends React.Component {
 			case "FJanswer":
 				const player = this.props.gameLogic["FJ"]["currentPlayer"];
 				let wager;
-				if (player != 0) {
+				if (player !== 0) {
 					wager = "Wager: " + this.props.gameLogic["player" + player]["wager"];
 				}
 				else {
@@ -201,7 +201,7 @@ export default class TeacherContent extends React.Component {
 						</div>);
 				}
 				else {
-					if (this.props.gameQuestions["currentRound"]["question"].type == "image") {
+					if (this.props.gameQuestions["currentRound"]["question"].type === "image") {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<div
 								style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"].text}</div>

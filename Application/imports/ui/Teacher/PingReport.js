@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {createContainer} from "meteor/react-meteor-data";
+import {withTracker} from "meteor/react-meteor-data";
 import {pingDatabase} from "../../api/pingDatabase";
 import * as $ from "jquery";
 import PingEntry from "./PingEntry";
@@ -32,11 +32,11 @@ class PingReport extends React.Component {
 }
 
 
-export default createContainer(() => {
+export default withTracker(() => {
 	const handle1 = Meteor.subscribe('pingDatabase');
 	
 	return {
 		isReady: handle1.ready(),
 		pingDatabase: pingDatabase.find().fetch(),
 	};
-}, PingReport);
+})(PingReport);

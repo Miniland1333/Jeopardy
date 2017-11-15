@@ -9,7 +9,7 @@ Meteor.startup(() => {
 	// code to run on server at startup
 	
 	//Comment out below to prevent initialization
-	// Meteor.call("gameLogic.init");
+	Meteor.call("gameLogic.init");
 	Meteor.call("pingDatabase.init");
 	Meteor.call("gameLogic.kickAll");
 	

@@ -467,10 +467,9 @@ export default class ViewerContent extends React.Component {
 			case "FJanswer":
 				clearInterval(timer);
 				if (this.state.setup) {
-					this.setState({setup: false});
+					Meteor.setTimeout(()=>this.setState({setup: false}),10);
 					return <div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
-						<canvas style={{flex: 1}} id="writingPad"/>
-						;
+						<canvas style={{flex: 1}} id="writingPad"/>;
 					</div>
 
 				}

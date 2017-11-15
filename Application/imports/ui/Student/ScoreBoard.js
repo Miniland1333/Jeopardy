@@ -56,6 +56,9 @@ export default class ScoreBoard extends React.Component {
 			else if (status === "ready" && this.props.connectionId === this.props.playerLogic["connectionId"]) {
 				this.handleFocus();
 				let name = prompt("Enter Team Name", this.props.playerLogic.teamName);
+				if (!name) {
+					name = "";
+				}
 				this.handleName(name);
 			}
 		}
