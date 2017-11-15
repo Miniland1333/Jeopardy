@@ -188,10 +188,16 @@ export default class StudentContent extends React.Component {
 					<div style={{background: "#00b500", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
 			}
-			else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)
-				|| this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
+			else if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
 				
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
+				</div>;
+			}
+			else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+				
+				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					{/*TODO-Add time difference*/}
 					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
 			}

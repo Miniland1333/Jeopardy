@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="Updated button and scoreboard">
+    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/PingReport.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/PingReport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/main.js" afterPath="$PROJECT_DIR$/server/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -41,13 +37,23 @@
       <file leaf-file-name="StudentContent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="191" column="99" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="99" />
+            <state relative-caret-position="517">
+              <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#404#525#0" expanded="false" />
                 <element signature="e#546#667#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameLogic.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -177,13 +183,13 @@
         <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/server/main.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/PingReport.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
       </list>
     </option>
   </component>
@@ -1290,14 +1296,7 @@
       <workItem from="1509153308483" duration="14000" />
       <workItem from="1509936332494" duration="75000" />
       <workItem from="1510716578137" duration="600000" />
-      <workItem from="1510717976556" duration="10760000" />
-    </task>
-    <task id="LOCAL-00057" summary="Attempt to add Final Jeopardy writing pad&#10;&#10;&#10;#Sound bug is related to &quot;advance&quot; command somehow">
-      <created>1473300118236</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1473300118237</updated>
+      <workItem from="1510717976556" duration="11160000" />
     </task>
     <task id="LOCAL-00058" summary="Implemented player side writing pad">
       <created>1473543858435</created>
@@ -1635,11 +1634,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510728855951</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Bug Fixes">
+      <created>1510729998833</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1510729998833</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="657684000" />
+    <option name="totallyTimeSpent" value="658084000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1755,7 +1761,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Spelling Fix for Add to Home Screen" />
     <MESSAGE value="Sound initialization at beginning to eliminate latency" />
     <MESSAGE value="Sounds will continue playing on reload" />
     <MESSAGE value="Jthink will also continue to play with reload" />
@@ -1780,7 +1785,8 @@
     <MESSAGE value="Removed refresh()" />
     <MESSAGE value="Minimalized Scoreboard&#10;&#10;Makes only the player's view appear" />
     <MESSAGE value="Updated button and scoreboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated button and scoreboard" />
+    <MESSAGE value="Bug Fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2115,14 +2121,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="258" column="66" lean-forward="false" selection-start-line="258" selection-start-column="66" selection-end-line="258" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -2198,10 +2196,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="191" column="99" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="99" />
+        <state relative-caret-position="517">
+          <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#404#525#0" expanded="false" />
@@ -2210,10 +2216,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/main.js">
+    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        <state relative-caret-position="153">
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
           <folding />
         </state>
       </provider>
