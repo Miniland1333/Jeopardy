@@ -162,7 +162,7 @@ export default class StudentContent extends React.Component {
 		}
 		else if (this.props.gameLogic["state"] === "read") {
 			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-				<div style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
+				<div style={{background: "#7a7a7a", borderRadius: "8px", margin: "30px", flex: 1}}/>
 			</div>;
 		}
 		else if (this.props.gameLogic["state"] === "open") {
@@ -188,7 +188,9 @@ export default class StudentContent extends React.Component {
 					<div style={{background: "#00b500", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
 			}
-			else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+			else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)
+				|| this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
+				
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
 				</div>;
@@ -275,12 +277,12 @@ export default class StudentContent extends React.Component {
 					}
 					else {
 						return <h1 className="flex-container"
-						            style={{
-							            flexDirection: "column",
-							            flex: 1,
-							            backgroundColor: "#060CE9",
-							            fontSize: "4vmin"
-						            }}>{this.state.isPortrait ? "Rotate your device to landscape!" : "Keep your device in landscape!"}</h1>;
+						           style={{
+							           flexDirection: "column",
+							           flex: 1,
+							           backgroundColor: "#060CE9",
+							           fontSize: "4vmin"
+						           }}>{this.state.isPortrait ? "Rotate your device to landscape!" : "Keep your device in landscape!"}</h1>;
 					}
 				
 				case "FJread":

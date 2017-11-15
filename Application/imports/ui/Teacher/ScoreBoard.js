@@ -19,7 +19,7 @@ export default class ScoreBoard extends React.Component {
 	};
 	
 	numDisplay = () => {
-		if (this.props.round == 0) {
+		if (this.props.round === 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
 					return "----";
@@ -46,7 +46,7 @@ export default class ScoreBoard extends React.Component {
 	};
 	
 	handleClick = () => {
-		if (this.props.round == 0) {
+		if (this.props.round === 0) {
 			if (confirm("This will kick player" + this.props.playerLogic["teamNumber"] + ". Are you sure?")) {
 				Meteor.call('gameLogic.kick', this.props.playerLogic["teamNumber"], this.props.playerLogic["connectionId"]);
 			}
@@ -105,7 +105,7 @@ export default class ScoreBoard extends React.Component {
 		};
 		
 		const teamNumber = this.props.playerLogic["teamNumber"];
-		if (this.props.round == 0) {
+		if (this.props.round === 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
 					return orange;
@@ -117,16 +117,16 @@ export default class ScoreBoard extends React.Component {
 					return normal;
 			}
 		}
-		else if (this.props.playerLogic["status"] == "reconnect") {
+		else if (this.props.playerLogic["status"] === "reconnect") {
 			return orange;
 		}
-		else if (this.props.gameLogic["round"] != 3) {
+		else if (this.props.gameLogic["round"] !== 3) {
 			switch (this.props.gameLogic["state"]) {
 				case "intro":
 				case "categoryIntro":
 				case "categories":
 				case "pickQuestion":
-					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
+					if (this.props.gameLogic["lastWinner"] === this.props.playerLogic["teamNumber"]) {
 						return orange;
 					}
 					else {
@@ -137,7 +137,7 @@ export default class ScoreBoard extends React.Component {
 				case "wager":
 				case "DDread":
 				case "DDanswer":
-					if (this.props.gameLogic["lastWinner"] == this.props.playerLogic["teamNumber"]) {
+					if (this.props.gameLogic["lastWinner"] === this.props.playerLogic["teamNumber"]) {
 						return green;
 					}
 					else {
@@ -151,10 +151,11 @@ export default class ScoreBoard extends React.Component {
 						return normal;
 					}
 				case "answer":
-					if (this.props.gameLogic["currentQuestionLogic"]["first"] == teamNumber) {
+					if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber) {
 						return green;
 					}
-					else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+					else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)
+						|| this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
 						return red
 					}
 					else {
@@ -167,12 +168,12 @@ export default class ScoreBoard extends React.Component {
 					break;
 			}
 		}
-		else if (this.props.gameLogic["round"] == 3) {
+		else if (this.props.gameLogic["round"] === 3) {
 			//Code for wager
-			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber) && this.props.gameLogic["state"] == "FJwager") {
+			if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber) && this.props.gameLogic["state"] === "FJwager") {
 				return green
 			}
-			else if (this.props.gameLogic["state"] == "FJanswer" && this.props.gameLogic["FJ"]["currentPlayer"] == teamNumber) {
+			else if (this.props.gameLogic["state"] === "FJanswer" && this.props.gameLogic["FJ"]["currentPlayer"] === teamNumber) {
 				return green
 			}
 			else {
@@ -185,7 +186,6 @@ export default class ScoreBoard extends React.Component {
 	};
 	
 	render() {
-		
 		return (
 			<div className="flex-container" onClick={this.handleClick}
 			     style={{

@@ -169,7 +169,8 @@ export default class ScoreBoard extends React.Component {
 					if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber) {
 						return green;
 					}
-					else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+					else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)
+						|| this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
 						return red
 					}
 					else {
@@ -205,14 +206,11 @@ export default class ScoreBoard extends React.Component {
 			     style={{
 				     padding: screen.width < 1000 ? "10px 0" : "10px 1vw",
 				     border: "4px solid white",
-				     borderLeft: screen.width < 1000 ? "0" : "4px solid white",
 				     flexDirection: "column",
 				     flex: 1,
 			     }}>
 				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
-				<div>
-					{this.props.playerLogic["teamName"]}
-				</div>
+				<div>{this.props.playerLogic.teamName}</div>
 			</div>
 		)
 	}

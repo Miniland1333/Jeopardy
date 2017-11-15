@@ -4,12 +4,8 @@
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/PingReport.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/PingReport.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/main.js" afterPath="$PROJECT_DIR$/server/main.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,45 +25,68 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentHeader.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentHeader.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="46" column="82" lean-forward="true" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScoreBoard.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="116" column="17" lean-forward="false" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#358#849#0" expanded="false" />
-                <element signature="e#876#1914#0" expanded="false" />
-                <element signature="e#2057#2605#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/main.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="StudentContent.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="415">
+                  <caret line="191" column="99" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="99" />
+                  <folding>
+                    <element signature="e#0#35#0" expanded="true" />
+                    <element signature="e#404#525#0" expanded="false" />
+                    <element signature="e#546#667#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ScoreBoard.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2975">
+                  <caret line="187" column="14" lean-forward="false" selection-start-line="187" selection-start-column="14" selection-end-line="187" selection-end-column="14" />
+                  <folding>
+                    <element signature="e#0#35#0" expanded="true" />
+                    <element signature="e#950#1297#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="ScoreBoard.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2244">
+                  <caret line="213" column="18" lean-forward="true" selection-start-line="213" selection-start-column="18" selection-end-line="213" selection-end-column="18" />
+                  <folding>
+                    <element signature="e#0#35#0" expanded="true" />
+                    <element signature="e#358#849#0" expanded="false" />
+                    <element signature="e#876#1914#0" expanded="false" />
+                    <element signature="e#2057#2605#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -80,9 +99,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>final</find>
-      <find>write</find>
-      <find>you can</find>
       <find>null</find>
       <find>&lt;div/&gt;</find>
       <find>&lt;div className=&quot;flex-container&quot; style={{flexDirection: &quot;column&quot;, flex: 1}}/&gt;</find>
@@ -110,6 +126,9 @@
       <find>: &quot;.*&quot;</find>
       <find>&quot;4vw&quot;</find>
       <find>wib</find>
+      <find>button</find>
+      <find>setstate</find>
+      <find>open</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -192,13 +211,13 @@
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerFooter.js" />
         <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
         <option value="$PROJECT_DIR$/server/main.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentHeader.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/PingReport.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
       </list>
     </option>
   </component>
@@ -231,8 +250,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="437" />
-    <option name="y" value="-8" />
+    <option name="x" value="400" />
+    <option name="y" value="102" />
     <option name="width" value="814" />
     <option name="height" value="867" />
   </component>
@@ -1312,14 +1331,7 @@
       <workItem from="1509153308483" duration="14000" />
       <workItem from="1509936332494" duration="75000" />
       <workItem from="1510716578137" duration="600000" />
-      <workItem from="1510717976556" duration="8775000" />
-    </task>
-    <task id="LOCAL-00055" summary="Resolved issue where timer would keep firing if advancing.&#10;Resolved issue where CheckRemaining would still count any removed categories&#10;&#10;#Contains bug where DJ intro will not play if previous state was &quot;next&quot;">
-      <created>1473288159129</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1473288159129</updated>
+      <workItem from="1510717976556" duration="9623000" />
     </task>
     <task id="LOCAL-00056" summary="Resolved issue where timer would keep firing if advancing.&#10;                                                                       Resolved issue where CheckRemaining would still count any removed categories&#10;                                                                       &#10;                                                                       #Contains bug where DJ intro will not play if previous state was &quot;next&quot;">
       <created>1473288422510</created>
@@ -1657,11 +1669,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510722879722</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Minimalized Scoreboard&#10;&#10;Makes only the player's view appear">
+      <created>1510728012821</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1510728012821</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="655699000" />
+    <option name="totallyTimeSpent" value="656547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1685,11 +1704,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21208227" sideWeight="0.5487572" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39305556" sideWeight="0.4907162" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16066837" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18380463" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1777,7 +1796,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added &quot;Add to Homescreen prompt&quot;" />
     <MESSAGE value="Fixed &quot;Add to Homescreen prompt&quot;" />
     <MESSAGE value="Spelling Fix for Add to Home Screen" />
     <MESSAGE value="Sound initialization at beginning to eliminate latency" />
@@ -1802,7 +1820,8 @@
     <MESSAGE value="Added Bad Image detector" />
     <MESSAGE value="Finished adding Brim" />
     <MESSAGE value="Removed refresh()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed refresh()" />
+    <MESSAGE value="Minimalized Scoreboard&#10;&#10;Makes only the player's view appear" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minimalized Scoreboard&#10;&#10;Makes only the player's view appear" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1890,13 +1909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Teacher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="38" column="28" lean-forward="false" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -2046,16 +2058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="235" column="14" lean-forward="false" selection-start-line="235" selection-start-column="14" selection-end-line="235" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Student/newBrim.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -2071,14 +2073,6 @@
           <folding>
             <element signature="e#0#35#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="167" column="27" lean-forward="false" selection-start-line="167" selection-start-column="27" selection-end-line="167" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2154,18 +2148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="100" column="70" lean-forward="false" selection-start-line="100" selection-start-column="70" selection-end-line="100" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-            <element signature="e#404#525#0" expanded="false" />
-            <element signature="e#546#667#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -2174,18 +2156,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Ping.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="197" column="20" lean-forward="false" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
+        <state relative-caret-position="102">
+          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/main.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/PingReport.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        <state relative-caret-position="102">
+          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -2200,39 +2182,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Ping.js">
+    <entry file="file://$PROJECT_DIR$/server/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+        <state relative-caret-position="119">
+          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Teacher.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="38" column="28" lean-forward="false" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="235" column="14" lean-forward="false" selection-start-line="235" selection-start-column="14" selection-end-line="235" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1363">
-          <caret line="100" column="26" lean-forward="false" selection-start-line="100" selection-start-column="26" selection-end-line="100" selection-end-column="26" />
+        <state relative-caret-position="338">
+          <caret line="258" column="66" lean-forward="false" selection-start-line="258" selection-start-column="66" selection-end-line="258" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/PingReport.js">
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        <state relative-caret-position="236">
+          <caret line="393" column="30" lean-forward="true" selection-start-line="393" selection-start-column="30" selection-end-line="393" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="191" column="99" lean-forward="false" selection-start-line="191" selection-start-column="16" selection-end-line="191" selection-end-column="99" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#404#525#0" expanded="false" />
+            <element signature="e#546#667#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="116" column="17" lean-forward="false" selection-start-line="116" selection-start-column="17" selection-end-line="116" selection-end-column="17" />
+        <state relative-caret-position="2244">
+          <caret line="213" column="18" lean-forward="true" selection-start-line="213" selection-start-column="18" selection-end-line="213" selection-end-column="18" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#358#849#0" expanded="false" />
             <element signature="e#876#1914#0" expanded="false" />
             <element signature="e#2057#2605#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2975">
+          <caret line="187" column="14" lean-forward="false" selection-start-line="187" selection-start-column="14" selection-end-line="187" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#950#1297#0" expanded="false" />
           </folding>
         </state>
       </provider>
