@@ -1,5 +1,5 @@
 import React from "react";
-import {createContainer} from "meteor/react-meteor-data";
+import {withTracker} from "meteor/react-meteor-data";
 import DocumentTitle from "react-document-title";
 import {Meteor} from "meteor/meteor";
 
@@ -76,7 +76,7 @@ class Student extends React.Component {
 }
 
 
-export default createContainer(() => {
+export default withTracker(() => {
 	const handle1 = Meteor.subscribe('gameLogic');
 	
 	return {
@@ -84,4 +84,4 @@ export default createContainer(() => {
 		connectionId: Meteor.connection._lastSessionId,
 		gameLogic: gameLogic.find().fetch(),
 	};
-}, Student);
+})(Student);

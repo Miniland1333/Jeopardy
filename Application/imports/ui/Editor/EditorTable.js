@@ -4,7 +4,6 @@ import {Meteor} from "meteor/meteor";
 
 import Question from "./Question";
 import CategoryHeader from "./CategoryHeader";
-import refresh from "../refresh";
 
 export default class EditorTable extends React.Component {
 	static propTypes = {
@@ -58,7 +57,6 @@ export default class EditorTable extends React.Component {
 	};
 	
 	render() {
-		refresh();
 		return (
 			<div className="Table">
 				{this.renderInput()}

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {createContainer} from "meteor/react-meteor-data";
+import {withTracker} from "meteor/react-meteor-data";
 import DocumentTitle from "react-document-title";
 import {Meteor} from "meteor/meteor";
 
@@ -47,7 +47,7 @@ class Teacher extends React.Component {
 }
 
 
-export default createContainer(() => {
+export default withTracker(() => {
 	const handle1 = Meteor.subscribe('gameDatabase');
 	const handle2 = Meteor.subscribe('gameLogic');
 	const handle3 = Meteor.subscribe('gameQuestions');
@@ -59,4 +59,4 @@ export default createContainer(() => {
 		gameLogic: gameLogic.find().fetch(),
 		gameQuestions: gameQuestions.find().fetch(),
 	};
-}, Teacher);
+})(Teacher);

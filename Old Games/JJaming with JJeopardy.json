@@ -1,1 +1,433 @@
-{"_id":"LzB78hQuGcg7jY8hW","name":"JJaming with JJeopardy","Jeopardy":{"category1":{"categoryName":"super synonyms","question1":{"question":"metal person","answer":"Who is Iron Man","isSinglePlay":false},"question2":{"question":"SERGEANT USA ","answer":"Who is Captain America","isSinglePlay":false},"question3":{"question":"dazzling lady","answer":"Who is Wonder Woman","isSinglePlay":false},"question4":{"question":"unalive lake","answer":"Who is Deadpool","isSinglePlay":false},"question5":{"question":"emerald lamp","answer":"Who is Green Lantern","isSinglePlay":false}},"category2":{"categoryName":"countries you should know","question1":{"question":{"type":"image","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Italian_regions_provinces_white_no_labels.svg/455px-Italian_regions_provinces_white_no_labels.svg.png","text":"This country"},"answer":"What is Italy","isSinglePlay":false},"question2":{"question":{"type":"image","image":"http://smartraveller.gov.au/Maps/Russia.gif","text":""},"answer":"What is Russia","isSinglePlay":false},"question3":{"question":{"type":"image","image":"https://www.mapsofworld.com/egypt/maps/egypt-map.gif","text":"this country"},"answer":"What is Egypt","isSinglePlay":false},"question4":{"question":{"type":"image","image":"https://www.gojapango.com/wp-content/uploads/2016/07/japan_map_21.gif","text":"this country"},"answer":"What is Japan","isSinglePlay":false},"question5":{"question":{"type":"image","image":"https://www.roughguides.com/wp-content/uploads/2015/03/map-of-argentina.png","text":"this country"},"answer":"What is Argentina","isSinglePlay":false}},"category3":{"categoryName":"miss speled wurds","question1":{"question":{"type":"image","image":"data:image/png;base64,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","text":"This US state shares a name with the longest river in the country...and proudly flies a rather unfortunate flag"},"answer":"What is Mississippi","isSinglePlay":false},"question2":{"question":"the group of people who control a nation","answer":"What is government","isSinglePlay":false},"question3":{"question":"The title given to a ruler in ancient egypt","answer":"What is pharaoh","isSinglePlay":false},"question4":{"question":"this word means important, or essential","answer":"What is necessary","isSinglePlay":false},"question5":{"question":"white people should check this frequently, as well as spell it correctly","answer":"What is privilege","isSinglePlay":false}},"category4":{"categoryName":"punch line","question1":{"question":"Cemeteries have fences for this reason","answer":"What are people are dying to get in","isSinglePlay":false},"question2":{"question":"The only device capable of counting all of your cattle","answer":"What is a cowculator","isSinglePlay":false},"question3":{"question":"How many tickles it takes to make an octopus laugh","answer":"What are ten-tickles","isSinglePlay":false},"question4":{"question":"How the moon cuts its hair","answer":"What is eclipse it","isSinglePlay":false},"question5":{"question":"This object is brown and sticky","answer":"What is a stick","isSinglePlay":false}},"category5":{"categoryName":"millennials","question1":{"question":"Invented by steve jobs in 2006, this device has become the lifeblood of all MILLENNIALS, right up there with food, water, and oxygen. ","answer":"What is the iphone","isSinglePlay":false},"question2":{"question":"This disgusting green leaf gives millennials a sense of healthy living. ","answer":"What is kale","isSinglePlay":false},"question3":{"question":"This transportation company allows you to summon strangers from the internet to drive you places. ","answer":"What is uber/lyft","isSinglePlay":false},"question4":{"question":"youtube, the PREFERRED media of millennials, was founded in this year ","answer":"What is 2005 (2006 is acquisition date?)","isSinglePlay":false},"question5":{"question":"according to a 2016 gallup poll, this is the #1 word used to describe millennials","answer":"What is lazy","isSinglePlay":false}},"category6":{"categoryName":"ha, the puns!","question1":{"question":{"type":"image","image":"http://mediad.publicbroadcasting.net/p/nhpr/files/styles/medium/public/201606/holy_cow.jpg","text":"this pun"},"answer":"What is holy cow","isSinglePlay":false},"question2":{"question":{"type":"image","image":"https://yt3.ggpht.com/-i9WMexHNJaI/AAAAAAAAAAI/AAAAAAAAAAA/1ObNM8rbeSo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg","text":"This pun"},"answer":"What is quality","isSinglePlay":false},"question3":{"question":{"type":"image","image":"https://lh3.ggpht.com/6Mt4CQ0PVsGKGLm_hG3bvWBNnoD0qd5sAKz4ZTnyrGJqDsz36J7Q4TNZ6OISYkkbdw=w300","text":"this pun"},"answer":"What is humanity","isSinglePlay":false},"question4":{"question":{"type":"image","image":"http://www.jokesoftheday.net/jokes-archive/2013/06/18/joke-funny-photo-Truck-Pooling.jpg","text":"this pun"},"answer":"What is carpooling","isSinglePlay":false},"question5":{"question":{"type":"image","image":"http://2.bp.blogspot.com/-8xfABQjsjq8/Vhe7gZyfnfI/AAAAAAAAAA8/nBtAb7-GeRU/s1600/Visual%2Bpun%2B%25232.jpg","text":"this pun"},"answer":"What is super bowl","isSinglePlay":false}}},"DoubleJeopardy":{"category1":{"categoryName":"jungle critters","question1":{"question":{"type":"image","image":"http://elelur.com/data_images/mammals/capuchin-monkey/capuchin-monkey-05.jpg","text":"Frequently found swinging from trees"},"answer":"What is monkey","isSinglePlay":false},"question2":{"question":{"type":"image","image":"https://public-media.smithsonianmag.com/filer/a5/66/a566a5dc-37e7-4b28-8250-49c32b409642/istock_000006766776_large.jpg","text":"stop repeating everything i'm saying!"},"answer":"What is parrot","isSinglePlay":false},"question3":{"question":{"type":"image","image":"http://www.theyucatantimes.com/wp-content/uploads/2017/01/jaguar.jpg","text":"Look what I spotted!"},"answer":"What is jaguar","isSinglePlay":false},"question4":{"question":{"type":"image","image":"http://animals.sandiegozoo.org/sites/default/files/2016-11/animals_hero_toucan.jpg","text":"Well, ________ can play at this game"},"answer":"What is toucan","isSinglePlay":false},"question5":{"question":{"type":"image","image":"https://dncache-mauganscorp.netdna-ssl.com/thumbseg/755/755817-bigthumbnail.jpg","text":"It's an animal associated with slithering...and t swizzle"},"answer":"What is snake","isSinglePlay":false}},"category2":{"categoryName":"urban dictionary","question1":{"question":"from a Donald Trump tweet, \"Despite the constant negative press _______\"","answer":"What is covfefe","isSinglePlay":false},"question2":{"question":"a word to describe your peoples","answer":"What is fam","isSinglePlay":false},"question3":{"question":"excessive, dramatic behavior","answer":"What is extra","isSinglePlay":false},"question4":{"question":"when something is \"turnt up\" or \"popping\"","answer":"What is lit","isSinglePlay":false},"question5":{"question":"A state of perceived intellectual superiority one gains by reading The Huffington Post","answer":"What is woke","isSinglePlay":false}},"category3":{"categoryName":"brand logos","question1":{"question":{"type":"image","image":"https://lh3.googleusercontent.com/dL5wUTeOrTETTKAw1XiJcO6i3TvFJn3zOSKMBcGkzt42Kxt8jFHPHbtbqCvzZiFVcw=w300","text":"The company behind this logo"},"answer":"What is target","isSinglePlay":false},"question2":{"question":{"type":"image","image":"https://s3.amazonaws.com/BURC_Pages/downloads/a-smile_color_btn.png","text":"the company behind this logo"},"answer":"What is amazon","isSinglePlay":false},"question3":{"question":{"type":"image","image":"https://www.phonedog.com/sites/phonedog.com/files/blog/main_image/2016/01/sprintlogolarge.png","text":"the company behind this logo"},"answer":"What is sprint","isSinglePlay":false},"question4":{"question":{"type":"image","image":"https://media-cdn.tripadvisor.com/media/photo-s/0e/df/eb/dc/dutch-bros-coffee.jpg","text":"the company behind this logo"},"answer":"What is dutch bros","isSinglePlay":false},"question5":{"question":{"type":"image","image":"http://www.car-brand-names.com/wp-content/uploads/2015/05/Infiniti-emblem-3.png","text":"the company behind this logo"},"answer":"What is infinity","isSinglePlay":false}},"category4":{"categoryName":"Punny Knights","question1":{"question":"don't sit too long on an airplane! or this knight will lead to killer pains in your legs (school house rock, fam) ","answer":"Who is Sir Culation","isSinglePlay":false},"question2":{"question":"this knight is known for travelling entertainment such as elephants and TRAPEZE artists ","answer":"Who is Sir Cus","isSinglePlay":false},"question3":{"question":"This knight must work for his master without hope for better pay or working conditions","answer":"Who is Sir vent","isSinglePlay":false},"question4":{"question":"This knight uses wires and other electronic components to redirect an electric current","answer":"Who is Sir Cut","isSinglePlay":false},"question5":{"question":"This knight is The main export of canada, eh?","answer":"Who is Sir Rup","isSinglePlay":false}},"category5":{"categoryName":"know ur memes","question1":{"question":"This gorilla died for our sins","answer":"What is harambe","isSinglePlay":false},"question2":{"question":"like nike, this man tells you to \"just do it\"","answer":"What is Shia Lebouff","isSinglePlay":false},"question3":{"question":"in 2015, this meme polled in 3rd place for presidential candidates in N. Caroline and in 2016 beat jill stein in a poll in texas","answer":"What is deez nuts","isSinglePlay":false},"question4":{"question":"this meme was recently labeled a hate symbol by the anti defamation league","answer":"What is pepe","isSinglePlay":false},"question5":{"question":"though he is arguably the greatest failure of american democracy, he is featured in some pretty dank memes","answer":"What is trump bebe","isSinglePlay":false}},"category6":{"categoryName":"DON'T YOU KNOW","question1":{"question":"Oxford says this preposition is the 7th-most common word in English; it's in this clue twice","answer":"What is in","isSinglePlay":false},"question2":{"question":"THIS ALLOY OF COPPER & TIN GAVE ITS NAME TO A CULTURAL \"AGE\"","answer":"What is Bronze","isSinglePlay":false},"question3":{"question":"The traditional \"Big 3\" of U.S. automakers are Chrysler, General Motors & this one","answer":"What is Ford","isSinglePlay":false},"question4":{"question":"This state's richest man is French fry tycoon Scott Simplot","answer":"What is Idaho","isSinglePlay":false},"question5":{"question":"This Swede's original scale had water's boiling point at 0 degrees & its freezing point at 100","answer":"Who is Celcius","isSinglePlay":false}}},"FinalJeopardy":{"category":" SCIENCE & MATH VOCABULARY","question":"These 2 words are just 1 letter different; one is a whirlpool & the other a geometry term for a meeting point\n[List both]","answer":"What is vertex and vortex"}}
+{
+  "_id": "LzB78hQuGcg7jY8hW",
+  "name": "JJaming with JJeopardy",
+  "Jeopardy": {
+    "category1": {
+      "categoryName": "super synonyms",
+      "question1": {
+        "question": "metal person",
+        "answer": "Who is Iron Man",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "SERGEANT USA ",
+        "answer": "Who is Captain America",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "dazzling lady",
+        "answer": "Who is Wonder Woman",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "unalive lake",
+        "answer": "Who is Deadpool",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "emerald lamp",
+        "answer": "Who is Green Lantern",
+        "isSinglePlay": false
+      }
+    },
+    "category2": {
+      "categoryName": "countries you should know",
+      "question1": {
+        "question": {
+          "type": "image",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Italian_regions_provinces_white_no_labels.svg/455px-Italian_regions_provinces_white_no_labels.svg.png",
+          "text": "This country"
+        },
+        "answer": "What is Italy",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": {
+          "type": "image",
+          "image": "http://smartraveller.gov.au/Maps/Russia.gif",
+          "text": ""
+        },
+        "answer": "What is Russia",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": {
+          "type": "image",
+          "image": "https://www.mapsofworld.com/egypt/maps/egypt-map.gif",
+          "text": "this country"
+        },
+        "answer": "What is Egypt",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": {
+          "type": "image",
+          "image": "https://www.gojapango.com/wp-content/uploads/2016/07/japan_map_21.gif",
+          "text": "this country"
+        },
+        "answer": "What is Japan",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": {
+          "type": "image",
+          "image": "https://www.roughguides.com/wp-content/uploads/2015/03/map-of-argentina.png",
+          "text": "this country"
+        },
+        "answer": "What is Argentina",
+        "isSinglePlay": false
+      }
+    },
+    "category3": {
+      "categoryName": "miss speled wurds",
+      "question1": {
+        "question": {
+          "type": "image",
+          "image": "data:image/png;base64,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",
+          "text": "This US state shares a name with the longest river in the country...and proudly flies a rather unfortunate flag"
+        },
+        "answer": "What is Mississippi",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "the group of people who control a nation",
+        "answer": "What is government",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "The title given to a ruler in ancient egypt",
+        "answer": "What is pharaoh",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "this word means important, or essential",
+        "answer": "What is necessary",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "white people should check this frequently, as well as spell it correctly",
+        "answer": "What is privilege",
+        "isSinglePlay": false
+      }
+    },
+    "category4": {
+      "categoryName": "punch line",
+      "question1": {
+        "question": "Cemeteries have fences for this reason",
+        "answer": "What are people are dying to get in",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "The only device capable of counting all of your cattle",
+        "answer": "What is a cowculator",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "How many tickles it takes to make an octopus laugh",
+        "answer": "What are ten-tickles",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "How the moon cuts its hair",
+        "answer": "What is eclipse it",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "This object is brown and sticky",
+        "answer": "What is a stick",
+        "isSinglePlay": false
+      }
+    },
+    "category5": {
+      "categoryName": "millennials",
+      "question1": {
+        "question": "Invented by steve jobs in 2006, this device has become the lifeblood of all MILLENNIALS, right up there with food, water, and oxygen. ",
+        "answer": "What is the iphone",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "This disgusting green leaf gives millennials a sense of healthy living. ",
+        "answer": "What is kale",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "This transportation company allows you to summon strangers from the internet to drive you places. ",
+        "answer": "What is uber/lyft",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "youtube, the PREFERRED media of millennials, was founded in this year ",
+        "answer": "What is 2005 (2006 is acquisition date?)",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "according to a 2016 gallup poll, this is the #1 word used to describe millennials",
+        "answer": "What is lazy",
+        "isSinglePlay": false
+      }
+    },
+    "category6": {
+      "categoryName": "ha, the puns!",
+      "question1": {
+        "question": {
+          "type": "image",
+          "image": "http://mediad.publicbroadcasting.net/p/nhpr/files/styles/medium/public/201606/holy_cow.jpg",
+          "text": "this pun"
+        },
+        "answer": "What is holy cow",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": {
+          "type": "image",
+          "image": "https://yt3.ggpht.com/-i9WMexHNJaI/AAAAAAAAAAI/AAAAAAAAAAA/1ObNM8rbeSo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "text": "This pun"
+        },
+        "answer": "What is quality",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": {
+          "type": "image",
+          "image": "https://lh3.ggpht.com/6Mt4CQ0PVsGKGLm_hG3bvWBNnoD0qd5sAKz4ZTnyrGJqDsz36J7Q4TNZ6OISYkkbdw=w300",
+          "text": "this pun"
+        },
+        "answer": "What is humanity",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": {
+          "type": "image",
+          "image": "http://www.jokesoftheday.net/jokes-archive/2013/06/18/joke-funny-photo-Truck-Pooling.jpg",
+          "text": "this pun"
+        },
+        "answer": "What is carpooling",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": {
+          "type": "image",
+          "image": "http://2.bp.blogspot.com/-8xfABQjsjq8/Vhe7gZyfnfI/AAAAAAAAAA8/nBtAb7-GeRU/s1600/Visual%2Bpun%2B%25232.jpg",
+          "text": "this pun"
+        },
+        "answer": "What is super bowl",
+        "isSinglePlay": false
+      }
+    }
+  },
+  "DoubleJeopardy": {
+    "category1": {
+      "categoryName": "jungle critters",
+      "question1": {
+        "question": {
+          "type": "image",
+          "image": "http://elelur.com/data_images/mammals/capuchin-monkey/capuchin-monkey-05.jpg",
+          "text": "Frequently found swinging from trees"
+        },
+        "answer": "What is monkey",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": {
+          "type": "image",
+          "image": "https://public-media.smithsonianmag.com/filer/a5/66/a566a5dc-37e7-4b28-8250-49c32b409642/istock_000006766776_large.jpg",
+          "text": "stop repeating everything i'm saying!"
+        },
+        "answer": "What is parrot",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": {
+          "type": "image",
+          "image": "http://www.theyucatantimes.com/wp-content/uploads/2017/01/jaguar.jpg",
+          "text": "Look what I spotted!"
+        },
+        "answer": "What is jaguar",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": {
+          "type": "image",
+          "image": "http://animals.sandiegozoo.org/sites/default/files/2016-11/animals_hero_toucan.jpg",
+          "text": "Well, ________ can play at this game"
+        },
+        "answer": "What is toucan",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": {
+          "type": "image",
+          "image": "https://dncache-mauganscorp.netdna-ssl.com/thumbseg/755/755817-bigthumbnail.jpg",
+          "text": "It's an animal associated with slithering...and t swizzle"
+        },
+        "answer": "What is snake",
+        "isSinglePlay": false
+      }
+    },
+    "category2": {
+      "categoryName": "urban dictionary",
+      "question1": {
+        "question": "from a Donald Trump tweet, \"Despite the constant negative press _______\"",
+        "answer": "What is covfefe",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "a word to describe your peoples",
+        "answer": "What is fam",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "excessive, dramatic behavior",
+        "answer": "What is extra",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "when something is \"turnt up\" or \"popping\"",
+        "answer": "What is lit",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "A state of perceived intellectual superiority one gains by reading The Huffington Post",
+        "answer": "What is woke",
+        "isSinglePlay": false
+      }
+    },
+    "category3": {
+      "categoryName": "brand logos",
+      "question1": {
+        "question": {
+          "type": "image",
+          "image": "https://lh3.googleusercontent.com/dL5wUTeOrTETTKAw1XiJcO6i3TvFJn3zOSKMBcGkzt42Kxt8jFHPHbtbqCvzZiFVcw=w300",
+          "text": "The company behind this logo"
+        },
+        "answer": "What is target",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": {
+          "type": "image",
+          "image": "https://s3.amazonaws.com/BURC_Pages/downloads/a-smile_color_btn.png",
+          "text": "the company behind this logo"
+        },
+        "answer": "What is amazon",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": {
+          "type": "image",
+          "image": "https://www.phonedog.com/sites/phonedog.com/files/blog/main_image/2016/01/sprintlogolarge.png",
+          "text": "the company behind this logo"
+        },
+        "answer": "What is sprint",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": {
+          "type": "image",
+          "image": "https://media-cdn.tripadvisor.com/media/photo-s/0e/df/eb/dc/dutch-bros-coffee.jpg",
+          "text": "the company behind this logo"
+        },
+        "answer": "What is dutch bros",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": {
+          "type": "image",
+          "image": "http://www.car-brand-names.com/wp-content/uploads/2015/05/Infiniti-emblem-3.png",
+          "text": "the company behind this logo"
+        },
+        "answer": "What is infinity",
+        "isSinglePlay": false
+      }
+    },
+    "category4": {
+      "categoryName": "Punny Knights",
+      "question1": {
+        "question": "don't sit too long on an airplane! or this knight will lead to killer pains in your legs (school house rock, fam) ",
+        "answer": "Who is Sir Culation",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "this knight is known for travelling entertainment such as elephants and TRAPEZE artists ",
+        "answer": "Who is Sir Cus",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "This knight must work for his master without hope for better pay or working conditions",
+        "answer": "Who is Sir vent",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "This knight uses wires and other electronic components to redirect an electric current",
+        "answer": "Who is Sir Cut",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "This knight is The main export of canada, eh?",
+        "answer": "Who is Sir Rup",
+        "isSinglePlay": false
+      }
+    },
+    "category5": {
+      "categoryName": "know ur memes",
+      "question1": {
+        "question": "This gorilla died for our sins",
+        "answer": "What is harambe",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "like nike, this man tells you to \"just do it\"",
+        "answer": "What is Shia Lebouff",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "in 2015, this meme polled in 3rd place for presidential candidates in N. Caroline and in 2016 beat jill stein in a poll in texas",
+        "answer": "What is deez nuts",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "this meme was recently labeled a hate symbol by the anti defamation league",
+        "answer": "What is pepe",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "though he is arguably the greatest failure of american democracy, he is featured in some pretty dank memes",
+        "answer": "What is trump bebe",
+        "isSinglePlay": false
+      }
+    },
+    "category6": {
+      "categoryName": "DON'T YOU KNOW",
+      "question1": {
+        "question": "Oxford says this preposition is the 7th-most common word in English; it's in this clue twice",
+        "answer": "What is in",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "THIS ALLOY OF COPPER & TIN GAVE ITS NAME TO A CULTURAL \"AGE\"",
+        "answer": "What is Bronze",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "The traditional \"Big 3\" of U.S. automakers are Chrysler, General Motors & this one",
+        "answer": "What is Ford",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "This state's richest man is French fry tycoon Scott Simplot",
+        "answer": "What is Idaho",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "This Swede's original scale had water's boiling point at 0 degrees & its freezing point at 100",
+        "answer": "Who is Celcius",
+        "isSinglePlay": false
+      }
+    }
+  },
+  "FinalJeopardy": {
+    "category": " SCIENCE & MATH VOCABULARY",
+    "question": "These 2 words are just 1 letter different; one is a whirlpool & the other a geometry term for a meeting point\n[List both]",
+    "answer": "What is vertex and vortex"
+  }
+}

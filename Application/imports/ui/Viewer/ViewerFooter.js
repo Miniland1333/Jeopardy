@@ -4,7 +4,6 @@ import React from "react";
 
 import ScoreBoard from "../Teacher/ScoreBoard";
 import {gameLogic} from "../../api/gameLogic";
-import refresh from "../refresh";
 
 export default class ViewerFooter extends React.Component {
 	static propTypes = {
@@ -37,7 +36,6 @@ export default class ViewerFooter extends React.Component {
 	};
 	
 	render() {
-		refresh();
 		return (
 			<div className="flex-container" id="border">
 				{this.renderInput()}

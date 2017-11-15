@@ -1,1 +1,363 @@
-{"name":"Jeopardy Social","Jeopardy":{"category1":{"categoryName":"Campus locations","question1":{"question":"This building on campus was modeled after a famous science fiction battle station.","answer":"The Death Star, Social Sciences and Humanities Building","isSinglePlay":false},"question2":{"question":"Known for the diverse students it welcomes, this building contains resources for LGBT+ community, Retention, AB540 Students, and more. ","answer":"SCC, Student Community Center","isSinglePlay":false},"question3":{"question":"This parking lot is widely known for the great heights where sunsets and sunrises can be seen from here.","answer":"Hutchinson Parking Structure","isSinglePlay":false},"question4":{"question":"This is the building that contains the financial aid office.","answer":"Dutton Hall","isSinglePlay":false},"question5":{"question":"There are this many separate egghead sculptures on campus.","answer":"5","isSinglePlay":false}},"category2":{"categoryName":"valentine's Day fun","question1":{"question":"February 14th is the date of this popular holiday. ","answer":"Valentine's Day","isSinglePlay":false},"question2":{"question":"Valentine’s day is named after a martyr who who was this type of religious figure.","answer":"Saint","isSinglePlay":false},"question3":{"question":"The most popular gift bought for Valentine’s day is this. ","answer":"A romantic dinner","isSinglePlay":false},"question4":{"question":"By the 17th century, the act of exchanging Valentine’s cards became tradition in this country ","answer":"Great Britain","isSinglePlay":false},"question5":{"question":"The Catholic church chose Saint Valentine’s day to be celebrated in mid-February to Christianize this Roman fertility festival. ","answer":"Lupercalia","isSinglePlay":false}},"category3":{"categoryName":"sports","question1":{"question":"This football team was the winner of the latest Super Bowl. ","answer":"New England Patriots","isSinglePlay":false},"question2":{"question":"This American Olympic swimmer holds the record for most olympic gold medals.","answer":"Michael Phelps","isSinglePlay":false},"question3":{"question":"This baseball player was the first African American man to join the Major League Baseball.","answer":"Jackie Robinson","isSinglePlay":false},"question4":{"question":"This sports team that was located in San Diego has recently moved to Los Angeles.","answer":"The Chargers","isSinglePlay":false},"question5":{"question":"In order for a sport to qualify for inclusion as a an Olympic sport, it must be played in at least how many countries? ","answer":"75","isSinglePlay":false}},"category4":{"categoryName":"things your RAs told you","question1":{"question":"This is where you can get toilet paper, trash bags, and help with a lockout during open hours.","answer":"The ASD, area service desk, front desk","isSinglePlay":false},"question2":{"question":"“Shhh… It’s _____.”","answer":"quiet hours","isSinglePlay":false},"question3":{"question":" Floor dinners for Emerson 3 Poolside are at this time.","answer":"6:15pm, 1815","isSinglePlay":false},"question4":{"question":"The Cuarto Academic Advising Center (CAAC) is located in this building, on this floor. ","answer":"Thoreau 1","isSinglePlay":false},"question5":{"question":"These hours are the when you can be written up for disruptive noise from sunday to thursday.","answer":"11pm-7am","isSinglePlay":false}},"category5":{"categoryName":"I'm not an uncultured Swine","question1":{"question":"This artist performed at the most recent Super Bowl","answer":"Lady Gaga","isSinglePlay":false},"question2":{"question":"This movie is where this quote “You Uncultured Swine!” was iconically said.","answer":"Toy Story","isSinglePlay":false},"question3":{"question":"2016 was the year that the this actor won their first Oscar. ","answer":"Leonardo Dicaprio","isSinglePlay":false},"question4":{"question":"name this song: \"Oh, we're halfway there. oooooooooooooooooooooooooo\"","answer":"Living on a Prayer ","isSinglePlay":false},"question5":{"question":"this kind of walk was not invented by astronaut Neil Armstrong but rather __________________.","answer":"Michael Jackson","isSinglePlay":false}},"category6":{"categoryName":"know your meme","question1":{"question":"This type of dog was commonly found with phrases like “Such jeopardy. Many fun. Wow.”","answer":"shiba inu","isSinglePlay":false},"question2":{"question":"This gorilla died for our sins. ","answer":"Harambe","isSinglePlay":false},"question3":{"question":"Like nike, this man tells you to \"Just do it.\"","answer":"Shia Labeouf","isSinglePlay":false},"question4":{"question":"in august of 2015, this meme polled in third place for presidential candidates in north carolina and in 2016 beat Green party candidate jill stein in a poll in texas.","answer":"Deez Nuts","isSinglePlay":false},"question5":{"question":"this cartoon frog was recently labeled a hate symbol by the anti defamation league.","answer":"Pepe","isSinglePlay":false}}},"DoubleJeopardy":{"category1":{"categoryName":"Science","question1":{"question":"Atoms have protons, neutrons, and ____","answer":"What is electrons?","isSinglePlay":false},"question2":{"question":"The three types of rocks.","answer":"What are igneous, sedimentary, and metamorphic?","isSinglePlay":false},"question3":{"question":"the change in the rate of speed, Measured in Meters Per second Squared.","answer":"What is acceleration?","isSinglePlay":false},"question4":{"question":{"type":"image","image":"http://ifsa.my/uploads/6/1/9/1/61919649/chloroplast_orig.png","text":"The part of a plant cell in which photosynthesis takes place."},"answer":"What is chloroplast?","isSinglePlay":false},"question5":{"question":{"type":"image","image":"http://www.nasa.gov/sites/default/files/thumbnails/image/final_configuration_of_iss.jpg","text":"This artificial Satellite currently serves as a research laboratory for all of the astronauts aboard and was previously visited by the shuttle program"},"answer":"What is the international space station?","isSinglePlay":false}},"category2":{"categoryName":"","question1":{"isSinglePlay":false,"question":"","answer":""},"question2":{"isSinglePlay":false,"question":"","answer":""},"question3":{"isSinglePlay":false,"question":"","answer":""},"question4":{"isSinglePlay":false,"question":"","answer":""},"question5":{"isSinglePlay":false,"question":"","answer":""}},"category3":{"categoryName":"","question1":{"isSinglePlay":false,"question":"","answer":""},"question2":{"isSinglePlay":false,"question":"","answer":""},"question3":{"isSinglePlay":false,"question":"","answer":""},"question4":{"isSinglePlay":false,"question":"","answer":""},"question5":{"isSinglePlay":false,"question":"","answer":""}},"category4":{"categoryName":"","question1":{"isSinglePlay":false,"question":"","answer":""},"question2":{"isSinglePlay":false,"question":"","answer":""},"question3":{"isSinglePlay":false,"question":"","answer":""},"question4":{"isSinglePlay":false,"question":"","answer":""},"question5":{"isSinglePlay":false,"question":"","answer":""}},"category5":{"categoryName":"","question1":{"isSinglePlay":false,"question":"","answer":""},"question2":{"isSinglePlay":false,"question":"","answer":""},"question3":{"isSinglePlay":false,"question":"","answer":""},"question4":{"isSinglePlay":false,"question":"","answer":""},"question5":{"isSinglePlay":false,"question":"","answer":""}},"category6":{"categoryName":"","question1":{"isSinglePlay":false,"question":"","answer":""},"question2":{"isSinglePlay":false,"question":"","answer":""},"question3":{"isSinglePlay":false,"question":"","answer":""},"question4":{"isSinglePlay":false,"question":"","answer":""},"question5":{"isSinglePlay":false,"question":"","answer":""}}},"FinalJeopardy":{"category":"grade school physics","question":{"type":"video","URL":"https://www.youtube.com/embed/XDlfX4l1dMY?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0&start=3&end=17","VID":"XDlfX4l1dMY","start":"0:03","end":"0:17"},"answer":"What is drag?"},"_id":"4ovAHtFMcxeDWSgz7"}
+{
+  "name": "Jeopardy Social",
+  "Jeopardy": {
+    "category1": {
+      "categoryName": "Campus locations",
+      "question1": {
+        "question": "This building on campus was modeled after a famous science fiction battle station.",
+        "answer": "The Death Star, Social Sciences and Humanities Building",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "Known for the diverse students it welcomes, this building contains resources for LGBT+ community, Retention, AB540 Students, and more. ",
+        "answer": "SCC, Student Community Center",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "This parking lot is widely known for the great heights where sunsets and sunrises can be seen from here.",
+        "answer": "Hutchinson Parking Structure",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "This is the building that contains the financial aid office.",
+        "answer": "Dutton Hall",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "There are this many separate egghead sculptures on campus.",
+        "answer": "5",
+        "isSinglePlay": false
+      }
+    },
+    "category2": {
+      "categoryName": "valentine's Day fun",
+      "question1": {
+        "question": "February 14th is the date of this popular holiday. ",
+        "answer": "Valentine's Day",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "Valentine’s day is named after a martyr who who was this type of religious figure.",
+        "answer": "Saint",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "The most popular gift bought for Valentine’s day is this. ",
+        "answer": "A romantic dinner",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "By the 17th century, the act of exchanging Valentine’s cards became tradition in this country ",
+        "answer": "Great Britain",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "The Catholic church chose Saint Valentine’s day to be celebrated in mid-February to Christianize this Roman fertility festival. ",
+        "answer": "Lupercalia",
+        "isSinglePlay": false
+      }
+    },
+    "category3": {
+      "categoryName": "sports",
+      "question1": {
+        "question": "This football team was the winner of the latest Super Bowl. ",
+        "answer": "New England Patriots",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "This American Olympic swimmer holds the record for most olympic gold medals.",
+        "answer": "Michael Phelps",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "This baseball player was the first African American man to join the Major League Baseball.",
+        "answer": "Jackie Robinson",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "This sports team that was located in San Diego has recently moved to Los Angeles.",
+        "answer": "The Chargers",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "In order for a sport to qualify for inclusion as a an Olympic sport, it must be played in at least how many countries? ",
+        "answer": "75",
+        "isSinglePlay": false
+      }
+    },
+    "category4": {
+      "categoryName": "things your RAs told you",
+      "question1": {
+        "question": "This is where you can get toilet paper, trash bags, and help with a lockout during open hours.",
+        "answer": "The ASD, area service desk, front desk",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "“Shhh… It’s _____.”",
+        "answer": "quiet hours",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": " Floor dinners for Emerson 3 Poolside are at this time.",
+        "answer": "6:15pm, 1815",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "The Cuarto Academic Advising Center (CAAC) is located in this building, on this floor. ",
+        "answer": "Thoreau 1",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "These hours are the when you can be written up for disruptive noise from sunday to thursday.",
+        "answer": "11pm-7am",
+        "isSinglePlay": false
+      }
+    },
+    "category5": {
+      "categoryName": "I'm not an uncultured Swine",
+      "question1": {
+        "question": "This artist performed at the most recent Super Bowl",
+        "answer": "Lady Gaga",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "This movie is where this quote “You Uncultured Swine!” was iconically said.",
+        "answer": "Toy Story",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "2016 was the year that the this actor won their first Oscar. ",
+        "answer": "Leonardo Dicaprio",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "name this song: \"Oh, we're halfway there. oooooooooooooooooooooooooo\"",
+        "answer": "Living on a Prayer ",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "this kind of walk was not invented by astronaut Neil Armstrong but rather __________________.",
+        "answer": "Michael Jackson",
+        "isSinglePlay": false
+      }
+    },
+    "category6": {
+      "categoryName": "know your meme",
+      "question1": {
+        "question": "This type of dog was commonly found with phrases like “Such jeopardy. Many fun. Wow.”",
+        "answer": "shiba inu",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "This gorilla died for our sins. ",
+        "answer": "Harambe",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "Like nike, this man tells you to \"Just do it.\"",
+        "answer": "Shia Labeouf",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": "in august of 2015, this meme polled in third place for presidential candidates in north carolina and in 2016 beat Green party candidate jill stein in a poll in texas.",
+        "answer": "Deez Nuts",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": "this cartoon frog was recently labeled a hate symbol by the anti defamation league.",
+        "answer": "Pepe",
+        "isSinglePlay": false
+      }
+    }
+  },
+  "DoubleJeopardy": {
+    "category1": {
+      "categoryName": "Science",
+      "question1": {
+        "question": "Atoms have protons, neutrons, and ____",
+        "answer": "What is electrons?",
+        "isSinglePlay": false
+      },
+      "question2": {
+        "question": "The three types of rocks.",
+        "answer": "What are igneous, sedimentary, and metamorphic?",
+        "isSinglePlay": false
+      },
+      "question3": {
+        "question": "the change in the rate of speed, Measured in Meters Per second Squared.",
+        "answer": "What is acceleration?",
+        "isSinglePlay": false
+      },
+      "question4": {
+        "question": {
+          "type": "image",
+          "image": "http://ifsa.my/uploads/6/1/9/1/61919649/chloroplast_orig.png",
+          "text": "The part of a plant cell in which photosynthesis takes place."
+        },
+        "answer": "What is chloroplast?",
+        "isSinglePlay": false
+      },
+      "question5": {
+        "question": {
+          "type": "image",
+          "image": "http://www.nasa.gov/sites/default/files/thumbnails/image/final_configuration_of_iss.jpg",
+          "text": "This artificial Satellite currently serves as a research laboratory for all of the astronauts aboard and was previously visited by the shuttle program"
+        },
+        "answer": "What is the international space station?",
+        "isSinglePlay": false
+      }
+    },
+    "category2": {
+      "categoryName": "",
+      "question1": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question2": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question3": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question4": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question5": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      }
+    },
+    "category3": {
+      "categoryName": "",
+      "question1": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question2": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question3": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question4": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question5": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      }
+    },
+    "category4": {
+      "categoryName": "",
+      "question1": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question2": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question3": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question4": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question5": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      }
+    },
+    "category5": {
+      "categoryName": "",
+      "question1": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question2": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question3": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question4": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question5": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      }
+    },
+    "category6": {
+      "categoryName": "",
+      "question1": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question2": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question3": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question4": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      },
+      "question5": {
+        "isSinglePlay": false,
+        "question": "",
+        "answer": ""
+      }
+    }
+  },
+  "FinalJeopardy": {
+    "category": "grade school physics",
+    "question": {
+      "type": "video",
+      "URL": "https://www.youtube.com/embed/XDlfX4l1dMY?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0&start=3&end=17",
+      "VID": "XDlfX4l1dMY",
+      "start": "0:03",
+      "end": "0:17"
+    },
+    "answer": "What is drag?"
+  },
+  "_id": "4ovAHtFMcxeDWSgz7"
+}

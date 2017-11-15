@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
-import refresh from "../refresh";
 
 const medium = "2vmin";
 
@@ -542,7 +541,6 @@ export default class EditModal extends React.Component {
 	};
 	
 	render() {
-		refresh();
 		return (
 			<div id="myModal" style={modalStyle}>
 				<div style={modalContainer}>

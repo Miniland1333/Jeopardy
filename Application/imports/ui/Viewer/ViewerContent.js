@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
+import paper from "./../paper-full";
 import "./../howler";
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";

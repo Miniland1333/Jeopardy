@@ -11,6 +11,7 @@ Meteor.startup(() => {
 	//Comment out below to prevent initialization
 	Meteor.call("gameLogic.init");
 	Meteor.call("pingDatabase.init");
+	Meteor.call("gameLogic.kickAll");
 	
 	Meteor.onConnection(function (connection) {
 		connection.onClose(function () {

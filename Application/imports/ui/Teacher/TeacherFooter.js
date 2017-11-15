@@ -3,7 +3,6 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 
 import {gameDatabase} from "../../api/gameDatabase";
-import refresh from "../refresh";
 
 export default class TeacherFooter extends React.Component {
 	static propTypes = {
@@ -167,7 +166,6 @@ export default class TeacherFooter extends React.Component {
 	};
 	
 	renderContent = () => {
-		refresh();
 		const round = this.props.gameLogic["round"];
 		if (round == 0) {
 			switch (this.readyToStart()) {
@@ -526,7 +524,6 @@ export default class TeacherFooter extends React.Component {
 	};
 	
 	render() {
-		
 		return (
 			<div className="flex-container" style={{minHeight: "10vh", fontSize: "5vh", flexDirection: "column"}}>
 				{this.renderContent()}

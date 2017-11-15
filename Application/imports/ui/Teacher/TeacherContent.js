@@ -5,7 +5,6 @@ import {Meteor} from "meteor/meteor";
 import GameDropdown from "./GameDropdown";
 
 import Question from "./Question";
-import refresh from "../refresh";
 import PingReport from "./PingReport"
 
 const questionStyle = {
@@ -235,7 +234,6 @@ export default class TeacherContent extends React.Component {
 	};
 	
 	render() {
-		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 				{this.renderContent()}

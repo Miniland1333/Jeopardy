@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
-import refresh from "../refresh";
+import paper from "./../paper-full";
 import Ping from "../Ping";
 
 const buttonStyle = {
@@ -37,12 +37,12 @@ let finalAnswer;
 export default class StudentContent extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			setup: true,
+			isPortrait: window.innerWidth < window.innerHeight,
+		};
 		$(window).on("orientationchange", (event) => {
-			refresh();
-			this.forceUpdate();
-			Meteor.timeout(() => {
-				refresh();
-			}, 20);
+			setTimeout(() => this.setState({isPortrait: window.innerWidth < window.innerHeight}), 50);
 		});
 	}
 	
@@ -50,9 +50,6 @@ export default class StudentContent extends React.Component {
 		gameLogic: PropTypes.object,
 	};
 	
-	state = {
-		setup: true,
-	};
 	
 	handleFirst = () => {
 		Meteor.call("gameLogic.setFirst", teamNumber);
@@ -105,7 +102,7 @@ export default class StudentContent extends React.Component {
 			Meteor.call('gameLogic.setWager', teamNumber, wager);
 			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 				<div className="flex-container" style={{flexDirection: "column", flex: 1, justifyContent: "center"}}>
-					<div>
+					<div className="flex-container" style={{justifyContent: "center"}}>
 						<div style={buttonStyle}
 						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>+10,000
 						</div>
@@ -133,7 +130,7 @@ export default class StudentContent extends React.Component {
 					}}>
 						Wager: {wager}
 					</div>
-					<div>
+					<div className="flex-container" style={{justifyContent: "center"}}>
 						<div style={buttonStyle}
 						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>-10,000
 						</div>
@@ -215,7 +212,7 @@ export default class StudentContent extends React.Component {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<div className="flex-container"
 							     style={{flexDirection: "column", flex: 1, justifyContent: "center"}}>
-								<div>
+								<div className="flex-container" style={{justifyContent: "center"}}>
 									<div style={buttonStyle}
 									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager += 10000)}>
 										+10,000
@@ -244,7 +241,7 @@ export default class StudentContent extends React.Component {
 								}}>
 									Wager: {wager}
 								</div>
-								<div>
+								<div className="flex-container" style={{justifyContent: "center"}}>
 									<div style={buttonStyle}
 									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>
 										-10,000
@@ -266,7 +263,7 @@ export default class StudentContent extends React.Component {
 								</div>
 								<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${points}</div>
 							</div>
-							{(navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && window.innerHeight > window.innerWidth) ?
+							{(navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && this.state.isPortrait) ?
 								<div style={errorStyle}>Please view in Landscape Mode</div> :
 								<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
 									Confirm
@@ -277,13 +274,13 @@ export default class StudentContent extends React.Component {
 						</div>;
 					}
 					else {
-						return <div className="flex-container"
+						return <h1 className="flex-container"
 						            style={{
 							            flexDirection: "column",
 							            flex: 1,
 							            backgroundColor: "#060CE9",
 							            fontSize: "4vmin"
-						            }}>Make sure you device is landscape!</div>;
+						            }}>{this.state.isPortrait ? "Rotate your device to landscape!" : "Keep your device in landscape!"}</h1>;
 					}
 				
 				case "FJread":
@@ -357,7 +354,6 @@ export default class StudentContent extends React.Component {
 	}
 	
 	render() {
-		refresh();
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 				{this.renderContent()}
