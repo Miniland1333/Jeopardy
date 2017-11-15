@@ -24,10 +24,7 @@ export default class StudentHeader extends React.Component {
 			});
 		}
 		else {
-			if ((this.props.gameLogic["state"] === "FJopen" || this.props.gameLogic["state"] === "FJread") && this.props.gameLogic["connections"][Meteor.connection._lastSessionId] !== undefined) {
-				return [];
-			}
-			else {
+			if (!this.props.gameLogic["connections"][Meteor.connection._lastSessionId]) {
 				return $.map(this.props.gameLogic, function (contents, field) {
 					if (field.includes("player")) {
 						return (
@@ -38,6 +35,17 @@ export default class StudentHeader extends React.Component {
 							            connectionId={Meteor.connection._lastSessionId}/>)
 					}
 				});
+			}
+			else if ((this.props.gameLogic["state"] === "FJopen" || this.props.gameLogic["state"] === "FJread")) {
+				return [];
+			}
+			else {
+				let teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
+				return <ScoreBoard playerLogic={this.props.gameLogic["player" + teamNumber]}
+				                   gameLogic={gameLogic.find().fetch()[0]}
+				                   round={gameLogic.find().fetch()[0]["round"]}
+				                   connectionId={Meteor.connection._lastSessionId}
+				                   wide={true}/>
 			}
 		}
 	};

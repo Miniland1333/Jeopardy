@@ -195,7 +195,7 @@ export default class ScoreBoard extends React.Component {
 				     flex: 1,
 			     }}>
 				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
-				<div >{this.props.playerLogic.teamName}</div>
+				<div>{this.props.playerLogic.teamName}</div>
 				{this.state.options ?
 					<Options key="thing"
 					         gameLogic={this.props.gameLogic}

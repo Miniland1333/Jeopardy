@@ -13,11 +13,6 @@ class PingReport extends React.Component {
 	};
 	
 	//noinspection JSMethodCanBeStatic
-	componentDidMount() {
-		Meteor.call("pingDatabase.init");
-	}
-	
-	//noinspection JSMethodCanBeStatic
 	render() {
 		return <div className="flex-container" style={{
 			flexDirection: "column",

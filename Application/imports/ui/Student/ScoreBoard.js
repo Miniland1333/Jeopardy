@@ -3,23 +3,13 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 
 
-const inputStyle = {
-	textAlign: "center",
-	background: "transparent",
-	border: "none",
-	color: "white",
-	fontSize: "1vw",
-	flex: 1,
-	overFlow: "hide",
-	minWidth: "10vw",
-};
-
 export default class ScoreBoard extends React.Component {
 	static propTypes = {
 		playerLogic: PropTypes.object,
 		gameLogic: PropTypes.object,
 		round: PropTypes.number,
 		connectionId: PropTypes.string,
+		wide: PropTypes.bool,
 	};
 	
 	numDisplay = () => {
@@ -29,7 +19,7 @@ export default class ScoreBoard extends React.Component {
 					return "----";
 					break;
 				case "ready":
-					return "Team" + this.props.playerLogic["teamNumber"];
+					return "Team" + this.props.playerLogic.teamNumber;
 					break;
 				default:
 					return "OPEN";
@@ -49,83 +39,54 @@ export default class ScoreBoard extends React.Component {
 		}
 	};
 	
-	handleName = (name) => {
-		Meteor.call('gameLogic.setTeamName', this.props.playerLogic["teamNumber"], name.target.value);
-	};
 	
 	handleClick = () => {
 		const status = this.props.playerLogic["status"];
 		if (this.props.round === 0) {
-			
-			const input = $("#input" + this.props.playerLogic["teamNumber"]);
 			if (status === "" && this.props.gameLogic["connections"][this.props.connectionId] === undefined) {
-				Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, this.props.connectionId);
+				Meteor.call('gameLogic.setConnectionId', this.props.playerLogic.teamNumber, this.props.round, this.props.connectionId);
 				
-				if (navigator.userAgent.match(/(Android|iPhone|iPod)/i)) {
-					this.handleFocus();
-					let name = prompt("Enter Team Name");
-					if (!name) {
-						name = "";
-					}
-					input.val(name);
-					this.handleBlur({target: {value: name}});
-					this.handleName({target: {value: name}});
+				this.handleFocus();
+				let name = prompt("Enter Team Name");
+				if (!name) {
+					name = "";
 				}
-				else {
-					input.prop("disabled", false);
-					input.focus();
-				}
+				this.handleName(name);
 			}
 			else if (status === "ready" && this.props.connectionId === this.props.playerLogic["connectionId"]) {
-				if (navigator.userAgent.match(/(Android|iPhone|iPod)/i)) {
-					this.handleFocus();
-					let name = prompt("Enter Team Name", input.val());
-					if (name === null) {
-						name = input.val();
-					}
-					input.val(name);
-					this.handleBlur({target: {value: name}});
-					this.handleName({target: {value: name}});
-				}
-				else {
-					input.prop("disabled", false);
-					input.focus();
-				}
+				this.handleFocus();
+				let name = prompt("Enter Team Name", this.props.playerLogic.teamName);
+				this.handleName(name);
 			}
 		}
 		else if (status === "reconnect" && this.props.gameLogic["connections"][this.props.connectionId] === undefined) {
-			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, this.props.connectionId);
-			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "active", this.props.round);
+			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic.teamNumber, this.props.round, this.props.connectionId);
+			Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "active", this.props.round);
 		}
-	};
-	
-	handleSubmit = (e) => {
-		e.preventDefault();
-		$("#input" + this.props.playerLogic["teamNumber"]).blur();
 	};
 	
 	handleFocus = () => {
-		Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "pending", 0)
+		Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "pending", 0)
 	};
 	
-	handleBlur = (name) => {
-		$("#input" + this.props.playerLogic["teamNumber"]).prop("disabled", true);
+	handleName = (name) => {
 		//noinspection EqualityComparisonWithCoercionJS
-		if (name.target.value == "") {
-			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "", 0);
-			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic["teamNumber"], this.props.round, "", this.props.connectionId);
-			Meteor.call('gameLogic.setTeamName', this.props.playerLogic["teamNumber"], "");
+		if (name == "") {
+			Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "", 0);
+			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic.teamNumber, this.props.round, "", this.props.connectionId);
+			Meteor.call('gameLogic.setTeamName', this.props.playerLogic.teamNumber, "");
 		}
 		else {
-			Meteor.call('gameLogic.setStatus', this.props.playerLogic["teamNumber"], "ready", 0)
+			Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "ready", 0)
 		}
 		
+		Meteor.call('gameLogic.setTeamName', this.props.playerLogic.teamNumber, name);
 	};
 	
 	scoreStyle = () => {
 		const green = {
 			fontFamily: "D7",
-			fontSize: "4vw",
+			fontSize: this.props.wide ? "10vmin" : "4win",
 			minWidth: "10vw",
 			border: "4px solid #00e800",
 			padding: "10px 1vw",
@@ -134,7 +95,7 @@ export default class ScoreBoard extends React.Component {
 		
 		const orange = {
 			fontFamily: "D7",
-			fontSize: "4vw",
+			fontSize: this.props.wide ? "10vmin" : "4vmin",
 			minWidth: "10vw",
 			border: "4px solid orange",
 			padding: "10px 1vw",
@@ -143,7 +104,7 @@ export default class ScoreBoard extends React.Component {
 		
 		const red = {
 			fontFamily: "D7",
-			fontSize: "4vw",
+			fontSize: this.props.wide ? "10vmin" : "4vmin",
 			minWidth: "10vw",
 			border: "4px solid #ff3f3f",
 			padding: "10px 1vw",
@@ -152,14 +113,14 @@ export default class ScoreBoard extends React.Component {
 		
 		const normal = {
 			fontFamily: "D7",
-			fontSize: "4vw",
+			fontSize: this.props.wide ? "10vmin" : "4vmin",
 			minWidth: "10vw",
 			border: "4px solid #060CE9",
 			padding: "10px 1vw",
 			borderRadius: 8,
 		};
 		
-		const teamNumber = this.props.playerLogic["teamNumber"];
+		const teamNumber = this.props.playerLogic.teamNumber;
 		if (this.props.round === 0) {
 			switch (this.props.playerLogic["status"]) {
 				case "pending":
@@ -181,7 +142,7 @@ export default class ScoreBoard extends React.Component {
 				case "categoryIntro":
 				case "categories":
 				case "pickQuestion":
-					if (this.props.gameLogic["lastWinner"] === this.props.playerLogic["teamNumber"]) {
+					if (this.props.gameLogic["lastWinner"] === this.props.playerLogic.teamNumber) {
 						return orange;
 					}
 					else {
@@ -191,7 +152,7 @@ export default class ScoreBoard extends React.Component {
 				case "wager":
 				case "DDread":
 				case "DDanswer":
-					if (this.props.gameLogic["lastWinner"] === this.props.playerLogic["teamNumber"]) {
+					if (this.props.gameLogic["lastWinner"] === this.props.playerLogic.teamNumber) {
 						return green;
 					}
 					else {
@@ -249,17 +210,9 @@ export default class ScoreBoard extends React.Component {
 				     flex: 1,
 			     }}>
 				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
-				<form onSubmit={this.handleSubmit} className="flex-container">
-					<input id={"input" + this.props.playerLogic["teamNumber"]}
-					       spellCheck="true"
-					       type="text"
-					       value={this.props.playerLogic["teamName"]}
-					       onChange={this.handleName}
-					       style={inputStyle}
-					       onFocus={this.handleFocus}
-					       onBlur={this.handleBlur}
-					       disabled/>
-				</form>
+				<div>
+					{this.props.playerLogic["teamName"]}
+				</div>
 			</div>
 		)
 	}
