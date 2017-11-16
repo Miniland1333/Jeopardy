@@ -7,7 +7,6 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {gameQuestions} from "./gameQuestions";
 
-
 export const gameLogic = new Mongo.Collection('gameLogic');
 
 if (Meteor.isServer) {
@@ -247,10 +246,13 @@ Meteor.methods({
 		gameLogic.update({}, {$set: bundle});
 	},
 	'gameLogic.setFirst'(teamNumber) {
-		gameLogic.update({}, {$set: {"currentQuestionLogic.first": teamNumber}});
+		gameLogic.update({}, {$set: {"currentQuestionLogic.first": teamNumber,"currentQuestionLogic.firstTime":ServerTime.now()}});
 	},
 	'gameLogic.addLate'(teamNumber) {
 		gameLogic.update({}, {$push: {"currentQuestionLogic.RungInLate": teamNumber}});
+		const bundle = {};
+		bundle["player" + teamNumber + ".lateTime"] = ServerTime.now();
+		gameLogic.update({}, {$set: bundle});
 	},
 	'gameLogic.addIncorrect'(teamNumber) {
 		gameLogic.update({}, {$push: {"currentQuestionLogic.Incorrect": teamNumber}});

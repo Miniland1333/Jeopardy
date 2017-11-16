@@ -230,10 +230,20 @@ export default class StudentContent extends React.Component {
 				</div>;
 			}
 			else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
+				const firstTime = this.props.gameLogic["currentQuestionLogic"].firstTime;
+				let playerTime = this.props.gameLogic["player" + teamNumber].lateTime;
 				
 				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-					{/*TODO-Add time difference*/}
-					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
+					<div className="flex-container" style={{
+						background: "#ff3f3f",
+						borderRadius: "8px",
+						margin: "30px",
+						flexDirection: "column",
+						flex: 1,
+						justifyContent: "center",
+					}}>
+						<div style={{"fontSize": "8vmin"}}>+{(playerTime - firstTime) / 1000} seconds</div>
+					</div>
 				</div>;
 			}
 			else {

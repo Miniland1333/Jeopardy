@@ -13,7 +13,7 @@ import TeacherFooter from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
 import Ping from "../Ping"
-import "./../refresh";
+import refresh from "./../refresh";
 
 class Teacher extends React.Component {
 	static propTypes = {
@@ -21,6 +21,10 @@ class Teacher extends React.Component {
 		gameLogic: PropTypes.array,
 		gameQuestions: PropTypes.array,
 	};
+	
+	componentDidMount(){
+		refresh();
+	}
 	
 	render() {
 		if (this.props.isReady && this.props.gameLogic.length === 0) {

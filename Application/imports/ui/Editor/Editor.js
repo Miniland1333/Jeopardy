@@ -8,7 +8,7 @@ import {editorDatabase} from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
 import EditorTable from "./EditorTable";
 import Ping from "../Ping";
-import "./../refresh";
+import refresh from "./../refresh";
 
 class Editor extends React.Component {
 	state = {
@@ -18,6 +18,10 @@ class Editor extends React.Component {
 	handleRoundChange = (round) => {
 		this.setState({round: round});
 	};
+	
+	componentDidMount(){
+		refresh();
+	}
 	
 	//noinspection JSMethodCanBeStatic
 	componentWillReceiveProps(newProps) {

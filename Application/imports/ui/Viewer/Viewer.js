@@ -9,9 +9,13 @@ import {gameQuestions} from "../../api/gameQuestions";
 import ViewerContent from "./ViewerContent";
 import ViewerFooter from "./ViewerFooter";
 import Ping from "../Ping";
-import "./../refresh";
+import refresh from "./../refresh";
 
 class Viewer extends React.Component {
+	componentDidMount(){
+		refresh();
+	}
+	
 	render() {
 		return (
 			<DocumentTitle title='Jeopardy Viewer'>

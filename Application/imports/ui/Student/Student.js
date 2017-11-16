@@ -2,7 +2,7 @@ import React from "react";
 import {withTracker} from "meteor/react-meteor-data";
 import DocumentTitle from "react-document-title";
 import {Meteor} from "meteor/meteor";
-import "./../refresh";
+import refresh from "./../refresh";
 import {gameLogic} from "../../api/gameLogic";
 
 import StudentHeader from "./StudentHeader";
@@ -10,6 +10,10 @@ import StudentContent from "./StudentContent";
 
 
 class Student extends React.Component {
+	componentDidMount(){
+		refresh();
+	}
+	
 	render() {
 		return (
 			<DocumentTitle title='Jeopardy'>
