@@ -89,7 +89,7 @@ export default class ScoreBoard extends React.Component {
 	scoreStyle = () => {
 		const green = {
 			fontFamily: "D7",
-			fontSize: this.props.wide ? "10vmin" : "4win",
+			fontSize: this.props.wide ? "10vmin" : "4vmin",
 			minWidth: "10vw",
 			border: "4px solid #00e800",
 			padding: "10px 1vw",

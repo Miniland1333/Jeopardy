@@ -5,6 +5,11 @@ import {Route, Router, StaticRouter, Switch} from "react-router";
 import createBrowserHistory from 'history/createBrowserHistory'
 
 import FastClick from "./fastclick";
+import "../imports/api/editorDatabase";
+import "../imports/api/gameDatabase";
+import "../imports/api/gameLogic";
+import "../imports/api/gameQuestions";
+import "../imports/api/pingDatabase";
 
 const customHistory = createBrowserHistory();
 

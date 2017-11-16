@@ -131,3 +131,7 @@ header .hide-completed {
 	display: -webkit-flex;
 	display: flex;
 }
+
+#Mongol {
+	text-align: left;
+}
