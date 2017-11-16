@@ -13,6 +13,7 @@ import TeacherFooter from "./TeacherFooter";
 import TeacherContent from "./TeacherContent";
 
 import Ping from "../Ping"
+import "./../refresh";
 
 class Teacher extends React.Component {
 	static propTypes = {

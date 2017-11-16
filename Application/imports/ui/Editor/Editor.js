@@ -8,6 +8,7 @@ import {editorDatabase} from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
 import EditorTable from "./EditorTable";
 import Ping from "../Ping";
+import "./../refresh";
 
 class Editor extends React.Component {
 	state = {

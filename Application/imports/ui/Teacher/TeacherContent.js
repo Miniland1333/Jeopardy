@@ -28,7 +28,7 @@ export default class TeacherContent extends React.Component {
 	
 	renderContent = () => {
 		if (this.props.gameLogic["round"] === 0) {
-			addToHomescreen();
+			// addToHomescreen();
 			return <div className="flex-container" style={{flex: 1, flexDirection: 'column'}}>
 				<GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic}/>
 				<PingReport/>

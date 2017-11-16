@@ -67,7 +67,6 @@ Meteor.methods({
 				gameLogic.update({}, {$set: bundle});
 			}
 		}
-		gameLogic.update({}, {$unset: {setupPlayers: ""}});
 		gameLogic.update({}, {$set: {numPlayers: numPlayers}});
 	},
 	'gameLogic.addPlayer'(teamNumber, teamName) {
@@ -98,8 +97,8 @@ Meteor.methods({
 		gameLogic.update({}, {$set: {connections: {}}});
 	},
 	'gameLogic.kickAll'() {
-		for (let i = 1;i<=gameLogic.find().fetch()[0].numPlayers;i++)
-			Meteor.call('gameLogic.kick',i);
+		for (let i = 1; i <= gameLogic.find().fetch()[0].numPlayers; i++)
+			Meteor.call('gameLogic.kick', i);
 	},
 	'gameLogic.kick'(teamNumber, connectionId) {
 		//resets a setupPlayer{player} or sets player to reconnect
@@ -230,6 +229,8 @@ Meteor.methods({
 	},
 	'gameLogic.setRound'(roundNumber) {
 		gameLogic.update({}, {$set: {round: roundNumber}});
+		if (roundNumber === 1)
+			gameLogic.update({}, {$unset: {setupPlayers: ""}});
 		Meteor.call('gameLogic.setState', 'intro');
 	},
 	'gameLogic.lastWinner'(number) {

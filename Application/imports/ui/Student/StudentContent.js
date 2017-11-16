@@ -84,14 +84,49 @@ export default class StudentContent extends React.Component {
 		let max;
 		let points;
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
-		if (teamNumber === undefined) {
-			//addToHomescreen();
-			return (
-				<div className="flex-container" style={{flexDirection: "column", flex: 1, backgroundColor: "#060CE9"}}>
-					<h1>Tap an open box to register!</h1>
-					<p>{Meteor.connection._lastSessionId}</p>
+		if (this.props.gameLogic["round"] === 0) {
+			if (teamNumber === undefined) {
+				//addToHomescreen();
+				return (
+					<div className="flex-container"
+					     style={{
+						     flexDirection: "column",
+						     flex: 1,
+						     backgroundColor: "#060CE9",
+					     }}>
+						<div className="flex-container"
+						     style={{
+							     flexDirection: "column",
+							     flex: 1,
+							     justifyContent: "center"
+						     }}>
+							<h1 style={{fontSize: "5vmin"}}>Tap an open box to register!</h1>
+							<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
+						</div>
+						<div style={{height: 20, backgroundColor: StudentContent.setupColor()}}/>
+					</div>
+				);
+			}
+			else {
+				return <div className="flex-container"
+				            style={{
+					            flexDirection: "column",
+					            flex: 1,
+					            backgroundColor: "#060CE9",
+				            }}>
+					<div className="flex-container"
+					     style={{
+						     flexDirection: "column",
+						     flex: 1,
+						     justifyContent: "center"
+					     }}>
+						<h1 style={{fontSize: "5vmin"}}>Ready to
+							go {this.props.gameLogic.setupPlayers["player" + teamNumber].teamName}!</h1>
+						<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
+					</div>
+					<div style={{height: 20, backgroundColor: StudentContent.setupColor()}}/>
 				</div>
-			);
+			}
 		}
 		else if (this.props.gameLogic["state"] === "wager" && this.props.gameLogic["lastWinner"] === teamNumber) {
 			points = this.props.gameLogic["player" + teamNumber]["points"];
@@ -358,6 +393,18 @@ export default class StudentContent extends React.Component {
 		}
 		else {
 			return this.props.gameLogic["player" + teamNumber]["teamName"]
+		}
+	}
+	
+	static setupColor() {
+		if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
+			return "#00a2ff";
+		}
+		else if (navigator.userAgent.match(/(Android)/i)) {
+			return "#A4C639";
+		}
+		else {
+			return "#FFF";
 		}
 	}
 	

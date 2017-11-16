@@ -9,6 +9,7 @@ import {gameQuestions} from "../../api/gameQuestions";
 import ViewerContent from "./ViewerContent";
 import ViewerFooter from "./ViewerFooter";
 import Ping from "../Ping";
+import "./../refresh";
 
 class Viewer extends React.Component {
 	render() {
