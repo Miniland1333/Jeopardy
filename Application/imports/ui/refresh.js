@@ -2,6 +2,8 @@
  * Created by Henry on 2/25/2017.
  */
 
+refresh();
+
 if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i) && !window.navigator.standalone) {
 	$(window).on("orientationchange", function () {
 		refresh();

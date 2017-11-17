@@ -191,7 +191,7 @@ export default class StudentContent extends React.Component {
 					Wager
 				</div>
 				{navigator.userAgent.match(/(iPhone|iPod)/i) && !window.navigator.standalone ?
-					<div style={{height: 20}}/> : []}
+					<div style={{height: 60}}/> : []}
 			</div>;
 			
 		}
@@ -323,7 +323,7 @@ export default class StudentContent extends React.Component {
 									Wager
 								</div>}
 							{navigator.userAgent.match(/(iPhone|iPod)/i) && !window.navigator.standalone ?
-								<div style={{height: 20}}/> : []}
+								<div style={{height: 60}}/> : []}
 						</div>;
 					}
 					else {
