@@ -257,7 +257,7 @@ export default class EditModal extends React.Component {
 			return extra;
 		};
 		if (VID != null) {
-			videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0" + extraTime();
+			videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0" + extraTime();
 			
 			$("#Embed").val(videoURL);
 			$("#videoView").attr("src", videoURL);
@@ -458,7 +458,7 @@ export default class EditModal extends React.Component {
 									       let videoURL = $("#videoURL").val();
 									       let VID = this.parseVID(videoURL);
 									       if (VID != null) {
-										       videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0";
+										       videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0";
 										       $("#Start").val("");
 										       $("#End").val("");
 										
@@ -511,8 +511,8 @@ export default class EditModal extends React.Component {
 		switch (!this.props.isHeader && this.state.questionType) {
 			case "text":
 				mediaButtons = <div className="flex-container " style={{justifyContent: "flex-start", flex: 1}}>
-					<button style={imageStyle} onClick={this.handleAddImage}>Add Image</button>
-					<button style={videoStyle} onClick={this.handleAddVideo}>Add Video</button>
+					<button style={imageStyle} onClick={this.handleAddImage}>Add Image/Video</button>
+					<button style={videoStyle} onClick={this.handleAddVideo}>Add Youtube</button>
 				</div>;
 				break;
 			case "image":
