@@ -7,7 +7,9 @@
   "dependencies": {
     "acorn": "^5.2.1",
     "babel-runtime": "^6.26.0",
+    "blueimp-file-upload": "^9.19.1",
     "classnames": "latest",
+    "cloudinary-jquery-file-upload": "^2.3.0",
     "jquery": "^3.2.1",
     "meteor-node-stubs": "^0.3.2",
     "orientationchangeend": "^1.1.2",

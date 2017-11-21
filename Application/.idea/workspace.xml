@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="Added additional refresh">
+    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/Question.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" afterPath="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,12 +29,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="460" column="157" lean-forward="false" selection-start-line="460" selection-start-column="157" selection-end-line="460" selection-end-column="157" />
-              <folding />
+            <state relative-caret-position="218">
+              <caret line="430" column="24" lean-forward="true" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#216#579#0" expanded="false" />
+                <element signature="e#605#747#0" expanded="false" />
+                <element signature="e#776#1005#0" expanded="false" />
+                <element signature="e#1027#1237#0" expanded="false" />
+                <element signature="e#1261#1510#0" expanded="false" />
+                <element signature="e#1813#1994#0" expanded="false" />
+                <element signature="e#2014#2272#0" expanded="false" />
+                <element signature="e#2294#2536#0" expanded="false" />
+                <element signature="e#2557#2776#0" expanded="false" />
+                <element signature="e#2797#3016#0" expanded="false" />
+                <element signature="e#3036#3278#0" expanded="false" />
+                <element signature="e#3306#3335#0" expanded="false" />
+                <element signature="e#3418#3589#0" expanded="false" />
+                <element signature="e#3613#3924#0" expanded="false" />
+                <element signature="e#5040#5141#0" expanded="false" />
+                <element signature="e#5169#5270#0" expanded="false" />
+                <element signature="e#5300#5554#0" expanded="false" />
+                <element signature="e#5578#6476#0" expanded="false" />
+                <element signature="e#6509#6771#0" expanded="false" />
+                <element signature="e#6802#6902#0" expanded="false" />
+                <element signature="e#6933#6978#0" expanded="false" />
+                <element signature="e#7002#7064#0" expanded="false" />
+                <element signature="e#7088#7141#0" expanded="false" />
+                <element signature="e#8966#9508#0" expanded="false" />
+                <element signature="e#12274#14715#0" expanded="false" />
+                <element signature="e#15027#16425#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewerContent.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="327" column="51" lean-forward="true" selection-start-line="327" selection-start-column="51" selection-end-line="327" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TeacherContent.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="215" column="39" lean-forward="true" selection-start-line="215" selection-start-column="39" selection-end-line="215" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Question.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="91" column="83" lean-forward="false" selection-start-line="91" selection-start-column="83" selection-end-line="91" selection-end-column="83" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -47,13 +116,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>wager</find>
-      <find>landsc</find>
-      <find>) =&gt;</find>
-      <find>connection</find>
-      <find>paper</find>
-      <find>refres</find>
-      <find>reset</find>
       <find>landscape</find>
       <find>this.props.playerLogic[&quot;teamNumber&quot;]</find>
       <find>: &quot;.*&quot;</find>
@@ -75,8 +137,15 @@
       <find>first</find>
       <find>setR</find>
       <find>late</find>
-      <find>video</find>
       <find>modest</find>
+      <find>save</find>
+      <find>this.props.question.image</find>
+      <find>.mp4</find>
+      <find>img</find>
+      <find>Video Question</find>
+      <find>includes</find>
+      <find>Video</find>
+      <find>video</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -96,6 +165,9 @@
       <replace>: &quot;latest&quot;</replace>
       <replace>this.props.wide?&quot;10vw&quot;:&quot;4wv&quot;</replace>
       <replace>this.props.wide?&quot;10vmin&quot;:&quot;4win&quot;</replace>
+      <replace>youTube</replace>
+      <replace>imageUrl</replace>
+      <replace>this.state.imageURL</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -123,7 +195,6 @@
         <option value="$PROJECT_DIR$/.meteor/packages" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/Countdown.js" />
@@ -153,10 +224,8 @@
         <option value="$PROJECT_DIR$/imports/ui/Teacher/ScoreBoard.js" />
         <option value="$PROJECT_DIR$/server/main.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/PingReport.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
         <option value="$PROJECT_DIR$/client/main.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/ScoreBoard.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
         <option value="$PROJECT_DIR$/client/main.css" />
         <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
@@ -165,6 +234,9 @@
         <option value="$PROJECT_DIR$/imports/ui/Viewer/Viewer.js" />
         <option value="$PROJECT_DIR$/imports/ui/refresh.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
       </list>
     </option>
@@ -198,7 +270,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="612" />
+    <option name="y" value="320" />
     <option name="width" value="814" />
     <option name="height" value="867" />
   </component>
@@ -311,10 +384,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -353,12 +422,30 @@
             <path>
               <item name="Application" type="b2602c69:ProjectViewProjectNode" />
               <item name="Application" type="462c0819:PsiDirectoryNode" />
+              <item name="imports" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="Teacher" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Application" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Application" type="462c0819:PsiDirectoryNode" />
+              <item name="imports" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="Viewer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Application" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Application" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1274,14 +1361,8 @@
       <workItem from="1510811558084" duration="6168000" />
       <workItem from="1510880427598" duration="1474000" />
       <workItem from="1510983887280" duration="50000" />
-      <workItem from="1511159482151" duration="675000" />
-    </task>
-    <task id="LOCAL-00062" summary="Added in Wager Display for FJ">
-      <created>1475568572849</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1475568572850</updated>
+      <workItem from="1511159482151" duration="1920000" />
+      <workItem from="1511228359825" duration="12503000" />
     </task>
     <task id="LOCAL-00063" summary="Logic fix for ViewerContent Wager display">
       <created>1475733374974</created>
@@ -1619,11 +1700,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510881889131</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Removed annotations&#10;&#10;Todo add mp4 capabilities">
+      <created>1511160182827</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1511160182829</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="666451000" />
+    <option name="totallyTimeSpent" value="680199000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1638,37 +1726,37 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24825662" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24152543" sideWeight="0.50928384" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21208227" sideWeight="0.5487572" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39305556" sideWeight="0.4907162" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18894601" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19151671" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3319209" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22236504" sideWeight="0.52120143" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4180791" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914925" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3319209" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1739,7 +1827,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Allows FJ Dropping in" />
     <MESSAGE value="FJ ForceUpdate() and previous answer loading" />
     <MESSAGE value="setup is now in state" />
     <MESSAGE value="Bug Fixes due to time duplicate declaration" />
@@ -1764,14 +1851,15 @@
     <MESSAGE value="Fixed Refresh&#10;&#10;Will do later timer next" />
     <MESSAGE value="Added Late Timer" />
     <MESSAGE value="Added additional refresh" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added additional refresh" />
+    <MESSAGE value="Removed annotations&#10;&#10;Todo add mp4 capabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed annotations&#10;&#10;Todo add mp4 capabilities" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="160" />
+      <option name="time" value="161" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1792,41 +1880,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imports/api/gameQuestions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3211">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Countdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="91" column="25" lean-forward="true" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/howler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/jquery-ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/jquery.ui.touch-punch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2065">
@@ -2031,13 +2084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="263" column="53" lean-forward="true" selection-start-line="263" selection-start-column="53" selection-end-line="263" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -2049,13 +2095,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="593">
           <caret line="114" column="10" lean-forward="true" selection-start-line="114" selection-start-column="10" selection-end-line="114" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -2146,11 +2185,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/Jeopardy.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/cloudinary-jquery-file-upload/cloudinary-jquery-file-upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1630">
+          <caret line="4422" column="47" lean-forward="false" selection-start-line="4422" selection-start-column="47" selection-end-line="4422" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/blueimp-file-upload/js/jquery.fileupload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/cloudinary_cors.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="460" column="157" lean-forward="false" selection-start-line="460" selection-start-column="157" selection-end-line="460" selection-end-column="157" />
-          <folding />
+        <state relative-caret-position="218">
+          <caret line="430" column="24" lean-forward="true" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#216#579#0" expanded="false" />
+            <element signature="e#605#747#0" expanded="false" />
+            <element signature="e#776#1005#0" expanded="false" />
+            <element signature="e#1027#1237#0" expanded="false" />
+            <element signature="e#1261#1510#0" expanded="false" />
+            <element signature="e#1813#1994#0" expanded="false" />
+            <element signature="e#2014#2272#0" expanded="false" />
+            <element signature="e#2294#2536#0" expanded="false" />
+            <element signature="e#2557#2776#0" expanded="false" />
+            <element signature="e#2797#3016#0" expanded="false" />
+            <element signature="e#3036#3278#0" expanded="false" />
+            <element signature="e#3306#3335#0" expanded="false" />
+            <element signature="e#3418#3589#0" expanded="false" />
+            <element signature="e#3613#3924#0" expanded="false" />
+            <element signature="e#5040#5141#0" expanded="false" />
+            <element signature="e#5169#5270#0" expanded="false" />
+            <element signature="e#5300#5554#0" expanded="false" />
+            <element signature="e#5578#6476#0" expanded="false" />
+            <element signature="e#6509#6771#0" expanded="false" />
+            <element signature="e#6802#6902#0" expanded="false" />
+            <element signature="e#6933#6978#0" expanded="false" />
+            <element signature="e#7002#7064#0" expanded="false" />
+            <element signature="e#7088#7141#0" expanded="false" />
+            <element signature="e#8966#9508#0" expanded="false" />
+            <element signature="e#12274#14715#0" expanded="false" />
+            <element signature="e#15027#16425#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="215" column="39" lean-forward="true" selection-start-line="215" selection-start-column="39" selection-end-line="215" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="91" column="83" lean-forward="false" selection-start-line="91" selection-start-column="83" selection-end-line="91" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="327" column="51" lean-forward="true" selection-start-line="327" selection-start-column="51" selection-end-line="327" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

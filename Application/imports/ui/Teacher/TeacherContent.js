@@ -26,6 +26,9 @@ export default class TeacherContent extends React.Component {
 		gameQuestions: PropTypes.object,
 	};
 	
+	hasVideo = () =>
+		this.props.gameQuestions["currentQuestion"]["question"].image.includes(".mp4");
+	
 	renderContent = () => {
 		if (this.props.gameLogic["round"] === 0) {
 			// addToHomescreen();
@@ -148,7 +151,7 @@ export default class TeacherContent extends React.Component {
 						</div>);
 				}
 				else {
-					if (this.props.gameQuestions["currentQuestion"]["question"].type === "image") {
+					if (this.props.gameQuestions["currentQuestion"]["question"].type === "image" && !this.hasVideo()) {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<div
 								style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"].text}</div>
@@ -201,7 +204,7 @@ export default class TeacherContent extends React.Component {
 						</div>);
 				}
 				else {
-					if (this.props.gameQuestions["currentRound"]["question"].type === "image") {
+					if (this.props.gameQuestions["currentRound"]["question"].type === "image" && !this.hasVideo()) {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<div
 								style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"].text}</div>

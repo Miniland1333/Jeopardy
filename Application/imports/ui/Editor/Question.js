@@ -81,7 +81,7 @@ export default class Question extends React.Component {
 			}
 			else {
 				questionContent = this.props.cell.question.VID;
-				questionType = "video";
+				questionType = "youTube";
 				
 			}
 		}
@@ -89,12 +89,15 @@ export default class Question extends React.Component {
 			let content = this.props.cell.isSinglePlay ? "SINGLE PLAY" : "";
 			switch (questionType) {
 				case "image":
-					content += " 📷 ";
+					if (this.state.imageURL && this.state.imageURL.includes(".mp4"))
+						content += " 🎬 ";
+					else
+						content += " 📷 ";
 					return [content,
 						<img key="1" src={this.props.cell.question.image} style={{height: 0, width: 0, display: "none"}}
 						     onError={this.brokenImage}/>];
 					break;
-				case "video":
+				case "youTube":
 					content += " ▶ ";
 					break;
 			}
@@ -109,7 +112,7 @@ export default class Question extends React.Component {
 	};
 	
 	brokenImage = () => {
-		if (this.state.isImageOkay)
+		if (this.state.isImageOkay && !this.props.cell.question.image.includes(".mp4"))
 			this.setState({isImageOkay: false});
 	};
 	

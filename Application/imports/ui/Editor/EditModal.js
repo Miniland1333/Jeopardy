@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
+import "blueimp-file-upload";
+import "cloudinary-jquery-file-upload";
 
 const medium = "2vmin";
 
@@ -53,6 +55,20 @@ const textAreaStyle = {
 	boxSizing: "border-box",
 	padding: "10px 0",
 	background: "#060CE9",
+	border: "none",
+	fontSize: medium,
+	textAlign: "center",
+	flexGrow: 1,
+	textTransform: "uppercase",
+	color: "white",
+	minHeight: 120,
+	overflowX: "hidden",
+};
+const textAreaStyleDisabled = {
+	maxWidth: "100%",
+	boxSizing: "border-box",
+	padding: "10px 0",
+	background: "#606298",
 	border: "none",
 	fontSize: medium,
 	textAlign: "center",
@@ -132,9 +148,6 @@ const saveStyle = {
 	//borderRadius:8,
 	cursor: "pointer",
 };
-const buttonHolderStyle = {
-	justifyContent: "flex-end",
-};
 const verticalFlexStyle = {
 	flexDirection: "column",
 };
@@ -169,6 +182,7 @@ export default class EditModal extends React.Component {
 		isSinglePlay: this.props.isSinglePlay,
 		questionType: "text",
 		questionText: typeof this.props.question === "string" ? this.props.question : "",
+		imageURL: this.props.question.image,
 	};
 	
 	componentDidMount() {
@@ -185,7 +199,25 @@ export default class EditModal extends React.Component {
 				this.setState({questionType: "video"});
 			}
 		}
+		$.cloudinary.config({cloud_name: 'hiqjgs7wz'});
+		this.handleUpload();
 	}
+	
+	componentDidUpdate() {
+		this.handleUpload();
+	}
+	
+	handleUpload = () => {
+		$("#cloudinary-fileupload").cloudinary_fileupload({}).bind('cloudinarydone', (e, data) => {
+			data.result.url = data.result.url.replace(/.mov$/gi,".mp4");
+			
+			this.setState({imageURL: data.result.url});
+			
+			$("#imageURL").val(data.result.url);
+		}).bind('fileuploadprogress', function (e, data) {
+			$('#uploadProgress').val(Math.round((data.loaded * 100.0) / data.total));
+		});
+	};
 	
 	handleAddImage = () => {
 		this.setState({questionText: $("#question").val()});
@@ -195,26 +227,6 @@ export default class EditModal extends React.Component {
 	handleAddVideo = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "video"});
-	};
-	
-	handleFile = () => {
-		var fileToLoad = document.getElementById("imageToLoad").files[0];
-		if (fileToLoad != "") {
-			var fileReader = new FileReader();
-			fileReader.onload = function (fileLoadedEvent) {
-				var textFromFileLoaded = fileLoadedEvent.target.result;
-				console.log(fileToLoad.size);
-				if (fileToLoad.size > 1500000) {
-					alert("File exceeds individual limit of 1MB!")
-				}
-				else {
-					$("#imageView").attr("src", textFromFileLoaded);
-					$("#imageURL").val(textFromFileLoaded);
-				}
-			};
-			fileReader.readAsDataURL(fileToLoad);
-			$("#fileToLoad").value = "";
-		}
 	};
 	
 	parseVID = (videoURL) => {
@@ -315,7 +327,7 @@ export default class EditModal extends React.Component {
 						this.state.isSinglePlay);
 					break;
 				case "image":
-					let image = $("#imageView").attr("src");
+					let image = $("#imageURL").val();
 					if (image != undefined) {
 						bundle = {
 							type: "image",
@@ -423,24 +435,42 @@ export default class EditModal extends React.Component {
 			case "image":
 				questionContent = <div className="flex-container">
 					<div className="flex-container"
-					     style={{maxWidth: 200, maxHeight: 120, background: "#f2f3ea", flexDirection: "column",}}>
+					     style={{maxWidth: 200, background: "#f2f3ea", flexDirection: "column",}}>
 						<div className="flex-container"
 						     style={{maxHeight: 100, maxWidth: 200, justifyContent: "center", flex: 1}}>
-							<img id="imageView" src={this.props.question.image}
-							     style={{maxHeight: 100, maxWidth: 200,}}/>
+							{!this.state.imageURL || !this.state.imageURL.includes(".mp4") ?
+								<img id="imageView" src={this.state.imageURL}
+								     style={{maxHeight: 100, maxWidth: 200,}}/> :
+								<video id="imageView" src={this.state.imageURL}
+								       style={{maxHeight: 100, maxWidth: 200,}} autoPlay/>}
 						</div>
-						<input id="imageURL" placeholder="http://" type="url" defaultValue={this.props.question.image}
+						<input id="imageURL" placeholder="Type link http://" type="url"
+						       defaultValue={this.state.imageURL}
 						       style={{maxHeight: 20,}}
 						       onChange={
 							       () => {
 								       $("#imageView").attr("src", $("#imageURL").val());
-								       this.setState({questionText: $("#question").val()});
+								       this.setState({
+									       imageURL: $("#imageURL").val(),
+									       questionText: $("#question").val()
+								       });
 							       }}/>
-						<input type="file" id="imageToLoad" accept="image/*" onChange={this.handleFile}
-						       style={{position: "absolute", display: "none", width: 0, height: 0}}/>
+						<div>Or upload file (10MB limit)</div>
+						<input name="file" type="file" id="cloudinary-fileupload" accept="image/*,video/mp4"
+						       data-cloudinary-field="imageURL"
+						       data-form-data="{ &quot;upload_preset&quot;:  &quot;dem5rqai&quot;, &quot;callback&quot;: &quot;/cloudinary_cors.html&quot;}"/>
+						<progress id="uploadProgress" value={0} max={100}
+						          style={{width: "100%", background: "#0dec0d"}}/>
 					</div>
-					<textarea spellCheck="true" id="question" defaultValue={this.state.questionText}
-					          placeholder="Question" style={textAreaStyle}/>
+					{!this.state.imageURL || !this.state.imageURL.includes(".mp4") ?
+						<textarea spellCheck="true" id="question" defaultValue={this.state.questionText}
+						          placeholder="Question" style={textAreaStyle}/> :
+						<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
+							<textarea
+								spellCheck="true" id="question" defaultValue={this.state.questionText}
+								placeholder="Question" style={textAreaStyleDisabled} disabled/>
+							<div>Video Question: Text disabled</div>
+						</div>}
 				</div>;
 				break;
 			//https://www.youtube.com/embed/j-_F5xSjrdY?autoplay=1&disablekb=1&controls=0&showinfo=0&rel=0
@@ -517,13 +547,12 @@ export default class EditModal extends React.Component {
 				break;
 			case "image":
 				mediaButtons = <div className="flex-container " style={{justifyContent: "flex-start", flex: 1}}>
-					<button style={imageStyle} onClick={this.handleRemoveImage}>Remove Image</button>
-					{/*<button style={imageStyle} onClick={()=>{$("#imageToLoad").click()}}>Upload Image</button>*/}
+					<button style={imageStyle} onClick={this.handleRemoveImage}>Remove Image/Video</button>
 				</div>;
 				break;
 			case "video":
 				mediaButtons = <div className="flex-container " style={{justifyContent: "flex-start", flex: 1}}>
-					<button style={videoStyle} onClick={this.handleRemoveVideo}>Remove Video</button>
+					<button style={videoStyle} onClick={this.handleRemoveVideo}>Remove YouTube</button>
 				</div>;
 				break;
 		}

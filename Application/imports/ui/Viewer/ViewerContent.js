@@ -87,14 +87,14 @@ export default class ViewerContent extends React.Component {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object,
 	};
-
+	
 	state = {
 		setup: true,
 	};
-
+	
 	time = 5;
 	lastState = "";
-
+	
 	handleSound = () => {
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
@@ -119,7 +119,7 @@ export default class ViewerContent extends React.Component {
 						break;
 				}
 				break;
-
+			
 			case "categoryIntro":
 				switch (this.props.gameLogic["round"]) {
 					case 1:
@@ -156,24 +156,27 @@ export default class ViewerContent extends React.Component {
 					this.handleSoundStop();
 					loop.play();
 				}
-
+			
 		}
 	};
-
+	
 	handleSoundStop = () => {
 		const soundArray = [intro, DJintro, FJintro, Jcat, DJcat, DD, FJ, loop, timeout];
 		soundArray.forEach(function (sound) {
 			sound.stop()
 		});
 	};
-
+	
+	hasVideo = () =>
+		this.props.gameQuestions["currentQuestion"]["question"].image.includes(".mp4");
+	
 	renderContent = () => {
 		console.log("ViewerRender", this.props.gameLogic["round"], this.props.gameLogic["state"]);
 		if (this.props.gameLogic["round"] === 0 && this.props.gameLogic["state"] !== "") {
 			Meteor.call('gameLogic.setState', "");
 		}
 		this.handleSound();
-
+		
 		switch (this.props.gameLogic["state"]) {
 			case "":
 				return <Connect/>;
@@ -224,7 +227,7 @@ export default class ViewerContent extends React.Component {
 										}}>{cell}</div>
 										:
 										[];
-
+									
 								})}
 							</div>
 						)
@@ -248,7 +251,7 @@ export default class ViewerContent extends React.Component {
 										}}>{cell}</div>
 										:
 										<Question key={key1 + key2} cell={cell} round={round} key1={key1} key2={key2}/>;
-
+									
 								})}
 							</div>
 						)
@@ -269,10 +272,16 @@ export default class ViewerContent extends React.Component {
 				}
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
-						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
-							     style={imageStyle}/>
-						</div>
+						if (this.hasVideo())
+							return <div key="imageContainer" style={imageContainer}>
+								<video key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+								       style={imageStyle} autoPlay/>
+							</div>;
+						else
+							return <div key="imageContainer" style={imageContainer}>
+								<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+								     style={imageStyle}/>
+							</div>;
 					}
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -317,10 +326,17 @@ export default class ViewerContent extends React.Component {
 				}
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
-						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
-							     style={imageStyle}/>
-						</div>
+						if (this.hasVideo())
+							return <div key="imageContainer" style={imageContainer}>
+								<video key="image"
+								       src={this.props.gameQuestions["currentQuestion"]["question"].image}
+								       style={imageStyle}/>
+							</div>;
+						else
+							return <div key="imageContainer" style={imageContainer}>
+								<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+								     style={imageStyle}/>
+							</div>;
 					}
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -337,7 +353,7 @@ export default class ViewerContent extends React.Component {
 					this.lastState = this.props.gameLogic["state"];
 					clearInterval(timer);
 					this.time = maxTimeAnswer;
-
+					
 					timer = setInterval(() => {
 						if (this.time > 0) {
 							this.time -= 1;
@@ -358,10 +374,17 @@ export default class ViewerContent extends React.Component {
 				}
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
-						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
-							     style={imageStyle}/>
-						</div>
+						if (this.hasVideo())
+							return <div key="imageContainer" style={imageContainer}>
+								<video key="image"
+								       src={this.props.gameQuestions["currentQuestion"]["question"].image}
+								       style={imageStyle}/>
+							</div>;
+						else
+							return <div key="imageContainer" style={imageContainer}>
+								<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
+								     style={imageStyle}/>
+							</div>;
 					}
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -371,7 +394,7 @@ export default class ViewerContent extends React.Component {
 						</div>
 					}
 				}
-
+			
 			case "next":
 				clearInterval(timer);
 				this.lastState = this.props.gameLogic["state"];
@@ -395,8 +418,8 @@ export default class ViewerContent extends React.Component {
 						</div>
 					}
 				}
-
-
+			
+			
 			case "FJwager":
 				return <div style={{
 					fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
@@ -411,12 +434,20 @@ export default class ViewerContent extends React.Component {
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentRound"]["question"]["type"] === "image") {
-						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
-							     style={imageStyle}/>
-							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
-						</div>
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
+						if (this.hasVideo())
+							return <div key="imageContainer" style={imageContainer}>
+								<video key="image"
+								       src={this.props.gameQuestions["currentQuestion"]["question"].image}
+								       style={imageStyle} autoPlay/>
+								<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+							</div>;
+						else
+							return <div key="imageContainer" style={imageContainer}>
+								<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
+								     style={imageStyle}/>
+								<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+							</div>
 					}
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -467,11 +498,12 @@ export default class ViewerContent extends React.Component {
 			case "FJanswer":
 				clearInterval(timer);
 				if (this.state.setup) {
-					Meteor.setTimeout(()=>this.setState({setup: false}),10);
+					Meteor.setTimeout(() => this.setState({setup: false}), 10);
 					return <div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
-						<canvas style={{flex: 1}} id="writingPad"/>;
+						<canvas style={{flex: 1}} id="writingPad"/>
+						;
 					</div>
-
+					
 				}
 				else {
 					paper.install(window);
@@ -527,12 +559,12 @@ export default class ViewerContent extends React.Component {
 						whiteSpace: "pre-wrap",
 					}}>{logic['player' + greatest]['teamName']} is the winner with a score of ${highestAmount}!</div>;
 				}
-
+			
 		}
-
-
+		
+		
 	};
-
+	
 	render() {
 		return (
 			<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
