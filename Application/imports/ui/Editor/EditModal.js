@@ -209,7 +209,8 @@ export default class EditModal extends React.Component {
 	
 	handleUpload = () => {
 		$("#cloudinary-fileupload").cloudinary_fileupload({}).bind('cloudinarydone', (e, data) => {
-			data.result.url = data.result.url.replace(/.mov$/gi,".mp4");
+			data.result.url = data.result.url.replace(/.mov$/gi, ".mp4");
+			data.result.url = data.result.url.replace(/^http/i, "https");
 			
 			this.setState({imageURL: data.result.url});
 			
@@ -449,9 +450,10 @@ export default class EditModal extends React.Component {
 						       style={{maxHeight: 20,}}
 						       onChange={
 							       () => {
-								       $("#imageView").attr("src", $("#imageURL").val());
+							       	let value = $("#imageURL").val();
+								       $("#imageView").attr("src", value);
 								       this.setState({
-									       imageURL: $("#imageURL").val(),
+									       imageURL: value,
 									       questionText: $("#question").val()
 								       });
 							       }}/>

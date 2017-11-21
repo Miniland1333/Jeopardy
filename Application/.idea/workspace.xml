@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/cloudinary_cors.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" afterPath="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,7 +24,45 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="452" column="68" lean-forward="false" selection-start-line="452" selection-start-column="68" selection-end-line="452" selection-end-column="68" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#216#579#0" expanded="false" />
+                <element signature="e#605#747#0" expanded="false" />
+                <element signature="e#776#1005#0" expanded="false" />
+                <element signature="e#1027#1237#0" expanded="false" />
+                <element signature="e#1261#1510#0" expanded="false" />
+                <element signature="e#1813#1994#0" expanded="false" />
+                <element signature="e#2014#2272#0" expanded="false" />
+                <element signature="e#2294#2536#0" expanded="false" />
+                <element signature="e#2557#2776#0" expanded="false" />
+                <element signature="e#2797#3016#0" expanded="false" />
+                <element signature="e#3036#3278#0" expanded="false" />
+                <element signature="e#3306#3335#0" expanded="false" />
+                <element signature="e#3418#3589#0" expanded="false" />
+                <element signature="e#3613#3924#0" expanded="false" />
+                <element signature="e#5106#5207#0" expanded="false" />
+                <element signature="e#5235#5336#0" expanded="false" />
+                <element signature="e#5366#5620#0" expanded="false" />
+                <element signature="e#5644#6542#0" expanded="false" />
+                <element signature="e#6575#6837#0" expanded="false" />
+                <element signature="e#6868#6968#0" expanded="false" />
+                <element signature="e#6999#7044#0" expanded="false" />
+                <element signature="e#7068#7130#0" expanded="false" />
+                <element signature="e#7154#7207#0" expanded="false" />
+                <element signature="e#9032#9574#0" expanded="false" />
+                <element signature="e#15112#16510#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -36,7 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this.props.playerLogic[&quot;teamNumber&quot;]</find>
       <find>: &quot;.*&quot;</find>
       <find>&quot;4vw&quot;</find>
       <find>wib</find>
@@ -66,6 +104,7 @@
       <find>Video</find>
       <find>video</find>
       <find>init</find>
+      <find>replace</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -156,8 +195,8 @@
         <option value="$PROJECT_DIR$/imports/ui/Editor/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
       </list>
     </option>
   </component>
@@ -304,6 +343,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -333,14 +376,7 @@
               <item name="Application" type="462c0819:PsiDirectoryNode" />
               <item name="imports" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="Teacher" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Application" type="462c0819:PsiDirectoryNode" />
-              <item name="imports" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="Viewer" type="462c0819:PsiDirectoryNode" />
+              <item name="Editor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Application" type="b2602c69:ProjectViewProjectNode" />
@@ -351,10 +387,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1272,14 +1304,8 @@
       <workItem from="1510983887280" duration="50000" />
       <workItem from="1511159482151" duration="1920000" />
       <workItem from="1511228359825" duration="12526000" />
-      <workItem from="1511289759695" duration="884000" />
-    </task>
-    <task id="LOCAL-00064" summary="Added in Game Check and Editable Help Input box">
-      <created>1476940969142</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1476940969142</updated>
+      <workItem from="1511289759695" duration="909000" />
+      <workItem from="1511292789385" duration="394000" />
     </task>
     <task id="LOCAL-00065" summary="Changed Logic for handling Incorrect Responses">
       <created>1476945381798</created>
@@ -1617,11 +1643,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511243499054</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Added confirm before final question">
+      <created>1511291348667</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1511291348668</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="681106000" />
+    <option name="totallyTimeSpent" value="681525000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1634,6 +1667,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24825662" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1648,7 +1682,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39305556" sideWeight="0.4907162" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1940874" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1966581" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1736,7 +1770,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="setup is now in state" />
     <MESSAGE value="Bug Fixes due to time duplicate declaration" />
     <MESSAGE value="Bug fix due to FJtime vs time" />
     <MESSAGE value="Responsive Viewing Area Fixes (vmin)" />
@@ -1761,7 +1794,8 @@
     <MESSAGE value="Added additional refresh" />
     <MESSAGE value="Removed annotations&#10;&#10;Todo add mp4 capabilities" />
     <MESSAGE value="Added ability for image and video upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ability for image and video upload" />
+    <MESSAGE value="Added confirm before final question" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added confirm before final question" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2074,9 +2108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="325" column="65" lean-forward="false" selection-start-line="325" selection-start-column="65" selection-end-line="325" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2120,18 +2151,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="327" column="51" lean-forward="false" selection-start-line="327" selection-start-column="51" selection-end-line="327" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="215" column="44" lean-forward="true" selection-start-line="215" selection-start-column="44" selection-end-line="215" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1028">
+          <caret line="440" column="59" lean-forward="false" selection-start-line="440" selection-start-column="59" selection-end-line="440" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="275" column="23" lean-forward="false" selection-start-line="275" selection-start-column="23" selection-end-line="275" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
+        <state relative-caret-position="189">
+          <caret line="452" column="68" lean-forward="false" selection-start-line="452" selection-start-column="68" selection-end-line="452" selection-end-column="68" />
           <folding>
-            <element signature="e#0#35#0" expanded="false" />
+            <element signature="e#0#35#0" expanded="true" />
             <element signature="e#216#579#0" expanded="false" />
             <element signature="e#605#747#0" expanded="false" />
             <element signature="e#776#1005#0" expanded="false" />
@@ -2146,46 +2195,18 @@
             <element signature="e#3306#3335#0" expanded="false" />
             <element signature="e#3418#3589#0" expanded="false" />
             <element signature="e#3613#3924#0" expanded="false" />
-            <element signature="e#5040#5141#0" expanded="false" />
-            <element signature="e#5169#5270#0" expanded="false" />
-            <element signature="e#5300#5554#0" expanded="false" />
-            <element signature="e#5578#6476#0" expanded="false" />
-            <element signature="e#6509#6771#0" expanded="false" />
-            <element signature="e#6802#6902#0" expanded="false" />
-            <element signature="e#6933#6978#0" expanded="false" />
-            <element signature="e#7002#7064#0" expanded="false" />
-            <element signature="e#7088#7141#0" expanded="false" />
-            <element signature="e#8966#9508#0" expanded="false" />
-            <element signature="e#15027#16425#0" expanded="false" />
+            <element signature="e#5106#5207#0" expanded="false" />
+            <element signature="e#5235#5336#0" expanded="false" />
+            <element signature="e#5366#5620#0" expanded="false" />
+            <element signature="e#5644#6542#0" expanded="false" />
+            <element signature="e#6575#6837#0" expanded="false" />
+            <element signature="e#6868#6968#0" expanded="false" />
+            <element signature="e#6999#7044#0" expanded="false" />
+            <element signature="e#7068#7130#0" expanded="false" />
+            <element signature="e#7154#7207#0" expanded="false" />
+            <element signature="e#9032#9574#0" expanded="false" />
+            <element signature="e#15112#16510#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="215" column="44" lean-forward="true" selection-start-line="215" selection-start-column="44" selection-end-line="215" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1028">
-          <caret line="440" column="59" lean-forward="false" selection-start-line="440" selection-start-column="59" selection-end-line="440" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="275" column="23" lean-forward="false" selection-start-line="275" selection-start-column="23" selection-end-line="275" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
