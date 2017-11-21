@@ -438,7 +438,8 @@ export default class TeacherFooter extends React.Component {
 								flex: 1,
 								verticalAlign: "middle",
 							}} onClick={function () {
-								Meteor.call('gameLogic.setState', 'FJread');
+								if (confirm("Ready to reveal question?"))
+									Meteor.call('gameLogic.setState', 'FJread');
 							}}
 							>Reveal Question
 							</div>
