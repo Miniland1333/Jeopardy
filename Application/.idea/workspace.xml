@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/cloudinary_cors.html" />
+    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="Added error handling for file uploads">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/jquery-ui.js" afterPath="$PROJECT_DIR$/imports/ui/jquery-ui.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,39 +24,40 @@
     <favorites_list name="simple-todos" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="452" column="68" lean-forward="false" selection-start-line="452" selection-start-column="68" selection-end-line="452" selection-end-column="68" />
+            <state relative-caret-position="3128">
+              <caret line="492" column="17" lean-forward="false" selection-start-line="492" selection-start-column="17" selection-end-line="492" selection-end-column="17" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#216#579#0" expanded="false" />
-                <element signature="e#605#747#0" expanded="false" />
-                <element signature="e#776#1005#0" expanded="false" />
-                <element signature="e#1027#1237#0" expanded="false" />
-                <element signature="e#1261#1510#0" expanded="false" />
-                <element signature="e#1813#1994#0" expanded="false" />
-                <element signature="e#2014#2272#0" expanded="false" />
-                <element signature="e#2294#2536#0" expanded="false" />
-                <element signature="e#2557#2776#0" expanded="false" />
-                <element signature="e#2797#3016#0" expanded="false" />
-                <element signature="e#3036#3278#0" expanded="false" />
-                <element signature="e#3306#3335#0" expanded="false" />
-                <element signature="e#3418#3589#0" expanded="false" />
-                <element signature="e#3613#3924#0" expanded="false" />
-                <element signature="e#5106#5207#0" expanded="false" />
-                <element signature="e#5235#5336#0" expanded="false" />
-                <element signature="e#5366#5620#0" expanded="false" />
-                <element signature="e#5644#6542#0" expanded="false" />
-                <element signature="e#6575#6837#0" expanded="false" />
-                <element signature="e#6868#6968#0" expanded="false" />
-                <element signature="e#6999#7044#0" expanded="false" />
-                <element signature="e#7068#7130#0" expanded="false" />
-                <element signature="e#7154#7207#0" expanded="false" />
-                <element signature="e#9032#9574#0" expanded="false" />
-                <element signature="e#15112#16510#0" expanded="false" />
+                <element signature="e#238#601#0" expanded="false" />
+                <element signature="e#627#769#0" expanded="false" />
+                <element signature="e#798#1027#0" expanded="false" />
+                <element signature="e#1049#1259#0" expanded="false" />
+                <element signature="e#1283#1532#0" expanded="false" />
+                <element signature="e#1564#1813#0" expanded="false" />
+                <element signature="e#1835#2016#0" expanded="false" />
+                <element signature="e#2036#2294#0" expanded="false" />
+                <element signature="e#2316#2558#0" expanded="false" />
+                <element signature="e#2579#2798#0" expanded="false" />
+                <element signature="e#2819#3038#0" expanded="false" />
+                <element signature="e#3058#3300#0" expanded="false" />
+                <element signature="e#3328#3357#0" expanded="false" />
+                <element signature="e#3440#3611#0" expanded="false" />
+                <element signature="e#3635#3946#0" expanded="false" />
+                <element signature="e#5732#5833#0" expanded="false" />
+                <element signature="e#5861#5962#0" expanded="false" />
+                <element signature="e#5992#6246#0" expanded="false" />
+                <element signature="e#6270#7168#0" expanded="false" />
+                <element signature="e#7201#7463#0" expanded="false" />
+                <element signature="e#7494#7594#0" expanded="false" />
+                <element signature="e#7625#7670#0" expanded="false" />
+                <element signature="e#7694#7756#0" expanded="false" />
+                <element signature="e#7780#7833#0" expanded="false" />
+                <element signature="e#9658#10200#0" expanded="false" />
+                <element signature="e#15866#17264#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,10 +76,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>: &quot;.*&quot;</find>
-      <find>&quot;4vw&quot;</find>
-      <find>wib</find>
-      <find>button</find>
       <find>setstate</find>
       <find>open</find>
       <find>[</find>
@@ -105,6 +102,10 @@
       <find>video</find>
       <find>init</find>
       <find>replace</find>
+      <find>textarea</find>
+      <find>effect</find>
+      <find>fileupload</find>
+      <find>progress</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -146,7 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/node_modules/brim/demo/basic/index.html" />
         <option value="$PROJECT_DIR$/node_modules/brim/src/brim.js" />
         <option value="$PROJECT_DIR$/node_modules/scream/sandbox/index.html" />
         <option value="$PROJECT_DIR$/node_modules/scream/sandbox/main.css" />
@@ -196,6 +196,7 @@
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherContent.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js" />
+        <option value="$PROJECT_DIR$/imports/ui/jquery-ui.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
       </list>
     </option>
@@ -229,8 +230,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="612" />
-    <option name="y" value="320" />
+    <option name="x" value="538" />
+    <option name="y" value="62" />
     <option name="width" value="814" />
     <option name="height" value="867" />
   </component>
@@ -343,10 +344,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -387,10 +384,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../FindMyWay" />
@@ -411,19 +412,19 @@
     <property name="add_unversioned_files" value="$PROJECT_DIR$/node_modules/brim/src/brim.js&#10;C:/Users/Henry/Desktop/rogramming/Jeopardy/Application/node_modules/scream/dist/scream.js" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui\Viewer" />
-      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui\Student" />
-      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui" />
-      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\Mini" />
-      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\client" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui" />
       <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\public" />
       <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui\react-codemod\transforms" />
       <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\client" />
       <recent name="C:\Users\Henry\Desktop\Jeopardy\Application\public" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui" />
+      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui\Viewer" />
+      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\imports\ui\Student" />
+      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\Mini" />
+      <recent name="C:\Users\Henry\Desktop\rogramming\Jeopardy\Application\client" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1305,14 +1306,10 @@
       <workItem from="1511159482151" duration="1920000" />
       <workItem from="1511228359825" duration="12526000" />
       <workItem from="1511289759695" duration="909000" />
-      <workItem from="1511292789385" duration="394000" />
-    </task>
-    <task id="LOCAL-00065" summary="Changed Logic for handling Incorrect Responses">
-      <created>1476945381798</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1476945381798</updated>
+      <workItem from="1511292789385" duration="471000" />
+      <workItem from="1511818324050" duration="14000" />
+      <workItem from="1511818445573" duration="1000" />
+      <workItem from="1511818497675" duration="5155000" />
     </task>
     <task id="LOCAL-00066" summary="Changed Logic for the Next Phase after Incorrect">
       <created>1477005620516</created>
@@ -1650,11 +1647,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511291348668</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="HTTPS Cloudinary">
+      <created>1511293204357</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1511293204357</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="681525000" />
+    <option name="totallyTimeSpent" value="686772000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1676,13 +1680,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24152543" sideWeight="0.50928384" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21208227" sideWeight="0.5487572" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39305556" sideWeight="0.4907162" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1966581" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1992288" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1770,7 +1774,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Bug Fixes due to time duplicate declaration" />
     <MESSAGE value="Bug fix due to FJtime vs time" />
     <MESSAGE value="Responsive Viewing Area Fixes (vmin)" />
     <MESSAGE value="Work in Progress for Options and Safari Viewer Height" />
@@ -1795,7 +1798,8 @@
     <MESSAGE value="Removed annotations&#10;&#10;Todo add mp4 capabilities" />
     <MESSAGE value="Added ability for image and video upload" />
     <MESSAGE value="Added confirm before final question" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added confirm before final question" />
+    <MESSAGE value="HTTPS Cloudinary" />
+    <option name="LAST_COMMIT_MESSAGE" value="HTTPS Cloudinary" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1823,20 +1827,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imports/ui/jquery.ui.touch-punch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2065">
-          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/PingEntry.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1939,7 +1929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1996,13 +1985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -2137,16 +2119,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="91" column="83" lean-forward="false" selection-start-line="91" selection-start-column="83" selection-end-line="91" selection-end-column="83" />
-          <folding>
-            <element signature="e#0#35#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/ViewerContent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -2175,37 +2147,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/jquery-ui/ui/effect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25993">
+          <caret line="1529" column="25" lean-forward="false" selection-start-line="1529" selection-start-column="17" selection-end-line="1529" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/jquery-ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+          <folding>
+            <marker date="1511821532870" expanded="true" signature="23139:23210" ph="..." />
+            <marker date="1511821532870" expanded="true" signature="23235:23259" ph="..." />
+            <marker date="1511821532870" expanded="true" signature="108152:108169" ph="..." />
+            <marker date="1511821532870" expanded="true" signature="123230:123246" ph="..." />
+            <marker date="1511821532870" expanded="true" signature="171112:171118" ph="&amp;##160;" />
+            <marker date="1511821532870" expanded="true" signature="283975:284019" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Question.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="158" column="77" lean-forward="true" selection-start-line="158" selection-start-column="70" selection-end-line="158" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="452" column="68" lean-forward="false" selection-start-line="452" selection-start-column="68" selection-end-line="452" selection-end-column="68" />
+        <state relative-caret-position="3128">
+          <caret line="492" column="17" lean-forward="false" selection-start-line="492" selection-start-column="17" selection-end-line="492" selection-end-column="17" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#216#579#0" expanded="false" />
-            <element signature="e#605#747#0" expanded="false" />
-            <element signature="e#776#1005#0" expanded="false" />
-            <element signature="e#1027#1237#0" expanded="false" />
-            <element signature="e#1261#1510#0" expanded="false" />
-            <element signature="e#1813#1994#0" expanded="false" />
-            <element signature="e#2014#2272#0" expanded="false" />
-            <element signature="e#2294#2536#0" expanded="false" />
-            <element signature="e#2557#2776#0" expanded="false" />
-            <element signature="e#2797#3016#0" expanded="false" />
-            <element signature="e#3036#3278#0" expanded="false" />
-            <element signature="e#3306#3335#0" expanded="false" />
-            <element signature="e#3418#3589#0" expanded="false" />
-            <element signature="e#3613#3924#0" expanded="false" />
-            <element signature="e#5106#5207#0" expanded="false" />
-            <element signature="e#5235#5336#0" expanded="false" />
-            <element signature="e#5366#5620#0" expanded="false" />
-            <element signature="e#5644#6542#0" expanded="false" />
-            <element signature="e#6575#6837#0" expanded="false" />
-            <element signature="e#6868#6968#0" expanded="false" />
-            <element signature="e#6999#7044#0" expanded="false" />
-            <element signature="e#7068#7130#0" expanded="false" />
-            <element signature="e#7154#7207#0" expanded="false" />
-            <element signature="e#9032#9574#0" expanded="false" />
-            <element signature="e#15112#16510#0" expanded="false" />
+            <element signature="e#238#601#0" expanded="false" />
+            <element signature="e#627#769#0" expanded="false" />
+            <element signature="e#798#1027#0" expanded="false" />
+            <element signature="e#1049#1259#0" expanded="false" />
+            <element signature="e#1283#1532#0" expanded="false" />
+            <element signature="e#1564#1813#0" expanded="false" />
+            <element signature="e#1835#2016#0" expanded="false" />
+            <element signature="e#2036#2294#0" expanded="false" />
+            <element signature="e#2316#2558#0" expanded="false" />
+            <element signature="e#2579#2798#0" expanded="false" />
+            <element signature="e#2819#3038#0" expanded="false" />
+            <element signature="e#3058#3300#0" expanded="false" />
+            <element signature="e#3328#3357#0" expanded="false" />
+            <element signature="e#3440#3611#0" expanded="false" />
+            <element signature="e#3635#3946#0" expanded="false" />
+            <element signature="e#5732#5833#0" expanded="false" />
+            <element signature="e#5861#5962#0" expanded="false" />
+            <element signature="e#5992#6246#0" expanded="false" />
+            <element signature="e#6270#7168#0" expanded="false" />
+            <element signature="e#7201#7463#0" expanded="false" />
+            <element signature="e#7494#7594#0" expanded="false" />
+            <element signature="e#7625#7670#0" expanded="false" />
+            <element signature="e#7694#7756#0" expanded="false" />
+            <element signature="e#7780#7833#0" expanded="false" />
+            <element signature="e#9658#10200#0" expanded="false" />
+            <element signature="e#15866#17264#0" expanded="false" />
           </folding>
         </state>
       </provider>

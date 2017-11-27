@@ -3,6 +3,7 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 import "blueimp-file-upload";
 import "cloudinary-jquery-file-upload";
+import "../jquery-ui"
 
 const medium = "2vmin";
 
@@ -61,7 +62,7 @@ const textAreaStyle = {
 	flexGrow: 1,
 	textTransform: "uppercase",
 	color: "white",
-	minHeight: 120,
+	minHeight: 150,
 	overflowX: "hidden",
 };
 const textAreaStyleDisabled = {
@@ -75,7 +76,7 @@ const textAreaStyleDisabled = {
 	flexGrow: 1,
 	textTransform: "uppercase",
 	color: "white",
-	minHeight: 120,
+	minHeight: 150,
 	overflowX: "hidden",
 };
 const answerStyle = {
@@ -208,15 +209,28 @@ export default class EditModal extends React.Component {
 	}
 	
 	handleUpload = () => {
-		$("#cloudinary-fileupload").cloudinary_fileupload({}).bind('cloudinarydone', (e, data) => {
+		$("#cloudinary-fileupload").cloudinary_fileupload({maxFileSize: 40000000}).bind('cloudinarydone', (e, data) => {
 			data.result.url = data.result.url.replace(/.mov$/gi, ".mp4");
-			data.result.url = data.result.url.replace(/^http/i, "https");
-			
+			data.result.url = data.result.url.replace(/^http:/i, "https:");
+			const imageURL = $("#imageURL");
 			this.setState({imageURL: data.result.url});
 			
-			$("#imageURL").val(data.result.url);
+			imageURL.effect("highlight", {color: "#05f308"});
+			imageURL.val(data.result.url);
 		}).bind('fileuploadprogress', function (e, data) {
-			$('#uploadProgress').val(Math.round((data.loaded * 100.0) / data.total));
+			const $uploadProgress = $('#uploadProgress');
+			$uploadProgress.val(Math.round((data.loaded * 100.0) / data.total));
+			$uploadProgress.prop('title', Math.round((data.loaded * 100.0) / data.total))
+		}).bind('fileuploadfail', function (e, data) {
+			let array = $.map(data.messages, function (value, index) {
+				return value;
+			});
+			const $uploadProgress = $('#uploadProgress');
+			$uploadProgress.val(0);
+			$uploadProgress.prop('title', "Upload Progress");
+			console.log(array);
+			alert(array);
+			$('#cloudinary-fileupload').effect("highlight", {color: "#ff5c7c"});
 		});
 	};
 	
@@ -450,19 +464,21 @@ export default class EditModal extends React.Component {
 						       style={{maxHeight: 20,}}
 						       onChange={
 							       () => {
-							       	let value = $("#imageURL").val();
+								       let value = $("#imageURL").val();
 								       $("#imageView").attr("src", value);
 								       this.setState({
 									       imageURL: value,
 									       questionText: $("#question").val()
 								       });
 							       }}/>
-						<div>Or upload file (10MB limit)</div>
+						<div style={{border:"1px solid black"}}/>
 						<input name="file" type="file" id="cloudinary-fileupload" accept="image/*,video/mp4"
+						       title="Upload a file"
 						       data-cloudinary-field="imageURL"
 						       data-form-data="{ &quot;upload_preset&quot;:  &quot;dem5rqai&quot;, &quot;callback&quot;: &quot;/cloudinary_cors.html&quot;}"/>
-						<progress id="uploadProgress" value={0} max={100}
-						          style={{width: "100%", background: "#0dec0d"}}/>
+						<div title="File size must be below this limit!">10MB photo/40MB video limit</div>
+						<progress id="uploadProgress" value={0} max={100} title="Upload Progress"
+						          style={{width: "100%"}}/>
 					</div>
 					{!this.state.imageURL || !this.state.imageURL.includes(".mp4") ?
 						<textarea spellCheck="true" id="question" defaultValue={this.state.questionText}
