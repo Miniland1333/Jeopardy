@@ -32,9 +32,9 @@ class Teacher extends React.Component {
 		}
 		return (
 			<DocumentTitle title='Jeopardy'>
-				<div>
+				<div className="Main">
 					{this.props.isReady ?
-						<div className="flex-container Main" style={{flexDirection: "column"}}>
+						<div className="flex-container" style={{flexDirection: "column", flex:1}}>
 							<TeacherHeader gameLogic={this.props.gameLogic[0]}/>
 							<TeacherContent gameLogic={this.props.gameLogic[0]}
 							                gameQuestions={this.props.gameQuestions[0]}

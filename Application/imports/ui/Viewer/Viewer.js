@@ -19,9 +19,9 @@ class Viewer extends React.Component {
 	render() {
 		return (
 			<DocumentTitle title='Jeopardy Viewer'>
-				<div>
+				<div className="Main">
 					{this.props.isReady ?
-						<div className="flex-container Main" style={{flexDirection: "column"}}>
+						<div className="flex-container" style={{flexDirection: "column", flex:1}}>
 							<ViewerContent gameLogic={this.props.gameLogic[0]}
 							               gameQuestions={this.props.gameQuestions[0]}/>
 							<ViewerFooter gameLogic={this.props.gameLogic[0]}/>

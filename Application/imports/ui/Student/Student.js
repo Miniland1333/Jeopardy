@@ -10,20 +10,20 @@ import StudentContent from "./StudentContent";
 
 
 class Student extends React.Component {
-	componentDidMount(){
+	componentDidMount() {
 		refresh();
+		window.scrollTo(0, 0)
 	}
 	
 	render() {
 		return (
 			<DocumentTitle title='Jeopardy'>
-				<div>
+				<div className="Main">
 					{this.props.isReady ?
-						<div className="flex-container Main" style={{flexDirection: "column"}}>
+						<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<StudentHeader gameLogic={this.props.gameLogic[0]}/>
 							<StudentContent gameLogic={this.props.gameLogic[0]}/>
-						</div> : <div/>
-					}
+						</div> : <div/>}
 				</div>
 			</DocumentTitle>
 		)

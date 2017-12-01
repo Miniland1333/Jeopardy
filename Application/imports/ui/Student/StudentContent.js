@@ -41,6 +41,7 @@ export default class StudentContent extends React.Component {
 			setup: true,
 			isPortrait: window.innerWidth < window.innerHeight,
 		};
+		
 		$(window).on("orientationchange", (event) => {
 			setTimeout(() => this.setState({isPortrait: window.innerWidth < window.innerHeight}), 50);
 		});
@@ -124,7 +125,7 @@ export default class StudentContent extends React.Component {
 							go {this.props.gameLogic.setupPlayers["player" + teamNumber].teamName}!</h1>
 						<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
 					</div>
-					<div style={{height: 20, backgroundColor: StudentContent.setupColor()}}/>
+					<div style={{height: "8vh", backgroundColor: StudentContent.setupColor()}}/>
 				</div>
 			}
 		}
@@ -414,7 +415,7 @@ export default class StudentContent extends React.Component {
 			return "#A4C639";
 		}
 		else {
-			return "#FFF";
+			return "#e0942e";
 		}
 	}
 	

@@ -23,18 +23,12 @@ class Editor extends React.Component {
 		refresh();
 	}
 	
-	//noinspection JSMethodCanBeStatic
-	componentWillReceiveProps(newProps) {
-		console.log("Editor is receiving " + newProps);
-	}
-	
 	render() {
-		console.log(this.props.isReady);
 		return (
 			<DocumentTitle title='Jeopardy Editor'>
-				<div>
+				<div className="Main">
 					{this.props.isReady ?
-						<div className="Main">
+						<div className="flex-container" style={{flexDirection: "column", flex:1}}>
 							<EditorHeader
 								onRoundChange={this.handleRoundChange}
 								gameList={this.props.gameDatabase}
