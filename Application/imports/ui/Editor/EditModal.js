@@ -450,9 +450,9 @@ export default class EditModal extends React.Component {
 			case "image":
 				questionContent = <div className="flex-container">
 					<div className="flex-container"
-					     style={{maxWidth: 200, background: "#f2f3ea", flexDirection: "column",}}>
+					     style={{maxWidth: 200, background: "#f2f3ea", flexDirection: "column", borderRight:"4px solid white"}}>
 						<div className="flex-container"
-						     style={{maxHeight: 100, maxWidth: 200, justifyContent: "center", flex: 1}}>
+						     style={{maxHeight: 100, maxWidth: 200, justifyContent: "center", flex: 1, backgroundColor:"#060ce9"}}>
 							{!this.state.imageURL || !this.state.imageURL.includes(".mp4") ?
 								<img id="imageView" src={this.state.imageURL}
 								     style={{maxHeight: 100, maxWidth: 200,}}/> :
