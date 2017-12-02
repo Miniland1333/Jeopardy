@@ -104,7 +104,7 @@ export default class StudentContent extends React.Component {
 							<h1 style={{fontSize: "5vmin"}}>Tap an open box to register!</h1>
 							<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
 						</div>
-						<div style={{height: 20, backgroundColor: StudentContent.setupColor()}}/>
+						<div style={{height: 30, backgroundColor: StudentContent.setupColor()}}/>
 					</div>
 				);
 			}
@@ -125,7 +125,7 @@ export default class StudentContent extends React.Component {
 							go {this.props.gameLogic.setupPlayers["player" + teamNumber].teamName}!</h1>
 						<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
 					</div>
-					<div style={{height: "8vh", backgroundColor: StudentContent.setupColor()}}/>
+					<div style={{height: "30", backgroundColor: StudentContent.setupColor()}}/>
 				</div>
 			}
 		}

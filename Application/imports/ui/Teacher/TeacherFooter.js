@@ -112,8 +112,8 @@ export default class TeacherFooter extends React.Component {
 	};
 	
 	isValid = (gameName) => {
-		const game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
-		if (game === undefined) {
+		const game = gameDatabase.find({name: gameName}).fetch()[0];
+		if (!game) {
 			Meteor.call('gameLogic.setGame', "Please select a game");
 			return false;
 		}
