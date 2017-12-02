@@ -20,7 +20,7 @@ const buttonStyle = {
 	textDecoration: 'none',
 	display: 'inline-block',
 	fontSize: medium,
-	//borderRadius:8,
+	transition: "1s",
 	cursor: "pointer",
 };
 const loadButtonStyle = {
@@ -189,22 +189,31 @@ export default class EditorHeader extends React.Component {
 		);
 	};
 	
-	/*    componentWillReceiveProps:function(newProps){
-	 console.log("EditorHeader is receiving "+newProps);
-	 },*/
 	render() {
 		return (
 			<div>
 				<div className="flex-container" style={barStyle}>
 					<button style={buttonStyle} id="New" onClick={this.handleNew}>New</button>
-					<div className="dropdown" style={ {border: "none"}}>
+					<div className="dropdown" style={{border: "none"}}>
 						<button style={loadButtonStyle} id="Load" onClick={this.handleLoad}>Load</button>
 						<ul className="dropdown-content" id="myDropdown" style={dropdownStyle}>
 							{this.renderDropdown()}
 						</ul>
 					</div>
-					<button style={buttonStyle} id="Save" onClick={this.handleSave}>Save</button>
-					
+					{this.checkDifference() ? <button style={{
+							backgroundColor: '#8bd248', /* green */
+							border: 'white solid 1px',
+							color: 'white',
+							padding: '15px 1vw',
+							textAlign: 'center',
+							textDecoration: 'none',
+							display: 'inline-block',
+							fontSize: medium,
+							cursor: "pointer",
+							transition: "1s",
+						}} id="Save" onClick={this.handleSave}>Save changes</button> :
+						<button style={buttonStyle} id="Save">Save updated</button>
+					}
 					{this.renderInput()}
 					<select
 						style={pickerStyle}
@@ -217,9 +226,27 @@ export default class EditorHeader extends React.Component {
 					<button style={buttonStyle} id="Import" onClick={this.handleImport}>Import</button>
 					<button style={buttonStyle} id="Export" onClick={this.handleExport}>Export</button>
 					<input type="file" id="fileToLoad" accept=".txt,.json" onChange={this.handleFile}
-					       style={ {position: "absolute", display: "none", width: 0, height: 0}}/>
+					       style={{position: "absolute", display: "none", width: 0, height: 0}}/>
 				</div>
 			</div>
 		)
+	}
+	
+	needsSaving() {
+		if (this.checkDifference()) {
+			$("#Save").hide("slide");
+		}
+		else {
+			$("#Save").show("slide");
+		}
+	}
+	
+	checkDifference() {
+		const editorDatabase = this.props.editorDatabase[0];
+		const saved = this.props.gameList.find((game) => game.name === editorDatabase.name);
+		return !(saved
+			&& JSON.stringify(saved.Jeopardy) === JSON.stringify(editorDatabase.Jeopardy)
+			&& JSON.stringify(saved.DoubleJeopardy) === JSON.stringify(editorDatabase.DoubleJeopardy)
+			&& JSON.stringify(saved.FinalJeopardy) === JSON.stringify(editorDatabase.FinalJeopardy))
 	}
 }

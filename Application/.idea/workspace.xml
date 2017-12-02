@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
+    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="Changed background color for image preview">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/editorDatabase.js" afterPath="$PROJECT_DIR$/imports/api/editorDatabase.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameDatabase.js" afterPath="$PROJECT_DIR$/imports/api/gameDatabase.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Editor/GameLi.js" afterPath="$PROJECT_DIR$/imports/ui/Editor/GameLi.js" />
     </list>
     <ignored path="simple-todos.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,39 +28,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
+      <file leaf-file-name="EditorHeader.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="459" column="97" lean-forward="false" selection-start-line="459" selection-start-column="97" selection-end-line="459" selection-end-column="97" />
+            <state relative-caret-position="2261">
+              <caret line="207" column="48" lean-forward="true" selection-start-line="207" selection-start-column="48" selection-end-line="207" selection-end-column="48" />
               <folding>
-                <element signature="e#238#601#0" expanded="false" />
-                <element signature="e#627#769#0" expanded="false" />
-                <element signature="e#798#1027#0" expanded="false" />
-                <element signature="e#1049#1259#0" expanded="false" />
-                <element signature="e#1283#1532#0" expanded="false" />
-                <element signature="e#1564#1813#0" expanded="false" />
-                <element signature="e#1835#2016#0" expanded="false" />
-                <element signature="e#2036#2294#0" expanded="false" />
-                <element signature="e#2316#2558#0" expanded="false" />
-                <element signature="e#2579#2798#0" expanded="false" />
-                <element signature="e#2819#3038#0" expanded="false" />
-                <element signature="e#3058#3300#0" expanded="false" />
-                <element signature="e#3328#3357#0" expanded="false" />
-                <element signature="e#3440#3611#0" expanded="false" />
-                <element signature="e#3635#3946#0" expanded="false" />
-                <element signature="e#5732#5833#0" expanded="false" />
-                <element signature="e#5861#5962#0" expanded="false" />
-                <element signature="e#5992#6246#0" expanded="false" />
-                <element signature="e#6270#7168#0" expanded="false" />
-                <element signature="e#7201#7463#0" expanded="false" />
-                <element signature="e#7494#7594#0" expanded="false" />
-                <element signature="e#7625#7670#0" expanded="false" />
-                <element signature="e#7694#7756#0" expanded="false" />
-                <element signature="e#7780#7833#0" expanded="false" />
-                <element signature="e#9658#10200#0" expanded="false" />
-                <element signature="e#15932#17330#0" expanded="false" />
+                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#176#241#0" expanded="false" />
+                <element signature="e#531#773#0" expanded="false" />
+                <element signature="e#795#1037#0" expanded="false" />
+                <element signature="e#1058#1225#0" expanded="false" />
+                <element signature="e#1249#1439#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gameDatabase.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,7 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>map</find>
       <find>force</find>
       <find>daily</find>
       <find>vmin</find>
@@ -87,7 +80,6 @@
       <find>setR</find>
       <find>late</find>
       <find>modest</find>
-      <find>save</find>
       <find>this.props.question.image</find>
       <find>.mp4</find>
       <find>img</find>
@@ -104,6 +96,8 @@
       <find>20</find>
       <find>update</find>
       <find>ipad</find>
+      <find>editorDatabase</find>
+      <find>save</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -145,21 +139,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/node_modules/scream/sandbox/index.html" />
         <option value="$PROJECT_DIR$/node_modules/scream/sandbox/main.css" />
         <option value="$PROJECT_DIR$/imports/api/gameQuestions.js" />
         <option value="$PROJECT_DIR$/.meteor/packages" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/CategoryHeader.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/Question.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/TeacherHeader.js" />
         <option value="$PROJECT_DIR$/imports/ui/Viewer/Countdown.js" />
         <option value="$PROJECT_DIR$/imports/ui/PageNotFound.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Editor/GameLi.js" />
         <option value="$PROJECT_DIR$/imports/ui/jquery.ui.touch-punch.js" />
         <option value="$PROJECT_DIR$/imports/ui/TimeSync.js" />
         <option value="$PROJECT_DIR$/imports/api/Ping.js" />
-        <option value="$PROJECT_DIR$/imports/api/editorDatabase.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/GameDropdown.js" />
         <option value="$PROJECT_DIR$/imports/ui/Ping.js" />
         <option value="$PROJECT_DIR$/imports/ui/Teacher/PingEntry.js" />
@@ -192,10 +182,14 @@
         <option value="$PROJECT_DIR$/imports/ui/Teacher/Teacher.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/Editor.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/newScream.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Student/Student.js" />
         <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
         <option value="$PROJECT_DIR$/client/main.html" />
+        <option value="$PROJECT_DIR$/imports/ui/Student/Student.js" />
         <option value="$PROJECT_DIR$/imports/ui/Editor/EditModal.js" />
+        <option value="$PROJECT_DIR$/imports/api/gameDatabase.js" />
+        <option value="$PROJECT_DIR$/imports/api/editorDatabase.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/GameLi.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js" />
       </list>
     </option>
   </component>
@@ -324,6 +318,7 @@
     </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
@@ -341,10 +336,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -366,6 +358,12 @@
               <item name="Application" type="b2602c69:ProjectViewProjectNode" />
               <item name="Application" type="462c0819:PsiDirectoryNode" />
               <item name="imports" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Application" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Application" type="462c0819:PsiDirectoryNode" />
+              <item name="imports" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -378,19 +376,15 @@
             <path>
               <item name="Application" type="b2602c69:ProjectViewProjectNode" />
               <item name="Application" type="462c0819:PsiDirectoryNode" />
-              <item name="imports" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="Viewer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Application" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1319,6 +1313,7 @@
       <workItem from="1512165915592" duration="151000" />
       <workItem from="1512173061665" duration="321000" />
       <workItem from="1512174720637" duration="683000" />
+      <workItem from="1512189992877" duration="5199000" />
     </task>
     <task id="LOCAL-00068" summary="Added in DD Wager&#10;&#10;Fixed a bug with the ring in timer starting at a negative value">
       <created>1478301009090</created>
@@ -1667,7 +1662,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="694959000" />
+    <option name="totallyTimeSpent" value="700773000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1679,7 +1674,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1691,11 +1686,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21208227" sideWeight="0.5487572" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39305556" sideWeight="0.4907162" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1866969" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18637532" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1815,7 +1810,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="161" />
+      <option name="time" value="163" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1836,27 +1831,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imports/api/pingDatabase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/Options.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="235" column="39" lean-forward="false" selection-start-line="235" selection-start-column="39" selection-end-line="235" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/PageNotFound.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1910,13 +1884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="46" lean-forward="false" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="46" column="35" lean-forward="false" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -2039,13 +2006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126">
-          <caret line="275" column="23" lean-forward="false" selection-start-line="275" selection-start-column="23" selection-end-line="275" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -2065,13 +2025,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
           <caret line="158" column="77" lean-forward="true" selection-start-line="158" selection-start-column="70" selection-end-line="158" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-906">
-          <caret line="87" column="6" lean-forward="true" selection-start-line="87" selection-start-column="6" selection-end-line="87" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -2126,17 +2079,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="418" column="9" lean-forward="false" selection-start-line="418" selection-start-column="9" selection-end-line="418" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Student/Student.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        <state relative-caret-position="329">
+          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2144,6 +2093,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="23" column="97" lean-forward="false" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="418" column="9" lean-forward="false" selection-start-line="418" selection-start-column="9" selection-end-line="418" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="210" column="31" lean-forward="false" selection-start-line="210" selection-start-column="31" selection-end-line="210" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -2158,8 +2121,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="459" column="97" lean-forward="false" selection-start-line="459" selection-start-column="97" selection-end-line="459" selection-end-column="97" />
+        <state relative-caret-position="3179">
+          <caret line="489" column="48" lean-forward="false" selection-start-line="489" selection-start-column="48" selection-end-line="489" selection-end-column="48" />
           <folding>
             <element signature="e#238#601#0" expanded="false" />
             <element signature="e#627#769#0" expanded="false" />
@@ -2186,8 +2149,59 @@
             <element signature="e#7694#7756#0" expanded="false" />
             <element signature="e#7780#7833#0" expanded="false" />
             <element signature="e#9658#10200#0" expanded="false" />
-            <element signature="e#15932#17330#0" expanded="false" />
+            <element signature="e#15931#17329#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/GameLi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="69" lean-forward="false" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameQuestions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1530">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditorHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2261">
+          <caret line="207" column="48" lean-forward="true" selection-start-line="207" selection-start-column="48" selection-end-line="207" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#176#241#0" expanded="false" />
+            <element signature="e#531#773#0" expanded="false" />
+            <element signature="e#795#1037#0" expanded="false" />
+            <element signature="e#1058#1225#0" expanded="false" />
+            <element signature="e#1249#1439#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/editorDatabase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="57" column="31" lean-forward="true" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/api/gameDatabase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>

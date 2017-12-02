@@ -13,7 +13,7 @@ export default class GameLi extends React.Component {
 	};
 	
 	handleDelete = () => {
-		if (confirm("This will delete " + this.props.game.name + ". Are you sure?")) {
+		if (confirm("This will delete " + this.props.game.name + ".\n Are you sure?")) {
 			Meteor.call('gameDatabase.remove', this.props.game.name);
 		}
 	};

@@ -487,7 +487,7 @@ export default class EditModal extends React.Component {
 							<textarea
 								spellCheck="true" id="question" defaultValue={this.state.questionText}
 								placeholder="Question" style={textAreaStyleDisabled} disabled/>
-							<div>Video Question: Text disabled</div>
+							<div>Video Question-Text disabled</div>
 						</div>}
 				</div>;
 				break;

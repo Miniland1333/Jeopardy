@@ -19,12 +19,14 @@ if (Meteor.isServer) {
 Meteor.methods({
 	'gameDatabase.save'(game){
 		//saves game from editorDatabase
+		const d = new Date();
 		gameDatabase.remove({name: game.name});
 		gameDatabase.insert({
 			name: game.name,
 			Jeopardy: game.Jeopardy,
 			DoubleJeopardy: game.DoubleJeopardy,
-			FinalJeopardy: game.FinalJeopardy
+			FinalJeopardy: game.FinalJeopardy,
+			savedOn: d.toUTCString(),
 		});
 		console.log("Saved " + game.name + "!");
 	},

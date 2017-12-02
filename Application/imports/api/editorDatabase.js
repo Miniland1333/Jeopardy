@@ -59,7 +59,8 @@ Meteor.methods({
 			name: game.name,
 			Jeopardy: game.Jeopardy,
 			DoubleJeopardy: game.DoubleJeopardy,
-			FinalJeopardy: game.FinalJeopardy
+			FinalJeopardy: game.FinalJeopardy,
+			lastSave: game.savedOn,
 		});
 	},
 	'editorDatabase.updateName'(name){
