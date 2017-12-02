@@ -85,51 +85,47 @@ export default class StudentContent extends React.Component {
 		let max;
 		let points;
 		teamNumber = this.props.gameLogic["connections"][Meteor.connection._lastSessionId];
-		if (this.props.gameLogic["round"] === 0) {
-			if (teamNumber === undefined) {
-				//addToHomescreen();
-				return (
-					<div className="flex-container"
-					     style={{
-						     flexDirection: "column",
-						     flex: 1,
-						     backgroundColor: "#060CE9",
-					     }}>
-						<div className="flex-container"
-						     style={{
-							     flexDirection: "column",
-							     flex: 1,
-							     justifyContent: "center"
-						     }}>
-							<h1 style={{fontSize: "5vmin"}}>Tap an open box to register!</h1>
-							<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
-						</div>
-						<div style={{height: 30, backgroundColor: StudentContent.setupColor()}}/>
-					</div>
-				);
-			}
-			else {
-				return <div className="flex-container"
-				            style={{
-					            flexDirection: "column",
-					            flex: 1,
-					            backgroundColor: "#060CE9",
-				            }}>
-					<div className="flex-container"
-					     style={{
-						     flexDirection: "column",
-						     flex: 1,
-						     justifyContent: "center"
-					     }}>
-						<h1 style={{fontSize: "5vmin"}}>Ready to
-							go {this.props.gameLogic.setupPlayers["player" + teamNumber].teamName}!</h1>
-						<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
-					</div>
-					<div style={{height: "30", backgroundColor: StudentContent.setupColor()}}/>
+		if (teamNumber === undefined) { //not registered
+			//addToHomescreen();
+			return <div className="flex-container"
+			            style={{
+				            flexDirection: "column",
+				            flex: 1,
+				            backgroundColor: "#060CE9",
+			            }}>
+				<div className="flex-container"
+				     style={{
+					     flexDirection: "column",
+					     flex: 1,
+					     justifyContent: "center"
+				     }}>
+					<h1 style={{fontSize: "5vmin"}}>Tap an open box to register!</h1>
+					<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
 				</div>
-			}
+				<div style={{height: 30, backgroundColor: StudentContent.setupColor()}}/>
+			</div>;
 		}
-		else if (this.props.gameLogic["state"] === "wager" && this.props.gameLogic["lastWinner"] === teamNumber) {
+		else if (this.props.gameLogic["round"] === 0) { //ready to start game
+			return <div className="flex-container"
+			            style={{
+				            flexDirection: "column",
+				            flex: 1,
+				            backgroundColor: "#060CE9",
+			            }}>
+				<div className="flex-container"
+				     style={{
+					     flexDirection: "column",
+					     flex: 1,
+					     justifyContent: "center"
+				     }}>
+					<h1 style={{fontSize: "5vmin"}}>Ready to
+						go {this.props.gameLogic.setupPlayers["player" + teamNumber].teamName}!</h1>
+					<p style={{fontSize: "3vmin"}}>{Meteor.connection._lastSessionId}</p>
+				</div>
+				<div style={{height: "30", backgroundColor: StudentContent.setupColor()}}/>
+			</div>
+		}
+		else if (this.props.gameLogic["state"] === "wager" && this.props.gameLogic["lastWinner"] === teamNumber) { //daily double
 			points = this.props.gameLogic["player" + teamNumber]["points"];
 			max = Math.max(this.props.gameLogic["round"] === 1 ? 1000 : 2000, points);
 			

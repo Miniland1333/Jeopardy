@@ -1,10 +1,10 @@
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import {render} from "react-dom";
-import {Route, Router, StaticRouter, Switch} from "react-router";
+import {Route, Router, Switch} from "react-router";
 import createBrowserHistory from 'history/createBrowserHistory'
 
-import FastClick from "./fastclick";
+import attachFastClick from "fastclick";
 import "../imports/api/editorDatabase";
 import "../imports/api/gameDatabase";
 import "../imports/api/gameLogic";
@@ -28,26 +28,25 @@ const renderRoutes = () => (
 			<Route path="/teacher" component={Teacher}/>
 			<Route path="/student" component={Student}/>
 			
+			<Route path="/click" component={ClickDemo}/>
+			
 			<Route component={PageNotFound}/>
 		</Switch>
 	</Router>
 );
 
 const Viewer = asyncComponent(() =>
-	import("../imports/ui/Viewer/Viewer").then(module => module.default)
-);
+	import("../imports/ui/Viewer/Viewer").then(module => module.default));
 const Editor = asyncComponent(() =>
-	import("../imports/ui/Editor/Editor").then(module => module.default)
-);
+	import("../imports/ui/Editor/Editor").then(module => module.default));
 const Teacher = asyncComponent(() =>
-	import("../imports/ui/Teacher/Teacher").then(module => module.default)
-);
+	import("../imports/ui/Teacher/Teacher").then(module => module.default));
 const Student = asyncComponent(() =>
-	import("../imports/ui/Student/Student").then(module => module.default)
-);
+	import("../imports/ui/Student/Student").then(module => module.default));
 const PageNotFound = asyncComponent(() =>
-	import("../imports/ui/PageNotFound").then(module => module.default)
-);
+	import("../imports/ui/PageNotFound").then(module => module.default));
+const ClickDemo = asyncComponent(() =>
+	import("../imports/ui/ClickDemo").then(module => module.default));
 
 function asyncComponent(getComponent) {
 	return class AsyncComponent extends React.Component {
@@ -75,9 +74,5 @@ function asyncComponent(getComponent) {
 
 Meteor.startup(() => {
 	render(renderRoutes(), document.getElementById('render-target'));
+	attachFastClick(document.body);
 });
-window.addEventListener('load', function () {
-	if (window.navigator.standalone) {
-		new FastClick(document.body);
-	}
-}, false);
