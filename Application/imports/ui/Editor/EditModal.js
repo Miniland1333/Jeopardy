@@ -457,7 +457,7 @@ export default class EditModal extends React.Component {
 								<img id="imageView" src={this.state.imageURL}
 								     style={{maxHeight: 100, maxWidth: 200,}}/> :
 								<video id="imageView" src={this.state.imageURL}
-								       style={{maxHeight: 100, maxWidth: 200,}} autoPlay/>}
+								       style={{maxHeight: 100, maxWidth: 200,}} autoPlay controls/>}
 						</div>
 						<input id="imageURL" placeholder="Type link http://" type="url"
 						       defaultValue={this.state.imageURL}

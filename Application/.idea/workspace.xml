@@ -27,8 +27,8 @@
       <file leaf-file-name="EditModal.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="452" column="110" lean-forward="false" selection-start-line="452" selection-start-column="110" selection-end-line="452" selection-end-column="110" />
+            <state relative-caret-position="442">
+              <caret line="459" column="97" lean-forward="false" selection-start-line="459" selection-start-column="97" selection-end-line="459" selection-end-column="97" />
               <folding>
                 <element signature="e#238#601#0" expanded="false" />
                 <element signature="e#627#769#0" expanded="false" />
@@ -55,7 +55,7 @@
                 <element signature="e#7694#7756#0" expanded="false" />
                 <element signature="e#7780#7833#0" expanded="false" />
                 <element signature="e#9658#10200#0" expanded="false" />
-                <element signature="e#15923#17321#0" expanded="false" />
+                <element signature="e#15932#17330#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -341,7 +341,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -375,15 +378,19 @@
             <path>
               <item name="Application" type="b2602c69:ProjectViewProjectNode" />
               <item name="Application" type="462c0819:PsiDirectoryNode" />
+              <item name="imports" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="Viewer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Application" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Application" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1308,14 +1315,10 @@
       <workItem from="1511818497675" duration="5760000" />
       <workItem from="1511831471677" duration="8000" />
       <workItem from="1512091381470" duration="5963000" />
-      <workItem from="1512165223095" duration="355000" />
-    </task>
-    <task id="LOCAL-00067" summary="Isolated the ringing in times into variables">
-      <created>1478298980472</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1478298980473</updated>
+      <workItem from="1512165223095" duration="456000" />
+      <workItem from="1512165915592" duration="151000" />
+      <workItem from="1512173061665" duration="321000" />
+      <workItem from="1512174720637" duration="683000" />
     </task>
     <task id="LOCAL-00068" summary="Added in DD Wager&#10;&#10;Fixed a bug with the ring in timer starting at a negative value">
       <created>1478301009090</created>
@@ -1653,11 +1656,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511823664450</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="Changed background color for image preview">
+      <created>1512165707680</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1512165707683</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="693703000" />
+    <option name="totallyTimeSpent" value="694959000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1679,13 +1689,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24152543" sideWeight="0.50928384" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21208227" sideWeight="0.5487572" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2611111" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39305556" sideWeight="0.4907162" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17913832" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1866969" sideWeight="0.45124283" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21465296" sideWeight="0.53417015" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1773,7 +1783,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Responsive Viewing Area Fixes (vmin)" />
     <MESSAGE value="Work in Progress for Options and Safari Viewer Height" />
     <MESSAGE value="Fixed Safari Viewer Height" />
     <MESSAGE value="Made Options more Responsive" />
@@ -1798,7 +1807,8 @@
     <MESSAGE value="Added confirm before final question" />
     <MESSAGE value="HTTPS Cloudinary" />
     <MESSAGE value="Added error handling for file uploads" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added error handling for file uploads" />
+    <MESSAGE value="Changed background color for image preview" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed background color for image preview" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2079,20 +2089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Viewer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="23" column="97" lean-forward="false" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="30" column="97" lean-forward="false" selection-start-line="30" selection-start-column="97" selection-end-line="30" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/scream.js" />
     <entry file="file://$PROJECT_DIR$/imports/ui/newBrim.js" />
     <entry file="file://$PROJECT_DIR$/imports/ui/refresh.js">
@@ -2134,7 +2130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="418" column="9" lean-forward="false" selection-start-line="418" selection-start-column="9" selection-end-line="418" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2142,16 +2137,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Viewer/Viewer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="23" column="97" lean-forward="false" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Editor/Editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Editor/EditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="452" column="110" lean-forward="false" selection-start-line="452" selection-start-column="110" selection-end-line="452" selection-end-column="110" />
+        <state relative-caret-position="442">
+          <caret line="459" column="97" lean-forward="false" selection-start-line="459" selection-start-column="97" selection-end-line="459" selection-end-column="97" />
           <folding>
             <element signature="e#238#601#0" expanded="false" />
             <element signature="e#627#769#0" expanded="false" />
@@ -2178,7 +2186,7 @@
             <element signature="e#7694#7756#0" expanded="false" />
             <element signature="e#7780#7833#0" expanded="false" />
             <element signature="e#9658#10200#0" expanded="false" />
-            <element signature="e#15923#17321#0" expanded="false" />
+            <element signature="e#15932#17330#0" expanded="false" />
           </folding>
         </state>
       </provider>
