@@ -245,21 +245,49 @@ Meteor.methods({
 		bundle["player" + teamNumber + ".wager"] = wager;
 		gameLogic.update({}, {$set: bundle});
 	},
-	'gameLogic.setFirst'(teamNumber) {
-		gameLogic.update({}, {$set: {"currentQuestionLogic.first": teamNumber,"currentQuestionLogic.firstTime":ServerTime.now()}});
+	'gameLogic.handleClick'(teamNumber) {
+		const logic = gameLogic.find().fetch()[0];
+		if (!(logic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)
+				|| logic["currentQuestionLogic"]["RungInLate"].includes(teamNumber))
+			&& ["open", "answer"].includes(logic.state)) {
+			if (!logic["currentQuestionLogic"]["first"]) {
+				gameLogic.update({}, {
+					$set: {
+						"currentQuestionLogic.first": teamNumber,
+						"currentQuestionLogic.firstTime": ServerTime.now(),
+						state: "answer",
+					}
+				});
+			}
+			else {
+				gameLogic.update({}, {$push: {"currentQuestionLogic.RungInLate": teamNumber}});
+				const bundle = {};
+				bundle["player" + teamNumber + ".lateTime"] = ServerTime.now();
+				gameLogic.update({}, {$set: bundle});
+			}
+		}
 	},
-	'gameLogic.addLate'(teamNumber) {
-		gameLogic.update({}, {$push: {"currentQuestionLogic.RungInLate": teamNumber}});
-		const bundle = {};
-		bundle["player" + teamNumber + ".lateTime"] = ServerTime.now();
-		gameLogic.update({}, {$set: bundle});
-	},
+	/*	'gameLogic.setFirst'(teamNumber) {
+			gameLogic.update({}, {
+				$set: {
+					"currentQuestionLogic.first": teamNumber,
+					"currentQuestionLogic.firstTime": ServerTime.now(),
+					state: "answer",
+				}
+			});
+		},
+		'gameLogic.addLate'(teamNumber) {
+			gameLogic.update({}, {$push: {"currentQuestionLogic.RungInLate": teamNumber}});
+			const bundle = {};
+			bundle["player" + teamNumber + ".lateTime"] = ServerTime.now();
+			gameLogic.update({}, {$set: bundle});
+		},*/
 	'gameLogic.addIncorrect'(teamNumber) {
 		gameLogic.update({}, {$push: {"currentQuestionLogic.Incorrect": teamNumber}});
 		Meteor.call('gameLogic.reopen');
 	},
 	'gameLogic.reopen'() {
-		gameLogic.update({}, {$set: {"currentQuestionLogic.RungInLate": []}});
+		gameLogic.update({}, {$set: {"currentQuestionLogic.RungInLate": [], "currentQuestionLogic.first": undefined}});
 	},
 	'gameLogic.eliminate'() {
 		const obj = gameLogic.find().fetch()[0];

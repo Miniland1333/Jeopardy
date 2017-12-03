@@ -50,15 +50,21 @@ export default class StudentContent extends React.Component {
 	static propTypes = {
 		gameLogic: PropTypes.object,
 	};
-	
-	
-	handleFirst = () => {
-		Meteor.call("gameLogic.setFirst", teamNumber);
-		Meteor.call("gameLogic.setState", "answer");
-	};
-	
-	handleLate = () => {
-		Meteor.call('gameLogic.addLate', teamNumber);
+	buttonColor = () => {
+		const gameLogic = this.props.gameLogic;
+		switch (gameLogic["state"]) {
+			case "read":
+				return "#7a7a7a";
+			case "open":
+			case "answer":
+				if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber)
+					return "#00b500";
+				else if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber) || this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber))
+					return "#ff3f3f";
+				else
+					return "#f6f6f6"
+			
+		}
 	};
 	
 	shouldComponentUpdate(nextProps, nextState) {
@@ -192,64 +198,13 @@ export default class StudentContent extends React.Component {
 			</div>;
 			
 		}
-		else if (this.props.gameLogic["state"] === "read") {
+		else if (["read", "open", "answer"].includes(this.props.gameLogic["state"])) {
 			return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-				<div style={{background: "#7a7a7a", borderRadius: "8px", margin: "30px", flex: 1}}/>
+				<div style={{background: this.buttonColor(), borderRadius: "8px", margin: "30px", flex: 1}}
+				     onClick={() => Meteor.call("gameLogic.handleClick", teamNumber)}>
+					{this.late()}
+				</div>
 			</div>;
-		}
-		else if (this.props.gameLogic["state"] === "open") {
-			const incorrect = this.props.gameLogic["currentQuestionLogic"]["Incorrect"];
-			if (!incorrect.includes(teamNumber)) {
-				//If not on incorrect list
-				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-					<div onClick={this.handleFirst}
-					     style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
-				</div>;
-			}
-			else {
-				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
-				</div>;
-			}
-			
-			
-		}
-		else if (this.props.gameLogic["state"] === "answer") {
-			if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber) {
-				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-					<div style={{background: "#00b500", borderRadius: "8px", margin: "30px", flex: 1}}/>
-				</div>;
-			}
-			else if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber)) {
-				
-				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-					<div style={{background: "#ff3f3f", borderRadius: "8px", margin: "30px", flex: 1}}/>
-				</div>;
-			}
-			else if (this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber)) {
-				const firstTime = this.props.gameLogic["currentQuestionLogic"].firstTime;
-				let playerTime = this.props.gameLogic["player" + teamNumber].lateTime;
-				
-				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-					<div className="flex-container" style={{
-						background: "#ff3f3f",
-						borderRadius: "8px",
-						margin: "30px",
-						flexDirection: "column",
-						flex: 1,
-						justifyContent: "center",
-					}}>
-						<div style={{"fontSize": "8vmin"}}>+{(playerTime - firstTime) / 1000} seconds</div>
-					</div>
-				</div>;
-			}
-			else {
-				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-					<div onClick={this.handleLate}
-					     style={{background: "#f6f6f6", borderRadius: "8px", margin: "30px", flex: 1}}/>
-				</div>;
-			}
-			
 		}
 		else if (this.props.gameLogic["round"] === 3 && this.props.gameLogic["player" + teamNumber]["status"] === "active") {
 			switch (this.props.gameLogic["state"]) {
@@ -422,5 +377,12 @@ export default class StudentContent extends React.Component {
 				<Ping name={this.getTeamName()}/>
 			</div>
 		);
+	}
+	
+	late() {
+		const firstTime = this.props.gameLogic["currentQuestionLogic"].firstTime;
+		let playerTime = this.props.gameLogic["player" + teamNumber].lateTime;
+		if (firstTime && playerTime && this.props.gameLogic["currentQuestionLogic"]["first"]!==teamNumber)
+			return <div style={{"fontSize": "8vmin"}}>+{(playerTime - firstTime) / 1000} seconds</div>
 	}
 }
