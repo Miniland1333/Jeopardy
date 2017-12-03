@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="">
+    <list default="true" id="1ead85c1-bbd4-4551-a66b-d542af31e4fd" name="Default" comment="Updated Daily Double to 2x points">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/api/gameLogic.js" afterPath="$PROJECT_DIR$/imports/api/gameLogic.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" afterPath="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
     </list>
     <ignored path="simple-todos.iws" />
@@ -27,36 +26,13 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="TeacherFooter.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="118" column="9" lean-forward="false" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="StudentContent.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="StudentContent.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="422">
-                  <caret line="61" column="186" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="186" />
+                <state relative-caret-position="503">
+                  <caret line="142" column="30" lean-forward="true" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#35#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="gameLogic.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="663">
-                  <caret line="277" column="10" lean-forward="true" selection-start-line="277" selection-start-column="10" selection-end-line="277" selection-end-column="10" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#105#142#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -66,13 +42,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="StudentContent.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
+          <file leaf-file-name="gameLogic.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="502">
-                  <caret line="384" column="106" lean-forward="false" selection-start-line="384" selection-start-column="106" selection-end-line="384" selection-end-column="106" />
+                <state relative-caret-position="709">
+                  <caret line="277" column="10" lean-forward="true" selection-start-line="277" selection-start-column="10" selection-end-line="277" selection-end-column="10" />
                   <folding>
-                    <element signature="e#0#35#0" expanded="true" />
+                    <element signature="n#!!doc" expanded="true" />
+                    <element signature="e#105#142#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -93,8 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tap an</find>
-      <find>add</find>
       <find>7a7a7a</find>
       <find>console</find>
       <find>setupP</find>
@@ -123,6 +98,8 @@
       <find>8v</find>
       <find>attach</find>
       <find>setst</find>
+      <find>max</find>
+      <find>points</find>
     </findStrings>
     <replaceStrings>
       <replace>padding: &quot;5px&quot;,</replace>
@@ -213,8 +190,8 @@
         <option value="$PROJECT_DIR$/imports/ui/ClickDemo.js" />
         <option value="$PROJECT_DIR$/server/main.js" />
         <option value="$PROJECT_DIR$/client/main.js" />
-        <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
         <option value="$PROJECT_DIR$/imports/api/gameLogic.js" />
+        <option value="$PROJECT_DIR$/imports/ui/Student/StudentContent.js" />
       </list>
     </option>
   </component>
@@ -1327,14 +1304,7 @@
       <workItem from="1512173061665" duration="321000" />
       <workItem from="1512174720637" duration="683000" />
       <workItem from="1512189992877" duration="5717000" />
-      <workItem from="1512251898203" duration="8068000" />
-    </task>
-    <task id="LOCAL-00071" summary="Finished Video and Image attachments&#10;&#10;Uploading images is currently disabled due to file size restrictions">
-      <created>1483146767187</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1483146767188</updated>
+      <workItem from="1512251898203" duration="8872000" />
     </task>
     <task id="LOCAL-00072" summary="Updated Game Checking and prototype Media Views">
       <created>1483157738169</created>
@@ -1672,11 +1642,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512255968313</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Moved click logic server-side">
+      <created>1512261057069</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1512261057069</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="709359000" />
+    <option name="totallyTimeSpent" value="710163000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1701,7 +1678,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21208227" sideWeight="0.5487572" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33050847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3402778" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3402778" sideWeight="0.4922879" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39305556" sideWeight="0.4907162" order="10" side_tool="false" content_ui="tabs" x="-1600" y="23" width="1280" height="657" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1792,7 +1769,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Implemented Kicking Option&#10;&#10;Researching onhover to provide visual feedback" />
     <MESSAGE value="Changed 0000 to OPEN" />
     <MESSAGE value="Attempt to Fix Resize bug with StudentContent" />
     <MESSAGE value="Attempt 2 to Fix Resize bug with StudentContent" />
@@ -1817,7 +1793,8 @@
     <MESSAGE value="Added game difference checking" />
     <MESSAGE value="Fixed devicetype size" />
     <MESSAGE value="Properly implemented fastclick&#10;&#10;Reworked not registered logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Properly implemented fastclick&#10;&#10;Reworked not registered logic" />
+    <MESSAGE value="Moved click logic server-side" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved click logic server-side" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2145,7 +2122,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imports/ui/Teacher/TeacherFooter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-1241">
           <caret line="118" column="9" lean-forward="false" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
           <folding />
         </state>
@@ -2210,23 +2187,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="61" column="186" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="186" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imports/api/gameLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
+        <state relative-caret-position="709">
           <caret line="277" column="10" lean-forward="true" selection-start-line="277" selection-start-column="10" selection-end-line="277" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#105#142#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imports/ui/Student/StudentContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="142" column="30" lean-forward="true" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

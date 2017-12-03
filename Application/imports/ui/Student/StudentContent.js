@@ -50,22 +50,6 @@ export default class StudentContent extends React.Component {
 	static propTypes = {
 		gameLogic: PropTypes.object,
 	};
-	buttonColor = () => {
-		const gameLogic = this.props.gameLogic;
-		switch (gameLogic["state"]) {
-			case "read":
-				return "#7a7a7a";
-			case "open":
-			case "answer":
-				if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber)
-					return "#00b500";
-				else if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber) || this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber))
-					return "#ff3f3f";
-				else
-					return "#f6f6f6"
-			
-		}
-	};
 	
 	shouldComponentUpdate(nextProps, nextState) {
 		let currentState = this.props.gameLogic["state"];
@@ -165,9 +149,7 @@ export default class StudentContent extends React.Component {
 						padding: "10px",
 						border: "4px solid #f1f1f1",
 						borderRadius: 20,
-					}}>
-						Wager: {wager}
-					</div>
+					}}>Wager: {wager}</div>
 					<div className="flex-container" style={{justifyContent: "center"}}>
 						<div style={buttonStyle}
 						     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>-10,000
@@ -187,13 +169,13 @@ export default class StudentContent extends React.Component {
 							-1
 						</div>
 					</div>
-					<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${points}</div>
+					<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${max}</div>
 				</div>
 				<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.setState', 'DDread')}>
 					Confirm
 					Wager
 				</div>
-				{navigator.userAgent.match(/(iPhone|iPod)/i) && !window.navigator.standalone ?
+				{navigator.userAgent.match(/(iPhone|iPod)/i)?
 					<div style={{height: 60}}/> : []}
 			</div>;
 			
@@ -243,9 +225,7 @@ export default class StudentContent extends React.Component {
 									padding: "10px",
 									border: "4px solid #f1f1f1",
 									borderRadius: 20,
-								}}>
-									Wager: {wager}
-								</div>
+								}}>Wager: {wager}</div>
 								<div className="flex-container" style={{justifyContent: "center"}}>
 									<div style={buttonStyle}
 									     onClick={() => Meteor.call('gameLogic.setWager', teamNumber, wager -= 10000)}>
@@ -274,7 +254,7 @@ export default class StudentContent extends React.Component {
 									Confirm
 									Wager
 								</div>}
-							{navigator.userAgent.match(/(iPhone|iPod)/i) && !window.navigator.standalone ?
+							{navigator.userAgent.match(/(iPhone|iPod)/i)?
 								<div style={{height: 60}}/> : []}
 						</div>;
 					}
@@ -370,6 +350,31 @@ export default class StudentContent extends React.Component {
 		}
 	}
 	
+	late() {
+		const firstTime = this.props.gameLogic["currentQuestionLogic"].firstTime;
+		let playerTime = this.props.gameLogic["player" + teamNumber].lateTime;
+		if (firstTime && playerTime && this.props.gameLogic["currentQuestionLogic"]["first"]!==teamNumber)
+			return <div style={{"fontSize": "8vmin"}}>+{(playerTime - firstTime) / 1000} seconds</div>
+	}
+	
+	
+	buttonColor = () => {
+		const gameLogic = this.props.gameLogic;
+		switch (gameLogic["state"]) {
+			case "read":
+				return "#7a7a7a";
+			case "open":
+			case "answer":
+				if (this.props.gameLogic["currentQuestionLogic"]["first"] === teamNumber)
+					return "#00b500";
+				else if (this.props.gameLogic["currentQuestionLogic"]["Incorrect"].includes(teamNumber) || this.props.gameLogic["currentQuestionLogic"]["RungInLate"].includes(teamNumber))
+					return "#ff3f3f";
+				else
+					return "#f6f6f6"
+			
+		}
+	};
+	
 	render() {
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -377,12 +382,5 @@ export default class StudentContent extends React.Component {
 				<Ping name={this.getTeamName()}/>
 			</div>
 		);
-	}
-	
-	late() {
-		const firstTime = this.props.gameLogic["currentQuestionLogic"].firstTime;
-		let playerTime = this.props.gameLogic["player" + teamNumber].lateTime;
-		if (firstTime && playerTime && this.props.gameLogic["currentQuestionLogic"]["first"]!==teamNumber)
-			return <div style={{"fontSize": "8vmin"}}>+{(playerTime - firstTime) / 1000} seconds</div>
 	}
 }
