@@ -89,12 +89,13 @@ export default class Question extends React.Component {
 			let content = this.props.cell.isSinglePlay ? "SINGLE PLAY" : "";
 			switch (questionType) {
 				case "image":
-					if (this.state.imageURL && this.state.imageURL.includes(".mp4"))
+					if (this.props.cell.question.image && this.props.cell.question.image.includes(".mp4"))
 						content += " 🎬 ";
 					else
 						content += " 📷 ";
 					return [content,
-						<img key="1" src={this.props.cell.question.image} style={{height: 0, width: 0, display: "none"}}
+						<img key="1" src={this.props.cell.question.image}
+						     style={{height: 0, width: 0, display: "none"}}
 						     onError={this.brokenImage}/>];
 					break;
 				case "youTube":
