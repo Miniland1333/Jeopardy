@@ -205,15 +205,15 @@ export default class ScoreBoard extends React.Component {
 	
 	render() {
 		return (
-			<div className="flex-container" onClick={this.handleClick}
+			<div className="flex-container needsclick" onClick={this.handleClick}
 			     style={{
 				     padding: screen.width < 1000 ? "10px 0" : "10px 1vw",
 				     border: "4px solid white",
 				     flexDirection: "column",
 				     flex: 1,
 			     }}>
-				<div style={this.scoreStyle()}>{this.numDisplay()}</div>
-				<div>{this.props.playerLogic.teamName}</div>
+				<div className="needsclick" style={this.scoreStyle()}>{this.numDisplay()}</div>
+				<div className="needsclick">{this.props.playerLogic.teamName}</div>
 			</div>
 		)
 	}

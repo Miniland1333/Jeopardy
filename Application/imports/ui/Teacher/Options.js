@@ -104,7 +104,7 @@ export default class Options extends React.Component {
 			}}>Adjust Scores</div>,
 			
 			this.props.gameLogic["numPlayers"] < 6 ?
-				<div key="add" style={enabledStyle} onClick={() => {
+				<div key="add"  className="needsclick" style={enabledStyle} onClick={() => {
 					let teamName = prompt("Enter Team Name");
 					//noinspection EqualityComparisonWithCoercionJS
 					if (teamName && teamName.trim() != "") {
