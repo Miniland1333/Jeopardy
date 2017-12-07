@@ -35,7 +35,7 @@ const enabledStyle = {
 	textDecoration: 'none',
 	display: 'block',
 	padding: '15px 25px',
-	fontSize: '4vh',
+	fontSize: '5vh',
 	width: '70%',
 	borderRadius: 25,
 	transition: '.5s',
@@ -51,7 +51,7 @@ const disabledStyle = {
 	textDecoration: 'none',
 	display: 'block',
 	padding: '15px 25px',
-	fontSize: '4vh',
+	fontSize: '5vh',
 	width: '70%',
 	borderRadius: 25,
 	transition: '.5s',
@@ -96,36 +96,40 @@ export default class Options extends React.Component {
 							this.exit();
 						}
 					}}>Advance to Next Round</div> :
-				<div key="advance" style={disabledStyle}>Advance to Next Round</div>
-			,
+				<div key="advance" style={disabledStyle}>Advance to Next Round</div>,
+			<div key="buffer1" style={{height: 20}}/>,
 			
-			<div key="adjust" style={disabledStyle} onClick={() => {
-				/*this.setState({state: "adjust"});*/
-			}}>Adjust Scores</div>,
+			<div key="adjust" className="flex-container" style={{minWidth:"70%"}}>
+				{this.props.gameLogic["numPlayers"] < 6 ?
+					<div key="add" className="needsclick"  style={enabledStyle} onClick={() => {
+						let teamName = prompt("Enter Team Name");
+						//noinspection EqualityComparisonWithCoercionJS
+						if (teamName && teamName.trim() != "") {
+							Meteor.call('gameLogic.addPlayer', this.props.gameLogic["numPlayers"] + 1, teamName);
+							this.exit();
+						}
+						else {
+							alert("Invalid Name!");
+						}
+					}}>Add Player</div> :
+					<div key="add" style={disabledStyle}>Add Player</div>}
+				
+				<div key="kick"  style={enabledStyle} onClick={() => {
+					this.setState({state: "kick"});
+				}}>Kick Player</div>
+			</div>,
 			
-			this.props.gameLogic["numPlayers"] < 6 ?
-				<div key="add"  className="needsclick" style={enabledStyle} onClick={() => {
-					let teamName = prompt("Enter Team Name");
-					//noinspection EqualityComparisonWithCoercionJS
-					if (teamName && teamName.trim() != "") {
-						Meteor.call('gameLogic.addPlayer', this.props.gameLogic["numPlayers"] + 1, teamName);
-						this.exit();
-					}
-					else {
-						alert("Invalid Name!");
-					}
-				}}>Add Player</div> :
-				<div key="add" style={disabledStyle}>Add Player</div>
-			,
+			<div key="addRemove" className="flex-container"  style={{minWidth:"70%"}}>
+				<div key="adjust" style={disabledStyle} onClick={() => {
+					/*this.setState({state: "adjust"});*/
+				}}>Adjust Scores</div>,
+				
+				<div key="sort"  style={enabledStyle} onClick={() => {
+					this.setState({state: "sort"});
+				}}>Sort Players</div>
+			</div>,
 			
-			<div key="sort" style={disabledStyle} onClick={() => {
-				/*this.setState({state: "sort"});*/
-			}}>Sort Players</div>,
-			
-			<div key="kick" style={enabledStyle} onClick={() => {
-				this.setState({state: "kick"});
-			}}>Kick Player</div>,
-			
+			<div key="buffer2" style={{height: 20}}/>,
 			<div key="ping" style={enabledStyle} onClick={() => {
 				this.setState({state: "ping"});
 			}}>Check Ping</div>,
@@ -138,6 +142,7 @@ export default class Options extends React.Component {
 					}
 				}}>Reset Game</div>,
 			
+			<div key="buffer3" style={{height: 20}}/>,
 			<div key="exit" style={enabledStyle} onClick={this.exit}>Exit Menu</div>,
 		]
 	};
@@ -160,7 +165,7 @@ export default class Options extends React.Component {
 		
 		return [
 			innerArray,
-			<div key="buffer" style={{height: 10}}/>,
+			<div key="buffer" style={{height: 30}}/>,
 			
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
 				this.setState({state: "buttons"});
@@ -169,8 +174,35 @@ export default class Options extends React.Component {
 	};
 	
 	renderSort() {
+		let innerArray = [];
+		for (let i = 1; i <= this.props.gameLogic["numPlayers"]; i++) {
+			innerArray.push(<li style={{
+				margin: '5px 5px 0 5px',
+				cursor: 'pointer',
+				boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+				zIndex: 1,
+				color: 'black',
+				textDecoration: 'none',
+				padding: '15px 25px',
+				fontSize: '4vh',
+				width: '70%',
+				borderRadius: 25,
+				fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
+				backgroundColor: '#f1f1f1'
+			}} key={i} id={i}>{this.props.gameLogic["player" + i].teamName}</li>)
+		}
+		
 		return [
+			<div className="flex-container needsclick" key="sorter" id="sortable"
+			     style={{fontSize: "5vmin", flexDirection: "column", width: "100%", alignItems: "center"}}>
+				<div className="buffer" style={{height: 30}}/>
+				{innerArray}
+				<div className="buffer" style={{height: 30}}/>
+			</div>,
+			
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
+				Meteor.call("gameLogic.sortPlayers", $.map($("#sortable").children(":not(.ui-sortable-placeholder,.buffer)"),
+					(player) => parseInt(player.id)));
 				this.setState({state: "buttons"});
 			}}>Main Menu</div>,
 		];
@@ -183,7 +215,7 @@ export default class Options extends React.Component {
 	renderPing() {
 		return [
 			<div key="1" className="flex-container"
-			     style={{width: "100vw", flex: 1, justifyContent: "center", flexDirection: "column"}}>
+			     style={{width: "100vw", justifyContent: "center", flexDirection: "column"}}>
 				<div key="2" style={{
 					backgroundColor: "#F1F1F1",
 					margin: "5vmin",
@@ -191,7 +223,7 @@ export default class Options extends React.Component {
 					borderRadius: "30px",
 					boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)'
 				}}>
-					<PingReport />
+					<PingReport/>
 				</div>
 			</div>,
 			<div key="mainMenu" style={enabledStyle} onClick={() => {
@@ -223,6 +255,19 @@ export default class Options extends React.Component {
 	//noinspection JSMethodCanBeStatic
 	componentDidMount() {
 		$("#optionModal").fadeIn();
+		if (this.state.state === "sort") $("#sortable").sortable({
+			axis: "y",
+			containment: "parent",
+			cancel: "#buffer",
+		});
+	}
+	
+	componentDidUpdate() {
+		if (this.state.state === "sort") $("#sortable").sortable({
+			axis: "y",
+			containment: "parent",
+			cancel: "#buffer",
+		});
 	}
 	
 	render() {

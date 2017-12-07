@@ -176,6 +176,16 @@ Meteor.methods({
 			gameLogic.update({}, {$set: bundle2}, {upsert: true});
 		}
 	},
+	'gameLogic.sortPlayers'(playerArray) {
+		const logic = gameLogic.find().fetch()[0];
+		
+		const bundle = {};
+		for (let i = 1; i <= logic.numPlayers; i++) {
+			bundle["player" + i] = logic["player" + playerArray[i - 1]] //players are 1 indexed, arrays 0 indexed
+		}
+		
+		gameLogic.update({}, {$set: bundle});
+	},
 	'gameLogic.advance'() {
 		//Check for Round Skipping
 		const round = gameLogic.find().fetch()[0]['round'] + 1;
