@@ -3,70 +3,8 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 
 import GameLi from "./GameLi";
+import deepEqual from "deep-equal";
 
-const medium = "2vmin";
-
-const barStyle = {
-	fontSize: 16,
-	backgroundColor: "#f5f6f7",
-	overflow: "auto"
-};
-const buttonStyle = {
-	backgroundColor: '#FFD700', /* green */
-	border: 'white solid 1px',
-	color: 'white',
-	padding: '15px 1vw',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	transition: "1s",
-	cursor: "pointer",
-};
-const loadButtonStyle = {
-	backgroundColor: '#FFD700', /* green */
-	color: 'white',
-	padding: '16px 1vw',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	border: "white solid 1px",
-	//borderRadius:8,
-	cursor: "pointer",
-};
-const pickerStyle = {
-	backgroundColor: '#FFD700', /* green */
-	border: 'white solid 1px',
-	color: 'white',
-	padding: '15px 0px',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	//borderRadius:8,
-	cursor: "pointer",
-};
-const inputStyle = {
-	maxWidth: "100%",
-	boxSizing: "border-box",
-	padding: "10px 0",
-	background: "transparent",
-	border: "none",
-	fontSize: medium,
-	textAlign: "center",
-	flexGrow: 1
-};
-const dropdownStyle = {
-	display: 'none',
-	position: 'absolute',
-	backgroundColor: '#f9f9f9',
-	minWidth: 160,
-	maxHeight: 500,
-	boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-	overflow: "auto",
-	color: "black",
-};
 
 export default class EditorHeader extends React.Component {
 	static propTypes = {
@@ -244,9 +182,74 @@ export default class EditorHeader extends React.Component {
 	checkDifference() {
 		const editorDatabase = this.props.editorDatabase[0];
 		const saved = this.props.gameList.find((game) => game.name === editorDatabase.name);
+		
 		return !(saved
-			&& JSON.stringify(saved.Jeopardy) === JSON.stringify(editorDatabase.Jeopardy)
-			&& JSON.stringify(saved.DoubleJeopardy) === JSON.stringify(editorDatabase.DoubleJeopardy)
-			&& JSON.stringify(saved.FinalJeopardy) === JSON.stringify(editorDatabase.FinalJeopardy))
+			&& deepEqual(saved.Jeopardy,editorDatabase.Jeopardy)
+			&& deepEqual(saved.DoubleJeopardy,editorDatabase.DoubleJeopardy)
+			&& deepEqual(saved.FinalJeopardy,editorDatabase.FinalJeopardy))
 	}
 }
+
+const medium = "2vmin";
+
+const barStyle = {
+	fontSize: 16,
+	backgroundColor: "#f5f6f7",
+	overflow: "auto"
+};
+const buttonStyle = {
+	backgroundColor: '#FFD700', /* green */
+	border: 'white solid 1px',
+	color: 'white',
+	padding: '15px 1vw',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	transition: "1s",
+	cursor: "pointer",
+};
+const loadButtonStyle = {
+	backgroundColor: '#FFD700', /* green */
+	color: 'white',
+	padding: '16px 1vw',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	border: "white solid 1px",
+	//borderRadius:8,
+	cursor: "pointer",
+};
+const pickerStyle = {
+	backgroundColor: '#FFD700', /* green */
+	border: 'white solid 1px',
+	color: 'white',
+	padding: '15px 0px',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	//borderRadius:8,
+	cursor: "pointer",
+};
+const inputStyle = {
+	maxWidth: "100%",
+	boxSizing: "border-box",
+	padding: "10px 0",
+	background: "transparent",
+	border: "none",
+	fontSize: medium,
+	textAlign: "center",
+	flexGrow: 1
+};
+const dropdownStyle = {
+	display: 'none',
+	position: 'absolute',
+	backgroundColor: '#f9f9f9',
+	minWidth: 160,
+	maxHeight: 500,
+	boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
+	overflow: "auto",
+	color: "black",
+};

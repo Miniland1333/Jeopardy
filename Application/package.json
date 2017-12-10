@@ -10,6 +10,7 @@
     "blueimp-file-upload": "^9.19.2",
     "classnames": "latest",
     "cloudinary-jquery-file-upload": "^2.3.0",
+    "deep-equal": "^1.0.1",
     "fastclick": "^1.0.6",
     "jquery": "^3.2.1",
     "meteor-node-stubs": "^0.3.2",
