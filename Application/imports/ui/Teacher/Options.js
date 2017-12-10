@@ -1,78 +1,10 @@
 import PropTypes from "prop-types";
-/**
- * Created by Henry on 2/24/2017.
- */
 import React from "react";
 import {Meteor} from "meteor/meteor";
 import "./../jquery-ui";
 import "./../jquery.ui.touch-punch";
 import {gameLogic} from "../../api/gameLogic";
 import PingReport from "./PingReport";
-
-const modalStyle = {
-	display: 'none', /* hidden by default */
-	position: 'fixed', /* stay in place */
-	zIndex: 1, /* sit on top */
-	left: 0, top: 0, width: '100%', /* full width */
-	height: '100%', /* full height */
-	overflow: 'hide', /* enable scroll if needed */
-	backgroundColor: 'rgba(0,0,0,0.4)',
-};
-const modalContentStyle = {
-	color: "black",
-	flexDirection: "column",
-	alignItems: 'center',
-	alignContent: 'center',
-	justifyContent: 'center',
-	height: 'inherit',
-};
-const enabledStyle = {
-	margin: '5px 5px 0 5px',
-	cursor: 'pointer',
-	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
-	zIndex: 1,
-	color: 'black',
-	textDecoration: 'none',
-	display: 'block',
-	padding: '15px 25px',
-	fontSize: '5vh',
-	width: '70%',
-	borderRadius: 25,
-	transition: '.5s',
-	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
-	backgroundColor: '#f1f1f1'
-};
-const disabledStyle = {
-	color: "#a5a5a5",
-	margin: '5px 5px 0 5px',
-	cursor: 'not-allowed',
-	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
-	zIndex: 1,
-	textDecoration: 'none',
-	display: 'block',
-	padding: '15px 25px',
-	fontSize: '5vh',
-	width: '70%',
-	borderRadius: 25,
-	transition: '.5s',
-	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
-	backgroundColor: '#f1f1f1'
-};
-const playerStyle = {
-	margin: '5px 5px 0 5px',
-	cursor: 'pointer',
-	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
-	zIndex: 1,
-	color: 'black',
-	textDecoration: 'none',
-	display: 'block',
-	padding: '15px 25px',
-	fontSize: '4vh',
-	borderRadius: 25,
-	transition: '.5s',
-	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
-	backgroundColor: '#f1f1f1'
-};
 
 export default class Options extends React.Component {
 	static propTypes = {
@@ -99,9 +31,9 @@ export default class Options extends React.Component {
 				<div key="advance" style={disabledStyle}>Advance to Next Round</div>,
 			<div key="buffer1" style={{height: 20}}/>,
 			
-			<div key="adjust" className="flex-container" style={{minWidth:"70%"}}>
+			<div key="adjust" className="flex-container" style={{minWidth: "70%"}}>
 				{this.props.gameLogic["numPlayers"] < 6 ?
-					<div key="add" className="needsclick"  style={enabledStyle} onClick={() => {
+					<div key="add" className="needsclick" style={enabledStyle} onClick={() => {
 						let teamName = prompt("Enter Team Name");
 						//noinspection EqualityComparisonWithCoercionJS
 						if (teamName && teamName.trim() != "") {
@@ -114,17 +46,20 @@ export default class Options extends React.Component {
 					}}>Add Player</div> :
 					<div key="add" style={disabledStyle}>Add Player</div>}
 				
-				<div key="kick"  style={enabledStyle} onClick={() => {
+				<div key="kick" style={enabledStyle} onClick={() => {
 					this.setState({state: "kick"});
-				}}>Kick Player</div>
+				}}>Kick Player
+				</div>
 			</div>,
 			
-			<div key="addRemove" className="flex-container"  style={{minWidth:"70%"}}>
+			<div key="addRemove" className="flex-container" style={{minWidth: "70%"}}>
 				<div key="adjust" style={disabledStyle} onClick={() => {
 					/*this.setState({state: "adjust"});*/
-				}}>Adjust Scores</div>,
+				}}>Adjust Scores
+				</div>
+				,
 				
-				<div key="sort"  style={enabledStyle} onClick={() => {
+				<div key="sort" style={enabledStyle} onClick={() => {
 					this.setState({state: "sort"});
 				}}>Sort Players</div>
 			</div>,
@@ -158,9 +93,11 @@ export default class Options extends React.Component {
 	renderKick() {
 		let innerArray = [];
 		for (let i = 1; i <= this.props.gameLogic["numPlayers"]; i++) {
-			innerArray.push(<div key={"Player " + i} style={playerStyle} onClick={function () {
-				Meteor.call('gameLogic.kick', i, gameLogic.find().fetch()[0]["player" + i]["connectionId"]);
-			}}>{"Kick Player " + i}</div>)
+			innerArray.push(<div key={"Player " + i}
+			                     style={this.props.gameLogic["player" + i].status !== "active" ? reconnectStyle : playerStyle}
+			                     onClick={function () {
+				                     Meteor.call('gameLogic.kick', i, gameLogic.find().fetch()[0]["player" + i]["connectionId"]);
+			                     }}>{"Kick Player " + i}</div>)
 		}
 		
 		return [
@@ -285,3 +222,83 @@ export default class Options extends React.Component {
 		)
 	}
 }
+
+const modalStyle = {
+	display: 'none', /* hidden by default */
+	position: 'fixed', /* stay in place */
+	zIndex: 1, /* sit on top */
+	left: 0, top: 0, width: '100%', /* full width */
+	height: '100%', /* full height */
+	overflow: 'hide', /* enable scroll if needed */
+	backgroundColor: 'rgba(0,0,0,0.4)',
+};
+const modalContentStyle = {
+	color: "black",
+	flexDirection: "column",
+	alignItems: 'center',
+	alignContent: 'center',
+	justifyContent: 'center',
+	height: 'inherit',
+};
+const enabledStyle = {
+	margin: '5px 5px 0 5px',
+	cursor: 'pointer',
+	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+	zIndex: 1,
+	color: 'black',
+	textDecoration: 'none',
+	display: 'block',
+	padding: '15px 25px',
+	fontSize: '5vh',
+	width: '70%',
+	borderRadius: 25,
+	transition: '.5s',
+	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
+	backgroundColor: '#f1f1f1'
+};
+const disabledStyle = {
+	color: "#a5a5a5",
+	margin: '5px 5px 0 5px',
+	cursor: 'not-allowed',
+	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+	zIndex: 1,
+	textDecoration: 'none',
+	display: 'block',
+	padding: '15px 25px',
+	fontSize: '5vh',
+	width: '70%',
+	borderRadius: 25,
+	transition: '.5s',
+	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
+	backgroundColor: '#f1f1f1'
+};
+const playerStyle = {
+	margin: '5px 5px 0 5px',
+	cursor: 'pointer',
+	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+	zIndex: 1,
+	color: 'black',
+	textDecoration: 'none',
+	display: 'block',
+	padding: '15px 25px',
+	fontSize: '4vh',
+	borderRadius: 25,
+	transition: '.5s',
+	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
+	backgroundColor: '#f1f1f1'
+};
+const reconnectStyle = {
+	margin: '5px 5px 0 5px',
+	cursor: 'pointer',
+	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+	zIndex: 1,
+	color: 'white',
+	textDecoration: 'none',
+	display: 'block',
+	padding: '15px 25px',
+	fontSize: '4vh',
+	borderRadius: 25,
+	transition: '.5s',
+	fontFamily: 'Rockwell, “Courier Bold”, Courier, Georgia, Times, “Times New Roman”, serif',
+	backgroundColor: 'orange'
+};

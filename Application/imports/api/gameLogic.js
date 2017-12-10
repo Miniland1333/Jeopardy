@@ -181,7 +181,11 @@ Meteor.methods({
 		
 		const bundle = {};
 		for (let i = 1; i <= logic.numPlayers; i++) {
-			bundle["player" + i] = logic["player" + playerArray[i - 1]] //players are 1 indexed, arrays 0 indexed
+			let tempArray = logic["player" + playerArray[i - 1]]; //players are 1 indexed, arrays 0 indexed
+			tempArray.teamNumber = i; //needs new teamNumber
+			
+			Meteor.call('gameLogic.setConnectionId',i,gameLogic.find().fetch()[0]["round"],tempArray.connectionId);
+			bundle["player" + i] = tempArray;
 		}
 		
 		gameLogic.update({}, {$set: bundle});
