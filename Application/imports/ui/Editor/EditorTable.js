@@ -23,7 +23,7 @@ export default class EditorTable extends React.Component {
 			case "Final":
 				roundName = "FinalJeopardy"
 		}
-		if (this.props.editorDatabase[0] == undefined) {
+		if (!this.props.editorDatabase[0]) {
 			Meteor.call('editorDatabase.init');
 		}
 		const round = this.props.editorDatabase[0][roundName];
