@@ -34,7 +34,7 @@ export default class Options extends React.Component {
 			<div key="adjust" className="flex-container" style={{minWidth: "70%"}}>
 				{this.props.gameLogic["numPlayers"] < 6 ?
 					<div key="add" className="needsclick" style={enabledStyle} onClick={() => {
-						let teamName = prompt("Enter Team Name");
+						let teamName = prompt("Enter Team Name").substring(0, 50);
 						//noinspection EqualityComparisonWithCoercionJS
 						if (teamName && teamName.trim() != "") {
 							Meteor.call('gameLogic.addPlayer', this.props.gameLogic["numPlayers"] + 1, teamName);

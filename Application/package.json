@@ -12,7 +12,7 @@
     "cloudinary-jquery-file-upload": "^2.3.0",
     "deep-equal": "^1.0.1",
     "fastclick": "^1.0.6",
-    "howler": "^2.0.5",
+    "howler": "^2.0.7",
     "jquery": "^3.2.1",
     "meteor-node-stubs": "^0.3.2",
     "orientationchangeend": "^1.1.2",

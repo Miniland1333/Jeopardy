@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import React from "react";
-import {Meteor} from "meteor/meteor";
+import React     from "react";
+import {Meteor}  from "meteor/meteor";
 
 
 export default class ScoreBoard extends React.Component {
@@ -48,17 +48,11 @@ export default class ScoreBoard extends React.Component {
 				
 				this.handleFocus();
 				let name = prompt("Enter Team Name");
-				if (!name) {
-					name = "";
-				}
 				this.handleName(name);
 			}
 			else if (status === "ready" && this.props.connectionId === this.props.playerLogic["connectionId"]) {
 				this.handleFocus();
 				let name = prompt("Enter Team Name", this.props.playerLogic.teamName);
-				if (!name) {
-					name = "";
-				}
 				this.handleName(name);
 			}
 		}
@@ -73,8 +67,13 @@ export default class ScoreBoard extends React.Component {
 	};
 	
 	handleName = (name) => {
-		//noinspection EqualityComparisonWithCoercionJS
-		if (name == "") {
+		if (!name) {
+			name = "";
+		}
+		
+		name = name.substring(0, 50);
+		
+		if (name === "") {
 			Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "", 0);
 			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic.teamNumber, this.props.round, "", this.props.connectionId);
 			Meteor.call('gameLogic.setTeamName', this.props.playerLogic.teamNumber, "");
