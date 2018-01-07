@@ -39,7 +39,8 @@ Meteor.methods({
 			connections: {},
 			gameName: "Please select a game",
 			FJ: {currentPlayer: 0, currentAnswer: "", remaining: "empty"},
-			
+			maxTimeResponse: 5,
+			maxTimeAnswer: 5,
 		};
 		gameLogic.insert(bundle);
 	},
@@ -81,10 +82,10 @@ Meteor.methods({
 		};
 		gameLogic.update({}, {$set: bundle});
 		gameLogic.update({}, {$set: {numPlayers: teamNumber}});
-		
+
 	},
 	'gameLogic.setTeamName'(teamNumber, teamName) {
-		
+
 		const bundle = {};
 		bundle["setupPlayers.player" + teamNumber + ".teamName"] = teamName;
 		gameLogic.update({}, {$set: bundle});
@@ -111,7 +112,7 @@ Meteor.methods({
 				}
 			}
 		}
-		
+
 		//Will skip if not connected to a team
 		if (teamNumber !== 0) {
 			const bundle = {};
@@ -134,24 +135,24 @@ Meteor.methods({
 			}
 		}
 	},
-	
+
 	'gameLogic.setStatus'(teamNumber, teamStatus, round) {
 		const bundle = {};
 		if (round === 0) {
 			bundle["setupPlayers.player" + teamNumber + ".status"] = teamStatus;
 			gameLogic.update({}, {$set: bundle});
-			
+
 		}
 		else {
 			bundle["player" + teamNumber + ".status"] = teamStatus;
 			gameLogic.update({}, {$set: bundle});
-			
+
 		}
 	},
 	'gameLogic.changePoints'(teamNumber, pointDiff) {
 		const originalPoints = gameLogic.find().fetch()[0]["player" + teamNumber]["points"];
 		const newPoints = originalPoints + pointDiff;
-		
+
 		const bundle = {};
 		bundle["player" + teamNumber + ".points"] = newPoints;
 		gameLogic.update({}, {$set: bundle});
@@ -178,16 +179,16 @@ Meteor.methods({
 	},
 	'gameLogic.sortPlayers'(playerArray) {
 		const logic = gameLogic.find().fetch()[0];
-		
+
 		const bundle = {};
 		for (let i = 1; i <= logic.numPlayers; i++) {
 			let tempArray = logic["player" + playerArray[i - 1]]; //players are 1 indexed, arrays 0 indexed
 			tempArray.teamNumber = i; //needs new teamNumber
-			
-			Meteor.call('gameLogic.setConnectionId',i,gameLogic.find().fetch()[0]["round"],tempArray.connectionId);
+
+			Meteor.call('gameLogic.setConnectionId', i, gameLogic.find().fetch()[0]["round"], tempArray.connectionId);
 			bundle["player" + i] = tempArray;
 		}
-		
+
 		gameLogic.update({}, {$set: bundle});
 	},
 	'gameLogic.advance'() {
@@ -214,7 +215,7 @@ Meteor.methods({
 				Meteor.call('gameLogic.advance');
 				return;
 			}
-			
+
 			switch (round) {
 				case 1:
 					Meteor.call('gameLogic.lastWinner', Math.floor((Math.random() * gameLogic.find().fetch()[0]['numPlayers']) + 1));
@@ -312,9 +313,9 @@ Meteor.methods({
 					&& prop.includes("player")
 					&& obj[prop]["points"] <= 0) {
 					remainingNumber--;
-					
+
 					const bundle = {};
-					
+
 					bundle[prop + ".status"] = "out";
 					gameLogic.update({}, {$set: bundle});
 				}
@@ -324,7 +325,7 @@ Meteor.methods({
 			Meteor.call('gameLogic.setState', "complete");
 		}
 	},
-	
+
 	'gameLogic.finalAnswer'(teamNumber, JSON) {
 		const bundle = {};
 		bundle["player" + teamNumber + ".finalPhoto"] = JSON;
@@ -370,5 +371,5 @@ Meteor.methods({
 		gameLogic.update({}, {$set: bundle});
 		gameLogic.update({}, {$pull: {"FJ.remaining": teamNumber}});
 	},
-	
+
 });

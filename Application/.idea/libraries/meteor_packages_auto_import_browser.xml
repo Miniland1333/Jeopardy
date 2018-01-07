@@ -105,16 +105,16 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteortoys_toykit/4.0.1/web.browser/style/toykit.css" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/mizzao_timesync/0.5.0/web.browser/timesync-client.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/mizzao_timesync/0.5.0/web.browser/timesync-server.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.0/web.browser/.npm/package/node_modules/install/install.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.0/web.browser/client.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.0/web.browser/options.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/client.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/css.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/install-packages.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/process.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/reify.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/server.js" />
-        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/stubs.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.1/web.browser/.npm/package/node_modules/install/install.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.1/web.browser/client.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.1/web.browser/options.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/client.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/css.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/install-packages.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/process.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/reify.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/server.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/stubs.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/mongo-dev-server/1.1.0/web.browser/server.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/mongo-id/1.0.6/web.browser/id.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/msavin_mongol/4.0.1/web.browser/client/_component/component.js" />
@@ -152,6 +152,7 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/reload/1.1.11/web.browser/reload.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/retry/1.0.9/web.browser/retry.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/session/1.1.7/web.browser/session.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/socialize_server-time/0.1.2/web.browser/packages/socialize_server-time.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/spacebars-compiler/1.1.3/web.browser/codegen.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/spacebars-compiler/1.1.3/web.browser/compiler.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/spacebars-compiler/1.1.3/web.browser/optimizer.js" />
@@ -288,16 +289,16 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/meteortoys_toykit/4.0.1/web.browser/style/toykit.css" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/mizzao_timesync/0.5.0/web.browser/timesync-client.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/mizzao_timesync/0.5.0/web.browser/timesync-server.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.0/web.browser/.npm/package/node_modules/install/install.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.0/web.browser/client.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.0/web.browser/options.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/client.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/css.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/install-packages.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/process.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/reify.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/server.js" />
-      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.0/web.browser/stubs.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.1/web.browser/.npm/package/node_modules/install/install.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.1/web.browser/client.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules-runtime/0.9.1/web.browser/options.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/client.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/css.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/install-packages.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/process.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/reify.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/server.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/modules/0.11.2/web.browser/stubs.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/mongo-dev-server/1.1.0/web.browser/server.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/mongo-id/1.0.6/web.browser/id.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/msavin_mongol/4.0.1/web.browser/client/_component/component.js" />
@@ -367,7 +368,6 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/webapp/1.4.0/web.browser/webapp_server.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/webapp/1.4.0/web.browser/webapp_tests.js" />
     </CLASSES>
-    <JAVADOC />
     <SOURCES />
   </library>
 </component>

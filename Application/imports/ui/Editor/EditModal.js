@@ -170,6 +170,7 @@ export default class EditModal extends React.Component {
 	static propTypes = {
 		roundName: PropTypes.string,
 		categoryName: PropTypes.string,
+		categoryExplanation: PropTypes.string,
 		question: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 		answer: PropTypes.string,
 		isSinglePlay: PropTypes.bool,
@@ -192,7 +193,7 @@ export default class EditModal extends React.Component {
 			
 		}
 		else {
-			if (this.props.question.type == "image") {
+			if (this.props.question.type === "image") {
 				this.setState({questionType: "image"});
 				this.setState({questionText: this.props.question.text});
 			}
@@ -325,7 +326,8 @@ export default class EditModal extends React.Component {
 			Meteor.call('editorDatabase.updateCategory',
 				this.props.roundName,
 				this.props.key1,
-				$("#category").val());
+				$("#category").val(),
+				$("#categoryExplanation").val());
 		}
 		else {
 			const question = $("#question");
@@ -439,7 +441,10 @@ export default class EditModal extends React.Component {
 		if (this.props.isHeader) {
 			return <div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
 				<input id="category" defaultValue={this.props.categoryName} placeholder="Category Name"
-				       spellCheck="true" style={headerStyle}/></div>
+				       spellCheck="true" style={headerStyle}/>
+				<div style={{height:10}}/>
+				{this.props.roundName!=="FinalJeopardy"?<textarea id="categoryExplanation" defaultValue={this.props.categoryExplanation} placeholder="Category Explanation"
+				       spellCheck="true" style={headerStyle}/>:null}</div>
 		}
 		let questionContent;
 		switch (this.state.questionType) {

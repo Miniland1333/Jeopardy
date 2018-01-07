@@ -25,10 +25,10 @@ export default class TeacherContent extends React.Component {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object,
 	};
-	
+
 	hasVideo = () =>
 		this.props.gameQuestions["currentQuestion"]["question"].image.includes(".mp4");
-	
+
 	renderContent = () => {
 		if (this.props.gameLogic["round"] === 0) {
 			// addToHomescreen();
@@ -77,21 +77,19 @@ export default class TeacherContent extends React.Component {
 					{$.map(this.props.gameQuestions["currentRound"], function (column, key1) {
 						return (
 							<div className="Column" key={key1}>
-								{$.map(column, function (cell, key2) {
-									return key2 === "categoryName" ?
-										<div className="Header" key={key1 + "H"} style={{
-											alignItems: "center",
-											justifyContent: "center",
-											fontSize: "2vmin",
-										}}>{cell}</div>
-										:
-										[];
-								})}
+								<div className="Header" key={key1 + "H"} style={{
+									textAlign: "center",
+									fontSize: "2vmin",
+								}}>{column["categoryName"]}</div>
+								<div className="Header" key={key1 + "E"} style={{
+									textAlign: "center",
+									fontSize: "2vmin",
+									flex: 1
+								}}>{column["categoryExplanation"] ? column["categoryExplanation"] : "No Description"}</div>
 							</div>
 						)
 					})}
 				</div>;
-				break;
 			case "pickQuestion":
 				const round = this.props.gameLogic["round"];
 				return <div key="" className="Table">
@@ -99,15 +97,21 @@ export default class TeacherContent extends React.Component {
 						return (
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
-									return key2 === "categoryName" ?
-										<div className="Header" key={key1 + "H"} style={{
-											alignItems: "center",
-											justifyContent: "center",
-											fontSize: "2vmin",
-										}}>{cell}</div>
-										:
-										<Question key={key1 + key2} cell={cell} round={round} key1={key1} key2={key2}/>;
-									
+									switch (key2) {
+										case "categoryName":
+											return <div className="Header" key={key1 + "H"} style={{
+												alignItems: "center",
+												justifyContent: "center",
+												fontSize: "2vmin",
+											}}
+											            onClick={() => alert(column["categoryExplanation"] ? column["categoryExplanation"] : "No Description")}
+											>{cell}</div>;
+										case "categoryExplanation":
+											return null;
+										default:
+											return <Question key={key1 + key2} cell={cell} round={round} key1={key1}
+											                 key2={key2}/>;
+									}
 								})}
 							</div>
 						)
@@ -119,6 +123,7 @@ export default class TeacherContent extends React.Component {
 					whiteSpace: "pre-wrap",
 				}}>Daily<br/>Double</div>;
 			case "wager":
+			case "DDready":
 				const DDwager = this.props.gameLogic["player" + this.props.gameLogic["lastWinner"]]["wager"];
 				return [<div className="flex-container" key="top" style={{
 					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
@@ -177,9 +182,9 @@ export default class TeacherContent extends React.Component {
 						whiteSpace: "pre-wrap", textTransform: "uppercase"
 					}}>{this.props.gameQuestions["currentRound"]['category']}</div>
 					<div style={answerStyle}>Wait for Players to enter their Wagers</div>
-				
+
 				</div>;
-			
+
 			case "FJread":
 			case "FJopen":
 			case "FJanswer":
@@ -235,7 +240,7 @@ export default class TeacherContent extends React.Component {
 				}
 		}
 	};
-	
+
 	render() {
 		return (
 			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>

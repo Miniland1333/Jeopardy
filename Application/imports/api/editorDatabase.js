@@ -23,13 +23,9 @@ Meteor.methods({
 		//initializes editorDatabase
 		const categoryTemplate = {
 			categoryName: "",
+			categoryExplanation:"",
 		};
 		for (let i = 1; i <= 5; i++) {
-			/*            categoryTemplate["question"+i] = {
-			 isSinglePlay:true,
-			 question:"question"+i,
-			 answer:"answer"+i,
-			 };*/
 			categoryTemplate["question" + i] = {
 				isSinglePlay: false,
 				question: "",
@@ -67,14 +63,15 @@ Meteor.methods({
 		check(name, String);
 		editorDatabase.update({}, {$set: {name: name}});
 	},
-	'editorDatabase.updateCategory'(round, identifier, name){
+	'editorDatabase.updateCategory'(round, identifier, name, categoryExplanation){
 		//check if finalJ
-		if (round == "FinalJeopardy") {
+		if (round === "FinalJeopardy") {
 			editorDatabase.update({}, {$set: {"FinalJeopardy.category": name}});
 		}
 		else {
 			const bundle = {};
 			bundle[round + "." + identifier + ".categoryName"] = name;
+			bundle[round + "." + identifier + ".categoryExplanation"] = categoryExplanation;
 			editorDatabase.update({}, {$set: bundle});
 		}
 		//console.log(editorDatabase.find().fetch());

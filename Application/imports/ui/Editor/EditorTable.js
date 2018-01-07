@@ -10,7 +10,7 @@ export default class EditorTable extends React.Component {
 		round: PropTypes.string.isRequired,
 		editorDatabase: PropTypes.array.isRequired,
 	};
-	
+
 	renderInput = () => {
 		let roundName;
 		switch (this.props.round) {
@@ -40,14 +40,7 @@ export default class EditorTable extends React.Component {
 						return (
 							<div className="Column" key={key1}>
 								{$.map(column, function (cell, key2) {
-									return key2 == "categoryName" ?
-										//<div className="Header" key={key1 + "H"}>{cell}</div>
-										<CategoryHeader key={key1 + "H"} categoryName={cell} roundName={roundName}
-										                key1={key1}/>
-										:
-										<Question key={key1 + key2} cell={cell} roundName={roundName} key1={key1}
-										          key2={key2}/>;
-									
+
 								})}
 							</div>
 						)
@@ -55,7 +48,7 @@ export default class EditorTable extends React.Component {
 				</div>
 		);
 	};
-	
+
 	render() {
 		return (
 			<div className="Table">

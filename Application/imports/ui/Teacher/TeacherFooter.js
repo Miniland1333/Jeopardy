@@ -9,18 +9,18 @@ export default class TeacherFooter extends React.Component {
 		gameLogic: PropTypes.object,
 		gameQuestions: PropTypes.object
 	};
-	
+
 	handleCorrect = () => {
 		let first = this.props.gameLogic["currentQuestionLogic"]["first"];
 		let value = this.props.gameQuestions["currentQuestion"]["value"];
-		
+
 		if (this.props.gameLogic["state"] == "DDanswer") {
 			//If DD, reset player wager
 			first = this.props.gameLogic["lastWinner"];
 			value = this.props.gameLogic["player" + first]["wager"];
 			Meteor.call('gameLogic.setWager', first, 0);
 		}
-		
+
 		Meteor.call('gameLogic.lastWinner', first);
 		Meteor.call('gameLogic.changePoints', first, value);
 		if (this.props.gameQuestions["remainingColumns"] == 0) {
@@ -29,20 +29,20 @@ export default class TeacherFooter extends React.Component {
 		else {
 			Meteor.call('gameLogic.setState', "pickQuestion");
 		}
-		
+
 	};
-	
+
 	handleIncorrect = () => {
 		let first = this.props.gameLogic["currentQuestionLogic"]["first"];
 		let value = this.props.gameQuestions["currentQuestion"]["value"];
-		
+
 		if (this.props.gameLogic["state"] == "DDanswer") {
 			//If DD, reset player wager
 			first = this.props.gameLogic["lastWinner"];
 			value = this.props.gameLogic["player" + first]["wager"];
 			Meteor.call('gameLogic.setWager', first, 0);
 		}
-		
+
 		Meteor.call('gameLogic.changePoints', first, -value);
 		Meteor.call('gameLogic.addIncorrect', first);
 		//Adjust for single play or out of players
@@ -52,16 +52,16 @@ export default class TeacherFooter extends React.Component {
 		else {
 			Meteor.call('gameLogic.setState', "open");
 		}
-		
+
 	};
-	
+
 	handleFJCorrect = () => {
 		const player = this.props.gameLogic["FJ"]["currentPlayer"];
 		const wager = this.props.gameLogic["player" + player]["wager"];
 		Meteor.call('gameLogic.changePoints', player, wager);
-		
+
 		Meteor.call('gameLogic.removeFJ', player);
-		
+
 		//check if no more players
 		if (this.props.gameLogic["FJ"]["remaining"].length <= 1) {
 			Meteor.call('gameLogic.setState', "complete");
@@ -70,12 +70,12 @@ export default class TeacherFooter extends React.Component {
 			Meteor.call('gameLogic.removeFJ', player);
 		}
 	};
-	
+
 	handleFJIncorrect = () => {
 		const player = this.props.gameLogic["FJ"]["currentPlayer"];
 		let wager = this.props.gameLogic["player" + player]["wager"];
 		Meteor.call('gameLogic.changePoints', player, -wager);
-		
+
 		//check if no more players
 		if (this.props.gameLogic["FJ"]["remaining"].length <= 1) {
 			Meteor.call('gameLogic.setState', "complete");
@@ -84,7 +84,7 @@ export default class TeacherFooter extends React.Component {
 			Meteor.call('gameLogic.removeFJ', player);
 		}
 	};
-	
+
 	handleStart = () => {
 		if (this.readyToStart() == "ready") {
 			const game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
@@ -93,7 +93,7 @@ export default class TeacherFooter extends React.Component {
 			Meteor.call('gameLogic.advance');
 		}
 	};
-	
+
 	readyToStart = () => {
 		if (this.playerCount() < 2) {
 			return "morePlayers";
@@ -110,7 +110,7 @@ export default class TeacherFooter extends React.Component {
 			return "gameSelection";
 		}
 	};
-	
+
 	isValid = (gameName) => {
 		const game = gameDatabase.find({name: gameName}).fetch()[0];
 		if (!game) {
@@ -118,7 +118,7 @@ export default class TeacherFooter extends React.Component {
 			return false;
 		}
 		let tempRound;
-		
+
 		//At least 1 SJ question
 		tempRound = game.Jeopardy;
 		let catCount = 0;
@@ -138,12 +138,12 @@ export default class TeacherFooter extends React.Component {
 						empty = false;
 					}
 				}
-				
+
 			}
 			if (empty) {
 				tempRound["category" + c]["categoryName"] = "";
 			}
-			
+
 			//only categories with a name are counted
 			currentCategory = tempRound["category" + c];
 			const catName = currentCategory["categoryName"];
@@ -153,7 +153,7 @@ export default class TeacherFooter extends React.Component {
 		}
 		return catCount != 0;
 	};
-	
+
 	playerCount = () => {
 		let count = 0;
 		const setupPlayers = this.props.gameLogic["setupPlayers"];
@@ -164,7 +164,7 @@ export default class TeacherFooter extends React.Component {
 		}
 		return count;
 	};
-	
+
 	renderContent = () => {
 		const round = this.props.gameLogic["round"];
 		if (round == 0) {
@@ -190,7 +190,7 @@ export default class TeacherFooter extends React.Component {
 							flex: 1,
 							verticalAlign: "middle"
 						}}>Waiting for Players</div>);
-				
+
 				case "gameSelection":
 					return (
 						<div style={{
@@ -212,9 +212,9 @@ export default class TeacherFooter extends React.Component {
 							verticalAlign: "middle"
 						}}>Pick a Valid Game</div>);
 			}
-			
+
 		}
-		
+
 		switch (this.props.gameLogic["state"]) {
 			case "intro":
 				if (round == 1) {
@@ -290,6 +290,23 @@ export default class TeacherFooter extends React.Component {
 							Meteor.call('gameLogic.setState', 'open');
 						}}
 						>Open Question
+						</div>
+					</div>
+				);
+			case "DDready":
+				return (
+					<div className="flex-container" style={{flex: 1}}>
+						<div style={{
+							padding: 0,
+							border: "none",
+							backgroundColor: "#eaeaea",
+							color: "green",
+							flex: 1,
+							verticalAlign: "middle",
+						}} onClick={function () {
+							Meteor.call('gameLogic.setState', 'DDread');
+						}}
+						>Reveal Question
 						</div>
 					</div>
 				);
@@ -403,7 +420,7 @@ export default class TeacherFooter extends React.Component {
 						</div>
 					</div>
 				);
-			
+
 			case "categoryIntro":
 				if (round == 3) {
 					return (
@@ -520,10 +537,10 @@ export default class TeacherFooter extends React.Component {
 					</div>
 				);
 		}
-		
-		
+
+
 	};
-	
+
 	render() {
 		return (
 			<div className="flex-container" style={{minHeight: "10vh", fontSize: "5vh", flexDirection: "column"}}>

@@ -16,7 +16,6 @@ export default class CategoryHeader extends React.Component {
 	
 	handleQuestionHeaderClick = () => {
 		if (!this.state.EditModal) {
-			//alert("You clicked "+this.props.roundName+","+this.props.key1);
 			this.setState({EditModal: true});
 		}
 	};
@@ -33,6 +32,7 @@ export default class CategoryHeader extends React.Component {
 				<EditModal
 					roundName={this.props.roundName}
 					categoryName={this.props.categoryName}
+					categoryExplanation={this.props.categoryExplanation}
 					key1={this.props.key1}
 					isHeader={true}
 					handleClose={this.handleClose}

@@ -171,7 +171,7 @@ export default class StudentContent extends React.Component {
 					</div>
 					<div style={{fontSize: "3vmin"}}>You can wager between $0 and ${max}</div>
 				</div>
-				<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.setState', 'DDread')}>
+				<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.setState', 'DDready')}>
 					Confirm
 					Wager
 				</div>
@@ -187,6 +187,12 @@ export default class StudentContent extends React.Component {
 					{this.late()}
 				</div>
 			</div>;
+		}
+		else if (["DDready", "DDread", "DDanswer"].includes(this.props.gameLogic["state"])) {
+			return <div className="flex-container" style={{
+				fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
+				whiteSpace: "pre-wrap",
+			}}>Daily<br/>Double</div>;
 		}
 		else if (this.props.gameLogic["round"] === 3 && this.props.gameLogic["player" + teamNumber]["status"] === "active") {
 			switch (this.props.gameLogic["state"]) {
