@@ -11,18 +11,19 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'pingDatabase.init'(){
+	'pingDatabase.init'() {
 		//removes all existing pings
 		pingDatabase.remove({});
 	},
-	'pingDatabase.updateUser'(connectionId, name, ping){
+	'pingDatabase.updateUser'(connectionId, name, ping) {
 		pingDatabase.upsert({connectionId: connectionId}, {
 			connectionId: connectionId,
 			name: name,
 			roundTripTime: ping,
+			time: ServerTime.now(),
 		});
 	},
-	'pingDatabase.kick'(connectionId){
+	'pingDatabase.kick'(connectionId) {
 		console.log("Kicking " + connectionId);
 		pingDatabase.remove({connectionId: connectionId});
 	},

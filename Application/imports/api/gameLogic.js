@@ -18,7 +18,6 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 	'gameLogic.init'() {
-		gameLogic.remove({});
 		//initializes gameLogic
 		const setupBundle = {};
 		for (let i = 1; i <= 6; i++) {
@@ -42,7 +41,7 @@ Meteor.methods({
 			maxTimeResponse: 5,
 			maxTimeAnswer: 5,
 		};
-		gameLogic.insert(bundle);
+		gameLogic.upsert({},bundle);
 	},
 	'gameLogic.setupPlayers'() {
 		//Turns setupPlayer into players

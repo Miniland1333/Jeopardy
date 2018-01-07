@@ -73,6 +73,7 @@ export default class Options extends React.Component {
 				() => {
 					if (confirm("Reset?")) {
 						Meteor.call("gameLogic.init");
+						Meteor.call("pingDatabase.init");
 						this.exit();
 					}
 				}}>Reset Game</div>,

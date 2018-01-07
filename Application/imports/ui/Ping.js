@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 let pingInterval;
+const pingSeconds = 2;
 
 export default class Ping extends React.Component {
 	static propTypes = {
@@ -20,7 +21,7 @@ export default class Ping extends React.Component {
 		pingInterval = setInterval(function () {
 			TimeSync.resync();
 			Meteor.call('pingDatabase.updateUser', self.state.connectionId, self.props.name, TimeSync.roundTripTime());
-		}, 5000);
+		}, pingSeconds*1000);
 	}
 	
 	//noinspection JSMethodCanBeStatic
