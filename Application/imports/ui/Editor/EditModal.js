@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
+import "../jquery-ui";
 import "blueimp-file-upload";
 import "cloudinary-jquery-file-upload";
-import "../jquery-ui"
 
 const medium = "2vmin";
 

@@ -39,8 +39,11 @@ export default class EditorTable extends React.Component {
 					{$.map(round, function (column, key1) {
 						return (
 							<div className="Column" key={key1}>
+								<CategoryHeader key={key1 + "H"} categoryName={round[key1].categoryName} roundName={roundName} categoryExplanation={round[key1].categoryExplanation}/>
 								{$.map(column, function (cell, key2) {
-
+									return key2 !== "categoryName" && key2 !== "categoryExplanation"?
+										<Question key={key1 + key2} cell={cell} roundName={roundName} key1={key1}
+										          key2={key2}/>:null;
 								})}
 							</div>
 						)
