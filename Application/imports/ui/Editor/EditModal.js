@@ -3,7 +3,7 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 import "../jquery-ui";
 import "blueimp-file-upload";
-import "cloudinary-jquery-file-upload";
+import cloudinary from "cloudinary-jquery-file-upload";
 
 const medium = "2vmin";
 

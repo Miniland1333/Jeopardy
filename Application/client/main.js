@@ -3,6 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {render} from "react-dom";
 import {Route, Router, Switch} from "react-router";
 import createBrowserHistory from 'history/createBrowserHistory';
+import "jquery";
 
 import attachFastClick from "fastclick";
 import "../imports/api/editorDatabase";
