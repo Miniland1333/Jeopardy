@@ -5,12 +5,12 @@
     "start": "meteor"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.39",
+    "@babel/runtime": "^7.0.0-beta.40",
     "acorn": "^5.4.1",
     "babel-runtime": "^6.26.0",
     "blueimp-file-upload": "^9.20.0",
-    "classnames": "latest",
-    "cloudinary-jquery-file-upload": "2.3.0",
+    "classnames": "^2.2.5",
+    "cloudinary-jquery-file-upload": "^2.3.0",
     "deep-equal": "^1.0.1",
     "fastclick": "^1.0.6",
     "howler": "^2.0.9",

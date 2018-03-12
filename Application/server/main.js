@@ -24,9 +24,10 @@ Meteor.startup(() => {
 	});
 
 	Meteor.setInterval(() => { //checks Ping for Timeouts
+		const TIMEOUT_SECONDS = 120;
 		let pings = pingDatabase.find().fetch();
 		for (const ping of pings) {
-			if (ServerTime.now() - ping.time > 10000) {
+			if (ServerTime.now() - ping.time > TIMEOUT_SECONDS*1000) {
 				console.log("Timeout " + ping.connectionId);
 				Meteor.call('gameLogic.kick', 0, ping.connectionId);
 				Meteor.call('pingDatabase.kick', ping.connectionId);

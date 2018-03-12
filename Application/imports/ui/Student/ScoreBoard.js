@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import React     from "react";
-import {Meteor}  from "meteor/meteor";
+import React from "react";
+import {Meteor} from "meteor/meteor";
 
+import {pingDatabase} from "../../api/pingDatabase";
 
 export default class ScoreBoard extends React.Component {
 	static propTypes = {
@@ -73,16 +74,15 @@ export default class ScoreBoard extends React.Component {
 		
 		name = name.substring(0, 50);
 		
-		if (name === "") {
+		if (name !== "") {
+			Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "ready", 0);
+			Meteor.call('gameLogic.setTeamName', this.props.playerLogic.teamNumber, name);
+		}
+		else {
 			Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "", 0);
 			Meteor.call('gameLogic.setConnectionId', this.props.playerLogic.teamNumber, this.props.round, "", this.props.connectionId);
 			Meteor.call('gameLogic.setTeamName', this.props.playerLogic.teamNumber, "");
 		}
-		else {
-			Meteor.call('gameLogic.setStatus', this.props.playerLogic.teamNumber, "ready", 0)
-		}
-		
-		Meteor.call('gameLogic.setTeamName', this.props.playerLogic.teamNumber, name);
 	};
 	
 	scoreStyle = () => {

@@ -3,7 +3,7 @@ import React from "react";
 import {Meteor} from "meteor/meteor";
 import "../jquery-ui";
 import "blueimp-file-upload";
-import cloudinary from "cloudinary-jquery-file-upload";
+import "./cloudinary-jquery-file-upload";
 
 const medium = "2vmin";
 
@@ -166,7 +166,7 @@ export default class EditModal extends React.Component {
 		handleClose: function () {
 		},
 	};
-	
+
 	static propTypes = {
 		roundName: PropTypes.string,
 		categoryName: PropTypes.string,
@@ -179,18 +179,18 @@ export default class EditModal extends React.Component {
 		key2: PropTypes.string,
 		handleClose: PropTypes.func,
 	};
-	
+
 	state = {
 		isSinglePlay: this.props.isSinglePlay,
 		questionType: "text",
 		questionText: typeof this.props.question === "string" ? this.props.question : "",
 		imageURL: this.props.question.image,
 	};
-	
+
 	componentDidMount() {
 		$("#myModal").fadeIn();
 		if (typeof this.props.question === "string") {
-			
+
 		}
 		else {
 			if (this.props.question.type === "image") {
@@ -204,18 +204,18 @@ export default class EditModal extends React.Component {
 		$.cloudinary.config({cloud_name: 'hiqjgs7wz'});
 		this.handleUpload();
 	}
-	
+
 	componentDidUpdate() {
 		this.handleUpload();
 	}
-	
+
 	handleUpload = () => {
 		$("#cloudinary-fileupload").cloudinary_fileupload({maxFileSize: 40000000}).bind('cloudinarydone', (e, data) => {
 			data.result.url = data.result.url.replace(/.mov$/gi, ".mp4");
 			data.result.url = data.result.url.replace(/^http:/i, "https:");
 			const imageURL = $("#imageURL");
 			this.setState({imageURL: data.result.url});
-			
+
 			imageURL.effect("highlight", {color: "#05f308"});
 			imageURL.val(data.result.url);
 		}).bind('fileuploadprogress', function (e, data) {
@@ -234,22 +234,22 @@ export default class EditModal extends React.Component {
 			$('#cloudinary-fileupload').effect("highlight", {color: "#ff5c7c"});
 		});
 	};
-	
+
 	handleAddImage = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "image"});
 	};
-	
+
 	handleAddVideo = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "video"});
 	};
-	
+
 	parseVID = (videoURL) => {
 		let videoID = videoURL.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/);
 		if (videoID != null) {
 			console.log("video id = ", videoID[2]);
-			
+
 			return videoID[2];
 		}
 		else {
@@ -257,7 +257,7 @@ export default class EditModal extends React.Component {
 			return null;
 		}
 	};
-	
+
 	handleTime = () => {
 		let VID = $("#VID").val();
 		let start = $("#Start").val();
@@ -286,12 +286,12 @@ export default class EditModal extends React.Component {
 		};
 		if (VID != null) {
 			videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0" + extraTime();
-			
+
 			$("#Embed").val(videoURL);
 			$("#videoView").attr("src", videoURL);
 		}
 	};
-	
+
 	handleSeconds = (JQuery) => {
 		let working = JQuery.val();
 		if (!working.includes(":") && working != "") {
@@ -303,24 +303,24 @@ export default class EditModal extends React.Component {
 			}
 		}
 	};
-	
+
 	handleRemoveImage = () => {
 		this.setState({questionText: $("#question").val()});
 		this.setState({questionType: "text"});
 	};
-	
+
 	handleRemoveVideo = () => {
 		this.setState({questionType: "text"});
 	};
-	
+
 	handlePlay = () => {
 		this.setState({isSinglePlay: !this.state.isSinglePlay})
 	};
-	
+
 	handleExit = () => {
 		$("#myModal").fadeOut(this.props.handleClose);
 	};
-	
+
 	handleComplete = () => {
 		if (this.props.isHeader) {
 			Meteor.call('editorDatabase.updateCategory',
@@ -402,7 +402,7 @@ export default class EditModal extends React.Component {
 		}
 		this.handleExit();
 	};
-	
+
 	getValue = () => {
 		let value;
 		let multiplier;
@@ -410,7 +410,7 @@ export default class EditModal extends React.Component {
 			case "Jeopardy":
 				multiplier = 1;
 				break;
-			
+
 			case "DoubleJeopardy":
 				multiplier = 2;
 				break;
@@ -436,7 +436,7 @@ export default class EditModal extends React.Component {
 		}
 		return " - $" + value * multiplier;
 	};
-	
+
 	renderModalContent = () => {
 		if (this.props.isHeader) {
 			return <div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
@@ -514,7 +514,7 @@ export default class EditModal extends React.Component {
 										       videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0";
 										       $("#Start").val("");
 										       $("#End").val("");
-										
+
 										       $("#VID").val(VID);
 										       $("#Embed").val(videoURL);
 										       $("#videoView").attr("src", videoURL);
@@ -527,7 +527,7 @@ export default class EditModal extends React.Component {
 							<input disabled id="VID" defaultValue={this.props.question.VID}
 							       style={{flex: 1, background: "#f2f3ea"}}/>
 						</div>
-						
+
 						<div className="flex-container" style={{flex: 1}}>
 							<div style={{width: 80}}>Start Time</div>
 							<input id="Start" defaultValue={this.props.question.start} placeholder="00:00"
@@ -558,7 +558,7 @@ export default class EditModal extends React.Component {
 			<input id="answer" spellCheck="true" defaultValue={this.props.answer}
 			       placeholder="Answer" style={answerStyle}/></div>
 	};
-	
+
 	renderButtons = () => {
 		let mediaButtons;
 		switch (!this.props.isHeader && this.state.questionType) {
@@ -579,7 +579,7 @@ export default class EditModal extends React.Component {
 				</div>;
 				break;
 		}
-		
+
 		return <div className="flex-container " style={{flex: 1}}>
 			{mediaButtons}
 			<div className="flex-container " style={{justifyContent: "flex-end", flex: 1}}>
@@ -591,7 +591,7 @@ export default class EditModal extends React.Component {
 			</div>
 		</div>
 	};
-	
+
 	render() {
 		return (
 			<div id="myModal" style={modalStyle}>
