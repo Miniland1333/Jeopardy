@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 
 
 const cursorStyle = {
-	cursor: "pointer"
+	cursor: "pointer",
 };
 
 export default class GameLi extends React.Component {
@@ -19,7 +19,7 @@ export default class GameLi extends React.Component {
 	};
 	
 	handleLoad = () => {
-		if (confirm("This will delete all unsaved work. Continue?")) {
+		if (!this.props.checkDifference() || confirm("This will delete all unsaved work. Continue?")) {
 			Meteor.call('editorDatabase.load', this.props.game);
 			$("#myDropdown").slideUp();
 		}
@@ -27,7 +27,11 @@ export default class GameLi extends React.Component {
 	
 	render() {
 		return (
-			<li>
+			<li style={{
+				position: "relative",
+				listStyle: "none",
+				padding: 15,
+				borderBottom: "#eee solid 1px",}}>
 				<span className="text" style={cursorStyle} onClick={this.handleLoad}>{this.props.game.name}</span>
 				<button className="delete" style={cursorStyle} onClick={this.handleDelete}>&times;</button>
 			</li>)

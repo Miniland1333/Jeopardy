@@ -24,7 +24,7 @@ Meteor.startup(() => {
 	});
 
 	Meteor.setInterval(() => { //checks Ping for Timeouts
-		const TIMEOUT_SECONDS = 120;
+		const TIMEOUT_SECONDS = 30;
 		let pings = pingDatabase.find().fetch();
 		for (const ping of pings) {
 			if (ServerTime.now() - ping.time > TIMEOUT_SECONDS*1000) {
@@ -34,7 +34,7 @@ Meteor.startup(() => {
 			}
 		}
 
-	}, 10000);
+	}, 5000);
 
 	Meteor.setTimeout(() => Meteor.call("pingDatabase.init"), 6000);
 });

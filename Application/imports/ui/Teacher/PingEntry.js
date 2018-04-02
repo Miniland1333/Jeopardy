@@ -9,18 +9,18 @@ export default class PingEntry extends React.Component {
 	};
 	
 	getColor(time){
-		if(time > 60)
+		if(time > 15)
 			return "red";
-		else if (time > 30)
+		else if (time > 5)
 			return "orange";
 		else
-			return "white";
+			return this.props.black?"black":"white";
 	}
 	
 	render() {
 		let time = Math.round((ServerTime.now() - this.props.pingEntry.time) / 1000);
 		return <div className="flex-container" style={{color:this.getColor(time)}} onClick={()=>{
-			if (time > 30){
+			if (time > 15){
 				if(confirm("Kick "+this.props.pingEntry.name+"?")){
 					Meteor.call('gameLogic.kick', 0, this.props.pingEntry.connectionId);
 					Meteor.call('pingDatabase.kick', this.props.pingEntry.connectionId);

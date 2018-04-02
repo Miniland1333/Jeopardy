@@ -161,7 +161,7 @@ export default class Options extends React.Component {
 					borderRadius: "30px",
 					boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)'
 				}}>
-					<PingReport/>
+					<PingReport black={true}/>
 				</div>
 			</div>,
 			<div key="mainMenu" style={enabledStyle} onClick={() => {

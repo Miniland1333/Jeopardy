@@ -19,6 +19,7 @@ class PingReport extends React.Component {
 	
 	//noinspection JSMethodCanBeStatic
 	render() {
+		const self = this;
 		return <div className="flex-container" style={{
 			flexDirection: "column",
 			fontSize: "3vmin",
@@ -31,7 +32,7 @@ class PingReport extends React.Component {
 			</div>
 			{$.map(this.props.pingDatabase, function (entry, connectionId) {
 				return typeof entry === "string" ? [] :
-					<PingEntry key={connectionId} pingEntry={entry}/>
+					<PingEntry key={connectionId} pingEntry={entry} black={self.props.black}/>
 			})
 			}</div>;
 	}

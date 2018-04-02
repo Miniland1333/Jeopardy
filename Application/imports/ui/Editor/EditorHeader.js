@@ -19,7 +19,7 @@ export default class EditorHeader extends React.Component {
 	};
 	
 	handleNew = () => {
-		if (confirm("This will delete all unsaved work. Continue?")) {
+		if (!this.checkDifference() || confirm("This will delete all unsaved work. Continue?")) {
 			Meteor.call('editorDatabase.init');
 			$("#myDropdown").slideUp();
 		}
@@ -39,7 +39,7 @@ export default class EditorHeader extends React.Component {
 	};
 	
 	handleImport = () => {
-		if (confirm("This will delete all unsaved work. Continue?")) {
+		if (!this.checkDifference() || confirm("This will delete all unsaved work. Continue?")) {
 			$("#myDropdown").slideUp();
 			
 			$("#fileToLoad").click();
@@ -92,8 +92,9 @@ export default class EditorHeader extends React.Component {
 	};
 	
 	renderDropdown = () => {
+		const self = this;
 		return ($.map(this.props.gameList, function (game) {
-			return (<GameLi key={game.name} game={game}/>)
+			return (<GameLi key={game.name} game={game} checkDifference={()=>self.checkDifference()}/>)
 		}))
 	};
 	
@@ -139,9 +140,9 @@ export default class EditorHeader extends React.Component {
 						</ul>
 					</div>
 					{this.checkDifference() ? <button style={{
-							backgroundColor: '#8bd248', /* green */
+							backgroundColor: '#8bd248', // green
 							border: 'white solid 1px',
-							color: 'white',
+							color: 'black',
 							padding: '15px 1vw',
 							textAlign: 'center',
 							textDecoration: 'none',
@@ -198,9 +199,9 @@ const barStyle = {
 	overflow: "auto"
 };
 const buttonStyle = {
-	backgroundColor: '#FFD700', /* green */
+	backgroundColor: '#FFD700', // yellow
 	border: 'white solid 1px',
-	color: 'white',
+	color: 'black',
 	padding: '15px 1vw',
 	textAlign: 'center',
 	textDecoration: 'none',
@@ -210,8 +211,8 @@ const buttonStyle = {
 	cursor: "pointer",
 };
 const loadButtonStyle = {
-	backgroundColor: '#FFD700', /* green */
-	color: 'white',
+	backgroundColor: '#FFD700', // yellow
+	color: 'black',
 	padding: '16px 1vw',
 	textAlign: 'center',
 	textDecoration: 'none',
@@ -222,9 +223,9 @@ const loadButtonStyle = {
 	cursor: "pointer",
 };
 const pickerStyle = {
-	backgroundColor: '#FFD700', /* green */
+	backgroundColor: '#FFD700', // yellow 
 	border: 'white solid 1px',
-	color: 'white',
+	color: 'black',
 	padding: '15px 0px',
 	textAlign: 'center',
 	textDecoration: 'none',
@@ -246,10 +247,12 @@ const inputStyle = {
 const dropdownStyle = {
 	display: 'none',
 	position: 'absolute',
-	backgroundColor: '#f9f9f9',
+	backgroundColor: 'white',
 	minWidth: 160,
 	maxHeight: 500,
 	boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
 	overflow: "auto",
 	color: "black",
+	margin: 0,
+	padding: 0,
 };
