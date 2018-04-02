@@ -7,151 +7,7 @@ import "./cloudinary-jquery-file-upload";
 
 const medium = "2vmin";
 
-const modalStyle = {
-	display: 'none', /* hidden by default */
-	position: 'fixed', /* stay in place */
-	zIndex: 1, /* sit on top */
-	left: 0, top: 0, width: '100%', /* full width */
-	height: '100%', /* full height */
-	overflow: 'hide', /* enable scroll if needed */
-	backgroundColor: 'rgba(0,0,0,0.4)',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	alignContent: 'center',
-};
 
-const modalContainer = {
-	display: 'flex',
-	flexDirection: "column",
-	alignItems: 'center',
-	alignContent: 'center',
-	justifyContent: 'center',
-	height: 'inherit',
-};
-
-const modalContentStyle = {
-	margin: '0% auto',
-	padding: '3vmin',
-	border: '1px solid #888',
-	width: '80%',
-	backgroundColor: "#fefefe",
-	color: "black",
-	flexDirection: "column",
-	boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)",
-};
-const headerStyle = {
-	maxWidth: "100%",
-	boxSizing: "border-box",
-	padding: "10px 0",
-	background: "#060CE9",
-	border: "none",
-	fontSize: medium,
-	textAlign: "center",
-	flexGrow: 1,
-	textTransform: "uppercase",
-	color: "white",
-};
-const textAreaStyle = {
-	maxWidth: "100%",
-	boxSizing: "border-box",
-	padding: "10px 0",
-	background: "#060CE9",
-	border: "none",
-	fontSize: medium,
-	textAlign: "center",
-	flexGrow: 1,
-	textTransform: "uppercase",
-	color: "white",
-	minHeight: 150,
-	overflowX: "hidden",
-};
-const textAreaStyleDisabled = {
-	maxWidth: "100%",
-	boxSizing: "border-box",
-	padding: "10px 0",
-	background: "#606298",
-	border: "none",
-	fontSize: medium,
-	textAlign: "center",
-	flexGrow: 1,
-	textTransform: "uppercase",
-	color: "white",
-	minHeight: 150,
-	overflowX: "hidden",
-};
-const answerStyle = {
-	maxWidth: "100%",
-	boxSizing: "border-box",
-	padding: "10px 0",
-	background: "#060CE9",
-	border: "none",
-	fontSize: medium,
-	textAlign: "center",
-	flexGrow: 1,
-	color: "white",
-};
-const playStyle = {
-	backgroundColor: '#ff9900', /* green */
-	border: 'white solid 1px',
-	color: 'white',
-	padding: '15px 2vw',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	maxWidth: 200,
-	//borderRadius:8,
-	cursor: "pointer",
-};
-const cancelStyle = {
-	backgroundColor: '#FFD700', /* green */
-	border: 'white solid 1px',
-	color: 'white',
-	padding: '15px 2vw',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	//borderRadius:8,
-	cursor: "pointer",
-};
-const imageStyle = {
-	backgroundColor: '#6690ff', /* green */
-	border: 'white solid 5px',
-	color: 'white',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	borderRadius: 8,
-	cursor: "pointer",
-};
-const videoStyle = {
-	backgroundColor: '#bb0000', /* green */
-	border: 'white solid 5px',
-	color: 'white',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	borderRadius: 8,
-	cursor: "pointer",
-};
-const saveStyle = {
-	backgroundColor: '#4CAF50', /* green */
-	border: 'white solid 1px',
-	color: 'white',
-	padding: '15px 2vw',
-	textAlign: 'center',
-	textDecoration: 'none',
-	display: 'inline-block',
-	fontSize: medium,
-	//borderRadius:8,
-	cursor: "pointer",
-};
-const verticalFlexStyle = {
-	flexDirection: "column",
-};
 
 export default class EditModal extends React.Component {
 	static defaultProps = {
@@ -443,7 +299,7 @@ export default class EditModal extends React.Component {
 				<input id="category" defaultValue={this.props.categoryName} placeholder="Category Name"
 				       spellCheck="true" style={headerStyle}/>
 				<div style={{height:10}}/>
-				{this.props.roundName!=="FinalJeopardy"?<textarea id="categoryExplanation" defaultValue={this.props.categoryExplanation} placeholder="Category Explanation"
+				{this.props.roundName!=="FinalJeopardy"?<textarea id="categoryExplanation" defaultValue={this.props.categoryExplanation} placeholder="Optional Category Explanation"
 				       spellCheck="true" style={headerStyle}/>:null}</div>
 		}
 		let questionContent;
@@ -605,3 +461,149 @@ export default class EditModal extends React.Component {
 		)
 	}
 }
+
+const modalStyle = {
+	display: 'none', /* hidden by default */
+	position: 'fixed', /* stay in place */
+	zIndex: 1, /* sit on top */
+	left: 0, top: 0, width: '100%', /* full width */
+	height: '100%', /* full height */
+	overflow: 'hide', /* enable scroll if needed */
+	backgroundColor: 'rgba(0,0,0,0.4)',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignContent: 'center',
+};
+
+const modalContainer = {
+	display: 'flex',
+	flexDirection: "column",
+	alignItems: 'center',
+	alignContent: 'center',
+	justifyContent: 'center',
+	height: 'inherit',
+};
+
+const modalContentStyle = {
+	margin: '0% auto',
+	padding: '3vmin',
+	border: '1px solid #888',
+	width: '80%',
+	backgroundColor: "#fefefe",
+	color: "black",
+	flexDirection: "column",
+	boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)",
+};
+const headerStyle = {
+	maxWidth: "100%",
+	boxSizing: "border-box",
+	padding: "10px 0",
+	background: "#060CE9",
+	border: "none",
+	fontSize: medium,
+	textAlign: "center",
+	flexGrow: 1,
+	textTransform: "uppercase",
+	color: "white",
+};
+const textAreaStyle = {
+	maxWidth: "100%",
+	boxSizing: "border-box",
+	padding: "10px 0",
+	background: "#060CE9",
+	border: "none",
+	fontSize: medium,
+	textAlign: "center",
+	flexGrow: 1,
+	textTransform: "uppercase",
+	color: "white",
+	minHeight: 150,
+	overflowX: "hidden",
+};
+const textAreaStyleDisabled = {
+	maxWidth: "100%",
+	boxSizing: "border-box",
+	padding: "10px 0",
+	background: "#606298",
+	border: "none",
+	fontSize: medium,
+	textAlign: "center",
+	flexGrow: 1,
+	textTransform: "uppercase",
+	color: "white",
+	minHeight: 150,
+	overflowX: "hidden",
+};
+const answerStyle = {
+	maxWidth: "100%",
+	boxSizing: "border-box",
+	padding: "10px 0",
+	background: "#060CE9",
+	border: "none",
+	fontSize: medium,
+	textAlign: "center",
+	flexGrow: 1,
+	color: "white",
+};
+const playStyle = {
+	backgroundColor: '#ff9900', /* green */
+	border: 'white solid 1px',
+	color: 'white',
+	padding: '15px 2vw',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	maxWidth: 200,
+	//borderRadius:8,
+	cursor: "pointer",
+};
+const cancelStyle = {
+	backgroundColor: '#FFD700', /* green */
+	border: 'white solid 1px',
+	color: 'white',
+	padding: '15px 2vw',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	//borderRadius:8,
+	cursor: "pointer",
+};
+const imageStyle = {
+	backgroundColor: '#6690ff', /* green */
+	border: 'white solid 5px',
+	color: 'white',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	borderRadius: 8,
+	cursor: "pointer",
+};
+const videoStyle = {
+	backgroundColor: '#bb0000', /* green */
+	border: 'white solid 5px',
+	color: 'white',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	borderRadius: 8,
+	cursor: "pointer",
+};
+const saveStyle = {
+	backgroundColor: '#4CAF50', /* green */
+	border: 'white solid 1px',
+	color: 'white',
+	padding: '15px 2vw',
+	textAlign: 'center',
+	textDecoration: 'none',
+	display: 'inline-block',
+	fontSize: medium,
+	//borderRadius:8,
+	cursor: "pointer",
+};
+const verticalFlexStyle = {
+	flexDirection: "column",
+};

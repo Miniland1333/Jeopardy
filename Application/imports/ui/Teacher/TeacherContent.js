@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import {Meteor} from "meteor/meteor";
+import { Meteor } from "meteor/meteor";
 
 import GameDropdown from "./GameDropdown";
 
@@ -32,9 +32,9 @@ export default class TeacherContent extends React.Component {
 	renderContent = () => {
 		if (this.props.gameLogic["round"] === 0) {
 			// addToHomescreen();
-			return <div className="flex-container" style={{flex: 1, flexDirection: 'column'}}>
-				<GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic}/>
-				<PingReport/>
+			return <div className="flex-container" style={{ flex: 1, flexDirection: 'column' }}>
+				<GameDropdown gameDatabase={this.props.gameDatabase} gameLogic={this.props.gameLogic} />
+				<PingReport />
 			</div>;
 		}
 		switch (this.props.gameLogic["state"]) {
@@ -60,7 +60,7 @@ export default class TeacherContent extends React.Component {
 							alignItems: "center",
 							justifyContent: "center",
 							whiteSpace: "pre-wrap",
-						}}>Double<br/>Jeopardy!</div>;
+						}}>Double<br />Jeopardy!</div>;
 					case 3:
 						return <div className="flex-container" style={{
 							fontFamily: "gyparody",
@@ -69,12 +69,15 @@ export default class TeacherContent extends React.Component {
 							alignItems: "center",
 							justifyContent: "center",
 							whiteSpace: "pre-wrap",
-						}}>Final<br/>Jeopardy!</div>;
+						}}>Final<br />Jeopardy!</div>;
 				}
 				break;
 			case "categories":
 				return <div key="" className="Table">
 					{$.map(this.props.gameQuestions["currentRound"], function (column, key1) {
+						let description = "";
+						if (column["categoryName"])
+							description = column["categoryExplanation"] ? column["categoryExplanation"] : "No Description";
 						return (
 							<div className="Column" key={key1}>
 								<div className="Header" key={key1 + "H"} style={{
@@ -85,7 +88,7 @@ export default class TeacherContent extends React.Component {
 									textAlign: "center",
 									fontSize: "2vmin",
 									flex: 1
-								}}>{column["categoryExplanation"] ? column["categoryExplanation"] : "No Description"}</div>
+								}}>{description}</div>
 							</div>
 						)
 					})}
@@ -104,13 +107,13 @@ export default class TeacherContent extends React.Component {
 												justifyContent: "center",
 												fontSize: "2vmin",
 											}}
-											            onClick={() => alert(column["categoryExplanation"] ? column["categoryExplanation"] : "No Description")}
+												onClick={() => alert(column["categoryExplanation"] ? column["categoryExplanation"] : "No Description")}
 											>{cell}</div>;
 										case "categoryExplanation":
 											return null;
 										default:
 											return <Question key={key1 + key2} cell={cell} round={round} key1={key1}
-											                 key2={key2}/>;
+												key2={key2} />;
 									}
 								})}
 							</div>
@@ -121,18 +124,18 @@ export default class TeacherContent extends React.Component {
 				return <div className="flex-container" style={{
 					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
 					whiteSpace: "pre-wrap",
-				}}>Daily<br/>Double</div>;
+				}}>Daily<br />Double</div>;
 			case "wager":
 			case "DDready":
 				const DDwager = this.props.gameLogic["player" + this.props.gameLogic["lastWinner"]]["wager"];
 				return [<div className="flex-container" key="top" style={{
 					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
 					whiteSpace: "pre-wrap",
-				}}>Daily<br/>Double</div>,
-					<div style={{
-						fontSize: "3vw",
-						minWidth: "10vw",
-					}} key="bottom">{"Team Wager: " + DDwager}</div>];
+				}}>Daily<br />Double</div>,
+				<div style={{
+					fontSize: "3vw",
+					minWidth: "10vw",
+				}} key="bottom">{"Team Wager: " + DDwager}</div>];
 			case "questionDecide":
 				Meteor.call('gameLogic.resetCurrentQuestionLogic');
 				if (this.props.gameQuestions["currentQuestion"]["isDailyDouble"]) {
@@ -150,14 +153,14 @@ export default class TeacherContent extends React.Component {
 			case "next":
 				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
 					return (
-						<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+						<div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 							<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
 						</div>);
 				}
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"].type === "image" && !this.hasVideo()) {
-						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+						return <div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 							<div
 								style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"].text}</div>
 							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
@@ -171,12 +174,12 @@ export default class TeacherContent extends React.Component {
 							alignItems: "center",
 							justifyContent: "center",
 							whiteSpace: "pre-wrap",
-						}}>Video<br/>Question</div>,
-							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>]
+						}}>Video<br />Question</div>,
+						<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>]
 					}
 				}
 			case "FJwager":
-				return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+				return <div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 					<div style={{
 						fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
 						whiteSpace: "pre-wrap", textTransform: "uppercase"
@@ -198,7 +201,7 @@ export default class TeacherContent extends React.Component {
 				}
 				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
 					return (
-						<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+						<div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 							<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
 							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>
 							<div style={{
@@ -210,7 +213,7 @@ export default class TeacherContent extends React.Component {
 				}
 				else {
 					if (this.props.gameQuestions["currentRound"]["question"].type === "image" && !this.hasVideo()) {
-						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+						return <div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 							<div
 								style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"].text}</div>
 							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>
@@ -229,13 +232,13 @@ export default class TeacherContent extends React.Component {
 							alignItems: "center",
 							justifyContent: "center",
 							whiteSpace: "pre-wrap",
-						}}>Video<br/>Question</div>,
-							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>,
-							<div style={{
-								position: "absolute", top: 10, right: 10,
-								fontSize: "3vw",
-								minWidth: "10vw",
-							}}>{wager}</div>]
+						}}>Video<br />Question</div>,
+						<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>,
+						<div style={{
+							position: "absolute", top: 10, right: 10,
+							fontSize: "3vw",
+							minWidth: "10vw",
+						}}>{wager}</div>]
 					}
 				}
 		}
@@ -243,7 +246,7 @@ export default class TeacherContent extends React.Component {
 
 	render() {
 		return (
-			<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+			<div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 				{this.renderContent()}
 			</div>
 		);
