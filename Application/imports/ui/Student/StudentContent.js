@@ -359,7 +359,7 @@ export default class StudentContent extends React.Component {
 	late() {
 		const firstTime = this.props.gameLogic["currentQuestionLogic"].firstTime;
 		let playerTime = this.props.gameLogic["player" + teamNumber].lateTime;
-		if (firstTime && playerTime && this.props.gameLogic["currentQuestionLogic"]["first"] !== teamNumber)
+		if (firstTime && playerTime && this.buttonColor()==="#ff3f3f")
 			return <div style={{ "fontSize": "8vmin" }}>+{(playerTime - firstTime) / 1000} seconds</div>
 	}
 
