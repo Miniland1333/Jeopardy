@@ -301,7 +301,7 @@ Meteor.methods({
 		Meteor.call('gameLogic.reopen');
 	},
 	'gameLogic.reopen'() {
-		gameLogic.update({}, {$set: {"currentQuestionLogic.RungInLate": [], "currentQuestionLogic.first": undefined}});
+		gameLogic.update({}, {$set: {"currentQuestionLogic.RungInLate": [], "currentQuestionLogic.first": 0}});
 	},
 	'gameLogic.eliminate'() {
 		const obj = gameLogic.find().fetch()[0];
