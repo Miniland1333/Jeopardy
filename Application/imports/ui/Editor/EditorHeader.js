@@ -13,22 +13,22 @@ export default class EditorHeader extends React.Component {
 		dbReady: PropTypes.bool.isRequired,
 		onRoundChange: PropTypes.func.isRequired,
 	};
-	
+
 	onUserInput = (name) => {
 		Meteor.call('editorDatabase.updateName', name.target.value);
 	};
-	
+
 	handleNew = () => {
 		if (!this.checkDifference() || confirm("This will delete all unsaved work. Continue?")) {
 			Meteor.call('editorDatabase.init');
 			$("#myDropdown").slideUp();
 		}
 	};
-	
+
 	handleLoad = () => {
 		$("#myDropdown").slideToggle();
 	};
-	
+
 	handleSave = () => {
 		if (this.props.editorDatabase[0].name.trim() == "") {
 			alert("Name field cannot be empty!");
@@ -37,18 +37,18 @@ export default class EditorHeader extends React.Component {
 			Meteor.call('gameDatabase.save', this.props.editorDatabase[0]);
 		}
 	};
-	
+
 	handleImport = () => {
 		if (!this.checkDifference() || confirm("This will delete all unsaved work. Continue?")) {
 			$("#myDropdown").slideUp();
-			
+
 			$("#fileToLoad").click();
 		}
 	};
-	
+
 	handleFile = () => {
 		const fileToLoad = document.getElementById("fileToLoad").files[0];
-		if (fileToLoad != "") {
+		if (!fileToLoad) {
 			const fileReader = new FileReader();
 			fileReader.onload = function (fileLoadedEvent) {
 				let textFromFileLoaded = fileLoadedEvent.target.result;
@@ -63,17 +63,17 @@ export default class EditorHeader extends React.Component {
 		}
 		$("#fileToLoad").val("");
 	};
-	
+
 	destroyClickedElement = (event) => {
 		document.body.removeChild(event.target);
 	};
-	
+
 	handleExport = () => {
-		const textToSave = JSON.stringify(this.props.editorDatabase[0]);
+		const textToSave = JSON.stringify(this.props.editorDatabase[0], null, "\t");
 		const textToSaveAsBlob = new Blob([textToSave], {type: "application/json"});
 		const textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
 		const fileNameToSaveAs = this.props.editorDatabase[0].name.trim() + '.json';
-		
+
 		const downloadLink = document.createElement("a");
 		downloadLink.download = fileNameToSaveAs;
 		downloadLink.innerHTML = "Download File";
@@ -81,23 +81,23 @@ export default class EditorHeader extends React.Component {
 		downloadLink.onclick = this.destroyClickedElement;
 		downloadLink.style.display = "none";
 		document.body.appendChild(downloadLink);
-		
+
 		downloadLink.click();
-		
+
 	};
-	
+
 	handleRound = (e) => {
 		const round = e.target.value;
 		this.props.onRoundChange(round);
 	};
-	
+
 	renderDropdown = () => {
 		const self = this;
 		return ($.map(this.props.gameList, function (game) {
-			return (<GameLi key={game.name} game={game} checkDifference={()=>self.checkDifference()}/>)
+			return (<GameLi key={game.name} game={game} checkDifference={() => self.checkDifference()}/>)
 		}))
 	};
-	
+
 	refresh = () => {
 		$(".Main").css({
 			"height": window.innerHeight,
@@ -112,7 +112,7 @@ export default class EditorHeader extends React.Component {
 			"width": window.innerWidth,
 		});
 	};
-	
+
 	renderInput = () => {
 		return this.props.editorDatabase.map(thing =>
 			<input
@@ -127,7 +127,7 @@ export default class EditorHeader extends React.Component {
 			/>
 		);
 	};
-	
+
 	render() {
 		return (
 			<div>
@@ -170,7 +170,7 @@ export default class EditorHeader extends React.Component {
 			</div>
 		)
 	}
-	
+
 	needsSaving() {
 		if (this.checkDifference()) {
 			$("#Save").hide("slide");
@@ -179,15 +179,15 @@ export default class EditorHeader extends React.Component {
 			$("#Save").show("slide");
 		}
 	}
-	
+
 	checkDifference() {
 		const editorDatabase = this.props.editorDatabase[0];
 		const saved = this.props.gameList.find((game) => game.name === editorDatabase.name);
-		
+
 		return !(saved
-			&& deepEqual(saved.Jeopardy,editorDatabase.Jeopardy)
-			&& deepEqual(saved.DoubleJeopardy,editorDatabase.DoubleJeopardy)
-			&& deepEqual(saved.FinalJeopardy,editorDatabase.FinalJeopardy))
+			&& deepEqual(saved.Jeopardy, editorDatabase.Jeopardy)
+			&& deepEqual(saved.DoubleJeopardy, editorDatabase.DoubleJeopardy)
+			&& deepEqual(saved.FinalJeopardy, editorDatabase.FinalJeopardy))
 	}
 }
 

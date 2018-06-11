@@ -1,0 +1,449 @@
+{
+    "name": "2018 5th NEW",
+    "Jeopardy": {
+        "category1": {
+            "categoryName": "super HERO synonyms",
+            "question1": {
+                "question": "water guy",
+                "answer": "Who is Aqua Man",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "SERGEANT USA ",
+                "answer": "Who is Captain America",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "Really dark jaguar",
+                "answer": "Who is Black Panther?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "DeCeAsed lake",
+                "answer": "Who is Deadpool",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "flying mammal guy",
+                "answer": "Who is Batman?",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category2": {
+            "categoryName": "state capitals",
+            "question1": {
+                "question": "South Dakota",
+                "answer": "What is Pierre",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "jackson",
+                "answer": "What is Mississippi",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "Jefferson City",
+                "answer": "What is Missouri",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "kansas",
+                "answer": "What is Topeka",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "north carolina",
+                "answer": "What is Raleigh",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category3": {
+            "categoryName": "Sports Day!",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1527033324/Jeopardy/DSCF7682_vby7mb.jpg",
+                    "text": ""
+                },
+                "answer": "What is sack race",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1527033363/Jeopardy/DSCF7714_pnmzgi.jpg",
+                    "text": ""
+                },
+                "answer": "What is 50 yard dash",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1527033411/Jeopardy/DSCF7679_vzhatz.jpg",
+                    "text": ""
+                },
+                "answer": "What is basketball free throw",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1527033444/Jeopardy/DSCF7702_urdoz7.jpg",
+                    "text": ""
+                },
+                "answer": "What is beach ball carry",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1527033493/Jeopardy/DSCF7735_rsm5sa.jpg",
+                    "text": ""
+                },
+                "answer": "What is obstacle course",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": "NAME THE EVENT THAT'S HAPPENING IN THE PHOTO"
+        },
+        "category4": {
+            "categoryName": "airport codes",
+            "question1": {
+                "question": "san",
+                "answer": "What is San Diego?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "SMF",
+                "answer": "What is SACRAMENTO",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "LGB",
+                "answer": "What is Long Beach",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "SNA",
+                "answer": "What is SANTA ANNA/ ORANGE COUNTY",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "las",
+                "answer": "What is Las Vegas",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category5": {
+            "categoryName": "Name that saint",
+            "question1": {
+                "question": "ireland",
+                "answer": "What is st. Patrick",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "Hawaii",
+                "answer": "What is Fr. Damien",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "schools for Native Americans",
+                "answer": "What is Katherine Drexel",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "http://i.imgur.com/hi15Hmb.jpg",
+                    "text": ""
+                },
+                "answer": "What is Saint Bernard",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "Italian; gave shoes to kid",
+                "answer": "What is Frassati",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category6": {
+            "categoryName": "",
+            "question1": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        }
+    },
+    "DoubleJeopardy": {
+        "category1": {
+            "categoryName": "uncommon critters",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "http://assets-cdn.ekantipur.com/images/third-party/miscellaneous/11122016081428Pangolin-1000x0.jpg",
+                    "text": ""
+                },
+                "answer": "What is pangolin",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "http://animals.sandiegozoo.org/sites/default/files/inline-images/tapir_lowland_1.jpg",
+                    "text": ""
+                },
+                "answer": "What is tapir",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "https://i.ytimg.com/vi/06O4lFGaSHY/maxresdefault.jpg",
+                    "text": ""
+                },
+                "answer": "What is ocelot",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "http://animals.sandiegozoo.org/sites/default/files/2016-11/animals_hero_toucan.jpg",
+                    "text": "Well, ________ can play at this game"
+                },
+                "answer": "What is toucan",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://cdn.britannica.com/700x450/04/152204-004-38B4CFBC.jpg",
+                    "text": ""
+                },
+                "answer": "What is okapi",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category2": {
+            "categoryName": "Where am I?",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "http://www.costco.co.jp/p/wp-content/themes/costco/images/top/main_03.jpg",
+                    "text": ""
+                },
+                "answer": "What is Costco?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525634758/Jeopardy/F4EC309C-D4F7-4D06-85F8-3E89144982D8_qesvqw.jpg",
+                    "text": "Toto, where are you?"
+                },
+                "answer": "What is Kansas",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525634829/Jeopardy/81AD1031-0D76-45DA-B616-6CEA0B4BDC46_kecsat.jpg",
+                    "text": "aloha!"
+                },
+                "answer": "What is Hawaii",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525634887/Jeopardy/7BE61D54-907B-4EF5-BEF1-EA433DA82653_grmr6i.jpg",
+                    "text": "Pie, anyone?"
+                },
+                "answer": "What is Shrem Museum/UCDavis",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1527034454/Jeopardy/DSCF7541_tv2aps.jpg",
+                    "text": ""
+                },
+                "answer": "What is Stebbins Creek Cold Canyon",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category3": {
+            "categoryName": "Company logos",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1527033807/Jeopardy/pepsi_gk5p8q.jpg",
+                    "text": "The company behind this logo"
+                },
+                "answer": "What is Pepsi",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://s3.amazonaws.com/BURC_Pages/downloads/a-smile_color_btn.png",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is amazon",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "data:image/png;base64,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",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is mcdonalds",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-s/0e/df/eb/dc/dutch-bros-coffee.jpg",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is dutch bros",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "http://editorial.designtaxi.com/news-noword1402/6.jpg",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is porsche",
+                "isSinglePlay": false
+            }
+        },
+        "category4": {
+            "categoryName": "g",
+            "question1": {
+                "question": "after f, but before H",
+                "answer": "What is G",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "letter that appears twice \nin google",
+                "answer": "What is G",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "this is the silent letter in sleigh",
+                "answer": "What is G",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "Federal reserve bank \nletter on money\nfrom Chicago\n",
+                "answer": "What is G",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "data:image/png;base64,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",
+                    "text": "Musical key shown here"
+                },
+                "answer": "What is G",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category5": {
+            "categoryName": "math",
+            "question1": {
+                "question": "number of eggs in a dozen \nplus\nnumber of arms on an octopus",
+                "answer": "What is 20",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "number of girl students in our class\nminus\nnumber of boy students in our class ",
+                "answer": "What is one",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "a chicken egg plus a duck egg plus a goose egg plus an ostrich egg",
+                "answer": "What is 4",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "legs on a spider \nminus\nlegs on an insect",
+                "answer": "What is 2",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "number of stars on the\nus flag\nplus\nthe number of states",
+                "answer": "What is 100",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category6": {
+            "categoryName": "",
+            "question1": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        }
+    },
+    "FinalJeopardy": {
+        "category": "saints",
+        "question": "Name of the southwest person who lead us around the airport.  Not Captain Hechtl!",
+        "answer": "Who is Melissa?"
+    },
+    "lastSave": "Wed, 23 May 2018 05:19:23 GMT",
+    "_id": "WmTKDJAjxx4S7MwDx"
+}

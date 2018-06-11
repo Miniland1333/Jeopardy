@@ -1,0 +1,420 @@
+{
+    "name": "End of 2017",
+    "Jeopardy": {
+        "category1": {
+            "categoryName": "RANKS & TITLES",
+            "question1": {
+                "question": "This head of a college division has a \"list\" you want to be on",
+                "answer": "What is dean?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "To reach this rank in Boy Scouts, you must earn a total of 21 Merit Badges",
+                "answer": "What is Eagle scout?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "The new janitor being followed by a camera crew may be TV's latest \"Undercover\" this",
+                "answer": "What is boss?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "People with this U.S. Army rank right below general wear eagles on their uniforms",
+                "answer": "What is colonel?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://wallscover.com/images/kaiser-wallpaper-7.jpg",
+                    "text": "This foreign term for emperor is also unrelatedly used as the beginning of the name of the healthcare and insurance consortium pictured here"
+                },
+                "answer": "What is Kaiser?",
+                "isSinglePlay": false
+            }
+        },
+        "category2": {
+            "categoryName": "it's slang-tastic",
+            "question1": {
+                "question": "\"Explosive\" way to jump into a picture right before it's taken",
+                "answer": "What is photobomb?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "This 4-letter word for a sharp sound means an insult; put \"oh\" before it & you're basically saying, \"Oh no, he didn't!\"",
+                "answer": "What is snap?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "Uh-oh! Guess what day it is?! It's Wednesday, aka this protuberance day!",
+                "answer": "What is hump day?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "One term for talking trash about someone is \"throwing\" this, like a big elm tree might do",
+                "answer": "What is shade?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "Sea life term for making romantic overtures online using false ID; you've been...",
+                "answer": "What is catfished?",
+                "isSinglePlay": false
+            }
+        },
+        "category3": {
+            "categoryName": "We'll need your \"ID\"",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Batoni_Diana_and_Cupid.jpg",
+                    "text": "He's the mythical youth depicted here in a painting"
+                },
+                "answer": "Who is Cupid?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "This adjective describes a very Cold climate or a response without enthusiasm",
+                "answer": "What is frigid?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "In ancient Rome it wasn't just the 15th of March but also of May, July, and October",
+                "answer": "What are ides?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "before his rise into infamy, He who shall not be named was known by this more common name",
+                "answer": "Who is Tom Riddle?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "Unless you went to the market, \"Bring home the bacon\" is this kind of phrase that doesn't literally mean what it says",
+                "answer": "What is idiom?",
+                "isSinglePlay": false
+            }
+        },
+        "category4": {
+            "categoryName": "ONLY ONE",
+            "question1": {
+                "question": "...was a Beatle:\nDjango,\nRingo,\nWaldo",
+                "answer": "Who is Ringo?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "...is a county in California:\nLincoln,\nSuwannee,\nTuolumne",
+                "answer": "What is Tuolumne County?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "...is a weapon in the classic version of the board game Clue:\nspear,\nhammer,\nwrench",
+                "answer": "What is wrench?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "...borders Mexico:\nBelize,\nEl Salvador,\nHonduras",
+                "answer": "What is Belize?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "...is NOT a generation of people:\nDepression,\nBaby Boomer,\nZ,\nSilent\n",
+                "answer": "What is Depression Generation? <G.I Generation>",
+                "isSinglePlay": false
+            }
+        },
+        "category5": {
+            "categoryName": "Fancy feast",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "data:image/jpeg;base64,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",
+                    "text": "THe largest one of these weighed over a ton, and you could purchase another for yourself for around $8,000"
+                },
+                "answer": "What is a hamburger?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://i.imgur.com/VUiR5da.jpg",
+                    "text": "Originally from the Ottoman empire, this dessert pastry is filled with chopped nuts and held together with honey"
+                },
+                "answer": "What is Baklava?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "http://del.h-cdn.co/assets/17/16/1600x800/landscape-1492620138-waffle-smores-3.jpg",
+                    "text": "This treat is made with melted chocolate, marshmallow, and occasionally waffles"
+                },
+                "answer": "What is a smore?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "https://s3.amazonaws.com/finecooking.s3.tauntonclud.com/app/uploads/2017/04/18124233/051126083-01-baked-alaska-chocolate-rum-sauce-recipe-thumb16x9.jpg",
+                    "text": "this dessert consists of a spongecake and ice cream inside, with browned MERINGUE covering the exterior. This dessert can even be served with the exterior on fire. "
+                },
+                "answer": "What is baked alaska?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://www.fancyfeast.com/sites/g/files/auxxlc161/files/gcf-wcf-tf-classic-pate_2.jpg",
+                    "text": "This gourmet wet cat food honestly doesn't taste that good to me, but cats seem to like it..."
+                },
+                "answer": "What is fancy feast?",
+                "isSinglePlay": false
+            }
+        },
+        "category6": {
+            "categoryName": "I'll take twelve!",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://i.imgur.com/3TgdM2b.mp4",
+                    "text": ""
+                },
+                "answer": "What is a litter?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "video",
+                    "URL": "https://www.youtube.com/embed/1EXrLyuDkl8?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=20&end=30",
+                    "VID": "1EXrLyuDkl8",
+                    "start": "0:20",
+                    "end": "0:30"
+                },
+                "answer": "What is a herd/parade?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "video",
+                    "URL": "https://www.youtube.com/embed/-pRHO1psAYY?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=803&end=816",
+                    "VID": "-pRHO1psAYY",
+                    "start": "13:23",
+                    "end": "13:36"
+                },
+                "answer": "What is a pod?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "video",
+                    "URL": "https://www.youtube.com/embed/sICaV6VKI6I?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=87&end=107",
+                    "VID": "sICaV6VKI6I",
+                    "start": "1:27",
+                    "end": "1:47"
+                },
+                "answer": "What is a murder?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "video",
+                    "URL": "https://www.youtube.com/embed/UHbp5pgORhU?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=50&end=60",
+                    "VID": "UHbp5pgORhU",
+                    "start": "0:50",
+                    "end": "1:00"
+                },
+                "answer": "What is gaggle?",
+                "isSinglePlay": false
+            }
+        }
+    },
+    "DoubleJeopardy": {
+        "category1": {
+            "categoryName": "",
+            "question1": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question2": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question3": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question4": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question5": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            }
+        },
+        "category2": {
+            "categoryName": "6-LETTER WORDS",
+            "question1": {
+                "question": "It can mean to rise into the air like an airplane or to take the throne",
+                "answer": "What is ascend?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "Can I be this with you?\nBeing very truthful & straightforward",
+                "answer": "What is candid/honest?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "A mathematician's 9-year-old nephew came up with this word for the number 1 followed by 100 zeros",
+                "answer": "What is googol?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "http://i.telegraph.co.uk/multimedia/archive/01395/First-cygnet_1395980c.jpg",
+                    "text": "It's the proper 6-letter name for the offspring seen here"
+                },
+                "answer": "What is cygnet?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "By definition, this verb form operates as a noun & ends in -ing",
+                "answer": "What is gerund?",
+                "isSinglePlay": false
+            }
+        },
+        "category3": {
+            "categoryName": " INVENTORS & INVENTIONS",
+            "question1": {
+                "question": "Within 6 years of moving his lab to Menlo Park, he had applied for around 400 new patents",
+                "answer": "Who is Thomas Edison?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "After failing to make synthetic rubber out of chicle, Thomas Adams flavored it & sold it as this",
+                "answer": "What is gum?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "In the 1960s James T. Russell invented these to replace vinyl records; now they're giving way to downloads",
+                "answer": "What are CDs?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "In order to combat upper airway obstructions or choking, this inventor developed the procedure of abdominal thrusts to dislodge the foreign object",
+                "answer": "Who is Heimlich?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "French biologist Louis Pasteur was widely KNOWN for the prevention of diseases, including this process for killing harmful microbes through heating",
+                "answer": "What is pasteurization?",
+                "isSinglePlay": false
+            }
+        },
+        "category4": {
+            "categoryName": "EVERY YEAR",
+            "question1": {
+                "question": "In November 1927 Felix the Cat became the first character balloon to fly in this New York City parade",
+                "answer": "What is Macy's Thanksgiving Day Parade?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "In Hawaii this October holiday was replaced with Discoverers' day commemorating the Polynesian arrival",
+                "answer": "What is Columbus Day?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "The Spokane YMCA & Ministerial Alliance helped create the first celebration of this holiday on Sunday, June 19, 1910",
+                "answer": "What is Father's Day?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "http://a.abcnews.com/images/Politics/AP-obama-pardon-turkey-ml-161123_12x5_992.jpg",
+                    "text": "Rather than trying to give this fowl a high five, the president traditionally performs this act right before thanksgiving"
+                },
+                "answer": "What is pardoning the Turkey?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "Tree City USA is a designation presented to qualifying cities from a foundation devoted to this holiday",
+                "answer": "What is Arbor Day?",
+                "isSinglePlay": false
+            }
+        },
+        "category5": {
+            "categoryName": "THEY WON'T ACTUALLY RHYME",
+            "question1": {
+                "question": "A single unit of language\n&\na sharp weapon with a long blade",
+                "answer": "What is word and sword?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "A fashion show runway walker\n&\nA fortress in a commanding position in or near a city.",
+                "answer": "What is model and citadel?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "An unrecognized person\n&\nhatred",
+                "answer": "What is stranger and anger?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "Your immortal part\n&\nA ball out of play",
+                "answer": "What is soul and foul?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "the largest carnivorous feline\n&\na landlocked desert nation of West Africa",
+                "answer": "What is tiger and Niger?",
+                "isSinglePlay": false
+            }
+        },
+        "category6": {
+            "categoryName": "\"CC\" ME",
+            "question1": {
+                "question": "Want to go faster? Step on it!",
+                "answer": "What is acceleration?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "video",
+                    "URL": "https://www.youtube.com/embed/IypL_EcI9XE?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=101&end=115",
+                    "VID": "IypL_EcI9XE",
+                    "start": "1:41",
+                    "end": "1:55"
+                },
+                "answer": "What is accordion?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "What was that? I can't understand you because of this emphasis of particular words, syllables, or phrases",
+                "answer": "What is accent?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "Politicians vie for the votes of \"NASCAR dads\" & these moms",
+                "answer": "What are soccer moms?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "A female demon who descends into a man's dreams & steals his soul",
+                "answer": "What is a succumbus?",
+                "isSinglePlay": false
+            }
+        }
+    },
+    "FinalJeopardy": {
+        "category": "AWARDS & HONORS",
+        "question": "\nThere were no winners for this award from 1939 through 1943; in 1944, it was won by the International Committee of the Red Cross",
+        "answer": "What is the nobel peace prize?"
+    },
+    "lastSave": "Fri, 05 Jan 2018 21:52:57 GMT",
+    "_id": "wj7ngEHjQNC6FiyGn"
+}

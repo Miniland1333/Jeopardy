@@ -1,0 +1,410 @@
+{
+    "name": "2018 End!",
+    "Jeopardy": {
+        "category1": {
+            "categoryName": "First",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "first president",
+                "answer": "who is George Washington",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "first element",
+                "answer": "what is hydrogen?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "first woman \nto fly solo \nfrom America to Europe",
+                "answer": "who is Amelia Earhart?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "first letter\nin the\nalphabet",
+                "answer": "what is A?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "first \nman on the moon",
+                "answer": "who is Neil Armstrong",
+                "isSinglePlay": false
+            }
+        },
+        "category2": {
+            "categoryName": "recent history",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "he bought the\nlouisiana purchase\nfrom Napoleon",
+                "answer": "who is Thomas Jefferson",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "he sold the\nlouisiana purchase \nto Thomas Jefferson",
+                "answer": "who is Napoleon",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "name of famous\nland acquired\nby Thomas Jefferson\nfrom Napoleon",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "large statue given\nby france to u.s.\nto celebrate \nour 100th anniversary",
+                "answer": "what is the statue of liberty?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "he wrote the \nstar spangled banner",
+                "answer": "who is francis scott key",
+                "isSinglePlay": false
+            }
+        },
+        "category3": {
+            "categoryName": "airport codes",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "las",
+                "answer": "what is las vegas",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "lax",
+                "answer": "what is los angeles",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "san",
+                "answer": "what is san diego",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "mco",
+                "answer": "what is orlando?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "rno",
+                "answer": "what is reno, NV?",
+                "isSinglePlay": false
+            }
+        },
+        "category4": {
+            "categoryName": "What's new?",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "location of\nthe statue of Liberty",
+                "answer": "what is new york?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "Santa Fe \nis its \nstate capital",
+                "answer": "what is New Mexico?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "concord",
+                "answer": "what is New Hampshire?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "msy",
+                "answer": "what is new orleans?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "a country near australia;\n\nkiwi birds come from here",
+                "answer": "what is new zealand?",
+                "isSinglePlay": false
+            }
+        },
+        "category5": {
+            "categoryName": "duh",
+            "categoryExplanation": "",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1oxkoE7lUTJfdfoKdXZxQn5eM0z_G16ZZIuD_tPm_KD4u7ad2kw",
+                    "text": "location of\nbrooklyn bridge"
+                },
+                "answer": "what is Brooklyn",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "writer of the \nautobiography\nof \nbenjamin franklin",
+                "answer": "who is Benjamin Franklin",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "color of george washington's \nwhite\nhorse",
+                "answer": "what is white?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "mascot of the \nsaint james falcons",
+                "answer": "what is falcons",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "person honored\nat the\nlincoln memorial",
+                "answer": "what is Abraham Lincoln?",
+                "isSinglePlay": false
+            }
+        },
+        "category6": {
+            "categoryName": "last",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "last letter \nin the alphabet",
+                "answer": "what is z",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "last super bowl \nchamp",
+                "answer": "who is philadelphia eagles",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "data:image/jpeg;base64,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",
+                    "text": "last car\non a\ntrain"
+                },
+                "answer": "what is a caboose",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "the last state \nto become \na state",
+                "answer": "what is Hawaii?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "last word \nin\nstar spangled banner",
+                "answer": "what is brave",
+                "isSinglePlay": false
+            }
+        }
+    },
+    "DoubleJeopardy": {
+        "category1": {
+            "categoryName": "sounds the same",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "an insect\nand\nyour mother's sister",
+                "answer": "what is ant",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "an ingredient in bread,\nand\na pretty plant",
+                "answer": "what is flower",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "something a dog wags\nand\na make-believe story",
+                "answer": "what is a tale",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "the star in our solar system\nand\na male child",
+                "answer": "what is a sun",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "not day\nhero on a horse",
+                "answer": "what is night?",
+                "isSinglePlay": false
+            }
+        },
+        "category2": {
+            "categoryName": "more  uncommon animals",
+            "categoryExplanation": "",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "http://1.bp.blogspot.com/-8bB9UJm_Q0A/VfzhYjATJsI/AAAAAAAAA3M/oHB8ht0_dOk/s1600/save-the-tasmanian-devil-03.jpg",
+                    "text": ""
+                },
+                "answer": "what is a tasmanian devil?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "http://www.wallpaperawesome.com/wallpapers-awesome/wallpapers-animals-pets-puppies-awesome/wallpaper-red-panda.jpg",
+                    "text": ""
+                },
+                "answer": "what is a red panda?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "http://ekladata.com/8EuQrHSTxP8xKAzUDssBUTi2tOs.jpg",
+                    "text": ""
+                },
+                "answer": "what is an kiwi?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "http://www.factzoo.com/sites/all/img/mammals/bovid/bongo-mama-calf.jpg",
+                    "text": ""
+                },
+                "answer": "what is a bongo?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://www.sciencesource.com/Doc/SCS/Media/TR1_WATERMARKED/7/5/6/2/SS2458336.jpg?d63642324449",
+                    "text": ""
+                },
+                "answer": "what is a Humboldt squid?",
+                "isSinglePlay": false
+            }
+        },
+        "category3": {
+            "categoryName": "disney dudettes",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "ate a poison apple\nhangs out with \n7 short guys",
+                "answer": "what is snow white",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "went to a ball\nlost her shoe",
+                "answer": "who is cinderella",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "made olaf",
+                "answer": "who is elsa",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "hung out\nwith an alien\nin hawaii",
+                "answer": "who is lilo?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "hei hei's \nfriend",
+                "answer": "who is moana?",
+                "isSinglePlay": false
+            }
+        },
+        "category4": {
+            "categoryName": "double duh!",
+            "categoryExplanation": "",
+            "question1": {
+                "question": "location of the \ngreat wall of china",
+                "answer": "what is china?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "inventor of\njohn deere\ntractor",
+                "answer": "who is John Deer?",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "middle name \nof\njohn paul jones",
+                "answer": "what is paul?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "color of a yellow sunflower",
+                "answer": "what is yellow?",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "date of \n4th of july \nparty",
+                "answer": "what is the 4th of july?",
+                "isSinglePlay": false
+            }
+        },
+        "category5": {
+            "categoryName": "logos",
+            "categoryExplanation": "",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://qph.fs.quoracdn.net/main-qimg-386cc29f51fb8f208306a9d2628a4fde-c",
+                    "text": ""
+                },
+                "answer": "what is dominos",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "http://cdn.playbuzz.com/cdn/dae84b60-95ff-4bc4-b2b7-ae8011c74e80/8da871ea-b528-488e-8cd4-d7e72d34c204.png",
+                    "text": ""
+                },
+                "answer": "what is baskin robbins",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "data:image/jpeg;base64,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PsRpaGv1T1z49lpBGwIOueVrGl7iGtaCSTsAGslETMRHMqLxVlx1dUul2RjqxjgwHUe07f8A4jndjNOW/V7NOj4CAh3T/NzhXpHCsnb1Gm8TT7xHvkcBu5o09LV5/qWWgEa7KAgICAgICAgICAgICAgICAg1+W8kxVcLoZRdrth3tducOYR88uOuSs1spLEGQ5qGUxSjV7j7anjiOfEbkc9mw2xTxMOvIWSn1k7IGai463fC0bXH+dpCGHFOS8Vjwvigo2QRtijGixgAA7PujoqUileIelHtgoK6zo4g0QKKM63WdKRubtDO/UTy7UZfqGfj9FVaoyBEiI+6YYHwe6rcJ5wW0wOobOkI3D5eaL+pqzeeq0dluxMDQAAAAAABsAG4I24iI7Q5okQEBAQEBAQEBAQEBAQEBAQEBB4sqZMhqozHNGHsPHaDxBGsHmEfPJjrkji0Nfh7C9PQF7oQ4ufbW43IA90HhdS+WHXpi56W9ULIg82UatsET5X+yxrnHuF0eMlums2l8/5Qq3Tyvmf7T3Fx793cLDuRzd7Te02l0I8MtaSQALk2AG834BCI5niPKfYRwA55E1aNFm0Re878fAckaetozPfIs6OMNAa0AAagBqAA3AI1ojiOIc0SICAgICAgICAgICAgICAgICAgICDFkGUBBHseUs81E+KnYXvcWDRBaDo3udpRW262timKwq4YNyj/ALq/xi/iRjfwmbt+lucmZtqp9jO9kTeAOm7931RYx+nXn908J3kDCdLRWMbNKT+0frd3bm9yNHDq0x/lvbIssoCAgICAgICAgICAgICAgICAgICAgICAgIMFESKUcihLKJEBAQEBAQEBAQEBAQf/2Q==",
+                    "text": ""
+                },
+                "answer": "what is girl scouts?",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "http://4.bp.blogspot.com/-hYyNA7i58O8/T7-603Sv0qI/AAAAAAAABCw/8SmZc51I_rc/s1600/iPhone_LogosQuiz_Level_1_Pringles.jpg",
+                    "text": ""
+                },
+                "answer": "WHAT IS PRINGLES",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFSGJ1-tW5Lw1p5KSJpwDtrZl_ouSVoJ_CJR5sUli3wa1CHgBlcQ",
+                    "text": ""
+                },
+                "answer": "what is Starbucks?",
+                "isSinglePlay": false
+            }
+        },
+        "category6": {
+            "categoryName": "",
+            "categoryExplanation": "",
+            "question1": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question2": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question3": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question4": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            },
+            "question5": {
+                "isSinglePlay": false,
+                "question": "",
+                "answer": ""
+            }
+        }
+    },
+    "FinalJeopardy": {
+        "category": "about school",
+        "question": "ThEse two were the\nNewscasters\nFor our back to school video",
+        "answer": "who are Sophia and Sammy?"
+    },
+    "lastSave": "Sun, 27 May 2018 18:15:31 GMT",
+    "_id": "WgSPGmdefeubGhobb"
+}

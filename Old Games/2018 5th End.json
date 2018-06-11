@@ -1,0 +1,442 @@
+{
+    "name": "2018 5th End",
+    "Jeopardy": {
+        "category1": {
+            "categoryName": "super HERO synonyms",
+            "question1": {
+                "question": "metal person",
+                "answer": "Who is Iron Man",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "SERGEANT USA ",
+                "answer": "Who is Captain America",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "dazzling lady",
+                "answer": "Who is Wonder Woman",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "DeCeAsed lake",
+                "answer": "Who is Deadpool",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "emerald lamp",
+                "answer": "Who is Green Lantern",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category2": {
+            "categoryName": "state capitals",
+            "question1": {
+                "question": "california",
+                "answer": "What is Sacramento",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "jackson",
+                "answer": "What is Mississippi",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "cheyenne",
+                "answer": "What is wyoming",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "kansas",
+                "answer": "What is Topeka",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "south carolina",
+                "answer": "What is Columbia",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category3": {
+            "categoryName": "WHAT'S GOING ON?",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525627525/Jeopardy/IMG_0628_rqaitb.jpg",
+                    "text": "THIS SUPER-CLOSE FIELD TRIP"
+                },
+                "answer": "What is BRAINS IN THE CLASSROOM",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525627686/Jeopardy/IMG_0540_ludnnp.jpg",
+                    "text": "FLIGHT"
+                },
+                "answer": "What is SACRAMENTO AIRPORT",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "https://ssli.ebayimg.com/images/g/1tQAAOSw~CRTpGDg/s-l640.jpg",
+                    "text": ""
+                },
+                "answer": "What is tetherball",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525637891/Jeopardy/Screen_Shot_2018-05-06_at_1.14.55_PM_x9awre.png",
+                    "text": ""
+                },
+                "answer": "What is AAP",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525638080/Jeopardy/Screen_Shot_2018-05-06_at_1.20.12_PM_vwovb4.png",
+                    "text": ""
+                },
+                "answer": "What is BTS video",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": "NAME THE EVENT THAT'S HAPPENING IN THE PHOTO"
+        },
+        "category4": {
+            "categoryName": "airport codes",
+            "question1": {
+                "question": "mci",
+                "answer": "What is Kansas City?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "SMF",
+                "answer": "What is SACRAMENTO",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "PDX",
+                "answer": "What is PORTLAND",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "SNA",
+                "answer": "What is SANTA ANNA/ ORANGE COUNTY",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "New Orleans",
+                "answer": "What is MSY",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category5": {
+            "categoryName": "Name that saint",
+            "question1": {
+                "question": "ireland",
+                "answer": "What is st. Patrick",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "Hawaii",
+                "answer": "What is Fr. Damien",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "schools for Native Americans",
+                "answer": "What is Katherine Drexel",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "mexican priest ",
+                "answer": "Miguel Pro",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "Italian; gave shoes to kid",
+                "answer": "What is Frassati",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category6": {
+            "categoryName": "",
+            "question1": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        }
+    },
+    "DoubleJeopardy": {
+        "category1": {
+            "categoryName": "jungle critters",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "http://elelur.com/data_images/mammals/capuchin-monkey/capuchin-monkey-05.jpg",
+                    "text": "Frequently found swinging from trees"
+                },
+                "answer": "What is monkey",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://public-media.smithsonianmag.com/filer/a5/66/a566a5dc-37e7-4b28-8250-49c32b409642/istock_000006766776_large.jpg",
+                    "text": "stop repeating everything i'm saying!"
+                },
+                "answer": "What is parrot",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "http://www.theyucatantimes.com/wp-content/uploads/2017/01/jaguar.jpg",
+                    "text": "Look what I spotted!"
+                },
+                "answer": "What is jaguar",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "http://animals.sandiegozoo.org/sites/default/files/2016-11/animals_hero_toucan.jpg",
+                    "text": "Well, ________ can play at this game"
+                },
+                "answer": "What is toucan",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "http://animals.sandiegozoo.org/sites/default/files/2016-10/animals_hero_snakes.jpg",
+                    "text": "It's an animal associated with slithering...and t swizzle"
+                },
+                "answer": "What is snake",
+                "isSinglePlay": false
+            }
+        },
+        "category2": {
+            "categoryName": "Where am I?",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525634050/Jeopardy/IMG_0634_khywuj.jpg",
+                    "text": ""
+                },
+                "answer": "What is Costco?",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525634758/Jeopardy/F4EC309C-D4F7-4D06-85F8-3E89144982D8_qesvqw.jpg",
+                    "text": "Toto, where are you?"
+                },
+                "answer": "What is Kansas",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525634829/Jeopardy/81AD1031-0D76-45DA-B616-6CEA0B4BDC46_kecsat.jpg",
+                    "text": "aloha!"
+                },
+                "answer": "What is extra",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1525634887/Jeopardy/7BE61D54-907B-4EF5-BEF1-EA433DA82653_grmr6i.jpg",
+                    "text": "Pie, anyone?"
+                },
+                "answer": "What is Shrem Museum/UCDavis",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "video",
+                    "URL": "https://www.youtube.com/embed/PG6JmKUpTsw?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=16&end=31",
+                    "VID": "PG6JmKUpTsw",
+                    "start": "0:16",
+                    "end": "0:31"
+                },
+                "answer": "What is Space Shuttle",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category3": {
+            "categoryName": "Company logos",
+            "question1": {
+                "question": {
+                    "type": "image",
+                    "image": "https://lh3.googleusercontent.com/dL5wUTeOrTETTKAw1XiJcO6i3TvFJn3zOSKMBcGkzt42Kxt8jFHPHbtbqCvzZiFVcw=w300",
+                    "text": "The company behind this logo"
+                },
+                "answer": "What is target",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": {
+                    "type": "image",
+                    "image": "https://s3.amazonaws.com/BURC_Pages/downloads/a-smile_color_btn.png",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is amazon",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": {
+                    "type": "image",
+                    "image": "https://www.phonedog.com/sites/phonedog.com/files/blog/main_image/2016/01/sprintlogolarge.png",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is sprint",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": {
+                    "type": "image",
+                    "image": "https://media-cdn.tripadvisor.com/media/photo-s/0e/df/eb/dc/dutch-bros-coffee.jpg",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is dutch bros",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": {
+                    "type": "image",
+                    "image": "http://www.car-brand-names.com/wp-content/uploads/2015/05/Infiniti-emblem-3.png",
+                    "text": "the company behind this logo"
+                },
+                "answer": "What is infinity",
+                "isSinglePlay": false
+            }
+        },
+        "category4": {
+            "categoryName": "",
+            "question1": {
+                "question": "",
+                "answer": "Who is ",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "",
+                "answer": "Who is ",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "",
+                "answer": "Who is Sir ",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "",
+                "answer": "Who is",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "",
+                "answer": "Who is ",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category5": {
+            "categoryName": "math",
+            "question1": {
+                "question": "number of eggs in a dozen \nminus\nnumber of arms on an octopus",
+                "answer": "What is 4",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "number of girl students in our class\nminus\nnumber of boy students in our class ",
+                "answer": "What is one",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "days in a week \nplus\nmotnhs in a year",
+                "answer": "What is 17",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "number of eyes on a cat\ntimes\nnumber of legs on a dog",
+                "answer": "What is 8",
+                "isSinglePlay": true
+            },
+            "question5": {
+                "question": "number of stars on the\nus flag\nminus \nthe number of states",
+                "answer": "What is 0",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        },
+        "category6": {
+            "categoryName": "",
+            "question1": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question2": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question3": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question4": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "question5": {
+                "question": "",
+                "answer": "",
+                "isSinglePlay": false
+            },
+            "categoryExplanation": ""
+        }
+    },
+    "FinalJeopardy": {
+        "category": "DAYS OF THE WEEK",
+        "question": "In Spanish & French, the word for Friday comes from the Latin for \"day of\" this goddess",
+        "answer": "Who is Venus"
+    },
+    "lastSave": "Sun, 06 May 2018 20:32:24 GMT",
+    "_id": "nYGMurfmHQwXDXr69"
+}
