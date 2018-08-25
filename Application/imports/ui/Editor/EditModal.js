@@ -141,7 +141,7 @@ export default class EditModal extends React.Component {
 			return extra;
 		};
 		if (VID != null) {
-			videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0" + extraTime();
+			const videoURL = "https://www.youtube.com/embed/" + VID + "?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0" + extraTime();
 
 			$("#Embed").val(videoURL);
 			$("#videoView").attr("src", videoURL);
@@ -356,8 +356,8 @@ export default class EditModal extends React.Component {
 			case "video":
 				questionContent = <div className="flex-container"
 				                       style={{maxWidth: "100%", maxHeight: 120, background: "#f2f3ea", flexGrow: 1}}>
-					<iframe id="videoView" width="213" height="120" src={this.props.question.URL}
-					        style={{flex: 0, border: "none", background: "black"}}/>
+					<iframe id="videoView" width="213" height="120" src={this.props.question.URL}  allow="autoplay;"
+					        style={{flex: 0, border: "none", background: "black"}} />
 					<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 						<div className="flex-container" style={{flex: 1}}>
 							<div style={{width: 80}}>Video URL</div>

@@ -1,10 +1,11 @@
 import {Meteor} from "meteor/meteor";
-import {editorDatabase} from "../imports/api/editorDatabase";
 import "../imports/api/gameDatabase";
-import {gameLogic} from "../imports/api/gameLogic";
 import "../imports/api/gameQuestions";
 import "../imports/api/pingDatabase";
+import {editorDatabase} from "../imports/api/editorDatabase";
 import {pingDatabase} from "../imports/api/pingDatabase";
+import {gameLogic} from "../imports/api/gameLogic";
+import { ServerTime } from 'meteor/socialize:server-time';
 
 Meteor.startup(() => {
 	// code to run on server at startup

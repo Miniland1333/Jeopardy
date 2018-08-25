@@ -22,12 +22,12 @@ const renderRoutes = () => (
 			<Route path="/Viewer" component={Viewer}/>
 			<Route path="/Editor" component={Editor}/>
 			<Route path="/Teacher" component={Teacher}/>
-			<Route path="/Student" component={Student}/>
+			<Route path="/Student" component={StudentEditor}/>
 			
 			<Route path="/viewer" component={Viewer}/>
 			<Route path="/editor" component={Editor}/>
 			<Route path="/teacher" component={Teacher}/>
-			<Route path="/student" component={Student}/>
+			<Route path="/student" component={StudentEditor}/>
 			
 			<Route path="/click" component={ClickDemo}/>
 			
@@ -44,6 +44,8 @@ const Teacher = asyncComponent(() =>
 	import("../imports/ui/Teacher/Teacher").then(module => module.default));
 const Student = asyncComponent(() =>
 	import("../imports/ui/Student/Student").then(module => module.default));
+const StudentEditor = asyncComponent(() =>
+	import("../imports/ui/StudentEditor/StudentEditor").then(module => module.default));
 const PageNotFound = asyncComponent(() =>
 	import("../imports/ui/PageNotFound").then(module => module.default));
 const ClickDemo = asyncComponent(() =>

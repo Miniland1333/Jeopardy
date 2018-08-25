@@ -38,7 +38,7 @@ class Editor extends React.Component {
 								round={this.state.round}
 								editorDatabase={this.props.editorDatabase}
 							/>
-							<Ping name={"Editor"}/>
+							<Ping name={"Editor "+Math.round(Math.random()*1000)}/>
 						</div> : <div/>
 					}
 				</div>

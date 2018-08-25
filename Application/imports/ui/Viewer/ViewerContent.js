@@ -282,7 +282,7 @@ export default class ViewerContent extends React.Component {
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video" src={this.props.gameQuestions["currentQuestion"]["question"].URL}
-							        style={{flex: 1}}/>
+							        style={{flex: 1}} allow="autoplay;"/>
 						</div>
 					}
 				}
@@ -450,7 +450,7 @@ export default class ViewerContent extends React.Component {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
 							        src={this.props.gameQuestions["currentRound"]["question"].URL}
-							        style={{flex: 1}}/>
+							        style={{flex: 1}} allow="autoplay;"/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
 					}

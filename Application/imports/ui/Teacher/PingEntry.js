@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Meteor} from "meteor/meteor";
+import { ServerTime } from 'meteor/socialize:server-time';
 
 
 export default class PingEntry extends React.Component {

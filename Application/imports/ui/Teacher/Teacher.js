@@ -41,7 +41,7 @@ class Teacher extends React.Component {
 							                gameDatabase={this.props.gameDatabase}/>
 							<TeacherFooter gameLogic={this.props.gameLogic[0]}
 							               gameQuestions={this.props.gameQuestions[0]}/>
-							<Ping name={"Teacher"}/>
+							<Ping name={"Teacher "+Math.round(Math.random()*1000)}/>
 						</div> : <div/>
 						
 					}

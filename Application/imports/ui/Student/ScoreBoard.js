@@ -95,8 +95,7 @@ export default class ScoreBoard extends React.Component {
 					e.preventDefault();
 					jc.$$formSubmit.trigger('click'); // reference the button and click it
 				});
-				setTimeout(() =>
-					this.$content.find('.name').focus(), 200);
+				this.$content.find('.name').focus();
 			}
 		});
 	}

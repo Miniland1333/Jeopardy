@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
+import { ServerTime } from 'meteor/socialize:server-time';
 
 export const pingDatabase = new Mongo.Collection('pingDatabase');
 
