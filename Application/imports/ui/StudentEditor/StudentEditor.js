@@ -4,10 +4,12 @@ import DocumentTitle from "react-document-title";
 import {Meteor} from "meteor/meteor";
 
 import {gameDatabase} from "../../api/gameDatabase";
-import EditorHeader from "../Editor/EditorHeader";
-import EditorTable from "../Editor/EditorTable";
-import Ping from "../Ping";
+import EditorHeader from "./EditorHeader";
+import EditorTable from "./EditorTable";
 import refresh from "./../refresh";
+import '../bootstrap.css';
+import "jquery-confirm"
+import "../jquery-confirm.css"
 
 class StudentEditor extends React.Component {
 	constructor(props) {
@@ -41,6 +43,7 @@ class StudentEditor extends React.Component {
 				},
 			},
 			round: "Single",
+			username: "",
 		}
 
 	}
@@ -68,7 +71,6 @@ class StudentEditor extends React.Component {
 								round={this.state.round}
 								editorDatabase={[this.state.editorDatabase]}
 							/>
-							<Ping name={"Editor"}/>
 						</div> : <div/>
 					}
 				</div>
@@ -78,10 +80,17 @@ class StudentEditor extends React.Component {
 }
 
 
-export default withTracker(() => {
-	const handle1 = Meteor.subscribe('gameDatabase');
-	return {
-		isReady: handle1.ready(),
-		gameDatabase: gameDatabase.find().fetch(),
-	};
-})(StudentEditor);
+export default withTracker(
+	() => {
+		const
+			handle1 = Meteor.subscribe('gameDatabase');
+		return {
+			isReady: handle1.ready
+			(),
+			gameDatabase: gameDatabase.find
+			().fetch()
+
+			,
+		};
+	})
+(StudentEditor);
