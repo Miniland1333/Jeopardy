@@ -183,7 +183,7 @@ export default class TeacherContent extends React.Component {
 					<div style={{
 						fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
 						whiteSpace: "pre-wrap", textTransform: "uppercase"
-					}}>{this.props.gameQuestions["currentRound"]['category']}</div>
+					}}>{this.props.gameQuestions["currentQuestion"]['category']}</div>
 					<div style={answerStyle}>Wait for Players to enter their Wagers</div>
 
 				</div>;
@@ -199,11 +199,11 @@ export default class TeacherContent extends React.Component {
 				else {
 					wager = "";
 				}
-				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
 					return (
 						<div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
-							<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
-							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>
+							<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
+							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
 							<div style={{
 								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
@@ -212,11 +212,11 @@ export default class TeacherContent extends React.Component {
 						</div>);
 				}
 				else {
-					if (this.props.gameQuestions["currentRound"]["question"].type === "image" && !this.hasVideo()) {
+					if (this.props.gameQuestions["currentQuestion"]["question"].type === "image" && !this.hasVideo()) {
 						return <div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 							<div
-								style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"].text}</div>
-							<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>
+								style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"].text}</div>
+							<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>
 							<div style={{
 								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
@@ -233,7 +233,7 @@ export default class TeacherContent extends React.Component {
 							justifyContent: "center",
 							whiteSpace: "pre-wrap",
 						}}>Video<br />Question</div>,
-						<div style={answerStyle}>{this.props.gameQuestions["currentRound"]["answer"]}</div>,
+						<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>,
 						<div style={{
 							position: "absolute", top: 10, right: 10,
 							fontSize: "3vw",

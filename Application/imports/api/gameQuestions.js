@@ -46,7 +46,10 @@ Meteor.methods({
 		gameQuestions.update({}, {$set: {currentRound: gameQuestions.find().fetch()[0][roundName]}});
 		
 		//Remove empty categories and update remaining Columns
-		if (roundNumber != 3) {
+		if(roundNumber === 3){
+			gameQuestions.update({}, {$set: {currentQuestion: gameQuestions.find().fetch()[0][roundName]}});
+		}
+		else {
 			Meteor.call('gameQuestions.checkRemainingColumns');
 			const currentRound = gameQuestions.find().fetch()[0]["currentRound"];
 			if (gameQuestions.find().fetch()[0]["remainingColumns"] != 0) {

@@ -421,12 +421,12 @@ export default class ViewerContent extends React.Component {
 				return <div style={{
 					fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
 					whiteSpace: "pre-wrap", textTransform: "uppercase"
-				}}>{this.props.gameQuestions["currentRound"]['category']}</div>;
+				}}>{this.props.gameQuestions["currentQuestion"]['category']}</div>;
 				break;
 			case "FJread":
-				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
 					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-						<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 					</div>;
 				}
@@ -441,7 +441,7 @@ export default class ViewerContent extends React.Component {
 							</div>;
 						else
 							return <div key="imageContainer" style={imageContainer}>
-								<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
+								<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 								     style={imageStyle}/>
 								<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 							</div>
@@ -449,7 +449,7 @@ export default class ViewerContent extends React.Component {
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
-							        src={this.props.gameQuestions["currentRound"]["question"].URL}
+							        src={this.props.gameQuestions["currentQuestion"]["question"].URL}
 							        style={{flex: 1}} allow="autoplay;"/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
@@ -469,16 +469,16 @@ export default class ViewerContent extends React.Component {
 					});
 					progressbar.find(".ui-progressbar-value").css({"background": "#" + rainbow.colourAt(FJtime)});
 				}, 100);
-				if (typeof this.props.gameQuestions["currentRound"]["question"] === "string") {
+				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
 					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
-						<div style={questionStyle}>{this.props.gameQuestions["currentRound"]["question"]}</div>
+						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 					</div>;
 				}
 				else {
-					if (this.props.gameQuestions["currentRound"]["question"]["type"] === "image") {
+					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
 						return <div key="imageContainer" style={imageContainer}>
-							<img key="image" src={this.props.gameQuestions["currentRound"]["question"].image}
+							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 							     style={imageStyle}/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
@@ -486,7 +486,7 @@ export default class ViewerContent extends React.Component {
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<iframe key="video"
-							        src={this.props.gameQuestions["currentRound"]["question"].URL.replace('autoplay=1', '')}
+							        src={this.props.gameQuestions["currentQuestion"]["question"].URL.replace('autoplay=1', '')}
 							        style={{flex: 1}}/>
 							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
