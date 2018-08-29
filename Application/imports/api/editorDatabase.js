@@ -18,12 +18,19 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'editorDatabase.init'(){
-		editorDatabase.remove({});
+	'editorDatabase.init'(name) {
+		const editorDB = editorDatabase.find().fetch()[0];
+		let student = editorDB && editorDB.student ? editorDB.student : {};
+
+		if (!name) {
+			editorDatabase.remove({});
+		}
+
+
 		//initializes editorDatabase
 		const categoryTemplate = {
 			categoryName: "",
-			categoryExplanation:"",
+			categoryExplanation: "",
 		};
 		for (let i = 1; i <= 5; i++) {
 			categoryTemplate["question" + i] = {
@@ -32,24 +39,40 @@ Meteor.methods({
 				answer: "",
 			};
 		}
-		
+
 		const gameTemplate = {};
 		for (let j = 1; j <= 6; j++) {
 			gameTemplate["category" + j] = categoryTemplate;
 		}
-		
-		editorDatabase.insert({
-			name: "",
-			Jeopardy: gameTemplate,
-			DoubleJeopardy: gameTemplate,
-			FinalJeopardy: {
-				category: "",
-				question: "",
-				answer: "",
-			},
-		});
+
+		if (!name) {
+			editorDatabase.insert({
+				name: "",
+				Jeopardy: gameTemplate,
+				DoubleJeopardy: gameTemplate,
+				FinalJeopardy: {
+					category: "",
+					question: "",
+					answer: "",
+				},
+				student: student || {},
+			});
+		}
+		else {
+			student[name] = {
+				name: "",
+				Jeopardy: gameTemplate,
+				DoubleJeopardy: gameTemplate,
+				FinalJeopardy: {
+					category: "",
+					question: "",
+					answer: "",
+				},
+			};
+			editorDatabase.update({}, {$set: {student: student}}, {upsert: true});
+		}
 	},
-	'editorDatabase.load'(game){
+	'editorDatabase.load'(game) {
 		editorDatabase.remove({});
 		editorDatabase.insert({
 			name: game.name,
@@ -59,11 +82,11 @@ Meteor.methods({
 			lastSave: game.savedOn,
 		});
 	},
-	'editorDatabase.updateName'(name){
+	'editorDatabase.updateName'(name) {
 		check(name, String);
 		editorDatabase.update({}, {$set: {name: name}});
 	},
-	'editorDatabase.updateCategory'(round, identifier, name, categoryExplanation){
+	'editorDatabase.updateCategory'(round, identifier, name, categoryExplanation) {
 		//check if finalJ
 		if (round === "FinalJeopardy") {
 			editorDatabase.update({}, {$set: {"FinalJeopardy.category": name}});
@@ -75,9 +98,9 @@ Meteor.methods({
 			editorDatabase.update({}, {$set: bundle});
 		}
 		//console.log(editorDatabase.find().fetch());
-		
+
 	},
-	'editorDatabase.updateQuestion'(round, identifier1, identifier2, question, answer, isSinglePlay){
+	'editorDatabase.updateQuestion'(round, identifier1, identifier2, question, answer, isSinglePlay) {
 		//check if finalJ
 		if (round == "FinalJeopardy") {
 			editorDatabase.update({}, {$set: {"FinalJeopardy.question": question, "FinalJeopardy.answer": answer}});
@@ -90,8 +113,16 @@ Meteor.methods({
 			};
 			const bundle = {};
 			bundle[round + "." + identifier1 + "." + identifier2] = minibundle;
-			
+
 			editorDatabase.update({}, {$set: bundle});
 		}
 	},
+	'editorDatabase.studentEditor'(name) {
+		const editorDB = editorDatabase.find().fetch()[0];
+		if (!editorDB.student || !editorDB.student[name]) {
+			Meteor.call('editorDatabase.init', name);
+		}
+
+		// editorDatabase.update({}, {$set: {student: bundle}}, {upsert: true});
+	}
 });

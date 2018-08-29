@@ -1,0 +1,456 @@
+{
+	"_id": "bRtGkDHeYcLet92Tb",
+	"name": "2018 B-Day",
+	"Jeopardy": {
+		"category1": {
+			"categoryName": "Thrills and chills",
+			"categoryExplanation": "Fun activities for cold places",
+			"question1": {
+				"question": "Ready for a step up from rock climbing? Try ice climbing up one of these slow moving ice masses at sub-zero temperatures!",
+				"answer": "What is a glacier?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": "HOLD ON TO YOUR BOATS!\nDUE TO THE FACT THAT MOST OF THE YEAR IS SPENT AT SUB-ZERO TEMPERATURES, THE ANTARCTICAN ONE OF THESE CAN ONLY SERVE SHIPS DURING A PORTION OF THE YEAR.",
+				"answer": "What is a harbor?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": "As an upgrade to the traditional snow cone, this frozen desert is sometimes served on top of a scoop of vanilla ice cream",
+				"answer": "What is shave ice?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "Thinking of being a sled dog racer? the human controlling the team is called one of these, named after the historical French command \"Marche!\", meaning \"go\" or \"run\"",
+				"answer": "What is a musher?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": "While Mt. Everest gets the most fame for being the tallest mountain in the world, this second-highest mountain has a significantly higher mortality rate due to sudden ice pillar collapses",
+				"answer": "What is K2?",
+				"isSinglePlay": false
+			}
+		},
+		"category2": {
+			"categoryName": "Doggy deception",
+			"categoryExplanation": "Images will be of a dog or something that looks similar to a dog\n\nSingle Play category",
+			"question1": {
+				"question": {
+					"type": "image",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1528305826/Jeopardy/chihuahua-or-muffin-by-karen-zack_jd4upw.jpg",
+					"text": "Chihuahua or Muffin?"
+				},
+				"answer": "What is a muffin?",
+				"isSinglePlay": true
+			},
+			"question2": {
+				"question": {
+					"type": "image",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1528306357/Jeopardy/puppy-or-bagel-by-karen-zack_hd7aus.jpg",
+					"text": "dachshund or Bagel?"
+				},
+				"answer": "What is Bagel?",
+				"isSinglePlay": true
+			},
+			"question3": {
+				"question": {
+					"type": "image",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1528306278/Jeopardy/b145724233aba64b0fdf92c86e5175e5_v58vkw.jpg",
+					"text": "Sheepdog or MoP?"
+				},
+				"answer": "What is sheepdog?",
+				"isSinglePlay": true
+			},
+			"question4": {
+				"question": {
+					"type": "image",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1528306256/Jeopardy/dog-food-comparison-bagel-muffin-lookalike-teenybiscuit-karen-zack-71__700_gazl0q.jpg",
+					"text": "Shar pei or towels?"
+				},
+				"answer": "What is Shar pei?",
+				"isSinglePlay": true
+			},
+			"question5": {
+				"question": {
+					"type": "image",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1528306080/Jeopardy/f541e7bd5744791a1de0615bef8ceb47_bampbt.jpg",
+					"text": "Labradoodle or fried chicken?"
+				},
+				"answer": "What is fried chicken?",
+				"isSinglePlay": true
+			}
+		},
+		"category3": {
+			"categoryName": "GOTTA CRAM",
+			"categoryExplanation": "Category about being squished",
+			"question1": {
+				"question": "It's any condition where things grind to a halt, specifically a traffic jam where cars don't clear an intersection",
+				"answer": "What is gridlock",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": "Every seat at the play is taken; it's SRO, short for this",
+				"answer": "What is standing room only?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": "If the airplane has too many fliers & you have low priority, you accept this status & hope a seat opens up",
+				"answer": "What is standby",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "When freezing this molecule, the way the molecules cram together actually results in an increase in volume",
+				"answer": "What is water?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": {
+					"type": "image",
+					"image": "https://mronline.org/wp-content/uploads/2017/08/overpopulation-myth.jpg",
+					"text": "When you are squished with a large group of other people, It is a common to be phrase to be packed like pilchards, also known as this"
+				},
+				"answer": "What are sardines?",
+				"isSinglePlay": false
+			}
+		},
+		"category4": {
+			"categoryName": " GETTING FROM HERE TO THERE",
+			"categoryExplanation": "A Category about transportation",
+			"question1": {
+				"question": "Put this 8-letter word before \"bike\" to get a bike with extra-powerful brakes & low gear ratios for climbing steep grades",
+				"answer": "What is mountain?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": "BEFORE THIS WAS BUILT, THE ONLY WAY TO GET YOUR VEHICLE ACROSS THE ENGLISH CHANNEL WAS SHIPPING IT BY BOAT OR AIRPLANE",
+				"answer": "What is the English Channel Tunnel",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": "THE MARDI GRAS WAS THE FIRST SHIP LAUNCHED BY THIS CRUISE LINE THAT NOW CARRIES THE MOST GUESTS IN THE INDUSTRY",
+				"answer": "What is Carnival?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "Rather than travelling in space, you bury one of these in the hopes that a future generation will unearth its contents",
+				"answer": "What is a time capsule?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": "This mode of transportation sucks, but by that we mean that it travels at high speeds in a VACUUM chamber to avoid air resistance",
+				"answer": "What is a hyperloop?",
+				"isSinglePlay": false
+			}
+		},
+		"category5": {
+			"categoryName": "NOw UC Me",
+			"categoryExplanation": "A Category about the UC system",
+			"question1": {
+				"question": {
+					"type": "image",
+					"image": "http://ww2.kqed.org/news/wp-content/uploads/sites/10/2012/12/university-of-california-rebrands-itself-with-surfer-charm.jpeg",
+					"text": "When the UC system tried to adopt the logo you see here, it soon earned this infamous NICKNAME based on its appearance "
+				},
+				"answer": "What is the toilet bowl?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": "This uc prides itself on how much it has been able to lower its carbon emissions: and not just because of its small size",
+				"answer": "What is UC Merced?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": {
+					"type": "image",
+					"image": "https://stephenskory.com/wp-content/uploads/2008/10/1016081155a.jpg",
+					"text": "UC San diego has many iconic statues on campus, but the one pictured here represents the university's nickname"
+				},
+				"answer": "What are the Tritons?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "Of the uc's listed here, only this one does not have a medical center\nIrvine\nsanta barbara\nRiverside\nSan Diego",
+				"answer": "What is Santa Barbara?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": "RATHER THAN being some sort of police force, ucop stands for this administrative body under the board of regents",
+				"answer": "What is the University of California Office of the President?",
+				"isSinglePlay": false
+			}
+		},
+		"category6": {
+			"categoryName": "",
+			"categoryExplanation": "",
+			"question1": {
+				"question": "",
+				"answer": "",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": "",
+				"answer": "",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": "",
+				"answer": "",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "",
+				"answer": "",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": "",
+				"answer": "",
+				"isSinglePlay": false
+			}
+		}
+	},
+	"DoubleJeopardy": {
+		"category1": {
+			"categoryName": "Word puzzles",
+			"categoryExplanation": "THere will be words arranged as part of the clue",
+			"question1": {
+				"question": {
+					"type": "image",
+					"image": "http://www.j-archive.com/media/2016-09-22_J_04.jpg",
+					"text": "Before signing a contract, you'd better make sure that you've read this"
+				},
+				"answer": "What is the fine print?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": {
+					"type": "image",
+					"image": "http://www.j-archive.com/media/2016-09-22_J_05.jpg",
+					"text": "Anyone up for this?"
+				},
+				"answer": "What is a round of golf?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": {
+					"type": "image",
+					"image": "http://www.j-archive.com/media/2016-09-22_J_06.jpg",
+					"text": "Just let it go--it's time to do this"
+				},
+				"answer": "What is forgive and forget?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": {
+					"type": "image",
+					"image": "http://www.j-archive.com/media/2016-09-22_J_07.jpg",
+					"text": "quickly! Toss out a life preserver--we have a this situation"
+				},
+				"answer": "What is a man overboard?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": {
+					"type": "image",
+					"image": "http://www.j-archive.com/media/2016-09-22_J_08.jpg",
+					"text": "I'm sorry that you are this; hopefully something will come along"
+				},
+				"answer": "What is in between jobs?",
+				"isSinglePlay": false
+			}
+		},
+		"category2": {
+			"categoryName": "in your face",
+			"categoryExplanation": "",
+			"question1": {
+				"question": "It is delicious to stuff one of these in your face, but take away an \"s\" and suddenly you are in an arid place!",
+				"answer": "What is a dessert?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": "Strap in! you'll be the king of fashion putting on this Orthodontic appliance",
+				"answer": "What is headgear?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": "While i find this wasteful, in some traditions sticking your face in one of these is common on your birthday",
+				"answer": "What is a cake?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "commonly referred to as \"that dangly thing at the back of your throat\", this tissue has a function in both digestion and communication",
+				"answer": "What is uvula?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": "want to combine both swimming and eating? try this autumn activity where you get a face full of water and fruit!",
+				"answer": "What is bobbing for apples?",
+				"isSinglePlay": false
+			}
+		},
+		"category3": {
+			"categoryName": "Henry's favorite things",
+			"categoryExplanation": "",
+			"question1": {
+				"question": "The color of this background",
+				"answer": "What is blue?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": {
+					"type": "image",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1535406428/Jeopardy/IMG_1670_udfjzj.jpg",
+					"text": "This sleepy face"
+				},
+				"answer": "Who is Wenga?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": "Basically, It's like sand that we stuck lightning inside of to make it think",
+				"answer": "What is a computer?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "It is like taking a train and hurling it through the air at up to 600mph",
+				"answer": "What is an airplane?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": {
+					"type": "image",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1535406688/Jeopardy/IMG_1703_csjcnd.jpg",
+					"text": "These wacky people"
+				},
+				"answer": "What is Henry's family?",
+				"isSinglePlay": false
+			}
+		},
+		"category4": {
+			"categoryName": "Hamilton history",
+			"categoryExplanation": "",
+			"question1": {
+				"question": {
+					"type": "video",
+					"URL": "https://www.youtube.com/embed/LctKv-F_RkE?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=96&end=116",
+					"VID": "LctKv-F_RkE",
+					"start": "1:36",
+					"end": "1:56"
+				},
+				"answer": "Who is Aaron Burr?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": {
+					"type": "video",
+					"URL": "https://www.youtube.com/embed/LctKv-F_RkE?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=72&end=90",
+					"VID": "LctKv-F_RkE",
+					"start": "1:12",
+					"end": "1:30"
+				},
+				"answer": "What is France?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": {
+					"type": "video",
+					"URL": "https://www.youtube.com/embed/LctKv-F_RkE?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=48&end=68",
+					"VID": "LctKv-F_RkE",
+					"start": "0:48",
+					"end": "1:08"
+				},
+				"answer": "Who is King George the Third?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": {
+					"type": "video",
+					"URL": "https://www.youtube.com/embed/LctKv-F_RkE?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=32&end=43",
+					"VID": "LctKv-F_RkE",
+					"start": "0:32",
+					"end": "0:43"
+				},
+				"answer": "What is the treasury?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": {
+					"type": "video",
+					"URL": "https://www.youtube.com/embed/LctKv-F_RkE?autoplay=1&disablekb=1&iv_load_policy=3&modestbranding=1&controls=0&showinfo=0&rel=0&start=18&end=27",
+					"VID": "LctKv-F_RkE",
+					"start": "0:18",
+					"end": "0:27"
+				},
+				"answer": "What is Yorktown?",
+				"isSinglePlay": false
+			}
+		},
+		"category5": {
+			"categoryName": "technology museum",
+			"categoryExplanation": "Technology that is no longer used",
+			"question1": {
+				"question": "better hope that no-one is using the landline! This 1980s technology was the first ENTRY-POINT for many to connect to the early internet ",
+				"answer": "What is dial-up?",
+				"isSinglePlay": false
+			},
+			"question2": {
+				"question": "one of the first ones of these, called \"Lazy Bones\", was created in the 1950's and had a physical wire that activated a motor connected to the tuner",
+				"answer": "What is a TV remote?",
+				"isSinglePlay": false
+			},
+			"question3": {
+				"question": "In the 1970s, the 4004 CPU microprocessor from this company was the first commercially available microprocessor.",
+				"answer": "What is Intel?",
+				"isSinglePlay": false
+			},
+			"question4": {
+				"question": "This 1960s technology is used in a variety of devices such as optical disk drives, printers, barcode scanners, DNA sequencing instruments, fiber-optic and free-space optical communication, surgery, and pointing at the board",
+				"answer": "What are lasers?",
+				"isSinglePlay": false
+			},
+			"question5": {
+				"question": "This outdated video format became popular in the 1990s for its increased quality. The disks weighed half a pound and looked like a cross between records and DVDs",
+				"answer": "What is a laserdisk?",
+				"isSinglePlay": false
+			}
+		},
+		"category6": {
+			"categoryName": "",
+			"categoryExplanation": "",
+			"question1": {
+				"isSinglePlay": false,
+				"question": "",
+				"answer": ""
+			},
+			"question2": {
+				"isSinglePlay": false,
+				"question": "",
+				"answer": ""
+			},
+			"question3": {
+				"isSinglePlay": false,
+				"question": "",
+				"answer": ""
+			},
+			"question4": {
+				"isSinglePlay": false,
+				"question": "",
+				"answer": ""
+			},
+			"question5": {
+				"isSinglePlay": false,
+				"question": "",
+				"answer": ""
+			}
+		}
+	},
+	"FinalJeopardy": {
+		"category": "Still alive",
+		"question": {
+			"type": "image",
+			"image": "https://media1.s-nbcnews.com/i/newscms/2017_24/1220745/jimmy-carter-today-tease-170612_4058a45ba1e4542546c6e0d321ef3bf6.jpg",
+			"text": "THis politician ORIGINALLY grew up in subsidized housing and initially sought to expand his family's peanut growing business.\n\n\nHis most famous achievement is organizing the camp david accords, and he is the oldest surviving former president."
+		},
+		"answer": "Who is Jimmy Carter?"
+	},
+	"lastSave": "Wed, 06 Jun 2018 21:51:58 GMT"
+}

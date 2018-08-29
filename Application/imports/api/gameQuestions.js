@@ -63,6 +63,7 @@ Meteor.methods({
 					pickDailyDouble("double1");
 					pickDailyDouble("double2");
 				}
+				// noinspection JSAnnotator
 				function pickRandomProperty(obj) {
 					let result;
 					let count = 0;
@@ -74,6 +75,7 @@ Meteor.methods({
 					return result;
 				}
 				
+				// noinspection JSAnnotator
 				function pickDailyDouble(name) {
 					const dailyDouble = gameQuestions.find().fetch()[0]["dailyDouble"];
 					let done = false;
@@ -88,6 +90,7 @@ Meteor.methods({
 							};
 							let duplicate = false;
 							
+							// noinspection JSAnnotator
 							function isEqual(name, category, question) {
 								if (dailyDouble[name]['category'] == category && dailyDouble[name]['question'] == question) {
 									duplicate = true;

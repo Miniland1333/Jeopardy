@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
 
-import GameLi from "./GameLi";
+import GameLi from "../Editor/GameLi";
 import deepEqual from "deep-equal";
 
 

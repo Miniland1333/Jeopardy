@@ -4,49 +4,17 @@ import DocumentTitle from "react-document-title";
 import {Meteor} from "meteor/meteor";
 
 import {gameDatabase} from "../../api/gameDatabase";
+import {editorDatabase} from "../../api/editorDatabase";
 import EditorHeader from "./EditorHeader";
-import EditorTable from "./EditorTable";
+import EditorTable from "../Editor/EditorTable";
+import Ping from "../Ping";
 import refresh from "./../refresh";
-import '../bootstrap.css';
-import "jquery-confirm"
-import "../jquery-confirm.css"
 
 class StudentEditor extends React.Component {
-	constructor(props) {
-		super(props);
-		//initializes editorDatabase
-		const categoryTemplate = {
-			categoryName: "",
-			categoryExplanation: "",
-		};
-		for (let i = 1; i <= 5; i++) {
-			categoryTemplate["question" + i] = {
-				isSinglePlay: false,
-				question: "",
-				answer: "",
-			};
-		}
-
-		const gameTemplate = {};
-		for (let j = 1; j <= 6; j++) {
-			gameTemplate["category" + j] = categoryTemplate;
-		}
-		this.state = {
-			editorDatabase: {
-				name: "",
-				Jeopardy: gameTemplate,
-				DoubleJeopardy: gameTemplate,
-				FinalJeopardy: {
-					category: "",
-					question: "",
-					answer: "",
-				},
-			},
-			round: "Single",
-			username: "",
-		}
-
-	}
+	state = {
+		round: "Single",
+		name: "",
+	};
 
 	handleRoundChange = (round) => {
 		this.setState({round: round});
@@ -54,6 +22,17 @@ class StudentEditor extends React.Component {
 
 	componentDidMount() {
 		refresh();
+	}
+
+	componentDidUpdate() {
+		if (this.props.isReady && !this.state.name) {
+			let name = "hg";
+			do {
+				name = prompt("Enter editor username");
+			} while (!name);
+			this.setState({name: name.trim()});
+			Meteor.call('editorDatabase.studentEditor', name);
+		}
 	}
 
 	render() {
@@ -65,12 +44,16 @@ class StudentEditor extends React.Component {
 							<EditorHeader
 								onRoundChange={this.handleRoundChange}
 								gameList={this.props.gameDatabase}
-								editorDatabase={[this.state.editorDatabase]}
-								dbReady={this.props.isReady}/>
+								editorDatabase={this.props.editorDatabase}
+								dbReady={this.props.isReady}
+								student={this.state.name}
+							/>
 							<EditorTable
 								round={this.state.round}
-								editorDatabase={[this.state.editorDatabase]}
+								editorDatabase={this.props.editorDatabase}
+								student={this.state.name}
 							/>
+							<Ping name={"Editor " + (this.state.name || Math.round(Math.random() * 1000))}/>
 						</div> : <div/>
 					}
 				</div>
@@ -80,17 +63,13 @@ class StudentEditor extends React.Component {
 }
 
 
-export default withTracker(
-	() => {
-		const
-			handle1 = Meteor.subscribe('gameDatabase');
-		return {
-			isReady: handle1.ready
-			(),
-			gameDatabase: gameDatabase.find
-			().fetch()
-
-			,
-		};
-	})
-(StudentEditor);
+export default withTracker(() => {
+	const handle1 = Meteor.subscribe('gameDatabase');
+	const handle2 = Meteor.subscribe('editorDatabase');
+	return {
+		isReady: handle1.ready() && handle2.ready(),
+		editorDatabase: editorDatabase.find().fetch(),
+		gameDatabase: gameDatabase.find().fetch(),
+		connectionId: Meteor.connection._lastSessionId,
+	};
+})(StudentEditor);
