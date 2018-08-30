@@ -8,7 +8,6 @@ import "./cloudinary-jquery-file-upload";
 const medium = "2vmin";
 
 
-
 export default class EditModal extends React.Component {
 	static defaultProps = {
 		roundName: "",
@@ -183,7 +182,8 @@ export default class EditModal extends React.Component {
 				this.props.roundName,
 				this.props.key1,
 				$("#category").val(),
-				$("#categoryExplanation").val());
+				$("#categoryExplanation").val(),
+				this.props.student);
 		}
 		else {
 			const question = $("#question");
@@ -197,7 +197,8 @@ export default class EditModal extends React.Component {
 						this.props.key2,
 						question.val(),
 						answer.val(),
-						this.state.isSinglePlay);
+						this.state.isSinglePlay,
+						this.props.student);
 					break;
 				case "image":
 					let image = $("#imageURL").val();
@@ -213,7 +214,8 @@ export default class EditModal extends React.Component {
 							this.props.key2,
 							bundle,
 							answer.val(),
-							this.state.isSinglePlay);
+							this.state.isSinglePlay,
+							this.props.student);
 					}
 					else {
 						Meteor.call('editorDatabase.updateQuestion',
@@ -222,7 +224,8 @@ export default class EditModal extends React.Component {
 							this.props.key2,
 							"",
 							"",
-							false);
+							false,
+							this.props.student);
 					}
 					break;
 				case "video":
@@ -241,7 +244,8 @@ export default class EditModal extends React.Component {
 							this.props.key2,
 							bundle,
 							answer.val(),
-							this.state.isSinglePlay);
+							this.state.isSinglePlay,
+							this.props.student);
 						break;
 					}
 					else {
@@ -251,7 +255,8 @@ export default class EditModal extends React.Component {
 							this.props.key2,
 							"",
 							"",
-							false);
+							false,
+							this.props.student);
 					}
 					break;
 			}
@@ -298,9 +303,11 @@ export default class EditModal extends React.Component {
 			return <div className="flex-container" style={verticalFlexStyle}><h1>Category Name</h1>
 				<input id="category" defaultValue={this.props.categoryName} placeholder="Category Name"
 				       spellCheck="true" style={headerStyle}/>
-				<div style={{height:10}}/>
-				{this.props.roundName!=="FinalJeopardy"?<textarea id="categoryExplanation" defaultValue={this.props.categoryExplanation} placeholder="Optional Category Explanation"
-				       spellCheck="true" style={headerStyle}/>:null}</div>
+				<div style={{height: 10}}/>
+				{this.props.roundName !== "FinalJeopardy" ?
+					<textarea id="categoryExplanation" defaultValue={this.props.categoryExplanation}
+					          placeholder="Optional Category Explanation"
+					          spellCheck="true" style={headerStyle}/> : null}</div>
 		}
 		let questionContent;
 		switch (this.state.questionType) {
@@ -311,9 +318,20 @@ export default class EditModal extends React.Component {
 			case "image":
 				questionContent = <div className="flex-container">
 					<div className="flex-container"
-					     style={{maxWidth: 200, background: "#f2f3ea", flexDirection: "column", borderRight:"4px solid white"}}>
+					     style={{
+						     maxWidth: 200,
+						     background: "#f2f3ea",
+						     flexDirection: "column",
+						     borderRight: "4px solid white"
+					     }}>
 						<div className="flex-container"
-						     style={{maxHeight: 100, maxWidth: 200, justifyContent: "center", flex: 1, backgroundColor:"#060ce9"}}>
+						     style={{
+							     maxHeight: 100,
+							     maxWidth: 200,
+							     justifyContent: "center",
+							     flex: 1,
+							     backgroundColor: "#060ce9"
+						     }}>
 							{!this.state.imageURL || !this.state.imageURL.includes(".mp4") ?
 								<img id="imageView" src={this.state.imageURL}
 								     style={{maxHeight: 100, maxWidth: 200,}}/> :
@@ -332,7 +350,7 @@ export default class EditModal extends React.Component {
 									       questionText: $("#question").val()
 								       });
 							       }}/>
-						<div style={{border:"1px solid black"}}/>
+						<div style={{border: "1px solid black"}}/>
 						<input name="file" type="file" id="cloudinary-fileupload" accept="image/*,video/mp4"
 						       title="Upload a file"
 						       data-cloudinary-field="imageURL"
@@ -356,8 +374,8 @@ export default class EditModal extends React.Component {
 			case "video":
 				questionContent = <div className="flex-container"
 				                       style={{maxWidth: "100%", maxHeight: 120, background: "#f2f3ea", flexGrow: 1}}>
-					<iframe id="videoView" width="213" height="120" src={this.props.question.URL}  allow="autoplay;"
-					        style={{flex: 0, border: "none", background: "black"}} />
+					<iframe id="videoView" width="213" height="120" src={this.props.question.URL} allow="autoplay;"
+					        style={{flex: 0, border: "none", background: "black"}}/>
 					<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
 						<div className="flex-container" style={{flex: 1}}>
 							<div style={{width: 80}}>Video URL</div>

@@ -18,14 +18,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'editorDatabase.init'(name) {
-		const editorDB = editorDatabase.find().fetch()[0];
-		let student = editorDB && editorDB.student ? editorDB.student : {};
-
-		if (!name) {
-			editorDatabase.remove({});
-		}
-
+	'editorDatabase.reset'() {
+		editorDatabase.remove({});
+	},
+	'editorDatabase.init'(username = "mainEditor") {
+		// console.log(username);
 
 		//initializes editorDatabase
 		const categoryTemplate = {
@@ -45,65 +42,63 @@ Meteor.methods({
 			gameTemplate["category" + j] = categoryTemplate;
 		}
 
-		if (!name) {
-			editorDatabase.insert({
-				name: "",
-				Jeopardy: gameTemplate,
-				DoubleJeopardy: gameTemplate,
-				FinalJeopardy: {
-					category: "",
-					question: "",
-					answer: "",
-				},
-				student: student || {},
-			});
-		}
-		else {
-			student[name] = {
-				name: "",
-				Jeopardy: gameTemplate,
-				DoubleJeopardy: gameTemplate,
-				FinalJeopardy: {
-					category: "",
-					question: "",
-					answer: "",
-				},
-			};
-			editorDatabase.update({}, {$set: {student: student}}, {upsert: true});
-		}
+		if (!editorDatabase.find({username: username}).fetch().length)
+			editorDatabase.update({username: username}, {
+				$set: {
+					username: username,
+					name: "",
+					Jeopardy: gameTemplate,
+					DoubleJeopardy: gameTemplate,
+					FinalJeopardy: {
+						category: "",
+						question: "",
+						answer: "",
+					},
+				}
+			}, {upsert: true});
 	},
-	'editorDatabase.load'(game) {
-		editorDatabase.remove({});
-		editorDatabase.insert({
+	'editorDatabase.load'(game, username = "mainEditor") {
+		let bundle = {
+			username: username,
 			name: game.name,
 			Jeopardy: game.Jeopardy,
 			DoubleJeopardy: game.DoubleJeopardy,
 			FinalJeopardy: game.FinalJeopardy,
 			lastSave: game.savedOn,
-		});
-	},
-	'editorDatabase.updateName'(name) {
+		};
+		editorDatabase.update({username: username}, {$set: bundle}, {upsert: true});
+	}
+	,
+	'editorDatabase.updateName'(name, username = "mainEditor") {
 		check(name, String);
-		editorDatabase.update({}, {$set: {name: name}});
-	},
-	'editorDatabase.updateCategory'(round, identifier, name, categoryExplanation) {
+		editorDatabase.update({username: username}, {$set: {name: name}});
+	}
+	,
+	'editorDatabase.updateCategory'(round, identifier, name, categoryExplanation, username = "mainEditor") {
 		//check if finalJ
+		console.log(round, identifier, name, categoryExplanation, username);
 		if (round === "FinalJeopardy") {
-			editorDatabase.update({}, {$set: {"FinalJeopardy.category": name}});
+			editorDatabase.update({username: username}, {$set: {"FinalJeopardy.category": name}});
 		}
 		else {
 			const bundle = {};
 			bundle[round + "." + identifier + ".categoryName"] = name;
 			bundle[round + "." + identifier + ".categoryExplanation"] = categoryExplanation;
-			editorDatabase.update({}, {$set: bundle});
+			editorDatabase.update({username: username}, {$set: bundle});
 		}
 		//console.log(editorDatabase.find().fetch());
 
-	},
-	'editorDatabase.updateQuestion'(round, identifier1, identifier2, question, answer, isSinglePlay) {
+	}
+	,
+	'editorDatabase.updateQuestion'(round, identifier1, identifier2, question, answer, isSinglePlay, username = "mainEditor") {
 		//check if finalJ
 		if (round == "FinalJeopardy") {
-			editorDatabase.update({}, {$set: {"FinalJeopardy.question": question, "FinalJeopardy.answer": answer}});
+			editorDatabase.update({username: username}, {
+				$set: {
+					"FinalJeopardy.question": question,
+					"FinalJeopardy.answer": answer
+				}
+			});
 		}
 		else {
 			const minibundle = {
@@ -114,15 +109,15 @@ Meteor.methods({
 			const bundle = {};
 			bundle[round + "." + identifier1 + "." + identifier2] = minibundle;
 
-			editorDatabase.update({}, {$set: bundle});
+			editorDatabase.update({username: username}, {$set: bundle});
 		}
-	},
-	'editorDatabase.studentEditor'(name) {
-		const editorDB = editorDatabase.find().fetch()[0];
-		if (!editorDB.student || !editorDB.student[name]) {
-			Meteor.call('editorDatabase.init', name);
-		}
-
-		// editorDatabase.update({}, {$set: {student: bundle}}, {upsert: true});
 	}
-});
+	,
+	'editorDatabase.studentEditor'(username = "mainEditor") {
+		const editorDB = editorDatabase.find({id: username}).fetch()[0];
+		if (!editorDB) {
+			Meteor.call('editorDatabase.init', username);
+		}
+	}
+})
+;

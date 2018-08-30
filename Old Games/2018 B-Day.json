@@ -1,5 +1,5 @@
 {
-	"_id": "bRtGkDHeYcLet92Tb",
+	"_id": "6uNMiALd3rcKmv2oK",
 	"name": "2018 B-Day",
 	"Jeopardy": {
 		"category1": {
@@ -216,7 +216,7 @@
 			"question1": {
 				"question": {
 					"type": "image",
-					"image": "http://www.j-archive.com/media/2016-09-22_J_04.jpg",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1535572582/Jeopardy/2016-09-22_J_04_skzptq.jpg",
 					"text": "Before signing a contract, you'd better make sure that you've read this"
 				},
 				"answer": "What is the fine print?",
@@ -225,7 +225,7 @@
 			"question2": {
 				"question": {
 					"type": "image",
-					"image": "http://www.j-archive.com/media/2016-09-22_J_05.jpg",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1535572614/Jeopardy/2016-09-22_J_05_nslnlc.jpg",
 					"text": "Anyone up for this?"
 				},
 				"answer": "What is a round of golf?",
@@ -234,7 +234,7 @@
 			"question3": {
 				"question": {
 					"type": "image",
-					"image": "http://www.j-archive.com/media/2016-09-22_J_06.jpg",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1535572631/Jeopardy/2016-09-22_J_06_gc8cau.jpg",
 					"text": "Just let it go--it's time to do this"
 				},
 				"answer": "What is forgive and forget?",
@@ -243,7 +243,7 @@
 			"question4": {
 				"question": {
 					"type": "image",
-					"image": "http://www.j-archive.com/media/2016-09-22_J_07.jpg",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1535572651/Jeopardy/2016-09-22_J_07_omfoe4.jpg",
 					"text": "quickly! Toss out a life preserver--we have a this situation"
 				},
 				"answer": "What is a man overboard?",
@@ -252,7 +252,7 @@
 			"question5": {
 				"question": {
 					"type": "image",
-					"image": "http://www.j-archive.com/media/2016-09-22_J_08.jpg",
+					"image": "https://res.cloudinary.com/hiqjgs7wz/image/upload/v1535572662/Jeopardy/2016-09-22_J_08_kzexm4.jpg",
 					"text": "I'm sorry that you are this; hopefully something will come along"
 				},
 				"answer": "What is in between jobs?",
@@ -452,5 +452,366 @@
 		},
 		"answer": "Who is Jimmy Carter?"
 	},
-	"lastSave": "Wed, 06 Jun 2018 21:51:58 GMT"
+	"student": {
+		"hagnew": {
+			"name": "",
+			"Jeopardy": {
+				"category1": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category2": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category3": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category4": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category5": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category6": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				}
+			},
+			"DoubleJeopardy": {
+				"category1": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category2": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category3": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category4": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category5": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				},
+				"category6": {
+					"categoryName": "",
+					"categoryExplanation": "",
+					"question1": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question2": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question3": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question4": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					},
+					"question5": {
+						"isSinglePlay": false,
+						"question": "",
+						"answer": ""
+					}
+				}
+			},
+			"FinalJeopardy": {
+				"category": "",
+				"question": "",
+				"answer": ""
+			}
+		}
+	}
 }

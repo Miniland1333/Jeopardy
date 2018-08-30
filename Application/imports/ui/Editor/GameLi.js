@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import {Meteor} from "meteor/meteor";
+import CategoryHeader from "./CategoryHeader";
 
 
 const cursorStyle = {
@@ -10,17 +11,18 @@ const cursorStyle = {
 export default class GameLi extends React.Component {
 	static propTypes = {
 		game: PropTypes.object.isRequired,
+		student: PropTypes.string,
 	};
 	
 	handleDelete = () => {
 		if (confirm("This will delete " + this.props.game.name + ".\n Are you sure?")) {
-			Meteor.call('gameDatabase.remove', this.props.game.name);
+			Meteor.call('gameDatabase.remove', this.props.game.name, this.props.student);
 		}
 	};
 	
 	handleLoad = () => {
 		if (!this.props.checkDifference() || confirm("This will delete all unsaved work. Continue?")) {
-			Meteor.call('editorDatabase.load', this.props.game);
+			Meteor.call('editorDatabase.load', this.props.game, this.props.student);
 			$("#myDropdown").slideUp();
 		}
 	};

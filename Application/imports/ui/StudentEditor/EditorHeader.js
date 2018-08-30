@@ -4,23 +4,25 @@ import {Meteor} from "meteor/meteor";
 
 import GameLi from "../Editor/GameLi";
 import deepEqual from "deep-equal";
+import CategoryHeader from "../Editor/CategoryHeader";
 
 
 export default class EditorHeader extends React.Component {
 	static propTypes = {
 		gameList: PropTypes.array.isRequired,
-		editorDatabase: PropTypes.array.isRequired,
+		editorDatabase: PropTypes.object.isRequired,
 		dbReady: PropTypes.bool.isRequired,
 		onRoundChange: PropTypes.func.isRequired,
+		student: PropTypes.string.isRequired,
 	};
 
 	onUserInput = (name) => {
-		Meteor.call('editorDatabase.updateName', name.target.value);
+		Meteor.call('editorDatabase.updateName', name.target.value, this.props.student);
 	};
 
 	handleNew = () => {
 		if (!this.checkDifference() || confirm("This will delete all unsaved work. Continue?")) {
-			Meteor.call('editorDatabase.init');
+			Meteor.call('editorDatabase.init', this.props.student);
 			$("#myDropdown").slideUp();
 		}
 	};
@@ -30,11 +32,11 @@ export default class EditorHeader extends React.Component {
 	};
 
 	handleSave = () => {
-		if (this.props.editorDatabase[0].name.trim() == "") {
+		if (this.props.editorDatabase.name.trim() == "") {
 			alert("Name field cannot be empty!");
 		}
 		else if (confirm("This will overwrite any game with the same name.\nEmpty Columns will be ignored\nContinue?")) {
-			Meteor.call('gameDatabase.save', this.props.editorDatabase[0]);
+			Meteor.call('gameDatabase.save', this.props.editorDatabase, this.props.student);
 		}
 	};
 
@@ -54,7 +56,7 @@ export default class EditorHeader extends React.Component {
 				let textFromFileLoaded = fileLoadedEvent.target.result;
 				try {
 					textFromFileLoaded = JSON.parse(textFromFileLoaded);
-					Meteor.call('editorDatabase.load', textFromFileLoaded);
+					Meteor.call('editorDatabase.load', textFromFileLoaded, this.props.student);
 				} catch (err) {
 					alert("Invalid File!");
 				}
@@ -69,10 +71,10 @@ export default class EditorHeader extends React.Component {
 	};
 
 	handleExport = () => {
-		const textToSave = JSON.stringify(this.props.editorDatabase[0], null, "\t");
+		const textToSave = JSON.stringify(this.props.editorDatabase, null, "\t");
 		const textToSaveAsBlob = new Blob([textToSave], {type: "application/json"});
 		const textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-		const fileNameToSaveAs = this.props.editorDatabase[0].name.trim() + '.json';
+		const fileNameToSaveAs = this.props.editorDatabase.name.trim() + '.json';
 
 		const downloadLink = document.createElement("a");
 		downloadLink.download = fileNameToSaveAs;
@@ -93,9 +95,17 @@ export default class EditorHeader extends React.Component {
 
 	renderDropdown = () => {
 		const self = this;
-		return ($.map(this.props.gameList, function (game) {
-			return (<GameLi key={game.name} game={game} checkDifference={() => self.checkDifference()}/>)
-		}))
+		const dropdown = [<li key="username" style={{
+			position: "relative",
+			listStyle: "none",
+			padding: 15,
+			borderBottom: "#eee solid 1px",}}>
+			<span className="text">User: {this.props.student}</span>
+		</li>];
+		return dropdown.concat($.map(this.props.gameList, function (game) {
+			return (<GameLi key={game.name} game={game} checkDifference={() => self.checkDifference()}
+			                student={self.props.student}/>)
+		}));
 	};
 
 	refresh = () => {
@@ -114,18 +124,16 @@ export default class EditorHeader extends React.Component {
 	};
 
 	renderInput = () => {
-		return this.props.editorDatabase.map(thing =>
-			<input
-				spellCheck="true"
-				key="input"
-				type="text"
-				placeholder="Type the Game name here"
-				style={inputStyle}
-				onChange={this.onUserInput}
-				value={thing.name}
-				onBlur={this.refresh}
-			/>
-		);
+		return <input
+			spellCheck="true"
+			key="input"
+			type="text"
+			placeholder="Type the Game name here"
+			style={inputStyle}
+			onChange={this.onUserInput}
+			value={this.props.editorDatabase.name}
+			onBlur={this.refresh}
+		/>;
 	};
 
 	render() {
@@ -181,7 +189,7 @@ export default class EditorHeader extends React.Component {
 	}
 
 	checkDifference() {
-		const editorDatabase = this.props.editorDatabase[0];
+		const editorDatabase = this.props.editorDatabase;
 		const saved = this.props.gameList.find((game) => game.name === editorDatabase.name);
 
 		return !(saved

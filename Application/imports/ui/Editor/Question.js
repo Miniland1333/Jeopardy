@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import EditModal from "./EditModal";
+import CategoryHeader from "./CategoryHeader";
 
 
 const divStyle = {
@@ -59,7 +60,7 @@ export default class Question extends React.Component {
 					answer={this.props.cell.answer}
 					isSinglePlay={this.props.cell.isSinglePlay}
 					isHeader={false}
-					handleClose={this.handleClose}
+					handleClose={this.handleClose} student={this.props.student}
 				/>)
 		}
 		else {

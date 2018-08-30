@@ -36,6 +36,7 @@ export default class CategoryHeader extends React.Component {
 					key1={this.props.key1}
 					isHeader={true}
 					handleClose={this.handleClose}
+					student = {this.props.student}
 				/> : []}
 		</div>)
 	}

@@ -9,11 +9,12 @@ import EditorHeader from "./EditorHeader";
 import EditorTable from "../Editor/EditorTable";
 import Ping from "../Ping";
 import refresh from "./../refresh";
+import deepEqual from "deep-equal";
 
 class StudentEditor extends React.Component {
 	state = {
 		round: "Single",
-		name: "",
+		name: "hagnew",
 	};
 
 	handleRoundChange = (round) => {
@@ -29,28 +30,44 @@ class StudentEditor extends React.Component {
 			let name = "hg";
 			do {
 				name = prompt("Enter editor username");
+				if (name === "mainEditor") {
+					alert("That name is not allowed");
+					name = "";
+				}
 			} while (!name);
 			this.setState({name: name.trim()});
 			Meteor.call('editorDatabase.studentEditor', name);
+			this.setState({old: editorDatabase.find({username: name}).fetch()[0]});
 		}
 	}
+
+/*	shouldComponentUpdate(nextProps, nextState) {
+		return this.state !== nextState ||
+			this.props.isReady !== nextProps.isReady ||
+			!deepEqual(this.props.gameDatabase, nextProps.gameDatabase) ||
+			!deepEqual(this.state.old, editorDatabase.find({username: this.state.name}).fetch()[0]);
+	}
+
+	static getDerivedStateFromProps(state) {
+		return {old: editorDatabase.find({username: state.name}).fetch()[0]};
+	}*/
 
 	render() {
 		return (
 			<DocumentTitle title='Jeopardy Editor'>
 				<div className="Main">
-					{this.props.isReady ?
+					{this.props.isReady && this.state.name ?
 						<div className="flex-container" style={{flexDirection: "column", flex: 1}}>
 							<EditorHeader
 								onRoundChange={this.handleRoundChange}
-								gameList={this.props.gameDatabase}
-								editorDatabase={this.props.editorDatabase}
+								gameList={gameDatabase.find({username: this.state.name}).fetch()}
+								editorDatabase={editorDatabase.find({username: this.state.name}).fetch()[0]}
 								dbReady={this.props.isReady}
 								student={this.state.name}
 							/>
 							<EditorTable
 								round={this.state.round}
-								editorDatabase={this.props.editorDatabase}
+								editorDatabase={editorDatabase.find({username: this.state.name}).fetch()[0]}
 								student={this.state.name}
 							/>
 							<Ping name={"Editor " + (this.state.name || Math.round(Math.random() * 1000))}/>

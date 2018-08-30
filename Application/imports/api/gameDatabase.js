@@ -17,22 +17,26 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'gameDatabase.save'(game){
+	'gameDatabase.save'(game, username) {
 		//saves game from editorDatabase
 		const d = new Date();
-		gameDatabase.remove({name: game.name});
-		gameDatabase.insert({
-			name: game.name,
-			Jeopardy: game.Jeopardy,
-			DoubleJeopardy: game.DoubleJeopardy,
-			FinalJeopardy: game.FinalJeopardy,
-			savedOn: d.toUTCString(),
-		});
+		gameDatabase.update({username: username, name: game.name}, {
+			$set: {
+				username: username,
+				name: game.name,
+				Jeopardy: game.Jeopardy,
+				DoubleJeopardy: game.DoubleJeopardy,
+				FinalJeopardy: game.FinalJeopardy,
+				savedOn: d.toUTCString(),
+			}
+		}, {upsert: true});
 		console.log("Saved " + game.name + "!");
 	},
-	'gameDatabase.remove'(gameName){
+	'gameDatabase.remove'(gameName, username) {
 		//saves game from editorDatabase
-		gameDatabase.remove({name: gameName});
+		gameDatabase.remove({username: username, name: gameName});
+	},
+	'gameDatabase.upgrade'() {
+		gameDatabase.update({username: {$exists: false}}, {$set: {username: "mainEditor"}});
 	}
-	
 });
