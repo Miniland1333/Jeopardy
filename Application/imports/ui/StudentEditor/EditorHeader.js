@@ -4,7 +4,6 @@ import {Meteor} from "meteor/meteor";
 
 import GameLi from "../Editor/GameLi";
 import deepEqual from "deep-equal";
-import CategoryHeader from "../Editor/CategoryHeader";
 
 
 export default class EditorHeader extends React.Component {

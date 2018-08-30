@@ -17,8 +17,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'gameDatabase.save'(game, username) {
+	'gameDatabase.save'(game, username = "mainEditor") {
 		//saves game from editorDatabase
+		Meteor.call('gameDatabase.upgrade');
 		const d = new Date();
 		gameDatabase.update({username: username, name: game.name}, {
 			$set: {
@@ -30,11 +31,16 @@ Meteor.methods({
 				savedOn: d.toUTCString(),
 			}
 		}, {upsert: true});
-		console.log("Saved " + game.name + "!");
+		console.log("Saved " + game.name + " by " + username + "!");
 	},
-	'gameDatabase.remove'(gameName, username) {
+	'gameDatabase.remove'(gameName, username = "mainEditor") {
 		//saves game from editorDatabase
-		gameDatabase.remove({username: username, name: gameName});
+		if ("mainEditor" !== username)
+			gameDatabase.remove({username: username, name: gameName});
+		else {
+			gameDatabase.remove({username: {$exists: false}, name: gameName});
+			gameDatabase.remove({username: "mainEditor", name: gameName});
+		}
 	},
 	'gameDatabase.upgrade'() {
 		gameDatabase.update({username: {$exists: false}}, {$set: {username: "mainEditor"}});

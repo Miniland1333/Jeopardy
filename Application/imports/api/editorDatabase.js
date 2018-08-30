@@ -76,7 +76,6 @@ Meteor.methods({
 	,
 	'editorDatabase.updateCategory'(round, identifier, name, categoryExplanation, username = "mainEditor") {
 		//check if finalJ
-		console.log(round, identifier, name, categoryExplanation, username);
 		if (round === "FinalJeopardy") {
 			editorDatabase.update({username: username}, {$set: {"FinalJeopardy.category": name}});
 		}

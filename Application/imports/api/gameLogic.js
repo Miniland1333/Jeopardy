@@ -90,8 +90,8 @@ Meteor.methods({
 		bundle["setupPlayers.player" + teamNumber + ".teamName"] = teamName;
 		gameLogic.update({}, {$set: bundle});
 	},
-	'gameLogic.setGame'(name) {
-		gameLogic.update({}, {$set: {gameName: name}});
+	'gameLogic.setGame'(username, name) {
+		gameLogic.update({}, {$set: {username:username, gameName: name}});
 	},
 	'gameLogic.resetConnections'() {
 		gameLogic.update({}, {$set: {connections: {}}});

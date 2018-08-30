@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 
 import GameLi from "./GameLi";
 import deepEqual from "deep-equal";
+import {gameDatabase} from "../../api/gameDatabase";
 
 
 export default class EditorHeader extends React.Component {
@@ -13,6 +14,8 @@ export default class EditorHeader extends React.Component {
 		dbReady: PropTypes.bool.isRequired,
 		onRoundChange: PropTypes.func.isRequired,
 	};
+
+	state = {username: "mainEditor"};
 
 	onUserInput = (name) => {
 		Meteor.call('editorDatabase.updateName', name.target.value);
@@ -93,16 +96,44 @@ export default class EditorHeader extends React.Component {
 
 	renderDropdown = () => {
 		const self = this;
+		const users = getUsers(self);
+		if (!users.includes(this.state.username)) {
+			this.setState({username: "mainEditor"});
+		}
+
 		const dropdown = [<li key="username" style={{
 			position: "relative",
 			listStyle: "none",
-			padding: 15,
-			borderBottom: "#eee solid 1px",}}>
-			<span className="text">User: {this.props.student}</span>
+			borderBottom: "#eee solid 1px",
+
+		}}>
+			<select onChange={(e) => this.setState({username: e.target.value})} style={{
+				fontSize: "16px",
+				padding: "15px 0",
+				backgroundColor: "goldenrod",
+				width: "100%"
+			}}>
+				{$.map(users, function (username) {
+					return <option value={username}
+					               key={username}>{username === "mainEditor" ? "Default User" : username}'s
+						games</option>
+				})}
+			</select>
 		</li>];
 		return dropdown.concat($.map(this.props.gameList, function (game) {
-			return (<GameLi key={game.name} game={game} checkDifference={() => self.checkDifference()}/>)
+			if (!game.username || game.username === self.state.username)
+				return (<GameLi key={game.name} game={game} student={"mainEditor"} username={self.state.username}
+				                checkDifference={() => self.checkDifference()}/>)
 		}));
+
+		function getUsers(self) {
+			let result = ["mainEditor"];
+			self.props.gameList.forEach(function (game) {
+				if (game.username && !result.includes(game.username))
+					result.push(game.username);
+			});
+			return result;
+		}
 	};
 
 	refresh = () => {
@@ -122,15 +153,15 @@ export default class EditorHeader extends React.Component {
 
 	renderInput = () => {
 		return <input
-				spellCheck="true"
-				key="input"
-				type="text"
-				placeholder="Type the Game name here"
-				style={inputStyle}
-				onChange={this.onUserInput}
-				value={this.props.editorDatabase.name}
-				onBlur={this.refresh}
-			/>;
+			spellCheck="true"
+			key="input"
+			type="text"
+			placeholder="Type the Game name here"
+			style={inputStyle}
+			onChange={this.onUserInput}
+			value={this.props.editorDatabase.name}
+			onBlur={this.refresh}
+		/>;
 	};
 
 	render() {
@@ -187,7 +218,7 @@ export default class EditorHeader extends React.Component {
 
 	checkDifference() {
 		const editorDatabase = this.props.editorDatabase;
-		const saved = this.props.gameList.find((game) => game.name === editorDatabase.name);
+		const saved = this.props.gameList.find((game) => game.name === editorDatabase.name && (!game.username || game.username === "mainEditor"));
 
 		return !(saved
 			&& deepEqual(saved.Jeopardy, editorDatabase.Jeopardy)

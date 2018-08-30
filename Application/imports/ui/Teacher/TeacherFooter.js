@@ -87,7 +87,10 @@ export default class TeacherFooter extends React.Component {
 
 	handleStart = () => {
 		if (this.readyToStart() == "ready") {
-			const game = gameDatabase.find({name: this.props.gameLogic["gameName"]}).fetch()[0];
+			const game = gameDatabase.find({
+				username: this.props.gameLogic["username"],
+				name: this.props.gameLogic["gameName"]
+			}).fetch()[0];
 			Meteor.call('gameQuestions.load', game);
 			Meteor.call('gameLogic.setupPlayers');
 			Meteor.call('gameLogic.advance');
@@ -98,7 +101,7 @@ export default class TeacherFooter extends React.Component {
 		if (this.playerCount() < 2) {
 			return "morePlayers";
 		}
-		else if (this.props.gameLogic["gameName"] != "Please select a game") {
+		else if (this.props.gameLogic["gameName"] !== "Please select a game") {
 			if (this.isValid(this.props.gameLogic["gameName"])) {
 				return "ready";
 			}
@@ -114,7 +117,8 @@ export default class TeacherFooter extends React.Component {
 	isValid = (gameName) => {
 		const game = gameDatabase.find({name: gameName}).fetch()[0];
 		if (!game) {
-			Meteor.call('gameLogic.setGame', "Please select a game");
+			// Meteor.call('gameLogic.setGame', "Please select a game");
+			alert("Unknown error in isValid");
 			return false;
 		}
 		let tempRound;
