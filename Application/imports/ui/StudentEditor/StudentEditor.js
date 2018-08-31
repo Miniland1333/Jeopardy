@@ -14,7 +14,7 @@ import deepEqual from "deep-equal";
 class StudentEditor extends React.Component {
 	state = {
 		round: "Single",
-		name: "hagnew", //TODO: Remove this autologin
+		// name: "hagnew",
 	};
 
 	handleRoundChange = (round) => {

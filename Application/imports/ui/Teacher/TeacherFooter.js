@@ -128,12 +128,11 @@ export default class TeacherFooter extends React.Component {
 		let catCount = 0;
 		for (let c = 1; c <= 6; c++) {
 			//code to remove category name if questions are empty
-			let bundle = {};
 			let currentCategory = tempRound["category" + c];
 			let empty = true;
 			for (let q = 1; q <= 5; q++) {
 				if (typeof currentCategory["question" + q]["question"] === "string") {
-					if (currentCategory["question" + q]["question"].trim() != "") {
+					if (currentCategory["question" + q]["question"].trim()) {
 						empty = false;
 					}
 				}
@@ -151,11 +150,11 @@ export default class TeacherFooter extends React.Component {
 			//only categories with a name are counted
 			currentCategory = tempRound["category" + c];
 			const catName = currentCategory["categoryName"];
-			if (catName.trim() != "") {
+			if (catName.trim()) {
 				catCount++;
 			}
 		}
-		return catCount != 0;
+		return catCount !== 0;
 	};
 
 	playerCount = () => {

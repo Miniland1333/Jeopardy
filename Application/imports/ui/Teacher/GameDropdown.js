@@ -10,44 +10,38 @@ export default class GameDropdown extends React.Component {
 		gameDatabase: PropTypes.array,
 		gameLogic: PropTypes.object,
 	};
-	state = {
-		username: "mainEditor",
-		name: "Please select a game",
-	};
-	componentDidMount(){
+
+	componentDidMount() {
 		this.componentDidUpdate();
 	}
-	componentDidUpdate(){
+
+	componentDidUpdate() {
 		const self = this;
 		const users = this.getUsers();
-		console.log(users, this.state.username);
-		if (!users.includes(this.state.username)) {
-			this.setState({username: "mainEditor", name: "Please select a game"});
+		if (!users.includes(this.props.gameLogic.username)) {
 			Meteor.call('gameLogic.setGame', "mainEditor", "Please select a game");
 		}
-		if (!this.props.gameDatabase.find(function (e) {
-			return (!e.username && self.state.username==="mainEditor") || e.username === self.state.username;
+		else if (!this.props.gameDatabase.find(function (e) {
+			return (!e.username && self.props.gameLogic.username === "mainEditor") || e.username === self.props.gameLogic.username;
 		})) {
-			this.setState({name: "Please select a game"});
-			Meteor.call('gameLogic.setGame', self.state.username, "Please select a game");
-		}}
+			Meteor.call('gameLogic.setGame', self.props.gameLogic.username, "Please select a game");
+		}
+	}
 
 	renderDropdown = () => {
 		const self = this;
 		return ($.map(this.props.gameDatabase, function (game) {
-			if ((!game.username && self.state.username==="mainEditor") || game.username === self.state.username)
+			if ((!game.username && self.props.gameLogic.username === "mainEditor") || game.username === self.props.gameLogic.username)
 				return <option key={game.name}>{game.name}</option>;
 		}))
 	};
 	handleUsername = (e) => {
 		const username = e.target.value;
-		this.setState({username: username});
 		Meteor.call('gameLogic.setGame', username, "Please select a game");
 	};
 	handleGame = (e) => {
 		const gameName = e.target.value;
-		this.setState({gameName: gameName});
-		Meteor.call('gameLogic.setGame', this.state.username, gameName);
+		Meteor.call('gameLogic.setGame', this.props.gameLogic.username, gameName);
 	};
 
 	getUsers = () => {

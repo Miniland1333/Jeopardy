@@ -42,20 +42,20 @@ Meteor.methods({
 			gameTemplate["category" + j] = categoryTemplate;
 		}
 
-		if (!editorDatabase.find({username: username}).fetch().length)
-			editorDatabase.update({username: username}, {
-				$set: {
-					username: username,
-					name: "",
-					Jeopardy: gameTemplate,
-					DoubleJeopardy: gameTemplate,
-					FinalJeopardy: {
-						category: "",
-						question: "",
-						answer: "",
-					},
-				}
-			}, {upsert: true});
+		editorDatabase.update({username: {$exists: false}}, {$set: {username: "mainEditor"}});
+		editorDatabase.update({username: username}, {
+			$set: {
+				username: username,
+				name: "",
+				Jeopardy: gameTemplate,
+				DoubleJeopardy: gameTemplate,
+				FinalJeopardy: {
+					category: "",
+					question: "",
+					answer: "",
+				},
+			}
+		}, {upsert: true});
 	},
 	'editorDatabase.load'(game, username = "mainEditor") {
 		let bundle = {
