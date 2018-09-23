@@ -240,11 +240,12 @@ const modalContentStyle = {
 	alignContent: 'center',
 	justifyContent: 'center',
 	height: 'inherit',
+	textShadow: "none",
 };
 const enabledStyle = {
 	margin: '5px 5px 0 5px',
 	cursor: 'pointer',
-	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+	boxShadow: '8px 8px 8px 0 rgba(0,0,0,0.55)',
 	zIndex: 1,
 	color: 'black',
 	textDecoration: 'none',
@@ -261,7 +262,7 @@ const disabledStyle = {
 	color: "#a5a5a5",
 	margin: '5px 5px 0 5px',
 	cursor: 'not-allowed',
-	boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
+	boxShadow: '8px 8px 8px 0 rgba(0,0,0,0.55)',
 	zIndex: 1,
 	textDecoration: 'none',
 	display: 'block',

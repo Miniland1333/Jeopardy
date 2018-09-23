@@ -252,6 +252,7 @@ export default class ScoreBoard extends React.Component {
 					border: "4px solid white",
 					flexDirection: "column",
 					flex: 1,
+					textShadow: "3px 3px 7px black",
 				}}>
 				<div className="needsclick" style={this.scoreStyle()}>{this.numDisplay()}</div>
 				<div className="needsclick">{this.props.playerLogic.teamName}</div>

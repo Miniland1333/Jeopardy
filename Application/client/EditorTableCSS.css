@@ -9,8 +9,11 @@
 
 .Header {
 	border: 2px solid black;
-	min-height: 40px;
+	min-height: 7vh;
 	text-transform: uppercase;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .Column {
@@ -61,4 +64,14 @@
 
 body{
 	/*border: 2px white solid;*/
+}
+
+.middleText {
+	font-family: "gyparody";
+	font-size: 20vmin;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	white-space: pre-wrap;
+	text-shadow: 7px 7px 20px #000000c4;
 }

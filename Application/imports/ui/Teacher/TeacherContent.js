@@ -14,6 +14,8 @@ const questionStyle = {
 	whiteSpace: "pre-wrap",
 	justifyContent: "center",
 	textTransform: "uppercase",
+	textShadow: "3px 3px 7px black",
+	display: "flex",
 };
 const answerStyle = {
 	fontSize: "4vmin",
@@ -44,32 +46,11 @@ export default class TeacherContent extends React.Component {
 				let title;
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						return <div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Jeopardy!</div>;
+						return <div className="flex-container middleText">Jeopardy!</div>;
 					case 2:
-						return <div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Double<br />Jeopardy!</div>;
+						return <div className="flex-container middleText">Double<br />Jeopardy!</div>;
 					case 3:
-						return <div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Final<br />Jeopardy!</div>;
+						return <div className="flex-container middleText">Final<br />Jeopardy!</div>;
 				}
 				break;
 			case "categories":
@@ -121,17 +102,11 @@ export default class TeacherContent extends React.Component {
 					})}
 				</div>;
 			case "DailyDouble":
-				return <div className="flex-container" style={{
-					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
-					whiteSpace: "pre-wrap",
-				}}>Daily<br />Double</div>;
+				return <div className="flex-container middleText">Daily<br />Double</div>;
 			case "wager":
 			case "DDready":
 				const DDwager = this.props.gameLogic["player" + this.props.gameLogic["lastWinner"]]["wager"];
-				return [<div className="flex-container" key="top" style={{
-					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
-					whiteSpace: "pre-wrap",
-				}}>Daily<br />Double</div>,
+				return [<div className="flex-container" key="top" className="flex-container middleText">Daily<br />Double</div>,
 				<div style={{
 					fontSize: "3vw",
 					minWidth: "10vw",
@@ -167,14 +142,7 @@ export default class TeacherContent extends React.Component {
 						</div>
 					}
 					else {
-						return [<div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Video<br />Question</div>,
+						return [<div className="flex-container middleText">Video<br />Question</div>,
 						<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>]
 					}
 				}
@@ -182,7 +150,7 @@ export default class TeacherContent extends React.Component {
 				return <div className="flex-container" style={{ flexDirection: "column", flex: 1 }}>
 					<div style={{
 						fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
-						whiteSpace: "pre-wrap", textTransform: "uppercase"
+						whiteSpace: "pre-wrap", textTransform: "uppercase", display: "flex", textShadow: "7px 7px 20px #000000c4"
 					}}>{this.props.gameQuestions["currentQuestion"]['category']}</div>
 					<div style={answerStyle}>Wait for Players to enter their Wagers</div>
 
@@ -225,14 +193,7 @@ export default class TeacherContent extends React.Component {
 						</div>
 					}
 					else {
-						return [<div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Video<br />Question</div>,
+						return [<div className="flex-container middleText">Video<br />Question</div>,
 						<div style={answerStyle}>{this.props.gameQuestions["currentQuestion"]["answer"]}</div>,
 						<div style={{
 							position: "absolute", top: 10, right: 10,

@@ -110,13 +110,16 @@ Meteor.methods({
 
 			editorDatabase.update({username: username}, {$set: bundle});
 		}
-	}
-	,
+	},
 	'editorDatabase.studentEditor'(username = "mainEditor") {
 		const editorDB = editorDatabase.find({id: username}).fetch()[0];
 		if (!editorDB) {
 			Meteor.call('editorDatabase.init', username);
 		}
+	},
+	'editorDatabase.removeStudents'(){
+		editorDatabase.update({username: {$exists: false}}, {$set: {username: "mainEditor"}});
+		editorDatabase.remove({username: {$ne: "mainEditor"}});
 	}
 })
 ;

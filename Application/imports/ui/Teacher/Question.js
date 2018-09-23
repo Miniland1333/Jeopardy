@@ -10,6 +10,7 @@ const divStyle = {
 	alignItems: "center",
 	justifyContent: "center",
 	fontSize: "5vw",
+	textShadow: "3px 3px 7px black",
 };
 
 export default class Question extends React.Component {

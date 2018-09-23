@@ -19,7 +19,8 @@ const questionStyle = {
 	justifyContent: "center",
 	whiteSpace: "pre-wrap",
 	textTransform: "uppercase",
-	display: "inline-flex"
+	display: "inline-flex",
+	textShadow: "3px 3px 7px black",
 };
 const inputStyle = {
 	fontSize: "10vmin",
@@ -183,32 +184,11 @@ export default class ViewerContent extends React.Component {
 				clearInterval(timer);
 				switch (this.props.gameLogic["round"]) {
 					case 1:
-						return <div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Jeopardy!</div>;
+						return <div className="flex-container middleText">Jeopardy!</div>;
 					case 2:
-						return <div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Double<br/>Jeopardy!</div>;
+						return <div className="flex-container middleText">Double<br/>Jeopardy!</div>;
 					case 3:
-						return <div className="flex-container" style={{
-							fontFamily: "gyparody",
-							fontSize: "20vmin",
-							flex: 1,
-							alignItems: "center",
-							justifyContent: "center",
-							whiteSpace: "pre-wrap",
-						}}>Final<br/>Jeopardy!</div>;
+						return <div className="flex-container middleText">Final<br/>Jeopardy!</div>;
 				}
 				break;
 			case "categories":
@@ -254,10 +234,7 @@ export default class ViewerContent extends React.Component {
 					})}
 				</div>;
 			case "DailyDouble":
-				return <div className="flex-container" style={{
-					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
-					whiteSpace: "pre-wrap",
-				}}>Daily<br/>Double</div>;
+				return <div className="flex-container" className="flex-container middleText">Daily<br/>Double</div>;
 			case "read":
 			case "DDread":
 				this.lastState = this.props.gameLogic["state"];
@@ -289,10 +266,7 @@ export default class ViewerContent extends React.Component {
 			case "wager":
 			case "DDready":
 				const DDwager = this.props.gameLogic["player" + this.props.gameLogic["lastWinner"]]["wager"];
-				return [<div key="DDwager" className="flex-container" style={{
-					fontFamily: "gyparody", fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
-					whiteSpace: "pre-wrap",
-				}}>Daily<br/>Double</div>,
+				return [<div key="DDwager" className="flex-container middleText">Daily<br/>Double</div>,
 					<div key="wager" style={{
 						fontSize: "3vw",
 						minWidth: "10vw",
@@ -420,7 +394,7 @@ export default class ViewerContent extends React.Component {
 			case "FJwager":
 				return <div style={{
 					fontSize: "20vmin", flex: 1, alignItems: "center", justifyContent: "center",
-					whiteSpace: "pre-wrap", textTransform: "uppercase"
+					whiteSpace: "pre-wrap", textTransform: "uppercase", display: "flex", textShadow: "7px 7px 20px #000000c4"
 				}}>{this.props.gameQuestions["currentQuestion"]['category']}</div>;
 				break;
 			case "FJread":
