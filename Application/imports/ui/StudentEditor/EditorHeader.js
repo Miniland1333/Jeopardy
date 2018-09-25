@@ -51,7 +51,7 @@ export default class EditorHeader extends React.Component {
 		const fileToLoad = document.getElementById("fileToLoad").files[0];
 		if (fileToLoad) {
 			const fileReader = new FileReader();
-			fileReader.onload = function (fileLoadedEvent) {
+			fileReader.onload = (fileLoadedEvent) => {
 				let textFromFileLoaded = fileLoadedEvent.target.result;
 				try {
 					textFromFileLoaded = JSON.parse(textFromFileLoaded);
