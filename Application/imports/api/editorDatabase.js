@@ -112,7 +112,7 @@ Meteor.methods({
 		}
 	},
 	'editorDatabase.studentEditor'(username = "mainEditor") {
-		const editorDB = editorDatabase.find({id: username}).fetch()[0];
+		const editorDB = editorDatabase.find({username: username}).fetch()[0];
 		if (!editorDB) {
 			Meteor.call('editorDatabase.init', username);
 		}

@@ -27,7 +27,7 @@ class StudentEditor extends React.Component {
 
 	componentDidUpdate() {
 		if (this.props.isReady && !this.state.name) {
-			let name = "hg";
+			let name = "";
 			do {
 				name = prompt("Enter editor username");
 				if (name === "mainEditor") {
