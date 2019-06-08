@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import '../bootstrap.css';
-import "jquery-confirm"
-import "../jquery-confirm.css"
+import "jquery-confirm";
+import "../jquery-confirm.css";
 
 export default class ScoreBoard extends React.Component {
 	static propTypes = {
