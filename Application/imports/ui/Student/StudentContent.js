@@ -41,10 +41,18 @@ export default class StudentContent extends React.Component {
 			setup: true,
 			isPortrait: window.innerWidth < window.innerHeight,
 		};
+		
+		function checkOrientation(){
+			const previousOrientation = this.state.isPortrait;
+			let currentOrientation = window.innerWidth < window.innerHeight;
+    			if (window.orientation !== previousOrientation) {
+				this.setState({ isPortrait:  currentOrientation});
+   			}
+		};
 
-		$(window).on("orientationchange", (event) => {
-			setTimeout(() => this.setState({ isPortrait: window.innerWidth < window.innerHeight }), 50);
-		});
+		window.addEventListener("resize", checkOrientation, false);
+		window.addEventListener("orientationchange", checkOrientation, false);
+		setInterval(checkOrientation, 5000);
 	}
 
 	static propTypes = {
@@ -255,13 +263,13 @@ export default class StudentContent extends React.Component {
 								<div style={{ fontSize: "3vmin" }}>You can wager between $0 and ${points}</div>
 							</div>
 							{(navigator.userAgent.match(/(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)/i) && this.state.isPortrait) ?
-								<div style={errorStyle}>Please view in Landscape Mode</div> :
+								<div style={errorStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
+									Please view in Landscape Mode</div> :
 								<div style={confirmStyle} onClick={() => Meteor.call('gameLogic.addLate', teamNumber)}>
 									Confirm
 									Wager
 								</div>}
-							{navigator.userAgent.match(/(iPhone|iPod)/i) ?
-								<div style={{ height: 60 }} /> : []}
+							<div style={{ height: 60 }} />
 						</div>;
 					}
 					else {
