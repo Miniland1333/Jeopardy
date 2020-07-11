@@ -35,14 +35,14 @@ const inputStyle = {
 };
 const imageStyle = {
 	height: "100%",
-	maxWidth: "100%",
+	width: "100%",
+	objectFit: "contain",
 };
 const imageContainer = {
 	maxHeight: "100%",
 	maxWidth: "100%",
 	flex: 1,
-	justifyContent: "center",
-	alignItems: "center",
+	overflow: "hidden"
 };
 
 let timer;
@@ -399,10 +399,10 @@ export default class ViewerContent extends React.Component {
 				break;
 			case "FJread":
 				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
-					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					return <>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
-					</div>;
+					</>;
 				}
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
@@ -414,11 +414,12 @@ export default class ViewerContent extends React.Component {
 								<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 							</div>;
 						else
-							return <div key="imageContainer" style={imageContainer}>
+							return <><div key="imageContainer" style={imageContainer}>
 								<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 								     style={imageStyle}/>
-								<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 							</div>
+								<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+							</>
 					}
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -444,18 +445,19 @@ export default class ViewerContent extends React.Component {
 					progressbar.find(".ui-progressbar-value").css({"background": "#" + rainbow.colourAt(FJtime)});
 				}, 100);
 				if (typeof this.props.gameQuestions["currentQuestion"]["question"] === "string") {
-					return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
+					return <>
 						<div style={questionStyle}>{this.props.gameQuestions["currentQuestion"]["question"]}</div>
 						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
-					</div>;
+					</>;
 				}
 				else {
 					if (this.props.gameQuestions["currentQuestion"]["question"]["type"] === "image") {
-						return <div key="imageContainer" style={imageContainer}>
+						return <><div key="imageContainer" style={imageContainer}>
 							<img key="image" src={this.props.gameQuestions["currentQuestion"]["question"].image}
 							     style={imageStyle}/>
-							<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
 						</div>
+						<canvas className="needsclick" style={{width: 1, height: 1}} id="writingPad"/>
+						</>
 					}
 					else {
 						return <div className="flex-container" style={{flexDirection: "column", flex: 1}}>
@@ -470,10 +472,7 @@ export default class ViewerContent extends React.Component {
 				clearInterval(timer);
 				if (this.state.setup) {
 					Meteor.setTimeout(() => this.setState({setup: false}), 10);
-					return <div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
-						<canvas style={{flex: 1}} id="writingPad"/>
-						;
-					</div>
+					return <canvas style={{flex: 1}} id="writingPad"/>
 
 				}
 				else {
@@ -493,14 +492,14 @@ export default class ViewerContent extends React.Component {
 						wager = "";
 					}
 					return (
-						<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
+						<>
 							<canvas style={{flex: 1}} id="writingPad"/>
 							<div style={{
 								position: "absolute", top: 10, right: 10,
 								fontSize: "3vw",
 								minWidth: "10vw",
 							}}>{wager}</div>
-						</div>
+						</>
 					);
 				}
 			case "complete":
@@ -538,10 +537,10 @@ export default class ViewerContent extends React.Component {
 
 	render() {
 		return (
-			<div className="flex-container" style={{flex: 1, flexDirection: "column"}}>
+			<>
 				{this.renderContent()}
 				<CountDown gameLogic={this.props.gameLogic} time={this.time}/>
-			</div>
+			</>
 		);
 	}
 }

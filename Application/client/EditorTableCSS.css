@@ -34,6 +34,10 @@
 	height: 100vh;
 }
 
+.Main > div {
+	height: 100vh;
+}
+
 .question {
 	flex: 1;
 	vertical-align: middle;

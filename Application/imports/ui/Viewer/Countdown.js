@@ -37,7 +37,6 @@ const containerStyle = {
 	background: "transparent",
 	flex: "0 0 0",
 	position: "relative",
-	top: "-35px",
 	zIndex: 2
 };
 
