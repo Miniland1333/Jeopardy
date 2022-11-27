@@ -16,7 +16,7 @@ export default class Ping extends React.Component {
 		}
 	}
 	
-	componentWillMount() {
+	componentDidMount() {
 		const self = this;
 		pingInterval = setInterval(function () {
 			TimeSync.resync();

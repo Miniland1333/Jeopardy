@@ -42,16 +42,16 @@ export default class StudentContent extends React.Component {
 			isPortrait: window.innerWidth < window.innerHeight,
 		};
 		
-		function checkOrientation(){
+		const checkOrientation =  ()=>{
 			const previousOrientation = this.state.isPortrait;
 			let currentOrientation = window.innerWidth < window.innerHeight;
-    			if (window.orientation !== previousOrientation) {
+            if (previousOrientation !== currentOrientation) {
 				this.setState({ isPortrait:  currentOrientation});
    			}
 		};
 
-		window.addEventListener("resize", checkOrientation, false);
-		window.addEventListener("orientationchange", checkOrientation, false);
+		window.addEventListener("resize", checkOrientation);
+		window.addEventListener("orientationchange", checkOrientation);
 		setInterval(checkOrientation, 5000);
 	}
 
