@@ -23,6 +23,6 @@
     "react": "^16.13.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.13.1",
-    "react-router": "^4.3.1"
+    "react-router": "^6.26.2"
   }
 }
